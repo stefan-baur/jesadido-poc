@@ -1,0 +1,10 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}Copyright (C) ${date?date?string("yyyy")} ${project.organization!user}
+${licensePrefix?replace(" +$", "", "r")}
+${licensePrefix}Licensed under the GNU Lesser Public License, Version 3.0 (LGPL 3.0)
+${licensePrefix}https://www.gnu.org/licenses/lgpl-3.0.txt
+<#if licenseLast??>
+${licenseLast}
+</#if>
