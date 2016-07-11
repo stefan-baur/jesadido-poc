@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     
-    <name>Jesadido (Proof-Of-Concept)</name>
+    <name>Jesadido - Proof of Concept</name>
     <description>Jesadido (a formal kind of Esperanto) might be useful for many multilingual solutions.</description>
     
     <groupId>org.jesadido</groupId>
