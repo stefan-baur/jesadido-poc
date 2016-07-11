@@ -14,8 +14,7 @@ import org.jesadido.poc.JesadidoPoc;
 
 /**
  * This <code>JesadidoPocClient</code> class implements the JavaFX client
- * application for exploring all the features of the language project
- * <b>Jesadido - Proof of Concept</b>.
+ * application for exploring all the features of this language project.
  */
 public class JesadidoPocClient extends Application {
 
