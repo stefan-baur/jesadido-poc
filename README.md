@@ -16,7 +16,8 @@ This open source project implements the proof of concept of a new approach to di
   - German (`de`)
   - **Jesadido** (`ji`)
   - Spanish (`es`)
-- **Multilingual console**, a user interface for simultaneously multilingual writing
+- **Disambiguating via Pretty-Print** depending on lexical, syntactical and semantical definitions of involved target languages
+- **Providing a multilingual console**, a user interface for simultaneously multilingual writing
 
 ## Development Environment
 
