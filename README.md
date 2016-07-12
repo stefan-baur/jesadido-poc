@@ -18,7 +18,7 @@ The basic approach of this language project is the **creating of a uniquely pars
   - Spanish (`es`)
 - **Pretty-Print-Disambiguation** depending on lexical, syntactical and semantical definitions of involved target languages
 - **Providing a multilingual console**, a user interface for simultaneously multilingual content-writing
-- **X-platformed code-generation** to get **internationalization components**
+- **X-platformed code-generation** to get **internationalization components** for existing software solutions
 
 ## Delimitation
 
