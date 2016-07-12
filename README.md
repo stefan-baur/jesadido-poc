@@ -23,7 +23,7 @@ The basic approach of this language project is the **creating of a uniquely pars
 
 ## Continuation Possibilities
 
-- Multilinugal chats, fora, shops, and websites
+- Multilinugal chats, fora, shops and websites
 - Language lerning games
 - Low-cost software internationalization
 
