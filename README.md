@@ -2,8 +2,14 @@
 
 Jesadido *(a formal kind of Esperanto)* might be useful for many multilingual solutions.
 
-This open source project written in `Java 8` implements the proof of concept of a language framework.
+This open source project implements the proof of concept of a new approach for multilingual solutions by creating a new hybrid language, a **formal Esperanto**. 
 
+- Java 8 (jdk 8), JavaFX
+- Sonar (sonarqube 5.6)
+- Javadoc
+- Netbeans 8.1
+- Apache Maven 3.0.5
+- JUnit 4.12
 
 ## License
 
