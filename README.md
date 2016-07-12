@@ -18,7 +18,7 @@ This open source project implements the proof of concept of a new approach to di
   - Spanish (`es`)
 - **Disambiguation** depending on lexical, syntactical and semantical definitions of involved target languages
 - **Providing a multilingual console**, a user interface for simultaneously multilingual writing
-- **X-platformed code-generation** for internationalization components
+- X-platformed code-generation to get **internationalization components**
 
 ## Development Environment
 
@@ -26,7 +26,7 @@ This open source project implements the proof of concept of a new approach to di
 - Javadoc
 - JUnit 4.12
 - Maven 3.0.5
-- SonarQube 5.6 (LTS*)
+- SonarQube 5.6 (LTS)
 - Netbeans 8.1
 
 ## License
