@@ -22,7 +22,7 @@ The basic approach is the **creating of a uniquely parsable formal Esperanto** p
 
 ## Delimitation
 
-This software is a **prototypical, standalone, all-in-one, non-headless application** to show the feasibility of the above approach and its possibilities, only. A scalable cloud solution with a huge set of target languages should be realized with best effort, if this projekt really works.
+This project is the implementation of a **prototypical, standalone, all-in-one, non-headless application** to show the feasibility of the above approach and its possibilities, only. A scalable cloud solution with a huge set of target languages should be realized with best effort, if this projekt really works.
 
 ## Development Environment
 
