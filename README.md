@@ -14,7 +14,7 @@ This open source project implements the proof of concept of a new approach to di
   - Esperanto (`eo`)
   - French (`fr`)
   - German (`de`)
-  - **Jesadido** (`ji`), the Pretty-Print feature
+  - **Jesadido** (`ji`), the **Pretty-Print** feature
   - Spanish (`es`)
 - **Disambiguation** depending on lexical, syntactical and semantical definitions of involved target languages
 - **Providing a multilingual console**, a user interface for simultaneously multilingual writing
@@ -24,7 +24,7 @@ This open source project implements the proof of concept of a new approach to di
 - Java SE Development Kit 8 (Java 8, JavaFX)
 - Javadoc
 - JUnit 4.12
-- Apache Maven 3.0.5
+- Maven 3.0.5
 - SonarQube 5.6 (LTS*)
 - Netbeans 8.1
 
