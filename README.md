@@ -1,6 +1,6 @@
 # Jesadido - Proof of Concept
 
-Jesadido (a formal kind of Esperanto) might be useful for many multilingual solutions.
+Jesadido *(a formal kind of Esperanto)* might be useful for many multilingual solutions.
 
 
 
