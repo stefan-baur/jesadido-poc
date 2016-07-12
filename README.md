@@ -17,7 +17,7 @@ This open source project implements the proof of concept of a new approach to di
   - **Jesadido** (`ji`)
   - Spanish (`es`)
 - **Pretty-Print-Disambiguation** depending on lexical, syntactical and semantical definitions of involved target languages
-- **Providing a multilingual console**, a user interface for simultaneously multilingual writing
+- **Providing a multilingual console**, a user interface for simultaneously multilingual content-writing
 - **X-platformed code-generation** to get **internationalization components**
 
 ## Development Environment
