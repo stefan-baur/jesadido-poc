@@ -2,7 +2,7 @@
 
 Jesadido *(a formal kind of Esperanto)* might be useful for many multilingual solutions.
 
-
+This open source project written in `Java 8` implements the proof of concept of a language framework.
 
 
 ## License
