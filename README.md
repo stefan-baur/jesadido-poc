@@ -22,7 +22,7 @@ The basic approach is the **creating of a uniquely parsable formal Esperanto** p
 
 ## Delimitation
 
-This project is a standalone, all-in-one, non-headless application to show the feasibility of the above approach and its possibilities, only.
+This software is **a standalone, all-in-one, non-headless application** to show the feasibility of the above approach and its possibilities, only.
 
 ## Development Environment
 
