@@ -1,6 +1,6 @@
 # Jesadido - Proof of Concept
 
-This open source project implements the proof of concept of a new approach to dismantle language barriers by using of an emerging **formal Esperanto** called **Jesadido**. Therefore, Jesadido *(a formal kind of Esperanto)* might be useful for many multilingual solutions.
+This open source project implements the proof of concept of a new approach to dismantle language barriers by using of an emerging **formal Esperanto** called **Jesadido**. Especially, Jesadido is very useful for adequate translated content.
 
 - Java 8 (jdk 8), JavaFX
 - Sonar (sonarqube 5.6)
