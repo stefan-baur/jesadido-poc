@@ -18,6 +18,7 @@ This open source project implements the proof of concept of a new approach to di
   - Spanish (`es`)
 - **Disambiguation** depending on lexical, syntactical and semantical definitions of involved target languages
 - **Providing a multilingual console**, a user interface for simultaneously multilingual writing
+- **X-platformed code-generation** for internationalization components
 
 ## Development Environment
 
