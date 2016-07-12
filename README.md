@@ -1,6 +1,6 @@
 # Jesadido - Proof of Concept
 
-This open source project implements the proof of concept of a new approach to dismantle language barriers by using of an emerging **formal Esperanto** called **Jesadido**. Especially, Jesadido might be used for generating of adequate translated content.
+This open source project implements the proof of concept of a new approach to **dismantle language barriers** by using of an emerging **formal Esperanto** called **Jesadido**. Especially, Jesadido might be used for generating of adequate translated content.
 
 ## Basic Approach
 
