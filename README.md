@@ -28,6 +28,7 @@ This open source project implements the proof of concept of a new approach to di
 - Maven 3.0.5
 - SonarQube 5.6 (LTS)
 - Netbeans 8.1
+- Windows 7 Home Premium
 
 ## License
 
