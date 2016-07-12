@@ -2,6 +2,22 @@
 
 This open source project implements the proof of concept of a new approach to dismantle language barriers by using of an emerging **formal Esperanto** called **Jesadido**. Especially, Jesadido might be used for generating of adequate translated content.
 
+## Basic Approach
+
+
+
+## Features
+
+- **Parsing a Jesadido-code** to get an unique abstract syntax tree (AST)
+- **Generating of adequate translated content** for following languages:
+  - **English**
+  - **Esperanto**
+  - **French**
+  - **German**
+  - **Spanish**
+
+## Environment
+
 - Java 8 (jdk 8), JavaFX
 - Sonar (sonarqube 5.6)
 - Javadoc
