@@ -20,6 +20,10 @@ The basic approach is the creating of a uniquely parsable formal Esperanto provi
 - **Providing a multilingual console**, a user interface for simultaneously multilingual content-writing
 - **X-platformed code-generation** to get **internationalization components**
 
+## Delimitation
+
+This project is a standalone, all-in-one, non-headless application to show the feasibility of the above approach and its possibilities, only.
+
 ## Development Environment
 
 - Java SE Development Kit 8 (Java 8, JavaFX)
