@@ -32,7 +32,7 @@
             <roles>
                 <role>owner</role>
                 <role>contributor</role>
-                <role>commiter</role>
+                <role>committer</role>
                 <role>developer</role>
             </roles>
             <timezone>1</timezone>
