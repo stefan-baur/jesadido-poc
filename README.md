@@ -21,6 +21,12 @@ The basic approach of this language project is the **creating of a uniquely pars
 - **X-platformed code-generation** to get **internationalization components** for existing software solutions
 - **Providing a main application** for pleasant exploring/using this language project
 
+## Continuation Possibilities
+
+- Multilinugal chats, fora, shops, and websites
+- Language lerning games
+- Low-cost software internationalization
+
 ## Delimitation
 
 This project is the implementation of a **prototypical, standalone, all-in-one, non-headless application** to show the feasibility of the above approach and its possibilities, only. A scalable cloud solution with a huge set of target languages should be realized with best effort, if this language projekt really works.
