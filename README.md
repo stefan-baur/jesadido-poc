@@ -15,15 +15,16 @@ This open source project implements the proof of concept of a new approach to di
   - French (`fr`)
   - German (`de`)
   - Spanish (`es`)
+- **Multilingual console**, a user interface for simultaneously multilingual writing
 
-## Environment
+## Development Environment
 
 - Java 8 (jdk 8), JavaFX
-- Sonar (sonarqube 5.6)
 - Javadoc
-- Netbeans 8.1
-- Apache Maven 3.0.5
 - JUnit 4.12
+- Apache Maven 3.0.5
+- SonarQube 5.6 (LTS*)
+- Netbeans 8.1
 
 ## License
 
