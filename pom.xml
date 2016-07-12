@@ -31,6 +31,8 @@
             <email>info@stefan-baur.org</email>
             <roles>
                 <role>owner</role>
+                <role>contributor</role>
+                <role>commiter</role>
                 <role>developer</role>
             </roles>
             <timezone>1</timezone>
