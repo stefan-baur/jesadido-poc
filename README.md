@@ -1,10 +1,12 @@
 # Jesadido - Proof of Concept
 
-This open source project implements the proof of concept of a new approach to **dismantle language barriers** by using of an emerging **formal Esperanto** called **Jesadido**. Especially, Jesadido might be used for the generating of adequate translated content.
+This open source project implements the proof of concept of a new approach to **dismantle language barriers** by using of an emerging **formal Esperanto** called **Jesadido**.
+Especially, Jesadido might be used for the generating of adequate translated content.
 
 ## Basic Approach
 
-The basic approach of this language project is the **creating of a uniquely parsable formal Esperanto** providing the generating of **adequate translated content** for all involved target languages. This is required **for language-barrier-free, but stakeholder-based communication**.
+The basic approach of this language project is the **creating of a uniquely parsable formal Esperanto** providing the generating of **adequate translated content** for all involved target languages.
+This is required **for language-barrier-free, but stakeholder-based communication**.
 
 ## Main Features
 
@@ -29,7 +31,8 @@ The basic approach of this language project is the **creating of a uniquely pars
 
 ## Delimitation
 
-This project is the implementation of a **prototypical, standalone, all-in-one, non-headless application** to show the feasibility of the above approach and its possibilities, only. A scalable cloud solution with a huge set of target languages should be realized with best effort, if this language projekt really works.
+This project is the implementation of a **prototypical, standalone, all-in-one, non-headless application** to show the feasibility of the above approach and its possibilities, only.
+A scalable cloud solution with a huge set of target languages should be realized with best effort, if this language projekt really works.
 
 ## Development Environment
 
@@ -39,7 +42,7 @@ This project is the implementation of a **prototypical, standalone, all-in-one, 
 - Maven 3.0.5
 - SonarQube 5.6 (LTS)
 - Netbeans 8.1
-- Windows 7 Home Premium
+- Windows 7 Home Premium (64 bit system)
 
 ## License
 
