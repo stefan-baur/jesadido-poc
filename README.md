@@ -4,7 +4,7 @@ This open source project implements the proof of concept of a new approach to **
 
 ## Basic Approach
 
-The basic approach is the **creating of a uniquely parsable formal Esperanto** providing the generating of **adequate translated content** for all involved target languages. This is required **for language-barrier-free, but stakeholder-based communication**.
+The basic approach of this language project is the **creating of a uniquely parsable formal Esperanto** providing the generating of **adequate translated content** for all involved target languages. This is required **for language-barrier-free, but stakeholder-based communication**.
 
 ## Main Features
 
@@ -22,7 +22,7 @@ The basic approach is the **creating of a uniquely parsable formal Esperanto** p
 
 ## Delimitation
 
-This project is the implementation of a **prototypical, standalone, all-in-one, non-headless application** to show the feasibility of the above approach and its possibilities, only. A scalable cloud solution with a huge set of target languages should be realized with best effort, if this projekt really works.
+This project is the implementation of a **prototypical, standalone, all-in-one, non-headless application** to show the feasibility of the above approach and its possibilities, only. A scalable cloud solution with a huge set of target languages should be realized with best effort, if this language projekt really works.
 
 ## Development Environment
 
