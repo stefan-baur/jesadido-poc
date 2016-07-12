@@ -4,7 +4,7 @@ This open source project implements the proof of concept of a new approach to di
 
 ## Basic Approach
 
-
+The basic approach is the creating of a uniquely parsable formal Esperanto providing the generating of adequate translated content for all involved target languages. This is required for language-barriere-free, but stakeholder-based communication.
 
 ## Main Features
 
