@@ -6,7 +6,7 @@ This open source project implements the proof of concept of a new approach to di
 
 
 
-## Features
+## Main Features
 
 - **Parsing of Jesadido-code** to get an unique abstract syntax tree (AST)
 - **Generating of adequate translated content** for following languages:
@@ -20,7 +20,7 @@ This open source project implements the proof of concept of a new approach to di
 
 ## Development Environment
 
-- Java 8 (jdk 8), JavaFX
+- Java SE Development Kit 8 (Java 8, JavaFX)
 - Javadoc
 - JUnit 4.12
 - Apache Maven 3.0.5
