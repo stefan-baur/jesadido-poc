@@ -8,12 +8,13 @@ This open source project implements the proof of concept of a new approach to di
 
 ## Features
 
-- **Parsing of Jesadido-code** (`ji`) to get an unique abstract syntax tree (AST)
+- **Parsing of Jesadido-code** to get an unique abstract syntax tree (AST)
 - **Generating of adequate translated content** for following languages:
   - English (`en`)
   - Esperanto (`eo`)
   - French (`fr`)
   - German (`de`)
+  - **Jesadido** (`ji`)
   - Spanish (`es`)
 - **Multilingual console**, a user interface for simultaneously multilingual writing
 
