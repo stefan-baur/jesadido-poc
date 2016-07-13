@@ -69,7 +69,7 @@ public enum Language {
     
     /**
      * Returns <code>true</code> if this language is conform to the standard
-     * <b>ISO 639-1</b>. In this case, the code of this language can be use for
+     * <b>ISO 639-1</b>. In this case, the code of this language can be used for
      * example by declaring the HTML-tag-attribute <code>lang</code>.
      * @return <code>true</code> if this language is <b>ISO 639-1 conform</b>.
      */
