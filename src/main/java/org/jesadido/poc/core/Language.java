@@ -17,44 +17,46 @@ public enum Language {
      * The abbreviation for <b>Jesadido</b> is <b>ji</b>. It is <i>not</i>
      * conform to the standard <b>ISO 639-1</b>.
      */
-    JI("ji", false),
+    JI("ji", false, "Jesadido"),
     
     /**
      * The <b>ISO 639-1 conform</b> abbreviation for <b>German</b> is
      * <b>de</b>.
      */
-    DE("de", true),
+    DE("de", true, "German"),
     
     /**
      * The <b>ISO 639-1 conform</b> abbreviation for <b>English</b> is
      * <b>en</b>.
      */
-    EN("en", true),
+    EN("en", true, "English"),
     
     /**
      * The <b>ISO 639-1 conform</b> abbreviation for <b>Esperanto</b> is
      * <b>eo</b>.
      */
-    EO("eo", true),
+    EO("eo", true, "Esperanto"),
     
     /**
      * The <b>ISO 639-1 conform</b> abbreviation for <b>Spanish</b> is
      * <b>es</b>.
      */
-    ES("es", true),
+    ES("es", true, "Spanish"),
     
     /**
      * The <b>ISO 639-1 conform</b> abbreviation for <b>French</b> is
      * <b>fr</b>.
      */
-    FR("fr", true);
+    FR("fr", true, "French");
     
     private final String code;
     private final boolean isoConform;
+    private final String description;
     
-    private Language(String code, boolean isoConform) {
+    private Language(String code, boolean isoConform, String description) {
         this.code = code;
         this.isoConform = isoConform;
+        this.description = description;
     }
     
     /**
@@ -73,6 +75,14 @@ public enum Language {
      */
     public boolean isIsoConform() {
         return this.isoConform;
+    }
+    
+    /**
+     * Returns the description of this language in English.
+     * @return The description of this language.
+     */
+    public String getDescription() {
+        return this.description;
     }
     
     /**
