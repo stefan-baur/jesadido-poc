@@ -9,25 +9,21 @@ package org.jesadido.poc.core;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * This <code>LanguageText</code> class tests the methods of the
- * <code>Language</code> class.
- */
 public class LanguageTest {
     
-    /**
-     * Tests the <code>values</code> method of the <code>Language</code> class.
-     */
     @Test
     public void testValues() {
-        Language[] allSupportedLanguages = Language.values();
-        Assert.assertEquals(6, allSupportedLanguages.length);
-        Assert.assertArrayEquals(new Language[] { Language.JI, Language.DE, Language.EN, Language.EO, Language.ES, Language.FR }, allSupportedLanguages);
+        Assert.assertEquals(6, Language.values().length);
+        Assert.assertArrayEquals(new Language[] {
+            Language.JI,
+            Language.DE,
+            Language.EN,
+            Language.EO,
+            Language.ES,
+            Language.FR
+        }, Language.values());
     }
 
-    /**
-     * Tests the <code>valueOf</code> method of the <code>Language</code> class.
-     */
     @Test
     public void testValueOf() {
         Assert.assertEquals(Language.JI, Language.valueOf("JI"));
@@ -38,9 +34,6 @@ public class LanguageTest {
         Assert.assertEquals(Language.FR, Language.valueOf("FR"));
     }
 
-    /**
-     * Tests the <code>getCode</code> method of the <code>Language</code> class.
-     */
     @Test
     public void testGetCode() {
         Assert.assertEquals("ji", Language.JI.getCode());
@@ -51,10 +44,6 @@ public class LanguageTest {
         Assert.assertEquals("fr", Language.FR.getCode());
     }
 
-    /**
-     * Tests the <code>isIsoConform</code> method of the <code>Language</code>
-     * class.
-     */
     @Test
     public void testIsIsoConform() {
         Assert.assertEquals(false, Language.JI.isIsoConform());
@@ -65,10 +54,6 @@ public class LanguageTest {
         Assert.assertEquals(true, Language.FR.isIsoConform());
     }
 
-    /**
-     * Tests the <code>getDescription</code> method of the <code>Language</code>
-     * class.
-     */
     @Test
     public void testGetDescription() {
         Assert.assertEquals("Jesadido", Language.JI.getDescription());
@@ -79,9 +64,6 @@ public class LanguageTest {
         Assert.assertEquals("French", Language.FR.getDescription());
     }
 
-    /**
-     * Tests the <code>toString</code> method of the <code>Language</code> class.
-     */
     @Test
     public void testToString() {
         Assert.assertEquals("ji", Language.JI.toString());
