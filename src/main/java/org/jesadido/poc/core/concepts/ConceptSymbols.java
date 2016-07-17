@@ -11,7 +11,6 @@ public final class ConceptSymbols {
     
     public static final String MORPHEME_REFERENCE_INDICATOR = "$";
     
-    public static final String MORPHEME_O = "O";
     public static final String MORPHEME_PLURAL = "J";
     
     private ConceptSymbols() {

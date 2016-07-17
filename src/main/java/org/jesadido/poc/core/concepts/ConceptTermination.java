@@ -7,12 +7,8 @@
  */
 package org.jesadido.poc.core.concepts;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 public enum ConceptTermination {
-    NONE,
+    NONE(null),
     
     T0("."),
     T1("!"),
@@ -46,13 +42,13 @@ public enum ConceptTermination {
     
     ;
     
-    private final List<String> conceptTerminations;
+    private final String terminationPhrase;
     
-    private ConceptTermination(String ... conceptTerminations) {
-        this.conceptTerminations = Collections.unmodifiableList(Arrays.asList(conceptTerminations));
+    private ConceptTermination(String terminationPhrase) {
+        this.terminationPhrase = terminationPhrase;
     }
     
-    public List<String> getConceptTerminations() {
-        return this.conceptTerminations;
+    public String getTerminationPhrase() {
+        return this.terminationPhrase;
     }
 }

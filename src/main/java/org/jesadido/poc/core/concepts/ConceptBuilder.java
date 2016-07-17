@@ -129,10 +129,9 @@ public final class ConceptBuilder {
     
     private ConceptTermination buildConceptTermination(String phrase) {
         for (ConceptTermination conceptTermination : ConceptTermination.values()) {
-            for (String termination : conceptTermination.getConceptTerminations()) {
-                if (phrase.endsWith(termination)) {
-                    return conceptTermination;
-                }
+            String termination = conceptTermination.getTerminationPhrase();
+            if (termination != null && phrase.endsWith(termination)) {
+                return conceptTermination;
             }
         }
         return ConceptTermination.NONE;
