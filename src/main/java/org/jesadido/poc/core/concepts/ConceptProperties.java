@@ -13,19 +13,11 @@ import org.jesadido.poc.core.Language;
 
 public final class ConceptProperties {
     
-    private ConceptTermination termination;
-    private boolean plural;
-    private List<String> parameterPlainList;
-    private Language parameterLanguage;
-    private ConceptParameterType parameterType;
-    
-    public ConceptProperties() {
-        this.termination = ConceptTermination.UNKNOWN;
-        this.plural = false;
-        this.parameterPlainList = new LinkedList<>();
-        this.parameterLanguage = Language.JI;
-        this.parameterType = ConceptParameterType.NONE;
-    }
+    private ConceptTermination termination = ConceptTermination.UNKNOWN;
+    private boolean plural = false;
+    private List<String> parameterPlainList = new LinkedList<>();
+    private Language parameterLanguage = Language.JI;
+    private ConceptParameterType parameterType = ConceptParameterType.NONE;
     
     public ConceptTermination getTermination() {
         return this.termination;
