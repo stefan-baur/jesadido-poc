@@ -15,14 +15,12 @@ public final class ConceptProperties {
     
     private ConceptTermination termination;
     private boolean plural;
-    private boolean substantive;
     private List<String> parameterPlainList;
     private Language parameterLanguage;
     private ConceptParameterType parameterType;
     
     public ConceptProperties() {
         this.termination = ConceptTermination.NONE;
-        this.substantive = false;
         this.plural = false;
         this.parameterPlainList = new LinkedList<>();
         this.parameterLanguage = Language.JI;
