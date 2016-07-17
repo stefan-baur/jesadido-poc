@@ -33,7 +33,7 @@ public final class ConceptRegistry {
         if (!CONCEPTS.containsKey(conceptPhrase)) {
             Concept parsedConcept = ConceptParser.parse(conceptPhrase);
             if (!conceptPhrase.equals(parsedConcept.getFullPhrase())) {
-                LOGGER.warning(String.format("The given concept phrase differs to the parsed result: \"%s\" != \"%s\"", conceptPhrase, parsedConcept.getFullPhrase()));
+                LOGGER.severe(String.format("The given concept phrase differs to the parsed result: \"%s\" != \"%s\"", conceptPhrase, parsedConcept.getFullPhrase()));
             }
             CONCEPTS.put(conceptPhrase, parsedConcept);
         }
