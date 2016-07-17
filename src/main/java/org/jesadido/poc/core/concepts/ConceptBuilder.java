@@ -9,11 +9,14 @@ package org.jesadido.poc.core.concepts;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import org.jesadido.poc.core.CoreUtils;
 import org.jesadido.poc.core.Language;
 
 public final class ConceptBuilder {
+    
+    private static final Logger LOGGER = Logger.getLogger(ConceptBuilder.class.getName());
     
     private final List<String> morphemes;
     private final List<String> baseMorphemes;
@@ -113,6 +116,7 @@ public final class ConceptBuilder {
                 return result;
             }
         }
+        LOGGER.warning(String.format("The language morpheme annotates no supported language, but: \"%s\".", languageString));
         return Language.JI;
     }
     
@@ -134,6 +138,7 @@ public final class ConceptBuilder {
                 return conceptTermination;
             }
         }
-        return ConceptTermination.NONE;
+        LOGGER.warning(String.format("The phrase \"%s\" has no supported concept termination.", phrase));
+        return ConceptTermination.UNKNOWN;
     }
 }

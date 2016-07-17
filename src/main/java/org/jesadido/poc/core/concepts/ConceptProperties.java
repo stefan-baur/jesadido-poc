@@ -20,7 +20,7 @@ public final class ConceptProperties {
     private ConceptParameterType parameterType;
     
     public ConceptProperties() {
-        this.termination = ConceptTermination.NONE;
+        this.termination = ConceptTermination.UNKNOWN;
         this.plural = false;
         this.parameterPlainList = new LinkedList<>();
         this.parameterLanguage = Language.JI;

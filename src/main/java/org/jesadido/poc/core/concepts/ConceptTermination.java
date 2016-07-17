@@ -8,7 +8,7 @@
 package org.jesadido.poc.core.concepts;
 
 public enum ConceptTermination {
-    NONE(null),
+    UNKNOWN(null),
     
     T0("."),
     T1("!"),
