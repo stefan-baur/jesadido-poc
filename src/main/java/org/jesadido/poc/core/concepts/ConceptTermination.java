@@ -28,13 +28,6 @@ public enum ConceptTermination {
     VI("Vi"),
     ILI("Ili"),
     
-    MI_LA("MiLa"),
-    BI_LA("BiLa"),
-    GXI_LA("GxiLa"),
-    NI_LA("NiLa"),
-    VI_LA("ViLa"),
-    ILI_LA("IliLa"),
-    
     LA("La"),
     
     KAJ("Kaj"),
