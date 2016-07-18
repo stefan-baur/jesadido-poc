@@ -82,7 +82,7 @@ public class ConceptBuilderTest {
     @Test
     public void testBuildFullPhrase() {
         {
-            ConceptBuilder conceptBuilder = new ConceptBuilder(Arrays.asList("Mi", "$", "La"));
+            ConceptBuilder conceptBuilder = new ConceptBuilder(Arrays.asList("mi", "$", "la"));
             Assert.assertEquals("Mi$La", conceptBuilder.buildFullPhrase());
         }
         {
@@ -90,15 +90,15 @@ public class ConceptBuilderTest {
             Assert.assertEquals("'1843-06-09'DatO", conceptBuilder.buildFullPhrase());
         }
         {
-            ConceptBuilder conceptBuilder = new ConceptBuilder(Arrays.asList("Icx", "O", "$", "/de/", "'Alex'", "O"));
+            ConceptBuilder conceptBuilder = new ConceptBuilder(Arrays.asList("icx", "o", "$", "/de/", "'Alex'", "o"));
             Assert.assertEquals("IcxO$/de/'Alex'O", conceptBuilder.buildFullPhrase());
         }
         {
-            ConceptBuilder conceptBuilder = new ConceptBuilder(Arrays.asList("Sun", "O", "J", "$", "Ili"));
+            ConceptBuilder conceptBuilder = new ConceptBuilder(Arrays.asList("sun", "o", "j", "$", "ili"));
             Assert.assertEquals("SunOJ$Ili", conceptBuilder.buildFullPhrase());
         }
         {
-            ConceptBuilder conceptBuilder = new ConceptBuilder(Arrays.asList("/de/", "'Zamenhof'", "Icx", "O", "$", "/eo/", "'Ludoviko'Lazaro'Zamenhofo'", "O"));
+            ConceptBuilder conceptBuilder = new ConceptBuilder(Arrays.asList("/de/", "'Zamenhof'", "icx", "o", "$", "/eo/", "'Ludoviko'Lazaro'Zamenhofo'", "o"));
             Assert.assertEquals("/de/'Zamenhof'IcxO$/eo/'Ludoviko'Lazaro'Zamenhofo'O", conceptBuilder.buildFullPhrase());
         }
     }
