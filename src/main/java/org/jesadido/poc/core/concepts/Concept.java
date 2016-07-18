@@ -25,31 +25,31 @@ public final class Concept {
         this.properties = conceptBuilder.buildProperties();
     }
     
-    public boolean hasReferenceConcept() {
+    public final boolean hasReferenceConcept() {
         return this.referenceConcept != null;
     }
     
-    public Concept getReferenceConcept() {
+    public final Concept getReferenceConcept() {
         return this.referenceConcept;
     }
     
-    public List<String> getBaseMorphemes() {
+    public final List<String> getBaseMorphemes() {
         return this.baseMorphemes;
     }
     
-    public String getBasePhrase() {
+    public final String getBasePhrase() {
         return this.basePhrase;
     }
     
-    public String getFullPhrase() {
+    public final String getFullPhrase() {
         return this.fullPhrase;
     }
     
-    public ConceptProperties getProperties() {
+    public final ConceptProperties getProperties() {
         return this.properties;
     }
     
-    public static Concept parse(final String fullPhrase) {
+    public static final Concept parse(final String fullPhrase) {
         return ConceptParser.parse(fullPhrase);
     }
 }

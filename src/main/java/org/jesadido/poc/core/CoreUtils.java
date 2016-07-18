@@ -21,7 +21,7 @@ public final class CoreUtils {
      * @param value The given string.
      * @return The given string with upper-cased first charakter.
      */
-    public static String up(final String value) {
+    public static final String up(final String value) {
         return (value == null || value.length() == 0) ? "" : value.substring(0, 1).toUpperCase() + value.substring(1);
     }
     
@@ -31,7 +31,7 @@ public final class CoreUtils {
      * @return The given string without the last character. An empty string, if
      * the given string is empty or null.
      */
-    public static String cut(final String value) {
+    public static final String cut(final String value) {
         return (value == null || value.length() == 0) ? "" : value.substring(0, value.length() - 1);
     }
     
@@ -41,7 +41,7 @@ public final class CoreUtils {
      * @param phrase Any phrase which is not null.
      * @return A string which is not containing to the given phrase.
      */
-    public static String escaper(final String escaperPrefix, final String phrase) {
+    public static final String escaper(final String escaperPrefix, final String phrase) {
         String result = escaperPrefix;
         while (phrase.contains(result)) {
             result = result.concat("_");

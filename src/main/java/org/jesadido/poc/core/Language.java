@@ -64,7 +64,7 @@ public enum Language {
      * Returns the lower-cased language abbreviation code.
      * @return The language code.
      */
-    public String getCode() {
+    public final String getCode() {
         return this.code;
     }
     
@@ -73,7 +73,7 @@ public enum Language {
      * surrounded with the slash character <code>/</code>.
      * @return The morpheme phrase of this language.
      */
-    public String getMorphemePhrase() {
+    public final String getMorphemePhrase() {
         return String.format("/%s/", this.getCode());
     }
     
@@ -83,7 +83,7 @@ public enum Language {
      * example by declaring the HTML-tag-attribute <code>lang</code>.
      * @return <code>true</code> if this language is <b>ISO 639-1 conform</b>.
      */
-    public boolean isIsoConform() {
+    public final boolean isIsoConform() {
         return this.isoConform;
     }
     
@@ -91,7 +91,7 @@ public enum Language {
      * Returns the description of this language in English.
      * @return The description of this language.
      */
-    public String getDescription() {
+    public final String getDescription() {
         return this.description;
     }
     
@@ -100,7 +100,7 @@ public enum Language {
      * @return The language code.
      */
     @Override
-    public String toString() {
+    public final String toString() {
         return this.code;
     }
 }

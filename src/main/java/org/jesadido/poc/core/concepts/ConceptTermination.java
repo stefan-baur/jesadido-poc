@@ -29,15 +29,15 @@ public enum ConceptTermination {
     
     private final String terminationPhrase;
     
-    private ConceptTermination(String terminationPhrase) {
+    private ConceptTermination(final String terminationPhrase) {
         this.terminationPhrase = terminationPhrase;
     }
     
-    public String getTerminationPhrase() {
+    public final String getTerminationPhrase() {
         return this.terminationPhrase;
     }
     
-    public boolean isOneOf(ConceptTermination ... conceptTerminations) {
+    public final boolean isOneOf(final ConceptTermination ... conceptTerminations) {
         for (ConceptTermination conceptTermination : conceptTerminations) {
             if (this == conceptTermination) {
                 return true;
@@ -46,7 +46,7 @@ public enum ConceptTermination {
         return false;
     }
     
-    public static ConceptTermination get(String conceptPhrase) {
+    public static final ConceptTermination get(final String conceptPhrase) {
         if (conceptPhrase != null) {
             for (ConceptTermination conceptTermination : ConceptTermination.values()) {
                 String termination = conceptTermination.getTerminationPhrase();

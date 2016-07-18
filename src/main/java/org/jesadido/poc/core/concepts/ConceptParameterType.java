@@ -27,11 +27,11 @@ public enum ConceptParameterType {
         this.conceptEndings = Collections.unmodifiableList(Arrays.asList(conceptEndings));
     }
     
-    public List<String> getConceptEndings() {
+    public final List<String> getConceptEndings() {
         return this.conceptEndings;
     }
     
-    public static ConceptParameterType get(final String conceptPhrase) {
+    public static final ConceptParameterType get(final String conceptPhrase) {
         for (ConceptParameterType conceptParameterType : ConceptParameterType.values()) {
             for (String conceptEnding : conceptParameterType.getConceptEndings()) {
                 if (conceptPhrase != null && conceptPhrase.endsWith(conceptEnding)) {

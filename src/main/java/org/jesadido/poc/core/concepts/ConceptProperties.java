@@ -19,31 +19,31 @@ public final class ConceptProperties {
     private Language parameterLanguage = Language.JI;
     private ConceptParameterType parameterType = ConceptParameterType.NONE;
     
-    public ConceptTermination getTermination() {
+    public final ConceptTermination getTermination() {
         return this.termination;
     }
     
-    public void setTermination(ConceptTermination value) {
+    public final void setTermination(final ConceptTermination value) {
         this.termination = value;
     }
     
-    public boolean isPlural() {
+    public final boolean isPlural() {
         return this.plural;
     }
     
-    public void setPlural(boolean value) {
+    public final void setPlural(final boolean value) {
         this.plural = value;
     }
     
-    public boolean hasParameter() {
+    public final boolean hasParameter() {
         return !this.parameterPlainList.isEmpty();
     }
     
-    public List<String> getParameterPlainList() {
+    public final List<String> getParameterPlainList() {
         return this.parameterPlainList;
     }
     
-    public void setParameterPlainList(List<String> list) {
+    public final void setParameterPlainList(final List<String> list) {
         this.parameterPlainList = list;
     }
     
@@ -51,15 +51,15 @@ public final class ConceptProperties {
         return this.parameterLanguage;
     }
     
-    public void setParameterLanguage(Language value) {
+    public final void setParameterLanguage(final Language value) {
         this.parameterLanguage = value;
     }
     
-    public ConceptParameterType getParameterType() {
+    public final ConceptParameterType getParameterType() {
         return this.parameterType;
     }
     
-    public void setParameterType(ConceptParameterType value) {
+    public final void setParameterType(final ConceptParameterType value) {
         this.parameterType = value;
     }
 }

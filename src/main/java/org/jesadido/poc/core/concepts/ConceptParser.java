@@ -20,7 +20,7 @@ public final class ConceptParser {
         return new Concept(new ConceptBuilder(parseToMorphemes(fullPhrase)));
     }
     
-    private static final List<String> parseToMorphemes(final String fullPhrase) {
+    private static List<String> parseToMorphemes(final String fullPhrase) {
         return Arrays.asList(fullPhrase);
     }
 }

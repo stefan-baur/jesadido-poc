@@ -51,19 +51,19 @@ public final class ConceptBuilder {
         this.referenceConcept = this.referenceMorphemes.isEmpty() ? null : new Concept(new ConceptBuilder(this.referenceMorphemes));
     }
     
-    public Concept buildReferenceConcept() {
+    public final Concept buildReferenceConcept() {
         return this.referenceConcept;
     }
     
-    public List<String> buildBaseMorphemes() {
+    public final List<String> buildBaseMorphemes() {
         return this.baseMorphemes;
     }
     
-    public String buildBasePhrase() {
+    public final String buildBasePhrase() {
         return this.basePhrase;
     }
     
-    public String buildFullPhrase() {
+    public final String buildFullPhrase() {
         final StringBuilder result = new StringBuilder();
         if (this.referenceConcept != null) {
             result.append(this.referenceConcept.getFullPhrase()).append("$");
@@ -72,7 +72,7 @@ public final class ConceptBuilder {
         return result.toString();
     }
     
-    public ConceptProperties buildProperties() {
+    public final ConceptProperties buildProperties() {
         ConceptProperties result = new ConceptProperties();
         this.baseMorphemes.stream().filter(morpheme -> morpheme.startsWith("/")).forEach(morpheme -> result.setParameterLanguage(this.buildLanguage(morpheme)));
         this.baseMorphemes.stream().filter(morpheme -> morpheme.startsWith("'")).forEach(morpheme -> result.setParameterPlainList(this.buildParameterPlainList(morpheme)));
@@ -93,7 +93,7 @@ public final class ConceptBuilder {
         return result;
     }
     
-    private List<String> buildParameterPlainList(String morpheme) {
+    private List<String> buildParameterPlainList(final String morpheme) {
         final String escaper1 = CoreUtils.escaper("!§$%1", morpheme);
         final String escaper2 = CoreUtils.escaper("!§$%2", morpheme);
         final String escaper3 = CoreUtils.escaper("!§$%3", morpheme);
@@ -113,7 +113,7 @@ public final class ConceptBuilder {
         return result;
     }
     
-    private Language buildLanguage(String morpheme) {
+    private Language buildLanguage(final String morpheme) {
         for (Language result : Language.values()) {
             if (result.getMorphemePhrase().equals(morpheme)) {
                 return result;
