@@ -8,8 +8,10 @@
 package org.jesadido.poc.core.concepts;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
+import org.jesadido.poc.core.CoreUtils;
 
 public final class ConceptRegistry {
     
@@ -29,14 +31,32 @@ public final class ConceptRegistry {
         return CONCEPTS.containsKey(conceptPhrase);
     }
     
-    public static final Concept getConcept(final String conceptPhrase) {
-        if (!CONCEPTS.containsKey(conceptPhrase)) {
-            Concept parsedConcept = ConceptParser.parse(conceptPhrase);
-            if (!conceptPhrase.equals(parsedConcept.getFullPhrase())) {
-                LOGGER.severe(String.format("The given concept phrase differs to the parsed result: \"%s\" != \"%s\"", conceptPhrase, parsedConcept.getFullPhrase()));
+    public static final Concept getConcept(final List<String> morphemes) {
+        if (!morphemes.isEmpty()) {
+            final String conceptPhrase = CoreUtils.toConceptPhrase(morphemes);
+            if (!CONCEPTS.containsKey(conceptPhrase)) {
+                final Concept builtConcept = new Concept(new ConceptBuilder(morphemes));
+                if (!conceptPhrase.equals(builtConcept.getFullPhrase())) {
+                    LOGGER.severe(String.format("The given concept phrase differs to the built result: \"%s\" != \"%s\"", conceptPhrase, builtConcept.getFullPhrase()));
+                }
+                CONCEPTS.put(conceptPhrase, builtConcept);
             }
-            CONCEPTS.put(conceptPhrase, parsedConcept);
+            return CONCEPTS.get(conceptPhrase);
         }
-        return CONCEPTS.get(conceptPhrase);
+        throw new IllegalArgumentException("There are no concept morphemes.");
+    }
+    
+    public static final Concept getConcept(final String conceptPhrase) {
+        if (conceptPhrase != null && conceptPhrase.length() > 0) {
+            if (!CONCEPTS.containsKey(conceptPhrase)) {
+                final Concept parsedConcept = ConceptParser.parse(conceptPhrase);
+                if (!conceptPhrase.equals(parsedConcept.getFullPhrase())) {
+                    LOGGER.severe(String.format("The given concept phrase differs to the parsed result: \"%s\" != \"%s\"", conceptPhrase, parsedConcept.getFullPhrase()));
+                }
+                CONCEPTS.put(conceptPhrase, parsedConcept);
+            }
+            return CONCEPTS.get(conceptPhrase);
+        }
+        throw new IllegalArgumentException("The given concept is null or empty.");
     }
 }

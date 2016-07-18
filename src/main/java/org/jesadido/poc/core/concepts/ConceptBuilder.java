@@ -25,8 +25,7 @@ public final class ConceptBuilder {
     
     public ConceptBuilder(final List<String> morphemes) {
         
-        this.morphemes = new LinkedList<>();
-        morphemes.stream().forEach(morpheme -> this.morphemes.add(CoreUtils.up(morpheme)));
+        this.morphemes = CoreUtils.up(morphemes);
         
         this.baseMorphemes = new LinkedList<>();
         this.referenceMorphemes = new LinkedList<>();
@@ -48,7 +47,7 @@ public final class ConceptBuilder {
         this.baseMorphemes.stream().forEach(basePhraseBuilder::append);
         this.basePhrase = basePhraseBuilder.toString();
         
-        this.referenceConcept = this.referenceMorphemes.isEmpty() ? null : new Concept(new ConceptBuilder(this.referenceMorphemes));
+        this.referenceConcept = this.referenceMorphemes.isEmpty() ? null : ConceptRegistry.getConcept(this.referenceMorphemes);
     }
     
     public final Concept buildReferenceConcept() {
@@ -94,9 +93,9 @@ public final class ConceptBuilder {
     }
     
     private List<String> buildParameterPlainList(final String morpheme) {
-        final String escaper1 = CoreUtils.escaper("!§$%1", morpheme);
-        final String escaper2 = CoreUtils.escaper("!§$%2", morpheme);
-        final String escaper3 = CoreUtils.escaper("!§$%3", morpheme);
+        final String escaper1 = CoreUtils.escaper("1", morpheme);
+        final String escaper2 = CoreUtils.escaper("2", morpheme);
+        final String escaper3 = CoreUtils.escaper("3", morpheme);
         final String[] snippets = morpheme.replace("\\'", escaper1).replace("\\|", escaper2).replace("\\\\", escaper3).split("'");
         final StringBuilder listPhraseBuilder = new StringBuilder();
         for (int i = 1; i < snippets.length; i++) {
