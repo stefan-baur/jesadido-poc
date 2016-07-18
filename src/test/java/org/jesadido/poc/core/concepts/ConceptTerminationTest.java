@@ -45,7 +45,10 @@ public class ConceptTerminationTest {
     
     @Test
     public void testGet() {
+        Assert.assertEquals(ConceptTermination.UNKNOWN, ConceptTermination.get(null));
+        Assert.assertEquals(ConceptTermination.UNKNOWN, ConceptTermination.get(""));
         Assert.assertEquals(ConceptTermination.UNKNOWN, ConceptTermination.get("'Test'"));
+        Assert.assertEquals(ConceptTermination.UNKNOWN, ConceptTermination.get("bla"));
         Assert.assertEquals(ConceptTermination.TERMINATOR, ConceptTermination.get("."));
         Assert.assertEquals(ConceptTermination.LABEL_TERMINATOR, ConceptTermination.get("XYZ!"));
         Assert.assertEquals(ConceptTermination.O, ConceptTermination.get("TestO"));
