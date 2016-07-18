@@ -13,7 +13,7 @@ package org.jesadido.poc.core;
 public final class CoreUtils {
     
     private CoreUtils() {
-        // Unused.
+        // A private utility class constructor.
     }
     
     /**

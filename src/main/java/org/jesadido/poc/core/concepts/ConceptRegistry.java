@@ -18,7 +18,7 @@ public final class ConceptRegistry {
     private static final Map<String, Concept> CONCEPTS = new HashMap<>();
     
     private ConceptRegistry() {
-        // Unused.
+        // A private utility class constructor.
     }
     
     public static final Map<String, Concept> getConcepts() {

@@ -27,7 +27,7 @@ public class JesadidoPoc {
     public static final String LICENSE = "LGPL-3.0";
     
     private JesadidoPoc() {
-        // Unused.
+        // A private main class constructor.
     }
 
     /**

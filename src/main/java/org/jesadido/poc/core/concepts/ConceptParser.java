@@ -13,7 +13,7 @@ import java.util.List;
 public final class ConceptParser {
     
     private ConceptParser() {
-        // Unused.
+        // A private utility class constructor.
     }
     
     public static final Concept parse(final String fullPhrase) {
