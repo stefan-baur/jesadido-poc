@@ -44,6 +44,16 @@ public class LanguageTest {
         Assert.assertEquals("es", Language.ES.getCode());
         Assert.assertEquals("fr", Language.FR.getCode());
     }
+    
+    @Test
+    public void testGetMorphemePhrase() {
+        Assert.assertEquals("/ji/", Language.JI.getMorphemePhrase());
+        Assert.assertEquals("/de/", Language.DE.getMorphemePhrase());
+        Assert.assertEquals("/en/", Language.EN.getMorphemePhrase());
+        Assert.assertEquals("/eo/", Language.EO.getMorphemePhrase());
+        Assert.assertEquals("/es/", Language.ES.getMorphemePhrase());
+        Assert.assertEquals("/fr/", Language.FR.getMorphemePhrase());
+    }
 
     @Test
     public void testIsIsoConform() {
