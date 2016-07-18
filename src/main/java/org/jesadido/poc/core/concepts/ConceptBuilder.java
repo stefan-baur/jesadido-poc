@@ -10,8 +10,6 @@ package org.jesadido.poc.core.concepts;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import org.jesadido.poc.core.CoreUtils;
 import org.jesadido.poc.core.Language;
 

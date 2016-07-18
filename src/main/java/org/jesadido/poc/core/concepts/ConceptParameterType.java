@@ -32,12 +32,10 @@ public enum ConceptParameterType {
     }
     
     public static ConceptParameterType get(final String conceptPhrase) {
-        if (conceptPhrase != null) {
-            for (ConceptParameterType conceptParameterType : ConceptParameterType.values()) {
-                for (String ending : conceptParameterType.getConceptEndings()) {
-                    if (conceptPhrase.endsWith(ending)) {
-                        return conceptParameterType;
-                    }
+        for (ConceptParameterType conceptParameterType : ConceptParameterType.values()) {
+            for (String conceptEnding : conceptParameterType.getConceptEndings()) {
+                if (conceptPhrase != null && conceptPhrase.endsWith(conceptEnding)) {
+                    return conceptParameterType;
                 }
             }
         }
