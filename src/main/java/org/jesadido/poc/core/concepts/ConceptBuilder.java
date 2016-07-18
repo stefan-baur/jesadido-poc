@@ -10,6 +10,7 @@ package org.jesadido.poc.core.concepts;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.jesadido.poc.core.CoreUtils;
 import org.jesadido.poc.core.Language;
@@ -22,7 +23,7 @@ public final class ConceptBuilder {
     private final List<String> baseMorphemes;
     private final List<String> referenceMorphemes;
     private final String basePhrase;
-    private final Concept reference;
+    private final Concept referenceConcept;
     
     public ConceptBuilder(final List<String> morphemes) {
         
@@ -49,11 +50,11 @@ public final class ConceptBuilder {
         this.baseMorphemes.stream().forEach(basePhraseBuilder::append);
         this.basePhrase = basePhraseBuilder.toString();
         
-        this.reference = this.referenceMorphemes.isEmpty() ? null : new Concept(new ConceptBuilder(this.referenceMorphemes));
+        this.referenceConcept = this.referenceMorphemes.isEmpty() ? null : new Concept(new ConceptBuilder(this.referenceMorphemes));
     }
     
-    public Concept buildReference() {
-        return this.reference;
+    public Concept buildReferenceConcept() {
+        return this.referenceConcept;
     }
     
     public List<String> buildBaseMorphemes() {
@@ -66,8 +67,8 @@ public final class ConceptBuilder {
     
     public String buildFullPhrase() {
         final StringBuilder result = new StringBuilder();
-        if (this.reference != null) {
-            result.append(this.reference.getFullPhrase()).append(ConceptSymbols.MORPHEME_REFERENCE_INDICATOR);
+        if (this.referenceConcept != null) {
+            result.append(this.referenceConcept.getFullPhrase()).append(ConceptSymbols.MORPHEME_REFERENCE_INDICATOR);
         }
         result.append(this.buildBasePhrase());
         return result.toString();
@@ -83,40 +84,43 @@ public final class ConceptBuilder {
         result.setTermination(this.buildConceptTermination(this.basePhrase));
         if (this.basePhrase.endsWith(ConceptSymbols.MORPHEME_PLURAL)) {
             result.setPlural(true);
+        } else if (result.getTermination().isOneOf(ConceptTermination.NI, ConceptTermination.VI, ConceptTermination.ILI)) {
+            result.setPlural(true);
         }
         return result;
     }
     
     private List<String> buildParameterPlainList(String morpheme) {
-        final String escape1 = "!§$%1";
-        final String escape2 = "!§$%2";
-        final String escape3 = "!§$%3";
-        final String[] snippets = morpheme.replace("\\'", escape1).replace("\\|", escape2).replace("\\\\", escape3).split("'");
-        StringBuilder result = new StringBuilder();
-        for (int i = 1; i < snippets.length - 1; i++) {
+        final String escaper1 = CoreUtils.escaper("!§$%1", morpheme);
+        final String escaper2 = CoreUtils.escaper("!§$%2", morpheme);
+        final String escaper3 = CoreUtils.escaper("!§$%3", morpheme);
+        final String[] snippets = morpheme.replace("\\'", escaper1).replace("\\|", escaper2).replace("\\\\", escaper3).split("'");
+        StringBuilder listPhraseBuilder = new StringBuilder();
+        for (int i = 1; i < snippets.length; i++) {
             if (i > 1) {
-                result.append(' ');
+                listPhraseBuilder.append(' ');
             }
-            result.append(snippets[i]);
+            listPhraseBuilder.append(snippets[i]);
         }
-        String n = result.toString().replace(escape1, "'").replace(escape3, "\\");
-        
-        String[] sdf = n.split("\\|");
-        List<String> r = new LinkedList<>();
-        for (String sd : sdf) {
-            r.add(sd.replace(escape3, "|"));
+        String listPhrase = listPhraseBuilder.toString().replace(escaper1, "'").replace(escaper3, "\\");
+        List<String> result = new LinkedList<>();
+        for (String listItemPhrase : listPhrase.split("\\|")) {
+            result.add(listItemPhrase.replace(escaper3, "|"));
         }
-        return r;
+        return result;
     }
     
     private Language buildLanguage(String morpheme) {
-        String languageString = Pattern.compile("^/([a-z]+)/").matcher(morpheme).group(1);
-        for (Language result : Language.values()) {
-            if (result.getCode().equals(languageString)) {
-                return result;
+        Matcher languageMatcher = Pattern.compile("^/(\\w\\w)/").matcher(morpheme);
+        if (languageMatcher.find()) {
+            String languageString = languageMatcher.group(1);
+            for (Language result : Language.values()) {
+                if (result.getCode().equals(languageString)) {
+                    return result;
+                }
             }
         }
-        LOGGER.warning(String.format("The language morpheme annotates no supported language, but: \"%s\".", languageString));
+        LOGGER.warning(String.format("The language morpheme \"%s\" annotates no supported language.", morpheme));
         return Language.JI;
     }
     

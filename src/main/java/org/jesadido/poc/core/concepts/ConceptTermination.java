@@ -44,4 +44,13 @@ public enum ConceptTermination {
     public String getTerminationPhrase() {
         return this.terminationPhrase;
     }
+    
+    public boolean isOneOf(ConceptTermination ... conceptTerminations) {
+        for (ConceptTermination conceptTermination : conceptTerminations) {
+            if (this == conceptTermination) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

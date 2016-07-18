@@ -11,26 +11,26 @@ import java.util.List;
 
 public final class Concept {
     
-    private final Concept reference;
+    private final Concept referenceConcept;
     private final List<String> baseMorphemes;
     private final String basePhrase;
     private final String fullPhrase;
     private final ConceptProperties properties;
     
     public Concept(final ConceptBuilder conceptBuilder) {
-        this.reference = conceptBuilder.buildReference();
+        this.referenceConcept = conceptBuilder.buildReferenceConcept();
         this.baseMorphemes = conceptBuilder.buildBaseMorphemes();
         this.basePhrase = conceptBuilder.buildBasePhrase();
         this.fullPhrase = conceptBuilder.buildFullPhrase();
         this.properties = conceptBuilder.buildProperties();
     }
     
-    public boolean hasReference() {
-        return this.reference != null;
+    public boolean hasReferenceConcept() {
+        return this.referenceConcept != null;
     }
     
-    public Concept getReference() {
-        return this.reference;
+    public Concept getReferenceConcept() {
+        return this.referenceConcept;
     }
     
     public List<String> getBaseMorphemes() {
