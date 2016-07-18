@@ -168,5 +168,29 @@ public class ConceptTest {
             Assert.assertArrayEquals(new String[] { "Stefan Baur", "Sperling 6", "D-90459 Nürnberg" }, concept.getProperties().getParameterPlainList().toArray());
             Assert.assertEquals(ConceptParameterType.ADDRESS, concept.getProperties().getParameterType());
         }
+        {
+            Concept concept = new Concept(new ConceptBuilder(Arrays.asList("'1822-01-06'", "Dat", "O")));
+            Assert.assertEquals(ConceptTermination.O, concept.getProperties().getTermination());
+            Assert.assertTrue(concept.getProperties().hasParameter());
+            Assert.assertEquals(Language.JI, concept.getProperties().getParameterLanguage());
+            Assert.assertArrayEquals(new String[] { "1822-01-06" }, concept.getProperties().getParameterPlainList().toArray());
+            Assert.assertEquals(ConceptParameterType.DATE, concept.getProperties().getParameterType());
+        }
+        {
+            Concept concept = new Concept(new ConceptBuilder(Arrays.asList("/de/", "'Maria'", "In", "O")));
+            Assert.assertEquals(ConceptTermination.O, concept.getProperties().getTermination());
+            Assert.assertTrue(concept.getProperties().hasParameter());
+            Assert.assertEquals(Language.DE, concept.getProperties().getParameterLanguage());
+            Assert.assertArrayEquals(new String[] { "Maria" }, concept.getProperties().getParameterPlainList().toArray());
+            Assert.assertEquals(ConceptParameterType.PROPERNAME_FEMININE, concept.getProperties().getParameterType());
+        }
+        {
+            Concept concept = new Concept(new ConceptBuilder(Arrays.asList("/en/", "'If'you\\'re'going'through'hell,'keep'going.'|'Winston'Churchill'", "Cit", "O")));
+            Assert.assertEquals(ConceptTermination.O, concept.getProperties().getTermination());
+            Assert.assertTrue(concept.getProperties().hasParameter());
+            Assert.assertEquals(Language.EN, concept.getProperties().getParameterLanguage());
+            Assert.assertArrayEquals(new String[] { "If you're going through hell, keep going.", "Winston Churchill" }, concept.getProperties().getParameterPlainList().toArray());
+            Assert.assertEquals(ConceptParameterType.CITATION, concept.getProperties().getParameterType());
+        }
     }
 }
