@@ -9,31 +9,23 @@ package org.jesadido.poc.core.concepts;
 
 public enum ConceptTermination {
     UNKNOWN(null),
-    
     TERMINATOR("."),
     LABEL_TERMINATOR("!"),
-    
     O("O"),
     A("A"),
     E("E"),
-    
     O_J("OJ"),
     A_J("AJ"),
     E_J("EJ"),
-    
+    LA("La"),
     MI("Mi"),
     BI("Bi"),
     GXI("Gxi"),
     NI("Ni"),
     VI("Vi"),
     ILI("Ili"),
-    
-    LA("La"),
-    
     KAJ("Kaj"),
-    AUX("Aux")
-    
-    ;
+    AUX("Aux");
     
     private final String terminationPhrase;
     
