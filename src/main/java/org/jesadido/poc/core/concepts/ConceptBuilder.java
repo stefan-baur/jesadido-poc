@@ -81,7 +81,7 @@ public final class ConceptBuilder {
         if (result.hasParameter()) {
             result.setParameterType(this.buildConceptParameterType(this.basePhrase));
         }
-        result.setTermination(ConceptTermination.getTermination(this.basePhrase));
+        result.setTermination(ConceptTermination.get(this.basePhrase));
         if (result.getTermination() == ConceptTermination.UNKNOWN) {
             LOGGER.warning(String.format("The phrase \"%s\" has no supported concept termination.", this.basePhrase));
         }

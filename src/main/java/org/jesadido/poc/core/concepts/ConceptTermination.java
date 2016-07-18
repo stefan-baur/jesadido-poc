@@ -46,7 +46,7 @@ public enum ConceptTermination {
         return false;
     }
     
-    public static ConceptTermination getTermination(String conceptPhrase) {
+    public static ConceptTermination get(String conceptPhrase) {
         if (conceptPhrase != null) {
             for (ConceptTermination conceptTermination : ConceptTermination.values()) {
                 String termination = conceptTermination.getTerminationPhrase();

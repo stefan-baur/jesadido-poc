@@ -42,4 +42,22 @@ public class ConceptTerminationTest {
         Assert.assertTrue(ConceptTermination.A.isOneOf(ConceptTermination.A, ConceptTermination.A_J));
         Assert.assertTrue(ConceptTermination.MI.isOneOf(ConceptTermination.values()));
     }
+    
+    @Test
+    public void testGet() {
+        Assert.assertEquals(ConceptTermination.UNKNOWN, ConceptTermination.get("'Test'"));
+        Assert.assertEquals(ConceptTermination.TERMINATOR, ConceptTermination.get("."));
+        Assert.assertEquals(ConceptTermination.LABEL_TERMINATOR, ConceptTermination.get("XYZ!"));
+        Assert.assertEquals(ConceptTermination.O, ConceptTermination.get("TestO"));
+        Assert.assertEquals(ConceptTermination.A, ConceptTermination.get("TestA"));
+        Assert.assertEquals(ConceptTermination.E, ConceptTermination.get("TestE"));
+        Assert.assertEquals(ConceptTermination.E, ConceptTermination.get("TestE"));
+        Assert.assertEquals(ConceptTermination.LA, ConceptTermination.get("Mi$La"));
+        Assert.assertEquals(ConceptTermination.MI, ConceptTermination.get("IcxO$Mi"));
+        Assert.assertEquals(ConceptTermination.BI, ConceptTermination.get("InO$Bi"));
+        Assert.assertEquals(ConceptTermination.GXI, ConceptTermination.get("KnabInO$Gxi"));
+        Assert.assertEquals(ConceptTermination.NI, ConceptTermination.get("HomArO$Ni"));
+        Assert.assertEquals(ConceptTermination.VI, ConceptTermination.get("Vi"));
+        Assert.assertEquals(ConceptTermination.ILI, ConceptTermination.get("SunOJ$Ili"));
+    }
 }
