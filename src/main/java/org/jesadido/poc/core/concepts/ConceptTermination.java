@@ -38,7 +38,7 @@ public enum ConceptTermination {
     }
     
     public final boolean isOneOf(final ConceptTermination ... conceptTerminations) {
-        for (ConceptTermination conceptTermination : conceptTerminations) {
+        for (final ConceptTermination conceptTermination : conceptTerminations) {
             if (this == conceptTermination) {
                 return true;
             }
@@ -48,7 +48,7 @@ public enum ConceptTermination {
     
     public static final ConceptTermination get(final String conceptPhrase) {
         if (conceptPhrase != null) {
-            for (ConceptTermination conceptTermination : ConceptTermination.values()) {
+            for (final ConceptTermination conceptTermination : ConceptTermination.values()) {
                 String termination = conceptTermination.getTerminationPhrase();
                 if (termination != null && conceptPhrase.endsWith(termination)) {
                     return conceptTermination;

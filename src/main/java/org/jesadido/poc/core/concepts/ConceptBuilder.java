@@ -73,7 +73,7 @@ public final class ConceptBuilder {
     }
     
     public final ConceptProperties buildProperties() {
-        ConceptProperties result = new ConceptProperties();
+        final ConceptProperties result = new ConceptProperties();
         this.baseMorphemes.stream().filter(morpheme -> morpheme.startsWith("/")).forEach(morpheme -> result.setParameterLanguage(this.buildLanguage(morpheme)));
         this.baseMorphemes.stream().filter(morpheme -> morpheme.startsWith("'")).forEach(morpheme -> result.setParameterPlainList(this.buildParameterPlainList(morpheme)));
         if (result.hasParameter()) {
@@ -98,23 +98,23 @@ public final class ConceptBuilder {
         final String escaper2 = CoreUtils.escaper("!§$%2", morpheme);
         final String escaper3 = CoreUtils.escaper("!§$%3", morpheme);
         final String[] snippets = morpheme.replace("\\'", escaper1).replace("\\|", escaper2).replace("\\\\", escaper3).split("'");
-        StringBuilder listPhraseBuilder = new StringBuilder();
+        final StringBuilder listPhraseBuilder = new StringBuilder();
         for (int i = 1; i < snippets.length; i++) {
             if (i > 1) {
                 listPhraseBuilder.append(' ');
             }
             listPhraseBuilder.append(snippets[i]);
         }
-        String listPhrase = listPhraseBuilder.toString().replace(escaper1, "'").replace(escaper3, "\\");
-        List<String> result = new LinkedList<>();
-        for (String listItemPhrase : listPhrase.split("\\|")) {
+        final String listPhrase = listPhraseBuilder.toString().replace(escaper1, "'").replace(escaper3, "\\");
+        final List<String> result = new LinkedList<>();
+        for (final String listItemPhrase : listPhrase.split("\\|")) {
             result.add(listItemPhrase.replace(escaper3, "|"));
         }
         return result;
     }
     
     private Language buildLanguage(final String morpheme) {
-        for (Language result : Language.values()) {
+        for (final Language result : Language.values()) {
             if (result.getMorphemePhrase().equals(morpheme)) {
                 return result;
             }
