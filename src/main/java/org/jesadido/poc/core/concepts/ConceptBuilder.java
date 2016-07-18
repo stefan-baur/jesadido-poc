@@ -79,7 +79,7 @@ public final class ConceptBuilder {
         this.baseMorphemes.stream().filter(morpheme -> morpheme.startsWith("/")).forEach(morpheme -> result.setParameterLanguage(this.buildLanguage(morpheme)));
         this.baseMorphemes.stream().filter(morpheme -> morpheme.startsWith("'")).forEach(morpheme -> result.setParameterPlainList(this.buildParameterPlainList(morpheme)));
         if (result.hasParameter()) {
-            result.setParameterType(this.buildConceptParameterType(this.basePhrase));
+            result.setParameterType(ConceptParameterType.get(this.basePhrase));
         }
         result.setTermination(ConceptTermination.get(this.basePhrase));
         if (result.getTermination() == ConceptTermination.UNKNOWN) {
@@ -116,7 +116,7 @@ public final class ConceptBuilder {
     }
     
     private Language buildLanguage(String morpheme) {
-        Matcher languageMatcher = Pattern.compile("^/(\\w\\w)/").matcher(morpheme);
+        Matcher languageMatcher = Pattern.compile("^/(\\w\\w)/$").matcher(morpheme);
         if (languageMatcher.find()) {
             String languageString = languageMatcher.group(1);
             for (Language result : Language.values()) {
@@ -127,16 +127,5 @@ public final class ConceptBuilder {
         }
         LOGGER.warning(String.format("The language morpheme \"%s\" annotates no supported language.", morpheme));
         return Language.JI;
-    }
-    
-    private ConceptParameterType buildConceptParameterType(String phrase) {
-        for (ConceptParameterType conceptParameterType : ConceptParameterType.values()) {
-            for (String ending : conceptParameterType.getConceptEndings()) {
-                if (phrase.endsWith(ending)) {
-                    return conceptParameterType;
-                }
-            }
-        }
-        return ConceptParameterType.NONE;
     }
 }

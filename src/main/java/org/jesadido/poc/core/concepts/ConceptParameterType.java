@@ -23,11 +23,24 @@ public enum ConceptParameterType {
     
     private final List<String> conceptEndings;
     
-    private ConceptParameterType(String ... conceptEndings) {
+    private ConceptParameterType(final String ... conceptEndings) {
         this.conceptEndings = Collections.unmodifiableList(Arrays.asList(conceptEndings));
     }
     
     public List<String> getConceptEndings() {
         return this.conceptEndings;
+    }
+    
+    public static ConceptParameterType get(final String conceptPhrase) {
+        if (conceptPhrase != null) {
+            for (ConceptParameterType conceptParameterType : ConceptParameterType.values()) {
+                for (String ending : conceptParameterType.getConceptEndings()) {
+                    if (conceptPhrase.endsWith(ending)) {
+                        return conceptParameterType;
+                    }
+                }
+            }
+        }
+        return ConceptParameterType.NONE;
     }
 }
