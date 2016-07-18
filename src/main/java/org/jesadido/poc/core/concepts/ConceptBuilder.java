@@ -32,7 +32,7 @@ public final class ConceptBuilder {
         this.referenceMorphemes = new LinkedList<>();
         boolean base = true;
         for (int i = this.morphemes.size() - 1; i >= 0; i--) {
-            String morpheme = this.morphemes.get(i);
+            final String morpheme = this.morphemes.get(i);
             if (base) {
                 if ("$".equals(morpheme)) {
                     base = false;
