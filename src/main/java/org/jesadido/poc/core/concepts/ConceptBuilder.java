@@ -116,13 +116,9 @@ public final class ConceptBuilder {
     }
     
     private Language buildLanguage(String morpheme) {
-        Matcher languageMatcher = Pattern.compile("^/(\\w\\w)/$").matcher(morpheme);
-        if (languageMatcher.find()) {
-            String languageString = languageMatcher.group(1);
-            for (Language result : Language.values()) {
-                if (result.getCode().equals(languageString)) {
-                    return result;
-                }
+        for (Language result : Language.values()) {
+            if (result.getMorphemePhrase().equals(morpheme)) {
+                return result;
             }
         }
         LOGGER.warning(String.format("The language morpheme \"%s\" annotates no supported language.", morpheme));
