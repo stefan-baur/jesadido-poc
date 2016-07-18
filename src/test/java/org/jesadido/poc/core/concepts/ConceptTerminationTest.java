@@ -54,7 +54,9 @@ public class ConceptTerminationTest {
         Assert.assertEquals(ConceptTermination.O, ConceptTermination.get("TestO"));
         Assert.assertEquals(ConceptTermination.A, ConceptTermination.get("TestA"));
         Assert.assertEquals(ConceptTermination.E, ConceptTermination.get("TestE"));
-        Assert.assertEquals(ConceptTermination.E, ConceptTermination.get("TestE"));
+        Assert.assertEquals(ConceptTermination.O_J, ConceptTermination.get("TestOJ"));
+        Assert.assertEquals(ConceptTermination.A_J, ConceptTermination.get("TestAJ"));
+        Assert.assertEquals(ConceptTermination.E_J, ConceptTermination.get("TestEJ"));
         Assert.assertEquals(ConceptTermination.LA, ConceptTermination.get("Mi$La"));
         Assert.assertEquals(ConceptTermination.MI, ConceptTermination.get("IcxO$Mi"));
         Assert.assertEquals(ConceptTermination.BI, ConceptTermination.get("InO$Bi"));
