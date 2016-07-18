@@ -36,7 +36,6 @@ public class JesadidoPoc {
      * @param arguments Used for running the client application.
      */
     public static void main(String[] arguments) {
-
         new JesadidoPocClient().launchClient(arguments);
     }
 }

@@ -22,10 +22,9 @@ public class JesadidoPocClient extends Application {
     /**
      * Launches this JavaFX client application.
      *
-     * @param arguments Unused.
+     * @param arguments Used for the JavaFX client application.
      */
     public void launchClient(String[] arguments) {
-
         launch(arguments);
     }
 
@@ -36,7 +35,6 @@ public class JesadidoPocClient extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        
         primaryStage.setTitle(JesadidoPoc.NAME);
         primaryStage.setScene(new Scene(new StackPane(), 800, 600));
         primaryStage.show();
