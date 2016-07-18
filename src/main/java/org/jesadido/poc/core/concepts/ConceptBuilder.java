@@ -19,9 +19,6 @@ public final class ConceptBuilder {
     
     private static final Logger LOGGER = Logger.getLogger(ConceptBuilder.class.getName());
     
-    private static final String MORPHEME_REFERENCE_INDICATOR = "$";
-    private static final String MORPHEME_PLURAL = "J";
-    
     private final List<String> morphemes;
     private final List<String> baseMorphemes;
     private final List<String> referenceMorphemes;
@@ -39,7 +36,7 @@ public final class ConceptBuilder {
         for (int i = this.morphemes.size() - 1; i >= 0; i--) {
             String morpheme = this.morphemes.get(i);
             if (base) {
-                if (MORPHEME_REFERENCE_INDICATOR.equals(morpheme)) {
+                if ("$".equals(morpheme)) {
                     base = false;
                 } else {
                     this.baseMorphemes.add(0, CoreUtils.up(morpheme));
@@ -71,7 +68,7 @@ public final class ConceptBuilder {
     public String buildFullPhrase() {
         final StringBuilder result = new StringBuilder();
         if (this.referenceConcept != null) {
-            result.append(this.referenceConcept.getFullPhrase()).append(MORPHEME_REFERENCE_INDICATOR);
+            result.append(this.referenceConcept.getFullPhrase()).append("$");
         }
         result.append(this.buildBasePhrase());
         return result.toString();
@@ -85,7 +82,7 @@ public final class ConceptBuilder {
             result.setParameterType(this.buildConceptParameterType(this.basePhrase));
         }
         result.setTermination(this.buildConceptTermination(this.basePhrase));
-        if (this.basePhrase.endsWith(MORPHEME_PLURAL)) {
+        if (this.basePhrase.endsWith("J")) {
             result.setPlural(true);
         } else if (result.getTermination().isOneOf(ConceptTermination.NI, ConceptTermination.VI, ConceptTermination.ILI)) {
             result.setPlural(true);
