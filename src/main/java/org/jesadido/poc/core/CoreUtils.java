@@ -36,7 +36,8 @@ public final class CoreUtils {
     }
     
     /**
-     * Gernerates a string which is not a part of the given phrase. This is needful for string replacements and its back-replacements.
+     * Gernerates a string which is not a part of the given phrase. This is
+     * needful for string replacements and its back-replacements.
      * @param escaperPrefix The prefix of the generated result.
      * @param phrase Any phrase which is not null.
      * @return A string which is not containing to the given phrase.
