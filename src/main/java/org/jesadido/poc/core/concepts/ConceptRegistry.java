@@ -46,7 +46,7 @@ public final class ConceptRegistry {
             if (!concepts.containsKey(conceptPhrase)) {
                 final Concept builtConcept = new Concept(new ConceptBuilder(morphemes));
                 if (!conceptPhrase.equals(builtConcept.getFullPhrase())) {
-                    LOGGER.severe(String.format("The given concept phrase differs to the built result: \"%s\" != \"%s\"", conceptPhrase, builtConcept.getFullPhrase()));
+                    LOGGER.severe(String.format("The given morpheme phrases differs to the built result: \"%s\" != \"%s\"", conceptPhrase, builtConcept.getFullPhrase()));
                 }
                 concepts.put(conceptPhrase, builtConcept);
             }
