@@ -17,45 +17,54 @@ public final class ConceptRegistry {
     
     private static final Logger LOGGER = Logger.getLogger(ConceptRegistry.class.getName());
     
-    private static final Map<String, Concept> CONCEPTS = new HashMap<>();
+    private static ConceptRegistry instance = null;
+    
+    private final Map<String, Concept> concepts = new HashMap<>();
     
     private ConceptRegistry() {
-        // A private utility class constructor.
+        // A private singleton class constructor.
     }
     
-    public static final Map<String, Concept> getConcepts() {
-        return CONCEPTS;
+    public static final ConceptRegistry getInstance() {
+        if (instance == null) {
+            instance = new ConceptRegistry();
+        }
+        return instance;
     }
     
-    public static final boolean hasConcept(final String conceptPhrase) {
-        return CONCEPTS.containsKey(conceptPhrase);
+    public final Map<String, Concept> getConcepts() {
+        return concepts;
     }
     
-    public static final Concept getConcept(final List<String> morphemes) {
+    public final boolean hasConcept(final String conceptPhrase) {
+        return concepts.containsKey(conceptPhrase);
+    }
+    
+    public final Concept getConcept(final List<String> morphemes) {
         if (!morphemes.isEmpty()) {
             final String conceptPhrase = CoreUtils.toConceptPhrase(morphemes);
-            if (!CONCEPTS.containsKey(conceptPhrase)) {
+            if (!concepts.containsKey(conceptPhrase)) {
                 final Concept builtConcept = new Concept(new ConceptBuilder(morphemes));
                 if (!conceptPhrase.equals(builtConcept.getFullPhrase())) {
                     LOGGER.severe(String.format("The given concept phrase differs to the built result: \"%s\" != \"%s\"", conceptPhrase, builtConcept.getFullPhrase()));
                 }
-                CONCEPTS.put(conceptPhrase, builtConcept);
+                concepts.put(conceptPhrase, builtConcept);
             }
-            return CONCEPTS.get(conceptPhrase);
+            return concepts.get(conceptPhrase);
         }
         throw new IllegalArgumentException("There are no concept morphemes.");
     }
     
-    public static final Concept getConcept(final String conceptPhrase) {
+    public final Concept getConcept(final String conceptPhrase) {
         if (conceptPhrase != null && conceptPhrase.length() > 0) {
-            if (!CONCEPTS.containsKey(conceptPhrase)) {
+            if (!concepts.containsKey(conceptPhrase)) {
                 final Concept parsedConcept = ConceptParser.parse(conceptPhrase);
                 if (!conceptPhrase.equals(parsedConcept.getFullPhrase())) {
                     LOGGER.severe(String.format("The given concept phrase differs to the parsed result: \"%s\" != \"%s\"", conceptPhrase, parsedConcept.getFullPhrase()));
                 }
-                CONCEPTS.put(conceptPhrase, parsedConcept);
+                concepts.put(conceptPhrase, parsedConcept);
             }
-            return CONCEPTS.get(conceptPhrase);
+            return concepts.get(conceptPhrase);
         }
         throw new IllegalArgumentException("The given concept is null or empty.");
     }

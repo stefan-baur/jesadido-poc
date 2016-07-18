@@ -47,7 +47,7 @@ public final class ConceptBuilder {
         this.baseMorphemes.stream().forEach(basePhraseBuilder::append);
         this.basePhrase = basePhraseBuilder.toString();
         
-        this.referenceConcept = this.referenceMorphemes.isEmpty() ? null : ConceptRegistry.getConcept(this.referenceMorphemes);
+        this.referenceConcept = this.referenceMorphemes.isEmpty() ? null : ConceptRegistry.getInstance().getConcept(this.referenceMorphemes);
     }
     
     public final Concept buildReferenceConcept() {
