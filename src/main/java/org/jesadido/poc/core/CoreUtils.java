@@ -26,7 +26,7 @@ public final class CoreUtils {
     }
     
     /**
-     * Return the given string without the last character.
+     * Returns the given string without the last character.
      * @param value The given string.
      * @return The given string without the last character. An empty string, if
      * the given string is empty or null.
