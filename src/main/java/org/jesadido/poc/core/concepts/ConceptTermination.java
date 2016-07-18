@@ -10,8 +10,8 @@ package org.jesadido.poc.core.concepts;
 public enum ConceptTermination {
     UNKNOWN(null),
     
-    T0("."),
-    T1("!"),
+    TERMINATOR("."),
+    LABEL_TERMINATOR("!"),
     
     O("O"),
     A("A"),
