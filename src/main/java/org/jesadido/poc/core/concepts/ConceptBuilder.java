@@ -73,8 +73,8 @@ public final class ConceptBuilder {
     
     public final ConceptProperties buildProperties() {
         final ConceptProperties result = new ConceptProperties();
-        this.baseMorphemes.stream().filter(morpheme -> morpheme.startsWith("/")).forEach(morpheme -> result.setParameterLanguage(this.buildLanguage(morpheme)));
-        this.baseMorphemes.stream().filter(morpheme -> morpheme.startsWith("'")).forEach(morpheme -> result.setParameterPlainList(this.buildParameterPlainList(morpheme)));
+        this.baseMorphemes.stream().filter(morpheme -> morpheme.startsWith("/")).forEach(morpheme -> result.setParameterLanguage(this.parseLanguage(morpheme)));
+        this.baseMorphemes.stream().filter(morpheme -> morpheme.startsWith("'")).forEach(morpheme -> result.setParameterPlainList(this.parseParameterList(morpheme)));
         if (result.hasParameter()) {
             result.setParameterType(ConceptParameterType.get(this.basePhrase));
         }
@@ -92,33 +92,34 @@ public final class ConceptBuilder {
         return result;
     }
     
-    private List<String> buildParameterPlainList(final String morpheme) {
-        final String escaper1 = CoreUtils.escaper("1", morpheme);
-        final String escaper2 = CoreUtils.escaper("2", morpheme);
-        final String escaper3 = CoreUtils.escaper("3", morpheme);
-        final String[] snippets = morpheme.replace("\\'", escaper1).replace("\\|", escaper2).replace("\\\\", escaper3).split("'");
-        final StringBuilder listPhraseBuilder = new StringBuilder();
-        for (int i = 1; i < snippets.length; i++) {
-            if (i > 1) {
-                listPhraseBuilder.append(' ');
-            }
-            listPhraseBuilder.append(snippets[i]);
-        }
-        final String listPhrase = listPhraseBuilder.toString().replace(escaper1, "'").replace(escaper3, "\\");
+    private List<String> parseParameterList(final String parameterListMorpheme) {
         final List<String> result = new LinkedList<>();
-        for (final String listItemPhrase : listPhrase.split("\\|")) {
-            result.add(listItemPhrase.replace(escaper3, "|"));
+        final String escaper1 = CoreUtils.escaper("1", parameterListMorpheme);
+        final String escaper2 = CoreUtils.escaper("2", parameterListMorpheme);
+        final String escaper3 = CoreUtils.escaper("3", parameterListMorpheme);
+        final String escaper4 = CoreUtils.escaper("4", parameterListMorpheme);
+        final String escapedMorpheme = parameterListMorpheme.replace("\\'", escaper1).replace("\\|", escaper2).replace("\\$", escaper3).replace("\\\\", escaper4);
+        for (final String listItemPhrase : escapedMorpheme.split("\\|")) {
+            final String[] snippets = listItemPhrase.split("'");
+            final StringBuilder listPhraseBuilder = new StringBuilder();
+            for (int i = 1; i < snippets.length; i++) {
+                if (i > 1) {
+                    listPhraseBuilder.append(' ');
+                }
+                listPhraseBuilder.append(snippets[i]);
+            }
+            result.add(listPhraseBuilder.toString().replace(escaper1, "'").replace(escaper2, "|").replace(escaper3, "$"));
         }
         return result;
     }
     
-    private Language buildLanguage(final String morpheme) {
+    private Language parseLanguage(final String languageMorpheme) {
         for (final Language result : Language.values()) {
-            if (result.getMorphemePhrase().equals(morpheme)) {
+            if (String.format("/%s/", result.getCode()).equals(languageMorpheme)) {
                 return result;
             }
         }
-        LOGGER.warning(String.format("The language morpheme \"%s\" annotates no supported language.", morpheme));
+        LOGGER.warning(String.format("The language morpheme \"%s\" annotates no supported language.", languageMorpheme));
         return Language.JI;
     }
 }

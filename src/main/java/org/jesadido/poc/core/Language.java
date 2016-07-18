@@ -69,15 +69,6 @@ public enum Language {
     }
     
     /**
-     * Returns the morpheme phrase of this language, the language code
-     * surrounded with the slash character <code>/</code>.
-     * @return The morpheme phrase of this language.
-     */
-    public final String getMorphemePhrase() {
-        return String.format("/%s/", this.getCode());
-    }
-    
-    /**
      * Returns <code>true</code> if this language is conform to the standard
      * <b>ISO 639-1</b>. In this case, the code of this language can be used for
      * example by declaring the HTML-tag-attribute <code>lang</code>.
