@@ -44,7 +44,11 @@ public final class ConceptProperties {
     }
     
     public final void setParameterPlainList(final List<String> list) {
-        this.parameterPlainList = list;
+        if (list == null) {
+            this.parameterPlainList = new LinkedList<>();
+        } else {
+            this.parameterPlainList = list;
+        }
     }
     
     public Language getParameterLanguage() {
