@@ -48,8 +48,4 @@ public final class Concept {
     public final ConceptProperties getProperties() {
         return this.properties;
     }
-    
-    public static final Concept parse(final String fullPhrase) {
-        return ConceptParser.parse(fullPhrase);
-    }
 }
