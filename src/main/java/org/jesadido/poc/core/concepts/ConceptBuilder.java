@@ -81,12 +81,17 @@ public final class ConceptBuilder {
         if (result.hasParameter()) {
             result.setParameterType(this.buildConceptParameterType(this.basePhrase));
         }
-        result.setTermination(this.buildConceptTermination(this.basePhrase));
-        if (this.basePhrase.endsWith("J")) {
-            result.setPlural(true);
-        } else if (result.getTermination().isOneOf(ConceptTermination.NI, ConceptTermination.VI, ConceptTermination.ILI)) {
-            result.setPlural(true);
+        result.setTermination(ConceptTermination.getTermination(this.basePhrase));
+        if (result.getTermination() == ConceptTermination.UNKNOWN) {
+            LOGGER.warning(String.format("The phrase \"%s\" has no supported concept termination.", this.basePhrase));
         }
+        result.setPlural(result.getTermination().isOneOf(
+                ConceptTermination.O_J,
+                ConceptTermination.A_J,
+                ConceptTermination.E_J,
+                ConceptTermination.NI,
+                ConceptTermination.VI,
+                ConceptTermination.ILI));
         return result;
     }
     
@@ -133,16 +138,5 @@ public final class ConceptBuilder {
             }
         }
         return ConceptParameterType.NONE;
-    }
-    
-    private ConceptTermination buildConceptTermination(String phrase) {
-        for (ConceptTermination conceptTermination : ConceptTermination.values()) {
-            String termination = conceptTermination.getTerminationPhrase();
-            if (termination != null && phrase.endsWith(termination)) {
-                return conceptTermination;
-            }
-        }
-        LOGGER.warning(String.format("The phrase \"%s\" has no supported concept termination.", phrase));
-        return ConceptTermination.UNKNOWN;
     }
 }

@@ -45,4 +45,16 @@ public enum ConceptTermination {
         }
         return false;
     }
+    
+    public static ConceptTermination getTermination(String conceptPhrase) {
+        if (conceptPhrase != null) {
+            for (ConceptTermination conceptTermination : ConceptTermination.values()) {
+                String termination = conceptTermination.getTerminationPhrase();
+                if (termination != null && conceptPhrase.endsWith(termination)) {
+                    return conceptTermination;
+                }
+            }
+        }
+        return ConceptTermination.UNKNOWN;
+    }
 }
