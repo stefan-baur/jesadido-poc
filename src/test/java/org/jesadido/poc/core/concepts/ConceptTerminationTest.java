@@ -39,7 +39,6 @@ public class ConceptTerminationTest {
         Assert.assertTrue(ConceptTermination.LABEL_TERMINATOR.isOneOf(ConceptTermination.TERMINATOR, ConceptTermination.LABEL_TERMINATOR));
         Assert.assertTrue(ConceptTermination.O.isOneOf(ConceptTermination.O));
         Assert.assertTrue(ConceptTermination.A.isOneOf(ConceptTermination.A, ConceptTermination.A_J));
-        Assert.assertTrue(ConceptTermination.A.isOneOf(ConceptTermination.A, ConceptTermination.A_J));
         Assert.assertTrue(ConceptTermination.MI.isOneOf(ConceptTermination.values()));
     }
     
