@@ -16,6 +16,8 @@ public class CoreUtilsTest {
     
     @Test
     public void testUp() {
+        Assert.assertEquals("", CoreUtils.up((String) null));
+        Assert.assertEquals("", CoreUtils.up(""));
         Assert.assertEquals("Icx", CoreUtils.up("icx"));
         Assert.assertEquals("Icx", CoreUtils.up("Icx"));
         Assert.assertEquals("O", CoreUtils.up("o"));
