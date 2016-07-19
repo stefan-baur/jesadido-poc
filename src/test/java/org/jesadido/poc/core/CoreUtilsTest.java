@@ -8,6 +8,7 @@
 package org.jesadido.poc.core;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -19,6 +20,7 @@ public class CoreUtilsTest {
         Assert.assertEquals("Icx", CoreUtils.up("Icx"));
         Assert.assertEquals("O", CoreUtils.up("o"));
         Assert.assertEquals("O", CoreUtils.up("O"));
+        Assert.assertArrayEquals(new String[] {}, CoreUtils.up(new LinkedList<>()).toArray());
         Assert.assertArrayEquals(new String[] { "Icx", "O" }, CoreUtils.up(Arrays.asList("icx", "o")).toArray());
         Assert.assertArrayEquals(new String[] { "Icx", "O" }, CoreUtils.up(Arrays.asList("Icx", "O")).toArray());
         Assert.assertArrayEquals(new String[] { "'1974-01-28'", "Dat", "O" }, CoreUtils.up(Arrays.asList("'1974-01-28'", "dat", "o")).toArray());

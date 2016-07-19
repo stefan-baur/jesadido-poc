@@ -30,7 +30,7 @@ public final class CoreUtils {
     
     /**
      * Returns a new list which contains items with upper-cased first character.
-     * @param items The given items.
+     * @param items The given items (not null).
      * @return The new list, each item of the result is upper-cased.
      */
     public static final List<String> up(final List<String> items) {
