@@ -24,20 +24,20 @@ public class ConceptBuilderTest {
             Assert.assertEquals(ConceptTermination.MI, referenceConcept.getProperties().getTermination());
         }
         {
-            ConceptBuilder conceptBuilder = new ConceptBuilder(Arrays.asList("InO", "$", "Mi", "$", "La"));
+            ConceptBuilder conceptBuilder = new ConceptBuilder(Arrays.asList("In", "O", "$", "Gxi", "$", "La"));
             Concept referenceConcept = conceptBuilder.buildReferenceConcept();
-            Assert.assertEquals("Mi", referenceConcept.getBasePhrase());
-            Assert.assertEquals("InO$Mi", referenceConcept.getFullPhrase());
-            Assert.assertEquals(ConceptTermination.MI, referenceConcept.getProperties().getTermination());
+            Assert.assertEquals("Gxi", referenceConcept.getBasePhrase());
+            Assert.assertEquals("InO$Gxi", referenceConcept.getFullPhrase());
+            Assert.assertEquals(ConceptTermination.GXI, referenceConcept.getProperties().getTermination());
             Assert.assertEquals("InO", referenceConcept.getReferenceConcept().getBasePhrase());
             Assert.assertEquals("InO", referenceConcept.getReferenceConcept().getFullPhrase());
             Assert.assertEquals(ConceptTermination.O, referenceConcept.getReferenceConcept().getProperties().getTermination());
         }
         {
-            ConceptBuilder conceptBuilder = new ConceptBuilder(Arrays.asList("InO", "$", "Mi"));
+            ConceptBuilder conceptBuilder = new ConceptBuilder(Arrays.asList("IcxO", "$", "Mi"));
             Concept referenceConcept = conceptBuilder.buildReferenceConcept();
-            Assert.assertEquals("InO", referenceConcept.getBasePhrase());
-            Assert.assertEquals("InO", referenceConcept.getFullPhrase());
+            Assert.assertEquals("IcxO", referenceConcept.getBasePhrase());
+            Assert.assertEquals("IcxO", referenceConcept.getFullPhrase());
             Assert.assertEquals(ConceptTermination.O, referenceConcept.getProperties().getTermination());
         }
     }
@@ -124,7 +124,7 @@ public class ConceptBuilderTest {
             Assert.assertEquals(true, referenceConceptProperties.getParameterPlainList().isEmpty());
         }
         {
-            ConceptBuilder conceptBuilder = new ConceptBuilder(Arrays.asList("'1843-06-09'", "dat", "o"));
+            ConceptBuilder conceptBuilder = new ConceptBuilder(Arrays.asList("'1843-06-09'", "Dat", "O"));
             ConceptProperties conceptProperties = conceptBuilder.buildProperties();
             Assert.assertEquals(ConceptTermination.O, conceptProperties.getTermination());
             Assert.assertEquals(false, conceptProperties.isPlural());

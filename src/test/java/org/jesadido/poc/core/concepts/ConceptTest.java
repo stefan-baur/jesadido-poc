@@ -50,7 +50,7 @@ public class ConceptTest {
             Assert.assertFalse(concept.getReferenceConcept().hasReferenceConcept());
         }
         {
-            Concept concept = new Concept(new ConceptBuilder(Arrays.asList("IcxO", "$", "Mi", "$", "La")));
+            Concept concept = new Concept(new ConceptBuilder(Arrays.asList("Icx", "O", "$", "Mi", "$", "La")));
             Assert.assertTrue(concept.hasReferenceConcept());
             Assert.assertNotNull(concept.getReferenceConcept());
             Assert.assertEquals("Mi", concept.getReferenceConcept().getBasePhrase());

@@ -25,7 +25,7 @@ public final class ConceptParser {
         final List<String> result = new LinkedList<>();
         final String escaper = CoreUtils.escaper("1", conceptPhrase);
         final String escapedfullPhrase = conceptPhrase.replace("\\$", escaper);
-        final String[] escapedBasePhrases = escapedfullPhrase.split("$");
+        final String[] escapedBasePhrases = escapedfullPhrase.split("\\$");
         for (int i = 0; i < escapedBasePhrases.length; i++) {
             if (i > 0) {
                 result.add("$");
