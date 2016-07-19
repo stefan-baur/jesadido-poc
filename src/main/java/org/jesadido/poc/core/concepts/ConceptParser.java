@@ -11,16 +11,30 @@ import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.CoreUtils;
 
+/**
+ * This <code>ConceptParser</code> class implements the parser for
+ * <b>Jesadido</b> lexems (concept phrases).
+ */
 public final class ConceptParser {
     
     private ConceptParser() {
         // A private utility class constructor.
     }
     
+    /**
+     * Returns a new concept instance by the given concept phrase.
+     * @param conceptPhrase The given concept phrase.
+     * @return The new concept instance.
+     */
     public static final Concept parse(final String conceptPhrase) {
         return new Concept(new ConceptBuilder(parseToMorphemes(conceptPhrase)));
     }
     
+    /**
+     * Returns the parsed concept phrase splitted into its morphemes.
+     * @param conceptPhrase The concept phrase/lexem.
+     * @return The morpheme list.
+     */
     public static final List<String> parseToMorphemes(final String conceptPhrase) {
         final List<String> result = new LinkedList<>();
         final String escaper = CoreUtils.escaper("1", conceptPhrase);

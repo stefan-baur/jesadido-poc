@@ -7,24 +7,108 @@
  */
 package org.jesadido.poc.core.concepts;
 
+/**
+ * This <code>ConceptTermination</code> enum class provides a list syntactical
+ * concept informations representated by the ending of a concept/lexem.
+ */
 public enum ConceptTermination {
+    
+    /**
+     * The appropriated concept has no listed termination.
+     */
     UNKNOWN(null),
+    
+    /**
+     * The appropriated concept is a standard termination symbol, for example a
+     * sentence/clause termination.
+     */
     TERMINATOR("."),
+    
+    /**
+     * The appropriated concept is a termination symbol for labels.
+     */
     LABEL_TERMINATOR("!"),
+    
+    /**
+     * The appropriated concept is a substantive (singular).
+     */
     O("O"),
+    
+    /**
+     * The appropriated concept is an adjective (singular).
+     */
     A("A"),
+    
+    /**
+     * The appropriated concept is an adverb (singular).
+     */
     E("E"),
+    
+    /**
+     * The appropriated concept is a substantive (plural).
+     */
     O_J("OJ"),
+    
+    /**
+     * The appropriated concept is an adjective (plural).
+     */
     A_J("AJ"),
+    
+    /**
+     * The appropriated concept is an adverb (plural).
+     */
     E_J("EJ"),
+    
+    /**
+     * The appropriated concept is an article.
+     */
     LA("La"),
+    
+    /**
+     * The appropriated concept is the personal pronoun <b>I</b>
+     * (1. person, singular).
+     */
     MI("Mi"),
+    
+    /**
+     * The appropriated concept is the personal pronoun <b>you</b>
+     * (2. person, singular).
+     */
     BI("Bi"),
+    
+    /**
+     * The appropriated concept is the personal pronoun <b>it</b>
+     * (3. person, singular).
+     */
     GXI("Gxi"),
+    
+    /**
+     * The appropriated concept is the personal pronoun <b>we</b>
+     * (1. person, plural).
+     */
     NI("Ni"),
+    
+    /**
+     * The appropriated concept is the personal pronoun <b>you</b>
+     * (2. person, plural).
+     */
     VI("Vi"),
+    
+    /**
+     * The appropriated concept is the personal pronoun <b>they</b>
+     * (3. person, plural).
+     */
     ILI("Ili"),
+    
+    /**
+     * The appropriated concept stands for <b>and</b> (conjunction, subjunction
+     * or rhetorical enumeration).
+     */
     KAJ("Kaj"),
+    
+    /**
+     * The appropriated concept stands for <b>or</b> (conjunction, etc.).
+     */
     AUX("Aux");
     
     private final String terminationPhrase;
@@ -33,10 +117,20 @@ public enum ConceptTermination {
         this.terminationPhrase = terminationPhrase;
     }
     
+    /**
+     * Returns the termination indicator as lexematical ending.
+     * @return The termination indicator.
+     */
     public final String getTerminationPhrase() {
         return this.terminationPhrase;
     }
     
+    /**
+     * Indicates whether the instance is contained inside the given concept
+     * terminations. It's a kind of syntactical sugar for this framework source.
+     * @param conceptTerminations The given concept terminations.
+     * @return <code>true</code> if the termination is contained.
+     */
     public final boolean isOneOf(final ConceptTermination ... conceptTerminations) {
         for (final ConceptTermination conceptTermination : conceptTerminations) {
             if (this == conceptTermination) {
@@ -46,6 +140,11 @@ public enum ConceptTermination {
         return false;
     }
     
+    /**
+     * Returns the termination of the given concept phrase.
+     * @param conceptPhrase The given concept phrase.
+     * @return The termination of the given concept phrase.
+     */
     public static final ConceptTermination get(final String conceptPhrase) {
         if (conceptPhrase != null) {
             for (final ConceptTermination conceptTermination : ConceptTermination.values()) {

@@ -13,6 +13,11 @@ import java.util.logging.Logger;
 import org.jesadido.poc.core.CoreUtils;
 import org.jesadido.poc.core.Language;
 
+/**
+ * This <code>ConceptBuilder</code> class is used to build the concept
+ * parameters on the basis of given morphemes. It's a class for the
+ * precalculation to get more efficient usage of concept instances.
+ */
 public final class ConceptBuilder {
     
     private static final Logger LOGGER = Logger.getLogger(ConceptBuilder.class.getName());
@@ -23,10 +28,13 @@ public final class ConceptBuilder {
     private final String basePhrase;
     private final Concept referenceConcept;
     
+    /**
+     * This class constructor uses a morpheme list to define needful concept
+     * properties.
+     * @param morphemes The morpheme list.
+     */
     public ConceptBuilder(final List<String> morphemes) {
-        
         this.morphemes = CoreUtils.up(morphemes);
-        
         this.baseMorphemes = new LinkedList<>();
         this.referenceMorphemes = new LinkedList<>();
         boolean base = true;
@@ -42,26 +50,41 @@ public final class ConceptBuilder {
                 this.referenceMorphemes.add(0, CoreUtils.up(morpheme));
             }
         }
-        
         final StringBuilder basePhraseBuilder = new StringBuilder();
         this.baseMorphemes.stream().forEach(basePhraseBuilder::append);
         this.basePhrase = basePhraseBuilder.toString();
-        
         this.referenceConcept = this.referenceMorphemes.isEmpty() ? null : ConceptRegistry.getInstance().getConcept(this.referenceMorphemes);
     }
     
+    /**
+     * Returns the prefixed reference concept suffixed by the last occurrence of
+     * the morpheme <b>$</b>.
+     * @return The reference concept.
+     */
     public final Concept buildReferenceConcept() {
         return this.referenceConcept;
     }
     
+    /**
+     * Returns the base morphemes without any reference morphemes.
+     * @return The base morphemes.
+     */
     public final List<String> buildBaseMorphemes() {
         return this.baseMorphemes;
     }
     
+    /**
+     * Returns the concatenation of the base morphemes as lexem.
+     * @return The base lexem.
+     */
     public final String buildBasePhrase() {
         return this.basePhrase;
     }
     
+    /**
+     * Returns the concatenation of all given morphemes.
+     * @return The full lexem.
+     */
     public final String buildFullPhrase() {
         final StringBuilder result = new StringBuilder();
         if (this.referenceConcept != null) {
@@ -71,6 +94,10 @@ public final class ConceptBuilder {
         return result.toString();
     }
     
+    /**
+     * Return the calculated properties according all given morphemes.
+     * @return The concept properties.
+     */
     public final ConceptProperties buildProperties() {
         final ConceptProperties result = new ConceptProperties();
         this.baseMorphemes.stream().filter(morpheme -> morpheme.startsWith("/")).forEach(morpheme -> result.setParameterLanguage(this.parseLanguage(morpheme)));

@@ -13,6 +13,10 @@ import java.util.Map;
 import java.util.logging.Logger;
 import org.jesadido.poc.core.CoreUtils;
 
+/**
+ * This <code>ConceptRegistry</code> singleton class is a factory pool for all
+ * required concepts.
+ */
 public final class ConceptRegistry {
     
     private static final Logger LOGGER = Logger.getLogger(ConceptRegistry.class.getName());
@@ -25,6 +29,10 @@ public final class ConceptRegistry {
         // A private singleton class constructor.
     }
     
+    /**
+     * Returns the singleton instance of this class.
+     * @return The singleton instance of this class.
+     */
     public static final ConceptRegistry getInstance() {
         if (instance == null) {
             instance = new ConceptRegistry();
@@ -32,14 +40,33 @@ public final class ConceptRegistry {
         return instance;
     }
     
+    /**
+     * Returns the concept map containing all concepts created by this
+     * singleton instance.
+     * @return The concept map.
+     */
     public final Map<String, Concept> getConcepts() {
         return concepts;
     }
     
+    /**
+     * Indicates whether there is a concept instance mapped to the given
+     * concept phrase.
+     * @param conceptPhrase The given concept phrase.
+     * @return <code>true</code> if there is a mapped concept instance.
+     */
     public final boolean hasConcept(final String conceptPhrase) {
         return concepts.containsKey(conceptPhrase);
     }
     
+    /**
+     * Returns a concept instance by the given morpheme list. If there is no
+     * mapped concept, a new concept will be created via the concept builder
+     * <code>ConceptBuilder</code>.
+     * @param morphemes The given morpheme list. An empty list will cause an
+     * <code>IllegalArgumentException</code>.
+     * @return The concept instance.
+     */
     public final Concept getConcept(final List<String> morphemes) {
         if (!morphemes.isEmpty()) {
             final String conceptPhrase = CoreUtils.toConceptPhrase(morphemes);
@@ -55,6 +82,13 @@ public final class ConceptRegistry {
         throw new IllegalArgumentException("There are no concept morphemes.");
     }
     
+    /**
+     * Returns a concept instance by the given concept phrase. If there is no
+     * mapped concept, a new concept will be created via the concept parser
+     * <code>ConceptParser</code>.
+     * @param conceptPhrase The given concept phrase.
+     * @return The concept instance.
+     */
     public final Concept getConcept(final String conceptPhrase) {
         if (conceptPhrase != null && conceptPhrase.length() > 0) {
             if (!concepts.containsKey(conceptPhrase)) {
