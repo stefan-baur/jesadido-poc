@@ -16,7 +16,7 @@ public enum ConceptParameterType {
     PROPERNAME("'O", "'OJ"),
     PROPERNAME_MASCULINE("'IcxO", "'IcxOJ"),
     PROPERNAME_FEMININE("'InO", "'InOJ"),
-    HYPER_LINK("'LigO"),
+    URL("'LigO"),
     DATE("'DatO"),
     CITATION("'CitO"),
     ADDRESS("'AdresO");
