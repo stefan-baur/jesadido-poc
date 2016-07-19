@@ -11,7 +11,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * This <code>CoreUtils</code> class is a util-class e.g. for string-formatting.
+ * This <code>CoreUtils</code> class is a utility class often used for
+ * framework-specific string operations.
  */
 public final class CoreUtils {
     
