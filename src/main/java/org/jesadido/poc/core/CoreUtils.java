@@ -40,16 +40,6 @@ public final class CoreUtils {
     }
     
     /**
-     * Returns the given string without the last character.
-     * @param value The given string.
-     * @return The given string without the last character. An empty string, if
-     * the given string is empty or null.
-     */
-    public static final String cut(final String value) {
-        return (value == null || value.length() == 0) ? "" : value.substring(0, value.length() - 1);
-    }
-    
-    /**
      * Gernerates a string which is not a part of the given phrase. This is
      * needful for string replacements and its back-replacements.
      * @param escaperPrefix The prefix of the generated result.
