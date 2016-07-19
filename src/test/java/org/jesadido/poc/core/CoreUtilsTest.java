@@ -30,6 +30,8 @@ public class CoreUtilsTest {
         Assert.assertEquals("ASDF", CoreUtils.escaper("ASDF", "Ich liebe meine Muttersprache."));
         Assert.assertEquals("I_", CoreUtils.escaper("I", "Ich liebe meine Muttersprache."));
         Assert.assertEquals("Mutter_", CoreUtils.escaper("Mutter", "Ich liebe meine Muttersprache."));
+        Assert.assertEquals("___", CoreUtils.escaper("", "two underscores: __"));
+        Assert.assertEquals("___", CoreUtils.escaper(null, "two underscores: __"));
     }
     
     @Test

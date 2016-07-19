@@ -47,7 +47,7 @@ public final class CoreUtils {
      * @return A string which is not containing to the given phrase.
      */
     public static final String escaper(final String escaperPrefix, final String phrase) {
-        String result = escaperPrefix;
+        String result = escaperPrefix == null ? "_" : escaperPrefix;
         while (phrase.contains(result)) {
             result = result.concat("_");
         }
