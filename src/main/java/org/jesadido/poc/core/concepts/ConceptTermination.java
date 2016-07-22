@@ -25,11 +25,6 @@ public enum ConceptTermination {
     TERMINATOR("."),
     
     /**
-     * The appropriated concept is a termination symbol for labels.
-     */
-    LABEL_TERMINATOR("!"),
-    
-    /**
      * The appropriated concept is a substantive (singular).
      */
     O("O"),

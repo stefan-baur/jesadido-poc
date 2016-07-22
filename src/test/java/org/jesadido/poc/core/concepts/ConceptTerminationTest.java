@@ -16,7 +16,6 @@ public class ConceptTerminationTest {
     public void testGetTerminationPhrase() {
         Assert.assertNull(ConceptTermination.UNKNOWN.getTerminationPhrase());
         Assert.assertEquals(".", ConceptTermination.TERMINATOR.getTerminationPhrase());
-        Assert.assertEquals("!", ConceptTermination.LABEL_TERMINATOR.getTerminationPhrase());
         Assert.assertEquals("O", ConceptTermination.O.getTerminationPhrase());
         Assert.assertEquals("A", ConceptTermination.A.getTerminationPhrase());
         Assert.assertEquals("E", ConceptTermination.E.getTerminationPhrase());
@@ -34,9 +33,8 @@ public class ConceptTerminationTest {
     
     @Test
     public void testIsOneOf() {
-        Assert.assertFalse(ConceptTermination.UNKNOWN.isOneOf(ConceptTermination.TERMINATOR, ConceptTermination.LABEL_TERMINATOR));
         Assert.assertFalse(ConceptTermination.TERMINATOR.isOneOf());
-        Assert.assertTrue(ConceptTermination.LABEL_TERMINATOR.isOneOf(ConceptTermination.TERMINATOR, ConceptTermination.LABEL_TERMINATOR));
+        Assert.assertFalse(ConceptTermination.UNKNOWN.isOneOf(ConceptTermination.TERMINATOR));
         Assert.assertTrue(ConceptTermination.O.isOneOf(ConceptTermination.O));
         Assert.assertTrue(ConceptTermination.A.isOneOf(ConceptTermination.A, ConceptTermination.A_J));
         Assert.assertTrue(ConceptTermination.MI.isOneOf(ConceptTermination.values()));
@@ -49,7 +47,6 @@ public class ConceptTerminationTest {
         Assert.assertEquals(ConceptTermination.UNKNOWN, ConceptTermination.get("'Test'"));
         Assert.assertEquals(ConceptTermination.UNKNOWN, ConceptTermination.get("bla"));
         Assert.assertEquals(ConceptTermination.TERMINATOR, ConceptTermination.get("."));
-        Assert.assertEquals(ConceptTermination.LABEL_TERMINATOR, ConceptTermination.get("XYZ!"));
         Assert.assertEquals(ConceptTermination.O, ConceptTermination.get("TestO"));
         Assert.assertEquals(ConceptTermination.A, ConceptTermination.get("TestA"));
         Assert.assertEquals(ConceptTermination.E, ConceptTermination.get("TestE"));
