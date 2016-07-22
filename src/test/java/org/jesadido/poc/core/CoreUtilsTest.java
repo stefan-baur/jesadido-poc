@@ -37,10 +37,4 @@ public class CoreUtilsTest {
         Assert.assertEquals("___", CoreUtils.escaper("", "two underscores: __"));
         Assert.assertEquals("___", CoreUtils.escaper(null, "two underscores: __"));
     }
-    
-    @Test
-    public void testToConceptPhrase() {
-        Assert.assertEquals("IcxO", CoreUtils.toConceptPhrase(Arrays.asList("icx", "o")));
-        Assert.assertEquals("/de/'von'Hefner'O", CoreUtils.toConceptPhrase(Arrays.asList("/de/", "'von'Hefner'", "o")));
-    }
 }

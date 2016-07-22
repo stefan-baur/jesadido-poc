@@ -54,14 +54,4 @@ public final class CoreUtils {
         }
         return result;
     }
-    
-    /**
-     * Concats the given morphemes to a typical concept phrase with upper-cased
-     * morphemes.
-     * @param morphemes The given morphemes.
-     * @return The concept phrase.
-     */
-    public static final String toConceptPhrase(final List<String> morphemes) {
-        return String.join("", up(morphemes));
-    }
 }

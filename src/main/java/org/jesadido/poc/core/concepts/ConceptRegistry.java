@@ -69,7 +69,7 @@ public final class ConceptRegistry {
      */
     public final Concept getConcept(final List<String> morphemes) {
         if (!morphemes.isEmpty()) {
-            final String conceptPhrase = CoreUtils.toConceptPhrase(morphemes);
+            final String conceptPhrase = MorphemeUtils.toConceptPhrase(morphemes);
             if (!concepts.containsKey(conceptPhrase)) {
                 final Concept builtConcept = new Concept(new ConceptBuilder(morphemes));
                 if (!conceptPhrase.equals(builtConcept.getFullPhrase())) {
