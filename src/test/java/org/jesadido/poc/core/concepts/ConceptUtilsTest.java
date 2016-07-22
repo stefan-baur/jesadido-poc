@@ -11,11 +11,11 @@ import java.util.Arrays;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class MorphemeUtilsTest {
+public class ConceptUtilsTest {
     
     @Test
     public void testToConceptPhrase() {
-        Assert.assertEquals("IcxO", MorphemeUtils.toConceptPhrase(Arrays.asList("icx", "o")));
-        Assert.assertEquals("/de/'von'Hefner'O", MorphemeUtils.toConceptPhrase(Arrays.asList("/de/", "'von'Hefner'", "o")));
+        Assert.assertEquals("IcxO", ConceptUtils.toConceptPhrase(Arrays.asList("icx", "o")));
+        Assert.assertEquals("/de/'von'Hefner'O", ConceptUtils.toConceptPhrase(Arrays.asList("/de/", "'von'Hefner'", "o")));
     }
 }

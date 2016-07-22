@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
-import org.jesadido.poc.core.CoreUtils;
 
 /**
  * This <code>ConceptRegistry</code> singleton class is a factory pool for all
@@ -69,7 +68,7 @@ public final class ConceptRegistry {
      */
     public final Concept getConcept(final List<String> morphemes) {
         if (!morphemes.isEmpty()) {
-            final String conceptPhrase = MorphemeUtils.toConceptPhrase(morphemes);
+            final String conceptPhrase = ConceptUtils.toConceptPhrase(morphemes);
             if (!concepts.containsKey(conceptPhrase)) {
                 final Concept builtConcept = new Concept(new ConceptBuilder(morphemes));
                 if (!conceptPhrase.equals(builtConcept.getFullPhrase())) {
