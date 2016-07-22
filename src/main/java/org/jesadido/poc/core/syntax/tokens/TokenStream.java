@@ -19,6 +19,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jesadido.poc.core.CoreUtils;
 
+/**
+ * This <code>TokenStream</code> class implements the token iteration accoring
+ * a <b>Jesadido</b> source code for the purpose of parsing.
+ */
 public final class TokenStream implements Closeable {
     
     private static final Logger LOGGER = Logger.getLogger(TokenStream.class.getName());
@@ -26,24 +30,53 @@ public final class TokenStream implements Closeable {
     private final BufferedReader source;
     private final List<Token> peekQueue;
     
+    /**
+     * Class constructor.
+     * @param source The <b>Jesadido</b> source code as an
+     * <code>InputStream</code>.
+     */
     public TokenStream(final InputStream source) {
         this.source = new BufferedReader(new InputStreamReader(source, CoreUtils.UTF_8));
         this.peekQueue = new LinkedList<>();
     }
     
+    /**
+     * Class constructor.
+     * @param source The <b>Jesadido</b> source code as a <code>String</code>.
+     */
     public TokenStream(final String source) {
         this(new ByteArrayInputStream(source.getBytes(CoreUtils.UTF_8)));
     }
     
+    /**
+     * Indicates whether one next token can be fetched via the methods
+     * <code>peek()</code> and <code>next()</code>.
+     * @return <code>true</code> if there is at least one token returnable.
+     */
     public final boolean has() {
         return this.has(1);
     }
     
+    /**
+     * Indicates whether a determined number of next tokens can be fetched via
+     * the methods <code>peek(int)</code> and <code>next(int)</code>.
+     * @param count The determined number of next tokens.
+     * @return <code>true</code> if there are at least the determined number of
+     * next tokens returnable.
+     */
     public final boolean has(final int count) {
         this.provideNextTokens(count);
         return this.peekQueue.size() >= count;
     }
     
+    /**
+     * Indicates whether a token sequence with the given token types are
+     * available via the methods <code>peek(int)</code> and
+     * <code>next(int)</code>.
+     * @param tokenTypes The given token types.
+     * @return <code>true</code> if there is a token sequence according to the
+     * given token types available.
+     */
     public final boolean hasSequence(final TokenType ... tokenTypes) {
         if (this.has(tokenTypes.length)) {
             for (int i = 0; i < tokenTypes.length; i++) {
@@ -56,15 +89,35 @@ public final class TokenStream implements Closeable {
         return false;
     }
     
+    /**
+     * Indicates whether one next token typed by the given token types can be
+     * fetched via the methods <code>peek()</code> and <code>next()</code>.
+     * @param tokenTypes The given token types.
+     * @return <code>true</code> if there is at least one token with at least
+     * one of the given token types returnable.
+     */
     public final boolean hasOneOf(final TokenType ... tokenTypes) {
         return this.has(1) && this.peekQueue.get(0).getType().isOneOf(tokenTypes);
     }
     
+    /**
+     * Returns the next token instance without consuming it from the token
+     * stream.
+     * @return <code>null</code> if there is no next token available, or if an
+     * <code>IOException</code> is happened.
+     */
     public final Token peek() {
         this.provideNextTokens(1);
         return this.peekQueue.isEmpty() ? null : this.peekQueue.get(0);
     }
     
+    /**
+     * Returns a determined number of next token instances without consuming
+     * these tokens from the token stream.
+     * @param count The determined number of next tokens.
+     * @return The available next tokens with <code>count</code> as maximum
+     * value.
+     */
     public final List<Token> peek(final int count) {
         this.provideNextTokens(count);
         final List<Token> result = new LinkedList<>();
@@ -75,10 +128,22 @@ public final class TokenStream implements Closeable {
         return result;
     }
     
+    /**
+     * Returns the next token instance with consuming it from the token stream.
+     * @return <code>null</code> if there is no next token available, or if an
+     * <code>IOException</code> is happened.
+     */
     public final Token next() {
         return this.peekQueue.isEmpty() ? null : this.peekQueue.remove(0);
     }
     
+    /**
+     * Returns a determined number of next token instances with consuming these
+     * tokens from the token stream.
+     * @param count The determined number of next tokens.
+     * @return The available next tokens with <code>count</code> as maximum
+     * value.
+     */
     public final List<Token> next(final int count) {
         final List<Token> result = new LinkedList<>();
         final int minCount = Math.min(count, this.peekQueue.size());
@@ -88,6 +153,10 @@ public final class TokenStream implements Closeable {
         return result;
     }
     
+    /**
+     * Closes the capsulated reader.
+     * @throws IOException If an I/O error occurs.
+     */
     @Override
     public void close() throws IOException {
         this.source.close();
