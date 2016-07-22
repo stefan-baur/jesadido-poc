@@ -9,13 +9,10 @@ package org.jesadido.poc.core.concepts;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Logger;
 import org.jesadido.poc.core.CoreUtils;
 import org.jesadido.poc.core.Language;
 
 public final class ConceptUtils {
-    
-    private static final Logger LOGGER = Logger.getLogger(ConceptUtils.class.getName());
     
     private ConceptUtils() {
         // A private utility class constructor.

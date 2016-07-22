@@ -9,10 +9,13 @@ package org.jesadido.poc.core.syntax.tokens;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class TokenStreamTest {
+    
+    private static final Logger LOGGER = Logger.getLogger(TokenStreamTest.class.getName());
     
     @Test
     public void testHas() {
@@ -141,6 +144,7 @@ public class TokenStreamTest {
         TokenStream tokenStream = new TokenStream("'OPENED'O 'UNREACHABLE-CLOSED'O");
         Assert.assertTrue(tokenStream.has(1));
         tokenStream.close();
+        LOGGER.info("The following IOException is provocated for the purpose of testing.");
         Assert.assertFalse(tokenStream.has(2));
     }
 }
