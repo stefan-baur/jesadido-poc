@@ -65,7 +65,7 @@ public final class ConceptUtils {
             final int beginIndex = basePhrase.indexOf('\'');
             final int endIndex = basePhrase.lastIndexOf('\'');
             final String prefix = basePhrase.substring(0, beginIndex);
-            if (ConceptUtils.isLanguageMorpheme(prefix)) {
+            if (ConceptUtils.checkLanguageMorpheme(prefix)) {
                 result.add(prefix);
             }
             result.add(basePhrase.substring(beginIndex, endIndex + 1));
@@ -122,13 +122,13 @@ public final class ConceptUtils {
      * @param morpheme The given morpheme phrase.
      * @return <code>true</code> if the given morpheme phrase is parsable.
      */
-    public static final boolean isParameterMorpheme(final String morpheme) {
+    public static final boolean checkParameterMorpheme(final String morpheme) {
         return morpheme != null && morpheme.length() > 1 && morpheme.startsWith("'") && morpheme.endsWith("'");
     }
     
     /**
      * Parses the given parameter morpheme phrase to its plain text phrases. Use
-     * <code>isParameterMorpheme()</code> before!
+     * <code>checkParameterMorpheme()</code> before!
      * @param parameterMorpheme The given parameter morpheme phrase.
      * @return The parsed plain text phrases.
      */
@@ -159,13 +159,12 @@ public final class ConceptUtils {
      * @param morpheme The given morpheme phrase.
      * @return <code>true</code> if the given morpheme phrase is parsable.
      */
-    public static final boolean isLanguageMorpheme(final String morpheme) {
+    public static final boolean checkLanguageMorpheme(final String morpheme) {
         return morpheme != null && morpheme.length() == 4 && morpheme.startsWith("/") && morpheme.endsWith("/");
     }
     
     /**
-     * Returns a language morpheme phrase according to the given language. Use
-     * <code>isLanguageMorpheme()</code> before!
+     * Returns a language morpheme phrase according to the given language.
      * @param language The given language.
      * @return The language morpheme pharse.
      */
@@ -174,7 +173,8 @@ public final class ConceptUtils {
     }
     
     /**
-     * Parses the given language morpheme phrase to its language.
+     * Parses the given language morpheme phrase to its language. Use
+     * <code>checkLanguageMorpheme()</code> before!
      * @param languageMorpheme The given language morpheme phrase.
      * @return The parsed language.
      */

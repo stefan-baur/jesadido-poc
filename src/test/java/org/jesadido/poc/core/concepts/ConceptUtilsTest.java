@@ -21,7 +21,7 @@ public class ConceptUtilsTest {
     }
     
     @Test
-    public void testParse() {
+    public void testParseToConcept() {
         {
             Concept concept = ConceptUtils.parseToConcept("LogikA$ProgramAdO");
             Assert.assertEquals("LogikA$ProgramAdO", concept.getFullPhrase());
@@ -119,15 +119,15 @@ public class ConceptUtilsTest {
     }
     
     @Test
-    public void testIsParameterMorpheme() {
-        Assert.assertFalse(ConceptUtils.isParameterMorpheme(null));
-        Assert.assertFalse(ConceptUtils.isParameterMorpheme(""));
-        Assert.assertFalse(ConceptUtils.isParameterMorpheme("'"));
-        Assert.assertFalse(ConceptUtils.isParameterMorpheme("X"));
-        Assert.assertFalse(ConceptUtils.isParameterMorpheme("A'"));
-        Assert.assertTrue(ConceptUtils.isParameterMorpheme("''"));
-        Assert.assertTrue(ConceptUtils.isParameterMorpheme("'Test'"));
-        Assert.assertTrue(ConceptUtils.isParameterMorpheme("'Test1'|'Test2'|'Test3'"));
+    public void testCheckParameterMorpheme() {
+        Assert.assertFalse(ConceptUtils.checkParameterMorpheme(null));
+        Assert.assertFalse(ConceptUtils.checkParameterMorpheme(""));
+        Assert.assertFalse(ConceptUtils.checkParameterMorpheme("'"));
+        Assert.assertFalse(ConceptUtils.checkParameterMorpheme("X"));
+        Assert.assertFalse(ConceptUtils.checkParameterMorpheme("A'"));
+        Assert.assertTrue(ConceptUtils.checkParameterMorpheme("''"));
+        Assert.assertTrue(ConceptUtils.checkParameterMorpheme("'Test'"));
+        Assert.assertTrue(ConceptUtils.checkParameterMorpheme("'Test1'|'Test2'|'Test3'"));
     }
     
     @Test
@@ -139,20 +139,20 @@ public class ConceptUtilsTest {
     }
     
     @Test
-    public void testIsLanguageMorpheme() {
-        Assert.assertFalse(ConceptUtils.isLanguageMorpheme(null));
-        Assert.assertFalse(ConceptUtils.isLanguageMorpheme(""));
-        Assert.assertFalse(ConceptUtils.isLanguageMorpheme("/"));
-        Assert.assertFalse(ConceptUtils.isLanguageMorpheme("X"));
-        Assert.assertFalse(ConceptUtils.isLanguageMorpheme("A/"));
-        Assert.assertFalse(ConceptUtils.isLanguageMorpheme("//"));
-        Assert.assertFalse(ConceptUtils.isLanguageMorpheme("/h/"));
-        Assert.assertTrue(ConceptUtils.isLanguageMorpheme("/hu/"));
-        Assert.assertTrue(ConceptUtils.isLanguageMorpheme("/üü/"));
-        Assert.assertTrue(ConceptUtils.isLanguageMorpheme("/de/"));
-        Assert.assertTrue(ConceptUtils.isLanguageMorpheme("/en/"));
-        Assert.assertTrue(ConceptUtils.isLanguageMorpheme("/es/"));
-        Assert.assertTrue(ConceptUtils.isLanguageMorpheme("/ji/"));
+    public void testCheckLanguageMorpheme() {
+        Assert.assertFalse(ConceptUtils.checkLanguageMorpheme(null));
+        Assert.assertFalse(ConceptUtils.checkLanguageMorpheme(""));
+        Assert.assertFalse(ConceptUtils.checkLanguageMorpheme("/"));
+        Assert.assertFalse(ConceptUtils.checkLanguageMorpheme("X"));
+        Assert.assertFalse(ConceptUtils.checkLanguageMorpheme("A/"));
+        Assert.assertFalse(ConceptUtils.checkLanguageMorpheme("//"));
+        Assert.assertFalse(ConceptUtils.checkLanguageMorpheme("/h/"));
+        Assert.assertTrue(ConceptUtils.checkLanguageMorpheme("/hu/"));
+        Assert.assertTrue(ConceptUtils.checkLanguageMorpheme("/üü/"));
+        Assert.assertTrue(ConceptUtils.checkLanguageMorpheme("/de/"));
+        Assert.assertTrue(ConceptUtils.checkLanguageMorpheme("/en/"));
+        Assert.assertTrue(ConceptUtils.checkLanguageMorpheme("/es/"));
+        Assert.assertTrue(ConceptUtils.checkLanguageMorpheme("/ji/"));
     }
     
     @Test
