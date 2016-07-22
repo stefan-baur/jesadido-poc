@@ -91,7 +91,7 @@ public final class ConceptRegistry {
     public final Concept getConcept(final String conceptPhrase) {
         if (conceptPhrase != null && conceptPhrase.length() > 0) {
             if (!concepts.containsKey(conceptPhrase)) {
-                final Concept parsedConcept = ConceptParser.parse(conceptPhrase);
+                final Concept parsedConcept = ConceptUtils.parseToConcept(conceptPhrase);
                 if (!conceptPhrase.equals(parsedConcept.getFullPhrase())) {
                     LOGGER.severe(String.format("The given concept phrase differs to the parsed result: \"%s\" != \"%s\"", conceptPhrase, parsedConcept.getFullPhrase()));
                 }
