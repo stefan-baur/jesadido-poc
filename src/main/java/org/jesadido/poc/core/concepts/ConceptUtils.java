@@ -31,13 +31,29 @@ public final class ConceptUtils {
         return String.join("", CoreUtils.up(morphemes));
     }
     
-    public static final List<String> parseToPlainTextList(final String parameterListMorpheme) {
+    /**
+     * Checks whether the given morpheme phrase is parsable as a parameter.
+     * @param morpheme The given morpheme phrase.
+     * @return <code>true</code> if the given morpheme phrase is parsable.
+     */
+    public static final boolean isParameterMorpheme(final String morpheme) {
+        return morpheme != null && morpheme.length() > 1 && morpheme.startsWith("'") && morpheme.endsWith("'");
+    }
+    
+    /**
+     * Parses the given parameter morpheme phrase to its plain text phrases. Use
+     * <code>isParameterMorpheme()</code> before!
+     * @param parameterMorpheme The given parameter morpheme phrase.
+     * @return The parsed plain text phrases.
+     */
+    public static final List<String> parseToPlainTextList(final String parameterMorpheme) {
         final List<String> result = new LinkedList<>();
-        final String escaper1 = CoreUtils.escaper("1", parameterListMorpheme);
-        final String escaper2 = CoreUtils.escaper("2", parameterListMorpheme);
-        final String escaper3 = CoreUtils.escaper("3", parameterListMorpheme);
-        final String escaper4 = CoreUtils.escaper("4", parameterListMorpheme);
-        final String escapedMorpheme = parameterListMorpheme.replace("\\'", escaper1).replace("\\|", escaper2).replace("\\$", escaper3).replace("\\\\", escaper4);
+        final String morpheme = parameterMorpheme == null ? "" : parameterMorpheme;
+        final String escaper0 = CoreUtils.escaper("0", morpheme);
+        final String escaper1 = CoreUtils.escaper("1", morpheme);
+        final String escaper2 = CoreUtils.escaper("2", morpheme);
+        final String escaper3 = CoreUtils.escaper("3", morpheme);
+        final String escapedMorpheme = morpheme.replace("\\\\", escaper0).replace("\\'", escaper1).replace("\\|", escaper2).replace("\\$", escaper3);
         for (final String listItemPhrase : escapedMorpheme.split("\\|")) {
             final String[] snippets = listItemPhrase.split("'");
             final StringBuilder listPhraseBuilder = new StringBuilder();
@@ -47,15 +63,35 @@ public final class ConceptUtils {
                 }
                 listPhraseBuilder.append(snippets[i]);
             }
-            result.add(listPhraseBuilder.toString().replace(escaper1, "'").replace(escaper2, "|").replace(escaper3, "$"));
+            result.add(listPhraseBuilder.toString().replace(escaper0, "\\").replace(escaper1, "'").replace(escaper2, "|").replace(escaper3, "$"));
         }
         return result;
     }
     
+    /**
+     * Checks whether the given morpheme phrase is parsable as a language.
+     * @param morpheme The given morpheme phrase.
+     * @return <code>true</code> if the given morpheme phrase is parsable.
+     */
+    public static final boolean isLanguageMorpheme(final String morpheme) {
+        return morpheme != null && morpheme.length() == 4 && morpheme.startsWith("/") && morpheme.endsWith("/");
+    }
+    
+    /**
+     * Returns a language morpheme phrase according to the given language. Use
+     * <code>isLanguageMorpheme()</code> before!
+     * @param language The given language.
+     * @return The language morpheme pharse.
+     */
     public static final String toLanguageMorpheme(final Language language) {
         return String.format("/%s/", language.getCode());
     }
     
+    /**
+     * Parses the given language morpheme phrase to its language.
+     * @param languageMorpheme The given language morpheme phrase.
+     * @return The parsed language.
+     */
     public static final Language parseToLanguage(final String languageMorpheme) {
         for (final Language result : Language.values()) {
             if (String.format("/%s/", result.getCode()).equals(languageMorpheme)) {

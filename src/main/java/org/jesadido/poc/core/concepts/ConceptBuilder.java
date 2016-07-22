@@ -99,13 +99,13 @@ public final class ConceptBuilder {
      */
     public final ConceptProperties buildProperties() {
         final ConceptProperties result = new ConceptProperties();
-        this.baseMorphemes.stream().filter(morpheme -> morpheme.startsWith("/")).forEach(morpheme -> result.setParameterLanguage(ConceptUtils.parseToLanguage(morpheme)));
-        this.baseMorphemes.stream().filter(morpheme -> morpheme.startsWith("'")).forEach(morpheme -> result.setParameterPlainList(ConceptUtils.parseToPlainTextList(morpheme)));
+        this.baseMorphemes.stream().filter(morpheme -> ConceptUtils.isLanguageMorpheme(morpheme)).forEach(morpheme -> result.setParameterLanguage(ConceptUtils.parseToLanguage(morpheme)));
+        this.baseMorphemes.stream().filter(morpheme -> ConceptUtils.isParameterMorpheme(morpheme)).forEach(morpheme -> result.setParameterPlainTextList(ConceptUtils.parseToPlainTextList(morpheme)));
         if (result.hasParameter()) {
             result.setParameterType(ConceptParameterType.get(this.basePhrase));
         }
         result.setTermination(ConceptTermination.get(this.basePhrase));
-        if (result.getTermination() == ConceptTermination.UNKNOWN) {
+        if (result.getTermination() == ConceptTermination.USER_DEFINED) {
             LOGGER.warning(String.format("The phrase \"%s\" has no supported concept termination.", this.basePhrase));
         }
         result.setPlural(result.getTermination().isOneOf(

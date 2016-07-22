@@ -31,7 +31,7 @@ public class ConceptParserTest {
             Assert.assertTrue(concept.getProperties().hasParameter());
             Assert.assertEquals(Language.DE, concept.getProperties().getParameterLanguage());
             Assert.assertEquals(ConceptParameterType.PROPERNAME, concept.getProperties().getParameterType());
-            Assert.assertArrayEquals(new String[] { "Heinrich Schliemann" }, concept.getProperties().getParameterPlainList().toArray());
+            Assert.assertArrayEquals(new String[] { "Heinrich Schliemann" }, concept.getProperties().getParameterPlainTextList().toArray());
             Assert.assertTrue(concept.hasReferenceConcept());
             Assert.assertEquals(ConceptTermination.O, concept.getReferenceConcept().getProperties().getTermination());
         }
@@ -47,7 +47,7 @@ public class ConceptParserTest {
             Assert.assertEquals(ConceptTermination.O, concept.getReferenceConcept().getReferenceConcept().getProperties().getTermination());
             Assert.assertTrue(concept.getReferenceConcept().getReferenceConcept().getProperties().hasParameter());
             Assert.assertEquals(Language.ES, concept.getReferenceConcept().getReferenceConcept().getProperties().getParameterLanguage());
-            Assert.assertArrayEquals(new String[] { "Maria" }, concept.getReferenceConcept().getReferenceConcept().getProperties().getParameterPlainList().toArray());
+            Assert.assertArrayEquals(new String[] { "Maria" }, concept.getReferenceConcept().getReferenceConcept().getProperties().getParameterPlainTextList().toArray());
             Assert.assertEquals(ConceptParameterType.PROPERNAME_MASCULINE, concept.getReferenceConcept().getReferenceConcept().getProperties().getParameterType());
         }
         {
@@ -56,7 +56,7 @@ public class ConceptParserTest {
             Assert.assertEquals(ConceptTermination.O, concept.getProperties().getTermination());
             Assert.assertTrue(concept.getProperties().hasParameter());
             Assert.assertEquals(Language.FR, concept.getProperties().getParameterLanguage());
-            Assert.assertArrayEquals(new String[] { "Prix d'Europe" }, concept.getProperties().getParameterPlainList().toArray());
+            Assert.assertArrayEquals(new String[] { "Prix d'Europe" }, concept.getProperties().getParameterPlainTextList().toArray());
             Assert.assertEquals(ConceptParameterType.PROPERNAME, concept.getProperties().getParameterType());
         }
         {
@@ -65,7 +65,7 @@ public class ConceptParserTest {
             Assert.assertEquals(ConceptTermination.O, concept.getProperties().getTermination());
             Assert.assertTrue(concept.getProperties().hasParameter());
             Assert.assertEquals(Language.DE, concept.getProperties().getParameterLanguage());
-            Assert.assertArrayEquals(new String[] { "Stefan Baur", "Sperling 6", "D-90459 Nürnberg" }, concept.getProperties().getParameterPlainList().toArray());
+            Assert.assertArrayEquals(new String[] { "Stefan Baur", "Sperling 6", "D-90459 Nürnberg" }, concept.getProperties().getParameterPlainTextList().toArray());
             Assert.assertEquals(ConceptParameterType.ADDRESS, concept.getProperties().getParameterType());
         }
         {
@@ -74,7 +74,7 @@ public class ConceptParserTest {
             Assert.assertEquals(ConceptTermination.O, concept.getProperties().getTermination());
             Assert.assertTrue(concept.getProperties().hasParameter());
             Assert.assertEquals(Language.JI, concept.getProperties().getParameterLanguage());
-            Assert.assertArrayEquals(new String[] { "1822-01-06" }, concept.getProperties().getParameterPlainList().toArray());
+            Assert.assertArrayEquals(new String[] { "1822-01-06" }, concept.getProperties().getParameterPlainTextList().toArray());
             Assert.assertEquals(ConceptParameterType.DATE, concept.getProperties().getParameterType());
         }
         {
@@ -83,7 +83,7 @@ public class ConceptParserTest {
             Assert.assertEquals(ConceptTermination.O, concept.getProperties().getTermination());
             Assert.assertTrue(concept.getProperties().hasParameter());
             Assert.assertEquals(Language.DE, concept.getProperties().getParameterLanguage());
-            Assert.assertArrayEquals(new String[] { "Maria" }, concept.getProperties().getParameterPlainList().toArray());
+            Assert.assertArrayEquals(new String[] { "Maria" }, concept.getProperties().getParameterPlainTextList().toArray());
             Assert.assertEquals(ConceptParameterType.PROPERNAME_FEMININE, concept.getProperties().getParameterType());
         }
         {
@@ -92,7 +92,7 @@ public class ConceptParserTest {
             Assert.assertEquals(ConceptTermination.O, concept.getProperties().getTermination());
             Assert.assertTrue(concept.getProperties().hasParameter());
             Assert.assertEquals(Language.EN, concept.getProperties().getParameterLanguage());
-            Assert.assertArrayEquals(new String[] { "If you're going through hell, keep going.", "Winston Churchill" }, concept.getProperties().getParameterPlainList().toArray());
+            Assert.assertArrayEquals(new String[] { "If you're going through hell, keep going.", "Winston Churchill" }, concept.getProperties().getParameterPlainTextList().toArray());
             Assert.assertEquals(ConceptParameterType.CITATION, concept.getProperties().getParameterType());
         }
     }

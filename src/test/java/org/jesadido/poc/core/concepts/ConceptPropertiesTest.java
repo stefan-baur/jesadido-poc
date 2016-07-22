@@ -16,7 +16,7 @@ public class ConceptPropertiesTest {
     
     @Test
     public void testGetTermination() {
-        Assert.assertEquals(ConceptTermination.UNKNOWN, new ConceptProperties().getTermination());
+        Assert.assertEquals(ConceptTermination.USER_DEFINED, new ConceptProperties().getTermination());
     }
     
     @Test
@@ -49,20 +49,20 @@ public class ConceptPropertiesTest {
     
     @Test
     public void testGetParameterPlainList() {
-        Assert.assertNotNull(new ConceptProperties().getParameterPlainList());
-        Assert.assertTrue(new ConceptProperties().getParameterPlainList().isEmpty());
+        Assert.assertNotNull(new ConceptProperties().getParameterPlainTextList());
+        Assert.assertTrue(new ConceptProperties().getParameterPlainTextList().isEmpty());
     }
     
     @Test
     public void testSetParameterPlainList() {
         ConceptProperties conceptProperties = new ConceptProperties();
-        conceptProperties.setParameterPlainList(null);
-        Assert.assertNotNull(conceptProperties.getParameterPlainList());
-        Assert.assertTrue(conceptProperties.getParameterPlainList().isEmpty());
-        conceptProperties.setParameterPlainList(Arrays.asList("Ludwik", "L.", "Zamenhof"));
-        Assert.assertNotNull(conceptProperties.getParameterPlainList());
-        Assert.assertEquals(3, conceptProperties.getParameterPlainList().size());
-        Assert.assertArrayEquals(new String[] { "Ludwik", "L.", "Zamenhof" }, conceptProperties.getParameterPlainList().toArray());
+        conceptProperties.setParameterPlainTextList(null);
+        Assert.assertNotNull(conceptProperties.getParameterPlainTextList());
+        Assert.assertTrue(conceptProperties.getParameterPlainTextList().isEmpty());
+        conceptProperties.setParameterPlainTextList(Arrays.asList("Ludwik", "L.", "Zamenhof"));
+        Assert.assertNotNull(conceptProperties.getParameterPlainTextList());
+        Assert.assertEquals(3, conceptProperties.getParameterPlainTextList().size());
+        Assert.assertArrayEquals(new String[] { "Ludwik", "L.", "Zamenhof" }, conceptProperties.getParameterPlainTextList().toArray());
     }
     
     @Test

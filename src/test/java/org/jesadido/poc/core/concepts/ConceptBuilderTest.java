@@ -113,7 +113,7 @@ public class ConceptBuilderTest {
             Assert.assertEquals(false, conceptProperties.hasParameter());
             Assert.assertEquals(Language.JI, conceptProperties.getParameterLanguage());
             Assert.assertEquals(ConceptParameterType.NONE, conceptProperties.getParameterType());
-            Assert.assertEquals(true, conceptProperties.getParameterPlainList().isEmpty());
+            Assert.assertEquals(true, conceptProperties.getParameterPlainTextList().isEmpty());
             Concept referenceConcept = conceptBuilder.buildReferenceConcept();
             ConceptProperties referenceConceptProperties = referenceConcept.getProperties();
             Assert.assertEquals(ConceptTermination.MI, referenceConceptProperties.getTermination());
@@ -121,7 +121,7 @@ public class ConceptBuilderTest {
             Assert.assertEquals(false, referenceConceptProperties.hasParameter());
             Assert.assertEquals(Language.JI, referenceConceptProperties.getParameterLanguage());
             Assert.assertEquals(ConceptParameterType.NONE, referenceConceptProperties.getParameterType());
-            Assert.assertEquals(true, referenceConceptProperties.getParameterPlainList().isEmpty());
+            Assert.assertEquals(true, referenceConceptProperties.getParameterPlainTextList().isEmpty());
         }
         {
             ConceptBuilder conceptBuilder = new ConceptBuilder(Arrays.asList("'1843-06-09'", "Dat", "O"));
@@ -131,7 +131,7 @@ public class ConceptBuilderTest {
             Assert.assertEquals(true, conceptProperties.hasParameter());
             Assert.assertEquals(Language.JI, conceptProperties.getParameterLanguage());
             Assert.assertEquals(ConceptParameterType.DATE, conceptProperties.getParameterType());
-            Assert.assertArrayEquals(new String[] { "1843-06-09" }, conceptProperties.getParameterPlainList().toArray());
+            Assert.assertArrayEquals(new String[] { "1843-06-09" }, conceptProperties.getParameterPlainTextList().toArray());
         }
         {
             ConceptBuilder conceptBuilder = new ConceptBuilder(Arrays.asList("Icx", "O", "$", "/de/", "'Alex'", "O"));
@@ -141,7 +141,7 @@ public class ConceptBuilderTest {
             Assert.assertEquals(true, conceptProperties.hasParameter());
             Assert.assertEquals(Language.DE, conceptProperties.getParameterLanguage());
             Assert.assertEquals(ConceptParameterType.PROPERNAME, conceptProperties.getParameterType());
-            Assert.assertArrayEquals(new String[] { "Alex" }, conceptProperties.getParameterPlainList().toArray());
+            Assert.assertArrayEquals(new String[] { "Alex" }, conceptProperties.getParameterPlainTextList().toArray());
             Concept referenceConcept = conceptBuilder.buildReferenceConcept();
             ConceptProperties referenceConceptProperties = referenceConcept.getProperties();
             Assert.assertEquals(ConceptTermination.O, referenceConceptProperties.getTermination());
@@ -149,7 +149,7 @@ public class ConceptBuilderTest {
             Assert.assertEquals(false, referenceConceptProperties.hasParameter());
             Assert.assertEquals(Language.JI, referenceConceptProperties.getParameterLanguage());
             Assert.assertEquals(ConceptParameterType.NONE, referenceConceptProperties.getParameterType());
-            Assert.assertEquals(true, referenceConceptProperties.getParameterPlainList().isEmpty());
+            Assert.assertEquals(true, referenceConceptProperties.getParameterPlainTextList().isEmpty());
         }
         {
             ConceptBuilder conceptBuilder = new ConceptBuilder(Arrays.asList("Sun", "O", "J", "$", "Ili"));
@@ -159,7 +159,7 @@ public class ConceptBuilderTest {
             Assert.assertEquals(false, conceptProperties.hasParameter());
             Assert.assertEquals(Language.JI, conceptProperties.getParameterLanguage());
             Assert.assertEquals(ConceptParameterType.NONE, conceptProperties.getParameterType());
-            Assert.assertEquals(true, conceptProperties.getParameterPlainList().isEmpty());
+            Assert.assertEquals(true, conceptProperties.getParameterPlainTextList().isEmpty());
             Concept referenceConcept = conceptBuilder.buildReferenceConcept();
             ConceptProperties referenceConceptProperties = referenceConcept.getProperties();
             Assert.assertEquals(ConceptTermination.O_J, referenceConceptProperties.getTermination());
@@ -167,7 +167,7 @@ public class ConceptBuilderTest {
             Assert.assertEquals(false, referenceConceptProperties.hasParameter());
             Assert.assertEquals(Language.JI, referenceConceptProperties.getParameterLanguage());
             Assert.assertEquals(ConceptParameterType.NONE, referenceConceptProperties.getParameterType());
-            Assert.assertEquals(true, referenceConceptProperties.getParameterPlainList().isEmpty());
+            Assert.assertEquals(true, referenceConceptProperties.getParameterPlainTextList().isEmpty());
         }
         {
             ConceptBuilder conceptBuilder = new ConceptBuilder(Arrays.asList("/de/", "'Zamenhof'", "Icx", "O", "$", "/eo/", "'Ludoviko'Lazaro'Zamenhofo'", "O"));
@@ -177,7 +177,7 @@ public class ConceptBuilderTest {
             Assert.assertEquals(true, conceptProperties.hasParameter());
             Assert.assertEquals(Language.EO, conceptProperties.getParameterLanguage());
             Assert.assertEquals(ConceptParameterType.PROPERNAME, conceptProperties.getParameterType());
-            Assert.assertArrayEquals(new String[] { "Ludoviko Lazaro Zamenhofo" }, conceptProperties.getParameterPlainList().toArray());
+            Assert.assertArrayEquals(new String[] { "Ludoviko Lazaro Zamenhofo" }, conceptProperties.getParameterPlainTextList().toArray());
             Concept referenceConcept = conceptBuilder.buildReferenceConcept();
             ConceptProperties referenceConceptProperties = referenceConcept.getProperties();
             Assert.assertEquals(ConceptTermination.O, referenceConceptProperties.getTermination());
@@ -185,7 +185,7 @@ public class ConceptBuilderTest {
             Assert.assertEquals(true, referenceConceptProperties.hasParameter());
             Assert.assertEquals(Language.DE, referenceConceptProperties.getParameterLanguage());
             Assert.assertEquals(ConceptParameterType.PROPERNAME_MASCULINE, referenceConceptProperties.getParameterType());
-            Assert.assertArrayEquals(new String[] { "Zamenhof" }, referenceConceptProperties.getParameterPlainList().toArray());
+            Assert.assertArrayEquals(new String[] { "Zamenhof" }, referenceConceptProperties.getParameterPlainTextList().toArray());
         }
     }
 }

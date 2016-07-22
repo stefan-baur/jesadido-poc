@@ -16,7 +16,7 @@ public enum ConceptTermination {
     /**
      * The appropriated concept has no listed termination.
      */
-    UNKNOWN(null),
+    USER_DEFINED(null),
     
     /**
      * The appropriated concept is a standard termination symbol, for example a
@@ -149,6 +149,6 @@ public enum ConceptTermination {
                 }
             }
         }
-        return ConceptTermination.UNKNOWN;
+        return ConceptTermination.USER_DEFINED;
     }
 }

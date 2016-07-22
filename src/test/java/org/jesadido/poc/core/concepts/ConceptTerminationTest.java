@@ -14,7 +14,7 @@ public class ConceptTerminationTest {
     
     @Test
     public void testGetTerminationPhrase() {
-        Assert.assertNull(ConceptTermination.UNKNOWN.getTerminationPhrase());
+        Assert.assertNull(ConceptTermination.USER_DEFINED.getTerminationPhrase());
         Assert.assertEquals(".", ConceptTermination.TERMINATOR.getTerminationPhrase());
         Assert.assertEquals("O", ConceptTermination.O.getTerminationPhrase());
         Assert.assertEquals("A", ConceptTermination.A.getTerminationPhrase());
@@ -34,7 +34,7 @@ public class ConceptTerminationTest {
     @Test
     public void testIsOneOf() {
         Assert.assertFalse(ConceptTermination.TERMINATOR.isOneOf());
-        Assert.assertFalse(ConceptTermination.UNKNOWN.isOneOf(ConceptTermination.TERMINATOR));
+        Assert.assertFalse(ConceptTermination.USER_DEFINED.isOneOf(ConceptTermination.TERMINATOR));
         Assert.assertTrue(ConceptTermination.O.isOneOf(ConceptTermination.O));
         Assert.assertTrue(ConceptTermination.A.isOneOf(ConceptTermination.A, ConceptTermination.A_J));
         Assert.assertTrue(ConceptTermination.MI.isOneOf(ConceptTermination.values()));
@@ -42,10 +42,10 @@ public class ConceptTerminationTest {
     
     @Test
     public void testGet() {
-        Assert.assertEquals(ConceptTermination.UNKNOWN, ConceptTermination.get(null));
-        Assert.assertEquals(ConceptTermination.UNKNOWN, ConceptTermination.get(""));
-        Assert.assertEquals(ConceptTermination.UNKNOWN, ConceptTermination.get("'Test'"));
-        Assert.assertEquals(ConceptTermination.UNKNOWN, ConceptTermination.get("bla"));
+        Assert.assertEquals(ConceptTermination.USER_DEFINED, ConceptTermination.get(null));
+        Assert.assertEquals(ConceptTermination.USER_DEFINED, ConceptTermination.get(""));
+        Assert.assertEquals(ConceptTermination.USER_DEFINED, ConceptTermination.get("'Test'"));
+        Assert.assertEquals(ConceptTermination.USER_DEFINED, ConceptTermination.get("bla"));
         Assert.assertEquals(ConceptTermination.TERMINATOR, ConceptTermination.get("."));
         Assert.assertEquals(ConceptTermination.O, ConceptTermination.get("TestO"));
         Assert.assertEquals(ConceptTermination.A, ConceptTermination.get("TestA"));

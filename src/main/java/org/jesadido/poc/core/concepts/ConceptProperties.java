@@ -18,9 +18,9 @@ import org.jesadido.poc.core.Language;
  */
 public final class ConceptProperties {
     
-    private ConceptTermination termination = ConceptTermination.UNKNOWN;
+    private ConceptTermination termination = ConceptTermination.USER_DEFINED;
     private boolean plural = false;
-    private List<String> parameterPlainList = new LinkedList<>();
+    private List<String> parameterPlainTextList = new LinkedList<>();
     private Language parameterLanguage = Language.JI;
     private ConceptParameterType parameterType = ConceptParameterType.NONE;
     
@@ -62,26 +62,26 @@ public final class ConceptProperties {
      * @return <code>true</code> if the concept contains a parameter.
      */
     public final boolean hasParameter() {
-        return !this.parameterPlainList.isEmpty();
+        return !this.parameterPlainTextList.isEmpty();
     }
     
     /**
      * Returns the parameter as a list of plain text phrases.
      * @return The parameter as a list of plain text phrases (never null).
      */
-    public final List<String> getParameterPlainList() {
-        return this.parameterPlainList;
+    public final List<String> getParameterPlainTextList() {
+        return this.parameterPlainTextList;
     }
     
     /**
      * Sets the parameter as a list of plain text phrases.
      * @param list The parameter as a list of plain text phrases.
      */
-    public final void setParameterPlainList(final List<String> list) {
+    public final void setParameterPlainTextList(final List<String> list) {
         if (list == null) {
-            this.parameterPlainList = new LinkedList<>();
+            this.parameterPlainTextList = new LinkedList<>();
         } else {
-            this.parameterPlainList = list;
+            this.parameterPlainTextList = list;
         }
     }
     
