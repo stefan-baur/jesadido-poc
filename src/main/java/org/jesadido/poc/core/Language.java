@@ -10,7 +10,7 @@ package org.jesadido.poc.core;
 /**
  * This <code>Language</code> enum class provides all supported languages of
  * this language project. The writing direction of all these languages is from
- * left to right (ltr).
+ * left to right (ltr). The charset of all these languages are <b>UTF-8</b>.
  */
 public enum Language {
     

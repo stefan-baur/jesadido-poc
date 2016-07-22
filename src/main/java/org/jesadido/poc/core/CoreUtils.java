@@ -7,6 +7,7 @@
  */
 package org.jesadido.poc.core;
 
+import java.nio.charset.Charset;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,6 +16,12 @@ import java.util.List;
  * framework-specific string operations.
  */
 public final class CoreUtils {
+    
+    /**
+     * The charset of this language framework is <b>UFT-8</b>. If this charset
+     * is not supported, you can not use this framework.
+     */
+    public static final Charset UTF_8 = Charset.availableCharsets().get("UTF-8");
     
     private CoreUtils() {
         // A private utility class constructor.
