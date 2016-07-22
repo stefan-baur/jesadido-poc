@@ -15,12 +15,6 @@ public enum ConceptTermination {
     
     /**
      * The appropriated concept has no listed termination.
-     *//**
-     * The appropriated concept has no listed termination.
-     *//**
-     * The appropriated concept has no listed termination.
-     *//**
-     * The appropriated concept has no listed termination.
      */
     NONE(null),
     
@@ -113,7 +107,7 @@ public enum ConceptTermination {
     AUX("Aux"),
     
     /**
-     * The appropriated concept stands for <b>or</b> (conjunction, etc.).
+     * The appropriated concept is a comma, a separator symbol.
      */
     COMMA(",");
     
