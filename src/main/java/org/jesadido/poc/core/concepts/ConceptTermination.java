@@ -9,7 +9,7 @@ package org.jesadido.poc.core.concepts;
 
 /**
  * This <code>ConceptTermination</code> enum class provides a list syntactical
- * concept informations representated by the ending of a concept/lexem.
+ * concept informations representated by the ending of a concept/lexeme.
  */
 public enum ConceptTermination {
     

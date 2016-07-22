@@ -11,8 +11,8 @@ import java.util.List;
 
 /**
  * This <code>Concept</code> class represents a morpheme-based <b>Jesadido</b>
- * lexem without any whitespaces.
- * Some examples of <b>Jesadido</b> lexems are:
+ * lexeme without any whitespaces.
+ * Some examples of <b>Jesadido</b> lexemes are:
  * <ul>
  *  <li><code>SunO</code> <i>(sun)</i></li>
  *  <li><code>SunA</code> <i>(sunny)</i></li>
@@ -79,18 +79,18 @@ public final class Concept {
     }
     
     /**
-     * Returns the base lexem of this concept without the representation of the
+     * Returns the base lexeme of this concept without the representation of the
      * reference concept.
-     * @return The base lexem, the concatenation of the base morphemes.
+     * @return The base lexeme, the concatenation of the base morphemes.
      */
     public final String getBasePhrase() {
         return this.basePhrase;
     }
     
     /**
-     * Returns the full lexem of this concept within the representation of the
+     * Returns the full lexeme of this concept within the representation of the
      * reference concept.
-     * @return The full lexem.
+     * @return The full lexeme.
      */
     public final String getFullPhrase() {
         return this.fullPhrase;

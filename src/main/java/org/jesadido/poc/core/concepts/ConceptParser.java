@@ -13,7 +13,7 @@ import org.jesadido.poc.core.CoreUtils;
 
 /**
  * This <code>ConceptParser</code> class implements the parser for
- * <b>Jesadido</b> lexems (concept phrases).
+ * <b>Jesadido</b> lexemes (concept phrases).
  */
 public final class ConceptParser {
     
@@ -32,7 +32,7 @@ public final class ConceptParser {
     
     /**
      * Returns the parsed concept phrase splitted into its morphemes.
-     * @param conceptPhrase The concept phrase/lexem.
+     * @param conceptPhrase The concept phrase/lexeme.
      * @return The morpheme list.
      */
     public static final List<String> parseToMorphemes(final String conceptPhrase) {

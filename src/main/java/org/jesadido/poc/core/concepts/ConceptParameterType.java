@@ -13,8 +13,8 @@ import java.util.List;
 
 /**
  * This <code>ConceptParameterType</code> enum class provides all supported
- * parameter types which can be represented by a <b>Jesadido</b> lexem so called
- * 'concept'.
+ * parameter types which can be represented by a <b>Jesadido</b> lexeme so
+ * called 'concept'.
  */
 public enum ConceptParameterType {
     
@@ -65,7 +65,7 @@ public enum ConceptParameterType {
     }
     
     /**
-     * Returns the indicators for the concept parameter types as lexem endings.
+     * Returns the indicators for the concept parameter types as lexeme endings.
      * @return The concept endings.
      */
     public final List<String> getConceptEndings() {

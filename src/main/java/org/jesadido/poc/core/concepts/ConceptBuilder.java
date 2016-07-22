@@ -74,8 +74,8 @@ public final class ConceptBuilder {
     }
     
     /**
-     * Returns the concatenation of the base morphemes as lexem.
-     * @return The base lexem.
+     * Returns the concatenation of the base morphemes as lexeme.
+     * @return The base lexeme.
      */
     public final String buildBasePhrase() {
         return this.basePhrase;
@@ -83,7 +83,7 @@ public final class ConceptBuilder {
     
     /**
      * Returns the concatenation of all given morphemes.
-     * @return The full lexem.
+     * @return The full lexeme.
      */
     public final String buildFullPhrase() {
         final StringBuilder result = new StringBuilder();
