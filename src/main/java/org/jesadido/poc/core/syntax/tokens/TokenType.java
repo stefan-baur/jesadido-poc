@@ -59,4 +59,13 @@ public enum TokenType {
         }
         return UNKNOWN;
     }
+    
+    public final boolean isOneOf(final TokenType ... tokenTypes) {
+        for (final TokenType tokenType : tokenTypes) {
+            if (this == tokenType) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
