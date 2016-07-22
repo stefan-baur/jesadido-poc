@@ -15,14 +15,20 @@ public enum ConceptTermination {
     
     /**
      * The appropriated concept has no listed termination.
+     *//**
+     * The appropriated concept has no listed termination.
+     *//**
+     * The appropriated concept has no listed termination.
+     *//**
+     * The appropriated concept has no listed termination.
      */
-    USER_DEFINED(null),
+    NONE(null),
     
     /**
      * The appropriated concept is a standard termination symbol, for example a
      * sentence/clause termination.
      */
-    TERMINATOR("."),
+    PERIOD("."),
     
     /**
      * The appropriated concept is a substantive (singular).
@@ -104,7 +110,12 @@ public enum ConceptTermination {
     /**
      * The appropriated concept stands for <b>or</b> (conjunction, etc.).
      */
-    AUX("Aux");
+    AUX("Aux"),
+    
+    /**
+     * The appropriated concept stands for <b>or</b> (conjunction, etc.).
+     */
+    COMMA(",");
     
     private final String terminationPhrase;
     
@@ -149,6 +160,6 @@ public enum ConceptTermination {
                 }
             }
         }
-        return ConceptTermination.USER_DEFINED;
+        return ConceptTermination.NONE;
     }
 }

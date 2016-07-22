@@ -98,6 +98,12 @@ public enum TokenType {
     PERSONAL_PRONOUN_PLURAL,
     
     /**
+     * The appropriate token value represents a separator symbol for any
+     * listings, for example <b>Kaj</b> <i>(and)</i> or <b>Aux</b> <i>(or)</i>.
+     */
+    SEPARATOR,
+    
+    /**
      * The appropriate token value represents a terminator symbol for
      * terminating plain text sentences, for example a single period.
      */
@@ -121,7 +127,7 @@ public enum TokenType {
     private static final EnumMap<ConceptTermination, Selector> SELECTIONS = new EnumMap<>(ConceptTermination.class);
     
     static {
-        SELECTIONS.put(ConceptTermination.TERMINATOR, (Selector) (Concept c) -> TERMINATOR);
+        SELECTIONS.put(ConceptTermination.PERIOD, (Selector) (Concept c) -> TERMINATOR);
         SELECTIONS.put(ConceptTermination.LA, (Selector) (Concept c) -> ARTICLE);
         SELECTIONS.put(ConceptTermination.O, (Selector) (Concept c) -> c.getProperties().hasParameter() ? PARAMETERED_SUBSTANTIVE_SINGULAR : SUBSTANTIVE_SINGULAR);
         SELECTIONS.put(ConceptTermination.O_J, (Selector) (Concept c) -> c.getProperties().hasParameter() ? PARAMETERED_SUBSTANTIVE_PLURAL : SUBSTANTIVE_PLURAL);
@@ -135,6 +141,9 @@ public enum TokenType {
         SELECTIONS.put(ConceptTermination.NI, (Selector) (Concept c) -> PERSONAL_PRONOUN_PLURAL);
         SELECTIONS.put(ConceptTermination.VI, (Selector) (Concept c) -> PERSONAL_PRONOUN_PLURAL);
         SELECTIONS.put(ConceptTermination.ILI, (Selector) (Concept c) -> PERSONAL_PRONOUN_PLURAL);
+        SELECTIONS.put(ConceptTermination.KAJ, (Selector) (Concept c) -> SEPARATOR);
+        SELECTIONS.put(ConceptTermination.AUX, (Selector) (Concept c) -> SEPARATOR);
+        SELECTIONS.put(ConceptTermination.COMMA, (Selector) (Concept c) -> SEPARATOR);
     }
     
     /**

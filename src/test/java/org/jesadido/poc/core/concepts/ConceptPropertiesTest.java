@@ -16,7 +16,7 @@ public class ConceptPropertiesTest {
     
     @Test
     public void testGetTermination() {
-        Assert.assertEquals(ConceptTermination.USER_DEFINED, new ConceptProperties().getTermination());
+        Assert.assertEquals(ConceptTermination.NONE, new ConceptProperties().getTermination());
     }
     
     @Test

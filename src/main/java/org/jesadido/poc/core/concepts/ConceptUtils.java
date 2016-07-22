@@ -176,7 +176,7 @@ public final class ConceptUtils {
      * Parses the given language morpheme phrase to its language. Use
      * <code>checkLanguageMorpheme()</code> before!
      * @param languageMorpheme The given language morpheme phrase.
-     * @return The parsed language.
+     * @return The parsed language (default: <code>Language.JI</code>).
      */
     public static final Language parseToLanguage(final String languageMorpheme) {
         for (final Language result : Language.values()) {
@@ -184,7 +184,6 @@ public final class ConceptUtils {
                 return result;
             }
         }
-        LOGGER.warning(String.format("The language morpheme \"%s\" annotates no supported language.", languageMorpheme));
         return Language.JI;
     }
 }

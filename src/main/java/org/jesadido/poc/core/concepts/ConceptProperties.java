@@ -18,7 +18,7 @@ import org.jesadido.poc.core.Language;
  */
 public final class ConceptProperties {
     
-    private ConceptTermination termination = ConceptTermination.USER_DEFINED;
+    private ConceptTermination termination = ConceptTermination.NONE;
     private boolean plural = false;
     private List<String> parameterPlainTextList = new LinkedList<>();
     private Language parameterLanguage = Language.JI;

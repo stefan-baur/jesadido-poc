@@ -102,6 +102,14 @@ public class ConceptUtilsTest {
             Assert.assertArrayEquals(new String[] { "If you're going through hell, keep going.", "Winston Churchill" }, concept.getProperties().getParameterPlainTextList().toArray());
             Assert.assertEquals(ConceptParameterType.CITATION, concept.getProperties().getParameterType());
         }
+        {
+            Concept concept = ConceptUtils.parseToConcept("Aux$,");
+            Assert.assertEquals("Aux$,", concept.getFullPhrase());
+            Assert.assertEquals(ConceptTermination.COMMA, concept.getProperties().getTermination());
+            Assert.assertFalse(concept.getProperties().hasParameter());
+            Assert.assertTrue(concept.hasReferenceConcept());
+            Assert.assertEquals("Aux", concept.getReferenceConcept().getBasePhrase());
+        }
     }
     
     @Test

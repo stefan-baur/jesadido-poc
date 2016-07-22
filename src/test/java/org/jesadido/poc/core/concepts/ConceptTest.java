@@ -36,6 +36,14 @@ public class ConceptTest {
             Concept concept = new Concept(new ConceptBuilder(Arrays.asList("/de/", "'Stefan'", "Icx", "O", "$", "Mi", "$", "La")));
             Assert.assertTrue(concept.hasReferenceConcept());
         }
+        {
+            Concept concept = new Concept(new ConceptBuilder(Arrays.asList(",")));
+            Assert.assertFalse(concept.hasReferenceConcept());
+        }
+        {
+            Concept concept = new Concept(new ConceptBuilder(Arrays.asList("Kaj", "$", ",")));
+            Assert.assertTrue(concept.hasReferenceConcept());
+        }
     }
     
     @Test
@@ -100,6 +108,10 @@ public class ConceptTest {
             Concept concept = new Concept(new ConceptBuilder(Arrays.asList("Icx", "O", "$", "'Heinrich'Schliemann'", "O")));
             Assert.assertEquals("'Heinrich'Schliemann'O", concept.getBasePhrase());
         }
+        {
+            Concept concept = new Concept(new ConceptBuilder(Arrays.asList("Kaj", "$", ",")));
+            Assert.assertEquals(",", concept.getBasePhrase());
+        }
     }
     
     @Test
@@ -115,6 +127,10 @@ public class ConceptTest {
         {
             Concept concept = new Concept(new ConceptBuilder(Arrays.asList("/es/", "'Maria'", "Icx", "O", "$", "Bi", "$", "La")));
             Assert.assertEquals("/es/'Maria'IcxO$Bi$La", concept.getFullPhrase());
+        }
+        {
+            Concept concept = new Concept(new ConceptBuilder(Arrays.asList("Aux", "$", ",")));
+            Assert.assertEquals("Aux$,", concept.getFullPhrase());
         }
     }
     
