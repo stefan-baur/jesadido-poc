@@ -26,12 +26,12 @@ public final class Token {
         return this.value;
     }
     
-    public final Concept getConcept() {
-        return this.concept;
-    }
-    
     public final TokenType getType() {
         return this.type;
+    }
+    
+    public final Concept getConcept() {
+        return this.concept;
     }
     
     public static final Token create(final String conceptPhrase) {
