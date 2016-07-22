@@ -52,6 +52,52 @@ public class TokenStreamTest {
     }
     
     @Test
+    public void testPeek() {
+        {
+            TokenStream tokenStream = new TokenStream("");
+            Assert.assertNull(tokenStream.peek());
+            Assert.assertTrue(tokenStream.peek(1).isEmpty());
+            Assert.assertTrue(tokenStream.peek(2).isEmpty());
+            Assert.assertFalse(tokenStream.has());
+        }
+        {
+            TokenStream tokenStream = new TokenStream("StelOJ");
+            Assert.assertEquals("StelOJ", tokenStream.peek().getValue());
+            Assert.assertEquals(1, tokenStream.peek(1).size());
+            Assert.assertEquals("StelOJ", tokenStream.peek(1).get(0).getValue());
+            Assert.assertEquals(1, tokenStream.peek(2).size());
+            Assert.assertEquals("StelOJ", tokenStream.peek(2).get(0).getValue());
+            Assert.assertTrue(tokenStream.has(1));
+            Assert.assertFalse(tokenStream.has(2));
+            Assert.assertEquals("StelOJ", tokenStream.next(1).get(0).getValue());
+            Assert.assertTrue(tokenStream.peek(1).isEmpty());
+            Assert.assertFalse(tokenStream.has(1));
+        }
+        {
+            TokenStream tokenStream = new TokenStream("\tSunO .\r\n\tLunO .\r\n");
+            Assert.assertEquals("SunO", tokenStream.peek().getValue());
+            Assert.assertEquals(1, tokenStream.peek(1).size());
+            Assert.assertEquals("SunO", tokenStream.peek(1).get(0).getValue());
+            Assert.assertEquals(2, tokenStream.peek(2).size());
+            Assert.assertEquals("SunO", tokenStream.peek(2).get(0).getValue());
+            Assert.assertEquals(".", tokenStream.peek(2).get(1).getValue());
+            Assert.assertEquals(4, tokenStream.peek(4).size());
+            Assert.assertEquals("SunO", tokenStream.peek(4).get(0).getValue());
+            Assert.assertEquals(".", tokenStream.peek(4).get(1).getValue());
+            Assert.assertEquals("LunO", tokenStream.peek(4).get(2).getValue());
+            Assert.assertEquals(".", tokenStream.peek(4).get(3).getValue());
+            Assert.assertEquals(4, tokenStream.peek(5).size());
+            Assert.assertEquals("SunO", tokenStream.peek(5).get(0).getValue());
+            Assert.assertEquals(".", tokenStream.peek(5).get(1).getValue());
+            Assert.assertEquals("LunO", tokenStream.peek(5).get(2).getValue());
+            Assert.assertEquals(".", tokenStream.peek(5).get(3).getValue());
+            Assert.assertTrue(tokenStream.has(4));
+            Assert.assertFalse(tokenStream.has(5));
+        }
+    }
+    
+    
+    @Test
     public void testNext() {
         {
             TokenStream tokenStream = new TokenStream("\tSunO .\r\n\tLunO .\r\n");
