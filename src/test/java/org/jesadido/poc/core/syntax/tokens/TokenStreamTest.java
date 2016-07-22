@@ -75,15 +75,18 @@ public class TokenStreamTest {
                 Assert.assertEquals(1, nextTokens.size());
                 Assert.assertEquals("SunO", nextTokens.get(0).getValue());
             }
-            if (tokenStream.hasSequence(TokenType.TERMINATOR, TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.TERMINATOR)) {
-                List<Token> nextTokens = tokenStream.next(4);
-                Assert.assertEquals(4, nextTokens.size());
+            if (tokenStream.hasSequence(TokenType.TERMINATOR, TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR)) {
+                List<Token> nextTokens = tokenStream.next(3);
+                Assert.assertEquals(3, nextTokens.size());
                 Assert.assertEquals(".", nextTokens.get(0).getValue());
                 Assert.assertEquals("LunO", nextTokens.get(1).getValue());
                 Assert.assertEquals("SunA", nextTokens.get(2).getValue());
-                Assert.assertEquals(".", nextTokens.get(3).getValue());
             }
             Assert.assertTrue(tokenStream.next(5).isEmpty());
+            Assert.assertFalse(tokenStream.has(5));
+            List<Token> nextTokens = tokenStream.next(5);
+            Assert.assertEquals(1, nextTokens.size());
+            Assert.assertEquals(".", nextTokens.get(0).getValue());
         }
     }
     
