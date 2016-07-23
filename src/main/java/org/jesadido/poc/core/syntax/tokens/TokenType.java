@@ -19,6 +19,8 @@ public enum TokenType {
     
     /**
      * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
      */
     UNKNOWN,
     
@@ -98,10 +100,10 @@ public enum TokenType {
     PERSONAL_PRONOUN_PLURAL,
     
     /**
-     * The appropriate token value represents a separator symbol for any
+     * The appropriate token value represents a kind of separator symbol for any
      * listings, for example <b>Kaj</b> <i>(and)</i> or <b>Aux</b> <i>(or)</i>.
      */
-    SEPARATOR,
+    CONJUNCTION,
     
     /**
      * The appropriate token value represents a terminator symbol for
@@ -141,9 +143,9 @@ public enum TokenType {
         SELECTIONS.put(ConceptTermination.NI, (Selector) (Concept c) -> PERSONAL_PRONOUN_PLURAL);
         SELECTIONS.put(ConceptTermination.VI, (Selector) (Concept c) -> PERSONAL_PRONOUN_PLURAL);
         SELECTIONS.put(ConceptTermination.ILI, (Selector) (Concept c) -> PERSONAL_PRONOUN_PLURAL);
-        SELECTIONS.put(ConceptTermination.KAJ, (Selector) (Concept c) -> SEPARATOR);
-        SELECTIONS.put(ConceptTermination.AUX, (Selector) (Concept c) -> SEPARATOR);
-        SELECTIONS.put(ConceptTermination.COMMA, (Selector) (Concept c) -> SEPARATOR);
+        SELECTIONS.put(ConceptTermination.KAJ, (Selector) (Concept c) -> CONJUNCTION);
+        SELECTIONS.put(ConceptTermination.AUX, (Selector) (Concept c) -> CONJUNCTION);
+        SELECTIONS.put(ConceptTermination.COMMA, (Selector) (Concept c) -> CONJUNCTION);
     }
     
     /**

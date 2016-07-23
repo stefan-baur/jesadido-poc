@@ -29,9 +29,9 @@ public class TokenTypeTest {
         Assert.assertEquals(TokenType.PARAMETERED_SUBSTANTIVE_PLURAL, TokenType.get(ConceptRegistry.getInstance().getConcept("/de/'Baurs'|'Baur'OJ")));
         Assert.assertEquals(TokenType.PERSONAL_PRONOUN_SINGULAR, TokenType.get(ConceptRegistry.getInstance().getConcept("/de/'Stefan'IcxO$Mi")));
         Assert.assertEquals(TokenType.PERSONAL_PRONOUN_PLURAL, TokenType.get(ConceptRegistry.getInstance().getConcept("/de/'Baurs'|'Baur'OJ$Ni")));
-        Assert.assertEquals(TokenType.SEPARATOR, TokenType.get(ConceptRegistry.getInstance().getConcept("Kaj")));
-        Assert.assertEquals(TokenType.SEPARATOR, TokenType.get(ConceptRegistry.getInstance().getConcept("Aux")));
-        Assert.assertEquals(TokenType.SEPARATOR, TokenType.get(ConceptRegistry.getInstance().getConcept(",")));
+        Assert.assertEquals(TokenType.CONJUNCTION, TokenType.get(ConceptRegistry.getInstance().getConcept("Kaj")));
+        Assert.assertEquals(TokenType.CONJUNCTION, TokenType.get(ConceptRegistry.getInstance().getConcept("Aux")));
+        Assert.assertEquals(TokenType.CONJUNCTION, TokenType.get(ConceptRegistry.getInstance().getConcept(",")));
     }
     
     @Test
