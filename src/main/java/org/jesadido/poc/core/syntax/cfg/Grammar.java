@@ -10,11 +10,11 @@ package org.jesadido.poc.core.syntax.cfg;
 import java.util.List;
 import java.util.Map;
 
-public interface ContextFreeGrammar<N, T, P> {
+public interface Grammar<N, T, P> {
     
     String getName();
     List<N> getNonterminalSymbols();
     List<T> getTerminalSymbols();
-    Map<String, P> getProductionRules();
+    Map<N, List<P>> getProductionRules();
     N getStartSymbol();
 }
