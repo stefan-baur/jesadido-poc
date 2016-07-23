@@ -10,7 +10,7 @@ package org.jesadido.poc.core.syntax.cfg;
 import java.util.List;
 import java.util.Map;
 
-public interface Grammar<N, T, P> {
+public interface ContextFreeGrammar<N, T, P> {
     
     String getName();
     List<N> getNonterminalSymbols();
