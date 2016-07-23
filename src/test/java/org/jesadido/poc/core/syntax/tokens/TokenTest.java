@@ -65,7 +65,7 @@ public class TokenTest {
         Assert.assertEquals("/de/'Müllers'|'Müller'OJ$Vi", TC.create("/de/'Müllers'|'Müller'OJ$Vi").getConcept().getFullPhrase());
     }
     
-    private static class TokenCreatorForTokenTest implements TokenCreator {
+    private static final class TokenCreatorForTokenTest implements TokenCreator {
         
         private static final EnumMap<ConceptTermination, Selector> SELECTIONS = new EnumMap<>(ConceptTermination.class);
     
@@ -83,14 +83,14 @@ public class TokenTest {
         }
         
         @Override
-        public Token create(final String conceptPhrase) {
+        public final Token create(final String conceptPhrase) {
             final Concept concept = ConceptRegistry.getInstance().getConcept(conceptPhrase);
             return new Token(conceptPhrase, this.selectTokenType(concept), concept);
         }
         
         @Override
-        public TokenType selectTokenType(Concept concept) {
-            ConceptTermination termination = concept.getProperties().getTermination();
+        public final TokenType selectTokenType(final Concept concept) {
+            final ConceptTermination termination = concept.getProperties().getTermination();
             if (SELECTIONS.containsKey(termination)) {
                 return SELECTIONS.get(termination).select(concept);
             }

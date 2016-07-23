@@ -131,21 +131,21 @@ public class TokenCreatorTest {
         }
     }
     
-    private static class TokenCreatorA implements TokenCreator {
+    private static final class TokenCreatorA implements TokenCreator {
         
         @Override
-        public Token create(final String conceptPhrase) {
+        public final Token create(final String conceptPhrase) {
             final Concept concept = ConceptRegistry.getInstance().getConcept(conceptPhrase);
             return new Token(conceptPhrase, this.selectTokenType(concept), concept);
         }
         
         @Override
-        public TokenType selectTokenType(Concept concept) {
+        public final TokenType selectTokenType(final Concept concept) {
             return TokenType.UNKNOWN;
         }
     }
     
-    private static class TokenCreatorB implements TokenCreator {
+    private static final class TokenCreatorB implements TokenCreator {
         
         private static final EnumMap<ConceptTermination, Selector> SELECTIONS = new EnumMap<>(ConceptTermination.class);
     
@@ -167,7 +167,7 @@ public class TokenCreatorTest {
         }
         
         @Override
-        public Token create(final String conceptPhrase) {
+        public final Token create(final String conceptPhrase) {
             final String value = conceptPhrase == null ? "" : conceptPhrase;
             final Concept concept = ConceptRegistry.getInstance().getConcept(value);
             if (!value.equals(concept.getFullPhrase())) {
@@ -177,8 +177,8 @@ public class TokenCreatorTest {
         }
         
         @Override
-        public TokenType selectTokenType(Concept concept) {
-            ConceptTermination termination = concept.getProperties().getTermination();
+        public final TokenType selectTokenType(final Concept concept) {
+            final ConceptTermination termination = concept.getProperties().getTermination();
             if (SELECTIONS.containsKey(termination)) {
                 return SELECTIONS.get(termination).select(concept);
             }
