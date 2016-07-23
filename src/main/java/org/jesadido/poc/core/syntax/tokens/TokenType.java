@@ -7,12 +7,8 @@
  */
 package org.jesadido.poc.core.syntax.tokens;
 
-import java.util.EnumMap;
-import org.jesadido.poc.core.concepts.Concept;
-import org.jesadido.poc.core.concepts.ConceptTermination;
-
 /**
- * This <code>TokenType</code> class declares the possible syntactical
+ * This <code>TokenType</code> class declares all possible syntactical
  * categories for the <b>Jesadido</b> tokens, respectively lexemes.
  */
 public enum TokenType {
@@ -35,6 +31,13 @@ public enum TokenType {
      * <b>La</b> <i>(the)</i> or <b>Mi$La</b> <i>(I, me)</i>.
      */
     ARTICLE,
+    
+    /**
+     * The appropriate token value represents an arbitrary substantive (singular
+     * or plural), for example <b>SunO</b> <i>(sun)</i> or <b>SunOJ</b>
+     * <i>(suns)</i>.
+     */
+    SUBSTANTIVE,
     
     /**
      * The appropriate token value represents a singular substantive, for
@@ -63,6 +66,12 @@ public enum TokenType {
     PARAMETERED_SUBSTANTIVE_PLURAL,
     
     /**
+     * The appropriate token value represents an arbitrary adjective (singular
+     * or plural).
+     */
+    ADJECTIVE,
+    
+    /**
      * The appropriate token value represents a singular adjective, for example
      * <b>SunA</b> <i>(sunny)</i>.
      */
@@ -75,6 +84,12 @@ public enum TokenType {
     ADJECTIVE_PLURAL,
     
     /**
+     * The appropriate token value represents an arbitrary adverb (singular or
+     * plural).
+     */
+    ADVERB,
+    
+    /**
      * The appropriate token value represents a singular adverb, for example
      * <b>SunE</b> <i>(sunnily)</i>.
      */
@@ -85,6 +100,11 @@ public enum TokenType {
      * <b>SunEJ</b> <i>(sunnily)</i>.
      */
     ADVERB_PLURAL,
+    
+    /**
+     * The appropriate token value represents an arbitrary personal pronoun.
+     */
+    PERSONAL_PRONOUN,
     
     /**
      * The appropriate token value represents a singular personal pronoun, for
@@ -110,56 +130,6 @@ public enum TokenType {
      * terminating plain text sentences, for example a single period.
      */
     TERMINATOR;
-    
-    /**
-     * This <code>Selector</code> nested interface is used for selecting the
-     * adequate token type by a given concept phrase.
-     */
-    @FunctionalInterface
-    private interface Selector {
-        
-        /**
-         * Returns the adequate token type by the given concept instance.
-         * @param concept The given concept instance.
-         * @return The adequate token type/syntactical category.
-         */
-        TokenType select(Concept concept);
-    }
-    
-    private static final EnumMap<ConceptTermination, Selector> SELECTIONS = new EnumMap<>(ConceptTermination.class);
-    
-    static {
-        SELECTIONS.put(ConceptTermination.PERIOD, (Selector) (Concept c) -> TERMINATOR);
-        SELECTIONS.put(ConceptTermination.LA, (Selector) (Concept c) -> ARTICLE);
-        SELECTIONS.put(ConceptTermination.O, (Selector) (Concept c) -> c.getProperties().hasParameter() ? PARAMETERED_SUBSTANTIVE_SINGULAR : SUBSTANTIVE_SINGULAR);
-        SELECTIONS.put(ConceptTermination.O_J, (Selector) (Concept c) -> c.getProperties().hasParameter() ? PARAMETERED_SUBSTANTIVE_PLURAL : SUBSTANTIVE_PLURAL);
-        SELECTIONS.put(ConceptTermination.A, (Selector) (Concept c) -> ADJECTIVE_SINGULAR);
-        SELECTIONS.put(ConceptTermination.A_J, (Selector) (Concept c) -> ADJECTIVE_PLURAL);
-        SELECTIONS.put(ConceptTermination.E, (Selector) (Concept c) -> ADVERB_SINGULAR);
-        SELECTIONS.put(ConceptTermination.E_J, (Selector) (Concept c) -> ADVERB_PLURAL);
-        SELECTIONS.put(ConceptTermination.MI, (Selector) (Concept c) -> PERSONAL_PRONOUN_SINGULAR);
-        SELECTIONS.put(ConceptTermination.BI, (Selector) (Concept c) -> PERSONAL_PRONOUN_SINGULAR);
-        SELECTIONS.put(ConceptTermination.GXI, (Selector) (Concept c) -> PERSONAL_PRONOUN_SINGULAR);
-        SELECTIONS.put(ConceptTermination.NI, (Selector) (Concept c) -> PERSONAL_PRONOUN_PLURAL);
-        SELECTIONS.put(ConceptTermination.VI, (Selector) (Concept c) -> PERSONAL_PRONOUN_PLURAL);
-        SELECTIONS.put(ConceptTermination.ILI, (Selector) (Concept c) -> PERSONAL_PRONOUN_PLURAL);
-        SELECTIONS.put(ConceptTermination.KAJ, (Selector) (Concept c) -> CONJUNCTION);
-        SELECTIONS.put(ConceptTermination.AUX, (Selector) (Concept c) -> CONJUNCTION);
-        SELECTIONS.put(ConceptTermination.COMMA, (Selector) (Concept c) -> CONJUNCTION);
-    }
-    
-    /**
-     * Returns an adequate token type by the given concept instance.
-     * @param concept The given concept instance.
-     * @return The adequate token type/syntactical category.
-     */
-    public static final TokenType get(Concept concept) {
-        ConceptTermination termination = concept.getProperties().getTermination();
-        if (SELECTIONS.containsKey(termination)) {
-            return SELECTIONS.get(termination).select(concept);
-        }
-        return UNKNOWN;
-    }
     
     /**
      * Indicates whether this token type is an element of the given token types.

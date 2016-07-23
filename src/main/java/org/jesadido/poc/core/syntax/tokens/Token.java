@@ -8,7 +8,6 @@
 package org.jesadido.poc.core.syntax.tokens;
 
 import org.jesadido.poc.core.concepts.Concept;
-import org.jesadido.poc.core.concepts.ConceptRegistry;
 
 /**
  * This <code>Token</code> class implements the structural representation of a
@@ -21,7 +20,13 @@ public final class Token {
     private final TokenType type;
     private final Concept concept;
     
-    private Token(final String value, final TokenType type, final Concept concept) {
+    /**
+     * Class constructor.
+     * @param value The token value/concept phrase/lexeme (not null).
+     * @param type The token type listed under <code>TokenType</code>.
+     * @param concept The appropriate concept instance (not null).
+     */
+    public Token(final String value, final TokenType type, final Concept concept) {
         this.value = value;
         this.type = type;
         this.concept = concept;
@@ -49,19 +54,5 @@ public final class Token {
      */
     public final Concept getConcept() {
         return this.concept;
-    }
-    
-    /**
-     * Instantiates a token instance by the given concept phrase/lexeme.
-     * @param conceptPhrase The given concept phrase.
-     * @return The token instance.
-     */
-    public static final Token create(final String conceptPhrase) {
-        final String value = conceptPhrase == null ? "" : conceptPhrase;
-        final Concept concept = ConceptRegistry.getInstance().getConcept(value);
-        if (!value.equals(concept.getFullPhrase())) {
-            return new Token(value, TokenType.INVALID_CONCEPT, concept);
-        }
-        return new Token(value, TokenType.get(concept), concept);
     }
 }

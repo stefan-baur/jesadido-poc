@@ -28,24 +28,29 @@ public final class TokenStream implements Closeable {
     private static final Logger LOGGER = Logger.getLogger(TokenStream.class.getName());
     
     private final BufferedReader source;
+    private final TokenCreator tokenCreator;
     private final List<Token> peekQueue;
     
     /**
      * Class constructor.
      * @param source The <b>Jesadido</b> source code as an
      * <code>InputStream</code>.
+     * @param tokenCreator The factory instance for creating token instances.
+     * <code>InputStream</code>.
      */
-    public TokenStream(final InputStream source) {
+    public TokenStream(final InputStream source, final TokenCreator tokenCreator) {
         this.source = new BufferedReader(new InputStreamReader(source, StringUtils.UTF_8));
+        this.tokenCreator = tokenCreator;
         this.peekQueue = new LinkedList<>();
     }
     
     /**
      * Class constructor.
      * @param source The <b>Jesadido</b> source code as a <code>String</code>.
+     * @param tokenCreator The factory instance for creating token instances.
      */
-    public TokenStream(final String source) {
-        this(new ByteArrayInputStream(source.getBytes(StringUtils.UTF_8)));
+    public TokenStream(final String source, final TokenCreator tokenCreator) {
+        this(new ByteArrayInputStream(source.getBytes(StringUtils.UTF_8)), tokenCreator);
     }
     
     /**
@@ -194,7 +199,7 @@ public final class TokenStream implements Closeable {
         }
         final String conceptPhrase = value.toString();
         if (conceptPhrase.length() > 0) {
-            return Token.create(conceptPhrase);
+            return this.tokenCreator.create(conceptPhrase);
         }
         return null;
     }

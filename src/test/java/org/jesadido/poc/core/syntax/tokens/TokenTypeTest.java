@@ -7,32 +7,10 @@
  */
 package org.jesadido.poc.core.syntax.tokens;
 
-import org.jesadido.poc.core.concepts.*;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class TokenTypeTest {
-    
-    @Test
-    public void testGet() {
-        Assert.assertEquals(TokenType.UNKNOWN, TokenType.get(ConceptRegistry.getInstance().getConcept("X")));
-        Assert.assertEquals(TokenType.TERMINATOR, TokenType.get(ConceptRegistry.getInstance().getConcept(".")));
-        Assert.assertEquals(TokenType.TERMINATOR, TokenType.get(ConceptRegistry.getInstance().getConcept("Titl.")));
-        Assert.assertEquals(TokenType.SUBSTANTIVE_SINGULAR, TokenType.get(ConceptRegistry.getInstance().getConcept("SunO")));
-        Assert.assertEquals(TokenType.SUBSTANTIVE_PLURAL, TokenType.get(ConceptRegistry.getInstance().getConcept("SunOJ")));
-        Assert.assertEquals(TokenType.ADJECTIVE_SINGULAR, TokenType.get(ConceptRegistry.getInstance().getConcept("SunA")));
-        Assert.assertEquals(TokenType.ADJECTIVE_PLURAL, TokenType.get(ConceptRegistry.getInstance().getConcept("SunAJ")));
-        Assert.assertEquals(TokenType.ADVERB_SINGULAR, TokenType.get(ConceptRegistry.getInstance().getConcept("SunE")));
-        Assert.assertEquals(TokenType.ADVERB_PLURAL, TokenType.get(ConceptRegistry.getInstance().getConcept("SunEJ")));
-        Assert.assertEquals(TokenType.PARAMETERED_SUBSTANTIVE_SINGULAR, TokenType.get(ConceptRegistry.getInstance().getConcept("/de/'Berta'InO")));
-        Assert.assertEquals(TokenType.PARAMETERED_SUBSTANTIVE_SINGULAR, TokenType.get(ConceptRegistry.getInstance().getConcept("'1965-08-11'DatO")));
-        Assert.assertEquals(TokenType.PARAMETERED_SUBSTANTIVE_PLURAL, TokenType.get(ConceptRegistry.getInstance().getConcept("/de/'Baurs'|'Baur'OJ")));
-        Assert.assertEquals(TokenType.PERSONAL_PRONOUN_SINGULAR, TokenType.get(ConceptRegistry.getInstance().getConcept("/de/'Stefan'IcxO$Mi")));
-        Assert.assertEquals(TokenType.PERSONAL_PRONOUN_PLURAL, TokenType.get(ConceptRegistry.getInstance().getConcept("/de/'Baurs'|'Baur'OJ$Ni")));
-        Assert.assertEquals(TokenType.CONJUNCTION, TokenType.get(ConceptRegistry.getInstance().getConcept("Kaj")));
-        Assert.assertEquals(TokenType.CONJUNCTION, TokenType.get(ConceptRegistry.getInstance().getConcept("Aux")));
-        Assert.assertEquals(TokenType.CONJUNCTION, TokenType.get(ConceptRegistry.getInstance().getConcept(",")));
-    }
     
     @Test
     public void testIsOneOf() {
