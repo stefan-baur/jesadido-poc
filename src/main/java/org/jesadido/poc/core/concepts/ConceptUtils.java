@@ -9,7 +9,7 @@ package org.jesadido.poc.core.concepts;
 
 import java.util.LinkedList;
 import java.util.List;
-import org.jesadido.poc.core.CoreUtils;
+import org.jesadido.poc.core.StringUtils;
 import org.jesadido.poc.core.Language;
 
 public final class ConceptUtils {
@@ -25,7 +25,7 @@ public final class ConceptUtils {
      * @return The concept phrase.
      */
     public static final String toConceptPhrase(final List<String> morphemes) {
-        return String.join("", CoreUtils.up(morphemes));
+        return String.join("", StringUtils.up(morphemes));
     }
     
     /**
@@ -44,7 +44,7 @@ public final class ConceptUtils {
      */
     public static final List<String> parseToMorphemes(final String conceptPhrase) {
         final List<String> result = new LinkedList<>();
-        final String escaper = CoreUtils.escaper("1", conceptPhrase);
+        final String escaper = StringUtils.escaper("1", conceptPhrase);
         final String escapedfullPhrase = conceptPhrase.replace("\\$", escaper);
         final String[] escapedBasePhrases = escapedfullPhrase.split("\\$");
         for (int i = 0; i < escapedBasePhrases.length; i++) {
@@ -132,10 +132,10 @@ public final class ConceptUtils {
     public static final List<String> parseToPlainTextList(final String parameterMorpheme) {
         final List<String> result = new LinkedList<>();
         final String morpheme = parameterMorpheme == null ? "" : parameterMorpheme;
-        final String escaper0 = CoreUtils.escaper("0", morpheme);
-        final String escaper1 = CoreUtils.escaper("1", morpheme);
-        final String escaper2 = CoreUtils.escaper("2", morpheme);
-        final String escaper3 = CoreUtils.escaper("3", morpheme);
+        final String escaper0 = StringUtils.escaper("0", morpheme);
+        final String escaper1 = StringUtils.escaper("1", morpheme);
+        final String escaper2 = StringUtils.escaper("2", morpheme);
+        final String escaper3 = StringUtils.escaper("3", morpheme);
         final String escapedMorpheme = morpheme.replace("\\\\", escaper0).replace("\\'", escaper1).replace("\\|", escaper2).replace("\\$", escaper3);
         for (final String listItemPhrase : escapedMorpheme.split("\\|")) {
             final String[] snippets = listItemPhrase.split("'");

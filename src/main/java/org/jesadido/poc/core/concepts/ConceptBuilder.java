@@ -9,7 +9,7 @@ package org.jesadido.poc.core.concepts;
 
 import java.util.LinkedList;
 import java.util.List;
-import org.jesadido.poc.core.CoreUtils;
+import org.jesadido.poc.core.StringUtils;
 
 /**
  * This <code>ConceptBuilder</code> class is used to build the concept
@@ -30,7 +30,7 @@ public final class ConceptBuilder {
      * @param morphemes The morpheme list.
      */
     public ConceptBuilder(final List<String> morphemes) {
-        this.morphemes = CoreUtils.up(morphemes);
+        this.morphemes = StringUtils.up(morphemes);
         this.baseMorphemes = new LinkedList<>();
         this.referenceMorphemes = new LinkedList<>();
         boolean base = true;
@@ -40,10 +40,10 @@ public final class ConceptBuilder {
                 if ("$".equals(morpheme)) {
                     base = false;
                 } else {
-                    this.baseMorphemes.add(0, CoreUtils.up(morpheme));
+                    this.baseMorphemes.add(0, StringUtils.up(morpheme));
                 }
             } else {
-                this.referenceMorphemes.add(0, CoreUtils.up(morpheme));
+                this.referenceMorphemes.add(0, StringUtils.up(morpheme));
             }
         }
         final StringBuilder basePhraseBuilder = new StringBuilder();

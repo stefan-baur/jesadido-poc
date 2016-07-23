@@ -12,10 +12,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * This <code>CoreUtils</code> class is a utility class often used for
+ * This <code>StringUtils</code> class is a utility class often used for
  * framework-specific string operations.
  */
-public final class CoreUtils {
+public final class StringUtils {
     
     /**
      * The charset of this language framework is <b>UFT-8</b>. If this charset
@@ -23,7 +23,7 @@ public final class CoreUtils {
      */
     public static final Charset UTF_8 = Charset.availableCharsets().get("UTF-8");
     
-    private CoreUtils() {
+    private StringUtils() {
         // A private utility class constructor.
     }
     

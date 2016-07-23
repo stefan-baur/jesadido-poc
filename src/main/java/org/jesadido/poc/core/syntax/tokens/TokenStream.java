@@ -17,7 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.jesadido.poc.core.CoreUtils;
+import org.jesadido.poc.core.StringUtils;
 
 /**
  * This <code>TokenStream</code> class implements the token iteration accoring
@@ -36,7 +36,7 @@ public final class TokenStream implements Closeable {
      * <code>InputStream</code>.
      */
     public TokenStream(final InputStream source) {
-        this.source = new BufferedReader(new InputStreamReader(source, CoreUtils.UTF_8));
+        this.source = new BufferedReader(new InputStreamReader(source, StringUtils.UTF_8));
         this.peekQueue = new LinkedList<>();
     }
     
@@ -45,7 +45,7 @@ public final class TokenStream implements Closeable {
      * @param source The <b>Jesadido</b> source code as a <code>String</code>.
      */
     public TokenStream(final String source) {
-        this(new ByteArrayInputStream(source.getBytes(CoreUtils.UTF_8)));
+        this(new ByteArrayInputStream(source.getBytes(StringUtils.UTF_8)));
     }
     
     /**
