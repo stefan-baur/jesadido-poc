@@ -25,10 +25,9 @@ public interface TokenCreator {
      */
     TokenType selectTokenType(Concept concept);
     
-    
     /**
-     * This <code>Selector</code> nested interface can be used for selecting the
-     * adequate token type by a given concept phrase.
+     * This nested <code>Selector</code> interface can be used for selecting the
+     * adequate token type by a given concept instance.
      */
     @FunctionalInterface
     public interface Selector {
