@@ -22,6 +22,9 @@ public class ConceptRegistryTest {
     @Test
     public void testGetConcepts() {
         Assert.assertNotNull(ConceptRegistry.getInstance().getConcepts());
+        Assert.assertFalse(ConceptRegistry.getInstance().getConcepts().containsKey("'A-VERY-UNIQUE-CONCEPT-FOR-UNIT-TESTING(0)'O"));
+        ConceptRegistry.getInstance().getConcept("'A-VERY-UNIQUE-CONCEPT-FOR-UNIT-TESTING(0)'O");
+        Assert.assertTrue(ConceptRegistry.getInstance().getConcepts().containsKey("'A-VERY-UNIQUE-CONCEPT-FOR-UNIT-TESTING(0)'O"));
     }
     
     @Test

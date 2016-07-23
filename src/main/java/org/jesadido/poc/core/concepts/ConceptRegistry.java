@@ -7,14 +7,15 @@
  */
 package org.jesadido.poc.core.concepts;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
 /**
- * This <code>ConceptRegistry</code> singleton class is a factory pool for all
- * required concepts.
+ * This <code>ConceptRegistry</code> singleton class is a factory and a pool for
+ * all required concepts.
  */
 public final class ConceptRegistry {
     
@@ -22,7 +23,8 @@ public final class ConceptRegistry {
     
     private static ConceptRegistry instance = null;
     
-    private final Map<String, Concept> concepts = new HashMap<>();
+    private final Map<String, Concept> conceptMap = new HashMap<>();
+    private final Map<String, Concept> concepts = Collections.unmodifiableMap(this.conceptMap);
     
     private ConceptRegistry() {
         // A private singleton class constructor.
@@ -40,12 +42,12 @@ public final class ConceptRegistry {
     }
     
     /**
-     * Returns the concept map containing all concepts created by this
-     * singleton instance.
+     * Returns the unmodifiable concept map containing all concepts created by
+     * this singleton instance.
      * @return The concept map.
      */
     public final Map<String, Concept> getConcepts() {
-        return concepts;
+        return this.concepts;
     }
     
     /**
@@ -55,7 +57,7 @@ public final class ConceptRegistry {
      * @return <code>true</code> if there is a mapped concept instance.
      */
     public final boolean hasConcept(final String conceptPhrase) {
-        return concepts.containsKey(conceptPhrase);
+        return this.conceptMap.containsKey(conceptPhrase);
     }
     
     /**
@@ -69,14 +71,14 @@ public final class ConceptRegistry {
     public final Concept getConcept(final List<String> morphemes) {
         if (!morphemes.isEmpty()) {
             final String conceptPhrase = ConceptUtils.toConceptPhrase(morphemes);
-            if (!concepts.containsKey(conceptPhrase)) {
+            if (!this.conceptMap.containsKey(conceptPhrase)) {
                 final Concept builtConcept = new Concept(new ConceptBuilder(morphemes));
                 if (!conceptPhrase.equals(builtConcept.getFullPhrase())) {
                     LOGGER.severe(String.format("The given morpheme phrases differs to the built result: \"%s\" != \"%s\"", conceptPhrase, builtConcept.getFullPhrase()));
                 }
-                concepts.put(conceptPhrase, builtConcept);
+                this.conceptMap.put(conceptPhrase, builtConcept);
             }
-            return concepts.get(conceptPhrase);
+            return this.conceptMap.get(conceptPhrase);
         }
         throw new IllegalArgumentException("There are no concept morphemes.");
     }
@@ -90,14 +92,14 @@ public final class ConceptRegistry {
      */
     public final Concept getConcept(final String conceptPhrase) {
         if (conceptPhrase != null && conceptPhrase.length() > 0) {
-            if (!concepts.containsKey(conceptPhrase)) {
+            if (!this.conceptMap.containsKey(conceptPhrase)) {
                 final Concept parsedConcept = ConceptUtils.parseToConcept(conceptPhrase);
                 if (!conceptPhrase.equals(parsedConcept.getFullPhrase())) {
                     LOGGER.severe(String.format("The given concept phrase differs to the parsed result: \"%s\" != \"%s\"", conceptPhrase, parsedConcept.getFullPhrase()));
                 }
-                concepts.put(conceptPhrase, parsedConcept);
+                this.conceptMap.put(conceptPhrase, parsedConcept);
             }
-            return concepts.get(conceptPhrase);
+            return this.conceptMap.get(conceptPhrase);
         }
         throw new IllegalArgumentException("The given concept is null or empty.");
     }
