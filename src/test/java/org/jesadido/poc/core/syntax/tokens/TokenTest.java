@@ -67,6 +67,15 @@ public class TokenTest {
     
     private static final class TokenCreatorForTokenTest implements TokenCreator {
         
+        private static final TokenType[] SUPPORTED = new TokenType[] {
+            TokenType.UNKNOWN,
+            TokenType.TERMINATOR,
+            TokenType.SUBSTANTIVE,
+            TokenType.ADJECTIVE,
+            TokenType.ADVERB,
+            TokenType.PERSONAL_PRONOUN
+        };
+        
         private static final EnumMap<ConceptTermination, Selector> SELECTIONS = new EnumMap<>(ConceptTermination.class);
     
         static {
@@ -86,6 +95,11 @@ public class TokenTest {
         public final Token create(final String conceptPhrase) {
             final Concept concept = ConceptRegistry.getInstance().getConcept(conceptPhrase);
             return new Token(conceptPhrase, this.selectTokenType(concept), concept);
+        }
+        
+        @Override
+        public final TokenType[] getSupportedTokenTypes() {
+            return SUPPORTED;
         }
         
         @Override

@@ -24,6 +24,12 @@ public interface TokenCreator {
     Token create(String conceptPhrase);
     
     /**
+     * Returns the list of the supported token types.
+     * @return The supported token types.
+     */
+    TokenType[] getSupportedTokenTypes();
+    
+    /**
      * Returns an adequate token type by the given concept instance.
      * @param concept The given concept instance.
      * @return The adequate token type/syntactical category.

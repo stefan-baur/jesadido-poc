@@ -161,6 +161,15 @@ public class TokenStreamTest {
     
     private static final class TokenCreatorForTokenStreamTest implements TokenCreator {
         
+        private static final TokenType[] SUPPORTED = new TokenType[] {
+            TokenType.UNKNOWN,
+            TokenType.TERMINATOR,
+            TokenType.ARTICLE,
+            TokenType.PARAMETERED_SUBSTANTIVE_SINGULAR,
+            TokenType.SUBSTANTIVE_SINGULAR,
+            TokenType.ADJECTIVE_SINGULAR
+        };
+        
         private static final EnumMap<ConceptTermination, Selector> SELECTIONS = new EnumMap<>(ConceptTermination.class);
     
         static {
@@ -174,6 +183,11 @@ public class TokenStreamTest {
         public final Token create(final String conceptPhrase) {
             final Concept concept = ConceptRegistry.getInstance().getConcept(conceptPhrase);
             return new Token(conceptPhrase, this.selectTokenType(concept), concept);
+        }
+        
+        @Override
+        public final TokenType[] getSupportedTokenTypes() {
+            return SUPPORTED;
         }
         
         @Override

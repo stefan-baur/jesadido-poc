@@ -80,6 +80,66 @@ public class TokenCreatorTest {
     }
     
     @Test
+    public void testGetSupportedTokenTypes() {
+        {
+            final TokenCreator tokenCreator = new TokenCreatorA();
+            Assert.assertTrue(TokenType.UNKNOWN.isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertFalse(TokenType.TERMINATOR.isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertFalse(TokenType.SUBSTANTIVE.isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertFalse(TokenType.ADJECTIVE_PLURAL.isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("X")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept(".")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("Titl.")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("SunO")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("SunOJ")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("SunA")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("SunAJ")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("SunE")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("SunEJ")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("/de/'Berta'InO")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("'1965-08-11'DatO")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("/de/'Baurs'|'Baur'OJ")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("/de/'Stefan'IcxO$Mi")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("/de/'Baurs'|'Baur'OJ$Ni")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("Kaj")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("Aux")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept(",")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("La")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("Da$La")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("Mi$La")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("HomArO$Ni$La")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+        }
+        {
+            final TokenCreator tokenCreator = new TokenCreatorB();
+            Assert.assertTrue(TokenType.UNKNOWN.isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(TokenType.TERMINATOR.isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(TokenType.SUBSTANTIVE_SINGULAR.isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertFalse(TokenType.SUBSTANTIVE.isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("X")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept(".")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("Titl.")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("SunO")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("SunOJ")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("SunA")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("SunAJ")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("SunE")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("SunEJ")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("/de/'Berta'InO")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("'1965-08-11'DatO")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("/de/'Baurs'|'Baur'OJ")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("/de/'Stefan'IcxO$Mi")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("/de/'Baurs'|'Baur'OJ$Ni")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("Kaj")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("Aux")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept(",")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("La")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("Da$La")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("Mi$La")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+            Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("HomArO$Ni$La")).isOneOf(tokenCreator.getSupportedTokenTypes()));
+        }
+    }
+    
+    @Test
     public void testSelectTokenType() {
         {
             final TokenCreator tokenCreator = new TokenCreatorA();
@@ -134,6 +194,12 @@ public class TokenCreatorTest {
     private static final class TokenCreatorA implements TokenCreator {
         
         @Override
+        public final TokenType[] getSupportedTokenTypes() {
+            return new TokenType[] { TokenType.UNKNOWN };
+        }
+        
+        
+        @Override
         public final Token create(final String conceptPhrase) {
             final Concept concept = ConceptRegistry.getInstance().getConcept(conceptPhrase);
             return new Token(conceptPhrase, this.selectTokenType(concept), concept);
@@ -146,6 +212,24 @@ public class TokenCreatorTest {
     }
     
     private static final class TokenCreatorB implements TokenCreator {
+        
+        private static final TokenType[] SUPPORTED = new TokenType[] {
+            TokenType.UNKNOWN,
+            TokenType.INVALID_CONCEPT,
+            TokenType.ADJECTIVE_PLURAL,
+            TokenType.ADJECTIVE_SINGULAR,
+            TokenType.ADVERB_PLURAL,
+            TokenType.ADVERB_SINGULAR,
+            TokenType.ARTICLE,
+            TokenType.CONJUNCTION,
+            TokenType.PARAMETERED_SUBSTANTIVE_PLURAL,
+            TokenType.PARAMETERED_SUBSTANTIVE_SINGULAR,
+            TokenType.PERSONAL_PRONOUN_PLURAL,
+            TokenType.PERSONAL_PRONOUN_SINGULAR,
+            TokenType.SUBSTANTIVE_PLURAL,
+            TokenType.SUBSTANTIVE_SINGULAR,
+            TokenType.TERMINATOR
+        };
         
         private static final EnumMap<ConceptTermination, Selector> SELECTIONS = new EnumMap<>(ConceptTermination.class);
     
@@ -174,6 +258,11 @@ public class TokenCreatorTest {
                 return new Token(value, TokenType.INVALID_CONCEPT, concept);
             }
             return new Token(value, this.selectTokenType(concept), concept);
+        }
+        
+        @Override
+        public final TokenType[] getSupportedTokenTypes() {
+            return SUPPORTED;
         }
         
         @Override
