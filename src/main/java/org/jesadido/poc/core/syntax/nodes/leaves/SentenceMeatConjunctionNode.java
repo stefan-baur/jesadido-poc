@@ -8,7 +8,12 @@
 package org.jesadido.poc.core.syntax.nodes.leaves;
 
 import org.jesadido.poc.core.syntax.nodes.NodeLeaf;
+import org.jesadido.poc.core.syntax.nodes.Visitor;
 
 public class SentenceMeatConjunctionNode extends NodeLeaf {
     
+    @Override
+    public <R, A> R accept(Visitor<R, A> visitor, A argument) {
+        return visitor.visit(this, argument);
+    }
 }

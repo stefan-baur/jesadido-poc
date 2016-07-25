@@ -7,7 +7,7 @@
  */
 package org.jesadido.poc.core.syntax.nodes;
 
-public abstract class Node {
+public abstract class Node implements Visitable {
     
     private Node parent;
     
