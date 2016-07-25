@@ -96,6 +96,36 @@ public enum ConceptTermination {
     ILI("Ili"),
     
     /**
+     * The appropriated concept is a verb indicator for infinitive.
+     */
+    I("I"),
+    
+    /**
+     * The appropriated concept is a verb indicator for imperative.
+     */
+    U("U"),
+    
+    /**
+     * The appropriated concept is a verb indicator for conjunctive.
+     */
+    US("Us"),
+    
+    /**
+     * The appropriated concept is a verb indicator for present tense.
+     */
+    AS("As"),
+    
+    /**
+     * The appropriated concept is a verb indicator for past tense.
+     */
+    IS("Is"),
+    
+    /**
+     * The appropriated concept is a verb indicator for future.
+     */
+    OS("Os"),
+    
+    /**
      * The appropriated concept stands for <b>and</b> (conjunction, subjunction
      * or rhetorical enumeration).
      */
