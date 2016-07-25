@@ -7,6 +7,7 @@
  */
 package org.jesadido.poc.core.syntax.nodes;
 
+import org.jesadido.poc.core.syntax.nodes.composites.PredicatePartNode;
 import org.jesadido.poc.core.syntax.nodes.composites.SentenceMeatNode;
 import org.jesadido.poc.core.syntax.nodes.composites.SentenceNode;
 import org.jesadido.poc.core.syntax.nodes.composites.SubjectPartNode;
@@ -18,4 +19,5 @@ public interface Visitor<R, A> {
     R visit(SentenceMeatNode node, A argument);
     R visit(SentenceMeatConjunctionNode node, A argument);
     R visit(SubjectPartNode node, A argument);
+    R visit(PredicatePartNode node, A argument);
 }

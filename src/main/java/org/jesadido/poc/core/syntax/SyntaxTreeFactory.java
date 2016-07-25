@@ -10,6 +10,7 @@ package org.jesadido.poc.core.syntax;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import java.util.List;
 import org.jesadido.poc.core.concepts.Concept;
+import org.jesadido.poc.core.syntax.nodes.composites.PredicatePartNode;
 import org.jesadido.poc.core.syntax.nodes.composites.SentenceMeatNode;
 import org.jesadido.poc.core.syntax.nodes.composites.SentenceNode;
 import org.jesadido.poc.core.syntax.nodes.composites.SubjectPartNode;
@@ -35,11 +36,19 @@ public class SyntaxTreeFactory {
                 .addTerminal(separator, "Kaj");
     }
     
-    public Node createSubjectPart(final Concept preposition, final Concept open, final List<Node> dominantes, final Concept close) {
+    public Node createSubjectPart(final Concept preposition, final Concept open, final Node nominalSelection, final Concept close) {
         return new SubjectPartNode()
                 .addOpener(preposition, "Su")
                 .addOpener(open, "(")
-                .addChildren(dominantes)
+                .addChild(nominalSelection)
+                .addCloser(close, ")");
+    }
+    
+    public Node createPredicatePart(final Concept preposition, final Concept open, final Node verbSelection, final Concept close) {
+        return new PredicatePartNode()
+                .addOpener(preposition, "Dom")
+                .addOpener(open, "(")
+                .addChild(verbSelection)
                 .addCloser(close, ")");
     }
 }

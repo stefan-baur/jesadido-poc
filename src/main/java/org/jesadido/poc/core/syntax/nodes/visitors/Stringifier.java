@@ -13,6 +13,7 @@ import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.syntax.nodes.NodeComposite;
 import org.jesadido.poc.core.syntax.nodes.NodeLeaf;
 import org.jesadido.poc.core.syntax.nodes.Visitor;
+import org.jesadido.poc.core.syntax.nodes.composites.PredicatePartNode;
 import org.jesadido.poc.core.syntax.nodes.composites.SentenceMeatNode;
 import org.jesadido.poc.core.syntax.nodes.composites.SentenceNode;
 import org.jesadido.poc.core.syntax.nodes.composites.SubjectPartNode;
@@ -68,6 +69,11 @@ public class Stringifier implements Visitor<String, String> {
     
     @Override
     public String visit(final SubjectPartNode node, final String delimiter) {
+        return this.stringify(delimiter, node);
+    }
+    
+    @Override
+    public String visit(final PredicatePartNode node, final String delimiter) {
         return this.stringify(delimiter, node);
     }
 }

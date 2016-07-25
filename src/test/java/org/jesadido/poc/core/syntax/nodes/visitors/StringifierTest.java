@@ -82,5 +82,18 @@ public class StringifierTest {
             Node sentence = syntaxTreeFactory.createSentence(Arrays.asList(sentenceMeatA, sentenceMeatConjunctionX, sentenceMeatB, sentenceMeatConjunctionY, sentenceMeatC), null);
             Assert.assertEquals("{ Su ( ) } , { Su 'X'O$( ) } Kaj { Su ( Cxu$) } .", sentence.accept(new Stringifier(), null));
         }
+        {
+            SyntaxTreeFactory syntaxTreeFactory = new SyntaxTreeFactory();
+            Node subjectPartA = syntaxTreeFactory.createSubjectPart(null, null, null, null);
+            Node predicatePartA = syntaxTreeFactory.createPredicatePart(null, null, null, null);
+            Node sentenceMeatA = syntaxTreeFactory.createSentenceMeat(null, Arrays.asList(subjectPartA, predicatePartA), null);
+            Node sentenceMeatConjunction = syntaxTreeFactory.createSentenceMeatConjunction(null);
+            Node subjectPartB = syntaxTreeFactory.createSubjectPart(null, null, null, null);
+            Node predicatePartB = syntaxTreeFactory.createPredicatePart(null, null, null, null);
+            Node sentenceMeatB = syntaxTreeFactory.createSentenceMeat(null, Arrays.asList(predicatePartB, subjectPartB), null);
+            Node sentence = syntaxTreeFactory.createSentence(Arrays.asList(sentenceMeatA, sentenceMeatConjunction, sentenceMeatB), null);
+            Assert.assertEquals("{ Su ( ) Dom ( ) } Kaj { Dom ( ) Su ( ) } .", sentence.accept(new Stringifier(), null));
+            Assert.assertEquals("{_Dom_(_)_Su_(_)_}", sentenceMeatB.accept(new Stringifier(), "_"));
+        }
     }
 }

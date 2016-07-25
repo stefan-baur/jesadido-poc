@@ -9,6 +9,6 @@ package org.jesadido.poc.core.syntax.nodes.composites;
 
 import org.jesadido.poc.core.syntax.nodes.NodeComposite;
 
-public abstract class SentenceMeatPartNode extends NodeComposite {
+public abstract class PrepositionalPartNode extends NodeComposite {
     
 }
