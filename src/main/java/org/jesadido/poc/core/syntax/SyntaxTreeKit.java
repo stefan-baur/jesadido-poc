@@ -16,9 +16,9 @@ import org.jesadido.poc.core.syntax.nodes.leaves.SentenceMeatConjunctionNode;
 
 public class SyntaxTreeKit {
     
-    public Node createSentence(final List<Node> meets, final Concept terminator) {
+    public Node createSentence(final List<Node> meats, final Concept terminator) {
         return new SentenceNode()
-                .addChildren(meets)
+                .addChildren(meats)
                 .addCloser(terminator, ".");
     }
     
