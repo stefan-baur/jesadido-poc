@@ -5,16 +5,17 @@
  * Licensed under the GNU Lesser General Public License, Version 3.0 (LGPL-3.0)
  * https://www.gnu.org/licenses/lgpl-3.0.txt
  */
-package org.jesadido.poc.core.syntax.cfg;
+package org.jesadido.poc.core.syntax;
 
 import java.util.List;
-import java.util.Map;
 
-public interface Grammar<N, T, P> {
+public interface Grammar<N, T, P extends ProductionRule<N, T>> {
     
     String getName();
     List<N> getNonterminalSymbols();
     List<T> getTerminalSymbols();
-    Map<N, List<P>> getProductionRules();
+    List<P> getProductionRules();
     N getStartSymbol();
+    
+    void xx(SyntaxTreeKit stk);
 }
