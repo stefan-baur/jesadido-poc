@@ -109,7 +109,81 @@ public enum ConceptTermination {
     /**
      * The appropriated concept is a comma, a separator symbol.
      */
-    COMMA(",");
+    COMMA(","),
+    
+    /**
+     * The appropriated concept is a subject preposition termination phrase.
+     */
+    SU("Su"),
+    
+    /**
+     * The appropriated concept is a predicate preposition termination phrase.
+     */
+    DOM("Dom"),
+    
+    /**
+     * The appropriated concept is a genitive object preposition termination
+     * phrase.
+     */
+    DE("De"),
+    
+    /**
+     * The appropriated concept is a dative object preposition termination
+     * phrase.
+     */
+    AL("Al"),
+    
+    /**
+     * The appropriated concept is an accusative object preposition termination
+     * phrase.
+     */
+    FIN("Fin"),
+    
+    /**
+     * The appropriated concept is a left square bracket, a typical opening sign
+     * for ordered sequences.
+     */
+    L0("["),
+    
+    /**
+     * The appropriated concept is a right square bracket, a typical closing
+     * sign for ordered sequences.
+     */
+    R0("]"),
+    
+    /**
+     * The appropriated concept is a left curly bracket, a left brace, a typical
+     * opening sign for unordered sets.
+     */
+    L1("{"),
+    
+    /**
+     * The appropriated concept is a right curly bracket, a right brace, a
+     * typical closing sign for unordered sets.
+     */
+    R1("}"),
+    
+    /**
+     * The appropriated concept is a left parenthesis, a typical opening sign
+     * for any arguments.
+     */
+    L2("("),
+    
+    /**
+     * The appropriated concept is a right parenthesis, a typical closing sign
+     * for any arguments.
+     */
+    R2(")"),
+    
+    /**
+     * The appropriated concept is a left angle bracket, a lower-than sign.
+     */
+    L3("<"),
+    
+    /**
+     * The appropriated concept is a right angle bracket, a greater-than sign.
+     */
+    R3(">");
     
     private final String terminationPhrase;
     
