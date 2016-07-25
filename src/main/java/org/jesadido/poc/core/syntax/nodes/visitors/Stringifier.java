@@ -13,11 +13,12 @@ import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.syntax.nodes.NodeComposite;
 import org.jesadido.poc.core.syntax.nodes.NodeLeaf;
 import org.jesadido.poc.core.syntax.nodes.Visitor;
-import org.jesadido.poc.core.syntax.nodes.composites.PredicatePartNode;
-import org.jesadido.poc.core.syntax.nodes.composites.SentenceMeatNode;
-import org.jesadido.poc.core.syntax.nodes.composites.SentenceNode;
-import org.jesadido.poc.core.syntax.nodes.composites.SubjectPartNode;
-import org.jesadido.poc.core.syntax.nodes.leaves.SentenceMeatConjunctionNode;
+import org.jesadido.poc.core.syntax.nodes.composites.PrepositionalPartDom;
+import org.jesadido.poc.core.syntax.nodes.composites.PrepositionalPartFin;
+import org.jesadido.poc.core.syntax.nodes.composites.SentenceMeat;
+import org.jesadido.poc.core.syntax.nodes.composites.Sentence;
+import org.jesadido.poc.core.syntax.nodes.composites.PrepositionalPartSu;
+import org.jesadido.poc.core.syntax.nodes.leaves.SentenceMeatConjunction;
 
 public class Stringifier implements Visitor<String, String> {
     
@@ -53,27 +54,32 @@ public class Stringifier implements Visitor<String, String> {
     }
     
     @Override
-    public String visit(final SentenceNode node, final String delimiter) {
+    public String visit(final Sentence node, final String delimiter) {
         return this.stringify(delimiter, node);
     }
     
     @Override
-    public String visit(final SentenceMeatNode node, final String delimiter) {
+    public String visit(final SentenceMeat node, final String delimiter) {
         return this.stringify(delimiter, node);
     }
     
     @Override
-    public String visit(final SentenceMeatConjunctionNode node, final String delimiter) {
+    public String visit(final SentenceMeatConjunction node, final String delimiter) {
         return this.stringify(delimiter, node);
     }
     
     @Override
-    public String visit(final SubjectPartNode node, final String delimiter) {
+    public String visit(final PrepositionalPartSu node, final String delimiter) {
         return this.stringify(delimiter, node);
     }
     
     @Override
-    public String visit(final PredicatePartNode node, final String delimiter) {
+    public String visit(final PrepositionalPartDom node, final String delimiter) {
+        return this.stringify(delimiter, node);
+    }
+    
+    @Override
+    public String visit(final PrepositionalPartFin node, final String delimiter) {
         return this.stringify(delimiter, node);
     }
 }

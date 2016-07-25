@@ -71,29 +71,43 @@ public class StringifierTest {
         }
         {
             SyntaxTreeFactory syntaxTreeFactory = new SyntaxTreeFactory();
-            Node subjectPart1 = syntaxTreeFactory.createSubjectPart(null, null, null, null);
-            Node sentenceMeatA = syntaxTreeFactory.createSentenceMeat(null, Arrays.asList(subjectPart1), null);
+            Node su1 = syntaxTreeFactory.createPrepositionalPartSu(null, null, null, null);
+            Node sentenceMeatA = syntaxTreeFactory.createSentenceMeat(null, Arrays.asList(su1), null);
             Node sentenceMeatConjunctionX = syntaxTreeFactory.createSentenceMeatConjunction(ConceptRegistry.getInstance().getConcept(","));
-            Node subjectPart2 = syntaxTreeFactory.createSubjectPart(null, ConceptRegistry.getInstance().getConcept("'X'O$("), null, null);
-            Node sentenceMeatB = syntaxTreeFactory.createSentenceMeat(null, Arrays.asList(subjectPart2), null);
+            Node su2 = syntaxTreeFactory.createPrepositionalPartSu(null, ConceptRegistry.getInstance().getConcept("'X'O$("), null, null);
+            Node sentenceMeatB = syntaxTreeFactory.createSentenceMeat(null, Arrays.asList(su2), null);
             Node sentenceMeatConjunctionY = syntaxTreeFactory.createSentenceMeatConjunction(ConceptRegistry.getInstance().getConcept("Kaj"));
-            Node subjectPart3 = syntaxTreeFactory.createSubjectPart(null, null, null, ConceptRegistry.getInstance().getConcept("Cxu$)"));
-            Node sentenceMeatC = syntaxTreeFactory.createSentenceMeat(null, Arrays.asList(subjectPart3), null);
+            Node su3 = syntaxTreeFactory.createPrepositionalPartSu(null, null, null, ConceptRegistry.getInstance().getConcept("Cxu$)"));
+            Node sentenceMeatC = syntaxTreeFactory.createSentenceMeat(null, Arrays.asList(su3), null);
             Node sentence = syntaxTreeFactory.createSentence(Arrays.asList(sentenceMeatA, sentenceMeatConjunctionX, sentenceMeatB, sentenceMeatConjunctionY, sentenceMeatC), null);
             Assert.assertEquals("{ Su ( ) } , { Su 'X'O$( ) } Kaj { Su ( Cxu$) } .", sentence.accept(new Stringifier(), null));
         }
         {
             SyntaxTreeFactory syntaxTreeFactory = new SyntaxTreeFactory();
-            Node subjectPartA = syntaxTreeFactory.createSubjectPart(null, null, null, null);
-            Node predicatePartA = syntaxTreeFactory.createPredicatePart(null, null, null, null);
-            Node sentenceMeatA = syntaxTreeFactory.createSentenceMeat(null, Arrays.asList(subjectPartA, predicatePartA), null);
+            Node suA = syntaxTreeFactory.createPrepositionalPartSu(null, null, null, null);
+            Node domA = syntaxTreeFactory.createPrepositionalPartDom(null, null, null, null);
+            Node sentenceMeatA = syntaxTreeFactory.createSentenceMeat(null, Arrays.asList(suA, domA), null);
             Node sentenceMeatConjunction = syntaxTreeFactory.createSentenceMeatConjunction(null);
-            Node subjectPartB = syntaxTreeFactory.createSubjectPart(null, null, null, null);
-            Node predicatePartB = syntaxTreeFactory.createPredicatePart(null, null, null, null);
-            Node sentenceMeatB = syntaxTreeFactory.createSentenceMeat(null, Arrays.asList(predicatePartB, subjectPartB), null);
+            Node suB = syntaxTreeFactory.createPrepositionalPartSu(null, null, null, null);
+            Node domB = syntaxTreeFactory.createPrepositionalPartDom(null, null, null, null);
+            Node sentenceMeatB = syntaxTreeFactory.createSentenceMeat(null, Arrays.asList(domB, suB), null);
             Node sentence = syntaxTreeFactory.createSentence(Arrays.asList(sentenceMeatA, sentenceMeatConjunction, sentenceMeatB), null);
             Assert.assertEquals("{ Su ( ) Dom ( ) } Kaj { Dom ( ) Su ( ) } .", sentence.accept(new Stringifier(), null));
             Assert.assertEquals("{_Dom_(_)_Su_(_)_}", sentenceMeatB.accept(new Stringifier(), "_"));
+        }
+        {
+            SyntaxTreeFactory syntaxTreeFactory = new SyntaxTreeFactory();
+            Node suA = syntaxTreeFactory.createPrepositionalPartSu(null, null, null, null);
+            Node domA = syntaxTreeFactory.createPrepositionalPartDom(null, null, null, null);
+            Node finA = syntaxTreeFactory.createPrepositionalPartFin(null, null, null, null);
+            Node sentenceMeatA = syntaxTreeFactory.createSentenceMeat(null, Arrays.asList(suA, domA, finA), null);
+            Node sentenceMeatConjunction = syntaxTreeFactory.createSentenceMeatConjunction(null);
+            Node suB = syntaxTreeFactory.createPrepositionalPartSu(null, null, null, null);
+            Node domB = syntaxTreeFactory.createPrepositionalPartDom(null, null, null, null);
+            Node finB = syntaxTreeFactory.createPrepositionalPartFin(null, null, null, null);
+            Node sentenceMeatB = syntaxTreeFactory.createSentenceMeat(null, Arrays.asList(finB, domB, suB), null);
+            Node sentence = syntaxTreeFactory.createSentence(Arrays.asList(sentenceMeatA, sentenceMeatConjunction, sentenceMeatB), null);
+            Assert.assertEquals("{ Su ( ) Dom ( ) Fin ( ) } Kaj { Fin ( ) Dom ( ) Su ( ) } .", sentence.accept(new Stringifier(), null));
         }
     }
 }

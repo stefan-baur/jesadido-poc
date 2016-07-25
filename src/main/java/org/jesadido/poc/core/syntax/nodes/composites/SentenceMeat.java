@@ -7,9 +7,10 @@
  */
 package org.jesadido.poc.core.syntax.nodes.composites;
 
+import org.jesadido.poc.core.syntax.nodes.NodeComposite;
 import org.jesadido.poc.core.syntax.nodes.Visitor;
 
-public class SubjectPartNode extends PrepositionalPartNode {
+public class SentenceMeat extends NodeComposite {
     
     @Override
     public <R, A> R accept(Visitor<R, A> visitor, A argument) {
