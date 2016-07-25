@@ -52,7 +52,9 @@ public abstract class NodeComposite extends Node {
     }
     
     public NodeComposite addChildren(final List<Node> nodes) {
-        nodes.stream().forEach(this::addChild);
+        if (nodes != null) {
+            nodes.stream().forEach(this::addChild);
+        }
         return this;
     }
     
