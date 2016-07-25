@@ -15,6 +15,7 @@ import org.jesadido.poc.core.syntax.nodes.NodeLeaf;
 import org.jesadido.poc.core.syntax.nodes.Visitor;
 import org.jesadido.poc.core.syntax.nodes.composites.SentenceMeatNode;
 import org.jesadido.poc.core.syntax.nodes.composites.SentenceNode;
+import org.jesadido.poc.core.syntax.nodes.composites.SubjectPartNode;
 import org.jesadido.poc.core.syntax.nodes.leaves.SentenceMeatConjunctionNode;
 
 public class Stringifier implements Visitor<String, String> {
@@ -62,6 +63,11 @@ public class Stringifier implements Visitor<String, String> {
     
     @Override
     public String visit(final SentenceMeatConjunctionNode node, final String delimiter) {
+        return this.stringify(delimiter, node);
+    }
+    
+    @Override
+    public String visit(final SubjectPartNode node, final String delimiter) {
         return this.stringify(delimiter, node);
     }
 }

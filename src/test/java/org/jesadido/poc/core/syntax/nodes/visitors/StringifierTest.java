@@ -69,5 +69,18 @@ public class StringifierTest {
             Node sentence = syntaxTreeFactory.createSentence(Arrays.asList(sentenceMeatA, sentenceMeatConjunctionX, sentenceMeatB, sentenceMeatConjunctionY, sentenceMeatC), null);
             Assert.assertEquals("{ } , { } Aux { } .", sentence.accept(new Stringifier(), null));
         }
+        {
+            SyntaxTreeFactory syntaxTreeFactory = new SyntaxTreeFactory();
+            Node subjectPart1 = syntaxTreeFactory.createSubjectPart(null, null, null, null);
+            Node sentenceMeatA = syntaxTreeFactory.createSentenceMeat(null, Arrays.asList(subjectPart1), null);
+            Node sentenceMeatConjunctionX = syntaxTreeFactory.createSentenceMeatConjunction(ConceptRegistry.getInstance().getConcept(","));
+            Node subjectPart2 = syntaxTreeFactory.createSubjectPart(null, ConceptRegistry.getInstance().getConcept("'X'O$("), null, null);
+            Node sentenceMeatB = syntaxTreeFactory.createSentenceMeat(null, Arrays.asList(subjectPart2), null);
+            Node sentenceMeatConjunctionY = syntaxTreeFactory.createSentenceMeatConjunction(ConceptRegistry.getInstance().getConcept("Kaj"));
+            Node subjectPart3 = syntaxTreeFactory.createSubjectPart(null, null, null, ConceptRegistry.getInstance().getConcept("Cxu$)"));
+            Node sentenceMeatC = syntaxTreeFactory.createSentenceMeat(null, Arrays.asList(subjectPart3), null);
+            Node sentence = syntaxTreeFactory.createSentence(Arrays.asList(sentenceMeatA, sentenceMeatConjunctionX, sentenceMeatB, sentenceMeatConjunctionY, sentenceMeatC), null);
+            Assert.assertEquals("{ Su ( ) } , { Su 'X'O$( ) } Kaj { Su ( Cxu$) } .", sentence.accept(new Stringifier(), null));
+        }
     }
 }

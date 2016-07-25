@@ -12,6 +12,7 @@ import java.util.List;
 import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.syntax.nodes.composites.SentenceMeatNode;
 import org.jesadido.poc.core.syntax.nodes.composites.SentenceNode;
+import org.jesadido.poc.core.syntax.nodes.composites.SubjectPartNode;
 import org.jesadido.poc.core.syntax.nodes.leaves.SentenceMeatConjunctionNode;
 
 public class SyntaxTreeFactory {
@@ -29,8 +30,16 @@ public class SyntaxTreeFactory {
                 .addCloser(close, "}");
     }
     
-    public Node createSentenceMeatConjunction(Concept separator) {
+    public Node createSentenceMeatConjunction(final Concept separator) {
         return new SentenceMeatConjunctionNode()
                 .addTerminal(separator, "Kaj");
+    }
+    
+    public Node createSubjectPart(final Concept preposition, final Concept open, final List<Node> dominantes, final Concept close) {
+        return new SubjectPartNode()
+                .addOpener(preposition, "Su")
+                .addOpener(open, "(")
+                .addChildren(dominantes)
+                .addCloser(close, ")");
     }
 }
