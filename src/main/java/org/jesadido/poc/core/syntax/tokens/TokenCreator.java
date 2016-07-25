@@ -24,7 +24,8 @@ public interface TokenCreator {
     Token create(String conceptPhrase);
     
     /**
-     * Returns the list of the supported token types.
+     * Returns the list of the supported token types. This method should return
+     * the unknown token <code>UNKNOWN</code>, at least.
      * @return The supported token types.
      */
     TokenType[] getSupportedTokenTypes();
