@@ -16,6 +16,4 @@ public interface Grammar<N, T, P extends ProductionRule<N, T>> {
     List<T> getTerminalSymbols();
     List<P> getProductionRules();
     N getStartSymbol();
-    
-    void xx(SyntaxTreeKit stk);
 }

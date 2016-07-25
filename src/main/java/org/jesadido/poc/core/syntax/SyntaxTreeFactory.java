@@ -14,7 +14,7 @@ import org.jesadido.poc.core.syntax.nodes.composites.SentenceMeatNode;
 import org.jesadido.poc.core.syntax.nodes.composites.SentenceNode;
 import org.jesadido.poc.core.syntax.nodes.leaves.SentenceMeatConjunctionNode;
 
-public class SyntaxTreeKit {
+public class SyntaxTreeFactory {
     
     public Node createSentence(final List<Node> meats, final Concept terminator) {
         return new SentenceNode()
