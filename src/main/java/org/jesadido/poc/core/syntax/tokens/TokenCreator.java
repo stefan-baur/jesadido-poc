@@ -7,6 +7,7 @@
  */
 package org.jesadido.poc.core.syntax.tokens;
 
+import java.util.List;
 import org.jesadido.poc.core.concepts.Concept;
 
 /**
@@ -28,7 +29,7 @@ public interface TokenCreator {
      * the <code>UNKNOWN</code> token type, at least.
      * @return The supported token types.
      */
-    TokenType[] getSupportedTokenTypes();
+    List<TokenType> getSupportedTokenTypes();
     
     /**
      * Returns an adequate token type by the given concept instance.
