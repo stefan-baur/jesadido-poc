@@ -7,6 +7,8 @@
  */
 package org.jesadido.poc.core.syntax.tokens;
 
+import java.util.List;
+
 /**
  * This <code>TokenType</code> class declares all possible syntactical
  * categories for the <b>Jesadido</b> tokens, respectively lexemes.
@@ -144,5 +146,14 @@ public enum TokenType {
             }
         }
         return false;
+    }
+    /**
+     * Indicates whether this token type is an element of the given token types.
+     * @param tokenTypes The given token types.
+     * @return <code>true</code> if the token type is contained in the given
+     * token type list.
+     */
+    public final boolean isOneOf(final List<TokenType> tokenTypes) {
+        return tokenTypes.stream().anyMatch(tokenType -> this == tokenType);
     }
 }
