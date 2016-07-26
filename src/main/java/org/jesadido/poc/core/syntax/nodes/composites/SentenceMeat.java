@@ -7,10 +7,14 @@
  */
 package org.jesadido.poc.core.syntax.nodes.composites;
 
-import org.jesadido.poc.core.syntax.nodes.NodeComposite;
+import org.jesadido.poc.core.syntax.Terminal;
 import org.jesadido.poc.core.syntax.nodes.Visitor;
 
-public class SentenceMeat extends NodeComposite {
+public class SentenceMeat extends ClapsedElement {
+    
+    public SentenceMeat(final Terminal opener, final Terminal closer) {
+        super(opener, closer);
+    }
     
     @Override
     public <R, A> R accept(Visitor<R, A> visitor, A argument) {

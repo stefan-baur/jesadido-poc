@@ -7,9 +7,14 @@
  */
 package org.jesadido.poc.core.syntax.nodes.composites;
 
+import org.jesadido.poc.core.syntax.Terminal;
 import org.jesadido.poc.core.syntax.nodes.Visitor;
 
 public class PrepositionalPartSu extends PrepositionalPart {
+    
+    public PrepositionalPartSu(final Terminal preposition, final Terminal opener, final Terminal closer) {
+        super(preposition, opener, closer);
+    }
     
     @Override
     public <R, A> R accept(Visitor<R, A> visitor, A argument) {
