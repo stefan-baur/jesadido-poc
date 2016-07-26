@@ -14,6 +14,12 @@ import org.jesadido.poc.core.Language;
 
 public final class ConceptUtils {
     
+    /**
+     * The separator (a single white-space) for the concatenation of concept
+     * phrases.
+     */
+    public static final String DEFAULT_CONCEPT_DELIMITER = " ";
+    
     private ConceptUtils() {
         // A private utility class constructor.
     }
@@ -182,5 +188,31 @@ public final class ConceptUtils {
             }
         }
         return Language.JI;
+    }
+    
+    /**
+     * Returns a concatenation of the given concepts separated with the given
+     * delimiter.
+     * @param delimiter The given delimiter.
+     * @param concepts The given delimiter.
+     * @return The concatenation of the full phrases of the given concetps.
+     */
+    public static String join(final String delimiter, final List<Concept> concepts) {
+        final List<String> result = new LinkedList<>();
+        if (concepts != null) {
+            concepts.stream().filter(concept -> concept != null).forEach(concept -> result.add(concept.getFullPhrase()));
+        }
+        return String.join(delimiter != null ? delimiter : DEFAULT_CONCEPT_DELIMITER, result);
+    }
+    
+    /**
+     * Returns a concatenation of the given concepts separated with the default
+     * delimiter (single white-space) defined under the constant
+     * <code>DEFAULT_CONCEPT_DELIMITER</code>.
+     * @param concepts The given concepts.
+     * @return The standard concatenation of the given concepts.
+     */
+    public static String join(final List<Concept> concepts) {
+        return join(DEFAULT_CONCEPT_DELIMITER, concepts);
     }
 }
