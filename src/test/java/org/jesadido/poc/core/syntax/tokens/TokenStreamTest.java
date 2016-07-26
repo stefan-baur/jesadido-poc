@@ -8,6 +8,7 @@
 package org.jesadido.poc.core.syntax.tokens;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.logging.Logger;
@@ -161,14 +162,14 @@ public class TokenStreamTest {
     
     private static final class TokenCreatorForTokenStreamTest implements TokenCreator {
         
-        private static final TokenType[] SUPPORTED = new TokenType[] {
-            TokenType.UNKNOWN,
-            TokenType.TERMINATOR,
-            TokenType.ARTICLE,
-            TokenType.PARAMETERED_SUBSTANTIVE_SINGULAR,
-            TokenType.SUBSTANTIVE_SINGULAR,
-            TokenType.ADJECTIVE_SINGULAR
-        };
+        private static final List<TokenType> SUPPORTED = Arrays.asList(
+                TokenType.UNKNOWN,
+                TokenType.TERMINATOR,
+                TokenType.ARTICLE,
+                TokenType.PARAMETERED_SUBSTANTIVE_SINGULAR,
+                TokenType.SUBSTANTIVE_SINGULAR,
+                TokenType.ADJECTIVE_SINGULAR
+        );
         
         private static final EnumMap<ConceptTermination, Selector> SELECTIONS = new EnumMap<>(ConceptTermination.class);
     
@@ -186,7 +187,7 @@ public class TokenStreamTest {
         }
         
         @Override
-        public final TokenType[] getSupportedTokenTypes() {
+        public final List<TokenType> getSupportedTokenTypes() {
             return SUPPORTED;
         }
         
