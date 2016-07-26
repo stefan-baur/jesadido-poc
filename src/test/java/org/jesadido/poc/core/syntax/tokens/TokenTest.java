@@ -7,7 +7,9 @@
  */
 package org.jesadido.poc.core.syntax.tokens;
 
+import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.List;
 import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.concepts.ConceptRegistry;
 import org.jesadido.poc.core.concepts.ConceptTermination;
@@ -67,14 +69,14 @@ public class TokenTest {
     
     private static final class TokenCreatorForTokenTest implements TokenCreator {
         
-        private static final TokenType[] SUPPORTED = new TokenType[] {
-            TokenType.UNKNOWN,
-            TokenType.TERMINATOR,
-            TokenType.SUBSTANTIVE,
-            TokenType.ADJECTIVE,
-            TokenType.ADVERB,
-            TokenType.PERSONAL_PRONOUN
-        };
+        private static final List<TokenType> SUPPORTED = Arrays.asList(
+                TokenType.UNKNOWN,
+                TokenType.TERMINATOR,
+                TokenType.SUBSTANTIVE,
+                TokenType.ADJECTIVE,
+                TokenType.ADVERB,
+                TokenType.PERSONAL_PRONOUN
+        );
         
         private static final EnumMap<ConceptTermination, Selector> SELECTIONS = new EnumMap<>(ConceptTermination.class);
     
@@ -98,7 +100,7 @@ public class TokenTest {
         }
         
         @Override
-        public final TokenType[] getSupportedTokenTypes() {
+        public final List<TokenType> getSupportedTokenTypes() {
             return SUPPORTED;
         }
         
