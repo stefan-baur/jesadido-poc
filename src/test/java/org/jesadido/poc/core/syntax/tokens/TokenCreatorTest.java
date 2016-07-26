@@ -7,7 +7,9 @@
  */
 package org.jesadido.poc.core.syntax.tokens;
 
+import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.List;
 import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.concepts.ConceptRegistry;
 import org.jesadido.poc.core.concepts.ConceptTermination;
@@ -194,8 +196,8 @@ public class TokenCreatorTest {
     private static final class TokenCreatorA implements TokenCreator {
         
         @Override
-        public final TokenType[] getSupportedTokenTypes() {
-            return new TokenType[] { TokenType.UNKNOWN };
+        public final List<TokenType> getSupportedTokenTypes() {
+            return Arrays.asList(TokenType.UNKNOWN);
         }
         
         
@@ -213,23 +215,23 @@ public class TokenCreatorTest {
     
     private static final class TokenCreatorB implements TokenCreator {
         
-        private static final TokenType[] SUPPORTED = new TokenType[] {
-            TokenType.UNKNOWN,
-            TokenType.INVALID_CONCEPT,
-            TokenType.ADJECTIVE_PLURAL,
-            TokenType.ADJECTIVE_SINGULAR,
-            TokenType.ADVERB_PLURAL,
-            TokenType.ADVERB_SINGULAR,
-            TokenType.ARTICLE,
-            TokenType.CONJUNCTION,
-            TokenType.PARAMETERED_SUBSTANTIVE_PLURAL,
-            TokenType.PARAMETERED_SUBSTANTIVE_SINGULAR,
-            TokenType.PERSONAL_PRONOUN_PLURAL,
-            TokenType.PERSONAL_PRONOUN_SINGULAR,
-            TokenType.SUBSTANTIVE_PLURAL,
-            TokenType.SUBSTANTIVE_SINGULAR,
-            TokenType.TERMINATOR
-        };
+        private static final List<TokenType> SUPPORTED = Arrays.asList(
+                TokenType.UNKNOWN,
+                TokenType.INVALID_CONCEPT,
+                TokenType.ADJECTIVE_PLURAL,
+                TokenType.ADJECTIVE_SINGULAR,
+                TokenType.ADVERB_PLURAL,
+                TokenType.ADVERB_SINGULAR,
+                TokenType.ARTICLE,
+                TokenType.CONJUNCTION,
+                TokenType.PARAMETERED_SUBSTANTIVE_PLURAL,
+                TokenType.PARAMETERED_SUBSTANTIVE_SINGULAR,
+                TokenType.PERSONAL_PRONOUN_PLURAL,
+                TokenType.PERSONAL_PRONOUN_SINGULAR,
+                TokenType.SUBSTANTIVE_PLURAL,
+                TokenType.SUBSTANTIVE_SINGULAR,
+                TokenType.TERMINATOR
+        );
         
         private static final EnumMap<ConceptTermination, Selector> SELECTIONS = new EnumMap<>(ConceptTermination.class);
     
@@ -261,7 +263,7 @@ public class TokenCreatorTest {
         }
         
         @Override
-        public final TokenType[] getSupportedTokenTypes() {
+        public final List<TokenType> getSupportedTokenTypes() {
             return SUPPORTED;
         }
         
