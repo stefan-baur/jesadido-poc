@@ -8,6 +8,7 @@
 package org.jesadido.poc.core.concepts;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import org.jesadido.poc.core.Language;
 import org.junit.Assert;
 import org.junit.Test;
@@ -190,5 +191,18 @@ public class ConceptUtilsTest {
         Assert.assertEquals(Language.ES, ConceptUtils.parseToLanguage("/es/"));
         Assert.assertEquals(Language.FR, ConceptUtils.parseToLanguage("/fr/"));
         Assert.assertEquals(Language.JI, ConceptUtils.parseToLanguage("/ji/"));
+    }
+    
+    @Test
+    public void testJoin() {
+        Assert.assertEquals("", ConceptUtils.join(null));
+        Assert.assertEquals("", ConceptUtils.join(new LinkedList<>()));
+        Assert.assertEquals("SunO", ConceptUtils.join(Arrays.asList(ConceptRegistry.getInstance().getConcept("SunO"))));
+        Assert.assertEquals("La SunO", ConceptUtils.join(Arrays.asList(ConceptRegistry.getInstance().getConcept("La"), ConceptRegistry.getInstance().getConcept("SunO"))));
+        Assert.assertEquals("La SunO", ConceptUtils.join(Arrays.asList(null, ConceptRegistry.getInstance().getConcept("La"), ConceptRegistry.getInstance().getConcept("SunO"))));
+        Assert.assertEquals("La SunO", ConceptUtils.join(Arrays.asList(ConceptRegistry.getInstance().getConcept("La"), null, ConceptRegistry.getInstance().getConcept("SunO"))));
+        Assert.assertEquals("La SunO", ConceptUtils.join(Arrays.asList(ConceptRegistry.getInstance().getConcept("La"), ConceptRegistry.getInstance().getConcept("SunO"), null)));
+        Assert.assertEquals("Mi$La SunO", ConceptUtils.join(Arrays.asList(ConceptRegistry.getInstance().getConcept("Mi$La"), ConceptRegistry.getInstance().getConcept("SunO"))));
+        Assert.assertEquals("Mi$La\tSunO\tBelA", ConceptUtils.join("\t", Arrays.asList(ConceptRegistry.getInstance().getConcept("Mi$La"), ConceptRegistry.getInstance().getConcept("SunO"), ConceptRegistry.getInstance().getConcept("BelA"))));
     }
 }
