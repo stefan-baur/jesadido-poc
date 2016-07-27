@@ -114,7 +114,7 @@ public class Grammar {
         try (TokenStream tokenStream = new TokenStream(source, this.tokenCreator)) {
             return this.parse(tokenStream, startSymbol);
         } catch (IOException exception) {
-            LOGGER.log(Level.WARNING, "An I/O-exception during the parsing.", exception);
+            LOGGER.log(Level.WARNING, "An I/O-exception after the parsing.", exception);
             return this.syntaxTreeFactory.createTrouble(exception.getMessage());
         }
     }
