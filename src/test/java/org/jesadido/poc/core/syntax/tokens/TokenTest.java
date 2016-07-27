@@ -67,6 +67,20 @@ public class TokenTest {
         Assert.assertEquals("/de/'Müllers'|'Müller'OJ$Vi", TC.create("/de/'Müllers'|'Müller'OJ$Vi").getConcept().getFullPhrase());
     }
     
+    @Test
+    public void testToString() {
+        Assert.assertEquals("TERMINATOR[\".\"]", TC.create(".").toString());
+        Assert.assertEquals("SUBSTANTIVE[\"LunO\"]", TC.create("LunO").toString());
+        Assert.assertEquals("SUBSTANTIVE[\"LunOJ\"]", TC.create("LunOJ").toString());
+        Assert.assertEquals("ADJECTIVE[\"LunA\"]", TC.create("LunA").toString());
+        Assert.assertEquals("ADJECTIVE[\"LunAJ\"]", TC.create("LunAJ").toString());
+        Assert.assertEquals("ADVERB[\"LunE\"]", TC.create("LunE").toString());
+        Assert.assertEquals("ADVERB[\"LunEJ\"]", TC.create("LunEJ").toString());
+        Assert.assertEquals("PERSONAL_PRONOUN[\"/de/'Stefan'IcxO$Mi\"]", TC.create("/de/'Stefan'IcxO$Mi").toString());
+        Assert.assertEquals("PERSONAL_PRONOUN[\"/de/'Baurs'|'Baur'OJ$Ni\"]", TC.create("/de/'Baurs'|'Baur'OJ$Ni").toString());
+        Assert.assertEquals("PERSONAL_PRONOUN[\"/de/'Müllers'|'Müller'OJ$Vi\"]", TC.create("/de/'Müllers'|'Müller'OJ$Vi").toString());
+    }
+    
     private static final class TokenCreatorForTokenTest implements TokenCreator {
         
         private static final List<TokenType> SUPPORTED = Arrays.asList(
