@@ -128,6 +128,16 @@ public enum TokenType {
     CONJUNCTION,
     
     /**
+     * The appropriate token value opens an unordered list of elements.
+     */
+    BRACE_OPEN,
+    
+    /**
+     * The appropriate token value closes an unordered list of elements.
+     */
+    BRACE_CLOSE,
+    
+    /**
      * The appropriate token value represents a terminator symbol for
      * terminating plain text sentences, for example a single period.
      */
