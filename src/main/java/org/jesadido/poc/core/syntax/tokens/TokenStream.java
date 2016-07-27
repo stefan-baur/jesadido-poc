@@ -106,6 +106,17 @@ public final class TokenStream implements Closeable {
     }
     
     /**
+     * Indicates whether one next token typed by the given token types can be
+     * fetched via the methods <code>peek()</code> and <code>next()</code>.
+     * @param tokenTypes The given token types.
+     * @return <code>true</code> if there is at least one token with at least
+     * one of the given token types returnable.
+     */
+    public final boolean hasOneOf(final List<TokenType> tokenTypes) {
+        return this.has(1) && this.peekQueue.get(0).getType().isOneOf(tokenTypes);
+    }
+    
+    /**
      * Returns the next token instance without consuming it from the token
      * stream.
      * @return <code>null</code> if there is no next token available, or if an
