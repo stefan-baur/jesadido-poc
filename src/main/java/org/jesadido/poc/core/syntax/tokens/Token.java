@@ -55,4 +55,13 @@ public final class Token {
     public final Concept getConcept() {
         return this.concept;
     }
+    
+    /**
+     * Returns the type and the value of this token as a string.
+     * @return The type and the value of this token as a string.
+     */
+    @Override
+    public final String toString() {
+        return String.format("%s[\"%s\"]", this.getType().name(), this.getValue());
+    }
 }
