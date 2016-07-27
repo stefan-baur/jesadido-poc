@@ -13,6 +13,7 @@ import org.jesadido.poc.core.syntax.nodes.composites.SentenceMeat;
 import org.jesadido.poc.core.syntax.nodes.composites.Sentence;
 import org.jesadido.poc.core.syntax.nodes.composites.PrepositionalPartSu;
 import org.jesadido.poc.core.syntax.nodes.leaves.SentenceMeatConjunction;
+import org.jesadido.poc.core.syntax.nodes.leaves.Trouble;
 
 public interface Visitor<R, A> {
     
@@ -22,4 +23,6 @@ public interface Visitor<R, A> {
     R visit(PrepositionalPartSu node, A argument);
     R visit(PrepositionalPartDom node, A argument);
     R visit(PrepositionalPartFin node, A argument);
+    
+    R visit(Trouble node, A argument);
 }

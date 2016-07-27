@@ -19,6 +19,7 @@ import org.jesadido.poc.core.syntax.nodes.composites.PrepositionalPartSu;
 import org.jesadido.poc.core.syntax.nodes.composites.Sentence;
 import org.jesadido.poc.core.syntax.nodes.composites.SentenceMeat;
 import org.jesadido.poc.core.syntax.nodes.leaves.SentenceMeatConjunction;
+import org.jesadido.poc.core.syntax.nodes.leaves.Trouble;
 
 public class ConceptCollector implements Visitor<List<Concept>, Void> {
     
@@ -82,5 +83,10 @@ public class ConceptCollector implements Visitor<List<Concept>, Void> {
         node.getChildren().stream().forEach(child -> result.addAll(child.accept(this, null)));
         result.add(node.getCloser().getConcept());
         return result;
+    }
+    
+    @Override
+    public List<Concept> visit(final Trouble node, final Void unused) {
+        return new LinkedList<>();
     }
 }
