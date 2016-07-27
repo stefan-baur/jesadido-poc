@@ -7,12 +7,13 @@
  */
 package org.jesadido.poc.core.syntax.base;
 
-public final class BaseConstants {
+public final class Base {
     
     public static final String NT_SENTENCE = "sentence";
     public static final String NT_SENTENCE_MEAT = "sentence-meat";
+    public static final String NT_SENTENCE_MEAT_CONJUNCTION = "sentence-meat-conjunction";
     
-    private BaseConstants() {
+    private Base() {
         // A private class constructor for this utility class.
     }
 }

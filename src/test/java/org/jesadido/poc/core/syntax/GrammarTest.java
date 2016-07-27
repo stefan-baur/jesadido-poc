@@ -35,6 +35,26 @@ public class GrammarTest {
                 Node sentence = grammar.parse("\t{ }    .");
                 Assert.assertEquals("{ } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
+            {
+                Node sentence = grammar.parse("{ } Kaj { } .");
+                Assert.assertEquals("{ } Kaj { } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+            }
+            {
+                Node sentence = grammar.parse("{ } Aux$, { } Aux { } .");
+                Assert.assertEquals("{ } Aux$, { } Aux { } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+            }
+            {
+                Node sentence = grammar.parse("{ } Aux$, { } Aux { .");
+                Assert.assertEquals("{ } Aux$, { } Aux .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+            }
+            {
+                Node sentence = grammar.parse("{ } { } Aux { } .");
+                Assert.assertEquals("{ } { } Aux { } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+            }
+            {
+                Node sentence = grammar.parse("{ } { } .");
+                Assert.assertEquals("{ } { } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+            }
         }
     }
 }

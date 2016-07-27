@@ -56,4 +56,25 @@ public class Production {
     public Node parse(final TokenStream tokenStream) {
         return this.grammar.getSyntaxTreeFactory().createTrouble(String.format("The production '%s' is not available [Token: %s].", this.nonterminalSymbol, tokenStream.peek()));
     }
+    
+    public boolean hasFirstOf(final TokenStream tokenStream, final String ... nonterminalSymbols) {
+        for (final String nt : nonterminalSymbols) {
+            if (tokenStream.hasOneOf(this.grammar.getProduction(nt).getFirstSet())) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public Node parse(final TokenStream tokenStream, final String nonterminalSymbol) {
+        return this.grammar.getProduction(nonterminalSymbol).parse(tokenStream);
+    }
+    
+    public Node trouble(final TokenStream tokenStream, final TokenType requiredTokenType) {
+        return this.grammar.getSyntaxTreeFactory().createTrouble(String.format("The required token type '%s' is not available inside the production of '%s', but '%s' is found instead.", requiredTokenType.name(), this.getNonterminalSymbol(), tokenStream.peek()));
+    }
+    
+    public Node trouble(final TokenStream tokenStream) {
+        return this.grammar.getSyntaxTreeFactory().createTrouble(String.format("The production of '%s' can not be parsed at the token '%s'.", this.getNonterminalSymbol(), tokenStream.peek()));
+    }
 }

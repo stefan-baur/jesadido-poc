@@ -18,7 +18,6 @@ import static org.jesadido.poc.core.syntax.tokens.TokenType.ADJECTIVE_SINGULAR;
 import static org.jesadido.poc.core.syntax.tokens.TokenType.ADVERB_PLURAL;
 import static org.jesadido.poc.core.syntax.tokens.TokenType.ADVERB_SINGULAR;
 import static org.jesadido.poc.core.syntax.tokens.TokenType.ARTICLE;
-import static org.jesadido.poc.core.syntax.tokens.TokenType.CONJUNCTION;
 import static org.jesadido.poc.core.syntax.tokens.TokenType.PARAMETERED_SUBSTANTIVE_PLURAL;
 import static org.jesadido.poc.core.syntax.tokens.TokenType.PARAMETERED_SUBSTANTIVE_SINGULAR;
 import static org.jesadido.poc.core.syntax.tokens.TokenType.PERSONAL_PRONOUN_PLURAL;
@@ -28,6 +27,7 @@ import static org.jesadido.poc.core.syntax.tokens.TokenType.SUBSTANTIVE_SINGULAR
 import static org.jesadido.poc.core.syntax.tokens.TokenType.TERMINATOR;
 import org.junit.Assert;
 import org.junit.Test;
+import static org.jesadido.poc.core.syntax.tokens.TokenType.SEPARATOR;
 
 public class TokenCreatorTest {
     
@@ -183,9 +183,9 @@ public class TokenCreatorTest {
             Assert.assertEquals(TokenType.PARAMETERED_SUBSTANTIVE_PLURAL, tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("/de/'Baurs'|'Baur'OJ")));
             Assert.assertEquals(TokenType.PERSONAL_PRONOUN_SINGULAR, tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("/de/'Stefan'IcxO$Mi")));
             Assert.assertEquals(TokenType.PERSONAL_PRONOUN_PLURAL, tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("/de/'Baurs'|'Baur'OJ$Ni")));
-            Assert.assertEquals(TokenType.CONJUNCTION, tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("Kaj")));
-            Assert.assertEquals(TokenType.CONJUNCTION, tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("Aux")));
-            Assert.assertEquals(TokenType.CONJUNCTION, tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept(",")));
+            Assert.assertEquals(TokenType.SEPARATOR, tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("Kaj")));
+            Assert.assertEquals(TokenType.SEPARATOR, tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("Aux")));
+            Assert.assertEquals(TokenType.SEPARATOR, tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept(",")));
             Assert.assertEquals(TokenType.ARTICLE, tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("La")));
             Assert.assertEquals(TokenType.ARTICLE, tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("Da$La")));
             Assert.assertEquals(TokenType.ARTICLE, tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("Mi$La")));
@@ -215,15 +215,14 @@ public class TokenCreatorTest {
     
     private static final class TokenCreatorB implements TokenCreator {
         
-        private static final List<TokenType> SUPPORTED = Arrays.asList(
-                TokenType.UNKNOWN,
+        private static final List<TokenType> SUPPORTED = Arrays.asList(TokenType.UNKNOWN,
                 TokenType.INVALID_CONCEPT,
                 TokenType.ADJECTIVE_PLURAL,
                 TokenType.ADJECTIVE_SINGULAR,
                 TokenType.ADVERB_PLURAL,
                 TokenType.ADVERB_SINGULAR,
                 TokenType.ARTICLE,
-                TokenType.CONJUNCTION,
+                TokenType.SEPARATOR,
                 TokenType.PARAMETERED_SUBSTANTIVE_PLURAL,
                 TokenType.PARAMETERED_SUBSTANTIVE_SINGULAR,
                 TokenType.PERSONAL_PRONOUN_PLURAL,
@@ -247,9 +246,9 @@ public class TokenCreatorTest {
             SELECTIONS.put(ConceptTermination.MI, (Selector) (Concept c) -> PERSONAL_PRONOUN_SINGULAR);
             SELECTIONS.put(ConceptTermination.NI, (Selector) (Concept c) -> PERSONAL_PRONOUN_PLURAL);
             SELECTIONS.put(ConceptTermination.VI, (Selector) (Concept c) -> PERSONAL_PRONOUN_PLURAL);
-            SELECTIONS.put(ConceptTermination.KAJ, (Selector) (Concept c) -> CONJUNCTION);
-            SELECTIONS.put(ConceptTermination.AUX, (Selector) (Concept c) -> CONJUNCTION);
-            SELECTIONS.put(ConceptTermination.COMMA, (Selector) (Concept c) -> CONJUNCTION);
+            SELECTIONS.put(ConceptTermination.KAJ, (Selector) (Concept c) -> SEPARATOR);
+            SELECTIONS.put(ConceptTermination.AUX, (Selector) (Concept c) -> SEPARATOR);
+            SELECTIONS.put(ConceptTermination.COMMA, (Selector) (Concept c) -> SEPARATOR);
         }
         
         @Override

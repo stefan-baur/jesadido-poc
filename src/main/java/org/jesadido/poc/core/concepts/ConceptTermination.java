@@ -15,6 +15,12 @@ public enum ConceptTermination {
     
     /**
      * The appropriated concept has no listed termination.
+     *//**
+     * The appropriated concept has no listed termination.
+     *//**
+     * The appropriated concept has no listed termination.
+     *//**
+     * The appropriated concept has no listed termination.
      */
     NONE(null),
     
@@ -185,13 +191,13 @@ public enum ConceptTermination {
      * The appropriated concept is a left curly bracket, a left brace, a typical
      * opening sign for unordered sets.
      */
-    L1("{"),
+    LEFT_CURLY("{"),
     
     /**
      * The appropriated concept is a right curly bracket, a right brace, a
      * typical closing sign for unordered sets.
      */
-    R1("}"),
+    RIGHT_CURLY("}"),
     
     /**
      * The appropriated concept is a left parenthesis, a typical opening sign

@@ -19,19 +19,22 @@ import org.jesadido.poc.core.syntax.tokens.TokenType;
 
 public final class BaseTokenCreator implements TokenCreator {
     
-    private static final List<TokenType> SUPPORTED_TOKEN_TYPES = Arrays.asList(
-            TokenType.UNKNOWN,
+    private static final List<TokenType> SUPPORTED_TOKEN_TYPES = Arrays.asList(TokenType.UNKNOWN,
             TokenType.TERMINATOR,
-            TokenType.BRACE_OPEN,
-            TokenType.BRACE_CLOSE
+            TokenType.SEPARATOR,
+            TokenType.SET_OPEN,
+            TokenType.SET_CLOSE
     );
 
     private static final EnumMap<ConceptTermination, TokenCreator.Selector> SELECTIONS = new EnumMap<>(ConceptTermination.class);
 
     static {
         SELECTIONS.put(ConceptTermination.PERIOD, (TokenCreator.Selector) (Concept c) -> TokenType.TERMINATOR);
-        SELECTIONS.put(ConceptTermination.L1, (TokenCreator.Selector) (Concept c) -> TokenType.BRACE_OPEN);
-        SELECTIONS.put(ConceptTermination.R1, (TokenCreator.Selector) (Concept c) -> TokenType.BRACE_CLOSE);
+        SELECTIONS.put(ConceptTermination.KAJ, (TokenCreator.Selector) (Concept c) -> TokenType.SEPARATOR);
+        SELECTIONS.put(ConceptTermination.AUX, (TokenCreator.Selector) (Concept c) -> TokenType.SEPARATOR);
+        SELECTIONS.put(ConceptTermination.COMMA, (TokenCreator.Selector) (Concept c) -> TokenType.SEPARATOR);
+        SELECTIONS.put(ConceptTermination.LEFT_CURLY, (TokenCreator.Selector) (Concept c) -> TokenType.SET_OPEN);
+        SELECTIONS.put(ConceptTermination.RIGHT_CURLY, (TokenCreator.Selector) (Concept c) -> TokenType.SET_CLOSE);
     }
 
     @Override

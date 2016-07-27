@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.syntax.Production;
-import org.jesadido.poc.core.syntax.base.BaseConstants;
+import org.jesadido.poc.core.syntax.base.Base;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
@@ -20,27 +20,32 @@ import org.jesadido.poc.core.syntax.tokens.TokenType;
 public class SentenceProduction extends Production {
     
     public SentenceProduction() {
-        super(BaseConstants.NT_SENTENCE, Arrays.asList(TokenType.TERMINATOR), Arrays.asList(BaseConstants.NT_SENTENCE_MEAT));
+        super(Base.NT_SENTENCE, Arrays.asList(TokenType.TERMINATOR), Arrays.asList(Base.NT_SENTENCE_MEAT));
     }
     
     @Override
     public List<TokenType> getFirstSet() {
-        return this.getGrammar().getProduction(BaseConstants.NT_SENTENCE_MEAT).getFirstSet();
+        return this.getGrammar().getProduction(Base.NT_SENTENCE_MEAT).getFirstSet();
     }
     
     @Override
     public Node parse(final TokenStream tokenStream) {
-        Production sentenceMeatProduction = this.getGrammar().getProduction(BaseConstants.NT_SENTENCE_MEAT);
-        if (tokenStream.hasOneOf(sentenceMeatProduction.getFirstSet())) {
-            List<Node> meats = new LinkedList<>();
-            meats.add(sentenceMeatProduction.parse(tokenStream));
+        if (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT)) {
+            final List<Node> meats = new LinkedList<>();
+            meats.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT));
+            while (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT_CONJUNCTION, Base.NT_SENTENCE_MEAT)) {
+                if (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT_CONJUNCTION)) {
+                    meats.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT_CONJUNCTION));
+                }
+                meats.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT));
+            }
             if (tokenStream.hasOneOf(TokenType.TERMINATOR)) {
                 final Token terminator = tokenStream.next();
                 return this.getGrammar().getSyntaxTreeFactory().createSentence(meats, terminator.getConcept());
             } else {
-                return this.getGrammar().getSyntaxTreeFactory().createTrouble("The TERMINATOR-Token is not available.");
+                return this.trouble(tokenStream, TokenType.TERMINATOR);
             }
         }
-        return this.getGrammar().getSyntaxTreeFactory().createTrouble(String.format("The nonterminal '%s' can not be parsed.", BaseConstants.NT_SENTENCE_MEAT));
+        return this.trouble(tokenStream);
     }
 }

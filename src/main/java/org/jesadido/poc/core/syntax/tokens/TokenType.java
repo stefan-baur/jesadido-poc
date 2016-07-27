@@ -19,6 +19,66 @@ public enum TokenType {
      * The appropriate token value is unknown.
      *//**
      * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
+     *//**
+     * The appropriate token value is unknown.
      */
     UNKNOWN,
     
@@ -125,17 +185,17 @@ public enum TokenType {
      * The appropriate token value represents a kind of separator symbol for any
      * listings, for example <b>Kaj</b> <i>(and)</i> or <b>Aux</b> <i>(or)</i>.
      */
-    CONJUNCTION,
+    SEPARATOR,
     
     /**
      * The appropriate token value opens an unordered list of elements.
      */
-    BRACE_OPEN,
+    SET_OPEN,
     
     /**
      * The appropriate token value closes an unordered list of elements.
      */
-    BRACE_CLOSE,
+    SET_CLOSE,
     
     /**
      * The appropriate token value represents a terminator symbol for
