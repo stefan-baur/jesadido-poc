@@ -8,6 +8,7 @@
 package org.jesadido.poc.core.syntax;
 
 import org.jesadido.poc.core.concepts.ConceptUtils;
+import org.jesadido.poc.core.syntax.base.Base;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.nodes.visitors.ConceptCollector;
 import org.junit.Assert;
@@ -54,6 +55,14 @@ public class GrammarTest {
             {
                 Node sentence = grammar.parse("{ } { } .");
                 Assert.assertEquals("{ } { } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+            }
+            {
+                Node sentence = grammar.parse("{ }", Base.NT_SENTENCE_MEAT);
+                Assert.assertEquals("{ }", ConceptUtils.join(ConceptCollector.collect(sentence)));
+            }
+            {
+                Node sentence = grammar.parse("Kaj", Base.NT_SENTENCE_MEAT_CONJUNCTION);
+                Assert.assertEquals("Kaj", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
         }
     }
