@@ -10,6 +10,7 @@ package org.jesadido.poc.core.syntax.tokens;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Logger;
 import org.jesadido.poc.core.concepts.Concept;
@@ -58,12 +59,22 @@ public class TokenStreamTest {
     
     @Test
     public void testHasOneOf() {
-        Assert.assertFalse(new TokenStream("", TC).hasOneOf());
-        Assert.assertFalse(new TokenStream(" \t \r \n ", TC).hasOneOf());
-        Assert.assertFalse(new TokenStream(" \t \r /de/'Stefan'IcxO \n . ", TC).hasOneOf(TokenType.TERMINATOR));
-        Assert.assertTrue(new TokenStream("/de/'Stefan'IcxO .", TC).hasOneOf(TokenType.PARAMETERED_SUBSTANTIVE_SINGULAR));
-        Assert.assertTrue(new TokenStream("/de/'Alex'IcxO .", TC).hasOneOf(TokenType.PARAMETERED_SUBSTANTIVE_SINGULAR, TokenType.UNKNOWN));
-        Assert.assertTrue(new TokenStream("/es/'Maria'IcxO .", TC).hasOneOf(TokenType.UNKNOWN, TokenType.PARAMETERED_SUBSTANTIVE_SINGULAR));
+        {
+            Assert.assertFalse(new TokenStream("", TC).hasOneOf());
+            Assert.assertFalse(new TokenStream(" \t \r \n ", TC).hasOneOf());
+            Assert.assertFalse(new TokenStream(" \t \r /de/'Stefan'IcxO \n . ", TC).hasOneOf(TokenType.TERMINATOR));
+            Assert.assertTrue(new TokenStream("/de/'Stefan'IcxO .", TC).hasOneOf(TokenType.PARAMETERED_SUBSTANTIVE_SINGULAR));
+            Assert.assertTrue(new TokenStream("/de/'Alex'IcxO .", TC).hasOneOf(TokenType.PARAMETERED_SUBSTANTIVE_SINGULAR, TokenType.UNKNOWN));
+            Assert.assertTrue(new TokenStream("/es/'Maria'IcxO .", TC).hasOneOf(TokenType.UNKNOWN, TokenType.PARAMETERED_SUBSTANTIVE_SINGULAR));
+        }
+        {
+            Assert.assertFalse(new TokenStream("", TC).hasOneOf(new LinkedList<>()));
+            Assert.assertFalse(new TokenStream(" \t \r \n ", TC).hasOneOf(new LinkedList<>()));
+            Assert.assertFalse(new TokenStream(" \t \r /de/'Stefan'IcxO \n . ", TC).hasOneOf(Arrays.asList(TokenType.TERMINATOR)));
+            Assert.assertTrue(new TokenStream("/de/'Stefan'IcxO .", TC).hasOneOf(Arrays.asList(TokenType.PARAMETERED_SUBSTANTIVE_SINGULAR)));
+            Assert.assertTrue(new TokenStream("/de/'Alex'IcxO .", TC).hasOneOf(Arrays.asList(TokenType.PARAMETERED_SUBSTANTIVE_SINGULAR, TokenType.UNKNOWN)));
+            Assert.assertTrue(new TokenStream("/es/'Maria'IcxO .", TC).hasOneOf(Arrays.asList(TokenType.UNKNOWN, TokenType.PARAMETERED_SUBSTANTIVE_SINGULAR)));
+        }
     }
     
     @Test
