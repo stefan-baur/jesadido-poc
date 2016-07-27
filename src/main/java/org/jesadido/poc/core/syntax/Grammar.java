@@ -95,13 +95,6 @@ public class Grammar {
         throw new IllegalArgumentException(String.format("A production can not registered to the grammar '%s'.", this.name));
     }
     
-    public Production getProduction(final String nonterminalSymbol) {
-        if (this.productions.containsKey(nonterminalSymbol)) {
-            return this.productions.get(nonterminalSymbol);
-        }
-        return new Production(nonterminalSymbol, new LinkedList<>(), new LinkedList<>());
-    }
-    
     public Node parse(final String source, final String startSymbol) {
         return this.parse(new TokenStream(source, this.tokenCreator), startSymbol);
     }

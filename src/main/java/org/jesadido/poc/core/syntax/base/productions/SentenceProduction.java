@@ -25,7 +25,7 @@ public class SentenceProduction extends Production {
     
     @Override
     public List<TokenType> getFirstSet() {
-        return this.getGrammar().getProduction(Base.NT_SENTENCE_MEAT).getFirstSet();
+        return this.getProduction(Base.NT_SENTENCE_MEAT).getFirstSet();
     }
     
     @Override
@@ -43,9 +43,9 @@ public class SentenceProduction extends Production {
                 final Token terminator = tokenStream.next();
                 return this.getGrammar().getSyntaxTreeFactory().createSentence(meats, terminator.getConcept());
             } else {
-                return this.trouble(tokenStream, TokenType.TERMINATOR);
+                return this.parsingTrouble(tokenStream, TokenType.TERMINATOR);
             }
         }
-        return this.trouble(tokenStream);
+        return this.parsingTrouble(tokenStream);
     }
 }

@@ -34,6 +34,6 @@ public class SentenceMeatConjunctionProduction extends Production {
             final Token separator = tokenStream.next();
             return this.getGrammar().getSyntaxTreeFactory().createSentenceMeatConjunction(separator.getConcept());
         }
-        return this.trouble(tokenStream, TokenType.SEPARATOR);
+        return this.parsingTrouble(tokenStream, TokenType.SEPARATOR);
     }
 }

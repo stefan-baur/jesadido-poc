@@ -36,8 +36,8 @@ public class SentenceMeatProduction extends Production {
                 final Token closer = tokenStream.next();
                 return this.getGrammar().getSyntaxTreeFactory().createSentenceMeat(opener.getConcept(), null, closer.getConcept());
             }
-            return this.trouble(tokenStream, TokenType.SET_CLOSE);
+            return this.parsingTrouble(tokenStream, TokenType.SET_CLOSE);
         }
-        return this.trouble(tokenStream, TokenType.SET_OPEN);
+        return this.parsingTrouble(tokenStream, TokenType.SET_OPEN);
     }
 }
