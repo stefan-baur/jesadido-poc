@@ -37,4 +37,24 @@ public class StringUtilsTest {
         Assert.assertEquals("___", StringUtils.escaper("", "two underscores: __"));
         Assert.assertEquals("___", StringUtils.escaper(null, "two underscores: __"));
     }
+    
+    @Test
+    public void testRepeat() {
+        Assert.assertEquals("", StringUtils.repeat(0, null));
+        Assert.assertEquals("", StringUtils.repeat(1, null));
+        Assert.assertEquals("", StringUtils.repeat(2, null));
+        Assert.assertEquals("", StringUtils.repeat(3, null));
+        Assert.assertEquals("", StringUtils.repeat(0, ""));
+        Assert.assertEquals("", StringUtils.repeat(1, ""));
+        Assert.assertEquals("", StringUtils.repeat(2, ""));
+        Assert.assertEquals("", StringUtils.repeat(3, ""));
+        Assert.assertEquals("", StringUtils.repeat(0, "a"));
+        Assert.assertEquals("a", StringUtils.repeat(1, "a"));
+        Assert.assertEquals("aa", StringUtils.repeat(2, "a"));
+        Assert.assertEquals("aaa", StringUtils.repeat(3, "a"));
+        Assert.assertEquals("", StringUtils.repeat(0, "abc."));
+        Assert.assertEquals("abc.", StringUtils.repeat(1, "abc."));
+        Assert.assertEquals("abc.abc.", StringUtils.repeat(2, "abc."));
+        Assert.assertEquals("abc.abc.abc.", StringUtils.repeat(3, "abc."));
+    }
 }
