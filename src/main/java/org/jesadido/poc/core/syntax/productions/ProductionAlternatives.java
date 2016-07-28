@@ -15,7 +15,7 @@ import org.jesadido.poc.core.syntax.tokens.TokenType;
 
 public class ProductionAlternatives extends ProductionComposite {
     
-    private final List<String> bnfs = new LinkedList<>();
+    private final List<String> rules = new LinkedList<>();
     private final List<TokenType> usedTerminalSymbols = new LinkedList<>();
     private final List<String> usedNonterminalSymbols = new LinkedList<>();
     private List<TokenType> firstSet = null;
@@ -26,12 +26,12 @@ public class ProductionAlternatives extends ProductionComposite {
     
     @Override
     public void invalidate() {
-        this.bnfs.clear();
+        this.rules.clear();
         this.usedTerminalSymbols.clear();
         this.usedNonterminalSymbols.clear();
         this.firstSet = null;
         this.getChildren().stream().forEach(child -> {
-            this.bnfs.addAll(child.getRules());
+            this.rules.addAll(child.getRules());
             this.usedTerminalSymbols.removeAll(child.getUsedTerminalSymbols());
             this.usedTerminalSymbols.addAll(child.getUsedTerminalSymbols());
             this.usedNonterminalSymbols.removeAll(child.getUsedNonterminalSymbols());
@@ -41,7 +41,7 @@ public class ProductionAlternatives extends ProductionComposite {
     
     @Override
     public List<String> getRules() {
-        return this.bnfs;
+        return this.rules;
     }
     
     @Override
