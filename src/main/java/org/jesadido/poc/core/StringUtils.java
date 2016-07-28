@@ -81,7 +81,7 @@ public final class StringUtils {
     
     /**
      * Joins the objects of the given list as strings separated with the given
-     * delimiter.
+     * delimiter. If you have a list of strings, use <code>String.join()</code>!
      * @param delimiter The given delimiter.
      * @param elements The objects of the given list, which can contain
      * null-elements.
