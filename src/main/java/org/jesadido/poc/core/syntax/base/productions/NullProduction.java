@@ -7,15 +7,22 @@
  */
 package org.jesadido.poc.core.syntax.base.productions;
 
+import java.util.Arrays;
 import java.util.LinkedList;
-import org.jesadido.poc.core.syntax.Production;
+import java.util.List;
+import org.jesadido.poc.core.syntax.ProductionLeaf;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 
-public class NullProduction extends Production {
+public class NullProduction extends ProductionLeaf {
     
     public NullProduction(final String nonterminalSymbol) {
         super(nonterminalSymbol, new LinkedList<>(), new LinkedList<>());
+    }
+    
+    @Override
+    public List<String> getBnf() {
+        return Arrays.asList(String.format("%s ::= IMPOSSIBLE", this.getNonterminalSymbol()));
     }
     
     @Override

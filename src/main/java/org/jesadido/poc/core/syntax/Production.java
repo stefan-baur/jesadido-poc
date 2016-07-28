@@ -7,7 +7,6 @@
  */
 package org.jesadido.poc.core.syntax;
 
-import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.syntax.base.productions.NullProduction;
 import org.jesadido.poc.core.syntax.nodes.Node;
@@ -16,18 +15,11 @@ import org.jesadido.poc.core.syntax.tokens.TokenType;
 
 public abstract class Production {
     
-    private static final List<TokenType> FIRST_SET = new LinkedList<>();
-    
     private final String nonterminalSymbol;
-    private final List<TokenType> usedTerminalSymbols;
-    private final List<String> usedNonterminalSymbols;
-    
     private Grammar grammar;
     
-    public Production(final String nonterminalSymbol, final List<TokenType> usedTerminalSymbols, final List<String> usedNonterminalSymbols) {
+    public Production(final String nonterminalSymbol) {
         this.nonterminalSymbol = nonterminalSymbol;
-        this.usedTerminalSymbols = usedTerminalSymbols;
-        this.usedNonterminalSymbols = usedNonterminalSymbols;
     }
     
     public Grammar getGrammar() {
@@ -42,13 +34,11 @@ public abstract class Production {
         return this.nonterminalSymbol;
     }
     
-    public List<TokenType> getUsedTerminalSymbols() {
-        return this.usedTerminalSymbols;
-    }
+    public abstract List<String> getBnf();
     
-    public List<String> getUsedNonterminalSymbols() {
-        return this.usedNonterminalSymbols;
-    }
+    public abstract List<TokenType> getUsedTerminalSymbols();
+    
+    public abstract List<String> getUsedNonterminalSymbols();
     
     public Production getProduction(final String nonterminalSymbol) {
         if (this.grammar.getProductionRules().containsKey(nonterminalSymbol)) {
@@ -57,9 +47,7 @@ public abstract class Production {
         return new NullProduction(nonterminalSymbol);
     }
     
-    public List<TokenType> getFirstSet() {
-        return FIRST_SET;
-    }
+    public abstract List<TokenType> getFirstSet();
     
     public abstract Node parse(final TokenStream tokenStream);
     
@@ -77,7 +65,7 @@ public abstract class Production {
     }
     
     public Node parsingTrouble(final TokenStream tokenStream, final TokenType requiredTokenType) {
-        return this.grammar.getSyntaxTreeFactory().createTrouble(String.format("The required token type '%s' is not available inside the production of '%s', but '%s' is found instead.", requiredTokenType.name(), this.getNonterminalSymbol(), tokenStream.peek()));
+        return this.grammar.getSyntaxTreeFactory().createTrouble(String.format("The required token type '%s' is not available inside the production of '%s', but '%s' is found instead.", requiredTokenType, this.getNonterminalSymbol(), tokenStream.peek()));
     }
     
     public Node parsingTrouble(final TokenStream tokenStream) {

@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.jesadido.poc.core.StringUtils;
+import org.jesadido.poc.core.scripting.Src;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.tokens.TokenCreator;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
@@ -122,5 +124,31 @@ public class Grammar {
         } else {
             return this.syntaxTreeFactory.createTrouble(String.format("No production available for the start-symbol '%s'.", startSymbol));
         }
+    }
+    
+    public Src toPlot() {
+        Src srcProductionBnfs = new Src();
+        List<String> bnfs = new LinkedList<>();
+        this.productions.values().stream().forEach(production -> bnfs.addAll(production.getBnf()));
+        final int max = bnfs.size() - 1;
+        for (int i = 0; i < bnfs.size(); i++) {
+            srcProductionBnfs.line("%s%s", bnfs.get(i), i < max ? "," : "");
+        }
+        return new Src()
+                .begin("Grammar %s = (N, T, P, s) = (", this.name)
+                .begin("{")
+                .line(String.join(", ", this.nonterminals))
+                .endBegin("}, {")
+                .line(StringUtils.join(", ", this.terminals))
+                .endBegin("}, {")
+                .add(srcProductionBnfs)
+                .end("}, %s", this.startSymbol)
+                .end(")")
+                ;
+    }
+    
+    @Override
+    public String toString() {
+        return this.toPlot().toString();
     }
 }

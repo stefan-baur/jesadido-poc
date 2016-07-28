@@ -10,17 +10,22 @@ package org.jesadido.poc.core.syntax.base.productions;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import org.jesadido.poc.core.syntax.Production;
+import org.jesadido.poc.core.syntax.ProductionLeaf;
 import org.jesadido.poc.core.syntax.base.Base;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 
-public class SentenceMeatProduction extends Production {
+public class SentenceMeatProduction extends ProductionLeaf {
     
     public SentenceMeatProduction() {
         super(Base.NT_SENTENCE_MEAT, Arrays.asList(TokenType.SET_OPEN, TokenType.SET_CLOSE), new LinkedList<>());
+    }
+    
+    @Override
+    public List<String> getBnf() {
+        return Arrays.asList(String.format("%s ::= %s %s", this.getNonterminalSymbol(), TokenType.SET_OPEN, TokenType.SET_CLOSE));
     }
     
     @Override
