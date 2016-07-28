@@ -9,6 +9,7 @@ package org.jesadido.poc.core;
 
 import java.util.Arrays;
 import java.util.LinkedList;
+import org.jesadido.poc.core.syntax.tokens.TokenType;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -56,5 +57,22 @@ public class StringUtilsTest {
         Assert.assertEquals("abc.", StringUtils.repeat(1, "abc."));
         Assert.assertEquals("abc.abc.", StringUtils.repeat(2, "abc."));
         Assert.assertEquals("abc.abc.abc.", StringUtils.repeat(3, "abc."));
+    }
+    
+    @Test
+    public void testJoin() {
+        Assert.assertEquals("", StringUtils.join("", null));
+        Assert.assertEquals("", StringUtils.join("", new LinkedList<>()));
+        Assert.assertEquals("O", StringUtils.join("", Arrays.asList("O")));
+        Assert.assertEquals("O", StringUtils.join("-", Arrays.asList("O")));
+        Assert.assertEquals("ON", StringUtils.join("", Arrays.asList("O", "N")));
+        Assert.assertEquals("O-N", StringUtils.join("-", Arrays.asList("O", "N")));
+        Assert.assertEquals("ONE", StringUtils.join("", Arrays.asList("O", "N", "E")));
+        Assert.assertEquals("O-N-E", StringUtils.join("-", Arrays.asList("O", "N", "E")));
+        Assert.assertEquals("ONE", StringUtils.join("", Arrays.asList("O", null, "N", "E")));
+        Assert.assertEquals("O-N-E", StringUtils.join("-", Arrays.asList("O", "N", null, "E")));
+        Assert.assertEquals("TERMINATOR", StringUtils.join(", ", Arrays.asList(TokenType.TERMINATOR)));
+        Assert.assertEquals("ARTICLE, TERMINATOR", StringUtils.join(", ", Arrays.asList(TokenType.ARTICLE, null, TokenType.TERMINATOR)));
+        Assert.assertEquals("ARTICLE, TERMINATOR, user-defined", StringUtils.join(", ", Arrays.asList(TokenType.ARTICLE, null, TokenType.TERMINATOR, "user-defined")));
     }
 }
