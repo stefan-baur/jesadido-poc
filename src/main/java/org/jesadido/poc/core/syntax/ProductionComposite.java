@@ -10,6 +10,8 @@ package org.jesadido.poc.core.syntax;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import org.jesadido.poc.core.syntax.Grammar;
+import org.jesadido.poc.core.syntax.Production;
 
 public abstract class ProductionComposite extends Production {
     

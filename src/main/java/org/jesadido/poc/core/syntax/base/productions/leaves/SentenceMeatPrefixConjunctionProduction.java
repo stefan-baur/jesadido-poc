@@ -8,38 +8,24 @@
 package org.jesadido.poc.core.syntax.base.productions.leaves;
 
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import org.jesadido.poc.core.StringUtils;
-import org.jesadido.poc.core.syntax.ProductionLeaf;
 import org.jesadido.poc.core.syntax.base.Base;
 import org.jesadido.poc.core.syntax.nodes.Node;
+import org.jesadido.poc.core.syntax.productions.ProductionFirstSet;
 import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 
-public class SentenceMeatPrefixConjunctionProduction extends ProductionLeaf {
-    
-    private static final List<TokenType> FIRST_SET = Arrays.asList(TokenType.SE);
-    private static final List<String> NO_NONTERMINALS = new LinkedList<>();
+public class SentenceMeatPrefixConjunctionProduction extends ProductionFirstSet {
     
     public SentenceMeatPrefixConjunctionProduction() {
-        super(Base.NT_SENTENCE_MEAT_INFIX_CONJUNCTION, FIRST_SET, NO_NONTERMINALS);
-    }
-    
-    @Override
-    public List<String> getBnfs() {
-        return Arrays.asList(String.format("%s ::= %s", this.getNonterminalSymbol(), StringUtils.join(" | ", FIRST_SET)));
-    }
-    
-    @Override
-    public List<TokenType> getFirstSet() {
-        return FIRST_SET;
+        super(Base.NT_SENTENCE_MEAT_INFIX_CONJUNCTION, Arrays.asList(
+                TokenType.SE
+        ));
     }
     
     @Override
     public Node parse(final TokenStream tokenStream) {
-        if (tokenStream.hasOneOf(FIRST_SET)) {
+        if (tokenStream.hasOneOf(this.getFirstSet())) {
             final Token prefix = tokenStream.next();
             return this.getGrammar().getSyntaxTreeFactory().createSentenceMeatConjunction(prefix.getConcept());
         }
