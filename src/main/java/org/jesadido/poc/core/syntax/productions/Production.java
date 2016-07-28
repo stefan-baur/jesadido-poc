@@ -5,10 +5,10 @@
  * Licensed under the GNU Lesser General Public License, Version 3.0 (LGPL-3.0)
  * https://www.gnu.org/licenses/lgpl-3.0.txt
  */
-package org.jesadido.poc.core.syntax;
+package org.jesadido.poc.core.syntax.productions;
 
 import java.util.List;
-import org.jesadido.poc.core.syntax.productions.ProductionDummy;
+import org.jesadido.poc.core.syntax.Grammar;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;

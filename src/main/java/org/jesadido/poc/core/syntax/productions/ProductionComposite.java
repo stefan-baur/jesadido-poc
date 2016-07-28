@@ -5,13 +5,12 @@
  * Licensed under the GNU Lesser General Public License, Version 3.0 (LGPL-3.0)
  * https://www.gnu.org/licenses/lgpl-3.0.txt
  */
-package org.jesadido.poc.core.syntax;
+package org.jesadido.poc.core.syntax.productions;
 
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.syntax.Grammar;
-import org.jesadido.poc.core.syntax.Production;
 
 public abstract class ProductionComposite extends Production {
     

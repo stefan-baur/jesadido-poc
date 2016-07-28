@@ -7,9 +7,9 @@
  */
 package org.jesadido.poc.core.syntax;
 
-import org.jesadido.poc.core.syntax.nodes.Node;
 import java.util.List;
 import org.jesadido.poc.core.concepts.Concept;
+import org.jesadido.poc.core.syntax.nodes.Node;
 
 public interface SyntaxTreeFactory {
     
