@@ -17,68 +17,6 @@ public enum TokenType {
     
     /**
      * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
-     *//**
-     * The appropriate token value is unknown.
      */
     UNKNOWN,
     
@@ -217,6 +155,7 @@ public enum TokenType {
         }
         return false;
     }
+    
     /**
      * Indicates whether this token type is an element of the given token types.
      * @param tokenTypes The given token types.
@@ -225,5 +164,14 @@ public enum TokenType {
      */
     public final boolean isOneOf(final List<TokenType> tokenTypes) {
         return tokenTypes.stream().anyMatch(tokenType -> this == tokenType);
+    }
+    
+    /**
+     * Returns the simple/single name of this token type.
+     * @return The name of this token type.
+     */
+    @Override
+    public final String toString() {
+        return this.name();
     }
 }
