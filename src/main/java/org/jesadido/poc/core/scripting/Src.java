@@ -55,53 +55,53 @@ public final class Src {
     }
     
     public final Src begin(final String format, final Object ... arguments) {
-        this.items.add(Item.INDENT_ITEM);
-        this.items.add(Item.OPEN_ITEM);
+        this.items.add(Item.INDENT);
+        this.items.add(Item.OPEN);
         this.items.add(Item.createSnippet(format, arguments));
-        this.items.add(Item.BREAK_ITEM);
-        this.items.add(Item.INC_ITEM);
+        this.items.add(Item.BREAK);
+        this.items.add(Item.INC);
         return this;
     }
     
     public final Src end(final String format, final Object ... arguments) {
-        this.items.add(Item.DEC_ITEM);
-        this.items.add(Item.INDENT_ITEM);
+        this.items.add(Item.DEC);
+        this.items.add(Item.INDENT);
         this.items.add(Item.createSnippet(format, arguments));
-        this.items.add(Item.CLOSE_ITEM);
-        this.items.add(Item.BREAK_ITEM);
+        this.items.add(Item.CLOSE);
+        this.items.add(Item.BREAK);
         return this;
     }
     
     public final Src endBegin(final String format, final Object ... arguments) {
-        this.items.add(Item.DEC_ITEM);
-        this.items.add(Item.INDENT_ITEM);
+        this.items.add(Item.DEC);
+        this.items.add(Item.INDENT);
         this.items.add(Item.createSnippet(format, arguments));
-        this.items.add(Item.BREAK_ITEM);
-        this.items.add(Item.INC_ITEM);
+        this.items.add(Item.BREAK);
+        this.items.add(Item.INC);
         return this;
     }
     
     public final Src line(final String format, final Object ... arguments) {
-        this.items.add(Item.INDENT_ITEM);
+        this.items.add(Item.INDENT);
         this.items.add(Item.createSnippet(format, arguments));
-        this.items.add(Item.BREAK_ITEM);
+        this.items.add(Item.BREAK);
         return this;
     }
     
     public final Src line() {
-        this.items.add(Item.BREAK_ITEM);
+        this.items.add(Item.BREAK);
         return this;
     }
     
     public final Src beginLine(final String format, final Object ... arguments) {
-        this.items.add(Item.INDENT_ITEM);
+        this.items.add(Item.INDENT);
         this.items.add(Item.createSnippet(format, arguments));
         return this;
     }
     
     public final Src endLine(final String format, final Object ... arguments) {
         this.items.add(Item.createSnippet(format, arguments));
-        this.items.add(Item.BREAK_ITEM);
+        this.items.add(Item.BREAK);
         return this;
     }
     
@@ -111,16 +111,16 @@ public final class Src {
     }
     
     public final Src inc() {
-        this.items.add(Item.INC_ITEM);
+        this.items.add(Item.INC);
         return this;
     }
     
     public final Src dec() {
-        this.items.add(Item.DEC_ITEM);
+        this.items.add(Item.DEC);
         return this;
     }
     
-    public final Src add(Src other) {
+    public final Src add(final Src other) {
         if (other != null) {
             this.items.addAll(other.items);
         }
@@ -131,7 +131,7 @@ public final class Src {
         if (!target.getParentFile().exists()) {
             target.getParentFile().mkdirs();
         }
-        try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(target), StringUtils.UTF_8))) {
+        try (final Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(target), StringUtils.UTF_8))) {
             writer.write(this.toString());
         }
         return this;
@@ -143,21 +143,21 @@ public final class Src {
         int compression = 0;
         int indentValue = 0;
         for (final Item item : this.items) {
-            if (item == Item.OPEN_ITEM) {
+            if (item == Item.OPEN) {
                 compression++;
-            } else if (item == Item.CLOSE_ITEM) {
+            } else if (item == Item.CLOSE) {
                 compression--;
-            } else if (item == Item.INC_ITEM) {
+            } else if (item == Item.INC) {
                 indentValue++;
-            } else if (item == Item.DEC_ITEM) {
+            } else if (item == Item.DEC) {
                 indentValue--;
-            } else if (item == Item.INDENT_ITEM) {
+            } else if (item == Item.INDENT) {
                 if (this.compressionLevel >= compression) {
                     result.append(StringUtils.repeat(indentValue, indent));
                 }
-            } else if (item == Item.BREAK_ITEM) {
+            } else if (item == Item.BREAK) {
                 if (this.compressionLevel >= compression) {
-                    result.append(this.getNewline());
+                    result.append(this.newline);
                 }
             } else {
                 result.append(item.getSnippet());
@@ -168,12 +168,12 @@ public final class Src {
     
     private static final class Item {
         
-        static final Item OPEN_ITEM = new Item(null);
-        static final Item CLOSE_ITEM = new Item(null);
-        static final Item INC_ITEM = new Item(null);
-        static final Item DEC_ITEM = new Item(null);
-        static final Item BREAK_ITEM = new Item(null);
-        static final Item INDENT_ITEM = new Item(null);
+        static final Item OPEN = new Item(null);
+        static final Item CLOSE = new Item(null);
+        static final Item INC = new Item(null);
+        static final Item DEC = new Item(null);
+        static final Item BREAK = new Item(null);
+        static final Item INDENT = new Item(null);
         
         private final String snippet;
         
@@ -185,7 +185,7 @@ public final class Src {
             return this.snippet;
         }
         
-        static Item createSnippet(final String format, final Object ... arguments) {
+        static final Item createSnippet(final String format, final Object ... arguments) {
             return new Item(String.format(format, arguments));
         }
     }
