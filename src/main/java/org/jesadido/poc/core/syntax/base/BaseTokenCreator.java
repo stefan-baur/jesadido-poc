@@ -22,6 +22,8 @@ public final class BaseTokenCreator implements TokenCreator {
     private static final List<TokenType> SUPPORTED_TOKEN_TYPES = Arrays.asList(TokenType.UNKNOWN,
             TokenType.TERMINATOR,
             TokenType.SEPARATOR,
+            TokenType.KAJ,
+            TokenType.AUX,
             TokenType.SET_OPEN,
             TokenType.SET_CLOSE
     );

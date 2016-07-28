@@ -15,12 +15,6 @@ public enum ConceptTermination {
     
     /**
      * The appropriated concept has no listed termination.
-     *//**
-     * The appropriated concept has no listed termination.
-     *//**
-     * The appropriated concept has no listed termination.
-     *//**
-     * The appropriated concept has no listed termination.
      */
     NONE(null),
     
@@ -146,6 +140,11 @@ public enum ConceptTermination {
      * The appropriated concept is a comma, a separator symbol.
      */
     COMMA(","),
+    
+    /**
+     * The appropriated concept stands for <b>if</b> (conjunction).
+     */
+    SE("Se"),
     
     /**
      * The appropriated concept is a subject preposition termination phrase.

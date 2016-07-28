@@ -25,7 +25,12 @@ public class SentenceProduction extends ProductionLeaf {
     
     @Override
     public List<String> getBnfs() {
-        return Arrays.asList(String.format("%s ::= %s (%s? %s)*", this.getNonterminalSymbol(), Base.NT_SENTENCE_MEAT, TokenType.SEPARATOR, Base.NT_SENTENCE_MEAT));
+        return Arrays.asList(String.format("%s ::= %s (%s? %s)* %s",
+                this.getNonterminalSymbol(),
+                Base.NT_SENTENCE_MEAT,
+                Base.NT_SENTENCE_MEAT_CONJUNCTION,
+                Base.NT_SENTENCE_MEAT,
+                TokenType.TERMINATOR));
     }
     
     @Override

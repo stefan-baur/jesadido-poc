@@ -120,10 +120,28 @@ public enum TokenType {
     PERSONAL_PRONOUN_PLURAL,
     
     /**
-     * The appropriate token value represents a kind of separator symbol for any
-     * listings, for example <b>Kaj</b> <i>(and)</i> or <b>Aux</b> <i>(or)</i>.
+     * The appropriate token value represents a kind of separator symbol for
+     * listings.
      */
     SEPARATOR,
+    
+    /**
+     * The appropriate token value represents the base concept <b>Kaj</b>
+     * <i>(and)</i>.
+     */
+    KAJ,
+    
+    /**
+     * The appropriate token value represents the base concept <b>Aux</b>
+     * <i>(or)</i>.
+     */
+    AUX,
+    
+    /**
+     * The appropriate token value represents the base concept <b>Se</b>
+     * <i>(or)</i>.
+     */
+    SE,
     
     /**
      * The appropriate token value opens an unordered list of elements.

@@ -20,12 +20,12 @@ import org.jesadido.poc.core.syntax.tokens.TokenType;
 public class SentenceMeatConjunctionProduction extends ProductionLeaf {
     
     public SentenceMeatConjunctionProduction() {
-        super(Base.NT_SENTENCE_MEAT_CONJUNCTION, Arrays.asList(TokenType.SEPARATOR), new LinkedList<>());
+        super(Base.NT_SENTENCE_MEAT_CONJUNCTION, Arrays.asList(TokenType.SEPARATOR, TokenType.KAJ, TokenType.AUX), new LinkedList<>());
     }
     
     @Override
     public List<String> getBnfs() {
-        return Arrays.asList(String.format("%s ::= %s", this.getNonterminalSymbol(), TokenType.SEPARATOR));
+        return Arrays.asList(String.format("%s ::= %s | %s | %s", this.getNonterminalSymbol(), TokenType.SEPARATOR, TokenType.KAJ, TokenType.AUX));
     }
     
     @Override
@@ -35,10 +35,10 @@ public class SentenceMeatConjunctionProduction extends ProductionLeaf {
     
     @Override
     public Node parse(final TokenStream tokenStream) {
-        if (tokenStream.hasOneOf(TokenType.SEPARATOR)) {
+        if (tokenStream.hasOneOf(TokenType.SEPARATOR, TokenType.KAJ, TokenType.AUX)) {
             final Token separator = tokenStream.next();
             return this.getGrammar().getSyntaxTreeFactory().createSentenceMeatConjunction(separator.getConcept());
         }
-        return this.parsingTrouble(tokenStream, TokenType.SEPARATOR);
+        return this.parsingTrouble(tokenStream);
     }
 }
