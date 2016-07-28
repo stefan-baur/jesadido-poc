@@ -18,7 +18,7 @@ import org.jesadido.poc.core.syntax.tokens.TokenType;
 public class SentenceMeatPrefixConjunctionProduction extends ProductionOneOf {
     
     public SentenceMeatPrefixConjunctionProduction() {
-        super(Base.NT_SENTENCE_MEAT_INFIX_CONJUNCTION, Arrays.asList(
+        super(Base.NT_SENTENCE_MEAT_PREFIX_CONJUNCTION, Arrays.asList(
                 TokenType.SE
         ));
     }

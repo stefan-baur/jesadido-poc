@@ -12,7 +12,9 @@ import org.jesadido.poc.core.syntax.base.BaseSyntaxTreeFactory;
 import org.jesadido.poc.core.syntax.base.BaseTokenCreator;
 import org.jesadido.poc.core.syntax.base.productions.SentenceInfixConjunctionProduction;
 import org.jesadido.poc.core.syntax.base.productions.SentenceMeatInfixConjunctionProduction;
+import org.jesadido.poc.core.syntax.base.productions.SentenceMeatPrefixConjunctionProduction;
 import org.jesadido.poc.core.syntax.base.productions.SentenceMeatProduction;
+import org.jesadido.poc.core.syntax.base.productions.SentencePrefixConjunctionProduction;
 
 public class GrammarFactory {
     
@@ -22,7 +24,10 @@ public class GrammarFactory {
         return new Grammar(name, new BaseTokenCreator(), new BaseSyntaxTreeFactory())
                 .register(false, new SentenceMeatInfixConjunctionProduction())
                 .register(false, new SentenceMeatProduction())
-                .register(true, new SentenceInfixConjunctionProduction());
+                .register(true, new SentenceInfixConjunctionProduction())
+                .register(false, new SentenceMeatPrefixConjunctionProduction())
+                .register(true, new SentencePrefixConjunctionProduction())
+                ;
     }
     
     public static void main(String[] arguments) {

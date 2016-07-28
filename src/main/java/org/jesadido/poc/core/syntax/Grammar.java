@@ -9,7 +9,7 @@ package org.jesadido.poc.core.syntax;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +19,7 @@ import org.jesadido.poc.core.StringUtils;
 import org.jesadido.poc.core.scripting.Src;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.productions.Production;
+import org.jesadido.poc.core.syntax.productions.ProductionAlternatives;
 import org.jesadido.poc.core.syntax.tokens.TokenCreator;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
@@ -33,7 +34,7 @@ public class Grammar {
     
     private final List<String> nonterminals = new LinkedList<>();
     private final List<TokenType> terminals = new LinkedList<>();
-    private final Map<String, Production> productions = new LinkedHashMap<>();
+    private final Map<String, Production> productions = new HashMap<>();
     private String startSymbol = null;
     
     public Grammar(final String name, final TokenCreator tokenCreator, final SyntaxTreeFactory syntaxTreeFactory) {
@@ -70,29 +71,24 @@ public class Grammar {
         return this.startSymbol;
     }
     
-    public boolean canRegister(final Production production) {
-        if (this.tokenCreator.getSupportedTokenTypes().containsAll(production.getUsedTerminalSymbols())) {
-            final List<String> usedNonterminalSymbols = production.getUsedNonterminalSymbols();
-            if (this.nonterminals.containsAll(usedNonterminalSymbols)) {
-                return true;
-            } else {
-                final List<String> reducedNonterminalSymbols = new LinkedList<>();
-                production.getUsedNonterminalSymbols().stream().filter(usedNonterminalSymbol -> !usedNonterminalSymbol.equals(production.getNonterminalSymbol())).forEach(reducedNonterminalSymbols::add);
-                return this.nonterminals.containsAll(reducedNonterminalSymbols);
-            }
-        }
-        return false;
-    }
-    
     public Grammar register(final boolean start, final Production production) {
-        if (production != null && this.canRegister(production)) {
-            this.terminals.addAll(production.getUsedTerminalSymbols());
-            this.nonterminals.add(production.getNonterminalSymbol());
-            this.productions.put(production.getNonterminalSymbol(), production);
-            if (start) {
-                this.startSymbol = production.getNonterminalSymbol();
+        if (this.tokenCreator.getSupportedTokenTypes().containsAll(production.getUsedTerminalSymbols()) && this.nonterminals.containsAll(production.getUsedNonterminalSymbols())) {
+            Production newProduction = production;
+            if (this.productions.containsKey(production.getNonterminalSymbol())) {
+                ProductionAlternatives productionAlternatives = new ProductionAlternatives(production.getNonterminalSymbol());
+                productionAlternatives.addChild(this.productions.get(production.getNonterminalSymbol()));
+                productionAlternatives.addChild(production);
+                newProduction = productionAlternatives;
             }
-            production.setGrammar(this);
+            this.productions.put(newProduction.getNonterminalSymbol(), newProduction);
+            newProduction.setGrammar(this);
+            this.terminals.removeAll(newProduction.getUsedTerminalSymbols());
+            this.terminals.addAll(newProduction.getUsedTerminalSymbols());
+            this.nonterminals.remove(newProduction.getNonterminalSymbol());
+            this.nonterminals.add(newProduction.getNonterminalSymbol());
+            if (start) {
+                this.startSymbol = newProduction.getNonterminalSymbol();
+            }
             return this;
         }
         throw new IllegalArgumentException(String.format("A production can not registered to the grammar '%s'.", this.name));

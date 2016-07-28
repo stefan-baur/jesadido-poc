@@ -24,6 +24,7 @@ public final class BaseTokenCreator implements TokenCreator {
             TokenType.SEPARATOR,
             TokenType.KAJ,
             TokenType.AUX,
+            TokenType.SE,
             TokenType.SET_OPEN,
             TokenType.SET_CLOSE
     );
