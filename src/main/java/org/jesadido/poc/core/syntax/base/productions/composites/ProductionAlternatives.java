@@ -16,10 +16,10 @@ import org.jesadido.poc.core.syntax.tokens.TokenType;
 
 public class ProductionAlternatives extends ProductionComposite {
     
-    private List<String> bnfs = null;
-    private List<TokenType> usedTerminalSymbols = null;
-    private List<String> usedNonterminalSymbols = null;
-    private List<TokenType> firstSet = null;
+    private final List<String> bnfs = new LinkedList<>();
+    private final List<TokenType> usedTerminalSymbols = new LinkedList<>();
+    private final List<String> usedNonterminalSymbols = new LinkedList<>();
+    private final List<TokenType> firstSet = new LinkedList<>();
     
     public ProductionAlternatives(final String nonterminalSymbol) {
         super(nonterminalSymbol);
@@ -27,54 +27,38 @@ public class ProductionAlternatives extends ProductionComposite {
     
     @Override
     public void invalidate() {
-        this.bnfs = null;
-        this.usedTerminalSymbols = null;
-        this.usedNonterminalSymbols = null;
-        this.firstSet = null;
+        this.bnfs.clear();
+        this.usedTerminalSymbols.clear();
+        this.usedNonterminalSymbols.clear();
+        this.firstSet.clear();
+        this.getChildren().stream().forEach(child -> {
+            this.bnfs.addAll(child.getBnfs());
+            this.usedTerminalSymbols.removeAll(child.getUsedTerminalSymbols());
+            this.usedTerminalSymbols.addAll(child.getUsedTerminalSymbols());
+            this.usedNonterminalSymbols.removeAll(child.getUsedNonterminalSymbols());
+            this.usedNonterminalSymbols.addAll(child.getUsedNonterminalSymbols());
+            this.firstSet.removeAll(child.getFirstSet());
+            this.firstSet.addAll(child.getFirstSet());
+        });
     }
     
     @Override
     public List<String> getBnfs() {
-        if (this.bnfs == null) {
-            this.bnfs = new LinkedList<>();
-            this.getChildren().stream().forEach(child -> this.bnfs.addAll(child.getBnfs()));
-        }
         return this.bnfs;
     }
     
     @Override
     public List<TokenType> getUsedTerminalSymbols() {
-        if (this.usedTerminalSymbols == null) {
-            this.usedTerminalSymbols = new LinkedList<>();
-            this.getChildren().stream().forEach(child -> {
-                this.usedTerminalSymbols.removeAll(child.getUsedTerminalSymbols());
-                this.usedTerminalSymbols.addAll(child.getUsedTerminalSymbols());
-            });
-        }
         return this.usedTerminalSymbols;
     }
     
     @Override
     public List<String> getUsedNonterminalSymbols() {
-        if (this.usedNonterminalSymbols == null) {
-            this.usedNonterminalSymbols = new LinkedList<>();
-            this.getChildren().stream().forEach(child -> {
-                this.usedNonterminalSymbols.removeAll(child.getUsedNonterminalSymbols());
-                this.usedNonterminalSymbols.addAll(child.getUsedNonterminalSymbols());
-            });
-        }
         return this.usedNonterminalSymbols;
     }
     
     @Override
     public List<TokenType> getFirstSet() {
-        if (this.firstSet == null) {
-            this.firstSet = new LinkedList<>();
-            this.getChildren().stream().forEach(child -> {
-                this.firstSet.removeAll(child.getFirstSet());
-                this.firstSet.addAll(child.getFirstSet());
-            });
-        }
         return this.firstSet;
     }
     
