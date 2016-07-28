@@ -37,4 +37,10 @@ public class TokenTypeTest {
             Assert.assertTrue(TokenType.ARTICLE.isOneOf(Arrays.asList(TokenType.values())));
         }
     }
+    
+    @Test
+    public void testToString() {
+        Assert.assertEquals("TERMINATOR", TokenType.TERMINATOR.toString());
+        Assert.assertEquals("UNKNOWN", TokenType.UNKNOWN.toString());
+    }
 }
