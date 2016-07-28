@@ -13,16 +13,25 @@ import java.util.List;
 import org.jesadido.poc.core.syntax.ProductionLeaf;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
+import org.jesadido.poc.core.syntax.tokens.TokenType;
 
 public class ProductionDummy extends ProductionLeaf {
     
+    private static final List<TokenType> NO_TERMINALS = new LinkedList<>();
+    private static final List<String> NO_NONTERMINALS = new LinkedList<>();
+    
     public ProductionDummy(final String nonterminalSymbol) {
-        super(nonterminalSymbol, new LinkedList<>(), new LinkedList<>());
+        super(nonterminalSymbol, NO_TERMINALS, NO_NONTERMINALS);
     }
     
     @Override
     public List<String> getBnfs() {
         return Arrays.asList(String.format("%s ::= IMPOSSIBLE", this.getNonterminalSymbol()));
+    }
+    
+    @Override
+    public List<TokenType> getFirstSet() {
+        return NO_TERMINALS;
     }
     
     @Override

@@ -10,6 +10,7 @@ package org.jesadido.poc.core.syntax.base.productions.leaves;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import org.jesadido.poc.core.StringUtils;
 import org.jesadido.poc.core.syntax.ProductionLeaf;
 import org.jesadido.poc.core.syntax.base.Base;
 import org.jesadido.poc.core.syntax.nodes.Node;
@@ -19,23 +20,26 @@ import org.jesadido.poc.core.syntax.tokens.TokenType;
 
 public class SentenceMeatConjunctionProduction extends ProductionLeaf {
     
+    private static final List<TokenType> FIRST_SET = Arrays.asList(TokenType.KAJ, TokenType.AUX, TokenType.SEPARATOR);
+    private static final List<String> NO_NONTERMINALS = new LinkedList<>();
+    
     public SentenceMeatConjunctionProduction() {
-        super(Base.NT_SENTENCE_MEAT_CONJUNCTION, Arrays.asList(TokenType.SEPARATOR, TokenType.KAJ, TokenType.AUX), new LinkedList<>());
+        super(Base.NT_SENTENCE_MEAT_CONJUNCTION, FIRST_SET, NO_NONTERMINALS);
     }
     
     @Override
     public List<String> getBnfs() {
-        return Arrays.asList(String.format("%s ::= %s | %s | %s", this.getNonterminalSymbol(), TokenType.SEPARATOR, TokenType.KAJ, TokenType.AUX));
+        return Arrays.asList(String.format("%s ::= %s", this.getNonterminalSymbol(), StringUtils.join(" | ", FIRST_SET)));
     }
     
     @Override
     public List<TokenType> getFirstSet() {
-        return Arrays.asList(TokenType.SEPARATOR);
+        return FIRST_SET;
     }
     
     @Override
     public Node parse(final TokenStream tokenStream) {
-        if (tokenStream.hasOneOf(TokenType.SEPARATOR, TokenType.KAJ, TokenType.AUX)) {
+        if (tokenStream.hasOneOf(FIRST_SET)) {
             final Token separator = tokenStream.next();
             return this.getGrammar().getSyntaxTreeFactory().createSentenceMeatConjunction(separator.getConcept());
         }

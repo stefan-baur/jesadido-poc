@@ -13,8 +13,6 @@ import org.jesadido.poc.core.syntax.tokens.TokenType;
 
 public abstract class ProductionLeaf extends Production {
     
-    private static final List<TokenType> FIRST_SET = new LinkedList<>();
-    
     private final List<TokenType> usedTerminalSymbols;
     private final List<String> usedNonterminalSymbols;
     
@@ -32,10 +30,5 @@ public abstract class ProductionLeaf extends Production {
     @Override
     public List<String> getUsedNonterminalSymbols() {
         return this.usedNonterminalSymbols;
-    }
-    
-    @Override
-    public List<TokenType> getFirstSet() {
-        return FIRST_SET;
     }
 }

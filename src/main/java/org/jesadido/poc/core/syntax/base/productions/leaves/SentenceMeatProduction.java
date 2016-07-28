@@ -19,8 +19,11 @@ import org.jesadido.poc.core.syntax.tokens.TokenType;
 
 public class SentenceMeatProduction extends ProductionLeaf {
     
+    private static final List<TokenType> FIRST_SET = Arrays.asList(TokenType.SET_OPEN);
+    private static final List<String> TODO_NONTERMINALS = new LinkedList<>();
+    
     public SentenceMeatProduction() {
-        super(Base.NT_SENTENCE_MEAT, Arrays.asList(TokenType.SET_OPEN, TokenType.SET_CLOSE), new LinkedList<>());
+        super(Base.NT_SENTENCE_MEAT, Arrays.asList(TokenType.SET_OPEN, TokenType.SET_CLOSE), TODO_NONTERMINALS);
     }
     
     @Override
@@ -30,7 +33,7 @@ public class SentenceMeatProduction extends ProductionLeaf {
     
     @Override
     public List<TokenType> getFirstSet() {
-        return Arrays.asList(TokenType.SET_OPEN);
+        return FIRST_SET;
     }
     
     @Override
