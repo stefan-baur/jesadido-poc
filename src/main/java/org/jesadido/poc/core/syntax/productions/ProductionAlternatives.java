@@ -66,7 +66,7 @@ public class ProductionAlternatives extends ProductionComposite {
     @Override
     public Node parse(final TokenStream tokenStream) {
         for (final Production child : this.getChildren()) {
-            if (this.hasFirstOf(tokenStream, child.getNonterminalSymbol())) {
+            if (tokenStream.hasOneOf(child.getFirstSet())) {
                 return child.parse(tokenStream);
             }
         }

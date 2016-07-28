@@ -40,7 +40,7 @@ public class SentencePrefixConjunctionProduction extends ProductionLeaf {
     
     @Override
     public List<TokenType> getFirstSet() {
-        return this.getProduction(Base.NT_SENTENCE_MEAT).getFirstSet();
+        return this.getProduction(Base.NT_SENTENCE_MEAT_PREFIX_CONJUNCTION).getFirstSet();
     }
     
     @Override

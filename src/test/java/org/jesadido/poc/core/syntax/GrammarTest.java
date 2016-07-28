@@ -64,6 +64,10 @@ public class GrammarTest {
                 Node sentence = grammar.parse("Kaj", Base.NT_SENTENCE_MEAT_INFIX_CONJUNCTION);
                 Assert.assertEquals("Kaj", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
+            {
+                Node sentence = grammar.parse("Se { } { } .");
+                Assert.assertEquals("Se { } { } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+            }
         }
     }
 }

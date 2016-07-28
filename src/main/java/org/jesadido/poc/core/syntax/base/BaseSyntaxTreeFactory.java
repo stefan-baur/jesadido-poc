@@ -61,7 +61,7 @@ public class BaseSyntaxTreeFactory implements SyntaxTreeFactory {
     
     @Override
     public Node createTrouble(final String message) {
-        LOGGER.info(String.format("Creating a trouble-node with the message '%s'.", message));
+        LOGGER.info(String.format("Creating a trouble-node with the message: %s", message));
         return new Trouble(message);
     }
 }
