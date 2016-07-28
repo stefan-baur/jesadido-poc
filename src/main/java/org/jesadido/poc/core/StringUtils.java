@@ -78,4 +78,20 @@ public final class StringUtils {
         }
         return "";
     }
+    
+    /**
+     * Joins the objects of the given list as strings separated with the given
+     * delimiter.
+     * @param delimiter The given delimiter.
+     * @param elements The objects of the given list, which can contain
+     * null-elements.
+     * @return The delimiter-separated join of the given elements.
+     */
+    public static final String join(final String delimiter, List<?> elements) {
+        List<String> convertedElements = new LinkedList<>();
+        if (elements != null) {
+            elements.stream().filter(element -> element != null).forEach(element -> convertedElements.add(element.toString()));
+        }
+        return String.join(delimiter, convertedElements);
+    }
 }
