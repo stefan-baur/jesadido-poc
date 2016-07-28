@@ -81,10 +81,11 @@ public final class StringUtils {
     
     /**
      * Joins the objects of the given list as strings separated with the given
-     * delimiter. If you have a list of strings, use <code>String.join()</code>!
+     * delimiter. If you have a list of strings, use <code>String.join()</code>
+     * for more efficient usage!
      * @param delimiter The given delimiter.
-     * @param elements The objects of the given list, which can contain
-     * null-elements.
+     * @param elements The objects of the given list (null-elements will be
+     * skipped).
      * @return The delimiter-separated join of the given elements.
      */
     public static final String join(final String delimiter, List<?> elements) {
