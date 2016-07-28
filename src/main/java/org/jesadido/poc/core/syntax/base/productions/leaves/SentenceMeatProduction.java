@@ -23,7 +23,10 @@ public class SentenceMeatProduction extends ProductionLeaf {
     private static final List<String> TODO_NONTERMINALS = new LinkedList<>();
     
     public SentenceMeatProduction() {
-        super(Base.NT_SENTENCE_MEAT, Arrays.asList(TokenType.SET_OPEN, TokenType.SET_CLOSE), TODO_NONTERMINALS);
+        super(Base.NT_SENTENCE_MEAT, Arrays.asList(
+                TokenType.SET_OPEN,
+                TokenType.SET_CLOSE
+        ), TODO_NONTERMINALS);
     }
     
     @Override

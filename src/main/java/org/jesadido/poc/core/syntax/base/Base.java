@@ -11,6 +11,7 @@ public final class Base {
     
     public static final String NT_SENTENCE = "sentence";
     public static final String NT_SENTENCE_MEAT = "sentence-meat";
+    public static final String NT_SENTENCE_MEAT_PREFIX_CONJUNCTION = "sentence-meat-prefix-conjunction";
     public static final String NT_SENTENCE_MEAT_INFIX_CONJUNCTION = "sentence-meat-infix-conjunction";
     
     private Base() {

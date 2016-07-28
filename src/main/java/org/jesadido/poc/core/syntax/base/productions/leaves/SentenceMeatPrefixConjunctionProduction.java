@@ -18,12 +18,12 @@ import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 
-public class SentenceMeatInfixConjunctionProduction extends ProductionLeaf {
+public class SentenceMeatPrefixConjunctionProduction extends ProductionLeaf {
     
-    private static final List<TokenType> FIRST_SET = Arrays.asList(TokenType.KAJ, TokenType.AUX, TokenType.SEPARATOR);
+    private static final List<TokenType> FIRST_SET = Arrays.asList(TokenType.SE);
     private static final List<String> NO_NONTERMINALS = new LinkedList<>();
     
-    public SentenceMeatInfixConjunctionProduction() {
+    public SentenceMeatPrefixConjunctionProduction() {
         super(Base.NT_SENTENCE_MEAT_INFIX_CONJUNCTION, FIRST_SET, NO_NONTERMINALS);
     }
     
@@ -40,8 +40,8 @@ public class SentenceMeatInfixConjunctionProduction extends ProductionLeaf {
     @Override
     public Node parse(final TokenStream tokenStream) {
         if (tokenStream.hasOneOf(FIRST_SET)) {
-            final Token infix = tokenStream.next();
-            return this.getGrammar().getSyntaxTreeFactory().createSentenceMeatConjunction(infix.getConcept());
+            final Token prefix = tokenStream.next();
+            return this.getGrammar().getSyntaxTreeFactory().createSentenceMeatConjunction(prefix.getConcept());
         }
         return this.parsingTrouble(tokenStream);
     }

@@ -17,23 +17,23 @@ import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 
-public class SentenceInfixConjunctionProduction extends ProductionLeaf {
+public class SentencePrefixConjunctionProduction extends ProductionLeaf {
     
-    public SentenceInfixConjunctionProduction() {
+    public SentencePrefixConjunctionProduction() {
         super(Base.NT_SENTENCE, Arrays.asList(
                 TokenType.TERMINATOR
         ), Arrays.asList(
                 Base.NT_SENTENCE_MEAT,
-                Base.NT_SENTENCE_MEAT_INFIX_CONJUNCTION
+                Base.NT_SENTENCE_MEAT_PREFIX_CONJUNCTION
         ));
     }
     
     @Override
     public List<String> getBnfs() {
-        return Arrays.asList(String.format("%s ::= %s (%s? %s)* %s",
+        return Arrays.asList(String.format("%s ::= %s %s (%s)+ %s",
                 this.getNonterminalSymbol(),
+                Base.NT_SENTENCE_MEAT_PREFIX_CONJUNCTION,
                 Base.NT_SENTENCE_MEAT,
-                Base.NT_SENTENCE_MEAT_INFIX_CONJUNCTION,
                 Base.NT_SENTENCE_MEAT,
                 TokenType.TERMINATOR));
     }
@@ -45,13 +45,17 @@ public class SentenceInfixConjunctionProduction extends ProductionLeaf {
     
     @Override
     public Node parse(final TokenStream tokenStream) {
-        if (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT)) {
+        if (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT_PREFIX_CONJUNCTION)) {
             final List<Node> meats = new LinkedList<>();
-            meats.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT));
-            while (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT_INFIX_CONJUNCTION, Base.NT_SENTENCE_MEAT)) {
-                if (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT_INFIX_CONJUNCTION)) {
-                    meats.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT_INFIX_CONJUNCTION));
+            meats.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT_PREFIX_CONJUNCTION));
+            for (int i = 0; i < 2; i++) {
+                if (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT)) {
+                    meats.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT));
+                } else {
+                    return this.parsingTrouble(tokenStream);
                 }
+            }
+            while (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT)) {
                 meats.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT));
             }
             if (tokenStream.hasOneOf(TokenType.TERMINATOR)) {
