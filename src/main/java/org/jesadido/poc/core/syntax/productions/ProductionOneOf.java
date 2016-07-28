@@ -14,13 +14,12 @@ import org.jesadido.poc.core.StringUtils;
 import org.jesadido.poc.core.syntax.ProductionLeaf;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 
-public abstract class ProductionFirstSet extends ProductionLeaf {
+public abstract class ProductionOneOf extends ProductionLeaf {
     
     private final List<TokenType> firstSet;
-    private static final List<String> NO_NONTERMINALS = new LinkedList<>();
     
-    public ProductionFirstSet(final String nonterminalSymbol, final List<TokenType> firstSet) {
-        super(nonterminalSymbol, firstSet, NO_NONTERMINALS);
+    public ProductionOneOf(final String nonterminalSymbol, final List<TokenType> firstSet) {
+        super(nonterminalSymbol, firstSet, new LinkedList<>());
         this.firstSet = firstSet;
     }
     
