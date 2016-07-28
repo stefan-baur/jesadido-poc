@@ -7,7 +7,6 @@
  */
 package org.jesadido.poc.core.syntax;
 
-import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 
