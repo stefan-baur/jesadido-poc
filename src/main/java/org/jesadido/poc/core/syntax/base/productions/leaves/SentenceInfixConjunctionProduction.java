@@ -17,9 +17,9 @@ import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 
-public class SentenceProduction extends ProductionLeaf {
+public class SentenceInfixConjunctionProduction extends ProductionLeaf {
     
-    public SentenceProduction() {
+    public SentenceInfixConjunctionProduction() {
         super(Base.NT_SENTENCE, Arrays.asList(TokenType.TERMINATOR), Arrays.asList(Base.NT_SENTENCE_MEAT));
     }
     
@@ -28,7 +28,7 @@ public class SentenceProduction extends ProductionLeaf {
         return Arrays.asList(String.format("%s ::= %s (%s? %s)* %s",
                 this.getNonterminalSymbol(),
                 Base.NT_SENTENCE_MEAT,
-                Base.NT_SENTENCE_MEAT_CONJUNCTION,
+                Base.NT_SENTENCE_MEAT_INFIX_CONJUNCTION,
                 Base.NT_SENTENCE_MEAT,
                 TokenType.TERMINATOR));
     }
@@ -43,9 +43,9 @@ public class SentenceProduction extends ProductionLeaf {
         if (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT)) {
             final List<Node> meats = new LinkedList<>();
             meats.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT));
-            while (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT_CONJUNCTION, Base.NT_SENTENCE_MEAT)) {
-                if (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT_CONJUNCTION)) {
-                    meats.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT_CONJUNCTION));
+            while (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT_INFIX_CONJUNCTION, Base.NT_SENTENCE_MEAT)) {
+                if (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT_INFIX_CONJUNCTION)) {
+                    meats.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT_INFIX_CONJUNCTION));
                 }
                 meats.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT));
             }

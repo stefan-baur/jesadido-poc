@@ -9,9 +9,9 @@ package org.jesadido.poc.core.syntax;
 
 import java.util.logging.Logger;
 import org.jesadido.poc.core.syntax.base.BaseSyntaxTreeFactory;
-import org.jesadido.poc.core.syntax.base.productions.leaves.SentenceProduction;
 import org.jesadido.poc.core.syntax.base.BaseTokenCreator;
-import org.jesadido.poc.core.syntax.base.productions.leaves.SentenceMeatConjunctionProduction;
+import org.jesadido.poc.core.syntax.base.productions.leaves.SentenceInfixConjunctionProduction;
+import org.jesadido.poc.core.syntax.base.productions.leaves.SentenceMeatInfixConjunctionProduction;
 import org.jesadido.poc.core.syntax.base.productions.leaves.SentenceMeatProduction;
 
 public class GrammarFactory {
@@ -20,9 +20,9 @@ public class GrammarFactory {
     
     public final Grammar createBaseGrammar(final String name) {
         return new Grammar(name, new BaseTokenCreator(), new BaseSyntaxTreeFactory())
-                .register(false, new SentenceMeatConjunctionProduction())
+                .register(false, new SentenceMeatInfixConjunctionProduction())
                 .register(false, new SentenceMeatProduction())
-                .register(true, new SentenceProduction());
+                .register(true, new SentenceInfixConjunctionProduction());
     }
     
     public static void main(String[] arguments) {

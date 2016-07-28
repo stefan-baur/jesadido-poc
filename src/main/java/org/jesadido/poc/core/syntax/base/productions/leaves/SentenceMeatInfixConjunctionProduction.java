@@ -18,13 +18,13 @@ import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 
-public class SentenceMeatConjunctionProduction extends ProductionLeaf {
+public class SentenceMeatInfixConjunctionProduction extends ProductionLeaf {
     
     private static final List<TokenType> FIRST_SET = Arrays.asList(TokenType.KAJ, TokenType.AUX, TokenType.SEPARATOR);
     private static final List<String> NO_NONTERMINALS = new LinkedList<>();
     
-    public SentenceMeatConjunctionProduction() {
-        super(Base.NT_SENTENCE_MEAT_CONJUNCTION, FIRST_SET, NO_NONTERMINALS);
+    public SentenceMeatInfixConjunctionProduction() {
+        super(Base.NT_SENTENCE_MEAT_INFIX_CONJUNCTION, FIRST_SET, NO_NONTERMINALS);
     }
     
     @Override
