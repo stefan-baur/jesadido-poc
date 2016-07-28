@@ -31,7 +31,7 @@ public class ProductionAlternatives extends ProductionComposite {
         this.usedNonterminalSymbols.clear();
         this.firstSet.clear();
         this.getChildren().stream().forEach(child -> {
-            this.bnfs.addAll(child.getBnfs());
+            this.bnfs.addAll(child.getRules());
             this.usedTerminalSymbols.removeAll(child.getUsedTerminalSymbols());
             this.usedTerminalSymbols.addAll(child.getUsedTerminalSymbols());
             this.usedNonterminalSymbols.removeAll(child.getUsedNonterminalSymbols());
@@ -42,7 +42,7 @@ public class ProductionAlternatives extends ProductionComposite {
     }
     
     @Override
-    public List<String> getBnfs() {
+    public List<String> getRules() {
         return this.bnfs;
     }
     

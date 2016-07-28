@@ -34,7 +34,7 @@ public abstract class Production {
         return this.nonterminalSymbol;
     }
     
-    public abstract List<String> getBnfs();
+    public abstract List<String> getRules();
     
     public abstract List<TokenType> getUsedTerminalSymbols();
     

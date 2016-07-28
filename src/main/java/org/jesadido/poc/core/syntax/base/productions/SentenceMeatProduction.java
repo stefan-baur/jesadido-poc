@@ -30,7 +30,7 @@ public class SentenceMeatProduction extends ProductionLeaf {
     }
     
     @Override
-    public List<String> getBnfs() {
+    public List<String> getRules() {
         return Arrays.asList(String.format("%s ::= %s %s", this.getNonterminalSymbol(), TokenType.SET_OPEN, TokenType.SET_CLOSE));
     }
     

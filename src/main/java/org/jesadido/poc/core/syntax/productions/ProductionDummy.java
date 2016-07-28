@@ -24,7 +24,7 @@ public class ProductionDummy extends ProductionLeaf {
     }
     
     @Override
-    public List<String> getBnfs() {
+    public List<String> getRules() {
         return Arrays.asList(String.format("%s ::= IMPOSSIBLE", this.getNonterminalSymbol()));
     }
     

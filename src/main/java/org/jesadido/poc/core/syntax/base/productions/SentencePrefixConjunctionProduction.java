@@ -29,7 +29,7 @@ public class SentencePrefixConjunctionProduction extends ProductionLeaf {
     }
     
     @Override
-    public List<String> getBnfs() {
+    public List<String> getRules() {
         return Arrays.asList(String.format("%s ::= %s %s (%s)+ %s",
                 this.getNonterminalSymbol(),
                 Base.NT_SENTENCE_MEAT_PREFIX_CONJUNCTION,

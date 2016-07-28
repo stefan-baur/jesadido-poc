@@ -23,7 +23,7 @@ public abstract class ProductionOneOf extends ProductionLeaf {
     }
     
     @Override
-    public List<String> getBnfs() {
+    public List<String> getRules() {
         return Arrays.asList(String.format("%s ::= %s", this.getNonterminalSymbol(), StringUtils.join(" | ", this.firstSet)));
     }
     
