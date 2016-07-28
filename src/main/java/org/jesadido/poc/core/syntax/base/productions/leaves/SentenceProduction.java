@@ -5,7 +5,7 @@
  * Licensed under the GNU Lesser General Public License, Version 3.0 (LGPL-3.0)
  * https://www.gnu.org/licenses/lgpl-3.0.txt
  */
-package org.jesadido.poc.core.syntax.base.productions;
+package org.jesadido.poc.core.syntax.base.productions.leaves;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -24,7 +24,7 @@ public class SentenceProduction extends ProductionLeaf {
     }
     
     @Override
-    public List<String> getBnf() {
+    public List<String> getBnfs() {
         return Arrays.asList(String.format("%s ::= %s (%s? %s)*", this.getNonterminalSymbol(), Base.NT_SENTENCE_MEAT, TokenType.SEPARATOR, Base.NT_SENTENCE_MEAT));
     }
     

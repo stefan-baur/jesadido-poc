@@ -5,7 +5,7 @@
  * Licensed under the GNU Lesser General Public License, Version 3.0 (LGPL-3.0)
  * https://www.gnu.org/licenses/lgpl-3.0.txt
  */
-package org.jesadido.poc.core.syntax.base.productions;
+package org.jesadido.poc.core.syntax.base.productions.leaves;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -14,14 +14,14 @@ import org.jesadido.poc.core.syntax.ProductionLeaf;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 
-public class NullProduction extends ProductionLeaf {
+public class ProductionDummy extends ProductionLeaf {
     
-    public NullProduction(final String nonterminalSymbol) {
+    public ProductionDummy(final String nonterminalSymbol) {
         super(nonterminalSymbol, new LinkedList<>(), new LinkedList<>());
     }
     
     @Override
-    public List<String> getBnf() {
+    public List<String> getBnfs() {
         return Arrays.asList(String.format("%s ::= IMPOSSIBLE", this.getNonterminalSymbol()));
     }
     

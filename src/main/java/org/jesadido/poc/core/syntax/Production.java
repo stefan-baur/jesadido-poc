@@ -8,7 +8,7 @@
 package org.jesadido.poc.core.syntax;
 
 import java.util.List;
-import org.jesadido.poc.core.syntax.base.productions.NullProduction;
+import org.jesadido.poc.core.syntax.base.productions.leaves.ProductionDummy;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
@@ -26,7 +26,7 @@ public abstract class Production {
         return this.grammar;
     }
     
-    public void setGrammar(Grammar grammar) {
+    public void setGrammar(final Grammar grammar) {
         this.grammar = grammar;
     }
     
@@ -34,7 +34,7 @@ public abstract class Production {
         return this.nonterminalSymbol;
     }
     
-    public abstract List<String> getBnf();
+    public abstract List<String> getBnfs();
     
     public abstract List<TokenType> getUsedTerminalSymbols();
     
@@ -44,7 +44,7 @@ public abstract class Production {
         if (this.grammar.getProductionRules().containsKey(nonterminalSymbol)) {
             return this.grammar.getProductionRules().get(nonterminalSymbol);
         }
-        return new NullProduction(nonterminalSymbol);
+        return new ProductionDummy(nonterminalSymbol);
     }
     
     public abstract List<TokenType> getFirstSet();

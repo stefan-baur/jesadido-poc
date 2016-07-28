@@ -9,10 +9,10 @@ package org.jesadido.poc.core.syntax;
 
 import java.util.logging.Logger;
 import org.jesadido.poc.core.syntax.base.BaseSyntaxTreeFactory;
-import org.jesadido.poc.core.syntax.base.productions.SentenceProduction;
+import org.jesadido.poc.core.syntax.base.productions.leaves.SentenceProduction;
 import org.jesadido.poc.core.syntax.base.BaseTokenCreator;
-import org.jesadido.poc.core.syntax.base.productions.SentenceMeatConjunctionProduction;
-import org.jesadido.poc.core.syntax.base.productions.SentenceMeatProduction;
+import org.jesadido.poc.core.syntax.base.productions.leaves.SentenceMeatConjunctionProduction;
+import org.jesadido.poc.core.syntax.base.productions.leaves.SentenceMeatProduction;
 
 public class GrammarFactory {
     
