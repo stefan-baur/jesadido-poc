@@ -61,4 +61,21 @@ public final class StringUtils {
         }
         return result;
     }
+    
+    /**
+     * Returns a concatenated repeatation of the given phrase.
+     * @param count The repeatation amount.
+     * @param phrase The given phrase.
+     * @return The concatenated repeatation.
+     */
+    public static final String repeat(final int count, final String phrase) {
+        if (phrase != null) {
+            final StringBuilder result = new StringBuilder();
+            for (int i = 0; i < count; i++) {
+                result.append(phrase);
+            }
+            return result.toString();
+        }
+        return "";
+    }
 }
