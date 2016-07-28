@@ -34,4 +34,10 @@ public abstract class ProductionComposite extends Production {
     }
     
     public abstract void invalidate();
+    
+    @Override
+    public void setGrammar(final Grammar grammar) {
+        super.setGrammar(grammar);
+        this.children.stream().forEach(child -> child.setGrammar(grammar));
+    }
 }
