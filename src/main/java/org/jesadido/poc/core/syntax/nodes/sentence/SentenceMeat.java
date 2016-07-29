@@ -5,8 +5,9 @@
  * Licensed under the GNU Lesser General Public License, Version 3.0 (LGPL-3.0)
  * https://www.gnu.org/licenses/lgpl-3.0.txt
  */
-package org.jesadido.poc.core.syntax.nodes.composites;
+package org.jesadido.poc.core.syntax.nodes.sentence;
 
+import org.jesadido.poc.core.syntax.nodes.common.ClapsedElement;
 import org.jesadido.poc.core.syntax.Terminal;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.nodes.Visitor;

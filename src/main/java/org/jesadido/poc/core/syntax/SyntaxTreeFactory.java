@@ -17,9 +17,9 @@ public interface SyntaxTreeFactory {
     Node createSentenceMeat(Node prefix, Concept opener, List<Node> parts, Concept closer);
     Node createSentenceMeatPrefix(Concept prefix);
     
-    Node createPrepositionalPartSu(Concept preposition, Concept opener, Node nominalSelection, Concept closer);
-    Node createPrepositionalPartDom(Concept preposition, Concept opener, Node verbSelection, Concept closer);
-    Node createPrepositionalPartFin(Concept preposition, Concept opener, Node nominalSelection, Concept closer);
+    Node createSentenceMeatPartSu(Concept preposition, Concept opener, Node nominalSelection, Concept closer);
+    Node createSentenceMeatPartDom(Concept preposition, Concept opener, Node verbSelection, Concept closer);
+    Node createSentenceMeatPartFin(Concept preposition, Concept opener, Node nominalSelection, Concept closer);
     
     Node createTrouble(String message);
 }

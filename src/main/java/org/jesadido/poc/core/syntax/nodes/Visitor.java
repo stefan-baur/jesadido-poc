@@ -7,22 +7,22 @@
  */
 package org.jesadido.poc.core.syntax.nodes;
 
-import org.jesadido.poc.core.syntax.nodes.composites.PrepositionalPartDom;
-import org.jesadido.poc.core.syntax.nodes.composites.PrepositionalPartFin;
-import org.jesadido.poc.core.syntax.nodes.composites.SentenceMeat;
-import org.jesadido.poc.core.syntax.nodes.composites.Sentence;
-import org.jesadido.poc.core.syntax.nodes.composites.PrepositionalPartSu;
-import org.jesadido.poc.core.syntax.nodes.leaves.SentenceMeatPrefix;
-import org.jesadido.poc.core.syntax.nodes.leaves.Trouble;
+import org.jesadido.poc.core.syntax.nodes.sentence.Sentence;
+import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeat;
+import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatPartDom;
+import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatPartFin;
+import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatPartSu;
+import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatPrefix;
+import org.jesadido.poc.core.syntax.nodes.common.Trouble;
 
 public interface Visitor<R, A> {
     
     R visit(Sentence node, A argument);
     R visit(SentenceMeat node, A argument);
     R visit(SentenceMeatPrefix node, A argument);
-    R visit(PrepositionalPartSu node, A argument);
-    R visit(PrepositionalPartDom node, A argument);
-    R visit(PrepositionalPartFin node, A argument);
+    R visit(SentenceMeatPartSu node, A argument);
+    R visit(SentenceMeatPartDom node, A argument);
+    R visit(SentenceMeatPartFin node, A argument);
     
     R visit(Trouble node, A argument);
 }

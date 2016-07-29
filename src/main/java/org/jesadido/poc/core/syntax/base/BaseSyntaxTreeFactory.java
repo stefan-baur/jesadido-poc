@@ -12,13 +12,13 @@ import org.jesadido.poc.core.syntax.nodes.Node;
 import java.util.List;
 import java.util.logging.Logger;
 import org.jesadido.poc.core.concepts.Concept;
-import org.jesadido.poc.core.syntax.nodes.composites.PrepositionalPartDom;
-import org.jesadido.poc.core.syntax.nodes.composites.PrepositionalPartFin;
-import org.jesadido.poc.core.syntax.nodes.composites.SentenceMeat;
-import org.jesadido.poc.core.syntax.nodes.composites.Sentence;
-import org.jesadido.poc.core.syntax.nodes.composites.PrepositionalPartSu;
-import org.jesadido.poc.core.syntax.nodes.leaves.SentenceMeatPrefix;
-import org.jesadido.poc.core.syntax.nodes.leaves.Trouble;
+import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatPartDom;
+import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatPartFin;
+import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeat;
+import org.jesadido.poc.core.syntax.nodes.sentence.Sentence;
+import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatPartSu;
+import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatPrefix;
+import org.jesadido.poc.core.syntax.nodes.common.Trouble;
 
 public class BaseSyntaxTreeFactory implements SyntaxTreeFactory {
     
@@ -42,20 +42,20 @@ public class BaseSyntaxTreeFactory implements SyntaxTreeFactory {
     }
     
     @Override
-    public Node createPrepositionalPartSu(final Concept preposition, final Concept opener, final Node nominalSelection, final Concept closer) {
-        return new PrepositionalPartSu(new Terminal(preposition, "Su"), new Terminal(opener, "("), new Terminal(closer, ")"))
+    public Node createSentenceMeatPartSu(final Concept preposition, final Concept opener, final Node nominalSelection, final Concept closer) {
+        return new SentenceMeatPartSu(new Terminal(preposition, "Su"), new Terminal(opener, "("), new Terminal(closer, ")"))
                 .addChild(nominalSelection);
     }
     
     @Override
-    public Node createPrepositionalPartDom(final Concept preposition, final Concept opener, final Node verbSelection, final Concept closer) {
-        return new PrepositionalPartDom(new Terminal(preposition, "Dom"), new Terminal(opener, "("), new Terminal(closer, ")"))
+    public Node createSentenceMeatPartDom(final Concept preposition, final Concept opener, final Node verbSelection, final Concept closer) {
+        return new SentenceMeatPartDom(new Terminal(preposition, "Dom"), new Terminal(opener, "("), new Terminal(closer, ")"))
                 .addChild(verbSelection);
     }
     
     @Override
-    public Node createPrepositionalPartFin(final Concept preposition, final Concept opener, final Node nominalSelection, final Concept closer) {
-        return new PrepositionalPartFin(new Terminal(preposition, "Fin"), new Terminal(opener, "("), new Terminal(closer, ")"))
+    public Node createSentenceMeatPartFin(final Concept preposition, final Concept opener, final Node nominalSelection, final Concept closer) {
+        return new SentenceMeatPartFin(new Terminal(preposition, "Fin"), new Terminal(opener, "("), new Terminal(closer, ")"))
                 .addChild(nominalSelection);
     }
     

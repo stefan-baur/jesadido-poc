@@ -5,21 +5,22 @@
  * Licensed under the GNU Lesser General Public License, Version 3.0 (LGPL-3.0)
  * https://www.gnu.org/licenses/lgpl-3.0.txt
  */
-package org.jesadido.poc.core.syntax.nodes.leaves;
+package org.jesadido.poc.core.syntax.nodes.sentence;
 
-import org.jesadido.poc.core.syntax.nodes.NodeLeaf;
+import org.jesadido.poc.core.syntax.Terminal;
+import org.jesadido.poc.core.syntax.nodes.NodeComposite;
 import org.jesadido.poc.core.syntax.nodes.Visitor;
 
-public class Trouble extends NodeLeaf {
+public class Sentence extends NodeComposite {
     
-    private final String message;
+    private final Terminal terminator;
     
-    public Trouble(final String message) {
-        this.message = message;
+    public Sentence(final Terminal terminator) {
+        this.terminator = terminator;
     }
     
-    public String getMessage() {
-        return this.message;
+    public Terminal getTerminator() {
+        return this.terminator;
     }
     
     @Override

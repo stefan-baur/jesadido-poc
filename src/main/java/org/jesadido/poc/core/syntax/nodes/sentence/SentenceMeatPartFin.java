@@ -5,22 +5,16 @@
  * Licensed under the GNU Lesser General Public License, Version 3.0 (LGPL-3.0)
  * https://www.gnu.org/licenses/lgpl-3.0.txt
  */
-package org.jesadido.poc.core.syntax.nodes.leaves;
+package org.jesadido.poc.core.syntax.nodes.sentence;
 
+import org.jesadido.poc.core.syntax.nodes.common.PrepositionalElement;
 import org.jesadido.poc.core.syntax.Terminal;
-import org.jesadido.poc.core.syntax.nodes.NodeLeaf;
 import org.jesadido.poc.core.syntax.nodes.Visitor;
 
-public class SentenceMeatPrefix extends NodeLeaf {
+public class SentenceMeatPartFin extends PrepositionalElement {
     
-    private final Terminal prefix;
-    
-    public SentenceMeatPrefix(final Terminal prefix) {
-        this.prefix = prefix;
-    }
-    
-    public Terminal getSeparator() {
-        return this.prefix;
+    public SentenceMeatPartFin(final Terminal preposition, final Terminal opener, final Terminal closer) {
+        super(preposition, opener, closer);
     }
     
     @Override

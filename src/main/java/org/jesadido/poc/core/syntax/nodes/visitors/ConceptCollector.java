@@ -13,13 +13,13 @@ import java.util.List;
 import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.nodes.Visitor;
-import org.jesadido.poc.core.syntax.nodes.composites.PrepositionalPartDom;
-import org.jesadido.poc.core.syntax.nodes.composites.PrepositionalPartFin;
-import org.jesadido.poc.core.syntax.nodes.composites.PrepositionalPartSu;
-import org.jesadido.poc.core.syntax.nodes.composites.Sentence;
-import org.jesadido.poc.core.syntax.nodes.composites.SentenceMeat;
-import org.jesadido.poc.core.syntax.nodes.leaves.SentenceMeatPrefix;
-import org.jesadido.poc.core.syntax.nodes.leaves.Trouble;
+import org.jesadido.poc.core.syntax.nodes.common.Trouble;
+import org.jesadido.poc.core.syntax.nodes.sentence.Sentence;
+import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeat;
+import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatPartDom;
+import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatPartFin;
+import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatPartSu;
+import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatPrefix;
 
 public class ConceptCollector implements Visitor<List<Concept>, Void> {
     
@@ -59,7 +59,7 @@ public class ConceptCollector implements Visitor<List<Concept>, Void> {
     }
     
     @Override
-    public List<Concept> visit(final PrepositionalPartSu node, final Void unused) {
+    public List<Concept> visit(final SentenceMeatPartSu node, final Void unused) {
         List<Concept> result = new LinkedList<>();
         result.add(node.getPreposition().getConcept());
         result.add(node.getOpener().getConcept());
@@ -69,7 +69,7 @@ public class ConceptCollector implements Visitor<List<Concept>, Void> {
     }
     
     @Override
-    public List<Concept> visit(final PrepositionalPartDom node, final Void unused) {
+    public List<Concept> visit(final SentenceMeatPartDom node, final Void unused) {
         List<Concept> result = new LinkedList<>();
         result.add(node.getPreposition().getConcept());
         result.add(node.getOpener().getConcept());
@@ -79,7 +79,7 @@ public class ConceptCollector implements Visitor<List<Concept>, Void> {
     }
     
     @Override
-    public List<Concept> visit(final PrepositionalPartFin node, final Void unused) {
+    public List<Concept> visit(final SentenceMeatPartFin node, final Void unused) {
         List<Concept> result = new LinkedList<>();
         result.add(node.getPreposition().getConcept());
         result.add(node.getOpener().getConcept());
