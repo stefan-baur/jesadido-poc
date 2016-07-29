@@ -24,14 +24,15 @@ public class SentenceMeatPartProduction extends ProductionLeaf {
         super(
                 Base.NT_SENTENCE_MEAT_PART,
                 new LinkedList<>(),
-                Arrays.asList(Base.NT_SENTENCE_MEAT_PART_SU)
+                Arrays.asList(Base.NT_SENTENCE_MEAT_PART_SU, Base.NT_SENTENCE_MEAT_PART_DOM)
         );
     }
     
     @Override
     public List<String> getRules() {
-        return Arrays.asList(String.format("%s ::= %s", this.getNonterminalSymbol(),
-                Base.NT_SENTENCE_MEAT_PART_SU
+        return Arrays.asList(String.format("%s ::= %s | %s", this.getNonterminalSymbol(),
+                Base.NT_SENTENCE_MEAT_PART_SU,
+                Base.NT_SENTENCE_MEAT_PART_DOM
         ));
     }
     
@@ -40,6 +41,7 @@ public class SentenceMeatPartProduction extends ProductionLeaf {
         if (this.firsts == null) {
             this.firsts = new LinkedList<>();
             this.firsts.addAll(this.getFirsts(Base.NT_SENTENCE_MEAT_PART_SU));
+            this.firsts.addAll(this.getFirsts(Base.NT_SENTENCE_MEAT_PART_DOM));
         }
         return this.firsts;
     }
@@ -48,6 +50,8 @@ public class SentenceMeatPartProduction extends ProductionLeaf {
     public Node parse(final TokenStream tokenStream) {
         if (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT_PART_SU)) {
             return this.parse(tokenStream, Base.NT_SENTENCE_MEAT_PART_SU);
+        } else if (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT_PART_DOM)) {
+            return this.parse(tokenStream, Base.NT_SENTENCE_MEAT_PART_DOM);
         }
         return this.parsingTrouble(tokenStream);
     }

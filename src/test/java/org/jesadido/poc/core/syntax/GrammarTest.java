@@ -49,8 +49,8 @@ public class GrammarTest {
                 Assert.assertEquals("{ Su ( ) } Aux$, { Su ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
-                Node sentence = grammar.parse("{ Su ( ) } { Su ( ) } Aux { Su ( ) } .");
-                Assert.assertEquals("{ Su ( ) } { Su ( ) } Aux { Su ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+                Node sentence = grammar.parse("Kaj { Su ( ) } { Dom ( ) Su ( ) } Aux { Su ( ) } .");
+                Assert.assertEquals("Kaj { Su ( ) } { Dom ( ) Su ( ) } Aux { Su ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
                 Node sentence = grammar.parse("{ Su ( ) } { Su ( ) } .");
@@ -65,8 +65,8 @@ public class GrammarTest {
                 Assert.assertEquals("Kaj", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
-                Node sentence = grammar.parse("Se { Su ( ) } { Su ( ) } .");
-                Assert.assertEquals("Se { Su ( ) } { Su ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+                Node sentence = grammar.parse("Se { Su ( ) } { Dom ( ) } .");
+                Assert.assertEquals("Se { Su ( ) } { Dom ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
         }
     }
