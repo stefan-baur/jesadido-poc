@@ -10,11 +10,11 @@ package org.jesadido.poc.core.syntax.nodes.common;
 import org.jesadido.poc.core.syntax.nodes.NodeLeaf;
 import org.jesadido.poc.core.syntax.nodes.Visitor;
 
-public class Trouble extends NodeLeaf {
+public class TroubleNode extends NodeLeaf {
     
     private final String message;
     
-    public Trouble(final String message) {
+    public TroubleNode(final String message) {
         this.message = message;
     }
     

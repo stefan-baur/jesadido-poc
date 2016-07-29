@@ -10,12 +10,12 @@ package org.jesadido.poc.core.syntax.nodes.common;
 import org.jesadido.poc.core.syntax.Terminal;
 import org.jesadido.poc.core.syntax.nodes.NodeComposite;
 
-public abstract class ClapsedElement extends NodeComposite {
+public abstract class ClapsedNode extends NodeComposite {
     
     private final Terminal opener;
     private final Terminal closer;
     
-    public ClapsedElement(final Terminal opener, final Terminal closer) {
+    public ClapsedNode(final Terminal opener, final Terminal closer) {
         this.opener = opener;
         this.closer = closer;
     }

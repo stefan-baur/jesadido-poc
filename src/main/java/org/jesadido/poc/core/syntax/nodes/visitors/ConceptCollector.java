@@ -13,7 +13,7 @@ import java.util.List;
 import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.nodes.Visitor;
-import org.jesadido.poc.core.syntax.nodes.common.Trouble;
+import org.jesadido.poc.core.syntax.nodes.common.TroubleNode;
 import org.jesadido.poc.core.syntax.nodes.sentence.Sentence;
 import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeat;
 import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatPartDom;
@@ -89,7 +89,7 @@ public class ConceptCollector implements Visitor<List<Concept>, Void> {
     }
     
     @Override
-    public List<Concept> visit(final Trouble node, final Void unused) {
+    public List<Concept> visit(final TroubleNode node, final Void unused) {
         return new LinkedList<>();
     }
 }

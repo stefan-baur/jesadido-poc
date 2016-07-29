@@ -13,7 +13,7 @@ import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatPartDom;
 import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatPartFin;
 import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatPartSu;
 import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatPrefix;
-import org.jesadido.poc.core.syntax.nodes.common.Trouble;
+import org.jesadido.poc.core.syntax.nodes.common.TroubleNode;
 
 public interface Visitor<R, A> {
     
@@ -24,5 +24,5 @@ public interface Visitor<R, A> {
     R visit(SentenceMeatPartDom node, A argument);
     R visit(SentenceMeatPartFin node, A argument);
     
-    R visit(Trouble node, A argument);
+    R visit(TroubleNode node, A argument);
 }

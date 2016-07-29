@@ -7,12 +7,12 @@
  */
 package org.jesadido.poc.core.syntax.nodes.sentence;
 
-import org.jesadido.poc.core.syntax.nodes.common.ClapsedElement;
 import org.jesadido.poc.core.syntax.Terminal;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.nodes.Visitor;
+import org.jesadido.poc.core.syntax.nodes.common.ClapsedNode;
 
-public class SentenceMeat extends ClapsedElement {
+public class SentenceMeat extends ClapsedNode {
     
     private final Node prefix;
     

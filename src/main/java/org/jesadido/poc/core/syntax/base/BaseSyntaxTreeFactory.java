@@ -7,18 +7,19 @@
  */
 package org.jesadido.poc.core.syntax.base;
 
-import org.jesadido.poc.core.syntax.*;
-import org.jesadido.poc.core.syntax.nodes.Node;
 import java.util.List;
 import java.util.logging.Logger;
 import org.jesadido.poc.core.concepts.Concept;
+import org.jesadido.poc.core.syntax.SyntaxTreeFactory;
+import org.jesadido.poc.core.syntax.Terminal;
+import org.jesadido.poc.core.syntax.nodes.Node;
+import org.jesadido.poc.core.syntax.nodes.common.TroubleNode;
+import org.jesadido.poc.core.syntax.nodes.sentence.Sentence;
+import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeat;
 import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatPartDom;
 import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatPartFin;
-import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeat;
-import org.jesadido.poc.core.syntax.nodes.sentence.Sentence;
 import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatPartSu;
 import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatPrefix;
-import org.jesadido.poc.core.syntax.nodes.common.Trouble;
 
 public class BaseSyntaxTreeFactory implements SyntaxTreeFactory {
     
@@ -62,6 +63,6 @@ public class BaseSyntaxTreeFactory implements SyntaxTreeFactory {
     @Override
     public Node createTrouble(final String message) {
         LOGGER.info(String.format("Creating a trouble-node with the message: %s", message));
-        return new Trouble(message);
+        return new TroubleNode(message);
     }
 }

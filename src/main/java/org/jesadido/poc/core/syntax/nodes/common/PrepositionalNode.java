@@ -7,14 +7,13 @@
  */
 package org.jesadido.poc.core.syntax.nodes.common;
 
-import org.jesadido.poc.core.syntax.nodes.common.ClapsedElement;
 import org.jesadido.poc.core.syntax.Terminal;
 
-public abstract class PrepositionalElement extends ClapsedElement {
+public abstract class PrepositionalNode extends ClapsedNode {
     
     private final Terminal preposition;
     
-    public PrepositionalElement(final Terminal preposition, final Terminal opener, final Terminal closer) {
+    public PrepositionalNode(final Terminal preposition, final Terminal opener, final Terminal closer) {
         super(opener, closer);
         this.preposition = preposition;
     }
