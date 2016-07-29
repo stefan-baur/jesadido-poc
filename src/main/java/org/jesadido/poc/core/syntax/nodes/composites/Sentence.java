@@ -15,8 +15,8 @@ public class Sentence extends NodeComposite {
     
     private final Terminal terminator;
     
-    public Sentence(final Terminal separator) {
-        this.terminator = separator;
+    public Sentence(final Terminal terminator) {
+        this.terminator = terminator;
     }
     
     public Terminal getTerminator() {

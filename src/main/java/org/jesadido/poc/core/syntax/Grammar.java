@@ -124,12 +124,12 @@ public class Grammar {
     }
     
     public Src toPlot() {
-        Src srcProductionBnfs = new Src();
-        List<String> bnfs = new LinkedList<>();
-        this.productions.values().stream().forEach(production -> bnfs.addAll(production.getRules()));
-        final int max = bnfs.size() - 1;
-        for (int i = 0; i < bnfs.size(); i++) {
-            srcProductionBnfs.line("%s%s", bnfs.get(i), i < max ? "," : "");
+        Src srcProductionRules = new Src();
+        List<String> rules = new LinkedList<>();
+        this.productions.values().stream().forEach(production -> rules.addAll(production.getRules()));
+        final int max = rules.size() - 1;
+        for (int i = 0; i < rules.size(); i++) {
+            srcProductionRules.line("%s%s", rules.get(i), i < max ? "," : "");
         }
         return new Src()
                 .begin("Grammar %s = (N, T, P, s) = (", this.name)
@@ -138,7 +138,7 @@ public class Grammar {
                 .endBegin("}, {")
                 .line(StringUtils.join(", ", this.terminals))
                 .endBegin("}, {")
-                .add(srcProductionBnfs)
+                .add(srcProductionRules)
                 .end("}, %s", this.startSymbol)
                 .end(")")
                 ;
