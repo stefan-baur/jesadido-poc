@@ -36,7 +36,7 @@ public class SentenceProduction extends ProductionLeaf {
     }
     
     @Override
-    public List<TokenType> getFirstSet() {
+    public List<TokenType> getFirsts() {
         return this.getFirsts(Base.NT_SENTENCE_MEAT);
     }
     

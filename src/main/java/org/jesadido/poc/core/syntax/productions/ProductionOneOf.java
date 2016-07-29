@@ -15,20 +15,20 @@ import org.jesadido.poc.core.syntax.tokens.TokenType;
 
 public abstract class ProductionOneOf extends ProductionLeaf {
     
-    private final List<TokenType> firstSet;
+    private final List<TokenType> firsts;
     
-    public ProductionOneOf(final String nonterminalSymbol, final List<TokenType> firstSet) {
-        super(nonterminalSymbol, firstSet, new LinkedList<>());
-        this.firstSet = firstSet;
+    public ProductionOneOf(final String nonterminalSymbol, final List<TokenType> firsts) {
+        super(nonterminalSymbol, firsts, new LinkedList<>());
+        this.firsts = firsts;
     }
     
     @Override
     public List<String> getRules() {
-        return Arrays.asList(String.format("%s ::= %s", this.getNonterminalSymbol(), StringUtils.join(" | ", this.firstSet)));
+        return Arrays.asList(String.format("%s ::= %s", this.getNonterminalSymbol(), StringUtils.join(" | ", this.firsts)));
     }
     
     @Override
-    public List<TokenType> getFirstSet() {
-        return this.firstSet;
+    public List<TokenType> getFirsts() {
+        return this.firsts;
     }
 }

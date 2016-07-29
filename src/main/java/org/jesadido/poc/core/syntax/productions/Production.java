@@ -8,6 +8,7 @@
 package org.jesadido.poc.core.syntax.productions;
 
 import java.util.List;
+import java.util.Map;
 import org.jesadido.poc.core.syntax.Grammar;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
@@ -41,23 +42,24 @@ public abstract class Production {
     public abstract List<String> getUsedNonterminalSymbols();
     
     private Production getProduction(final String nonterminalSymbol) {
-        if (this.grammar.getProductionRules().containsKey(nonterminalSymbol)) {
-            return this.grammar.getProductionRules().get(nonterminalSymbol);
+        final Map<String, Production> productions = this.grammar.getProductionRules();
+        if (productions.containsKey(nonterminalSymbol)) {
+            return productions.get(nonterminalSymbol);
         }
         return new ProductionDummy(nonterminalSymbol);
     }
     
-    public abstract List<TokenType> getFirstSet();
+    public abstract List<TokenType> getFirsts();
     
     public abstract Node parse(final TokenStream tokenStream);
     
     public List<TokenType> getFirsts(final String nonterminalSymbol) {
-        return this.getProduction(nonterminalSymbol).getFirstSet();
+        return this.getProduction(nonterminalSymbol).getFirsts();
     }
     
     public boolean hasFirstOf(final TokenStream tokenStream, final String ... nonterminalSymbols) {
         for (final String nt : nonterminalSymbols) {
-            if (tokenStream.hasOneOf(this.getProduction(nt).getFirstSet())) {
+            if (tokenStream.hasOneOf(this.getProduction(nt).getFirsts())) {
                 return true;
             }
         }

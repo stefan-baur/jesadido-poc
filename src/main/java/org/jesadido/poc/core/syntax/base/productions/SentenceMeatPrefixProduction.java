@@ -26,7 +26,7 @@ public class SentenceMeatPrefixProduction extends ProductionOneOf {
     
     @Override
     public Node parse(final TokenStream tokenStream) {
-        if (tokenStream.hasOneOf(this.getFirstSet())) {
+        if (tokenStream.hasOneOf(this.getFirsts())) {
             final Token infix = tokenStream.next();
             return this.getGrammar().getSyntaxTreeFactory().createSentenceMeatPrefix(infix.getConcept());
         }

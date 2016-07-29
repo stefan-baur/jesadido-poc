@@ -18,7 +18,7 @@ public class ProductionAlternatives extends ProductionComposite {
     private final List<String> rules = new LinkedList<>();
     private final List<TokenType> usedTerminalSymbols = new LinkedList<>();
     private final List<String> usedNonterminalSymbols = new LinkedList<>();
-    private List<TokenType> firstSet = null;
+    private List<TokenType> firsts = null;
     
     public ProductionAlternatives(final String nonterminalSymbol) {
         super(nonterminalSymbol);
@@ -29,7 +29,7 @@ public class ProductionAlternatives extends ProductionComposite {
         this.rules.clear();
         this.usedTerminalSymbols.clear();
         this.usedNonterminalSymbols.clear();
-        this.firstSet = null;
+        this.firsts = null;
         this.getChildren().stream().forEach(child -> {
             this.rules.addAll(child.getRules());
             this.usedTerminalSymbols.removeAll(child.getUsedTerminalSymbols());
@@ -55,18 +55,18 @@ public class ProductionAlternatives extends ProductionComposite {
     }
     
     @Override
-    public List<TokenType> getFirstSet() {
-        if (this.firstSet == null) {
-            this.firstSet = new LinkedList<>();
-            this.getChildren().stream().forEach(child -> this.firstSet.addAll(child.getFirstSet()));
+    public List<TokenType> getFirsts() {
+        if (this.firsts == null) {
+            this.firsts = new LinkedList<>();
+            this.getChildren().stream().forEach(child -> this.firsts.addAll(child.getFirsts()));
         }
-        return this.firstSet;
+        return this.firsts;
     }
     
     @Override
     public Node parse(final TokenStream tokenStream) {
         for (final Production child : this.getChildren()) {
-            if (tokenStream.hasOneOf(child.getFirstSet())) {
+            if (tokenStream.hasOneOf(child.getFirsts())) {
                 return child.parse(tokenStream);
             }
         }

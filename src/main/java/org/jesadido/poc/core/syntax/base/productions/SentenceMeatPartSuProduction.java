@@ -19,7 +19,7 @@ import org.jesadido.poc.core.syntax.tokens.TokenType;
 
 public class SentenceMeatPartSuProduction extends ProductionLeaf {
     
-    private List<TokenType> firstSet = null;
+    private List<TokenType> firsts = null;
     
     public SentenceMeatPartSuProduction() {
         super(
@@ -39,12 +39,12 @@ public class SentenceMeatPartSuProduction extends ProductionLeaf {
     }
     
     @Override
-    public List<TokenType> getFirstSet() {
-        if (this.firstSet == null) {
-            this.firstSet = new LinkedList<>();
-            this.firstSet.add(TokenType.SU);
+    public List<TokenType> getFirsts() {
+        if (this.firsts == null) {
+            this.firsts = new LinkedList<>();
+            this.firsts.add(TokenType.SU);
         }
-        return this.firstSet;
+        return this.firsts;
     }
     
     @Override
