@@ -20,12 +20,7 @@ public class SentenceMeatPrefixProduction extends ProductionOneOf {
     public SentenceMeatPrefixProduction() {
         super(
                 Base.NT_SENTENCE_MEAT_PREFIX,
-                Arrays.asList(
-                        TokenType.SE,
-                        TokenType.KAJ,
-                        TokenType.AUX,
-                        TokenType.SEPARATOR
-                )
+                Arrays.asList(TokenType.SE, TokenType.KAJ, TokenType.AUX, TokenType.SEPARATOR)
         );
     }
     

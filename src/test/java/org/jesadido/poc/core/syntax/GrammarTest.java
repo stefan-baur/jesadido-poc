@@ -21,52 +21,52 @@ public class GrammarTest {
         {
             final Grammar grammar = new GrammarFactory().createBaseGrammar("TestGrammar");
             {
-                Node sentence = grammar.parse("{ } .");
-                Assert.assertEquals("{ } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+                Node sentence = grammar.parse("{ Su ( ) } .");
+                Assert.assertEquals("{ Su ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
-                Node sentence = grammar.parse("{ } X.");
-                Assert.assertEquals("{ } X.", ConceptUtils.join(ConceptCollector.collect(sentence)));
+                Node sentence = grammar.parse("{ Su ( ) } X.");
+                Assert.assertEquals("{ Su ( ) } X.", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
-                Node sentence = grammar.parse("{ } K");
+                Node sentence = grammar.parse("{ Su ( ) } K");
                 Assert.assertEquals("", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
-                Node sentence = grammar.parse("\t{ }    .");
-                Assert.assertEquals("{ } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+                Node sentence = grammar.parse("\t{ Su ( ) }    .");
+                Assert.assertEquals("{ Su ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
-                Node sentence = grammar.parse("{ } Kaj { } .");
-                Assert.assertEquals("{ } Kaj { } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+                Node sentence = grammar.parse("{ Su ( ) } Kaj { Su ( ) } .");
+                Assert.assertEquals("{ Su ( ) } Kaj { Su ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
-                Node sentence = grammar.parse("{ } Aux$, { } Aux { } .");
-                Assert.assertEquals("{ } Aux$, { } Aux { } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+                Node sentence = grammar.parse("{ Su ( ) } Aux$, { Su ( ) } Aux { Su ( ) } .");
+                Assert.assertEquals("{ Su ( ) } Aux$, { Su ( ) } Aux { Su ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
-                Node sentence = grammar.parse("{ } Aux$, { } Aux { .");
-                Assert.assertEquals("{ } Aux$, { } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+                Node sentence = grammar.parse("{ Su ( ) } Aux$, { Su ( ) } Aux { .");
+                Assert.assertEquals("{ Su ( ) } Aux$, { Su ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
-                Node sentence = grammar.parse("{ } { } Aux { } .");
-                Assert.assertEquals("{ } { } Aux { } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+                Node sentence = grammar.parse("{ Su ( ) } { Su ( ) } Aux { Su ( ) } .");
+                Assert.assertEquals("{ Su ( ) } { Su ( ) } Aux { Su ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
-                Node sentence = grammar.parse("{ } { } .");
-                Assert.assertEquals("{ } { } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+                Node sentence = grammar.parse("{ Su ( ) } { Su ( ) } .");
+                Assert.assertEquals("{ Su ( ) } { Su ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
-                Node sentence = grammar.parse("{ }", Base.NT_SENTENCE_MEAT);
-                Assert.assertEquals("{ }", ConceptUtils.join(ConceptCollector.collect(sentence)));
+                Node sentence = grammar.parse("{ Su ( ) }", Base.NT_SENTENCE_MEAT);
+                Assert.assertEquals("{ Su ( ) }", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
                 Node sentence = grammar.parse("Kaj", Base.NT_SENTENCE_MEAT_PREFIX);
                 Assert.assertEquals("Kaj", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
-                Node sentence = grammar.parse("Se { } { } .");
-                Assert.assertEquals("Se { } { } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+                Node sentence = grammar.parse("Se { Su ( ) } { Su ( ) } .");
+                Assert.assertEquals("Se { Su ( ) } { Su ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
         }
     }

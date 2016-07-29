@@ -20,11 +20,11 @@ import org.jesadido.poc.core.syntax.tokens.TokenType;
 public class SentenceProduction extends ProductionLeaf {
     
     public SentenceProduction() {
-        super(Base.NT_SENTENCE, Arrays.asList(
-                TokenType.TERMINATOR
-        ), Arrays.asList(
-                Base.NT_SENTENCE_MEAT
-        ));
+        super(
+                Base.NT_SENTENCE,
+                Arrays.asList(TokenType.TERMINATOR),
+                Arrays.asList(Base.NT_SENTENCE_MEAT)
+        );
     }
     
     @Override
@@ -37,7 +37,7 @@ public class SentenceProduction extends ProductionLeaf {
     
     @Override
     public List<TokenType> getFirstSet() {
-        return this.getProduction(Base.NT_SENTENCE_MEAT).getFirstSet();
+        return this.getFirsts(Base.NT_SENTENCE_MEAT);
     }
     
     @Override

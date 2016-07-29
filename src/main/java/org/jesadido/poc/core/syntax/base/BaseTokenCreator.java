@@ -25,8 +25,13 @@ public final class BaseTokenCreator implements TokenCreator {
             TokenType.KAJ,
             TokenType.AUX,
             TokenType.SE,
-            TokenType.SET_OPEN,
-            TokenType.SET_CLOSE
+            TokenType.OPEN_SET,
+            TokenType.CLOSE_SET,
+            TokenType.SU,
+            TokenType.DOM,
+            TokenType.FIN,
+            TokenType.OPEN,
+            TokenType.CLOSE
     );
 
     private static final EnumMap<ConceptTermination, TokenCreator.Selector> SELECTIONS = new EnumMap<>(ConceptTermination.class);
@@ -37,8 +42,13 @@ public final class BaseTokenCreator implements TokenCreator {
         SELECTIONS.put(ConceptTermination.KAJ, (TokenCreator.Selector) (Concept c) -> TokenType.KAJ);
         SELECTIONS.put(ConceptTermination.AUX, (TokenCreator.Selector) (Concept c) -> TokenType.AUX);
         SELECTIONS.put(ConceptTermination.SE, (TokenCreator.Selector) (Concept c) -> TokenType.SE);
-        SELECTIONS.put(ConceptTermination.LEFT_CURLY, (TokenCreator.Selector) (Concept c) -> TokenType.SET_OPEN);
-        SELECTIONS.put(ConceptTermination.RIGHT_CURLY, (TokenCreator.Selector) (Concept c) -> TokenType.SET_CLOSE);
+        SELECTIONS.put(ConceptTermination.LEFT_CURLY, (TokenCreator.Selector) (Concept c) -> TokenType.OPEN_SET);
+        SELECTIONS.put(ConceptTermination.RIGHT_CURLY, (TokenCreator.Selector) (Concept c) -> TokenType.CLOSE_SET);
+        SELECTIONS.put(ConceptTermination.SU, (TokenCreator.Selector) (Concept c) -> TokenType.SU);
+        SELECTIONS.put(ConceptTermination.DOM, (TokenCreator.Selector) (Concept c) -> TokenType.DOM);
+        SELECTIONS.put(ConceptTermination.FIN, (TokenCreator.Selector) (Concept c) -> TokenType.FIN);
+        SELECTIONS.put(ConceptTermination.LEFT_PARENTHESIS, (TokenCreator.Selector) (Concept c) -> TokenType.OPEN);
+        SELECTIONS.put(ConceptTermination.RIGHT_PARENTHESIS, (TokenCreator.Selector) (Concept c) -> TokenType.CLOSE);
     }
 
     @Override

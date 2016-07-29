@@ -144,14 +144,39 @@ public enum TokenType {
     SE,
     
     /**
+     * The appropriate token value opens an element.
+     */
+    OPEN,
+    
+    /**
+     * The appropriate token value closes an element.
+     */
+    CLOSE,
+    
+    /**
      * The appropriate token value opens an unordered list of elements.
      */
-    SET_OPEN,
+    OPEN_SET,
     
     /**
      * The appropriate token value closes an unordered list of elements.
      */
-    SET_CLOSE,
+    CLOSE_SET,
+    
+    /**
+     * The appropriate token value indicates the subject.
+     */
+    SU,
+    
+    /**
+     * The appropriate token value indicates the predicate.
+     */
+    DOM,
+    
+    /**
+     * The appropriate token value indicates the accusative object.
+     */
+    FIN,
     
     /**
      * The appropriate token value represents a terminator symbol for

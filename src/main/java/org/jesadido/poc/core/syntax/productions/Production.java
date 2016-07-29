@@ -40,7 +40,7 @@ public abstract class Production {
     
     public abstract List<String> getUsedNonterminalSymbols();
     
-    public Production getProduction(final String nonterminalSymbol) {
+    private Production getProduction(final String nonterminalSymbol) {
         if (this.grammar.getProductionRules().containsKey(nonterminalSymbol)) {
             return this.grammar.getProductionRules().get(nonterminalSymbol);
         }
@@ -50,6 +50,10 @@ public abstract class Production {
     public abstract List<TokenType> getFirstSet();
     
     public abstract Node parse(final TokenStream tokenStream);
+    
+    public List<TokenType> getFirsts(final String nonterminalSymbol) {
+        return this.getProduction(nonterminalSymbol).getFirstSet();
+    }
     
     public boolean hasFirstOf(final TokenStream tokenStream, final String ... nonterminalSymbols) {
         for (final String nt : nonterminalSymbols) {

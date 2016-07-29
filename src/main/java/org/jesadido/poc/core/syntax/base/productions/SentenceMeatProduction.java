@@ -22,20 +22,20 @@ public class SentenceMeatProduction extends ProductionLeaf {
     private List<TokenType> firstSet = null;
     
     public SentenceMeatProduction() {
-        super(Base.NT_SENTENCE_MEAT, Arrays.asList(
-                TokenType.SET_OPEN,
-                TokenType.SET_CLOSE
-        ), Arrays.asList(
-                Base.NT_SENTENCE_MEAT_PREFIX
-        ));
+        super(
+                Base.NT_SENTENCE_MEAT,
+                Arrays.asList(TokenType.OPEN_SET, TokenType.CLOSE_SET),
+                Arrays.asList(Base.NT_SENTENCE_MEAT_PREFIX, Base.NT_SENTENCE_MEAT_PART)
+        );
     }
     
     @Override
     public List<String> getRules() {
-        return Arrays.asList(String.format("%s ::= (%s)? %s %s", this.getNonterminalSymbol(),
+        return Arrays.asList(String.format("%s ::= (%s)? %s (%s)+ %s", this.getNonterminalSymbol(),
                 Base.NT_SENTENCE_MEAT_PREFIX,
-                TokenType.SET_OPEN,
-                TokenType.SET_CLOSE
+                TokenType.OPEN_SET,
+                Base.NT_SENTENCE_MEAT_PART,
+                TokenType.CLOSE_SET
         ));
     }
     
@@ -43,8 +43,8 @@ public class SentenceMeatProduction extends ProductionLeaf {
     public List<TokenType> getFirstSet() {
         if (this.firstSet == null) {
             this.firstSet = new LinkedList<>();
-            this.firstSet.add(TokenType.SET_OPEN);
-            this.firstSet.addAll(this.getProduction(Base.NT_SENTENCE_MEAT_PREFIX).getFirstSet());
+            this.firstSet.add(TokenType.OPEN_SET);
+            this.firstSet.addAll(this.getFirsts(Base.NT_SENTENCE_MEAT_PREFIX));
         }
         return this.firstSet;
     }
@@ -53,16 +53,24 @@ public class SentenceMeatProduction extends ProductionLeaf {
     public Node parse(final TokenStream tokenStream) {
         Node meatPrefix = null;
         if (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT_PREFIX)) {
-            meatPrefix = this.getProduction(Base.NT_SENTENCE_MEAT_PREFIX).parse(tokenStream);
+            meatPrefix = this.parse(tokenStream, Base.NT_SENTENCE_MEAT_PREFIX);
         }
-        if (tokenStream.hasOneOf(TokenType.SET_OPEN)) {
+        if (tokenStream.hasOneOf(TokenType.OPEN_SET)) {
             final Token opener = tokenStream.next();
-            if (tokenStream.hasOneOf(TokenType.SET_CLOSE)) {
-                final Token closer = tokenStream.next();
-                return this.getGrammar().getSyntaxTreeFactory().createSentenceMeat(meatPrefix, opener.getConcept(), null, closer.getConcept());
+            final List<Node> parts = new LinkedList<>();
+            if (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT_PART)) {
+                parts.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT_PART));
+                while (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT_PART)) {
+                    parts.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT_PART));
+                }
+                if (tokenStream.hasOneOf(TokenType.CLOSE_SET)) {
+                    final Token closer = tokenStream.next();
+                    return this.getGrammar().getSyntaxTreeFactory().createSentenceMeat(meatPrefix, opener.getConcept(), parts, closer.getConcept());
+                }
+                return this.parsingTrouble(tokenStream, TokenType.CLOSE_SET);
             }
-            return this.parsingTrouble(tokenStream, TokenType.SET_CLOSE);
+            return this.parsingTrouble(tokenStream);
         }
-        return this.parsingTrouble(tokenStream, TokenType.SET_OPEN);
+        return this.parsingTrouble(tokenStream, TokenType.OPEN_SET);
     }
 }
