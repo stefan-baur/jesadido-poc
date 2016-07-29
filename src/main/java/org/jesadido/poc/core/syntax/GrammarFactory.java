@@ -10,11 +10,9 @@ package org.jesadido.poc.core.syntax;
 import java.util.logging.Logger;
 import org.jesadido.poc.core.syntax.base.BaseSyntaxTreeFactory;
 import org.jesadido.poc.core.syntax.base.BaseTokenCreator;
-import org.jesadido.poc.core.syntax.base.productions.SentenceInfixConjunctionProduction;
-import org.jesadido.poc.core.syntax.base.productions.SentenceMeatInfixConjunctionProduction;
-import org.jesadido.poc.core.syntax.base.productions.SentenceMeatPrefixConjunctionProduction;
+import org.jesadido.poc.core.syntax.base.productions.SentenceMeatPrefixProduction;
 import org.jesadido.poc.core.syntax.base.productions.SentenceMeatProduction;
-import org.jesadido.poc.core.syntax.base.productions.SentencePrefixConjunctionProduction;
+import org.jesadido.poc.core.syntax.base.productions.SentenceProduction;
 
 public class GrammarFactory {
     
@@ -23,13 +21,9 @@ public class GrammarFactory {
     public final Grammar createBaseGrammar(final String name) {
         return new Grammar(name, new BaseTokenCreator(), new BaseSyntaxTreeFactory())
                 
+                .register(false, new SentenceMeatPrefixProduction())
                 .register(false, new SentenceMeatProduction())
-                
-                .register(false, new SentenceMeatInfixConjunctionProduction())
-                .register(true, new SentenceInfixConjunctionProduction())
-                
-                .register(false, new SentenceMeatPrefixConjunctionProduction())
-                .register(true, new SentencePrefixConjunctionProduction())
+                .register(true, new SentenceProduction())
                 ;
     }
     

@@ -31,13 +31,13 @@ public class BaseSyntaxTreeFactory implements SyntaxTreeFactory {
     }
     
     @Override
-    public Node createSentenceMeat(final Concept opener, final List<Node> parts, final Concept closer) {
+    public Node createSentenceMeat(final Concept opener, final Node prefix, final List<Node> parts, final Concept closer) {
         return new SentenceMeat(new Terminal(opener, "{"), new Terminal(closer, "}"))
                 .addChildren(parts);
     }
     
     @Override
-    public Node createSentenceMeatConjunction(final Concept separator) {
+    public Node createSentenceMeatPrefix(final Concept separator) {
         return new SentenceMeatConjunction(new Terminal(separator, "Kaj"));
     }
     

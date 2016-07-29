@@ -13,11 +13,13 @@ import org.jesadido.poc.core.syntax.nodes.Node;
 
 public interface SyntaxTreeFactory {
     
-    Node createSentence(final List<Node> meats, final Concept terminator);
-    Node createSentenceMeat(final Concept opener, final List<Node> parts, final Concept closer);
-    Node createSentenceMeatConjunction(final Concept separator);
-    Node createPrepositionalPartSu(final Concept preposition, final Concept opener, final Node nominalSelection, final Concept closer);
-    Node createPrepositionalPartDom(final Concept preposition, final Concept opener, final Node verbSelection, final Concept closer);
-    Node createPrepositionalPartFin(final Concept preposition, final Concept opener, final Node nominalSelection, final Concept closer);
-    Node createTrouble(final String message);
+    Node createSentence(List<Node> meats, Concept terminator);
+    Node createSentenceMeat(Concept opener, Node prefix, List<Node> parts, Concept closer);
+    Node createSentenceMeatPrefix(Concept prefix);
+    
+    Node createPrepositionalPartSu(Concept preposition, Concept opener, Node nominalSelection, Concept closer);
+    Node createPrepositionalPartDom(Concept preposition, Concept opener, Node verbSelection, Concept closer);
+    Node createPrepositionalPartFin(Concept preposition, Concept opener, Node nominalSelection, Concept closer);
+    
+    Node createTrouble(String message);
 }

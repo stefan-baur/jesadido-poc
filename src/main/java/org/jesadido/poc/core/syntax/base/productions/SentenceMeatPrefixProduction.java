@@ -15,19 +15,25 @@ import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 
-public class SentenceMeatPrefixConjunctionProduction extends ProductionOneOf {
+public class SentenceMeatPrefixProduction extends ProductionOneOf {
     
-    public SentenceMeatPrefixConjunctionProduction() {
-        super(Base.NT_SENTENCE_MEAT_PREFIX_CONJUNCTION, Arrays.asList(
-                TokenType.SE
-        ));
+    public SentenceMeatPrefixProduction() {
+        super(
+                Base.NT_SENTENCE_MEAT_PREFIX,
+                Arrays.asList(
+                        TokenType.SE,
+                        TokenType.KAJ,
+                        TokenType.AUX,
+                        TokenType.SEPARATOR
+                )
+        );
     }
     
     @Override
     public Node parse(final TokenStream tokenStream) {
         if (tokenStream.hasOneOf(this.getFirstSet())) {
-            final Token prefix = tokenStream.next();
-            return this.getGrammar().getSyntaxTreeFactory().createSentenceMeatConjunction(prefix.getConcept());
+            final Token infix = tokenStream.next();
+            return this.getGrammar().getSyntaxTreeFactory().createSentenceMeatPrefix(infix.getConcept());
         }
         return this.parsingTrouble(tokenStream);
     }

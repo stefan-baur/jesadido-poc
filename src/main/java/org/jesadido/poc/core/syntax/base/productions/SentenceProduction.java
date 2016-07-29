@@ -17,44 +17,34 @@ import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 
-public class SentencePrefixConjunctionProduction extends ProductionLeaf {
+public class SentenceProduction extends ProductionLeaf {
     
-    public SentencePrefixConjunctionProduction() {
+    public SentenceProduction() {
         super(Base.NT_SENTENCE, Arrays.asList(
                 TokenType.TERMINATOR
         ), Arrays.asList(
-                Base.NT_SENTENCE_MEAT,
-                Base.NT_SENTENCE_MEAT_PREFIX_CONJUNCTION
+                Base.NT_SENTENCE_MEAT
         ));
     }
     
     @Override
     public List<String> getRules() {
-        return Arrays.asList(String.format("%s ::= %s %s (%s)+ %s",
+        return Arrays.asList(String.format("%s ::= (%s)+ %s",
                 this.getNonterminalSymbol(),
-                Base.NT_SENTENCE_MEAT_PREFIX_CONJUNCTION,
-                Base.NT_SENTENCE_MEAT,
                 Base.NT_SENTENCE_MEAT,
                 TokenType.TERMINATOR));
     }
     
     @Override
     public List<TokenType> getFirstSet() {
-        return this.getProduction(Base.NT_SENTENCE_MEAT_PREFIX_CONJUNCTION).getFirstSet();
+        return this.getProduction(Base.NT_SENTENCE_MEAT).getFirstSet();
     }
     
     @Override
     public Node parse(final TokenStream tokenStream) {
-        if (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT_PREFIX_CONJUNCTION)) {
+        if (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT)) {
             final List<Node> meats = new LinkedList<>();
-            meats.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT_PREFIX_CONJUNCTION));
-            for (int i = 0; i < 2; i++) {
-                if (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT)) {
-                    meats.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT));
-                } else {
-                    return this.parsingTrouble(tokenStream);
-                }
-            }
+            meats.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT));
             while (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT)) {
                 meats.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT));
             }

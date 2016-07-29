@@ -19,33 +19,47 @@ import org.jesadido.poc.core.syntax.tokens.TokenType;
 
 public class SentenceMeatProduction extends ProductionLeaf {
     
-    private static final List<TokenType> FIRST_SET = Arrays.asList(TokenType.SET_OPEN);
-    private static final List<String> TODO_NONTERMINALS = new LinkedList<>();
+    private List<TokenType> firstSet = null;
     
     public SentenceMeatProduction() {
         super(Base.NT_SENTENCE_MEAT, Arrays.asList(
                 TokenType.SET_OPEN,
                 TokenType.SET_CLOSE
-        ), TODO_NONTERMINALS);
+        ), Arrays.asList(
+                Base.NT_SENTENCE_MEAT_PREFIX
+        ));
     }
     
     @Override
     public List<String> getRules() {
-        return Arrays.asList(String.format("%s ::= %s %s", this.getNonterminalSymbol(), TokenType.SET_OPEN, TokenType.SET_CLOSE));
+        return Arrays.asList(String.format("%s ::= (%s)? %s %s", this.getNonterminalSymbol(),
+                Base.NT_SENTENCE_MEAT_PREFIX,
+                TokenType.SET_OPEN,
+                TokenType.SET_CLOSE
+        ));
     }
     
     @Override
     public List<TokenType> getFirstSet() {
-        return FIRST_SET;
+        if (this.firstSet == null) {
+            this.firstSet = new LinkedList<>();
+            this.firstSet.add(TokenType.SET_OPEN);
+            this.firstSet.addAll(this.getProduction(Base.NT_SENTENCE_MEAT_PREFIX).getFirstSet());
+        }
+        return this.firstSet;
     }
     
     @Override
     public Node parse(final TokenStream tokenStream) {
+        Node meatPrefix = null;
+        if (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT_PREFIX)) {
+            meatPrefix = this.getProduction(Base.NT_SENTENCE_MEAT_PREFIX).parse(tokenStream);
+        }
         if (tokenStream.hasOneOf(TokenType.SET_OPEN)) {
             final Token opener = tokenStream.next();
             if (tokenStream.hasOneOf(TokenType.SET_CLOSE)) {
                 final Token closer = tokenStream.next();
-                return this.getGrammar().getSyntaxTreeFactory().createSentenceMeat(opener.getConcept(), null, closer.getConcept());
+                return this.getGrammar().getSyntaxTreeFactory().createSentenceMeat(opener.getConcept(), meatPrefix, null, closer.getConcept());
             }
             return this.parsingTrouble(tokenStream, TokenType.SET_CLOSE);
         }
