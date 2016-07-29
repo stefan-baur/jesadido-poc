@@ -43,13 +43,13 @@ public class ConceptCollectorTest {
         }
         {
             SyntaxTreeFactory syntaxTreeFactory = new BaseSyntaxTreeFactory();
-            Node sentenceMeat = syntaxTreeFactory.createSentenceMeat(ConceptRegistry.getInstance().getConcept("{{"), null, null, ConceptRegistry.getInstance().getConcept("}}"));
+            Node sentenceMeat = syntaxTreeFactory.createSentenceMeat(null, ConceptRegistry.getInstance().getConcept("{{"), null, ConceptRegistry.getInstance().getConcept("}}"));
             Node sentence = syntaxTreeFactory.createSentence(Arrays.asList(sentenceMeat), ConceptRegistry.getInstance().getConcept("()."));
             Assert.assertEquals("{{ }} ().", ConceptUtils.join(ConceptCollector.collect(sentence)));
         }
         {
             SyntaxTreeFactory syntaxTreeFactory = new BaseSyntaxTreeFactory();
-            Node sentenceMeat = syntaxTreeFactory.createSentenceMeat(ConceptRegistry.getInstance().getConcept("{"), null, null, ConceptRegistry.getInstance().getConcept("}"));
+            Node sentenceMeat = syntaxTreeFactory.createSentenceMeat(null, ConceptRegistry.getInstance().getConcept("{"), null, ConceptRegistry.getInstance().getConcept("}"));
             Node sentence = syntaxTreeFactory.createSentence(Arrays.asList(sentenceMeat), ConceptRegistry.getInstance().getConcept("."));
             Assert.assertEquals("{-}-.", ConceptUtils.join("-", ConceptCollector.collect(sentence)));
         }
@@ -101,12 +101,12 @@ public class ConceptCollectorTest {
             Node suA = syntaxTreeFactory.createPrepositionalPartSu(ConceptRegistry.getInstance().getConcept("SUBJ"), ConceptRegistry.getInstance().getConcept("["), null, ConceptRegistry.getInstance().getConcept("]"));
             Node domA = syntaxTreeFactory.createPrepositionalPartDom(ConceptRegistry.getInstance().getConcept("PRED"), ConceptRegistry.getInstance().getConcept("["), null, ConceptRegistry.getInstance().getConcept("]"));
             Node finA = syntaxTreeFactory.createPrepositionalPartFin(ConceptRegistry.getInstance().getConcept("ACC"), ConceptRegistry.getInstance().getConcept("["), null, ConceptRegistry.getInstance().getConcept("]"));
-            Node sentenceMeatA = syntaxTreeFactory.createSentenceMeat(ConceptRegistry.getInstance().getConcept("("), null, Arrays.asList(suA, domA, finA), ConceptRegistry.getInstance().getConcept(")"));
+            Node sentenceMeatA = syntaxTreeFactory.createSentenceMeat(null, ConceptRegistry.getInstance().getConcept("("), Arrays.asList(suA, domA, finA), ConceptRegistry.getInstance().getConcept(")"));
             Node sentenceMeatConjunction = syntaxTreeFactory.createSentenceMeatPrefix(ConceptRegistry.getInstance().getConcept("CONJ"));
             Node suB = syntaxTreeFactory.createPrepositionalPartSu(ConceptRegistry.getInstance().getConcept("SUBJ"), ConceptRegistry.getInstance().getConcept("["), null, ConceptRegistry.getInstance().getConcept("]"));
             Node domB = syntaxTreeFactory.createPrepositionalPartDom(ConceptRegistry.getInstance().getConcept("PRED"), ConceptRegistry.getInstance().getConcept("["), null, ConceptRegistry.getInstance().getConcept("]"));
             Node finB = syntaxTreeFactory.createPrepositionalPartFin(ConceptRegistry.getInstance().getConcept("ACC"), ConceptRegistry.getInstance().getConcept("["), null, ConceptRegistry.getInstance().getConcept("]"));
-            Node sentenceMeatB = syntaxTreeFactory.createSentenceMeat(ConceptRegistry.getInstance().getConcept("("), null, Arrays.asList(finB, domB, suB), ConceptRegistry.getInstance().getConcept(")"));
+            Node sentenceMeatB = syntaxTreeFactory.createSentenceMeat(null, ConceptRegistry.getInstance().getConcept("("), Arrays.asList(finB, domB, suB), ConceptRegistry.getInstance().getConcept(")"));
             Node sentence = syntaxTreeFactory.createSentence(Arrays.asList(sentenceMeatA, sentenceMeatConjunction, sentenceMeatB), ConceptRegistry.getInstance().getConcept("PERIOD"));
             Assert.assertEquals("( SUBJ [ ] PRED [ ] ACC [ ] ) CONJ ( ACC [ ] PRED [ ] SUBJ [ ] ) PERIOD", ConceptUtils.join(ConceptCollector.collect(sentence)));
         }
@@ -131,7 +131,7 @@ public class ConceptCollectorTest {
             Node su = syntaxTreeFactory.createPrepositionalPartSu(null, null, null, null);
             Node dom = syntaxTreeFactory.createPrepositionalPartDom(null, null, null, null);
             Node fin = syntaxTreeFactory.createPrepositionalPartFin(null, null, null, null);
-            Node sentenceMeat = syntaxTreeFactory.createSentenceMeat(ConceptRegistry.getInstance().getConcept("[["), null, Arrays.asList(fin, dom, su), ConceptRegistry.getInstance().getConcept("]]"));
+            Node sentenceMeat = syntaxTreeFactory.createSentenceMeat(null, ConceptRegistry.getInstance().getConcept("[["), Arrays.asList(fin, dom, su), ConceptRegistry.getInstance().getConcept("]]"));
             Assert.assertEquals("[[ Fin ( ) Dom ( ) Su ( ) ]]", ConceptUtils.join(ConceptCollector.collect(sentenceMeat)));
         }
     }

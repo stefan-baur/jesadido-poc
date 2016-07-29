@@ -17,7 +17,7 @@ import org.jesadido.poc.core.syntax.nodes.composites.PrepositionalPartFin;
 import org.jesadido.poc.core.syntax.nodes.composites.SentenceMeat;
 import org.jesadido.poc.core.syntax.nodes.composites.Sentence;
 import org.jesadido.poc.core.syntax.nodes.composites.PrepositionalPartSu;
-import org.jesadido.poc.core.syntax.nodes.leaves.SentenceMeatConjunction;
+import org.jesadido.poc.core.syntax.nodes.leaves.SentenceMeatPrefix;
 import org.jesadido.poc.core.syntax.nodes.leaves.Trouble;
 
 public class BaseSyntaxTreeFactory implements SyntaxTreeFactory {
@@ -31,14 +31,14 @@ public class BaseSyntaxTreeFactory implements SyntaxTreeFactory {
     }
     
     @Override
-    public Node createSentenceMeat(final Concept opener, final Node prefix, final List<Node> parts, final Concept closer) {
-        return new SentenceMeat(new Terminal(opener, "{"), new Terminal(closer, "}"))
+    public Node createSentenceMeat(final Node prefix, final Concept opener, final List<Node> parts, final Concept closer) {
+        return new SentenceMeat(prefix, new Terminal(opener, "{"), new Terminal(closer, "}"))
                 .addChildren(parts);
     }
     
     @Override
-    public Node createSentenceMeatPrefix(final Concept separator) {
-        return new SentenceMeatConjunction(new Terminal(separator, "Kaj"));
+    public Node createSentenceMeatPrefix(final Concept prefix) {
+        return new SentenceMeatPrefix(new Terminal(prefix, "Kaj"));
     }
     
     @Override

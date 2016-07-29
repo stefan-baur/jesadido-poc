@@ -11,16 +11,16 @@ import org.jesadido.poc.core.syntax.Terminal;
 import org.jesadido.poc.core.syntax.nodes.NodeLeaf;
 import org.jesadido.poc.core.syntax.nodes.Visitor;
 
-public class SentenceMeatConjunction extends NodeLeaf {
+public class SentenceMeatPrefix extends NodeLeaf {
     
-    private final Terminal separator;
+    private final Terminal prefix;
     
-    public SentenceMeatConjunction(final Terminal separator) {
-        this.separator = separator;
+    public SentenceMeatPrefix(final Terminal prefix) {
+        this.prefix = prefix;
     }
     
     public Terminal getSeparator() {
-        return this.separator;
+        return this.prefix;
     }
     
     @Override

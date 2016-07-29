@@ -46,7 +46,7 @@ public class GrammarTest {
             }
             {
                 Node sentence = grammar.parse("{ } Aux$, { } Aux { .");
-                Assert.assertEquals("{ } Aux$, { } Aux .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+                Assert.assertEquals("{ } Aux$, { } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
                 Node sentence = grammar.parse("{ } { } Aux { } .");
