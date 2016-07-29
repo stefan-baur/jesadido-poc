@@ -21,8 +21,8 @@ public class GrammarTest {
         {
             final Grammar grammar = new GrammarFactory().createBaseGrammar("TestGrammar");
             {
-                Node sentence = grammar.parse("{ Su ( ) } .");
-                Assert.assertEquals("{ Su ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+                Node sentence = grammar.parse("{ Su ( ) Dom ( ) Fin ( ) } .");
+                Assert.assertEquals("{ Su ( ) Dom ( ) Fin ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
                 Node sentence = grammar.parse("{ Su ( ) } X.");

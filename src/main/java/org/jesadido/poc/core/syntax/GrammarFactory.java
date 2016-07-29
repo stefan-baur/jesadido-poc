@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import org.jesadido.poc.core.syntax.base.BaseSyntaxTreeFactory;
 import org.jesadido.poc.core.syntax.base.BaseTokenCreator;
 import org.jesadido.poc.core.syntax.base.productions.SentenceMeatPartDomProduction;
+import org.jesadido.poc.core.syntax.base.productions.SentenceMeatPartFinProduction;
 import org.jesadido.poc.core.syntax.base.productions.SentenceMeatPartProduction;
 import org.jesadido.poc.core.syntax.base.productions.SentenceMeatPartSuProduction;
 import org.jesadido.poc.core.syntax.base.productions.SentenceMeatPrefixProduction;
@@ -26,6 +27,7 @@ public class GrammarFactory {
                 
                 .register(false, new SentenceMeatPartSuProduction())
                 .register(false, new SentenceMeatPartDomProduction())
+                .register(false, new SentenceMeatPartFinProduction())
                 .register(false, new SentenceMeatPartProduction())
                 
                 .register(false, new SentenceMeatPrefixProduction())
