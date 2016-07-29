@@ -22,8 +22,8 @@ public class GrammarFactory {
     
     public final Grammar createBaseGrammar(final String name) {
         return new Grammar(name, new BaseTokenCreator(), new BaseSyntaxTreeFactory())
-                .register(false, new SentenceMeatInfixConjunctionProduction())
                 .register(false, new SentenceMeatProduction())
+                .register(false, new SentenceMeatInfixConjunctionProduction())
                 .register(true, new SentenceInfixConjunctionProduction())
                 .register(false, new SentenceMeatPrefixConjunctionProduction())
                 .register(true, new SentencePrefixConjunctionProduction())
