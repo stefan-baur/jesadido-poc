@@ -31,7 +31,10 @@ public final class BaseTokenCreator implements TokenCreator {
             TokenType.DOM,
             TokenType.FIN,
             TokenType.OPEN,
-            TokenType.CLOSE
+            TokenType.CLOSE,
+            TokenType.AS,
+            TokenType.IS,
+            TokenType.OS
     );
 
     private static final EnumMap<ConceptTermination, TokenCreator.Selector> SELECTIONS = new EnumMap<>(ConceptTermination.class);
@@ -49,6 +52,9 @@ public final class BaseTokenCreator implements TokenCreator {
         SELECTIONS.put(ConceptTermination.FIN, (TokenCreator.Selector) (Concept c) -> TokenType.FIN);
         SELECTIONS.put(ConceptTermination.LEFT_PARENTHESIS, (TokenCreator.Selector) (Concept c) -> TokenType.OPEN);
         SELECTIONS.put(ConceptTermination.RIGHT_PARENTHESIS, (TokenCreator.Selector) (Concept c) -> TokenType.CLOSE);
+        SELECTIONS.put(ConceptTermination.AS, (TokenCreator.Selector) (Concept c) -> TokenType.AS);
+        SELECTIONS.put(ConceptTermination.IS, (TokenCreator.Selector) (Concept c) -> TokenType.IS);
+        SELECTIONS.put(ConceptTermination.OS, (TokenCreator.Selector) (Concept c) -> TokenType.OS);
     }
 
     @Override

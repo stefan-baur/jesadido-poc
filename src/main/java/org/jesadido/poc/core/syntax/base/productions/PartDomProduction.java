@@ -24,15 +24,16 @@ public class PartDomProduction extends ProductionLeaf {
     public PartDomProduction() {
         super(Base.NT_PART_DOM,
                 Arrays.asList(TokenType.DOM, TokenType.OPEN, TokenType.CLOSE),
-                new LinkedList<>()
+                Arrays.asList(Base.NT_VERB_SELECTION)
         );
     }
     
     @Override
     public List<String> getRules() {
-        return Arrays.asList(String.format("%s ::= %s %s %s", this.getNonterminalSymbol(),
+        return Arrays.asList(String.format("%s ::= %s %s %s %s", this.getNonterminalSymbol(),
                 TokenType.DOM,
                 TokenType.OPEN,
+                Base.NT_VERB_SELECTION,
                 TokenType.CLOSE
         ));
     }
@@ -52,14 +53,22 @@ public class PartDomProduction extends ProductionLeaf {
             final Token preposition = tokenStream.next();
             if (tokenStream.hasOneOf(TokenType.OPEN)) {
                 final Token opener = tokenStream.next();
+                final Node verbSelection = this.parseVerbSelection(tokenStream);
                 if (tokenStream.hasOneOf(TokenType.CLOSE)) {
                     final Token closer = tokenStream.next();
-                    return this.getGrammar().getSyntaxTreeFactory().createPartDom(preposition.getConcept(), opener.getConcept(), null, closer.getConcept());
+                    return this.getGrammar().getSyntaxTreeFactory().createPartDom(preposition.getConcept(), opener.getConcept(), verbSelection, closer.getConcept());
                 }
                 return this.parsingTrouble(tokenStream, TokenType.CLOSE);
             }
             return this.parsingTrouble(tokenStream, TokenType.OPEN);
         }
         return this.parsingTrouble(tokenStream, TokenType.DOM);
+    }
+    
+    private Node parseVerbSelection(final TokenStream tokenStream) {
+        if (this.hasFirstOf(tokenStream, Base.NT_VERB_SELECTION)) {
+            return this.parse(tokenStream, Base.NT_VERB_SELECTION);
+        }
+        return this.parsingTrouble(tokenStream);
     }
 }

@@ -20,6 +20,7 @@ import org.jesadido.poc.core.syntax.nodes.sentence.PartDom;
 import org.jesadido.poc.core.syntax.nodes.sentence.PartFin;
 import org.jesadido.poc.core.syntax.nodes.sentence.PartSu;
 import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatConjunction;
+import org.jesadido.poc.core.syntax.nodes.sentence.VerbSelection;
 
 public class BaseSyntaxTreeFactory implements SyntaxTreeFactory {
     
@@ -58,6 +59,11 @@ public class BaseSyntaxTreeFactory implements SyntaxTreeFactory {
     public Node createPartFin(final Concept preposition, final Concept opener, final Node nominalSelection, final Concept closer) {
         return new PartFin(new Terminal(preposition, "Fin"), new Terminal(opener, "("), new Terminal(closer, ")"))
                 .addChild(nominalSelection);
+    }
+    
+    @Override
+    public Node createVerbSelection(final Concept verb) {
+        return new VerbSelection(verb);
     }
     
     @Override

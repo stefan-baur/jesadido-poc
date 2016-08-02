@@ -179,6 +179,21 @@ public enum TokenType {
     FIN,
     
     /**
+     * The appropriate token value indicates the present-tense verb.
+     */
+    AS,
+    
+    /**
+     * The appropriate token value indicates the past-tense verb.
+     */
+    IS,
+    
+    /**
+     * The appropriate token value indicates the future-tense verb.
+     */
+    OS,
+    
+    /**
      * The appropriate token value represents a terminator symbol for
      * terminating plain text sentences, for example a single period.
      */

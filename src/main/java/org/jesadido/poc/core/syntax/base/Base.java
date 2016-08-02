@@ -18,6 +18,8 @@ public final class Base {
     public static final String NT_PART_DOM = "part-dom";
     public static final String NT_PART_FIN = "part-fin";
     
+    public static final String NT_VERB_SELECTION = "verb-selection";
+    
     private Base() {
         // A private class constructor for this utility class.
     }
