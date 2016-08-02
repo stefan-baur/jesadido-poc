@@ -16,12 +16,12 @@ import org.jesadido.poc.core.syntax.productions.ProductionLeaf;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 
-public class PartProduction extends ProductionLeaf {
+public class SentenceMeatPartProduction extends ProductionLeaf {
     
     private List<TokenType> firsts = null;
     
-    public PartProduction() {
-        super(Base.NT_PART,
+    public SentenceMeatPartProduction() {
+        super(Base.NT_SENTENCE_MEAT_PART,
                 new LinkedList<>(),
                 Arrays.asList(Base.NT_PART_SU, Base.NT_PART_DOM, Base.NT_PART_FIN)
         );

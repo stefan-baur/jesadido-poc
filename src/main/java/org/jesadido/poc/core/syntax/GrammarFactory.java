@@ -12,7 +12,7 @@ import org.jesadido.poc.core.syntax.base.BaseSyntaxTreeFactory;
 import org.jesadido.poc.core.syntax.base.BaseTokenCreator;
 import org.jesadido.poc.core.syntax.base.productions.PartDomProduction;
 import org.jesadido.poc.core.syntax.base.productions.PartFinProduction;
-import org.jesadido.poc.core.syntax.base.productions.PartProduction;
+import org.jesadido.poc.core.syntax.base.productions.SentenceMeatPartProduction;
 import org.jesadido.poc.core.syntax.base.productions.PartSuProduction;
 import org.jesadido.poc.core.syntax.base.productions.SentenceMeatConjunctionProduction;
 import org.jesadido.poc.core.syntax.base.productions.SentenceMeatProduction;
@@ -28,8 +28,8 @@ public class GrammarFactory {
                 .register(false, new PartSuProduction())
                 .register(false, new PartDomProduction())
                 .register(false, new PartFinProduction())
-                .register(false, new PartProduction())
                 
+                .register(false, new SentenceMeatPartProduction())
                 .register(false, new SentenceMeatConjunctionProduction())
                 .register(false, new SentenceMeatProduction())
                 .register(true, new SentenceProduction())

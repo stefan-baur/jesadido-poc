@@ -25,7 +25,7 @@ public class SentenceMeatProduction extends ProductionLeaf {
         super(
                 Base.NT_SENTENCE_MEAT,
                 Arrays.asList(TokenType.OPEN_SET, TokenType.CLOSE_SET),
-                Arrays.asList(Base.NT_SENTENCE_MEAT_CONJUNCTION, Base.NT_PART)
+                Arrays.asList(Base.NT_SENTENCE_MEAT_CONJUNCTION, Base.NT_SENTENCE_MEAT_PART)
         );
     }
     
@@ -34,9 +34,9 @@ public class SentenceMeatProduction extends ProductionLeaf {
         return Arrays.asList(String.format("%s ::= (%s)? ((%s (%s)+ %s) | (%s)+)", this.getNonterminalSymbol(),
                 Base.NT_SENTENCE_MEAT_CONJUNCTION,
                 TokenType.OPEN_SET,
-                Base.NT_PART,
+                Base.NT_SENTENCE_MEAT_PART,
                 TokenType.CLOSE_SET,
-                Base.NT_PART
+                Base.NT_SENTENCE_MEAT_PART
         ));
     }
     
@@ -46,7 +46,7 @@ public class SentenceMeatProduction extends ProductionLeaf {
             this.firsts = new LinkedList<>();
             this.firsts.add(TokenType.OPEN_SET);
             this.firsts.addAll(this.getFirsts(Base.NT_SENTENCE_MEAT_CONJUNCTION));
-            this.firsts.addAll(this.getFirsts(Base.NT_PART));
+            this.firsts.addAll(this.getFirsts(Base.NT_SENTENCE_MEAT_PART));
         }
         return this.firsts;
     }
@@ -73,10 +73,10 @@ public class SentenceMeatProduction extends ProductionLeaf {
     
     private List<Node> parseParts(final TokenStream tokenStream) {
         final List<Node> result = new LinkedList<>();
-        if (this.hasFirstOf(tokenStream, Base.NT_PART)) {
-            result.add(this.parse(tokenStream, Base.NT_PART));
-            while (this.hasFirstOf(tokenStream, Base.NT_PART)) {
-                result.add(this.parse(tokenStream, Base.NT_PART));
+        if (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT_PART)) {
+            result.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT_PART));
+            while (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT_PART)) {
+                result.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT_PART));
             }
         }
         result.add(this.parsingTrouble(tokenStream));

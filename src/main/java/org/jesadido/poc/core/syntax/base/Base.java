@@ -12,8 +12,8 @@ public final class Base {
     public static final String NT_SENTENCE = "sentence";
     public static final String NT_SENTENCE_MEAT = "sentence-meat";
     public static final String NT_SENTENCE_MEAT_CONJUNCTION = "sentence-meat-conjunction";
+    public static final String NT_SENTENCE_MEAT_PART = "sentence-meat-part";
     
-    public static final String NT_PART = "part";
     public static final String NT_PART_SU = "part-su";
     public static final String NT_PART_DOM = "part-dom";
     public static final String NT_PART_FIN = "part-fin";
