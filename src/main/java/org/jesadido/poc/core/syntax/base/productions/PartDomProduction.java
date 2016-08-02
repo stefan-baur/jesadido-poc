@@ -30,14 +30,11 @@ public class PartDomProduction extends ProductionLeaf {
     
     @Override
     public List<String> getRules() {
-        return Arrays.asList(String.format("%s ::= (%s ((%s %s %s) | %s)) | %s", this.getNonterminalSymbol(),
-                TokenType.DOM,
-                TokenType.OPEN,
-                Base.NT_VERB_SELECTION,
-                TokenType.CLOSE,
-                Base.NT_VERB_SELECTION,
-                Base.NT_VERB_SELECTION
-        ));
+        return Arrays.asList(
+                String.format("%s ::= %s %s %s %s", this.getNonterminalSymbol(), TokenType.DOM, TokenType.OPEN, Base.NT_VERB_SELECTION, TokenType.CLOSE),
+                String.format("%s ::= %s %s", this.getNonterminalSymbol(), TokenType.DOM, Base.NT_VERB_SELECTION),
+                String.format("%s ::= %s", this.getNonterminalSymbol(), Base.NT_VERB_SELECTION)
+        );
     }
     
     @Override

@@ -31,13 +31,10 @@ public class SentenceMeatProduction extends ProductionLeaf {
     
     @Override
     public List<String> getRules() {
-        return Arrays.asList(String.format("%s ::= %s? ((%s %s+ %s) | %s+)", this.getNonterminalSymbol(),
-                Base.NT_SENTENCE_MEAT_CONJUNCTION,
-                TokenType.OPEN_SET,
-                Base.NT_SENTENCE_MEAT_PART,
-                TokenType.CLOSE_SET,
-                Base.NT_SENTENCE_MEAT_PART
-        ));
+        return Arrays.asList(
+                String.format("%s ::= %s? %s %s+ %s", this.getNonterminalSymbol(), Base.NT_SENTENCE_MEAT_CONJUNCTION, TokenType.OPEN_SET, Base.NT_SENTENCE_MEAT_PART, TokenType.CLOSE_SET),
+                String.format("%s ::= %s? %s+", this.getNonterminalSymbol(), Base.NT_SENTENCE_MEAT_CONJUNCTION, Base.NT_SENTENCE_MEAT_PART)
+        );
     }
     
     @Override
