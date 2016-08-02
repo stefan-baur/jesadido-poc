@@ -56,7 +56,7 @@ public class ConceptCollectorTest {
         {
             SyntaxTreeFactory syntaxTreeFactory = new BaseSyntaxTreeFactory();
             Node sentenceMeatA = syntaxTreeFactory.createSentenceMeat(null, null, null, null);
-            Node sentenceMeatConjunction = syntaxTreeFactory.createSentenceMeatPrefix(null);
+            Node sentenceMeatConjunction = syntaxTreeFactory.createSentenceMeatConjunction(null);
             Node sentenceMeatB = syntaxTreeFactory.createSentenceMeat(null, null, null, null);
             Node sentence = syntaxTreeFactory.createSentence(Arrays.asList(sentenceMeatA, sentenceMeatConjunction, sentenceMeatB), null);
             Assert.assertEquals("{ \t } \t Kaj \t { \t } \t .", ConceptUtils.join(" \t ", ConceptCollector.collect(sentence)));
@@ -64,9 +64,9 @@ public class ConceptCollectorTest {
         {
             SyntaxTreeFactory syntaxTreeFactory = new BaseSyntaxTreeFactory();
             Node sentenceMeatA = syntaxTreeFactory.createSentenceMeat(null, null, null, null);
-            Node sentenceMeatConjunctionX = syntaxTreeFactory.createSentenceMeatPrefix(ConceptRegistry.getInstance().getConcept(","));
+            Node sentenceMeatConjunctionX = syntaxTreeFactory.createSentenceMeatConjunction(ConceptRegistry.getInstance().getConcept(","));
             Node sentenceMeatB = syntaxTreeFactory.createSentenceMeat(null, null, null, null);
-            Node sentenceMeatConjunctionY = syntaxTreeFactory.createSentenceMeatPrefix(ConceptRegistry.getInstance().getConcept("Aux"));
+            Node sentenceMeatConjunctionY = syntaxTreeFactory.createSentenceMeatConjunction(ConceptRegistry.getInstance().getConcept("Aux"));
             Node sentenceMeatC = syntaxTreeFactory.createSentenceMeat(null, null, null, null);
             Node sentence = syntaxTreeFactory.createSentence(Arrays.asList(sentenceMeatA, sentenceMeatConjunctionX, sentenceMeatB, sentenceMeatConjunctionY, sentenceMeatC), null);
             Assert.assertEquals("{ } , { } Aux { } .", ConceptUtils.join(null, ConceptCollector.collect(sentence)));
@@ -75,10 +75,10 @@ public class ConceptCollectorTest {
             SyntaxTreeFactory syntaxTreeFactory = new BaseSyntaxTreeFactory();
             Node su1 = syntaxTreeFactory.createSentenceMeatPartSu(null, null, null, null);
             Node sentenceMeatA = syntaxTreeFactory.createSentenceMeat(null, null, Arrays.asList(su1), null);
-            Node sentenceMeatConjunctionX = syntaxTreeFactory.createSentenceMeatPrefix(ConceptRegistry.getInstance().getConcept(","));
+            Node sentenceMeatConjunctionX = syntaxTreeFactory.createSentenceMeatConjunction(ConceptRegistry.getInstance().getConcept(","));
             Node su2 = syntaxTreeFactory.createSentenceMeatPartSu(null, ConceptRegistry.getInstance().getConcept("'X'O$("), null, null);
             Node sentenceMeatB = syntaxTreeFactory.createSentenceMeat(null, null, Arrays.asList(su2), null);
-            Node sentenceMeatConjunctionY = syntaxTreeFactory.createSentenceMeatPrefix(ConceptRegistry.getInstance().getConcept("Kaj"));
+            Node sentenceMeatConjunctionY = syntaxTreeFactory.createSentenceMeatConjunction(ConceptRegistry.getInstance().getConcept("Kaj"));
             Node su3 = syntaxTreeFactory.createSentenceMeatPartSu(null, ConceptRegistry.getInstance().getConcept("(("), null, ConceptRegistry.getInstance().getConcept("Cxu$))"));
             Node sentenceMeatC = syntaxTreeFactory.createSentenceMeat(null, null, Arrays.asList(su3), null);
             Node sentence = syntaxTreeFactory.createSentence(Arrays.asList(sentenceMeatA, sentenceMeatConjunctionX, sentenceMeatB, sentenceMeatConjunctionY, sentenceMeatC), null);
@@ -89,7 +89,7 @@ public class ConceptCollectorTest {
             Node suA = syntaxTreeFactory.createSentenceMeatPartSu(null, null, null, null);
             Node domA = syntaxTreeFactory.createSentenceMeatPartDom(null, null, null, null);
             Node sentenceMeatA = syntaxTreeFactory.createSentenceMeat(null, null, Arrays.asList(suA, domA), null);
-            Node sentenceMeatConjunction = syntaxTreeFactory.createSentenceMeatPrefix(null);
+            Node sentenceMeatConjunction = syntaxTreeFactory.createSentenceMeatConjunction(null);
             Node suB = syntaxTreeFactory.createSentenceMeatPartSu(null, null, null, null);
             Node domB = syntaxTreeFactory.createSentenceMeatPartDom(null, null, null, null);
             Node sentenceMeatB = syntaxTreeFactory.createSentenceMeat(null, null, Arrays.asList(domB, suB), null);
@@ -102,7 +102,7 @@ public class ConceptCollectorTest {
             Node domA = syntaxTreeFactory.createSentenceMeatPartDom(ConceptRegistry.getInstance().getConcept("PRED"), ConceptRegistry.getInstance().getConcept("["), null, ConceptRegistry.getInstance().getConcept("]"));
             Node finA = syntaxTreeFactory.createSentenceMeatPartFin(ConceptRegistry.getInstance().getConcept("ACC"), ConceptRegistry.getInstance().getConcept("["), null, ConceptRegistry.getInstance().getConcept("]"));
             Node sentenceMeatA = syntaxTreeFactory.createSentenceMeat(null, ConceptRegistry.getInstance().getConcept("("), Arrays.asList(suA, domA, finA), ConceptRegistry.getInstance().getConcept(")"));
-            Node sentenceMeatConjunction = syntaxTreeFactory.createSentenceMeatPrefix(ConceptRegistry.getInstance().getConcept("CONJ"));
+            Node sentenceMeatConjunction = syntaxTreeFactory.createSentenceMeatConjunction(ConceptRegistry.getInstance().getConcept("CONJ"));
             Node suB = syntaxTreeFactory.createSentenceMeatPartSu(ConceptRegistry.getInstance().getConcept("SUBJ"), ConceptRegistry.getInstance().getConcept("["), null, ConceptRegistry.getInstance().getConcept("]"));
             Node domB = syntaxTreeFactory.createSentenceMeatPartDom(ConceptRegistry.getInstance().getConcept("PRED"), ConceptRegistry.getInstance().getConcept("["), null, ConceptRegistry.getInstance().getConcept("]"));
             Node finB = syntaxTreeFactory.createSentenceMeatPartFin(ConceptRegistry.getInstance().getConcept("ACC"), ConceptRegistry.getInstance().getConcept("["), null, ConceptRegistry.getInstance().getConcept("]"));

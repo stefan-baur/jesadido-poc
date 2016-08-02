@@ -15,11 +15,10 @@ import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 
-public class SentenceMeatPrefixProduction extends ProductionOneOf {
+public class SentenceMeatConjunctionProduction extends ProductionOneOf {
     
-    public SentenceMeatPrefixProduction() {
-        super(
-                Base.NT_SENTENCE_MEAT_PREFIX,
+    public SentenceMeatConjunctionProduction() {
+        super(Base.NT_SENTENCE_MEAT_CONJUNCTION,
                 Arrays.asList(TokenType.SE, TokenType.KAJ, TokenType.AUX, TokenType.SEPARATOR)
         );
     }
@@ -28,7 +27,7 @@ public class SentenceMeatPrefixProduction extends ProductionOneOf {
     public Node parse(final TokenStream tokenStream) {
         if (tokenStream.hasOneOf(this.getFirsts())) {
             final Token infix = tokenStream.next();
-            return this.getGrammar().getSyntaxTreeFactory().createSentenceMeatPrefix(infix.getConcept());
+            return this.getGrammar().getSyntaxTreeFactory().createSentenceMeatConjunction(infix.getConcept());
         }
         return this.parsingTrouble(tokenStream);
     }

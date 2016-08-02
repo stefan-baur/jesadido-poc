@@ -14,19 +14,19 @@ import org.jesadido.poc.core.syntax.nodes.common.ClapsedNode;
 
 public class SentenceMeat extends ClapsedNode {
     
-    private final Node prefix;
+    private final Node conjunction;
     
-    public SentenceMeat(final Node prefix, final Terminal opener, final Terminal closer) {
+    public SentenceMeat(final Node conjunction, final Terminal opener, final Terminal closer) {
         super(opener, closer);
-        this.prefix = prefix;
+        this.conjunction = conjunction;
     }
     
-    public boolean hasPrefix() {
-        return this.prefix != null;
+    public boolean hasConjunction() {
+        return this.conjunction != null;
     }
     
-    public Node getPrefix() {
-        return this.prefix;
+    public Node getConjunction() {
+        return this.conjunction;
     }
     
     @Override

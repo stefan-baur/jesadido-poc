@@ -61,12 +61,20 @@ public class GrammarTest {
                 Assert.assertEquals("{ Su ( ) }", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
-                Node sentence = grammar.parse("Kaj", Base.NT_SENTENCE_MEAT_PREFIX);
+                Node sentence = grammar.parse("Kaj", Base.NT_SENTENCE_MEAT_CONJUNCTION);
                 Assert.assertEquals("Kaj", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
                 Node sentence = grammar.parse("Se { Su ( ) } { Dom ( ) } .");
                 Assert.assertEquals("Se { Su ( ) } { Dom ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+            }
+            {
+                Node sentence = grammar.parse("Aux Su ( ) Dom ( ) .");
+                Assert.assertEquals("Aux { Su ( ) Dom ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+            }
+            {
+                Node sentence = grammar.parse("Su ( ) Dom ( ) Fin ( ) .");
+                Assert.assertEquals("{ Su ( ) Dom ( ) Fin ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
         }
     }

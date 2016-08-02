@@ -14,8 +14,8 @@ import org.jesadido.poc.core.syntax.nodes.Node;
 public interface SyntaxTreeFactory {
     
     Node createSentence(List<Node> meats, Concept terminator);
-    Node createSentenceMeat(Node prefix, Concept opener, List<Node> parts, Concept closer);
-    Node createSentenceMeatPrefix(Concept prefix);
+    Node createSentenceMeat(Node conjunction, Concept opener, List<Node> parts, Concept closer);
+    Node createSentenceMeatConjunction(Concept conjunction);
     
     Node createSentenceMeatPartSu(Concept preposition, Concept opener, Node nominalSelection, Concept closer);
     Node createSentenceMeatPartDom(Concept preposition, Concept opener, Node verbSelection, Concept closer);

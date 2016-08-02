@@ -14,7 +14,7 @@ import org.jesadido.poc.core.syntax.base.productions.SentenceMeatPartDomProducti
 import org.jesadido.poc.core.syntax.base.productions.SentenceMeatPartFinProduction;
 import org.jesadido.poc.core.syntax.base.productions.SentenceMeatPartProduction;
 import org.jesadido.poc.core.syntax.base.productions.SentenceMeatPartSuProduction;
-import org.jesadido.poc.core.syntax.base.productions.SentenceMeatPrefixProduction;
+import org.jesadido.poc.core.syntax.base.productions.SentenceMeatConjunctionProduction;
 import org.jesadido.poc.core.syntax.base.productions.SentenceMeatProduction;
 import org.jesadido.poc.core.syntax.base.productions.SentenceProduction;
 
@@ -30,7 +30,7 @@ public class GrammarFactory {
                 .register(false, new SentenceMeatPartFinProduction())
                 .register(false, new SentenceMeatPartProduction())
                 
-                .register(false, new SentenceMeatPrefixProduction())
+                .register(false, new SentenceMeatConjunctionProduction())
                 .register(false, new SentenceMeatProduction())
                 .register(true, new SentenceProduction())
                 ;

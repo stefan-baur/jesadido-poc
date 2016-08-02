@@ -19,7 +19,7 @@ import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeat;
 import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatPartDom;
 import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatPartFin;
 import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatPartSu;
-import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatPrefix;
+import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatConjunction;
 
 public class ConceptCollector implements Visitor<List<Concept>, Void> {
     
@@ -42,8 +42,8 @@ public class ConceptCollector implements Visitor<List<Concept>, Void> {
     @Override
     public List<Concept> visit(final SentenceMeat node, final Void unused) {
         List<Concept> result = new LinkedList<>();
-        if (node.hasPrefix()) {
-            result.addAll(node.getPrefix().accept(this, null));
+        if (node.hasConjunction()) {
+            result.addAll(node.getConjunction().accept(this, null));
         }
         result.add(node.getOpener().getConcept());
         node.getChildren().stream().forEach(child -> result.addAll(child.accept(this, null)));
@@ -52,9 +52,9 @@ public class ConceptCollector implements Visitor<List<Concept>, Void> {
     }
     
     @Override
-    public List<Concept> visit(final SentenceMeatPrefix node, final Void unused) {
+    public List<Concept> visit(final SentenceMeatConjunction node, final Void unused) {
         List<Concept> result = new LinkedList<>();
-        result.add(node.getSeparator().getConcept());
+        result.add(node.getConjunction().getConcept());
         return result;
     }
     
