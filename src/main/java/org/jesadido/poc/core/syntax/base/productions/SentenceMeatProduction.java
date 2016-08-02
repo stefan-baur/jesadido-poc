@@ -31,7 +31,7 @@ public class SentenceMeatProduction extends ProductionLeaf {
     
     @Override
     public List<String> getRules() {
-        return Arrays.asList(String.format("%s ::= (%s)? ((%s (%s)+ %s) | (%s)+)", this.getNonterminalSymbol(),
+        return Arrays.asList(String.format("%s ::= %s? ((%s %s+ %s) | %s+)", this.getNonterminalSymbol(),
                 Base.NT_SENTENCE_MEAT_CONJUNCTION,
                 TokenType.OPEN_SET,
                 Base.NT_SENTENCE_MEAT_PART,

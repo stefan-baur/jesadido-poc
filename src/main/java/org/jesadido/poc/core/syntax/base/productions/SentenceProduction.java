@@ -29,7 +29,7 @@ public class SentenceProduction extends ProductionLeaf {
     
     @Override
     public List<String> getRules() {
-        return Arrays.asList(String.format("%s ::= (%s)+ %s",
+        return Arrays.asList(String.format("%s ::= %s+ %s",
                 this.getNonterminalSymbol(),
                 Base.NT_SENTENCE_MEAT,
                 TokenType.TERMINATOR));
