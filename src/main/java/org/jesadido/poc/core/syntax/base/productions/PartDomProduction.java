@@ -30,11 +30,13 @@ public class PartDomProduction extends ProductionLeaf {
     
     @Override
     public List<String> getRules() {
-        return Arrays.asList(String.format("%s ::= %s %s %s %s", this.getNonterminalSymbol(),
+        return Arrays.asList(String.format("%s ::= (%s ((%s %s %s) | %s)) | %s", this.getNonterminalSymbol(),
                 TokenType.DOM,
                 TokenType.OPEN,
                 Base.NT_VERB_SELECTION,
-                TokenType.CLOSE
+                TokenType.CLOSE,
+                Base.NT_VERB_SELECTION,
+                Base.NT_VERB_SELECTION
         ));
     }
     
@@ -43,6 +45,7 @@ public class PartDomProduction extends ProductionLeaf {
         if (this.firsts == null) {
             this.firsts = new LinkedList<>();
             this.firsts.add(TokenType.DOM);
+            this.firsts.addAll(this.getFirsts(Base.NT_VERB_SELECTION));
         }
         return this.firsts;
     }
@@ -59,10 +62,14 @@ public class PartDomProduction extends ProductionLeaf {
                     return this.getGrammar().getSyntaxTreeFactory().createPartDom(preposition.getConcept(), opener.getConcept(), verbSelection, closer.getConcept());
                 }
                 return this.parsingTrouble(tokenStream, TokenType.CLOSE);
+            } else {
+                final Node verbSelection = this.parseVerbSelection(tokenStream);
+                return this.getGrammar().getSyntaxTreeFactory().createPartDom(preposition.getConcept(), null, verbSelection, null);
             }
-            return this.parsingTrouble(tokenStream, TokenType.OPEN);
+        } else {
+            final Node verbSelection = this.parseVerbSelection(tokenStream);
+            return this.getGrammar().getSyntaxTreeFactory().createPartDom(null, null, verbSelection, null);
         }
-        return this.parsingTrouble(tokenStream, TokenType.DOM);
     }
     
     private Node parseVerbSelection(final TokenStream tokenStream) {

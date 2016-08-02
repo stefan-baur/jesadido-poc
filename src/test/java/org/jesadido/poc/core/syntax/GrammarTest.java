@@ -81,11 +81,11 @@ public class GrammarTest {
                 Assert.assertEquals("Aux { Su ( ) Dom ( HavOs ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
-                Node sentence = grammar.parse("( ) Dom ( HavAs ) Fin ( ) .");
+                Node sentence = grammar.parse("( ) HavAs Fin ( ) .");
                 Assert.assertEquals("{ Su ( ) Dom ( HavAs ) Fin ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
-                Node sentence = grammar.parse("Kaj Fin ( ) Dom ( HavAs ) ( ) .");
+                Node sentence = grammar.parse("Kaj Fin ( ) Dom HavAs ( ) .");
                 Assert.assertEquals("Kaj { Fin ( ) Dom ( HavAs ) Su ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
