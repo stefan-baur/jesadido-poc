@@ -16,9 +16,9 @@ import org.jesadido.poc.core.syntax.nodes.Visitor;
 import org.jesadido.poc.core.syntax.nodes.common.TroubleNode;
 import org.jesadido.poc.core.syntax.nodes.sentence.Sentence;
 import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeat;
-import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatPartDom;
-import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatPartFin;
-import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatPartSu;
+import org.jesadido.poc.core.syntax.nodes.sentence.PartDom;
+import org.jesadido.poc.core.syntax.nodes.sentence.PartFin;
+import org.jesadido.poc.core.syntax.nodes.sentence.PartSu;
 import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatConjunction;
 
 public class ConceptCollector implements Visitor<List<Concept>, Void> {
@@ -59,7 +59,7 @@ public class ConceptCollector implements Visitor<List<Concept>, Void> {
     }
     
     @Override
-    public List<Concept> visit(final SentenceMeatPartSu node, final Void unused) {
+    public List<Concept> visit(final PartSu node, final Void unused) {
         List<Concept> result = new LinkedList<>();
         result.add(node.getPreposition().getConcept());
         result.add(node.getOpener().getConcept());
@@ -69,7 +69,7 @@ public class ConceptCollector implements Visitor<List<Concept>, Void> {
     }
     
     @Override
-    public List<Concept> visit(final SentenceMeatPartDom node, final Void unused) {
+    public List<Concept> visit(final PartDom node, final Void unused) {
         List<Concept> result = new LinkedList<>();
         result.add(node.getPreposition().getConcept());
         result.add(node.getOpener().getConcept());
@@ -79,7 +79,7 @@ public class ConceptCollector implements Visitor<List<Concept>, Void> {
     }
     
     @Override
-    public List<Concept> visit(final SentenceMeatPartFin node, final Void unused) {
+    public List<Concept> visit(final PartFin node, final Void unused) {
         List<Concept> result = new LinkedList<>();
         result.add(node.getPreposition().getConcept());
         result.add(node.getOpener().getConcept());

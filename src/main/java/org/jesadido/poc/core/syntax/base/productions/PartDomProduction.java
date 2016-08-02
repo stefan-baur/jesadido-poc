@@ -17,14 +17,13 @@ import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 
-public class SentenceMeatPartFinProduction extends ProductionLeaf {
+public class PartDomProduction extends ProductionLeaf {
     
     private List<TokenType> firsts = null;
     
-    public SentenceMeatPartFinProduction() {
-        super(
-                Base.NT_SENTENCE_MEAT_PART_FIN,
-                Arrays.asList(TokenType.FIN, TokenType.OPEN, TokenType.CLOSE),
+    public PartDomProduction() {
+        super(Base.NT_PART_DOM,
+                Arrays.asList(TokenType.DOM, TokenType.OPEN, TokenType.CLOSE),
                 new LinkedList<>()
         );
     }
@@ -32,7 +31,7 @@ public class SentenceMeatPartFinProduction extends ProductionLeaf {
     @Override
     public List<String> getRules() {
         return Arrays.asList(String.format("%s ::= %s %s %s", this.getNonterminalSymbol(),
-                TokenType.FIN,
+                TokenType.DOM,
                 TokenType.OPEN,
                 TokenType.CLOSE
         ));
@@ -42,25 +41,25 @@ public class SentenceMeatPartFinProduction extends ProductionLeaf {
     public List<TokenType> getFirsts() {
         if (this.firsts == null) {
             this.firsts = new LinkedList<>();
-            this.firsts.add(TokenType.FIN);
+            this.firsts.add(TokenType.DOM);
         }
         return this.firsts;
     }
     
     @Override
     public Node parse(final TokenStream tokenStream) {
-        if (tokenStream.hasOneOf(TokenType.FIN)) {
+        if (tokenStream.hasOneOf(TokenType.DOM)) {
             final Token preposition = tokenStream.next();
             if (tokenStream.hasOneOf(TokenType.OPEN)) {
                 final Token opener = tokenStream.next();
                 if (tokenStream.hasOneOf(TokenType.CLOSE)) {
                     final Token closer = tokenStream.next();
-                    return this.getGrammar().getSyntaxTreeFactory().createSentenceMeatPartFin(preposition.getConcept(), opener.getConcept(), null, closer.getConcept());
+                    return this.getGrammar().getSyntaxTreeFactory().createPartDom(preposition.getConcept(), opener.getConcept(), null, closer.getConcept());
                 }
                 return this.parsingTrouble(tokenStream, TokenType.CLOSE);
             }
             return this.parsingTrouble(tokenStream, TokenType.OPEN);
         }
-        return this.parsingTrouble(tokenStream, TokenType.FIN);
+        return this.parsingTrouble(tokenStream, TokenType.DOM);
     }
 }

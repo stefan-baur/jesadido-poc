@@ -11,9 +11,9 @@ import org.jesadido.poc.core.syntax.Terminal;
 import org.jesadido.poc.core.syntax.nodes.Visitor;
 import org.jesadido.poc.core.syntax.nodes.common.PrepositionalNode;
 
-public class SentenceMeatPartFin extends PrepositionalNode {
+public class PartDom extends PrepositionalNode {
     
-    public SentenceMeatPartFin(final Terminal preposition, final Terminal opener, final Terminal closer) {
+    public PartDom(final Terminal preposition, final Terminal opener, final Terminal closer) {
         super(preposition, opener, closer);
     }
     

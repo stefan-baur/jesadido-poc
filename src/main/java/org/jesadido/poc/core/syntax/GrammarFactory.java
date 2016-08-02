@@ -10,10 +10,10 @@ package org.jesadido.poc.core.syntax;
 import java.util.logging.Logger;
 import org.jesadido.poc.core.syntax.base.BaseSyntaxTreeFactory;
 import org.jesadido.poc.core.syntax.base.BaseTokenCreator;
-import org.jesadido.poc.core.syntax.base.productions.SentenceMeatPartDomProduction;
-import org.jesadido.poc.core.syntax.base.productions.SentenceMeatPartFinProduction;
-import org.jesadido.poc.core.syntax.base.productions.SentenceMeatPartProduction;
-import org.jesadido.poc.core.syntax.base.productions.SentenceMeatPartSuProduction;
+import org.jesadido.poc.core.syntax.base.productions.PartDomProduction;
+import org.jesadido.poc.core.syntax.base.productions.PartFinProduction;
+import org.jesadido.poc.core.syntax.base.productions.PartProduction;
+import org.jesadido.poc.core.syntax.base.productions.PartSuProduction;
 import org.jesadido.poc.core.syntax.base.productions.SentenceMeatConjunctionProduction;
 import org.jesadido.poc.core.syntax.base.productions.SentenceMeatProduction;
 import org.jesadido.poc.core.syntax.base.productions.SentenceProduction;
@@ -25,10 +25,10 @@ public class GrammarFactory {
     public final Grammar createBaseGrammar(final String name) {
         return new Grammar(name, new BaseTokenCreator(), new BaseSyntaxTreeFactory())
                 
-                .register(false, new SentenceMeatPartSuProduction())
-                .register(false, new SentenceMeatPartDomProduction())
-                .register(false, new SentenceMeatPartFinProduction())
-                .register(false, new SentenceMeatPartProduction())
+                .register(false, new PartSuProduction())
+                .register(false, new PartDomProduction())
+                .register(false, new PartFinProduction())
+                .register(false, new PartProduction())
                 
                 .register(false, new SentenceMeatConjunctionProduction())
                 .register(false, new SentenceMeatProduction())

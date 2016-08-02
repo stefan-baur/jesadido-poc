@@ -18,13 +18,12 @@ import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 
-public class SentenceMeatPartSuProduction extends ProductionLeaf {
+public class PartSuProduction extends ProductionLeaf {
     
     private List<TokenType> firsts = null;
     
-    public SentenceMeatPartSuProduction() {
-        super(
-                Base.NT_SENTENCE_MEAT_PART_SU,
+    public PartSuProduction() {
+        super(Base.NT_PART_SU,
                 Arrays.asList(TokenType.SU, TokenType.OPEN, TokenType.CLOSE),
                 new LinkedList<>()
         );
@@ -63,7 +62,7 @@ public class SentenceMeatPartSuProduction extends ProductionLeaf {
             final Token opener = tokenStream.next();
             if (tokenStream.hasOneOf(TokenType.CLOSE)) {
                 final Token closer = tokenStream.next();
-                return this.getGrammar().getSyntaxTreeFactory().createSentenceMeatPartSu(prepositionConcept, opener.getConcept(), null, closer.getConcept());
+                return this.getGrammar().getSyntaxTreeFactory().createPartSu(prepositionConcept, opener.getConcept(), null, closer.getConcept());
             }
             return this.parsingTrouble(tokenStream, TokenType.CLOSE);
         }
