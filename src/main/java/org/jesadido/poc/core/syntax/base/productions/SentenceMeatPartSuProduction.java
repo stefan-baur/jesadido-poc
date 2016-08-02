@@ -10,6 +10,7 @@ package org.jesadido.poc.core.syntax.base.productions;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.syntax.base.Base;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.productions.ProductionLeaf;
@@ -31,7 +32,7 @@ public class SentenceMeatPartSuProduction extends ProductionLeaf {
     
     @Override
     public List<String> getRules() {
-        return Arrays.asList(String.format("%s ::= %s %s %s", this.getNonterminalSymbol(),
+        return Arrays.asList(String.format("%s ::= %s? %s %s", this.getNonterminalSymbol(),
                 TokenType.SU,
                 TokenType.OPEN,
                 TokenType.CLOSE
@@ -43,6 +44,7 @@ public class SentenceMeatPartSuProduction extends ProductionLeaf {
         if (this.firsts == null) {
             this.firsts = new LinkedList<>();
             this.firsts.add(TokenType.SU);
+            this.firsts.add(TokenType.OPEN);
         }
         return this.firsts;
     }
@@ -51,16 +53,20 @@ public class SentenceMeatPartSuProduction extends ProductionLeaf {
     public Node parse(final TokenStream tokenStream) {
         if (tokenStream.hasOneOf(TokenType.SU)) {
             final Token preposition = tokenStream.next();
-            if (tokenStream.hasOneOf(TokenType.OPEN)) {
-                final Token opener = tokenStream.next();
-                if (tokenStream.hasOneOf(TokenType.CLOSE)) {
-                    final Token closer = tokenStream.next();
-                    return this.getGrammar().getSyntaxTreeFactory().createSentenceMeatPartSu(preposition.getConcept(), opener.getConcept(), null, closer.getConcept());
-                }
-                return this.parsingTrouble(tokenStream, TokenType.CLOSE);
-            }
-            return this.parsingTrouble(tokenStream, TokenType.OPEN);
+            return this.parseOpenClose(tokenStream, preposition.getConcept());
         }
-        return this.parsingTrouble(tokenStream, TokenType.SU);
+        return this.parseOpenClose(tokenStream, null);
+    }
+    
+    private Node parseOpenClose(final TokenStream tokenStream, final Concept prepositionConcept) {
+        if (tokenStream.hasOneOf(TokenType.OPEN)) {
+            final Token opener = tokenStream.next();
+            if (tokenStream.hasOneOf(TokenType.CLOSE)) {
+                final Token closer = tokenStream.next();
+                return this.getGrammar().getSyntaxTreeFactory().createSentenceMeatPartSu(prepositionConcept, opener.getConcept(), null, closer.getConcept());
+            }
+            return this.parsingTrouble(tokenStream, TokenType.CLOSE);
+        }
+        return this.parsingTrouble(tokenStream, TokenType.OPEN);
     }
 }

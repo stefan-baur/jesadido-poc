@@ -57,28 +57,29 @@ public class SentenceMeatProduction extends ProductionLeaf {
         if (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT_CONJUNCTION)) {
             meatConjunction = this.parse(tokenStream, Base.NT_SENTENCE_MEAT_CONJUNCTION);
         }
-        final List<Node> parts = new LinkedList<>();
         if (tokenStream.hasOneOf(TokenType.OPEN_SET)) {
             final Token opener = tokenStream.next();
-            if (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT_PART)) {
-                parts.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT_PART));
-                while (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT_PART)) {
-                    parts.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT_PART));
-                }
-                if (tokenStream.hasOneOf(TokenType.CLOSE_SET)) {
-                    final Token closer = tokenStream.next();
-                    return this.getGrammar().getSyntaxTreeFactory().createSentenceMeat(meatConjunction, opener.getConcept(), parts, closer.getConcept());
-                }
-                return this.parsingTrouble(tokenStream, TokenType.CLOSE_SET);
+            final List<Node> parts = this.parseParts(tokenStream);
+            if (tokenStream.hasOneOf(TokenType.CLOSE_SET)) {
+                final Token closer = tokenStream.next();
+                return this.getGrammar().getSyntaxTreeFactory().createSentenceMeat(meatConjunction, opener.getConcept(), parts, closer.getConcept());
             }
-            return this.parsingTrouble(tokenStream);
-        } else if (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT_PART)) {
-            parts.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT_PART));
-            while (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT_PART)) {
-                parts.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT_PART));
-            }
+            return this.parsingTrouble(tokenStream, TokenType.CLOSE_SET);
+        } else {
+            final List<Node> parts = this.parseParts(tokenStream);
             return this.getGrammar().getSyntaxTreeFactory().createSentenceMeat(meatConjunction, null, parts, null);
         }
-        return this.parsingTrouble(tokenStream);
+    }
+    
+    private List<Node> parseParts(final TokenStream tokenStream) {
+        final List<Node> result = new LinkedList<>();
+        if (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT_PART)) {
+            result.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT_PART));
+            while (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT_PART)) {
+                result.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT_PART));
+            }
+        }
+        result.add(this.parsingTrouble(tokenStream));
+        return result;
     }
 }

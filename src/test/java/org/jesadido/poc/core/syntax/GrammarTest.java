@@ -76,6 +76,14 @@ public class GrammarTest {
                 Node sentence = grammar.parse("Su ( ) Dom ( ) Fin ( ) .");
                 Assert.assertEquals("{ Su ( ) Dom ( ) Fin ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
+            {
+                Node sentence = grammar.parse("Aux ( ) Dom ( ) .");
+                Assert.assertEquals("Aux { Su ( ) Dom ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+            }
+            {
+                Node sentence = grammar.parse("( ) Dom ( ) Fin ( ) .");
+                Assert.assertEquals("{ Su ( ) Dom ( ) Fin ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+            }
         }
     }
 }
