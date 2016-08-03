@@ -11,11 +11,11 @@ import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.syntax.nodes.NodeLeaf;
 import org.jesadido.poc.core.syntax.nodes.Visitor;
 
-public class VerbSelection extends NodeLeaf {
+public class VerbalSelection extends NodeLeaf {
     
     private final Concept verb;
     
-    public VerbSelection(final Concept verb) {
+    public VerbalSelection(final Concept verb) {
         this.verb = verb;
     }
     

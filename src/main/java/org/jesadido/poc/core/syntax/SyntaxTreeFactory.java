@@ -18,10 +18,10 @@ public interface SyntaxTreeFactory {
     Node createSentenceMeatConjunction(Concept conjunction);
     
     Node createPartSu(Concept preposition, Concept opener, Node nominalSelection, Concept closer);
-    Node createPartDom(Concept preposition, Concept opener, Node verbSelection, Concept closer);
+    Node createPartDom(Concept preposition, Concept opener, Node verbalSelection, Concept closer);
     Node createPartFin(Concept preposition, Concept opener, Node nominalSelection, Concept closer);
     
-    Node createVerbSelection(Concept verb);
+    Node createVerbalSelection(Concept verb);
     
     Node createTrouble(String message);
 }

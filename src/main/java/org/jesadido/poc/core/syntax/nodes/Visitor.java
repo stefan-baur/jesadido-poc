@@ -7,14 +7,14 @@
  */
 package org.jesadido.poc.core.syntax.nodes;
 
+import org.jesadido.poc.core.syntax.nodes.common.TroubleNode;
 import org.jesadido.poc.core.syntax.nodes.sentence.Sentence;
 import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeat;
 import org.jesadido.poc.core.syntax.nodes.sentence.PartDom;
 import org.jesadido.poc.core.syntax.nodes.sentence.PartFin;
 import org.jesadido.poc.core.syntax.nodes.sentence.PartSu;
 import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatConjunction;
-import org.jesadido.poc.core.syntax.nodes.common.TroubleNode;
-import org.jesadido.poc.core.syntax.nodes.sentence.VerbSelection;
+import org.jesadido.poc.core.syntax.nodes.sentence.VerbalSelection;
 
 public interface Visitor<R, A> {
     
@@ -26,7 +26,7 @@ public interface Visitor<R, A> {
     R visit(PartDom node, A argument);
     R visit(PartFin node, A argument);
     
-    R visit(VerbSelection node, A argument);
+    R visit(VerbalSelection node, A argument);
     
     R visit(TroubleNode node, A argument);
 }

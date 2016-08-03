@@ -14,7 +14,7 @@ import org.jesadido.poc.core.syntax.base.productions.PartDomProduction;
 import org.jesadido.poc.core.syntax.base.productions.PartFinProduction;
 import org.jesadido.poc.core.syntax.base.productions.SentenceMeatPartProduction;
 import org.jesadido.poc.core.syntax.base.productions.PartSuProduction;
-import org.jesadido.poc.core.syntax.base.productions.VerbSelectionProduction;
+import org.jesadido.poc.core.syntax.base.productions.VerbalSelectionProduction;
 import org.jesadido.poc.core.syntax.base.productions.SentenceMeatConjunctionProduction;
 import org.jesadido.poc.core.syntax.base.productions.SentenceMeatProduction;
 import org.jesadido.poc.core.syntax.base.productions.SentenceProduction;
@@ -26,7 +26,7 @@ public class GrammarFactory {
     public final Grammar createBaseGrammar(final String name) {
         return new Grammar(name, new BaseTokenCreator(), new BaseSyntaxTreeFactory())
                 
-                .register(false, new VerbSelectionProduction())
+                .register(false, new VerbalSelectionProduction())
                 
                 .register(false, new PartSuProduction())
                 .register(false, new PartDomProduction())

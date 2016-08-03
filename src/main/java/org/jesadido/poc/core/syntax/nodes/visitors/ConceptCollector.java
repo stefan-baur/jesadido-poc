@@ -20,7 +20,7 @@ import org.jesadido.poc.core.syntax.nodes.sentence.PartDom;
 import org.jesadido.poc.core.syntax.nodes.sentence.PartFin;
 import org.jesadido.poc.core.syntax.nodes.sentence.PartSu;
 import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatConjunction;
-import org.jesadido.poc.core.syntax.nodes.sentence.VerbSelection;
+import org.jesadido.poc.core.syntax.nodes.sentence.VerbalSelection;
 
 public class ConceptCollector implements Visitor<List<Concept>, Void> {
     
@@ -90,7 +90,7 @@ public class ConceptCollector implements Visitor<List<Concept>, Void> {
     }
     
     @Override
-    public List<Concept> visit(final VerbSelection node, final Void unused) {
+    public List<Concept> visit(final VerbalSelection node, final Void unused) {
         List<Concept> result = new LinkedList<>();
         result.add(node.getVerb());
         return result;

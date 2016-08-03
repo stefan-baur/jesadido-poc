@@ -17,12 +17,12 @@ import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 
-public class VerbSelectionProduction extends ProductionLeaf {
+public class VerbalSelectionProduction extends ProductionLeaf {
     
     private List<TokenType> firsts = null;
     
-    public VerbSelectionProduction() {
-        super(Base.NT_VERB_SELECTION,
+    public VerbalSelectionProduction() {
+        super(Base.NT_VERBAL_SELECTION,
                 Arrays.asList(TokenType.AS, TokenType.IS, TokenType.OS),
                 new LinkedList<>()
         );
@@ -52,7 +52,7 @@ public class VerbSelectionProduction extends ProductionLeaf {
     public Node parse(final TokenStream tokenStream) {
         if (tokenStream.hasOneOf(TokenType.AS, TokenType.IS, TokenType.OS)) {
             final Token verb = tokenStream.next();
-            return this.getGrammar().getSyntaxTreeFactory().createVerbSelection(verb.getConcept());
+            return this.getGrammar().getSyntaxTreeFactory().createVerbalSelection(verb.getConcept());
         }
         return this.parsingTrouble(tokenStream);
     }
