@@ -17,13 +17,13 @@ import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 
-public class VerbalSelectionProduction extends ProductionLeaf {
+public class NominalSelectionProduction extends ProductionLeaf {
     
     private List<TokenType> firsts = null;
     
-    public VerbalSelectionProduction() {
-        super(Base.NT_VERBAL_SELECTION,
-                Arrays.asList(TokenType.VERB_PRESENT_TENSE),
+    public NominalSelectionProduction() {
+        super(Base.NT_NOMINAL_SELECTION,
+                Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR),
                 new LinkedList<>()
         );
     }
@@ -31,7 +31,7 @@ public class VerbalSelectionProduction extends ProductionLeaf {
     @Override
     public List<String> getRules() {
         return Arrays.asList(String.format("%s ::= %s", this.getNonterminalSymbol(),
-                TokenType.VERB_PRESENT_TENSE
+                TokenType.SUBSTANTIVE_SINGULAR
         ));
     }
     
@@ -39,16 +39,16 @@ public class VerbalSelectionProduction extends ProductionLeaf {
     public List<TokenType> getFirsts() {
         if (this.firsts == null) {
             this.firsts = new LinkedList<>();
-            this.firsts.add(TokenType.VERB_PRESENT_TENSE);
+            this.firsts.add(TokenType.SUBSTANTIVE_SINGULAR);
         }
         return this.firsts;
     }
     
     @Override
     public Node parse(final TokenStream tokenStream) {
-        if (tokenStream.hasOneOf(TokenType.VERB_PRESENT_TENSE)) {
-            final Token verb = tokenStream.next();
-            return this.getGrammar().getSyntaxTreeFactory().createVerbalSelection(verb.getConcept());
+        if (tokenStream.hasOneOf(TokenType.SUBSTANTIVE_SINGULAR)) {
+            final Token substantive = tokenStream.next();
+            return this.getGrammar().getSyntaxTreeFactory().createNominalSelection(substantive.getConcept());
         }
         return this.parsingTrouble(tokenStream);
     }

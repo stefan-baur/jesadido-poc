@@ -20,41 +20,48 @@ import org.jesadido.poc.core.syntax.tokens.TokenType;
 public final class BaseTokenCreator implements TokenCreator {
     
     private static final List<TokenType> SUPPORTED_TOKEN_TYPES = Arrays.asList(TokenType.UNKNOWN,
+            
             TokenType.TERMINATOR,
+            
             TokenType.SEPARATOR,
-            TokenType.KAJ,
-            TokenType.AUX,
-            TokenType.SE,
+            TokenType.SEPARATOR_KAJ,
+            TokenType.SEPARATOR_AUX,
+            TokenType.SEPARATOR_SE,
+            
             TokenType.OPEN_SET,
             TokenType.CLOSE_SET,
-            TokenType.SU,
-            TokenType.DOM,
-            TokenType.FIN,
             TokenType.OPEN,
             TokenType.CLOSE,
-            TokenType.AS,
-            TokenType.IS,
-            TokenType.OS
+            
+            TokenType.PART_SU,
+            TokenType.PART_DOM,
+            TokenType.PART_FIN,
+            
+            TokenType.SUBSTANTIVE_SINGULAR,
+            TokenType.VERB_PRESENT_TENSE
     );
 
     private static final EnumMap<ConceptTermination, TokenCreator.Selector> SELECTIONS = new EnumMap<>(ConceptTermination.class);
 
     static {
         SELECTIONS.put(ConceptTermination.PERIOD, (TokenCreator.Selector) (Concept c) -> TokenType.TERMINATOR);
+        
         SELECTIONS.put(ConceptTermination.COMMA, (TokenCreator.Selector) (Concept c) -> TokenType.SEPARATOR);
-        SELECTIONS.put(ConceptTermination.KAJ, (TokenCreator.Selector) (Concept c) -> TokenType.KAJ);
-        SELECTIONS.put(ConceptTermination.AUX, (TokenCreator.Selector) (Concept c) -> TokenType.AUX);
-        SELECTIONS.put(ConceptTermination.SE, (TokenCreator.Selector) (Concept c) -> TokenType.SE);
+        SELECTIONS.put(ConceptTermination.KAJ, (TokenCreator.Selector) (Concept c) -> TokenType.SEPARATOR_KAJ);
+        SELECTIONS.put(ConceptTermination.AUX, (TokenCreator.Selector) (Concept c) -> TokenType.SEPARATOR_AUX);
+        SELECTIONS.put(ConceptTermination.SE, (TokenCreator.Selector) (Concept c) -> TokenType.SEPARATOR_SE);
+        
         SELECTIONS.put(ConceptTermination.LEFT_CURLY, (TokenCreator.Selector) (Concept c) -> TokenType.OPEN_SET);
         SELECTIONS.put(ConceptTermination.RIGHT_CURLY, (TokenCreator.Selector) (Concept c) -> TokenType.CLOSE_SET);
-        SELECTIONS.put(ConceptTermination.SU, (TokenCreator.Selector) (Concept c) -> TokenType.SU);
-        SELECTIONS.put(ConceptTermination.DOM, (TokenCreator.Selector) (Concept c) -> TokenType.DOM);
-        SELECTIONS.put(ConceptTermination.FIN, (TokenCreator.Selector) (Concept c) -> TokenType.FIN);
         SELECTIONS.put(ConceptTermination.LEFT_PARENTHESIS, (TokenCreator.Selector) (Concept c) -> TokenType.OPEN);
         SELECTIONS.put(ConceptTermination.RIGHT_PARENTHESIS, (TokenCreator.Selector) (Concept c) -> TokenType.CLOSE);
-        SELECTIONS.put(ConceptTermination.AS, (TokenCreator.Selector) (Concept c) -> TokenType.AS);
-        SELECTIONS.put(ConceptTermination.IS, (TokenCreator.Selector) (Concept c) -> TokenType.IS);
-        SELECTIONS.put(ConceptTermination.OS, (TokenCreator.Selector) (Concept c) -> TokenType.OS);
+        
+        SELECTIONS.put(ConceptTermination.SU, (TokenCreator.Selector) (Concept c) -> TokenType.PART_SU);
+        SELECTIONS.put(ConceptTermination.DOM, (TokenCreator.Selector) (Concept c) -> TokenType.PART_DOM);
+        SELECTIONS.put(ConceptTermination.FIN, (TokenCreator.Selector) (Concept c) -> TokenType.PART_FIN);
+        
+        SELECTIONS.put(ConceptTermination.O, (TokenCreator.Selector) (Concept c) -> TokenType.SUBSTANTIVE_SINGULAR);
+        SELECTIONS.put(ConceptTermination.AS, (TokenCreator.Selector) (Concept c) -> TokenType.VERB_PRESENT_TENSE);
     }
 
     @Override

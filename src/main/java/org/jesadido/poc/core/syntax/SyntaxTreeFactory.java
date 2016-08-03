@@ -21,6 +21,7 @@ public interface SyntaxTreeFactory {
     Node createPartDom(Concept preposition, Concept opener, Node verbalSelection, Concept closer);
     Node createPartFin(Concept preposition, Concept opener, Node nominalSelection, Concept closer);
     
+    Node createNominalSelection(Concept substantive);
     Node createVerbalSelection(Concept verb);
     
     Node createTrouble(String message);

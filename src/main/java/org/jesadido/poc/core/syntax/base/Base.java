@@ -18,6 +18,7 @@ public final class Base {
     public static final String NT_PART_DOM = "part-dom";
     public static final String NT_PART_FIN = "part-fin";
     
+    public static final String NT_NOMINAL_SELECTION = "nominal-selection";
     public static final String NT_VERBAL_SELECTION = "verbal-selection";
     
     private Base() {

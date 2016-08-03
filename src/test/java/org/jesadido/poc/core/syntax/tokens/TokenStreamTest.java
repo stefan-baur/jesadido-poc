@@ -19,10 +19,10 @@ import org.jesadido.poc.core.concepts.ConceptTermination;
 import static org.jesadido.poc.core.syntax.tokens.TokenType.ADJECTIVE_SINGULAR;
 import static org.jesadido.poc.core.syntax.tokens.TokenType.ARTICLE;
 import static org.jesadido.poc.core.syntax.tokens.TokenType.PARAMETERED_SUBSTANTIVE_SINGULAR;
-import static org.jesadido.poc.core.syntax.tokens.TokenType.SUBSTANTIVE_SINGULAR;
 import static org.jesadido.poc.core.syntax.tokens.TokenType.TERMINATOR;
 import org.junit.Assert;
 import org.junit.Test;
+import static org.jesadido.poc.core.syntax.tokens.TokenType.SUBSTANTIVE_SINGULAR;
 
 public class TokenStreamTest {
     
@@ -173,8 +173,7 @@ public class TokenStreamTest {
     
     private static final class TokenCreatorForTokenStreamTest implements TokenCreator {
         
-        private static final List<TokenType> SUPPORTED = Arrays.asList(
-                TokenType.UNKNOWN,
+        private static final List<TokenType> SUPPORTED = Arrays.asList(TokenType.UNKNOWN,
                 TokenType.TERMINATOR,
                 TokenType.ARTICLE,
                 TokenType.PARAMETERED_SUBSTANTIVE_SINGULAR,

@@ -14,6 +14,7 @@ import org.jesadido.poc.core.syntax.SyntaxTreeFactory;
 import org.jesadido.poc.core.syntax.Terminal;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.nodes.common.TroubleNode;
+import org.jesadido.poc.core.syntax.nodes.sentence.NominalSelection;
 import org.jesadido.poc.core.syntax.nodes.sentence.Sentence;
 import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeat;
 import org.jesadido.poc.core.syntax.nodes.sentence.PartDom;
@@ -59,6 +60,11 @@ public class BaseSyntaxTreeFactory implements SyntaxTreeFactory {
     public Node createPartFin(final Concept preposition, final Concept opener, final Node nominalSelection, final Concept closer) {
         return new PartFin(new Terminal(preposition, "Fin"), new Terminal(opener, "("), new Terminal(closer, ")"))
                 .addChild(nominalSelection);
+    }
+    
+    @Override
+    public Node createNominalSelection(final Concept substantive) {
+        return new NominalSelection(substantive);
     }
     
     @Override

@@ -22,12 +22,12 @@ import static org.jesadido.poc.core.syntax.tokens.TokenType.PARAMETERED_SUBSTANT
 import static org.jesadido.poc.core.syntax.tokens.TokenType.PARAMETERED_SUBSTANTIVE_SINGULAR;
 import static org.jesadido.poc.core.syntax.tokens.TokenType.PERSONAL_PRONOUN_PLURAL;
 import static org.jesadido.poc.core.syntax.tokens.TokenType.PERSONAL_PRONOUN_SINGULAR;
-import static org.jesadido.poc.core.syntax.tokens.TokenType.SUBSTANTIVE_PLURAL;
-import static org.jesadido.poc.core.syntax.tokens.TokenType.SUBSTANTIVE_SINGULAR;
 import static org.jesadido.poc.core.syntax.tokens.TokenType.TERMINATOR;
 import org.junit.Assert;
 import org.junit.Test;
 import static org.jesadido.poc.core.syntax.tokens.TokenType.SEPARATOR;
+import static org.jesadido.poc.core.syntax.tokens.TokenType.SUBSTANTIVE_SINGULAR;
+import static org.jesadido.poc.core.syntax.tokens.TokenType.SUBSTANTIVE_PLURAL;
 
 public class TokenCreatorTest {
     

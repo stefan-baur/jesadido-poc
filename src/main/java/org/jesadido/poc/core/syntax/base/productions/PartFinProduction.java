@@ -23,7 +23,7 @@ public class PartFinProduction extends ProductionLeaf {
     
     public PartFinProduction() {
         super(Base.NT_PART_FIN,
-                Arrays.asList(TokenType.FIN, TokenType.OPEN, TokenType.CLOSE),
+                Arrays.asList(TokenType.PART_FIN, TokenType.OPEN, TokenType.CLOSE),
                 new LinkedList<>()
         );
     }
@@ -31,7 +31,7 @@ public class PartFinProduction extends ProductionLeaf {
     @Override
     public List<String> getRules() {
         return Arrays.asList(String.format("%s ::= %s %s %s", this.getNonterminalSymbol(),
-                TokenType.FIN,
+                TokenType.PART_FIN,
                 TokenType.OPEN,
                 TokenType.CLOSE
         ));
@@ -41,14 +41,14 @@ public class PartFinProduction extends ProductionLeaf {
     public List<TokenType> getFirsts() {
         if (this.firsts == null) {
             this.firsts = new LinkedList<>();
-            this.firsts.add(TokenType.FIN);
+            this.firsts.add(TokenType.PART_FIN);
         }
         return this.firsts;
     }
     
     @Override
     public Node parse(final TokenStream tokenStream) {
-        if (tokenStream.hasOneOf(TokenType.FIN)) {
+        if (tokenStream.hasOneOf(TokenType.PART_FIN)) {
             final Token preposition = tokenStream.next();
             if (tokenStream.hasOneOf(TokenType.OPEN)) {
                 final Token opener = tokenStream.next();
@@ -60,6 +60,6 @@ public class PartFinProduction extends ProductionLeaf {
             }
             return this.parsingTrouble(tokenStream, TokenType.OPEN);
         }
-        return this.parsingTrouble(tokenStream, TokenType.FIN);
+        return this.parsingTrouble(tokenStream, TokenType.PART_FIN);
     }
 }

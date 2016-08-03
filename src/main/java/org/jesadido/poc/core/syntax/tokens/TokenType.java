@@ -129,19 +129,19 @@ public enum TokenType {
      * The appropriate token value represents the base concept <b>Kaj</b>
      * <i>(and)</i>.
      */
-    KAJ,
+    SEPARATOR_KAJ,
     
     /**
      * The appropriate token value represents the base concept <b>Aux</b>
      * <i>(or)</i>.
      */
-    AUX,
+    SEPARATOR_AUX,
     
     /**
      * The appropriate token value represents the base concept <b>Se</b>
      * <i>(or)</i>.
      */
-    SE,
+    SEPARATOR_SE,
     
     /**
      * The appropriate token value opens an element.
@@ -166,32 +166,22 @@ public enum TokenType {
     /**
      * The appropriate token value indicates the subject.
      */
-    SU,
+    PART_SU,
     
     /**
      * The appropriate token value indicates the predicate.
      */
-    DOM,
+    PART_DOM,
     
     /**
      * The appropriate token value indicates the accusative object.
      */
-    FIN,
+    PART_FIN,
     
     /**
-     * The appropriate token value indicates the present-tense verb.
+     * The appropriate token value indicates the present tense verb.
      */
-    AS,
-    
-    /**
-     * The appropriate token value indicates the past-tense verb.
-     */
-    IS,
-    
-    /**
-     * The appropriate token value indicates the future-tense verb.
-     */
-    OS,
+    VERB_PRESENT_TENSE,
     
     /**
      * The appropriate token value represents a terminator symbol for

@@ -10,6 +10,7 @@ package org.jesadido.poc.core.syntax;
 import java.util.logging.Logger;
 import org.jesadido.poc.core.syntax.base.BaseSyntaxTreeFactory;
 import org.jesadido.poc.core.syntax.base.BaseTokenCreator;
+import org.jesadido.poc.core.syntax.base.productions.NominalSelectionProduction;
 import org.jesadido.poc.core.syntax.base.productions.PartDomProduction;
 import org.jesadido.poc.core.syntax.base.productions.PartFinProduction;
 import org.jesadido.poc.core.syntax.base.productions.SentenceMeatPartProduction;
@@ -26,6 +27,7 @@ public class GrammarFactory {
     public final Grammar createBaseGrammar(final String name) {
         return new Grammar(name, new BaseTokenCreator(), new BaseSyntaxTreeFactory())
                 
+                .register(false, new NominalSelectionProduction())
                 .register(false, new VerbalSelectionProduction())
                 
                 .register(false, new PartSuProduction())

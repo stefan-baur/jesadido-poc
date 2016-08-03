@@ -24,48 +24,58 @@ public class PartSuProduction extends ProductionLeaf {
     
     public PartSuProduction() {
         super(Base.NT_PART_SU,
-                Arrays.asList(TokenType.SU, TokenType.OPEN, TokenType.CLOSE),
-                new LinkedList<>()
+                Arrays.asList(TokenType.PART_SU, TokenType.OPEN, TokenType.CLOSE),
+                Arrays.asList(Base.NT_NOMINAL_SELECTION)
         );
     }
     
     @Override
     public List<String> getRules() {
-        return Arrays.asList(String.format("%s ::= %s? %s %s", this.getNonterminalSymbol(),
-                TokenType.SU,
-                TokenType.OPEN,
-                TokenType.CLOSE
-        ));
+        return Arrays.asList(
+                String.format("%s ::= %s? %s %s %s", this.getNonterminalSymbol(), TokenType.PART_SU, TokenType.OPEN, Base.NT_NOMINAL_SELECTION, TokenType.CLOSE),
+                String.format("%s ::= %s? %s", this.getNonterminalSymbol(), TokenType.PART_SU, Base.NT_NOMINAL_SELECTION)
+        );
     }
     
     @Override
     public List<TokenType> getFirsts() {
         if (this.firsts == null) {
             this.firsts = new LinkedList<>();
-            this.firsts.add(TokenType.SU);
+            this.firsts.add(TokenType.PART_SU);
             this.firsts.add(TokenType.OPEN);
+            this.firsts.addAll(this.getFirsts(Base.NT_NOMINAL_SELECTION));
         }
         return this.firsts;
     }
     
     @Override
     public Node parse(final TokenStream tokenStream) {
-        if (tokenStream.hasOneOf(TokenType.SU)) {
+        if (tokenStream.hasOneOf(TokenType.PART_SU)) {
             final Token preposition = tokenStream.next();
-            return this.parseOpenClose(tokenStream, preposition.getConcept());
+            return this.parseHeadless(tokenStream, preposition.getConcept());
         }
-        return this.parseOpenClose(tokenStream, null);
+        return this.parseHeadless(tokenStream, null);
     }
     
-    private Node parseOpenClose(final TokenStream tokenStream, final Concept prepositionConcept) {
+    private Node parseHeadless(final TokenStream tokenStream, final Concept prepositionConcept) {
         if (tokenStream.hasOneOf(TokenType.OPEN)) {
             final Token opener = tokenStream.next();
+            final Node nominalSelection = this.parseNominalSelection(tokenStream);
             if (tokenStream.hasOneOf(TokenType.CLOSE)) {
                 final Token closer = tokenStream.next();
-                return this.getGrammar().getSyntaxTreeFactory().createPartSu(prepositionConcept, opener.getConcept(), null, closer.getConcept());
+                return this.getGrammar().getSyntaxTreeFactory().createPartSu(prepositionConcept, opener.getConcept(), nominalSelection, closer.getConcept());
             }
             return this.parsingTrouble(tokenStream, TokenType.CLOSE);
+        } else {
+            final Node nominalSelection = this.parseNominalSelection(tokenStream);
+            return this.getGrammar().getSyntaxTreeFactory().createPartSu(prepositionConcept, null, nominalSelection, null);
         }
-        return this.parsingTrouble(tokenStream, TokenType.OPEN);
+    }
+    
+    private Node parseNominalSelection(final TokenStream tokenStream) {
+        if (this.hasFirstOf(tokenStream, Base.NT_NOMINAL_SELECTION)) {
+            return this.parse(tokenStream, Base.NT_NOMINAL_SELECTION);
+        }
+        return this.parsingTrouble(tokenStream);
     }
 }

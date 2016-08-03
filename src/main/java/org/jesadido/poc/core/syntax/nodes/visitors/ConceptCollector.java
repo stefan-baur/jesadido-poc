@@ -14,6 +14,7 @@ import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.nodes.Visitor;
 import org.jesadido.poc.core.syntax.nodes.common.TroubleNode;
+import org.jesadido.poc.core.syntax.nodes.sentence.NominalSelection;
 import org.jesadido.poc.core.syntax.nodes.sentence.Sentence;
 import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeat;
 import org.jesadido.poc.core.syntax.nodes.sentence.PartDom;
@@ -86,6 +87,13 @@ public class ConceptCollector implements Visitor<List<Concept>, Void> {
         result.add(node.getOpener().getConcept());
         node.getChildren().stream().forEach(child -> result.addAll(child.accept(this, null)));
         result.add(node.getCloser().getConcept());
+        return result;
+    }
+    
+    @Override
+    public List<Concept> visit(final NominalSelection node, final Void unused) {
+        List<Concept> result = new LinkedList<>();
+        result.add(node.getSubstantive());
         return result;
     }
     

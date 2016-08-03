@@ -23,7 +23,7 @@ public class PartDomProduction extends ProductionLeaf {
     
     public PartDomProduction() {
         super(Base.NT_PART_DOM,
-                Arrays.asList(TokenType.DOM, TokenType.OPEN, TokenType.CLOSE),
+                Arrays.asList(TokenType.PART_DOM, TokenType.OPEN, TokenType.CLOSE),
                 Arrays.asList(Base.NT_VERBAL_SELECTION)
         );
     }
@@ -31,8 +31,8 @@ public class PartDomProduction extends ProductionLeaf {
     @Override
     public List<String> getRules() {
         return Arrays.asList(
-                String.format("%s ::= %s %s %s %s", this.getNonterminalSymbol(), TokenType.DOM, TokenType.OPEN, Base.NT_VERBAL_SELECTION, TokenType.CLOSE),
-                String.format("%s ::= %s? %s", this.getNonterminalSymbol(), TokenType.DOM, Base.NT_VERBAL_SELECTION)
+                String.format("%s ::= %s %s %s %s", this.getNonterminalSymbol(), TokenType.PART_DOM, TokenType.OPEN, Base.NT_VERBAL_SELECTION, TokenType.CLOSE),
+                String.format("%s ::= %s? %s", this.getNonterminalSymbol(), TokenType.PART_DOM, Base.NT_VERBAL_SELECTION)
         );
     }
     
@@ -40,7 +40,7 @@ public class PartDomProduction extends ProductionLeaf {
     public List<TokenType> getFirsts() {
         if (this.firsts == null) {
             this.firsts = new LinkedList<>();
-            this.firsts.add(TokenType.DOM);
+            this.firsts.add(TokenType.PART_DOM);
             this.firsts.addAll(this.getFirsts(Base.NT_VERBAL_SELECTION));
         }
         return this.firsts;
@@ -48,7 +48,7 @@ public class PartDomProduction extends ProductionLeaf {
     
     @Override
     public Node parse(final TokenStream tokenStream) {
-        if (tokenStream.hasOneOf(TokenType.DOM)) {
+        if (tokenStream.hasOneOf(TokenType.PART_DOM)) {
             final Token preposition = tokenStream.next();
             if (tokenStream.hasOneOf(TokenType.OPEN)) {
                 final Token opener = tokenStream.next();

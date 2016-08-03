@@ -19,7 +19,7 @@ public class SentenceMeatConjunctionProduction extends ProductionOneOf {
     
     public SentenceMeatConjunctionProduction() {
         super(Base.NT_SENTENCE_MEAT_CONJUNCTION,
-                Arrays.asList(TokenType.SE, TokenType.KAJ, TokenType.AUX, TokenType.SEPARATOR)
+                Arrays.asList(TokenType.SEPARATOR_SE, TokenType.SEPARATOR_KAJ, TokenType.SEPARATOR_AUX, TokenType.SEPARATOR)
         );
     }
     
