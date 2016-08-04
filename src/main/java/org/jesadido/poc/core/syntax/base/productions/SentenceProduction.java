@@ -10,7 +10,7 @@ package org.jesadido.poc.core.syntax.base.productions;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import org.jesadido.poc.core.syntax.base.Base;
+import org.jesadido.poc.core.syntax.Nonterminal;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.productions.ProductionLeaf;
 import org.jesadido.poc.core.syntax.tokens.Token;
@@ -20,10 +20,9 @@ import org.jesadido.poc.core.syntax.tokens.TokenType;
 public class SentenceProduction extends ProductionLeaf {
     
     public SentenceProduction() {
-        super(
-                Base.NT_SENTENCE,
+        super(Nonterminal.SENTENCE,
                 Arrays.asList(TokenType.TERMINATOR),
-                Arrays.asList(Base.NT_SENTENCE_MEAT)
+                Arrays.asList(Nonterminal.SENTENCE_MEAT)
         );
     }
     
@@ -31,22 +30,22 @@ public class SentenceProduction extends ProductionLeaf {
     public List<String> getRules() {
         return Arrays.asList(String.format("%s ::= %s+ %s",
                 this.getNonterminalSymbol(),
-                Base.NT_SENTENCE_MEAT,
+                Nonterminal.SENTENCE_MEAT,
                 TokenType.TERMINATOR));
     }
     
     @Override
     public List<TokenType> getFirsts() {
-        return this.getFirsts(Base.NT_SENTENCE_MEAT);
+        return this.getFirsts(Nonterminal.SENTENCE_MEAT);
     }
     
     @Override
     public Node parse(final TokenStream tokenStream) {
-        if (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT)) {
+        if (this.hasFirstOf(tokenStream, Nonterminal.SENTENCE_MEAT)) {
             final List<Node> meats = new LinkedList<>();
-            meats.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT));
-            while (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT)) {
-                meats.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT));
+            meats.add(this.parse(tokenStream, Nonterminal.SENTENCE_MEAT));
+            while (this.hasFirstOf(tokenStream, Nonterminal.SENTENCE_MEAT)) {
+                meats.add(this.parse(tokenStream, Nonterminal.SENTENCE_MEAT));
             }
             if (tokenStream.hasOneOf(TokenType.TERMINATOR)) {
                 final Token terminator = tokenStream.next();

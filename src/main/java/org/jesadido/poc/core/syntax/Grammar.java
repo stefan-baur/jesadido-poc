@@ -9,7 +9,7 @@ package org.jesadido.poc.core.syntax;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -32,10 +32,10 @@ public class Grammar {
     private final TokenCreator tokenCreator;
     private final SyntaxTreeFactory syntaxTreeFactory;
     
-    private final List<String> nonterminals = new LinkedList<>();
+    private final List<Nonterminal> nonterminals = new LinkedList<>();
     private final List<TokenType> terminals = new LinkedList<>();
-    private final Map<String, Production> productions = new HashMap<>();
-    private String startSymbol = null;
+    private final Map<Nonterminal, Production> productions = new EnumMap<>(Nonterminal.class);
+    private Nonterminal startSymbol = null;
     
     public Grammar(final String name, final TokenCreator tokenCreator, final SyntaxTreeFactory syntaxTreeFactory) {
         this.name = name;
@@ -55,7 +55,7 @@ public class Grammar {
         return this.syntaxTreeFactory;
     }
     
-    public List<String> getNonterminalSymbols() {
+    public List<Nonterminal> getNonterminalSymbols() {
         return this.nonterminals;
     }
     
@@ -63,11 +63,11 @@ public class Grammar {
         return this.terminals;
     }
     
-    public Map<String, Production> getProductionRules() {
+    public Map<Nonterminal, Production> getProductionRules() {
         return this.productions;
     }
     
-    public String getStartSymbol() {
+    public Nonterminal getStartSymbol() {
         return this.startSymbol;
     }
     
@@ -94,7 +94,7 @@ public class Grammar {
         throw new IllegalArgumentException(String.format("A production can not registered to the grammar '%s'.", this.name));
     }
     
-    public Node parse(final String source, final String startSymbol) {
+    public Node parse(final String source, final Nonterminal startSymbol) {
         return this.parse(new TokenStream(source, this.tokenCreator), startSymbol);
     }
     
@@ -102,7 +102,7 @@ public class Grammar {
         return this.parse(source, this.startSymbol);
     }
     
-    public Node parse(final InputStream source, final String startSymbol) {
+    public Node parse(final InputStream source, final Nonterminal startSymbol) {
         try (TokenStream tokenStream = new TokenStream(source, this.tokenCreator)) {
             return this.parse(tokenStream, startSymbol);
         } catch (IOException exception) {
@@ -115,7 +115,7 @@ public class Grammar {
         return this.parse(source, this.startSymbol);
     }
     
-    private Node parse(final TokenStream tokenStream, final String startSymbol) {
+    private Node parse(final TokenStream tokenStream, final Nonterminal startSymbol) {
         if (this.productions.containsKey(startSymbol)) {
             return this.productions.get(startSymbol).parse(tokenStream);
         } else {
@@ -134,7 +134,7 @@ public class Grammar {
         return new Src()
                 .begin("Grammar %s = (N, T, P, s) = (", this.name)
                 .begin("{")
-                .line(String.join(", ", this.nonterminals))
+                .line(StringUtils.join(", ", this.nonterminals))
                 .endBegin("}, {")
                 .line(StringUtils.join(", ", this.terminals))
                 .endBegin("}, {")

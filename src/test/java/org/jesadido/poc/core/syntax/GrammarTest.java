@@ -8,7 +8,6 @@
 package org.jesadido.poc.core.syntax;
 
 import org.jesadido.poc.core.concepts.ConceptUtils;
-import org.jesadido.poc.core.syntax.base.Base;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.nodes.visitors.ConceptCollector;
 import org.junit.Assert;
@@ -57,11 +56,11 @@ public class GrammarTest {
                 Assert.assertEquals("{ Su ( TestIcxO ) } { Su ( TestInO ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
-                Node sentence = grammar.parse("{ Su ( TestO ) }", Base.NT_SENTENCE_MEAT);
+                Node sentence = grammar.parse("{ Su ( TestO ) }", Nonterminal.SENTENCE_MEAT);
                 Assert.assertEquals("{ Su ( TestO ) }", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
-                Node sentence = grammar.parse("Kaj", Base.NT_SENTENCE_MEAT_CONJUNCTION);
+                Node sentence = grammar.parse("Kaj", Nonterminal.SENTENCE_MEAT_CONJUNCTION);
                 Assert.assertEquals("Kaj", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {

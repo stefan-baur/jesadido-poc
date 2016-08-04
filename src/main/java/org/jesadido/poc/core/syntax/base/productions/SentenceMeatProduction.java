@@ -10,7 +10,7 @@ package org.jesadido.poc.core.syntax.base.productions;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import org.jesadido.poc.core.syntax.base.Base;
+import org.jesadido.poc.core.syntax.Nonterminal;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.productions.ProductionLeaf;
 import org.jesadido.poc.core.syntax.tokens.Token;
@@ -22,18 +22,16 @@ public class SentenceMeatProduction extends ProductionLeaf {
     private List<TokenType> firsts = null;
     
     public SentenceMeatProduction() {
-        super(
-                Base.NT_SENTENCE_MEAT,
+        super(Nonterminal.SENTENCE_MEAT,
                 Arrays.asList(TokenType.OPEN_SET, TokenType.CLOSE_SET),
-                Arrays.asList(Base.NT_SENTENCE_MEAT_CONJUNCTION, Base.NT_SENTENCE_MEAT_PART)
+                Arrays.asList(Nonterminal.SENTENCE_MEAT_CONJUNCTION, Nonterminal.SENTENCE_MEAT_PART)
         );
     }
     
     @Override
     public List<String> getRules() {
-        return Arrays.asList(
-                String.format("%s ::= %s? %s %s+ %s", this.getNonterminalSymbol(), Base.NT_SENTENCE_MEAT_CONJUNCTION, TokenType.OPEN_SET, Base.NT_SENTENCE_MEAT_PART, TokenType.CLOSE_SET),
-                String.format("%s ::= %s? %s+", this.getNonterminalSymbol(), Base.NT_SENTENCE_MEAT_CONJUNCTION, Base.NT_SENTENCE_MEAT_PART)
+        return Arrays.asList(String.format("%s ::= %s? %s %s+ %s", this.getNonterminalSymbol(), Nonterminal.SENTENCE_MEAT_CONJUNCTION, TokenType.OPEN_SET, Nonterminal.SENTENCE_MEAT_PART, TokenType.CLOSE_SET),
+                String.format("%s ::= %s? %s+", this.getNonterminalSymbol(), Nonterminal.SENTENCE_MEAT_CONJUNCTION, Nonterminal.SENTENCE_MEAT_PART)
         );
     }
     
@@ -42,8 +40,8 @@ public class SentenceMeatProduction extends ProductionLeaf {
         if (this.firsts == null) {
             this.firsts = new LinkedList<>();
             this.firsts.add(TokenType.OPEN_SET);
-            this.firsts.addAll(this.getFirsts(Base.NT_SENTENCE_MEAT_CONJUNCTION));
-            this.firsts.addAll(this.getFirsts(Base.NT_SENTENCE_MEAT_PART));
+            this.firsts.addAll(this.getFirsts(Nonterminal.SENTENCE_MEAT_CONJUNCTION));
+            this.firsts.addAll(this.getFirsts(Nonterminal.SENTENCE_MEAT_PART));
         }
         return this.firsts;
     }
@@ -51,8 +49,8 @@ public class SentenceMeatProduction extends ProductionLeaf {
     @Override
     public Node parse(final TokenStream tokenStream) {
         Node meatConjunction = null;
-        if (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT_CONJUNCTION)) {
-            meatConjunction = this.parse(tokenStream, Base.NT_SENTENCE_MEAT_CONJUNCTION);
+        if (this.hasFirstOf(tokenStream, Nonterminal.SENTENCE_MEAT_CONJUNCTION)) {
+            meatConjunction = this.parse(tokenStream, Nonterminal.SENTENCE_MEAT_CONJUNCTION);
         }
         if (tokenStream.hasOneOf(TokenType.OPEN_SET)) {
             final Token opener = tokenStream.next();
@@ -70,10 +68,10 @@ public class SentenceMeatProduction extends ProductionLeaf {
     
     private List<Node> parseParts(final TokenStream tokenStream) {
         final List<Node> result = new LinkedList<>();
-        if (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT_PART)) {
-            result.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT_PART));
-            while (this.hasFirstOf(tokenStream, Base.NT_SENTENCE_MEAT_PART)) {
-                result.add(this.parse(tokenStream, Base.NT_SENTENCE_MEAT_PART));
+        if (this.hasFirstOf(tokenStream, Nonterminal.SENTENCE_MEAT_PART)) {
+            result.add(this.parse(tokenStream, Nonterminal.SENTENCE_MEAT_PART));
+            while (this.hasFirstOf(tokenStream, Nonterminal.SENTENCE_MEAT_PART)) {
+                result.add(this.parse(tokenStream, Nonterminal.SENTENCE_MEAT_PART));
             }
         }
         result.add(this.parsingTrouble(tokenStream));

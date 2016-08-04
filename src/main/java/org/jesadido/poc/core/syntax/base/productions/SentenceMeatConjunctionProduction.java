@@ -8,7 +8,7 @@
 package org.jesadido.poc.core.syntax.base.productions;
 
 import java.util.Arrays;
-import org.jesadido.poc.core.syntax.base.Base;
+import org.jesadido.poc.core.syntax.Nonterminal;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.productions.ProductionOneOf;
 import org.jesadido.poc.core.syntax.tokens.Token;
@@ -18,7 +18,7 @@ import org.jesadido.poc.core.syntax.tokens.TokenType;
 public class SentenceMeatConjunctionProduction extends ProductionOneOf {
     
     public SentenceMeatConjunctionProduction() {
-        super(Base.NT_SENTENCE_MEAT_CONJUNCTION,
+        super(Nonterminal.SENTENCE_MEAT_CONJUNCTION,
                 Arrays.asList(TokenType.SEPARATOR_SE, TokenType.SEPARATOR_KAJ, TokenType.SEPARATOR_AUX, TokenType.SEPARATOR)
         );
     }

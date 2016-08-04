@@ -10,7 +10,7 @@ package org.jesadido.poc.core.syntax.base.productions;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import org.jesadido.poc.core.syntax.base.Base;
+import org.jesadido.poc.core.syntax.Nonterminal;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.productions.ProductionLeaf;
 import org.jesadido.poc.core.syntax.tokens.Token;
@@ -22,17 +22,16 @@ public class PartSuProduction extends ProductionLeaf {
     private List<TokenType> firsts = null;
     
     public PartSuProduction() {
-        super(Base.NT_PART_SU,
+        super(Nonterminal.PART_SU,
                 Arrays.asList(TokenType.PART_SU, TokenType.OPEN, TokenType.CLOSE),
-                Arrays.asList(Base.NT_NOMINAL_SELECTION)
+                Arrays.asList(Nonterminal.NOMINAL_SELECTION)
         );
     }
     
     @Override
     public List<String> getRules() {
-        return Arrays.asList(
-                String.format("%s ::= %s? %s %s %s", this.getNonterminalSymbol(), TokenType.PART_SU, TokenType.OPEN, Base.NT_NOMINAL_SELECTION, TokenType.CLOSE),
-                String.format("%s ::= %s? %s", this.getNonterminalSymbol(), TokenType.PART_SU, Base.NT_NOMINAL_SELECTION)
+        return Arrays.asList(String.format("%s ::= %s? %s %s %s", this.getNonterminalSymbol(), TokenType.PART_SU, TokenType.OPEN, Nonterminal.NOMINAL_SELECTION, TokenType.CLOSE),
+                String.format("%s ::= %s? %s", this.getNonterminalSymbol(), TokenType.PART_SU, Nonterminal.NOMINAL_SELECTION)
         );
     }
     
@@ -42,7 +41,7 @@ public class PartSuProduction extends ProductionLeaf {
             this.firsts = new LinkedList<>();
             this.firsts.add(TokenType.PART_SU);
             this.firsts.add(TokenType.OPEN);
-            this.firsts.addAll(this.getFirsts(Base.NT_NOMINAL_SELECTION));
+            this.firsts.addAll(this.getFirsts(Nonterminal.NOMINAL_SELECTION));
         }
         return this.firsts;
     }
@@ -72,8 +71,8 @@ public class PartSuProduction extends ProductionLeaf {
     }
     
     private Node parseNominalSelection(final TokenStream tokenStream) {
-        if (this.hasFirstOf(tokenStream, Base.NT_NOMINAL_SELECTION)) {
-            return this.parse(tokenStream, Base.NT_NOMINAL_SELECTION);
+        if (this.hasFirstOf(tokenStream, Nonterminal.NOMINAL_SELECTION)) {
+            return this.parse(tokenStream, Nonterminal.NOMINAL_SELECTION);
         }
         return this.parsingTrouble(tokenStream);
     }

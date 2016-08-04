@@ -9,6 +9,7 @@ package org.jesadido.poc.core.syntax.productions;
 
 import java.util.LinkedList;
 import java.util.List;
+import org.jesadido.poc.core.syntax.Nonterminal;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
@@ -17,10 +18,10 @@ public class ProductionAlternatives extends ProductionComposite {
     
     private final List<String> rules = new LinkedList<>();
     private final List<TokenType> usedTerminalSymbols = new LinkedList<>();
-    private final List<String> usedNonterminalSymbols = new LinkedList<>();
+    private final List<Nonterminal> usedNonterminalSymbols = new LinkedList<>();
     private List<TokenType> firsts = null;
     
-    public ProductionAlternatives(final String nonterminalSymbol) {
+    public ProductionAlternatives(final Nonterminal nonterminalSymbol) {
         super(nonterminalSymbol);
     }
     
@@ -50,7 +51,7 @@ public class ProductionAlternatives extends ProductionComposite {
     }
     
     @Override
-    public List<String> getUsedNonterminalSymbols() {
+    public List<Nonterminal> getUsedNonterminalSymbols() {
         return this.usedNonterminalSymbols;
     }
     

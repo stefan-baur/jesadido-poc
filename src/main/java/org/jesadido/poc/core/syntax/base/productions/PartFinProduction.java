@@ -10,7 +10,7 @@ package org.jesadido.poc.core.syntax.base.productions;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import org.jesadido.poc.core.syntax.base.Base;
+import org.jesadido.poc.core.syntax.Nonterminal;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.productions.ProductionLeaf;
 import org.jesadido.poc.core.syntax.tokens.Token;
@@ -22,7 +22,7 @@ public class PartFinProduction extends ProductionLeaf {
     private List<TokenType> firsts = null;
     
     public PartFinProduction() {
-        super(Base.NT_PART_FIN,
+        super(Nonterminal.PART_FIN,
                 Arrays.asList(TokenType.PART_FIN, TokenType.OPEN, TokenType.CLOSE),
                 new LinkedList<>()
         );

@@ -11,13 +11,14 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.syntax.Grammar;
+import org.jesadido.poc.core.syntax.Nonterminal;
 
 public abstract class ProductionComposite extends Production {
     
     private final List<Production> children = new LinkedList<>();
     private final List<Production> publicChildren = Collections.unmodifiableList(this.children);
     
-    public ProductionComposite(final String nonterminalSymbol) {
+    public ProductionComposite(final Nonterminal nonterminalSymbol) {
         super(nonterminalSymbol);
     }
     
@@ -26,7 +27,7 @@ public abstract class ProductionComposite extends Production {
     }
     
     public boolean addChild(Production childProduction) {
-        if (this.getNonterminalSymbol().equals(childProduction.getNonterminalSymbol())) {
+        if (this.getNonterminalSymbol() == childProduction.getNonterminalSymbol()) {
             this.children.add(childProduction);
             this.invalidate();
             return true;

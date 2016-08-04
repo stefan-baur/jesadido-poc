@@ -11,13 +11,14 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.StringUtils;
+import org.jesadido.poc.core.syntax.Nonterminal;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 
 public abstract class ProductionOneOf extends ProductionLeaf {
     
     private final List<TokenType> firsts;
     
-    public ProductionOneOf(final String nonterminalSymbol, final List<TokenType> firsts) {
+    public ProductionOneOf(final Nonterminal nonterminalSymbol, final List<TokenType> firsts) {
         super(nonterminalSymbol, firsts, new LinkedList<>());
         this.firsts = firsts;
     }

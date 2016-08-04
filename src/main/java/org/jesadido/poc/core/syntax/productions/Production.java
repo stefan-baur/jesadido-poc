@@ -10,16 +10,17 @@ package org.jesadido.poc.core.syntax.productions;
 import java.util.List;
 import java.util.Map;
 import org.jesadido.poc.core.syntax.Grammar;
+import org.jesadido.poc.core.syntax.Nonterminal;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 
 public abstract class Production {
     
-    private final String nonterminalSymbol;
+    private final Nonterminal nonterminalSymbol;
     private Grammar grammar;
     
-    public Production(final String nonterminalSymbol) {
+    public Production(final Nonterminal nonterminalSymbol) {
         this.nonterminalSymbol = nonterminalSymbol;
     }
     
@@ -31,7 +32,7 @@ public abstract class Production {
         this.grammar = grammar;
     }
     
-    public String getNonterminalSymbol() {
+    public Nonterminal getNonterminalSymbol() {
         return this.nonterminalSymbol;
     }
     
@@ -39,10 +40,10 @@ public abstract class Production {
     
     public abstract List<TokenType> getUsedTerminalSymbols();
     
-    public abstract List<String> getUsedNonterminalSymbols();
+    public abstract List<Nonterminal> getUsedNonterminalSymbols();
     
-    private Production getProduction(final String nonterminalSymbol) {
-        final Map<String, Production> productions = this.grammar.getProductionRules();
+    private Production getProduction(final Nonterminal nonterminalSymbol) {
+        final Map<Nonterminal, Production> productions = this.grammar.getProductionRules();
         if (productions.containsKey(nonterminalSymbol)) {
             return productions.get(nonterminalSymbol);
         }
@@ -53,12 +54,12 @@ public abstract class Production {
     
     public abstract Node parse(final TokenStream tokenStream);
     
-    public List<TokenType> getFirsts(final String nonterminalSymbol) {
+    public List<TokenType> getFirsts(final Nonterminal nonterminalSymbol) {
         return this.getProduction(nonterminalSymbol).getFirsts();
     }
     
-    public boolean hasFirstOf(final TokenStream tokenStream, final String ... nonterminalSymbols) {
-        for (final String nt : nonterminalSymbols) {
+    public boolean hasFirstOf(final TokenStream tokenStream, final Nonterminal ... nonterminalSymbols) {
+        for (final Nonterminal nt : nonterminalSymbols) {
             if (tokenStream.hasOneOf(this.getProduction(nt).getFirsts())) {
                 return true;
             }
@@ -66,7 +67,7 @@ public abstract class Production {
         return false;
     }
     
-    public Node parse(final TokenStream tokenStream, final String nonterminalSymbol) {
+    public Node parse(final TokenStream tokenStream, final Nonterminal nonterminalSymbol) {
         return this.getProduction(nonterminalSymbol).parse(tokenStream);
     }
     

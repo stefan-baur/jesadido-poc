@@ -10,6 +10,7 @@ package org.jesadido.poc.core.syntax.base;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.concepts.ConceptRegistry;
 import org.jesadido.poc.core.concepts.ConceptTermination;
@@ -41,7 +42,7 @@ public final class BaseTokenCreator implements TokenCreator {
             TokenType.VERB_PRESENT_TENSE
     );
 
-    private static final EnumMap<ConceptTermination, TokenCreator.Selector> SELECTIONS = new EnumMap<>(ConceptTermination.class);
+    private static final Map<ConceptTermination, TokenCreator.Selector> SELECTIONS = new EnumMap<>(ConceptTermination.class);
 
     static {
         SELECTIONS.put(ConceptTermination.PERIOD, (TokenCreator.Selector) (Concept c) -> TokenType.TERMINATOR);

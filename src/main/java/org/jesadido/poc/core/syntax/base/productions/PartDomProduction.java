@@ -10,7 +10,7 @@ package org.jesadido.poc.core.syntax.base.productions;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import org.jesadido.poc.core.syntax.base.Base;
+import org.jesadido.poc.core.syntax.Nonterminal;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.productions.ProductionLeaf;
 import org.jesadido.poc.core.syntax.tokens.Token;
@@ -22,17 +22,16 @@ public class PartDomProduction extends ProductionLeaf {
     private List<TokenType> firsts = null;
     
     public PartDomProduction() {
-        super(Base.NT_PART_DOM,
+        super(Nonterminal.PART_DOM,
                 Arrays.asList(TokenType.PART_DOM, TokenType.OPEN, TokenType.CLOSE),
-                Arrays.asList(Base.NT_VERBAL_SELECTION)
+                Arrays.asList(Nonterminal.VERBAL_SELECTION)
         );
     }
     
     @Override
     public List<String> getRules() {
-        return Arrays.asList(
-                String.format("%s ::= %s %s %s %s", this.getNonterminalSymbol(), TokenType.PART_DOM, TokenType.OPEN, Base.NT_VERBAL_SELECTION, TokenType.CLOSE),
-                String.format("%s ::= %s? %s", this.getNonterminalSymbol(), TokenType.PART_DOM, Base.NT_VERBAL_SELECTION)
+        return Arrays.asList(String.format("%s ::= %s %s %s %s", this.getNonterminalSymbol(), TokenType.PART_DOM, TokenType.OPEN, Nonterminal.VERBAL_SELECTION, TokenType.CLOSE),
+                String.format("%s ::= %s? %s", this.getNonterminalSymbol(), TokenType.PART_DOM, Nonterminal.VERBAL_SELECTION)
         );
     }
     
@@ -41,7 +40,7 @@ public class PartDomProduction extends ProductionLeaf {
         if (this.firsts == null) {
             this.firsts = new LinkedList<>();
             this.firsts.add(TokenType.PART_DOM);
-            this.firsts.addAll(this.getFirsts(Base.NT_VERBAL_SELECTION));
+            this.firsts.addAll(this.getFirsts(Nonterminal.VERBAL_SELECTION));
         }
         return this.firsts;
     }
@@ -69,8 +68,8 @@ public class PartDomProduction extends ProductionLeaf {
     }
     
     private Node parseVerbalSelection(final TokenStream tokenStream) {
-        if (this.hasFirstOf(tokenStream, Base.NT_VERBAL_SELECTION)) {
-            return this.parse(tokenStream, Base.NT_VERBAL_SELECTION);
+        if (this.hasFirstOf(tokenStream, Nonterminal.VERBAL_SELECTION)) {
+            return this.parse(tokenStream, Nonterminal.VERBAL_SELECTION);
         }
         return this.parsingTrouble(tokenStream);
     }

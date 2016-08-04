@@ -10,7 +10,7 @@ package org.jesadido.poc.core.syntax.base.productions;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import org.jesadido.poc.core.syntax.base.Base;
+import org.jesadido.poc.core.syntax.Nonterminal;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.productions.ProductionLeaf;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
@@ -21,18 +21,18 @@ public class SentenceMeatPartProduction extends ProductionLeaf {
     private List<TokenType> firsts = null;
     
     public SentenceMeatPartProduction() {
-        super(Base.NT_SENTENCE_MEAT_PART,
+        super(Nonterminal.SENTENCE_MEAT_PART,
                 new LinkedList<>(),
-                Arrays.asList(Base.NT_PART_SU, Base.NT_PART_DOM, Base.NT_PART_FIN)
+                Arrays.asList(Nonterminal.PART_SU, Nonterminal.PART_DOM, Nonterminal.PART_FIN)
         );
     }
     
     @Override
     public List<String> getRules() {
         return Arrays.asList(String.format("%s ::= %s | %s | %s", this.getNonterminalSymbol(),
-                Base.NT_PART_SU,
-                Base.NT_PART_DOM,
-                Base.NT_PART_FIN
+                Nonterminal.PART_SU,
+                Nonterminal.PART_DOM,
+                Nonterminal.PART_FIN
         ));
     }
     
@@ -40,21 +40,21 @@ public class SentenceMeatPartProduction extends ProductionLeaf {
     public List<TokenType> getFirsts() {
         if (this.firsts == null) {
             this.firsts = new LinkedList<>();
-            this.firsts.addAll(this.getFirsts(Base.NT_PART_SU));
-            this.firsts.addAll(this.getFirsts(Base.NT_PART_DOM));
-            this.firsts.addAll(this.getFirsts(Base.NT_PART_FIN));
+            this.firsts.addAll(this.getFirsts(Nonterminal.PART_SU));
+            this.firsts.addAll(this.getFirsts(Nonterminal.PART_DOM));
+            this.firsts.addAll(this.getFirsts(Nonterminal.PART_FIN));
         }
         return this.firsts;
     }
     
     @Override
     public Node parse(final TokenStream tokenStream) {
-        if (this.hasFirstOf(tokenStream, Base.NT_PART_SU)) {
-            return this.parse(tokenStream, Base.NT_PART_SU);
-        } else if (this.hasFirstOf(tokenStream, Base.NT_PART_DOM)) {
-            return this.parse(tokenStream, Base.NT_PART_DOM);
-        } else if (this.hasFirstOf(tokenStream, Base.NT_PART_FIN)) {
-            return this.parse(tokenStream, Base.NT_PART_FIN);
+        if (this.hasFirstOf(tokenStream, Nonterminal.PART_SU)) {
+            return this.parse(tokenStream, Nonterminal.PART_SU);
+        } else if (this.hasFirstOf(tokenStream, Nonterminal.PART_DOM)) {
+            return this.parse(tokenStream, Nonterminal.PART_DOM);
+        } else if (this.hasFirstOf(tokenStream, Nonterminal.PART_FIN)) {
+            return this.parse(tokenStream, Nonterminal.PART_FIN);
         }
         return this.parsingTrouble(tokenStream);
     }

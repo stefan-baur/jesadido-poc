@@ -8,14 +8,15 @@
 package org.jesadido.poc.core.syntax.productions;
 
 import java.util.List;
+import org.jesadido.poc.core.syntax.Nonterminal;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 
 public abstract class ProductionLeaf extends Production {
     
     private final List<TokenType> usedTerminalSymbols;
-    private final List<String> usedNonterminalSymbols;
+    private final List<Nonterminal> usedNonterminalSymbols;
     
-    public ProductionLeaf(final String nonterminalSymbol, final List<TokenType> usedTerminalSymbols, final List<String> usedNonterminalSymbols) {
+    public ProductionLeaf(final Nonterminal nonterminalSymbol, final List<TokenType> usedTerminalSymbols, final List<Nonterminal> usedNonterminalSymbols) {
         super(nonterminalSymbol);
         this.usedTerminalSymbols = usedTerminalSymbols;
         this.usedNonterminalSymbols = usedNonterminalSymbols;
@@ -27,7 +28,7 @@ public abstract class ProductionLeaf extends Production {
     }
     
     @Override
-    public List<String> getUsedNonterminalSymbols() {
+    public List<Nonterminal> getUsedNonterminalSymbols() {
         return this.usedNonterminalSymbols;
     }
 }
