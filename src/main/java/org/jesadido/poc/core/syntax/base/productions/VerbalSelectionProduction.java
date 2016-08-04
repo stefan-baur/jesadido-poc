@@ -48,7 +48,7 @@ public class VerbalSelectionProduction extends ProductionLeaf {
     public Node parse(final TokenStream tokenStream) {
         if (tokenStream.hasOneOf(TokenType.VERB_PRESENT_TENSE)) {
             final Token verb = tokenStream.next();
-            return this.getGrammar().getSyntaxTreeFactory().createVerbalSelection(verb.getConcept());
+            return this.getGrammar().getSyntaxTreeFactory().createVerbalSelection(verb);
         }
         return this.parsingTrouble(tokenStream);
     }

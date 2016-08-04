@@ -50,7 +50,7 @@ public class SentenceProduction extends ProductionLeaf {
             }
             if (tokenStream.hasOneOf(TokenType.TERMINATOR)) {
                 final Token terminator = tokenStream.next();
-                return this.getGrammar().getSyntaxTreeFactory().createSentence(meats, terminator.getConcept());
+                return this.getGrammar().getSyntaxTreeFactory().createSentence(meats, terminator);
             } else {
                 return this.parsingTrouble(tokenStream, TokenType.TERMINATOR);
             }

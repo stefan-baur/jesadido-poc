@@ -48,7 +48,7 @@ public class NominalSelectionProduction extends ProductionLeaf {
     public Node parse(final TokenStream tokenStream) {
         if (tokenStream.hasOneOf(TokenType.SUBSTANTIVE_SINGULAR)) {
             final Token substantive = tokenStream.next();
-            return this.getGrammar().getSyntaxTreeFactory().createNominalSelection(substantive.getConcept());
+            return this.getGrammar().getSyntaxTreeFactory().createNominalSelection(substantive);
         }
         return this.parsingTrouble(tokenStream);
     }

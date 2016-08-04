@@ -54,7 +54,7 @@ public class PartFinProduction extends ProductionLeaf {
                 final Token opener = tokenStream.next();
                 if (tokenStream.hasOneOf(TokenType.CLOSE)) {
                     final Token closer = tokenStream.next();
-                    return this.getGrammar().getSyntaxTreeFactory().createPartFin(preposition.getConcept(), opener.getConcept(), null, closer.getConcept());
+                    return this.getGrammar().getSyntaxTreeFactory().createPartFin(preposition, opener, null, closer);
                 }
                 return this.parsingTrouble(tokenStream, TokenType.CLOSE);
             }

@@ -26,8 +26,8 @@ public class SentenceMeatConjunctionProduction extends ProductionOneOf {
     @Override
     public Node parse(final TokenStream tokenStream) {
         if (tokenStream.hasOneOf(this.getFirsts())) {
-            final Token infix = tokenStream.next();
-            return this.getGrammar().getSyntaxTreeFactory().createSentenceMeatConjunction(infix.getConcept());
+            final Token conjunction = tokenStream.next();
+            return this.getGrammar().getSyntaxTreeFactory().createSentenceMeatConjunction(conjunction);
         }
         return this.parsingTrouble(tokenStream);
     }

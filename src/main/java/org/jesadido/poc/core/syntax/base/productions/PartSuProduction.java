@@ -10,7 +10,6 @@ package org.jesadido.poc.core.syntax.base.productions;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.syntax.base.Base;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.productions.ProductionLeaf;
@@ -52,23 +51,23 @@ public class PartSuProduction extends ProductionLeaf {
     public Node parse(final TokenStream tokenStream) {
         if (tokenStream.hasOneOf(TokenType.PART_SU)) {
             final Token preposition = tokenStream.next();
-            return this.parseHeadless(tokenStream, preposition.getConcept());
+            return this.parseHeadless(tokenStream, preposition);
         }
         return this.parseHeadless(tokenStream, null);
     }
     
-    private Node parseHeadless(final TokenStream tokenStream, final Concept prepositionConcept) {
+    private Node parseHeadless(final TokenStream tokenStream, final Token preposition) {
         if (tokenStream.hasOneOf(TokenType.OPEN)) {
             final Token opener = tokenStream.next();
             final Node nominalSelection = this.parseNominalSelection(tokenStream);
             if (tokenStream.hasOneOf(TokenType.CLOSE)) {
                 final Token closer = tokenStream.next();
-                return this.getGrammar().getSyntaxTreeFactory().createPartSu(prepositionConcept, opener.getConcept(), nominalSelection, closer.getConcept());
+                return this.getGrammar().getSyntaxTreeFactory().createPartSu(preposition, opener, nominalSelection, closer);
             }
             return this.parsingTrouble(tokenStream, TokenType.CLOSE);
         } else {
             final Node nominalSelection = this.parseNominalSelection(tokenStream);
-            return this.getGrammar().getSyntaxTreeFactory().createPartSu(prepositionConcept, null, nominalSelection, null);
+            return this.getGrammar().getSyntaxTreeFactory().createPartSu(preposition, null, nominalSelection, null);
         }
     }
     

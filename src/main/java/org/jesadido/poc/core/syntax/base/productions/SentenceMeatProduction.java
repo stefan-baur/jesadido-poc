@@ -59,7 +59,7 @@ public class SentenceMeatProduction extends ProductionLeaf {
             final List<Node> parts = this.parseParts(tokenStream);
             if (tokenStream.hasOneOf(TokenType.CLOSE_SET)) {
                 final Token closer = tokenStream.next();
-                return this.getGrammar().getSyntaxTreeFactory().createSentenceMeat(meatConjunction, opener.getConcept(), parts, closer.getConcept());
+                return this.getGrammar().getSyntaxTreeFactory().createSentenceMeat(meatConjunction, opener, parts, closer);
             }
             return this.parsingTrouble(tokenStream, TokenType.CLOSE_SET);
         } else {

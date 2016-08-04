@@ -9,15 +9,16 @@ package org.jesadido.poc.core.syntax;
 
 import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.concepts.ConceptRegistry;
+import org.jesadido.poc.core.syntax.tokens.Token;
 
 public final class Terminal {
     
     private final String defaultConceptPhrase;
-    private final Concept nullableConcept;
+    private final Token token;
     
-    public Terminal(final Concept nullableConcept, final String defaultConceptPhrase) {
+    public Terminal(final Token token, final String defaultConceptPhrase) {
         this.defaultConceptPhrase = defaultConceptPhrase;
-        this.nullableConcept = nullableConcept;
+        this.token = token;
     }
     
     public Terminal(final String defaultConceptPhrase) {
@@ -25,10 +26,10 @@ public final class Terminal {
     }
     
     public final Concept getConcept() {
-        return this.nullableConcept != null ? this.nullableConcept : ConceptRegistry.getInstance().getConcept(this.defaultConceptPhrase);
+        return this.token != null ? this.token.getConcept() : ConceptRegistry.getInstance().getConcept(this.defaultConceptPhrase);
     }
     
     public final boolean isDefault() {
-        return this.nullableConcept == null || this.nullableConcept.getFullPhrase().equals(this.defaultConceptPhrase);
+        return this.token == null || this.token.getConcept().getFullPhrase().equals(this.defaultConceptPhrase);
     }
 }

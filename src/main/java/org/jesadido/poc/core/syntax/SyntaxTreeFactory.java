@@ -8,21 +8,21 @@
 package org.jesadido.poc.core.syntax;
 
 import java.util.List;
-import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.syntax.nodes.Node;
+import org.jesadido.poc.core.syntax.tokens.Token;
 
 public interface SyntaxTreeFactory {
     
-    Node createSentence(List<Node> meats, Concept terminator);
-    Node createSentenceMeat(Node conjunction, Concept opener, List<Node> parts, Concept closer);
-    Node createSentenceMeatConjunction(Concept conjunction);
+    Node createSentence(List<Node> meats, Token terminator);
+    Node createSentenceMeat(Node conjunction, Token opener, List<Node> parts, Token closer);
+    Node createSentenceMeatConjunction(Token conjunction);
     
-    Node createPartSu(Concept preposition, Concept opener, Node nominalSelection, Concept closer);
-    Node createPartDom(Concept preposition, Concept opener, Node verbalSelection, Concept closer);
-    Node createPartFin(Concept preposition, Concept opener, Node nominalSelection, Concept closer);
+    Node createPartSu(Token preposition, Token opener, Node nominalSelection, Token closer);
+    Node createPartDom(Token preposition, Token opener, Node verbalSelection, Token closer);
+    Node createPartFin(Token preposition, Token opener, Node nominalSelection, Token closer);
     
-    Node createNominalSelection(Concept substantive);
-    Node createVerbalSelection(Concept verb);
+    Node createNominalSelection(Token substantive);
+    Node createVerbalSelection(Token verb);
     
     Node createTrouble(String message);
 }
