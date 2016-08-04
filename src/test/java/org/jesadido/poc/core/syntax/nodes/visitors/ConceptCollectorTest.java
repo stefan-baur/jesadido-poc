@@ -13,7 +13,6 @@ import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.concepts.ConceptRegistry;
 import org.jesadido.poc.core.concepts.ConceptUtils;
 import org.jesadido.poc.core.syntax.SyntaxTreeFactory;
-import org.jesadido.poc.core.syntax.base.BaseSyntaxTreeFactory;
 import org.jesadido.poc.core.syntax.nodes.Node;
 import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tokens.TokenCreator;
@@ -28,40 +27,40 @@ public class ConceptCollectorTest {
     @Test
     public void testCollectWithSentence() {
         {
-            SyntaxTreeFactory syntaxTreeFactory = new BaseSyntaxTreeFactory();
+            SyntaxTreeFactory syntaxTreeFactory = new SyntaxTreeFactory();
             Node sentence = syntaxTreeFactory.createSentence(null, null);
             Assert.assertEquals(".", ConceptUtils.join(ConceptCollector.collect(sentence)));
         }
         {
-            SyntaxTreeFactory syntaxTreeFactory = new BaseSyntaxTreeFactory();
+            SyntaxTreeFactory syntaxTreeFactory = new SyntaxTreeFactory();
             Node sentence = syntaxTreeFactory.createSentence(null, TC.create("."));
             Assert.assertEquals(".", ConceptUtils.join(ConceptCollector.collect(sentence)));
         }
         {
-            SyntaxTreeFactory syntaxTreeFactory = new BaseSyntaxTreeFactory();
+            SyntaxTreeFactory syntaxTreeFactory = new SyntaxTreeFactory();
             Node sentence = syntaxTreeFactory.createSentence(null, TC.create("Titl."));
             Assert.assertEquals("Titl.", ConceptUtils.join(ConceptCollector.collect(sentence)));
         }
         {
-            SyntaxTreeFactory syntaxTreeFactory = new BaseSyntaxTreeFactory();
+            SyntaxTreeFactory syntaxTreeFactory = new SyntaxTreeFactory();
             Node sentenceMeat = syntaxTreeFactory.createSentenceMeat(null, null, null, null);
             Node sentence = syntaxTreeFactory.createSentence(Arrays.asList(sentenceMeat), TC.create("!."));
             Assert.assertEquals("{ } !.", ConceptUtils.join(ConceptCollector.collect(sentence)));
         }
         {
-            SyntaxTreeFactory syntaxTreeFactory = new BaseSyntaxTreeFactory();
+            SyntaxTreeFactory syntaxTreeFactory = new SyntaxTreeFactory();
             Node sentenceMeat = syntaxTreeFactory.createSentenceMeat(null, TC.create("{{"), null, TC.create("}}"));
             Node sentence = syntaxTreeFactory.createSentence(Arrays.asList(sentenceMeat), TC.create("()."));
             Assert.assertEquals("{{ }} ().", ConceptUtils.join(ConceptCollector.collect(sentence)));
         }
         {
-            SyntaxTreeFactory syntaxTreeFactory = new BaseSyntaxTreeFactory();
+            SyntaxTreeFactory syntaxTreeFactory = new SyntaxTreeFactory();
             Node sentenceMeat = syntaxTreeFactory.createSentenceMeat(null, TC.create("{"), null, TC.create("}"));
             Node sentence = syntaxTreeFactory.createSentence(Arrays.asList(sentenceMeat), TC.create("."));
             Assert.assertEquals("{-}-.", ConceptUtils.join("-", ConceptCollector.collect(sentence)));
         }
         {
-            SyntaxTreeFactory syntaxTreeFactory = new BaseSyntaxTreeFactory();
+            SyntaxTreeFactory syntaxTreeFactory = new SyntaxTreeFactory();
             Node sentenceMeatA = syntaxTreeFactory.createSentenceMeat(null, null, null, null);
             Node sentenceMeatConjunction = syntaxTreeFactory.createSentenceMeatConjunction(null);
             Node sentenceMeatB = syntaxTreeFactory.createSentenceMeat(null, null, null, null);
@@ -69,7 +68,7 @@ public class ConceptCollectorTest {
             Assert.assertEquals("{ \t } \t Kaj \t { \t } \t .", ConceptUtils.join(" \t ", ConceptCollector.collect(sentence)));
         }
         {
-            SyntaxTreeFactory syntaxTreeFactory = new BaseSyntaxTreeFactory();
+            SyntaxTreeFactory syntaxTreeFactory = new SyntaxTreeFactory();
             Node sentenceMeatA = syntaxTreeFactory.createSentenceMeat(null, null, null, null);
             Node sentenceMeatConjunctionX = syntaxTreeFactory.createSentenceMeatConjunction(TC.create(","));
             Node sentenceMeatB = syntaxTreeFactory.createSentenceMeat(null, null, null, null);
@@ -79,7 +78,7 @@ public class ConceptCollectorTest {
             Assert.assertEquals("{ } , { } Aux { } .", ConceptUtils.join(null, ConceptCollector.collect(sentence)));
         }
         {
-            SyntaxTreeFactory syntaxTreeFactory = new BaseSyntaxTreeFactory();
+            SyntaxTreeFactory syntaxTreeFactory = new SyntaxTreeFactory();
             Node su1 = syntaxTreeFactory.createPartSu(null, null, null, null);
             Node sentenceMeatA = syntaxTreeFactory.createSentenceMeat(null, null, Arrays.asList(su1), null);
             Node sentenceMeatConjunctionX = syntaxTreeFactory.createSentenceMeatConjunction(TC.create(","));
@@ -92,7 +91,7 @@ public class ConceptCollectorTest {
             Assert.assertEquals("{ Su ( ) } , { Su 'X'O$( ) } Kaj { Su (( Cxu$)) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
         }
         {
-            SyntaxTreeFactory syntaxTreeFactory = new BaseSyntaxTreeFactory();
+            SyntaxTreeFactory syntaxTreeFactory = new SyntaxTreeFactory();
             Node suA = syntaxTreeFactory.createPartSu(null, null, null, null);
             Node domA = syntaxTreeFactory.createPartDom(null, null, null, null);
             Node sentenceMeatA = syntaxTreeFactory.createSentenceMeat(null, null, Arrays.asList(suA, domA), null);
@@ -104,7 +103,7 @@ public class ConceptCollectorTest {
             Assert.assertEquals("{ Su ( ) Dom ( ) } Kaj { Dom ( ) Su ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
         }
         {
-            SyntaxTreeFactory syntaxTreeFactory = new BaseSyntaxTreeFactory();
+            SyntaxTreeFactory syntaxTreeFactory = new SyntaxTreeFactory();
             Node suA = syntaxTreeFactory.createPartSu(TC.create("SUBJ"), TC.create("["), null, TC.create("]"));
             Node domA = syntaxTreeFactory.createPartDom(TC.create("PRED"), TC.create("["), null, TC.create("]"));
             Node finA = syntaxTreeFactory.createPartFin(TC.create("ACC"), TC.create("["), null, TC.create("]"));
@@ -122,19 +121,19 @@ public class ConceptCollectorTest {
     @Test
     public void testCollectWithSentenceMeat() {
         {
-            SyntaxTreeFactory syntaxTreeFactory = new BaseSyntaxTreeFactory();
+            SyntaxTreeFactory syntaxTreeFactory = new SyntaxTreeFactory();
             Node sentenceMeat = syntaxTreeFactory.createSentenceMeat(null, null, null, null);
             Assert.assertEquals("{ MEAT }", ConceptUtils.join(" MEAT ", ConceptCollector.collect(sentenceMeat)));
         }
         {
-            SyntaxTreeFactory syntaxTreeFactory = new BaseSyntaxTreeFactory();
+            SyntaxTreeFactory syntaxTreeFactory = new SyntaxTreeFactory();
             Node su = syntaxTreeFactory.createPartSu(null, null, null, null);
             Node dom = syntaxTreeFactory.createPartDom(null, null, null, null);
             Node sentenceMeat = syntaxTreeFactory.createSentenceMeat(null, null, Arrays.asList(dom, su), null);
             Assert.assertEquals("{ Dom ( ) Su ( ) }", ConceptUtils.join(ConceptCollector.collect(sentenceMeat)));
         }
         {
-            SyntaxTreeFactory syntaxTreeFactory = new BaseSyntaxTreeFactory();
+            SyntaxTreeFactory syntaxTreeFactory = new SyntaxTreeFactory();
             Node su = syntaxTreeFactory.createPartSu(null, null, null, null);
             Node dom = syntaxTreeFactory.createPartDom(null, null, null, null);
             Node fin = syntaxTreeFactory.createPartFin(null, null, null, null);

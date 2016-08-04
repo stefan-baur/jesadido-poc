@@ -8,21 +8,62 @@
 package org.jesadido.poc.core.syntax;
 
 import java.util.List;
+import java.util.logging.Logger;
 import org.jesadido.poc.core.syntax.nodes.Node;
+import org.jesadido.poc.core.syntax.nodes.common.TroubleNode;
+import org.jesadido.poc.core.syntax.nodes.sentence.NominalSelection;
+import org.jesadido.poc.core.syntax.nodes.sentence.PartDom;
+import org.jesadido.poc.core.syntax.nodes.sentence.PartFin;
+import org.jesadido.poc.core.syntax.nodes.sentence.PartSu;
+import org.jesadido.poc.core.syntax.nodes.sentence.Sentence;
+import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeat;
+import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatConjunction;
+import org.jesadido.poc.core.syntax.nodes.sentence.VerbalSelection;
 import org.jesadido.poc.core.syntax.tokens.Token;
 
-public interface SyntaxTreeFactory {
+public class SyntaxTreeFactory {
     
-    Node createSentence(List<Node> meats, Token terminator);
-    Node createSentenceMeat(Node conjunction, Token opener, List<Node> parts, Token closer);
-    Node createSentenceMeatConjunction(Token conjunction);
+    private static final Logger LOGGER = Logger.getLogger(SyntaxTreeFactory.class.getName());
     
-    Node createPartSu(Token preposition, Token opener, Node nominalSelection, Token closer);
-    Node createPartDom(Token preposition, Token opener, Node verbalSelection, Token closer);
-    Node createPartFin(Token preposition, Token opener, Node nominalSelection, Token closer);
+    public Node createSentence(final List<Node> meats, final Token terminator) {
+        return new Sentence(new Terminal(terminator, "."))
+                .addChildren(meats);
+    }
     
-    Node createNominalSelection(Token substantive);
-    Node createVerbalSelection(Token verb);
+    public Node createSentenceMeat(final Node conjunction, final Token opener, final List<Node> parts, final Token closer) {
+        return new SentenceMeat(conjunction, new Terminal(opener, "{"), new Terminal(closer, "}"))
+                .addChildren(parts);
+    }
     
-    Node createTrouble(String message);
+    public Node createSentenceMeatConjunction(final Token conjunction) {
+        return new SentenceMeatConjunction(new Terminal(conjunction, "Kaj"));
+    }
+    
+    public Node createPartSu(final Token preposition, final Token opener, final Node nominalSelection, final Token closer) {
+        return new PartSu(new Terminal(preposition, "Su"), new Terminal(opener, "("), new Terminal(closer, ")"))
+                .addChild(nominalSelection);
+    }
+    
+    public Node createPartDom(final Token preposition, final Token opener, final Node verbalSelection, final Token closer) {
+        return new PartDom(new Terminal(preposition, "Dom"), new Terminal(opener, "("), new Terminal(closer, ")"))
+                .addChild(verbalSelection);
+    }
+    
+    public Node createPartFin(final Token preposition, final Token opener, final Node nominalSelection, final Token closer) {
+        return new PartFin(new Terminal(preposition, "Fin"), new Terminal(opener, "("), new Terminal(closer, ")"))
+                .addChild(nominalSelection);
+    }
+    
+    public Node createNominalSelection(final Token substantive) {
+        return new NominalSelection(substantive.getConcept());
+    }
+    
+    public Node createVerbalSelection(final Token verb) {
+        return new VerbalSelection(verb.getConcept());
+    }
+    
+    public Node createTrouble(final String message) {
+        LOGGER.info(String.format("Creating a trouble-node with the message: %s", message));
+        return new TroubleNode(message);
+    }
 }

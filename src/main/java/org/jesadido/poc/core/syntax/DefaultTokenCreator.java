@@ -5,7 +5,7 @@
  * Licensed under the GNU Lesser General Public License, Version 3.0 (LGPL-3.0)
  * https://www.gnu.org/licenses/lgpl-3.0.txt
  */
-package org.jesadido.poc.core.syntax.base;
+package org.jesadido.poc.core.syntax;
 
 import java.util.Arrays;
 import java.util.EnumMap;
@@ -18,7 +18,7 @@ import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tokens.TokenCreator;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 
-public final class BaseTokenCreator implements TokenCreator {
+public final class DefaultTokenCreator implements TokenCreator {
     
     private static final List<TokenType> SUPPORTED_TOKEN_TYPES = Arrays.asList(TokenType.UNKNOWN,
             
