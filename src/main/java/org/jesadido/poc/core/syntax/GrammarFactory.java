@@ -8,15 +8,15 @@
 package org.jesadido.poc.core.syntax;
 
 import java.util.logging.Logger;
-import org.jesadido.poc.core.syntax.base.productions.NominalSelectionProduction;
-import org.jesadido.poc.core.syntax.base.productions.PartDomProduction;
-import org.jesadido.poc.core.syntax.base.productions.PartFinProduction;
-import org.jesadido.poc.core.syntax.base.productions.SentenceMeatPartProduction;
-import org.jesadido.poc.core.syntax.base.productions.PartSuProduction;
-import org.jesadido.poc.core.syntax.base.productions.VerbalSelectionProduction;
-import org.jesadido.poc.core.syntax.base.productions.SentenceMeatConjunctionProduction;
-import org.jesadido.poc.core.syntax.base.productions.SentenceMeatProduction;
-import org.jesadido.poc.core.syntax.base.productions.SentenceProduction;
+import org.jesadido.poc.core.syntax.productions.sentence.NominalSelectionProduction;
+import org.jesadido.poc.core.syntax.productions.sentence.PartDomProduction;
+import org.jesadido.poc.core.syntax.productions.sentence.PartFinProduction;
+import org.jesadido.poc.core.syntax.productions.sentence.SentenceMeatPartProduction;
+import org.jesadido.poc.core.syntax.productions.sentence.PartSuProduction;
+import org.jesadido.poc.core.syntax.productions.sentence.VerbalSelectionProduction;
+import org.jesadido.poc.core.syntax.productions.sentence.SentenceMeatConjunctionProduction;
+import org.jesadido.poc.core.syntax.productions.sentence.SentenceMeatProduction;
+import org.jesadido.poc.core.syntax.productions.sentence.SentenceProduction;
 
 public class GrammarFactory {
     

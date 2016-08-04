@@ -5,7 +5,7 @@
  * Licensed under the GNU Lesser General Public License, Version 3.0 (LGPL-3.0)
  * https://www.gnu.org/licenses/lgpl-3.0.txt
  */
-package org.jesadido.poc.core.syntax.base.productions;
+package org.jesadido.poc.core.syntax.productions.sentence;
 
 import java.util.Arrays;
 import org.jesadido.poc.core.syntax.Nonterminal;
