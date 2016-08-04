@@ -18,7 +18,7 @@ public class GrammarTest {
     @Test
     public void testCreateBitOfParsing() {
         {
-            final Grammar grammar = new GrammarFactory().createBaseGrammar("TestGrammar");
+            final Grammar grammar = new GrammarFactory().createDefaultGrammar("TestGrammar");
             {
                 Node sentence = grammar.parse("{ Su ( HeroO ) Dom ( HavAs ) Fin ( ) } .");
                 Assert.assertEquals("{ Su ( HeroO ) Dom ( HavAs ) Fin ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));

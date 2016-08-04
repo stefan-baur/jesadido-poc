@@ -22,7 +22,7 @@ public class GrammarFactory {
     
     private static final Logger LOGGER = Logger.getLogger(GrammarFactory.class.getName());
     
-    public final Grammar createBaseGrammar(final String name) {
+    public final Grammar createDefaultGrammar(final String name) {
         return new Grammar(name, new DefaultTokenCreator(), new SyntaxTreeFactory())
                 
                 .register(false, new NominalSelectionProduction())
@@ -40,6 +40,6 @@ public class GrammarFactory {
     }
     
     public static void main(String[] arguments) {
-        LOGGER.info(new GrammarFactory().createBaseGrammar("Jesadido-Base").toString());
+        LOGGER.info(new GrammarFactory().createDefaultGrammar("Jesadido-Base").toString());
     }
 }
