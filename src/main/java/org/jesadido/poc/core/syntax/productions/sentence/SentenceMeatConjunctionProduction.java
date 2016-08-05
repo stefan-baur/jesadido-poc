@@ -9,7 +9,7 @@ package org.jesadido.poc.core.syntax.productions.sentence;
 
 import java.util.Arrays;
 import org.jesadido.poc.core.syntax.Nonterminal;
-import org.jesadido.poc.core.syntax.nodes.Node;
+import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.productions.ProductionOneOf;
 import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;

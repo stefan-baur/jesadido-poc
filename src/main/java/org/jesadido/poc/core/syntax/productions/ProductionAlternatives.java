@@ -10,7 +10,7 @@ package org.jesadido.poc.core.syntax.productions;
 import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.syntax.Nonterminal;
-import org.jesadido.poc.core.syntax.nodes.Node;
+import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 

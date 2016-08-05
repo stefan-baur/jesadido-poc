@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import org.jesadido.poc.core.syntax.Grammar;
 import org.jesadido.poc.core.syntax.Nonterminal;
-import org.jesadido.poc.core.syntax.nodes.Node;
+import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 

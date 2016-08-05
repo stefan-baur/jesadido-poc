@@ -82,7 +82,7 @@ public class TokenTest {
         Assert.assertEquals("PERSONAL_PRONOUN[\"/de/'Müllers'|'Müller'OJ$Vi\"]", TC.create("/de/'Müllers'|'Müller'OJ$Vi").toString());
     }
     
-    private static final class TokenCreatorForTokenTest implements TokenCreator {
+    private static final class TokenCreatorForTokenTest extends TokenCreator {
         
         private static final List<TokenType> SUPPORTED = Arrays.asList(
                 TokenType.UNKNOWN,

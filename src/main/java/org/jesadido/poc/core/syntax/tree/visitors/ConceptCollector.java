@@ -5,23 +5,23 @@
  * Licensed under the GNU Lesser General Public License, Version 3.0 (LGPL-3.0)
  * https://www.gnu.org/licenses/lgpl-3.0.txt
  */
-package org.jesadido.poc.core.syntax.nodes.visitors;
+package org.jesadido.poc.core.syntax.tree.visitors;
 
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.concepts.Concept;
-import org.jesadido.poc.core.syntax.nodes.Node;
-import org.jesadido.poc.core.syntax.nodes.Visitor;
-import org.jesadido.poc.core.syntax.nodes.common.TroubleNode;
-import org.jesadido.poc.core.syntax.nodes.sentence.NominalSelection;
-import org.jesadido.poc.core.syntax.nodes.sentence.Sentence;
-import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeat;
-import org.jesadido.poc.core.syntax.nodes.sentence.PartDom;
-import org.jesadido.poc.core.syntax.nodes.sentence.PartFin;
-import org.jesadido.poc.core.syntax.nodes.sentence.PartSu;
-import org.jesadido.poc.core.syntax.nodes.sentence.SentenceMeatConjunction;
-import org.jesadido.poc.core.syntax.nodes.sentence.VerbalSelection;
+import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.Visitor;
+import org.jesadido.poc.core.syntax.tree.TroubleNode;
+import org.jesadido.poc.core.syntax.tree.sentence.NominalSelection;
+import org.jesadido.poc.core.syntax.tree.sentence.Sentence;
+import org.jesadido.poc.core.syntax.tree.sentence.SentenceMeat;
+import org.jesadido.poc.core.syntax.tree.sentence.PartDom;
+import org.jesadido.poc.core.syntax.tree.sentence.PartFin;
+import org.jesadido.poc.core.syntax.tree.sentence.PartSu;
+import org.jesadido.poc.core.syntax.tree.sentence.SentenceMeatConjunction;
+import org.jesadido.poc.core.syntax.tree.sentence.VerbalSelection;
 
 public class ConceptCollector implements Visitor<List<Concept>, Void> {
     

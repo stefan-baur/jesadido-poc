@@ -5,24 +5,19 @@
  * Licensed under the GNU Lesser General Public License, Version 3.0 (LGPL-3.0)
  * https://www.gnu.org/licenses/lgpl-3.0.txt
  */
-package org.jesadido.poc.core.syntax.nodes.visitors;
+package org.jesadido.poc.core.syntax.tree.visitors;
 
 import java.util.Arrays;
-import java.util.List;
-import org.jesadido.poc.core.concepts.Concept;
-import org.jesadido.poc.core.concepts.ConceptRegistry;
 import org.jesadido.poc.core.concepts.ConceptUtils;
-import org.jesadido.poc.core.syntax.SyntaxTreeFactory;
-import org.jesadido.poc.core.syntax.nodes.Node;
-import org.jesadido.poc.core.syntax.tokens.Token;
+import org.jesadido.poc.core.syntax.tree.SyntaxTreeFactory;
+import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.tokens.TokenCreator;
-import org.jesadido.poc.core.syntax.tokens.TokenType;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class ConceptCollectorTest {
     
-    private static final TokenCreator TC = new TokenCreatorForConceptCollectorTest();
+    private static final TokenCreator TC = new TokenCreator();
     
     @Test
     public void testCollectWithSentence() {
@@ -139,29 +134,6 @@ public class ConceptCollectorTest {
             Node fin = syntaxTreeFactory.createPartFin(null, null, null, null);
             Node sentenceMeat = syntaxTreeFactory.createSentenceMeat(null, TC.create("[["), Arrays.asList(fin, dom, su), TC.create("]]"));
             Assert.assertEquals("[[ Fin ( ) Dom ( ) Su ( ) ]]", ConceptUtils.join(ConceptCollector.collect(sentenceMeat)));
-        }
-    }
-    
-    private static final class TokenCreatorForConceptCollectorTest implements TokenCreator {
-        
-        private static final List<TokenType> SUPPORTED = Arrays.asList(
-                TokenType.UNKNOWN
-        );
-        
-        @Override
-        public final Token create(final String conceptPhrase) {
-            final Concept concept = ConceptRegistry.getInstance().getConcept(conceptPhrase);
-            return new Token(conceptPhrase, this.selectTokenType(concept), concept);
-        }
-        
-        @Override
-        public final List<TokenType> getSupportedTokenTypes() {
-            return SUPPORTED;
-        }
-        
-        @Override
-        public final TokenType selectTokenType(final Concept concept) {
-            return TokenType.UNKNOWN;
         }
     }
 }

@@ -7,6 +7,7 @@
  */
 package org.jesadido.poc.core.syntax;
 
+import org.jesadido.poc.core.syntax.tree.SyntaxTreeFactory;
 import java.util.logging.Logger;
 import org.jesadido.poc.core.syntax.productions.sentence.NominalSelectionProduction;
 import org.jesadido.poc.core.syntax.productions.sentence.PartDomProduction;
@@ -17,13 +18,14 @@ import org.jesadido.poc.core.syntax.productions.sentence.VerbalSelectionProducti
 import org.jesadido.poc.core.syntax.productions.sentence.SentenceMeatConjunctionProduction;
 import org.jesadido.poc.core.syntax.productions.sentence.SentenceMeatProduction;
 import org.jesadido.poc.core.syntax.productions.sentence.SentenceProduction;
+import org.jesadido.poc.core.syntax.tokens.TokenCreator;
 
 public class GrammarFactory {
     
     private static final Logger LOGGER = Logger.getLogger(GrammarFactory.class.getName());
     
     public final Grammar createDefaultGrammar(final String name) {
-        return new Grammar(name, new DefaultTokenCreator(), new SyntaxTreeFactory())
+        return new Grammar(name, new TokenCreator(), new SyntaxTreeFactory())
                 
                 .register(false, new NominalSelectionProduction())
                 .register(false, new VerbalSelectionProduction())

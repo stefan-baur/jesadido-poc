@@ -172,7 +172,7 @@ public class TokenStreamTest {
         Assert.assertFalse(tokenStream.has(2));
     }
     
-    private static final class TokenCreatorForTokenStreamTest implements TokenCreator {
+    private static final class TokenCreatorForTokenStreamTest extends TokenCreator {
         
         private static final List<TokenType> SUPPORTED = Arrays.asList(TokenType.UNKNOWN,
                 TokenType.TERMINATOR,

@@ -7,6 +7,7 @@
  */
 package org.jesadido.poc.core.syntax;
 
+import org.jesadido.poc.core.syntax.tree.SyntaxTreeFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.EnumMap;
@@ -17,7 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jesadido.poc.core.StringUtils;
 import org.jesadido.poc.core.scripting.Src;
-import org.jesadido.poc.core.syntax.nodes.Node;
+import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.productions.Production;
 import org.jesadido.poc.core.syntax.productions.ProductionAlternatives;
 import org.jesadido.poc.core.syntax.tokens.TokenCreator;

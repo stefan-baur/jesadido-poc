@@ -5,15 +5,15 @@
  * Licensed under the GNU Lesser General Public License, Version 3.0 (LGPL-3.0)
  * https://www.gnu.org/licenses/lgpl-3.0.txt
  */
-package org.jesadido.poc.core.syntax.nodes.sentence;
+package org.jesadido.poc.core.syntax.tree.sentence;
 
-import org.jesadido.poc.core.syntax.Terminal;
-import org.jesadido.poc.core.syntax.nodes.Visitor;
-import org.jesadido.poc.core.syntax.nodes.common.PrepositionalNode;
+import org.jesadido.poc.core.syntax.tree.Terminal;
+import org.jesadido.poc.core.syntax.tree.Visitor;
+import org.jesadido.poc.core.syntax.tree.PrepositionalNode;
 
-public class PartDom extends PrepositionalNode {
+public class PartSu extends PrepositionalNode {
     
-    public PartDom(final Terminal preposition, final Terminal opener, final Terminal closer) {
+    public PartSu(final Terminal preposition, final Terminal opener, final Terminal closer) {
         super(preposition, opener, closer);
     }
     

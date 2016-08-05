@@ -194,7 +194,7 @@ public class TokenCreatorTest {
         }
     }
     
-    private static final class TokenCreatorA implements TokenCreator {
+    private static final class TokenCreatorA extends TokenCreator {
         
         @Override
         public final List<TokenType> getSupportedTokenTypes() {
@@ -214,7 +214,7 @@ public class TokenCreatorTest {
         }
     }
     
-    private static final class TokenCreatorB implements TokenCreator {
+    private static final class TokenCreatorB extends TokenCreator {
         
         private static final List<TokenType> SUPPORTED = Arrays.asList(TokenType.UNKNOWN,
                 TokenType.INVALID_CONCEPT,
