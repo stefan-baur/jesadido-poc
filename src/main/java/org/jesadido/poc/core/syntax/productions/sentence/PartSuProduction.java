@@ -22,7 +22,8 @@ public class PartSuProduction extends ProductionLeaf {
     private List<TokenType> firsts = null;
     
     public PartSuProduction() {
-        super(Nonterminal.PART_SU,
+        super(
+                Nonterminal.PART_SU,
                 Arrays.asList(TokenType.PART_SU, TokenType.OPEN, TokenType.CLOSE),
                 Arrays.asList(Nonterminal.NOMINAL_SELECTION)
         );
@@ -30,7 +31,8 @@ public class PartSuProduction extends ProductionLeaf {
     
     @Override
     public List<String> getRules() {
-        return Arrays.asList(String.format("%s ::= %s? %s %s %s", this.getNonterminalSymbol(), TokenType.PART_SU, TokenType.OPEN, Nonterminal.NOMINAL_SELECTION, TokenType.CLOSE),
+        return Arrays.asList(
+                String.format("%s ::= %s? %s %s %s", this.getNonterminalSymbol(), TokenType.PART_SU, TokenType.OPEN, Nonterminal.NOMINAL_SELECTION, TokenType.CLOSE),
                 String.format("%s ::= %s? %s", this.getNonterminalSymbol(), TokenType.PART_SU, Nonterminal.NOMINAL_SELECTION)
         );
     }

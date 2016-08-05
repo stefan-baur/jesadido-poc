@@ -18,7 +18,8 @@ import org.jesadido.poc.core.syntax.tokens.TokenType;
 public class SentenceMeatConjunctionProduction extends ProductionOneOf {
     
     public SentenceMeatConjunctionProduction() {
-        super(Nonterminal.SENTENCE_MEAT_CONJUNCTION,
+        super(
+                Nonterminal.SENTENCE_MEAT_CONJUNCTION,
                 Arrays.asList(TokenType.SEPARATOR_SE, TokenType.SEPARATOR_KAJ, TokenType.SEPARATOR_AUX, TokenType.SEPARATOR)
         );
     }

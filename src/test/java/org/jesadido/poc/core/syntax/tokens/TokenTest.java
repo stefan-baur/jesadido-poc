@@ -14,11 +14,6 @@ import java.util.Map;
 import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.concepts.ConceptRegistry;
 import org.jesadido.poc.core.concepts.ConceptTermination;
-import static org.jesadido.poc.core.syntax.tokens.TokenType.ADJECTIVE;
-import static org.jesadido.poc.core.syntax.tokens.TokenType.ADVERB;
-import static org.jesadido.poc.core.syntax.tokens.TokenType.PERSONAL_PRONOUN;
-import static org.jesadido.poc.core.syntax.tokens.TokenType.SUBSTANTIVE;
-import static org.jesadido.poc.core.syntax.tokens.TokenType.TERMINATOR;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -96,16 +91,16 @@ public class TokenTest {
         private static final Map<ConceptTermination, Selector> SELECTIONS = new EnumMap<>(ConceptTermination.class);
     
         static {
-            SELECTIONS.put(ConceptTermination.PERIOD, (Selector) (Concept c) -> TERMINATOR);
-            SELECTIONS.put(ConceptTermination.O, (Selector) (Concept c) -> SUBSTANTIVE);
-            SELECTIONS.put(ConceptTermination.O_J, (Selector) (Concept c) -> SUBSTANTIVE);
-            SELECTIONS.put(ConceptTermination.A, (Selector) (Concept c) -> ADJECTIVE);
-            SELECTIONS.put(ConceptTermination.A_J, (Selector) (Concept c) -> ADJECTIVE);
-            SELECTIONS.put(ConceptTermination.E, (Selector) (Concept c) -> ADVERB);
-            SELECTIONS.put(ConceptTermination.E_J, (Selector) (Concept c) -> ADVERB);
-            SELECTIONS.put(ConceptTermination.MI, (Selector) (Concept c) -> PERSONAL_PRONOUN);
-            SELECTIONS.put(ConceptTermination.NI, (Selector) (Concept c) -> PERSONAL_PRONOUN);
-            SELECTIONS.put(ConceptTermination.VI, (Selector) (Concept c) -> PERSONAL_PRONOUN);
+            SELECTIONS.put(ConceptTermination.PERIOD, (Selector) (Concept c) -> TokenType.TERMINATOR);
+            SELECTIONS.put(ConceptTermination.O, (Selector) (Concept c) -> TokenType.SUBSTANTIVE);
+            SELECTIONS.put(ConceptTermination.O_J, (Selector) (Concept c) -> TokenType.SUBSTANTIVE);
+            SELECTIONS.put(ConceptTermination.A, (Selector) (Concept c) -> TokenType.ADJECTIVE);
+            SELECTIONS.put(ConceptTermination.A_J, (Selector) (Concept c) -> TokenType.ADJECTIVE);
+            SELECTIONS.put(ConceptTermination.E, (Selector) (Concept c) -> TokenType.ADVERB);
+            SELECTIONS.put(ConceptTermination.E_J, (Selector) (Concept c) -> TokenType.ADVERB);
+            SELECTIONS.put(ConceptTermination.MI, (Selector) (Concept c) -> TokenType.PERSONAL_PRONOUN);
+            SELECTIONS.put(ConceptTermination.NI, (Selector) (Concept c) -> TokenType.PERSONAL_PRONOUN);
+            SELECTIONS.put(ConceptTermination.VI, (Selector) (Concept c) -> TokenType.PERSONAL_PRONOUN);
         }
         
         @Override

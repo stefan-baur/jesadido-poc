@@ -7,7 +7,6 @@
  */
 package org.jesadido.poc.core.syntax.tree;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,7 +14,6 @@ public abstract class Node implements Visitable {
     
     private Node parent;
     private final List<Node> children = new LinkedList<>();
-    private final List<Node> childrenResult = Collections.unmodifiableList(this.children);
     
     public Node() {}
     
@@ -31,8 +29,8 @@ public abstract class Node implements Visitable {
         this.parent = node;
     }
     
-    public final List<Node> getChildren() {
-        return this.childrenResult;
+    public List<Node> getChildren() {
+        return this.children;
     }
     
     public Node addChild(final Node node) {

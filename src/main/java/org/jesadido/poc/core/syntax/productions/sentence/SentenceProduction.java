@@ -20,7 +20,8 @@ import org.jesadido.poc.core.syntax.tokens.TokenType;
 public class SentenceProduction extends ProductionLeaf {
     
     public SentenceProduction() {
-        super(Nonterminal.SENTENCE,
+        super(
+                Nonterminal.SENTENCE,
                 Arrays.asList(TokenType.TERMINATOR),
                 Arrays.asList(Nonterminal.SENTENCE_MEAT)
         );
@@ -28,10 +29,9 @@ public class SentenceProduction extends ProductionLeaf {
     
     @Override
     public List<String> getRules() {
-        return Arrays.asList(String.format("%s ::= %s+ %s",
-                this.getNonterminalSymbol(),
-                Nonterminal.SENTENCE_MEAT,
-                TokenType.TERMINATOR));
+        return Arrays.asList(
+                String.format("%s ::= %s+ %s", this.getNonterminalSymbol(), Nonterminal.SENTENCE_MEAT, TokenType.TERMINATOR)
+        );
     }
     
     @Override

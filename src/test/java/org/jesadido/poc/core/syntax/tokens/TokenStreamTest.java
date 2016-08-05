@@ -17,13 +17,8 @@ import java.util.logging.Logger;
 import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.concepts.ConceptRegistry;
 import org.jesadido.poc.core.concepts.ConceptTermination;
-import static org.jesadido.poc.core.syntax.tokens.TokenType.ADJECTIVE_SINGULAR;
-import static org.jesadido.poc.core.syntax.tokens.TokenType.ARTICLE;
-import static org.jesadido.poc.core.syntax.tokens.TokenType.PARAMETERED_SUBSTANTIVE_SINGULAR;
-import static org.jesadido.poc.core.syntax.tokens.TokenType.TERMINATOR;
 import org.junit.Assert;
 import org.junit.Test;
-import static org.jesadido.poc.core.syntax.tokens.TokenType.SUBSTANTIVE_SINGULAR;
 
 public class TokenStreamTest {
     
@@ -123,7 +118,6 @@ public class TokenStreamTest {
         }
     }
     
-    
     @Test
     public void testNext() {
         {
@@ -185,10 +179,10 @@ public class TokenStreamTest {
         private static final Map<ConceptTermination, Selector> SELECTIONS = new EnumMap<>(ConceptTermination.class);
     
         static {
-            SELECTIONS.put(ConceptTermination.PERIOD, (Selector) (Concept c) -> TERMINATOR);
-            SELECTIONS.put(ConceptTermination.LA, (Selector) (Concept c) -> ARTICLE);
-            SELECTIONS.put(ConceptTermination.O, (Selector) (Concept c) -> c.getProperties().hasParameter() ? PARAMETERED_SUBSTANTIVE_SINGULAR : SUBSTANTIVE_SINGULAR);
-            SELECTIONS.put(ConceptTermination.A, (Selector) (Concept c) -> ADJECTIVE_SINGULAR);
+            SELECTIONS.put(ConceptTermination.PERIOD, (Selector) (Concept c) -> TokenType.TERMINATOR);
+            SELECTIONS.put(ConceptTermination.LA, (Selector) (Concept c) -> TokenType.ARTICLE);
+            SELECTIONS.put(ConceptTermination.O, (Selector) (Concept c) -> c.getProperties().hasParameter() ? TokenType.PARAMETERED_SUBSTANTIVE_SINGULAR : TokenType.SUBSTANTIVE_SINGULAR);
+            SELECTIONS.put(ConceptTermination.A, (Selector) (Concept c) -> TokenType.ADJECTIVE_SINGULAR);
         }
         
         @Override

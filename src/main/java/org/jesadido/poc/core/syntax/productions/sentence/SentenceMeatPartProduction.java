@@ -21,7 +21,8 @@ public class SentenceMeatPartProduction extends ProductionLeaf {
     private List<TokenType> firsts = null;
     
     public SentenceMeatPartProduction() {
-        super(Nonterminal.SENTENCE_MEAT_PART,
+        super(
+                Nonterminal.SENTENCE_MEAT_PART,
                 new LinkedList<>(),
                 Arrays.asList(Nonterminal.PART_SU, Nonterminal.PART_DOM, Nonterminal.PART_FIN)
         );
@@ -29,11 +30,9 @@ public class SentenceMeatPartProduction extends ProductionLeaf {
     
     @Override
     public List<String> getRules() {
-        return Arrays.asList(String.format("%s ::= %s | %s | %s", this.getNonterminalSymbol(),
-                Nonterminal.PART_SU,
-                Nonterminal.PART_DOM,
-                Nonterminal.PART_FIN
-        ));
+        return Arrays.asList(
+                String.format("%s ::= %s | %s | %s", this.getNonterminalSymbol(), Nonterminal.PART_SU, Nonterminal.PART_DOM, Nonterminal.PART_FIN)
+        );
     }
     
     @Override

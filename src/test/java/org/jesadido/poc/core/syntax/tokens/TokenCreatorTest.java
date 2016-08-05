@@ -14,21 +14,8 @@ import java.util.Map;
 import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.concepts.ConceptRegistry;
 import org.jesadido.poc.core.concepts.ConceptTermination;
-import static org.jesadido.poc.core.syntax.tokens.TokenType.ADJECTIVE_PLURAL;
-import static org.jesadido.poc.core.syntax.tokens.TokenType.ADJECTIVE_SINGULAR;
-import static org.jesadido.poc.core.syntax.tokens.TokenType.ADVERB_PLURAL;
-import static org.jesadido.poc.core.syntax.tokens.TokenType.ADVERB_SINGULAR;
-import static org.jesadido.poc.core.syntax.tokens.TokenType.ARTICLE;
-import static org.jesadido.poc.core.syntax.tokens.TokenType.PARAMETERED_SUBSTANTIVE_PLURAL;
-import static org.jesadido.poc.core.syntax.tokens.TokenType.PARAMETERED_SUBSTANTIVE_SINGULAR;
-import static org.jesadido.poc.core.syntax.tokens.TokenType.PERSONAL_PRONOUN_PLURAL;
-import static org.jesadido.poc.core.syntax.tokens.TokenType.PERSONAL_PRONOUN_SINGULAR;
-import static org.jesadido.poc.core.syntax.tokens.TokenType.TERMINATOR;
 import org.junit.Assert;
 import org.junit.Test;
-import static org.jesadido.poc.core.syntax.tokens.TokenType.SEPARATOR;
-import static org.jesadido.poc.core.syntax.tokens.TokenType.SUBSTANTIVE_SINGULAR;
-import static org.jesadido.poc.core.syntax.tokens.TokenType.SUBSTANTIVE_PLURAL;
 
 public class TokenCreatorTest {
     
@@ -236,20 +223,20 @@ public class TokenCreatorTest {
         private static final Map<ConceptTermination, Selector> SELECTIONS = new EnumMap<>(ConceptTermination.class);
     
         static {
-            SELECTIONS.put(ConceptTermination.PERIOD, (Selector) (Concept c) -> TERMINATOR);
-            SELECTIONS.put(ConceptTermination.LA, (Selector) (Concept c) -> ARTICLE);
-            SELECTIONS.put(ConceptTermination.O, (Selector) (Concept c) -> c.getProperties().hasParameter() ? PARAMETERED_SUBSTANTIVE_SINGULAR : SUBSTANTIVE_SINGULAR);
-            SELECTIONS.put(ConceptTermination.O_J, (Selector) (Concept c) -> c.getProperties().hasParameter() ? PARAMETERED_SUBSTANTIVE_PLURAL : SUBSTANTIVE_PLURAL);
-            SELECTIONS.put(ConceptTermination.A, (Selector) (Concept c) -> ADJECTIVE_SINGULAR);
-            SELECTIONS.put(ConceptTermination.A_J, (Selector) (Concept c) -> ADJECTIVE_PLURAL);
-            SELECTIONS.put(ConceptTermination.E, (Selector) (Concept c) -> ADVERB_SINGULAR);
-            SELECTIONS.put(ConceptTermination.E_J, (Selector) (Concept c) -> ADVERB_PLURAL);
-            SELECTIONS.put(ConceptTermination.MI, (Selector) (Concept c) -> PERSONAL_PRONOUN_SINGULAR);
-            SELECTIONS.put(ConceptTermination.NI, (Selector) (Concept c) -> PERSONAL_PRONOUN_PLURAL);
-            SELECTIONS.put(ConceptTermination.VI, (Selector) (Concept c) -> PERSONAL_PRONOUN_PLURAL);
-            SELECTIONS.put(ConceptTermination.KAJ, (Selector) (Concept c) -> SEPARATOR);
-            SELECTIONS.put(ConceptTermination.AUX, (Selector) (Concept c) -> SEPARATOR);
-            SELECTIONS.put(ConceptTermination.COMMA, (Selector) (Concept c) -> SEPARATOR);
+            SELECTIONS.put(ConceptTermination.PERIOD, (Selector) (Concept c) -> TokenType.TERMINATOR);
+            SELECTIONS.put(ConceptTermination.LA, (Selector) (Concept c) -> TokenType.ARTICLE);
+            SELECTIONS.put(ConceptTermination.O, (Selector) (Concept c) -> c.getProperties().hasParameter() ? TokenType.PARAMETERED_SUBSTANTIVE_SINGULAR : TokenType.SUBSTANTIVE_SINGULAR);
+            SELECTIONS.put(ConceptTermination.O_J, (Selector) (Concept c) -> c.getProperties().hasParameter() ? TokenType.PARAMETERED_SUBSTANTIVE_PLURAL : TokenType.SUBSTANTIVE_PLURAL);
+            SELECTIONS.put(ConceptTermination.A, (Selector) (Concept c) -> TokenType.ADJECTIVE_SINGULAR);
+            SELECTIONS.put(ConceptTermination.A_J, (Selector) (Concept c) -> TokenType.ADJECTIVE_PLURAL);
+            SELECTIONS.put(ConceptTermination.E, (Selector) (Concept c) -> TokenType.ADVERB_SINGULAR);
+            SELECTIONS.put(ConceptTermination.E_J, (Selector) (Concept c) -> TokenType.ADVERB_PLURAL);
+            SELECTIONS.put(ConceptTermination.MI, (Selector) (Concept c) -> TokenType.PERSONAL_PRONOUN_SINGULAR);
+            SELECTIONS.put(ConceptTermination.NI, (Selector) (Concept c) -> TokenType.PERSONAL_PRONOUN_PLURAL);
+            SELECTIONS.put(ConceptTermination.VI, (Selector) (Concept c) -> TokenType.PERSONAL_PRONOUN_PLURAL);
+            SELECTIONS.put(ConceptTermination.KAJ, (Selector) (Concept c) -> TokenType.SEPARATOR);
+            SELECTIONS.put(ConceptTermination.AUX, (Selector) (Concept c) -> TokenType.SEPARATOR);
+            SELECTIONS.put(ConceptTermination.COMMA, (Selector) (Concept c) -> TokenType.SEPARATOR);
         }
         
         @Override

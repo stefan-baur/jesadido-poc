@@ -25,7 +25,9 @@ public abstract class ProductionOneOf extends ProductionLeaf {
     
     @Override
     public List<String> getRules() {
-        return Arrays.asList(String.format("%s ::= %s", this.getNonterminalSymbol(), StringUtils.join(" | ", this.firsts)));
+        return Arrays.asList(
+                String.format("%s ::= %s", this.getNonterminalSymbol(), StringUtils.join(" | ", this.firsts))
+        );
     }
     
     @Override

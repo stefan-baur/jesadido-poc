@@ -22,7 +22,8 @@ public class VerbalSelectionProduction extends ProductionLeaf {
     private List<TokenType> firsts = null;
     
     public VerbalSelectionProduction() {
-        super(Nonterminal.VERBAL_SELECTION,
+        super(
+                Nonterminal.VERBAL_SELECTION,
                 Arrays.asList(TokenType.VERB_PRESENT_TENSE),
                 new LinkedList<>()
         );
@@ -30,9 +31,9 @@ public class VerbalSelectionProduction extends ProductionLeaf {
     
     @Override
     public List<String> getRules() {
-        return Arrays.asList(String.format("%s ::= %s", this.getNonterminalSymbol(),
-                TokenType.VERB_PRESENT_TENSE
-        ));
+        return Arrays.asList(
+                String.format("%s ::= %s", this.getNonterminalSymbol(), TokenType.VERB_PRESENT_TENSE)
+        );
     }
     
     @Override

@@ -22,7 +22,8 @@ public class PartDomProduction extends ProductionLeaf {
     private List<TokenType> firsts = null;
     
     public PartDomProduction() {
-        super(Nonterminal.PART_DOM,
+        super(
+                Nonterminal.PART_DOM,
                 Arrays.asList(TokenType.PART_DOM, TokenType.OPEN, TokenType.CLOSE),
                 Arrays.asList(Nonterminal.VERBAL_SELECTION)
         );
@@ -30,7 +31,8 @@ public class PartDomProduction extends ProductionLeaf {
     
     @Override
     public List<String> getRules() {
-        return Arrays.asList(String.format("%s ::= %s %s %s %s", this.getNonterminalSymbol(), TokenType.PART_DOM, TokenType.OPEN, Nonterminal.VERBAL_SELECTION, TokenType.CLOSE),
+        return Arrays.asList(
+                String.format("%s ::= %s %s %s %s", this.getNonterminalSymbol(), TokenType.PART_DOM, TokenType.OPEN, Nonterminal.VERBAL_SELECTION, TokenType.CLOSE),
                 String.format("%s ::= %s? %s", this.getNonterminalSymbol(), TokenType.PART_DOM, Nonterminal.VERBAL_SELECTION)
         );
     }

@@ -22,7 +22,8 @@ public class NominalSelectionProduction extends ProductionLeaf {
     private List<TokenType> firsts = null;
     
     public NominalSelectionProduction() {
-        super(Nonterminal.NOMINAL_SELECTION,
+        super(
+                Nonterminal.NOMINAL_SELECTION,
                 Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR),
                 new LinkedList<>()
         );
@@ -30,9 +31,9 @@ public class NominalSelectionProduction extends ProductionLeaf {
     
     @Override
     public List<String> getRules() {
-        return Arrays.asList(String.format("%s ::= %s", this.getNonterminalSymbol(),
-                TokenType.SUBSTANTIVE_SINGULAR
-        ));
+        return Arrays.asList(
+                String.format("%s ::= %s", this.getNonterminalSymbol(), TokenType.SUBSTANTIVE_SINGULAR)
+        );
     }
     
     @Override

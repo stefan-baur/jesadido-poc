@@ -22,7 +22,8 @@ public class SentenceMeatProduction extends ProductionLeaf {
     private List<TokenType> firsts = null;
     
     public SentenceMeatProduction() {
-        super(Nonterminal.SENTENCE_MEAT,
+        super(
+                Nonterminal.SENTENCE_MEAT,
                 Arrays.asList(TokenType.OPEN_SET, TokenType.CLOSE_SET),
                 Arrays.asList(Nonterminal.SENTENCE_MEAT_CONJUNCTION, Nonterminal.SENTENCE_MEAT_PART)
         );
@@ -30,7 +31,8 @@ public class SentenceMeatProduction extends ProductionLeaf {
     
     @Override
     public List<String> getRules() {
-        return Arrays.asList(String.format("%s ::= %s? %s %s+ %s", this.getNonterminalSymbol(), Nonterminal.SENTENCE_MEAT_CONJUNCTION, TokenType.OPEN_SET, Nonterminal.SENTENCE_MEAT_PART, TokenType.CLOSE_SET),
+        return Arrays.asList(
+                String.format("%s ::= %s? %s %s+ %s", this.getNonterminalSymbol(), Nonterminal.SENTENCE_MEAT_CONJUNCTION, TokenType.OPEN_SET, Nonterminal.SENTENCE_MEAT_PART, TokenType.CLOSE_SET),
                 String.format("%s ::= %s? %s+", this.getNonterminalSymbol(), Nonterminal.SENTENCE_MEAT_CONJUNCTION, Nonterminal.SENTENCE_MEAT_PART)
         );
     }
