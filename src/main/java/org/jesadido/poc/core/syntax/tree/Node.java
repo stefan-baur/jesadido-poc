@@ -31,7 +31,7 @@ public abstract class Node implements Visitable {
         this.parent = node;
     }
     
-    public List<Node> getChildren() {
+    public final List<Node> getChildren() {
         return this.childrenResult;
     }
     
