@@ -9,8 +9,6 @@ package org.jesadido.poc.core.syntax.tree;
 
 import java.util.List;
 import java.util.logging.Logger;
-import org.jesadido.poc.core.syntax.tree.Node;
-import org.jesadido.poc.core.syntax.tree.TroubleNode;
 import org.jesadido.poc.core.syntax.tree.sentence.NominalSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.PartDom;
 import org.jesadido.poc.core.syntax.tree.sentence.PartFin;

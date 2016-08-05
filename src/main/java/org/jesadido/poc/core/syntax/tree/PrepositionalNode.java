@@ -7,8 +7,6 @@
  */
 package org.jesadido.poc.core.syntax.tree;
 
-import org.jesadido.poc.core.syntax.tree.ClapsedNode;
-
 public abstract class PrepositionalNode extends ClapsedNode {
     
     private final Terminal preposition;

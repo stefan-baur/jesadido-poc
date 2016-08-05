@@ -7,8 +7,6 @@
  */
 package org.jesadido.poc.core.syntax.tree;
 
-import org.jesadido.poc.core.syntax.tree.NodeComposite;
-
 public abstract class ClapsedNode extends NodeComposite {
     
     private final Terminal opener;

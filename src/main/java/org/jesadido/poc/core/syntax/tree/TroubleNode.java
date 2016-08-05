@@ -7,9 +7,6 @@
  */
 package org.jesadido.poc.core.syntax.tree;
 
-import org.jesadido.poc.core.syntax.tree.NodeLeaf;
-import org.jesadido.poc.core.syntax.tree.Visitor;
-
 public class TroubleNode extends NodeLeaf {
     
     private final String message;
