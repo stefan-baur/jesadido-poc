@@ -7,7 +7,7 @@
  */
 package org.jesadido.poc.core.syntax.tree;
 
-public class TroubleNode extends NodeLeaf {
+public class TroubleNode extends Node {
     
     private final String message;
     

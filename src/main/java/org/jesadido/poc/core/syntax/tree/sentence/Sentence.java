@@ -7,11 +7,11 @@
  */
 package org.jesadido.poc.core.syntax.tree.sentence;
 
+import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.tree.Terminal;
-import org.jesadido.poc.core.syntax.tree.NodeComposite;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 
-public class Sentence extends NodeComposite {
+public class Sentence extends Node {
     
     private final Terminal terminator;
     

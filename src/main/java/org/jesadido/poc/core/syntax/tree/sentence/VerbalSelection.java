@@ -8,10 +8,10 @@
 package org.jesadido.poc.core.syntax.tree.sentence;
 
 import org.jesadido.poc.core.concepts.Concept;
-import org.jesadido.poc.core.syntax.tree.NodeLeaf;
+import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 
-public class VerbalSelection extends NodeLeaf {
+public class VerbalSelection extends Node {
     
     private final Concept verb;
     
