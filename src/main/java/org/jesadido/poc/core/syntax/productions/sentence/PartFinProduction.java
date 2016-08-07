@@ -62,7 +62,7 @@ public class PartFinProduction extends ProductionLeaf {
                 final Node nominalSelection = this.parse(tokenStream, Nonterminal.NOMINAL_SELECTION);
                 if (tokenStream.hasOneOf(TokenType.CLOSE)) {
                     final Token closer = tokenStream.next();
-                    return this.getGrammar().getSyntaxTreeFactory().createPartSu(preposition, opener, nominalSelection, closer);
+                    return this.getGrammar().getSyntaxTreeFactory().createPartFin(preposition, opener, nominalSelection, closer);
                 }
             }
             return this.parsingTrouble(tokenStream, TokenType.CLOSE);
