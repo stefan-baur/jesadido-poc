@@ -20,8 +20,8 @@ public class GrammarTest {
         {
             final Grammar grammar = new GrammarFactory().createDefaultGrammar("TestGrammar");
             {
-                Node sentence = grammar.parse("{ Su ( HeroO ) Dom ( HavAs ) Fin ( ) } .");
-                Assert.assertEquals("{ Su ( HeroO ) Dom ( HavAs ) Fin ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+                Node sentence = grammar.parse("{ Su ( HeroO ) Dom ( HavAs ) Fin ( SkribIlO ) } .");
+                Assert.assertEquals("{ Su ( HeroO ) Dom ( HavAs ) Fin ( SkribIlO ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
                 Node sentence = grammar.parse("{ Su ( HeroO ) } X.");
@@ -72,24 +72,24 @@ public class GrammarTest {
                 Assert.assertEquals("Aux { Su ( HeroO ) Dom ( HavAs ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
-                Node sentence = grammar.parse("Su ( HeroO ) Dom ( HavAs ) Fin ( ) .");
-                Assert.assertEquals("{ Su ( HeroO ) Dom ( HavAs ) Fin ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+                Node sentence = grammar.parse("Su ( HeroO ) Dom ( HavAs ) Fin ( SkribIlO ) .");
+                Assert.assertEquals("{ Su ( HeroO ) Dom ( HavAs ) Fin ( SkribIlO ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
                 Node sentence = grammar.parse("Aux ( HeroO ) Dom ( HavAs ) .");
                 Assert.assertEquals("Aux { Su ( HeroO ) Dom ( HavAs ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
-                Node sentence = grammar.parse("HeroO HavAs Fin ( ) .");
-                Assert.assertEquals("{ Su ( HeroO ) Dom ( HavAs ) Fin ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+                Node sentence = grammar.parse("HeroO HavAs Fin SkribIlO .");
+                Assert.assertEquals("{ Su ( HeroO ) Dom ( HavAs ) Fin ( SkribIlO ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
-                Node sentence = grammar.parse("Kaj Fin ( ) Dom HavAs HeroO .");
-                Assert.assertEquals("Kaj { Fin ( ) Dom ( HavAs ) Su ( HeroO ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+                Node sentence = grammar.parse("Kaj Fin SkribIlO Dom HavAs HeroO .");
+                Assert.assertEquals("Kaj { Fin ( SkribIlO ) Dom ( HavAs ) Su ( HeroO ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
             {
-                Node sentence = grammar.parse("( HeroO ) Kaj Fin ( ) Dom ( HavAs ) ( SkribIlO ) .");
-                Assert.assertEquals("{ Su ( HeroO ) } Kaj { Fin ( ) Dom ( HavAs ) Su ( SkribIlO ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+                Node sentence = grammar.parse("( HeroO ) Kaj Fin ( SkribIlO ) Dom ( HavAs ) ( HeroO ) .");
+                Assert.assertEquals("{ Su ( HeroO ) } Kaj { Fin ( SkribIlO ) Dom ( HavAs ) Su ( HeroO ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
         }
     }

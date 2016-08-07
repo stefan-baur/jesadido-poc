@@ -11,8 +11,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.syntax.Nonterminal;
-import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.productions.ProductionLeaf;
+import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
@@ -52,12 +52,12 @@ public class PartSuProduction extends ProductionLeaf {
     public Node parse(final TokenStream tokenStream) {
         if (tokenStream.hasOneOf(TokenType.PART_SU)) {
             final Token preposition = tokenStream.next();
-            return this.parsePrefixless(tokenStream, preposition);
+            return this.parsePartSuPrefixless(tokenStream, preposition);
         }
-        return this.parsePrefixless(tokenStream, null);
+        return this.parsePartSuPrefixless(tokenStream, null);
     }
     
-    private Node parsePrefixless(final TokenStream tokenStream, final Token preposition) {
+    private Node parsePartSuPrefixless(final TokenStream tokenStream, final Token preposition) {
         if (tokenStream.hasOneOf(TokenType.OPEN)) {
             final Token opener = tokenStream.next();
             if (this.hasFirstOf(tokenStream, Nonterminal.NOMINAL_SELECTION)) {

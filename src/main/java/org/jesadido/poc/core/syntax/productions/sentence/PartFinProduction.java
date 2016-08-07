@@ -25,14 +25,15 @@ public class PartFinProduction extends ProductionLeaf {
         super(
                 Nonterminal.PART_FIN,
                 Arrays.asList(TokenType.PART_FIN, TokenType.OPEN, TokenType.CLOSE),
-                new LinkedList<>()
+                Arrays.asList(Nonterminal.NOMINAL_SELECTION)
         );
     }
     
     @Override
     public List<String> getRules() {
         return Arrays.asList(
-                String.format("%s ::= %s %s %s", this.getNonterminalSymbol(), TokenType.PART_FIN, TokenType.OPEN, TokenType.CLOSE)
+                String.format("%s ::= %s %s %s %s", this.getNonterminalSymbol(), TokenType.PART_FIN, TokenType.OPEN, Nonterminal.NOMINAL_SELECTION, TokenType.CLOSE),
+                String.format("%s ::= %s %s", this.getNonterminalSymbol(), TokenType.PART_FIN, Nonterminal.NOMINAL_SELECTION)
         );
     }
     
@@ -49,16 +50,26 @@ public class PartFinProduction extends ProductionLeaf {
     public Node parse(final TokenStream tokenStream) {
         if (tokenStream.hasOneOf(TokenType.PART_FIN)) {
             final Token preposition = tokenStream.next();
-            if (tokenStream.hasOneOf(TokenType.OPEN)) {
-                final Token opener = tokenStream.next();
-                if (tokenStream.hasOneOf(TokenType.CLOSE)) {
-                    final Token closer = tokenStream.next();
-                    return this.getGrammar().getSyntaxTreeFactory().createPartFin(preposition, opener, null, closer);
-                }
-                return this.parsingTrouble(tokenStream, TokenType.CLOSE);
-            }
-            return this.parsingTrouble(tokenStream, TokenType.OPEN);
+            return this.parsePartFinPrefixless(tokenStream, preposition);
         }
         return this.parsingTrouble(tokenStream, TokenType.PART_FIN);
+    }
+    
+    private Node parsePartFinPrefixless(final TokenStream tokenStream, final Token preposition) {
+        if (tokenStream.hasOneOf(TokenType.OPEN)) {
+            final Token opener = tokenStream.next();
+            if (this.hasFirstOf(tokenStream, Nonterminal.NOMINAL_SELECTION)) {
+                final Node nominalSelection = this.parse(tokenStream, Nonterminal.NOMINAL_SELECTION);
+                if (tokenStream.hasOneOf(TokenType.CLOSE)) {
+                    final Token closer = tokenStream.next();
+                    return this.getGrammar().getSyntaxTreeFactory().createPartSu(preposition, opener, nominalSelection, closer);
+                }
+            }
+            return this.parsingTrouble(tokenStream, TokenType.CLOSE);
+        } else if (this.hasFirstOf(tokenStream, Nonterminal.NOMINAL_SELECTION)) {
+            final Node nominalSelection = this.parse(tokenStream, Nonterminal.NOMINAL_SELECTION);
+            return this.getGrammar().getSyntaxTreeFactory().createPartSu(preposition, null, nominalSelection, null);
+        }
+        return this.parsingTrouble(tokenStream);
     }
 }
