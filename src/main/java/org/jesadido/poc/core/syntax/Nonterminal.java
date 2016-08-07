@@ -19,6 +19,8 @@ public enum Nonterminal {
     PART_FIN("part-fin"),
     
     NOMINAL_SELECTION("nominal-selection"),
+    NOMINAL_PHRASE("nominal-phrase"),
+    
     VERBAL_SELECTION("verbal-selection");
     
     private final String value;

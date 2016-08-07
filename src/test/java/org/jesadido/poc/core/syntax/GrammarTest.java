@@ -91,10 +91,6 @@ public class GrammarTest {
                 Node sentence = grammar.parse("( HeroO ) Kaj Fin ( ) Dom ( HavAs ) ( SkribIlO ) .");
                 Assert.assertEquals("{ Su ( HeroO ) } Kaj { Fin ( ) Dom ( HavAs ) Su ( SkribIlO ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
-            {
-                Node sentence = grammar.parse("( ) .");
-                Assert.assertEquals("{ Su ( ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
-            }
         }
     }
 }

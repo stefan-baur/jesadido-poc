@@ -21,8 +21,16 @@ public final class Terminal {
         this.token = token;
     }
     
+    public Terminal(final Token token) {
+        this(token, null);
+    }
+    
     public Terminal(final String defaultConceptPhrase) {
         this(null, defaultConceptPhrase);
+    }
+    
+    public final boolean hasConcept() {
+        return this.token != null || this.defaultConceptPhrase != null;
     }
     
     public final Concept getConcept() {

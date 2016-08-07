@@ -7,10 +7,22 @@
  */
 package org.jesadido.poc.core.syntax.tree.sentence;
 
+import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.Terminal;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 
-public class NominalSelection extends Node {
+public class NominalPhrase extends Node {
+    
+    private final Terminal substantive;
+    
+    public NominalPhrase(final Terminal substantive) {
+        this.substantive = substantive;
+    }
+    
+    public Concept getSubstantive() {
+        return this.substantive.getConcept();
+    }
     
     @Override
     public <R, A> R accept(Visitor<R, A> visitor, A argument) {

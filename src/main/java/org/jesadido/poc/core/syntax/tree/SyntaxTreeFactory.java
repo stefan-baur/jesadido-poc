@@ -18,6 +18,7 @@ import org.jesadido.poc.core.syntax.tree.sentence.SentenceMeat;
 import org.jesadido.poc.core.syntax.tree.sentence.SentenceMeatConjunction;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbalSelection;
 import org.jesadido.poc.core.syntax.tokens.Token;
+import org.jesadido.poc.core.syntax.tree.sentence.NominalPhrase;
 
 public class SyntaxTreeFactory {
     
@@ -52,8 +53,13 @@ public class SyntaxTreeFactory {
                 .addChild(nominalSelection);
     }
     
-    public Node createNominalSelection(final Token substantive) {
-        return new NominalSelection(substantive.getConcept());
+    public Node createNominalSelection(final Node phrase) {
+        return new NominalSelection()
+                .addChild(phrase);
+    }
+    
+    public Node createNominalPhrase(final Token requiredSubstantive) {
+        return new NominalPhrase(new Terminal(requiredSubstantive));
     }
     
     public Node createVerbalSelection(final Token verb) {

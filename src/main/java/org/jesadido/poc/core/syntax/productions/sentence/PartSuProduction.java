@@ -52,29 +52,25 @@ public class PartSuProduction extends ProductionLeaf {
     public Node parse(final TokenStream tokenStream) {
         if (tokenStream.hasOneOf(TokenType.PART_SU)) {
             final Token preposition = tokenStream.next();
-            return this.parseHeadless(tokenStream, preposition);
+            return this.parsePrefixless(tokenStream, preposition);
         }
-        return this.parseHeadless(tokenStream, null);
+        return this.parsePrefixless(tokenStream, null);
     }
     
-    private Node parseHeadless(final TokenStream tokenStream, final Token preposition) {
+    private Node parsePrefixless(final TokenStream tokenStream, final Token preposition) {
         if (tokenStream.hasOneOf(TokenType.OPEN)) {
             final Token opener = tokenStream.next();
-            final Node nominalSelection = this.parseNominalSelection(tokenStream);
-            if (tokenStream.hasOneOf(TokenType.CLOSE)) {
-                final Token closer = tokenStream.next();
-                return this.getGrammar().getSyntaxTreeFactory().createPartSu(preposition, opener, nominalSelection, closer);
+            if (this.hasFirstOf(tokenStream, Nonterminal.NOMINAL_SELECTION)) {
+                final Node nominalSelection = this.parse(tokenStream, Nonterminal.NOMINAL_SELECTION);
+                if (tokenStream.hasOneOf(TokenType.CLOSE)) {
+                    final Token closer = tokenStream.next();
+                    return this.getGrammar().getSyntaxTreeFactory().createPartSu(preposition, opener, nominalSelection, closer);
+                }
             }
             return this.parsingTrouble(tokenStream, TokenType.CLOSE);
-        } else {
-            final Node nominalSelection = this.parseNominalSelection(tokenStream);
+        } else if (this.hasFirstOf(tokenStream, Nonterminal.NOMINAL_SELECTION)) {
+            final Node nominalSelection = this.parse(tokenStream, Nonterminal.NOMINAL_SELECTION);
             return this.getGrammar().getSyntaxTreeFactory().createPartSu(preposition, null, nominalSelection, null);
-        }
-    }
-    
-    private Node parseNominalSelection(final TokenStream tokenStream) {
-        if (this.hasFirstOf(tokenStream, Nonterminal.NOMINAL_SELECTION)) {
-            return this.parse(tokenStream, Nonterminal.NOMINAL_SELECTION);
         }
         return this.parsingTrouble(tokenStream);
     }
