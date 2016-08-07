@@ -52,12 +52,12 @@ public class PartSuProduction extends ProductionLeaf {
     public Node parse(final TokenStream tokenStream) {
         if (tokenStream.hasOneOf(TokenType.PART_SU)) {
             final Token preposition = tokenStream.next();
-            return this.parsePartSuPrefixless(tokenStream, preposition);
+            return this.parsePrefixless(tokenStream, preposition);
         }
-        return this.parsePartSuPrefixless(tokenStream, null);
+        return this.parsePrefixless(tokenStream, null);
     }
     
-    private Node parsePartSuPrefixless(final TokenStream tokenStream, final Token preposition) {
+    private Node parsePrefixless(final TokenStream tokenStream, final Token preposition) {
         if (tokenStream.hasOneOf(TokenType.OPEN)) {
             final Token opener = tokenStream.next();
             if (this.hasFirstOf(tokenStream, Nonterminal.NOMINAL_SELECTION)) {
