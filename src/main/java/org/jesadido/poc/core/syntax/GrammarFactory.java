@@ -48,6 +48,6 @@ public class GrammarFactory {
     }
     
     public static void main(String[] arguments) {
-        LOGGER.info(new GrammarFactory().createDefaultGrammar("Jesadido-Base").toString());
+        LOGGER.info(new GrammarFactory().createDefaultGrammar("Jesadido").toString());
     }
 }
