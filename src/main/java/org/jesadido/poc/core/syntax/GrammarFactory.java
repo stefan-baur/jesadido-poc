@@ -11,6 +11,7 @@ import org.jesadido.poc.core.syntax.tree.SyntaxTreeFactory;
 import java.util.logging.Logger;
 import org.jesadido.poc.core.syntax.productions.sentence.NominalPhraseProduction;
 import org.jesadido.poc.core.syntax.productions.sentence.NominalSelectionProduction;
+import org.jesadido.poc.core.syntax.productions.sentence.PartAlProduction;
 import org.jesadido.poc.core.syntax.productions.sentence.PartDomProduction;
 import org.jesadido.poc.core.syntax.productions.sentence.PartFinProduction;
 import org.jesadido.poc.core.syntax.productions.sentence.SentenceMeatPartProduction;
@@ -30,11 +31,14 @@ public class GrammarFactory {
                 
                 .register(false, new NominalPhraseProduction())
                 .register(false, new NominalSelectionProduction())
-                .register(false, new VerbalSelectionProduction())
                 
                 .register(false, new PartSuProduction())
-                .register(false, new PartDomProduction())
+                .register(false, new PartAlProduction())
                 .register(false, new PartFinProduction())
+                
+                .register(false, new VerbalSelectionProduction())
+                
+                .register(false, new PartDomProduction())
                 
                 .register(false, new SentenceMeatPartProduction())
                 .register(false, new SentenceMeatConjunctionProduction())

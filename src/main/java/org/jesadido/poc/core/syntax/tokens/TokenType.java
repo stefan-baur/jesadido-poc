@@ -174,6 +174,11 @@ public enum TokenType {
     PART_DOM,
     
     /**
+     * The appropriate token value indicates the dative object.
+     */
+    PART_AL,
+    
+    /**
      * The appropriate token value indicates the accusative object.
      */
     PART_FIN,

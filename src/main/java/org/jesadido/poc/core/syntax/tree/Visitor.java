@@ -9,6 +9,7 @@ package org.jesadido.poc.core.syntax.tree;
 
 import org.jesadido.poc.core.syntax.tree.sentence.NominalPhrase;
 import org.jesadido.poc.core.syntax.tree.sentence.NominalSelection;
+import org.jesadido.poc.core.syntax.tree.sentence.PartAl;
 import org.jesadido.poc.core.syntax.tree.sentence.Sentence;
 import org.jesadido.poc.core.syntax.tree.sentence.SentenceMeat;
 import org.jesadido.poc.core.syntax.tree.sentence.PartDom;
@@ -25,6 +26,7 @@ public interface Visitor<R, A> {
     
     R visit(PartSu node, A argument);
     R visit(PartDom node, A argument);
+    R visit(PartAl node, A argument);
     R visit(PartFin node, A argument);
     
     R visit(NominalSelection node, A argument);

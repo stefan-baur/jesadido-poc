@@ -24,14 +24,14 @@ public class SentenceMeatPartProduction extends ProductionLeaf {
         super(
                 Nonterminal.SENTENCE_MEAT_PART,
                 new LinkedList<>(),
-                Arrays.asList(Nonterminal.PART_SU, Nonterminal.PART_DOM, Nonterminal.PART_FIN)
+                Arrays.asList(Nonterminal.PART_SU, Nonterminal.PART_DOM, Nonterminal.PART_AL, Nonterminal.PART_FIN)
         );
     }
     
     @Override
     public List<String> getRules() {
         return Arrays.asList(
-                String.format("%s ::= %s | %s | %s", this.getNonterminalSymbol(), Nonterminal.PART_SU, Nonterminal.PART_DOM, Nonterminal.PART_FIN)
+                String.format("%s ::= %s | %s | %s | %s", this.getNonterminalSymbol(), Nonterminal.PART_SU, Nonterminal.PART_DOM, Nonterminal.PART_AL, Nonterminal.PART_FIN)
         );
     }
     
@@ -41,6 +41,7 @@ public class SentenceMeatPartProduction extends ProductionLeaf {
             this.firsts = new LinkedList<>();
             this.firsts.addAll(this.getFirsts(Nonterminal.PART_SU));
             this.firsts.addAll(this.getFirsts(Nonterminal.PART_DOM));
+            this.firsts.addAll(this.getFirsts(Nonterminal.PART_AL));
             this.firsts.addAll(this.getFirsts(Nonterminal.PART_FIN));
         }
         return this.firsts;
@@ -52,6 +53,8 @@ public class SentenceMeatPartProduction extends ProductionLeaf {
             return this.parse(tokenStream, Nonterminal.PART_SU);
         } else if (this.hasFirstOf(tokenStream, Nonterminal.PART_DOM)) {
             return this.parse(tokenStream, Nonterminal.PART_DOM);
+        } else if (this.hasFirstOf(tokenStream, Nonterminal.PART_AL)) {
+            return this.parse(tokenStream, Nonterminal.PART_AL);
         } else if (this.hasFirstOf(tokenStream, Nonterminal.PART_FIN)) {
             return this.parse(tokenStream, Nonterminal.PART_FIN);
         }

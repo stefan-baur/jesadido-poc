@@ -91,6 +91,10 @@ public class GrammarTest {
                 Node sentence = grammar.parse("( HeroO ) Kaj Fin ( SkribIlO ) Dom ( HavAs ) ( HeroO ) .");
                 Assert.assertEquals("{ Su ( HeroO ) } Kaj { Fin ( SkribIlO ) Dom ( HavAs ) Su ( HeroO ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
             }
+            {
+                Node sentence = grammar.parse("HeroIcxO DonAs Al HeroInO Fin SkribIlO .");
+                Assert.assertEquals("{ Su ( HeroIcxO ) Dom ( DonAs ) Al ( HeroInO ) Fin ( SkribIlO ) } .", ConceptUtils.join(ConceptCollector.collect(sentence)));
+            }
         }
     }
 }

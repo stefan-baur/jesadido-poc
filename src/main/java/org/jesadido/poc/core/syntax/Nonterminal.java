@@ -16,6 +16,7 @@ public enum Nonterminal {
     
     PART_SU("part-su"),
     PART_DOM("part-dom"),
+    PART_AL("part-al"),
     PART_FIN("part-fin"),
     
     NOMINAL_SELECTION("nominal-selection"),

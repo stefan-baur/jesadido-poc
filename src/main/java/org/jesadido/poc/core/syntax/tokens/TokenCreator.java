@@ -37,6 +37,7 @@ public class TokenCreator {
             
             TokenType.PART_SU,
             TokenType.PART_DOM,
+            TokenType.PART_AL,
             TokenType.PART_FIN,
             
             TokenType.SUBSTANTIVE_SINGULAR,
@@ -60,6 +61,7 @@ public class TokenCreator {
         
         SELECTIONS.put(ConceptTermination.SU, (TokenCreator.Selector) (Concept c) -> TokenType.PART_SU);
         SELECTIONS.put(ConceptTermination.DOM, (TokenCreator.Selector) (Concept c) -> TokenType.PART_DOM);
+        SELECTIONS.put(ConceptTermination.AL, (TokenCreator.Selector) (Concept c) -> TokenType.PART_AL);
         SELECTIONS.put(ConceptTermination.FIN, (TokenCreator.Selector) (Concept c) -> TokenType.PART_FIN);
         
         SELECTIONS.put(ConceptTermination.O, (TokenCreator.Selector) (Concept c) -> TokenType.SUBSTANTIVE_SINGULAR);

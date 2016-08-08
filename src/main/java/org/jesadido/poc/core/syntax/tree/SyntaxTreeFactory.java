@@ -49,6 +49,11 @@ public class SyntaxTreeFactory {
                 .setVerbalSelection(verbalSelection);
     }
     
+    public Node createPartAl(final Token preposition, final Token opener, final Node nominalSelection, final Token closer) {
+        return new PartFin(new Terminal(preposition, "Al"), new Terminal(opener, "("), new Terminal(closer, ")"))
+                .setNominalSelection(nominalSelection);
+    }
+    
     public Node createPartFin(final Token preposition, final Token opener, final Node nominalSelection, final Token closer) {
         return new PartFin(new Terminal(preposition, "Fin"), new Terminal(opener, "("), new Terminal(closer, ")"))
                 .setNominalSelection(nominalSelection);
@@ -63,8 +68,8 @@ public class SyntaxTreeFactory {
         return new NominalPhrase(new Terminal(requiredSubstantive));
     }
     
-    public Node createVerbalSelection(final Token verb) {
-        return new VerbalSelection(verb.getConcept());
+    public Node createVerbalSelection(final Token requiredVerb) {
+        return new VerbalSelection(new Terminal(requiredVerb));
     }
     
     public Node createTrouble(final String message) {

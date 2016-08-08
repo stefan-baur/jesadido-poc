@@ -7,21 +7,14 @@
  */
 package org.jesadido.poc.core.syntax.tree.sentence;
 
-import org.jesadido.poc.core.concepts.Concept;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.NominalPartNode;
 import org.jesadido.poc.core.syntax.tree.Terminal;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 
-public class VerbalSelection extends Node {
+public class PartAl extends NominalPartNode {
     
-    private final Terminal verb;
-    
-    public VerbalSelection(final Terminal verb) {
-        this.verb = verb;
-    }
-    
-    public Concept getVerb() {
-        return this.verb.getConcept();
+    public PartAl(final Terminal preposition, final Terminal opener, final Terminal closer) {
+        super(preposition, opener, closer);
     }
     
     @Override

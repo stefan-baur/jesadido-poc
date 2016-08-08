@@ -16,6 +16,7 @@ import org.jesadido.poc.core.syntax.tree.Visitor;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
 import org.jesadido.poc.core.syntax.tree.sentence.NominalPhrase;
 import org.jesadido.poc.core.syntax.tree.sentence.NominalSelection;
+import org.jesadido.poc.core.syntax.tree.sentence.PartAl;
 import org.jesadido.poc.core.syntax.tree.sentence.Sentence;
 import org.jesadido.poc.core.syntax.tree.sentence.SentenceMeat;
 import org.jesadido.poc.core.syntax.tree.sentence.PartDom;
@@ -80,6 +81,18 @@ public class ConceptCollector implements Visitor<List<Concept>, Void> {
         result.add(node.getOpener().getConcept());
         if (node.hasVerbalSelection()) {
             result.addAll(node.getVerbalSelection().accept(this, null));
+        }
+        result.add(node.getCloser().getConcept());
+        return result;
+    }
+    
+    @Override
+    public List<Concept> visit(final PartAl node, final Void unused) {
+        List<Concept> result = new LinkedList<>();
+        result.add(node.getPreposition().getConcept());
+        result.add(node.getOpener().getConcept());
+        if (node.hasNominalSelection()) {
+            result.addAll(node.getNominalSelection().accept(this, null));
         }
         result.add(node.getCloser().getConcept());
         return result;
