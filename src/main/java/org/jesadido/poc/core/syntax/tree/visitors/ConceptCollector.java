@@ -37,7 +37,7 @@ public class ConceptCollector implements Visitor<List<Concept>, Void> {
     @Override
     public List<Concept> visit(final Sentence node, final Void unused) {
         List<Concept> result = new LinkedList<>();
-        node.getChildren().stream().forEach(child -> result.addAll(child.accept(this, null)));
+        node.getMeats().stream().forEach(meat -> result.addAll(meat.accept(this, null)));
         result.add(node.getTerminator().getConcept());
         return result;
     }
@@ -49,7 +49,7 @@ public class ConceptCollector implements Visitor<List<Concept>, Void> {
             result.addAll(node.getConjunction().accept(this, null));
         }
         result.add(node.getOpener().getConcept());
-        node.getChildren().stream().forEach(child -> result.addAll(child.accept(this, null)));
+        node.getParts().stream().forEach(part -> result.addAll(part.accept(this, null)));
         result.add(node.getCloser().getConcept());
         return result;
     }
@@ -66,7 +66,9 @@ public class ConceptCollector implements Visitor<List<Concept>, Void> {
         List<Concept> result = new LinkedList<>();
         result.add(node.getPreposition().getConcept());
         result.add(node.getOpener().getConcept());
-        node.getChildren().stream().forEach(child -> result.addAll(child.accept(this, null)));
+        if (node.hasNominalSelection()) {
+            result.addAll(node.getNominalSelection().accept(this, null));
+        }
         result.add(node.getCloser().getConcept());
         return result;
     }
@@ -76,7 +78,9 @@ public class ConceptCollector implements Visitor<List<Concept>, Void> {
         List<Concept> result = new LinkedList<>();
         result.add(node.getPreposition().getConcept());
         result.add(node.getOpener().getConcept());
-        node.getChildren().stream().forEach(child -> result.addAll(child.accept(this, null)));
+        if (node.hasVerbalSelection()) {
+            result.addAll(node.getVerbalSelection().accept(this, null));
+        }
         result.add(node.getCloser().getConcept());
         return result;
     }
@@ -86,7 +90,9 @@ public class ConceptCollector implements Visitor<List<Concept>, Void> {
         List<Concept> result = new LinkedList<>();
         result.add(node.getPreposition().getConcept());
         result.add(node.getOpener().getConcept());
-        node.getChildren().stream().forEach(child -> result.addAll(child.accept(this, null)));
+        if (node.hasNominalSelection()) {
+            result.addAll(node.getNominalSelection().accept(this, null));
+        }
         result.add(node.getCloser().getConcept());
         return result;
     }
@@ -94,7 +100,9 @@ public class ConceptCollector implements Visitor<List<Concept>, Void> {
     @Override
     public List<Concept> visit(final NominalSelection node, final Void unused) {
         List<Concept> result = new LinkedList<>();
-        node.getChildren().stream().forEach(child -> result.addAll(child.accept(this, null)));
+        if (node.hasNominalPhrase()) {
+            result.addAll(node.getNominalPhrase().accept(this, null));
+        }
         return result;
     }
     

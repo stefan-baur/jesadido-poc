@@ -26,12 +26,13 @@ public class SyntaxTreeFactory {
     
     public Node createSentence(final List<Node> meats, final Token terminator) {
         return new Sentence(new Terminal(terminator, "."))
-                .addChildren(meats);
+                .addMeats(meats);
     }
     
     public Node createSentenceMeat(final Node conjunction, final Token opener, final List<Node> parts, final Token closer) {
-        return new SentenceMeat(conjunction, new Terminal(opener, "{"), new Terminal(closer, "}"))
-                .addChildren(parts);
+        return new SentenceMeat(new Terminal(opener, "{"), new Terminal(closer, "}"))
+                .setConjunction(conjunction)
+                .addParts(parts);
     }
     
     public Node createSentenceMeatConjunction(final Token conjunction) {
@@ -40,22 +41,22 @@ public class SyntaxTreeFactory {
     
     public Node createPartSu(final Token preposition, final Token opener, final Node nominalSelection, final Token closer) {
         return new PartSu(new Terminal(preposition, "Su"), new Terminal(opener, "("), new Terminal(closer, ")"))
-                .addChild(nominalSelection);
+                .setNominalSelection(nominalSelection);
     }
     
     public Node createPartDom(final Token preposition, final Token opener, final Node verbalSelection, final Token closer) {
         return new PartDom(new Terminal(preposition, "Dom"), new Terminal(opener, "("), new Terminal(closer, ")"))
-                .addChild(verbalSelection);
+                .setVerbalSelection(verbalSelection);
     }
     
     public Node createPartFin(final Token preposition, final Token opener, final Node nominalSelection, final Token closer) {
         return new PartFin(new Terminal(preposition, "Fin"), new Terminal(opener, "("), new Terminal(closer, ")"))
-                .addChild(nominalSelection);
+                .setNominalSelection(nominalSelection);
     }
     
-    public Node createNominalSelection(final Node phrase) {
+    public Node createNominalSelection(final Node nominalPhrase) {
         return new NominalSelection()
-                .addChild(phrase);
+                .setNominalPhrase(nominalPhrase);
     }
     
     public Node createNominalPhrase(final Token requiredSubstantive) {

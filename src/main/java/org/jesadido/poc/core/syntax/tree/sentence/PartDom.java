@@ -9,9 +9,9 @@ package org.jesadido.poc.core.syntax.tree.sentence;
 
 import org.jesadido.poc.core.syntax.tree.Terminal;
 import org.jesadido.poc.core.syntax.tree.Visitor;
-import org.jesadido.poc.core.syntax.tree.PrepositionalNode;
+import org.jesadido.poc.core.syntax.tree.VerbalPartNode;
 
-public class PartDom extends PrepositionalNode {
+public class PartDom extends VerbalPartNode {
     
     public PartDom(final Terminal preposition, final Terminal opener, final Terminal closer) {
         super(preposition, opener, closer);

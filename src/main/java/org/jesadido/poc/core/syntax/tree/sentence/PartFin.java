@@ -7,11 +7,11 @@
  */
 package org.jesadido.poc.core.syntax.tree.sentence;
 
+import org.jesadido.poc.core.syntax.tree.NominalPartNode;
 import org.jesadido.poc.core.syntax.tree.Terminal;
 import org.jesadido.poc.core.syntax.tree.Visitor;
-import org.jesadido.poc.core.syntax.tree.PrepositionalNode;
 
-public class PartFin extends PrepositionalNode {
+public class PartFin extends NominalPartNode {
     
     public PartFin(final Terminal preposition, final Terminal opener, final Terminal closer) {
         super(preposition, opener, closer);

@@ -12,6 +12,24 @@ import org.jesadido.poc.core.syntax.tree.Visitor;
 
 public class NominalSelection extends Node {
     
+    private Node nominalPhrase;
+    
+    public boolean hasNominalPhrase() {
+        return this.nominalPhrase != null;
+    }
+    
+    public Node getNominalPhrase() {
+        return this.nominalPhrase;
+    }
+    
+    public NominalSelection setNominalPhrase(final Node nominalPhrase) {
+        this.nominalPhrase = nominalPhrase;
+        if (this.nominalPhrase != null) {
+            this.nominalPhrase.setParent(this);
+        }
+        return this;
+    }
+    
     @Override
     public <R, A> R accept(Visitor<R, A> visitor, A argument) {
         return visitor.visit(this, argument);

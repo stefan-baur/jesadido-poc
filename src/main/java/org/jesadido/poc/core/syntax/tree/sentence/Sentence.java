@@ -7,6 +7,8 @@
  */
 package org.jesadido.poc.core.syntax.tree.sentence;
 
+import java.util.LinkedList;
+import java.util.List;
 import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.tree.Terminal;
 import org.jesadido.poc.core.syntax.tree.Visitor;
@@ -14,6 +16,7 @@ import org.jesadido.poc.core.syntax.tree.Visitor;
 public class Sentence extends Node {
     
     private final Terminal terminator;
+    private final List<Node> meats = new LinkedList<>();
     
     public Sentence(final Terminal terminator) {
         this.terminator = terminator;
@@ -21,6 +24,25 @@ public class Sentence extends Node {
     
     public Terminal getTerminator() {
         return this.terminator;
+    }
+    
+    public List<Node> getMeats() {
+        return this.meats;
+    }
+    
+    public Node addMeat(final Node node) {
+        if (node != null) {
+            this.meats.add(node);
+            node.setParent(this);
+        }
+        return this;
+    }
+    
+    public Node addMeats(final List<Node> nodes) {
+        if (nodes != null) {
+            nodes.stream().forEach(this::addMeat);
+        }
+        return this;
     }
     
     @Override
