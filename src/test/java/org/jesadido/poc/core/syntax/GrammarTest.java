@@ -9,7 +9,7 @@ package org.jesadido.poc.core.syntax;
 
 import org.jesadido.poc.core.concepts.ConceptUtils;
 import org.jesadido.poc.core.syntax.tree.Node;
-import org.jesadido.poc.core.syntax.tree.visitors.ConceptCollector;
+import org.jesadido.poc.core.syntax.visitors.ConceptCollector;
 import org.junit.Assert;
 import org.junit.Test;
 
