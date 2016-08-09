@@ -7,7 +7,6 @@
  */
 package org.jesadido.poc.core.syntax;
 
-import org.jesadido.poc.core.syntax.tree.SyntaxTreeFactory;
 import java.util.logging.Logger;
 import org.jesadido.poc.core.syntax.productions.sentence.SubstantiveSelectionProduction;
 import org.jesadido.poc.core.syntax.productions.sentence.NominalSelectionProduction;
@@ -22,6 +21,7 @@ import org.jesadido.poc.core.syntax.productions.sentence.SentenceMeatProduction;
 import org.jesadido.poc.core.syntax.productions.sentence.SentenceProduction;
 import org.jesadido.poc.core.syntax.productions.sentence.VerbSelectionProduction;
 import org.jesadido.poc.core.syntax.tokens.TokenCreator;
+import org.jesadido.poc.core.syntax.tree.SyntaxTreeFactory;
 
 public class GrammarFactory {
     
