@@ -14,7 +14,7 @@ import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
-import org.jesadido.poc.core.syntax.tree.sentence.NominalPhrase;
+import org.jesadido.poc.core.syntax.tree.sentence.SubstantiveSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.NominalSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.PartAl;
 import org.jesadido.poc.core.syntax.tree.sentence.Sentence;
@@ -113,14 +113,14 @@ public class ConceptCollector implements Visitor<List<Concept>, Void> {
     @Override
     public List<Concept> visit(final NominalSelection node, final Void unused) {
         List<Concept> result = new LinkedList<>();
-        if (node.hasNominalPhrase()) {
-            result.addAll(node.getNominalPhrase().accept(this, null));
+        if (node.hasSubstantiveSelection()) {
+            result.addAll(node.getSubstantiveSelection().accept(this, null));
         }
         return result;
     }
     
     @Override
-    public List<Concept> visit(final NominalPhrase node, final Void unused) {
+    public List<Concept> visit(final SubstantiveSelection node, final Void unused) {
         List<Concept> result = new LinkedList<>();
         result.add(node.getSubstantive());
         return result;

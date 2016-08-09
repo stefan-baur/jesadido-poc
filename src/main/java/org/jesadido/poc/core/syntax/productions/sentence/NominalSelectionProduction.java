@@ -24,14 +24,14 @@ public class NominalSelectionProduction extends ProductionLeaf {
         super(
                 Nonterminal.NOMINAL_SELECTION,
                 new LinkedList<>(),
-                Arrays.asList(Nonterminal.NOMINAL_PHRASE)
+                Arrays.asList(Nonterminal.SUBSTANTIVE_SELECTION)
         );
     }
     
     @Override
     public List<String> getRules() {
         return Arrays.asList(
-                String.format("%s ::= %s", this.getNonterminalSymbol(), Nonterminal.NOMINAL_PHRASE)
+                String.format("%s ::= %s", this.getNonterminalSymbol(), Nonterminal.SUBSTANTIVE_SELECTION)
         );
     }
     
@@ -39,15 +39,15 @@ public class NominalSelectionProduction extends ProductionLeaf {
     public List<TokenType> getFirsts() {
         if (this.firsts == null) {
             this.firsts = new LinkedList<>();
-            this.firsts.addAll(this.getFirsts(Nonterminal.NOMINAL_PHRASE));
+            this.firsts.addAll(this.getFirsts(Nonterminal.SUBSTANTIVE_SELECTION));
         }
         return this.firsts;
     }
     
     @Override
     public Node parse(final TokenStream tokenStream) {
-        if (this.hasFirstOf(tokenStream, Nonterminal.NOMINAL_PHRASE)) {
-            final Node phrase = this.parse(tokenStream, Nonterminal.NOMINAL_PHRASE);
+        if (this.hasFirstOf(tokenStream, Nonterminal.SUBSTANTIVE_SELECTION)) {
+            final Node phrase = this.parse(tokenStream, Nonterminal.SUBSTANTIVE_SELECTION);
             return this.getGrammar().getSyntaxTreeFactory().createNominalSelection(phrase);
         }
         return this.parsingTrouble(tokenStream);

@@ -17,13 +17,12 @@ import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 
-public class NominalPhraseProduction extends ProductionLeaf {
+public class SubstantiveSelectionProduction extends ProductionLeaf {
     
     private List<TokenType> firsts = null;
     
-    public NominalPhraseProduction() {
-        super(
-                Nonterminal.NOMINAL_PHRASE,
+    public SubstantiveSelectionProduction() {
+        super(Nonterminal.SUBSTANTIVE_SELECTION,
                 Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR),
                 new LinkedList<>()
         );
@@ -49,7 +48,7 @@ public class NominalPhraseProduction extends ProductionLeaf {
     public Node parse(final TokenStream tokenStream) {
         if (tokenStream.hasOneOf(TokenType.SUBSTANTIVE_SINGULAR)) {
             final Token substantive = tokenStream.next();
-            return this.getGrammar().getSyntaxTreeFactory().createNominalPhrase(substantive);
+            return this.getGrammar().getSyntaxTreeFactory().createSubstantiveSelection(substantive);
         }
         return this.parsingTrouble(tokenStream);
     }

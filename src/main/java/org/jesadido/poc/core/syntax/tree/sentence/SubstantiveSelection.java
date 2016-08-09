@@ -12,11 +12,11 @@ import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.tree.Terminal;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 
-public class NominalPhrase extends Node {
+public class SubstantiveSelection extends Node {
     
     private final Terminal substantive;
     
-    public NominalPhrase(final Terminal substantive) {
+    public SubstantiveSelection(final Terminal substantive) {
         this.substantive = substantive;
     }
     

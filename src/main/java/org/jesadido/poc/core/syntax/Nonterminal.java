@@ -20,7 +20,7 @@ public enum Nonterminal {
     PART_FIN("part-fin"),
     
     NOMINAL_SELECTION("nominal-selection"),
-    NOMINAL_PHRASE("nominal-phrase"),
+    SUBSTANTIVE_SELECTION("substantive-selection"),
     
     VERBAL_SELECTION("verbal-selection");
     
