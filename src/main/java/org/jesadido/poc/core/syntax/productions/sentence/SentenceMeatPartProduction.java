@@ -9,16 +9,12 @@ package org.jesadido.poc.core.syntax.productions.sentence;
 
 import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.List;
 import org.jesadido.poc.core.syntax.Nonterminal;
 import org.jesadido.poc.core.syntax.tree.Node;
-import org.jesadido.poc.core.syntax.productions.ProductionLeaf;
+import org.jesadido.poc.core.syntax.productions.ProductionOneOf;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
-import org.jesadido.poc.core.syntax.tokens.TokenType;
 
-public class SentenceMeatPartProduction extends ProductionLeaf {
-    
-    private List<TokenType> firsts = null;
+public class SentenceMeatPartProduction extends ProductionOneOf {
     
     public SentenceMeatPartProduction() {
         super(
@@ -26,25 +22,6 @@ public class SentenceMeatPartProduction extends ProductionLeaf {
                 new LinkedList<>(),
                 Arrays.asList(Nonterminal.PART_SU, Nonterminal.PART_DOM, Nonterminal.PART_AL, Nonterminal.PART_FIN)
         );
-    }
-    
-    @Override
-    public List<String> getRules() {
-        return Arrays.asList(
-                String.format("%s ::= %s | %s | %s | %s", this.getNonterminalSymbol(), Nonterminal.PART_SU, Nonterminal.PART_DOM, Nonterminal.PART_AL, Nonterminal.PART_FIN)
-        );
-    }
-    
-    @Override
-    public List<TokenType> getFirsts() {
-        if (this.firsts == null) {
-            this.firsts = new LinkedList<>();
-            this.firsts.addAll(this.getFirsts(Nonterminal.PART_SU));
-            this.firsts.addAll(this.getFirsts(Nonterminal.PART_DOM));
-            this.firsts.addAll(this.getFirsts(Nonterminal.PART_AL));
-            this.firsts.addAll(this.getFirsts(Nonterminal.PART_FIN));
-        }
-        return this.firsts;
     }
     
     @Override

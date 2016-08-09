@@ -9,16 +9,12 @@ package org.jesadido.poc.core.syntax.productions.sentence;
 
 import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.List;
 import org.jesadido.poc.core.syntax.Nonterminal;
 import org.jesadido.poc.core.syntax.tree.Node;
-import org.jesadido.poc.core.syntax.productions.ProductionLeaf;
+import org.jesadido.poc.core.syntax.productions.ProductionOneOf;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
-import org.jesadido.poc.core.syntax.tokens.TokenType;
 
-public class NominalSelectionProduction extends ProductionLeaf {
-    
-    private List<TokenType> firsts = null;
+public class NominalSelectionProduction extends ProductionOneOf {
     
     public NominalSelectionProduction() {
         super(
@@ -26,22 +22,6 @@ public class NominalSelectionProduction extends ProductionLeaf {
                 new LinkedList<>(),
                 Arrays.asList(Nonterminal.SUBSTANTIVE_SELECTION)
         );
-    }
-    
-    @Override
-    public List<String> getRules() {
-        return Arrays.asList(
-                String.format("%s ::= %s", this.getNonterminalSymbol(), Nonterminal.SUBSTANTIVE_SELECTION)
-        );
-    }
-    
-    @Override
-    public List<TokenType> getFirsts() {
-        if (this.firsts == null) {
-            this.firsts = new LinkedList<>();
-            this.firsts.addAll(this.getFirsts(Nonterminal.SUBSTANTIVE_SELECTION));
-        }
-        return this.firsts;
     }
     
     @Override

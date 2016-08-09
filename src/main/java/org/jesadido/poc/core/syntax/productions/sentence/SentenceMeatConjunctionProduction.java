@@ -8,6 +8,7 @@
 package org.jesadido.poc.core.syntax.productions.sentence;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import org.jesadido.poc.core.syntax.Nonterminal;
 import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.productions.ProductionOneOf;
@@ -20,7 +21,8 @@ public class SentenceMeatConjunctionProduction extends ProductionOneOf {
     public SentenceMeatConjunctionProduction() {
         super(
                 Nonterminal.SENTENCE_MEAT_CONJUNCTION,
-                Arrays.asList(TokenType.SEPARATOR_SE, TokenType.SEPARATOR_KAJ, TokenType.SEPARATOR_AUX, TokenType.SEPARATOR)
+                Arrays.asList(TokenType.SEPARATOR_SE, TokenType.SEPARATOR_KAJ, TokenType.SEPARATOR_AUX, TokenType.SEPARATOR),
+                new LinkedList<>()
         );
     }
     
