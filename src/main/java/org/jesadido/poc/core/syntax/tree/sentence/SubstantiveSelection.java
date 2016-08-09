@@ -7,7 +7,6 @@
  */
 package org.jesadido.poc.core.syntax.tree.sentence;
 
-import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.tree.Terminal;
 import org.jesadido.poc.core.syntax.tree.Visitor;
@@ -20,8 +19,8 @@ public class SubstantiveSelection extends Node {
         this.substantive = substantive;
     }
     
-    public Concept getSubstantive() {
-        return this.substantive.getConcept();
+    public Terminal getSubstantive() {
+        return this.substantive;
     }
     
     @Override

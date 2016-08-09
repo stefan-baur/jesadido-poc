@@ -9,8 +9,8 @@ package org.jesadido.poc.core.syntax.tree.visitors;
 
 import java.util.LinkedList;
 import java.util.List;
-import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.Terminal;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
 import org.jesadido.poc.core.syntax.tree.sentence.SubstantiveSelection;
@@ -25,90 +25,90 @@ import org.jesadido.poc.core.syntax.tree.sentence.SentenceMeatConjunction;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbalSelection;
 
-public class ConceptCollector implements Visitor<List<Concept>, Void> {
+public class TerminalCollector implements Visitor<List<Terminal>, Void> {
     
-    public static final List<Concept> collect(final Node node) {
-        return node.accept(new ConceptCollector(), null);
+    public static final List<Terminal> collect(final Node node) {
+        return node.accept(new TerminalCollector(), null);
     }
     
     @Override
-    public List<Concept> visit(final Sentence node, final Void unused) {
-        List<Concept> result = new LinkedList<>();
+    public List<Terminal> visit(final Sentence node, final Void unused) {
+        List<Terminal> result = new LinkedList<>();
         node.getMeats().stream().forEach(meat -> result.addAll(meat.accept(this, unused)));
-        result.add(node.getTerminator().getConcept());
+        result.add(node.getTerminator());
         return result;
     }
     
     @Override
-    public List<Concept> visit(final SentenceMeat node, final Void unused) {
-        List<Concept> result = new LinkedList<>();
+    public List<Terminal> visit(final SentenceMeat node, final Void unused) {
+        List<Terminal> result = new LinkedList<>();
         if (node.hasConjunction()) {
             result.addAll(node.getConjunction().accept(this, unused));
         }
-        result.add(node.getOpener().getConcept());
+        result.add(node.getOpener());
         node.getParts().stream().forEach(part -> result.addAll(part.accept(this, unused)));
-        result.add(node.getCloser().getConcept());
+        result.add(node.getCloser());
         return result;
     }
     
     @Override
-    public List<Concept> visit(final SentenceMeatConjunction node, final Void unused) {
-        List<Concept> result = new LinkedList<>();
-        result.add(node.getConjunction().getConcept());
+    public List<Terminal> visit(final SentenceMeatConjunction node, final Void unused) {
+        List<Terminal> result = new LinkedList<>();
+        result.add(node.getConjunction());
         return result;
     }
     
     @Override
-    public List<Concept> visit(final PartSu node, final Void unused) {
-        List<Concept> result = new LinkedList<>();
-        result.add(node.getPreposition().getConcept());
-        result.add(node.getOpener().getConcept());
+    public List<Terminal> visit(final PartSu node, final Void unused) {
+        List<Terminal> result = new LinkedList<>();
+        result.add(node.getPreposition());
+        result.add(node.getOpener());
         if (node.hasNominalSelection()) {
             result.addAll(node.getNominalSelection().accept(this, unused));
         }
-        result.add(node.getCloser().getConcept());
+        result.add(node.getCloser());
         return result;
     }
     
     @Override
-    public List<Concept> visit(final PartDom node, final Void unused) {
-        List<Concept> result = new LinkedList<>();
-        result.add(node.getPreposition().getConcept());
-        result.add(node.getOpener().getConcept());
+    public List<Terminal> visit(final PartDom node, final Void unused) {
+        List<Terminal> result = new LinkedList<>();
+        result.add(node.getPreposition());
+        result.add(node.getOpener());
         if (node.hasVerbalSelection()) {
             result.addAll(node.getVerbalSelection().accept(this, unused));
         }
-        result.add(node.getCloser().getConcept());
+        result.add(node.getCloser());
         return result;
     }
     
     @Override
-    public List<Concept> visit(final PartAl node, final Void unused) {
-        List<Concept> result = new LinkedList<>();
-        result.add(node.getPreposition().getConcept());
-        result.add(node.getOpener().getConcept());
+    public List<Terminal> visit(final PartAl node, final Void unused) {
+        List<Terminal> result = new LinkedList<>();
+        result.add(node.getPreposition());
+        result.add(node.getOpener());
         if (node.hasNominalSelection()) {
             result.addAll(node.getNominalSelection().accept(this, unused));
         }
-        result.add(node.getCloser().getConcept());
+        result.add(node.getCloser());
         return result;
     }
     
     @Override
-    public List<Concept> visit(final PartFin node, final Void unused) {
-        List<Concept> result = new LinkedList<>();
-        result.add(node.getPreposition().getConcept());
-        result.add(node.getOpener().getConcept());
+    public List<Terminal> visit(final PartFin node, final Void unused) {
+        List<Terminal> result = new LinkedList<>();
+        result.add(node.getPreposition());
+        result.add(node.getOpener());
         if (node.hasNominalSelection()) {
             result.addAll(node.getNominalSelection().accept(this, unused));
         }
-        result.add(node.getCloser().getConcept());
+        result.add(node.getCloser());
         return result;
     }
     
     @Override
-    public List<Concept> visit(final NominalSelection node, final Void unused) {
-        List<Concept> result = new LinkedList<>();
+    public List<Terminal> visit(final NominalSelection node, final Void unused) {
+        List<Terminal> result = new LinkedList<>();
         if (node.hasSubstantiveSelection()) {
             result.addAll(node.getSubstantiveSelection().accept(this, unused));
         }
@@ -116,17 +116,15 @@ public class ConceptCollector implements Visitor<List<Concept>, Void> {
     }
     
     @Override
-    public List<Concept> visit(final SubstantiveSelection node, final Void unused) {
-        List<Concept> result = new LinkedList<>();
-        if (node.getSubstantive().hasConcept()) {
-            result.add(node.getSubstantive().getConcept());
-        }
+    public List<Terminal> visit(final SubstantiveSelection node, final Void unused) {
+        List<Terminal> result = new LinkedList<>();
+        result.add(node.getSubstantive());
         return result;
     }
     
     @Override
-    public List<Concept> visit(final VerbalSelection node, final Void unused) {
-        List<Concept> result = new LinkedList<>();
+    public List<Terminal> visit(final VerbalSelection node, final Void unused) {
+        List<Terminal> result = new LinkedList<>();
         if (node.hasVerbSelection()) {
             result.addAll(node.getVerbSelection().accept(this, unused));
         }
@@ -134,16 +132,14 @@ public class ConceptCollector implements Visitor<List<Concept>, Void> {
     }
     
     @Override
-    public List<Concept> visit(final VerbSelection node, final Void unused) {
-        List<Concept> result = new LinkedList<>();
-        if (node.getVerb().hasConcept()) {
-            result.add(node.getVerb().getConcept());
-        }
+    public List<Terminal> visit(final VerbSelection node, final Void unused) {
+        List<Terminal> result = new LinkedList<>();
+        result.add(node.getVerb());
         return result;
     }
     
     @Override
-    public List<Concept> visit(final TroubleNode node, final Void unused) {
+    public List<Terminal> visit(final TroubleNode node, final Void unused) {
         return new LinkedList<>();
     }
 }

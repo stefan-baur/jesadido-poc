@@ -29,6 +29,18 @@ public final class Terminal {
         this(null, defaultConceptPhrase);
     }
     
+    public final boolean isRequired() {
+        return this.defaultConceptPhrase == null;
+    }
+    
+    public final boolean hasToken() {
+        return this.token != null;
+    }
+    
+    public final Token getToken() {
+        return this.token;
+    }
+    
     public final boolean hasConcept() {
         return this.token != null || this.defaultConceptPhrase != null;
     }
