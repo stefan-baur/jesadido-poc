@@ -13,25 +13,26 @@ import java.util.List;
 import org.jesadido.poc.core.syntax.Nonterminal;
 import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.productions.ProductionLeaf;
+import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 
-public class NominalSelectionProduction extends ProductionLeaf {
+public class VerbSelectionProduction extends ProductionLeaf {
     
     private List<TokenType> firsts = null;
     
-    public NominalSelectionProduction() {
+    public VerbSelectionProduction() {
         super(
-                Nonterminal.NOMINAL_SELECTION,
-                new LinkedList<>(),
-                Arrays.asList(Nonterminal.SUBSTANTIVE_SELECTION)
+                Nonterminal.VERB_SELECTION,
+                Arrays.asList(TokenType.VERB_PRESENT_TENSE),
+                new LinkedList<>()
         );
     }
     
     @Override
     public List<String> getRules() {
         return Arrays.asList(
-                String.format("%s ::= %s", this.getNonterminalSymbol(), Nonterminal.SUBSTANTIVE_SELECTION)
+                String.format("%s ::= %s", this.getNonterminalSymbol(), TokenType.VERB_PRESENT_TENSE)
         );
     }
     
@@ -39,16 +40,16 @@ public class NominalSelectionProduction extends ProductionLeaf {
     public List<TokenType> getFirsts() {
         if (this.firsts == null) {
             this.firsts = new LinkedList<>();
-            this.firsts.addAll(this.getFirsts(Nonterminal.SUBSTANTIVE_SELECTION));
+            this.firsts.add(TokenType.VERB_PRESENT_TENSE);
         }
         return this.firsts;
     }
     
     @Override
     public Node parse(final TokenStream tokenStream) {
-        if (this.hasFirstOf(tokenStream, Nonterminal.SUBSTANTIVE_SELECTION)) {
-            final Node substantiveSelection = this.parse(tokenStream, Nonterminal.SUBSTANTIVE_SELECTION);
-            return this.getGrammar().getSyntaxTreeFactory().createNominalSelection(substantiveSelection);
+        if (tokenStream.hasOneOf(TokenType.VERB_PRESENT_TENSE)) {
+            final Token verb = tokenStream.next();
+            return this.getGrammar().getSyntaxTreeFactory().createVerbSelection(verb);
         }
         return this.parsingTrouble(tokenStream);
     }

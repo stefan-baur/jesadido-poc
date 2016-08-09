@@ -16,6 +16,7 @@ import org.jesadido.poc.core.syntax.tree.sentence.PartDom;
 import org.jesadido.poc.core.syntax.tree.sentence.PartFin;
 import org.jesadido.poc.core.syntax.tree.sentence.PartSu;
 import org.jesadido.poc.core.syntax.tree.sentence.SentenceMeatConjunction;
+import org.jesadido.poc.core.syntax.tree.sentence.VerbSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbalSelection;
 
 public interface Visitor<R, A> {
@@ -33,6 +34,7 @@ public interface Visitor<R, A> {
     R visit(SubstantiveSelection node, A argument);
     
     R visit(VerbalSelection node, A argument);
+    R visit(VerbSelection node, A argument);
     
     R visit(TroubleNode node, A argument);
 }

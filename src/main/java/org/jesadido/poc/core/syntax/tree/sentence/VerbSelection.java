@@ -7,27 +7,21 @@
  */
 package org.jesadido.poc.core.syntax.tree.sentence;
 
+import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.Terminal;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 
-public class VerbalSelection extends Node {
+public class VerbSelection extends Node {
     
-    private Node verbSelection;
+    private final Terminal verb;
     
-    public boolean hasVerbSelection() {
-        return this.verbSelection != null;
+    public VerbSelection(final Terminal verb) {
+        this.verb = verb;
     }
     
-    public Node getVerbSelection() {
-        return this.verbSelection;
-    }
-    
-    public VerbalSelection setVerbSelection(final Node verbSelection) {
-        this.verbSelection = verbSelection;
-        if (this.verbSelection != null) {
-            this.verbSelection.setParent(this);
-        }
-        return this;
+    public Concept getVerb() {
+        return this.verb.getConcept();
     }
     
     @Override

@@ -20,6 +20,7 @@ import org.jesadido.poc.core.syntax.productions.sentence.VerbalSelectionProducti
 import org.jesadido.poc.core.syntax.productions.sentence.SentenceMeatConjunctionProduction;
 import org.jesadido.poc.core.syntax.productions.sentence.SentenceMeatProduction;
 import org.jesadido.poc.core.syntax.productions.sentence.SentenceProduction;
+import org.jesadido.poc.core.syntax.productions.sentence.VerbSelectionProduction;
 import org.jesadido.poc.core.syntax.tokens.TokenCreator;
 
 public class GrammarFactory {
@@ -36,6 +37,7 @@ public class GrammarFactory {
                 .register(false, new PartAlProduction())
                 .register(false, new PartFinProduction())
                 
+                .register(false, new VerbSelectionProduction())
                 .register(false, new VerbalSelectionProduction())
                 
                 .register(false, new PartDomProduction())

@@ -22,7 +22,8 @@ public enum Nonterminal {
     NOMINAL_SELECTION("nominal-selection"),
     SUBSTANTIVE_SELECTION("substantive-selection"),
     
-    VERBAL_SELECTION("verbal-selection");
+    VERBAL_SELECTION("verbal-selection"),
+    VERB_SELECTION("verb-selection");
     
     private final String value;
     
