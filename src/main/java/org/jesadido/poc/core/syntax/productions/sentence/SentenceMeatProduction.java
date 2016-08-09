@@ -75,8 +75,9 @@ public class SentenceMeatProduction extends ProductionLeaf {
             while (this.hasFirstOf(tokenStream, Nonterminal.SENTENCE_MEAT_PART)) {
                 result.add(this.parse(tokenStream, Nonterminal.SENTENCE_MEAT_PART));
             }
+        } else {
+            result.add(this.parsingTrouble(tokenStream));
         }
-        result.add(this.parsingTrouble(tokenStream));
         return result;
     }
 }

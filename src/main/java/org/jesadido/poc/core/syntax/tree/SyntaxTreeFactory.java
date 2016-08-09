@@ -18,6 +18,7 @@ import org.jesadido.poc.core.syntax.tree.sentence.SentenceMeat;
 import org.jesadido.poc.core.syntax.tree.sentence.SentenceMeatConjunction;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbalSelection;
 import org.jesadido.poc.core.syntax.tokens.Token;
+import org.jesadido.poc.core.syntax.tree.sentence.PartAl;
 import org.jesadido.poc.core.syntax.tree.sentence.SubstantiveSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbSelection;
 
@@ -51,7 +52,7 @@ public class SyntaxTreeFactory {
     }
     
     public Node createPartAl(final Token preposition, final Token opener, final Node nominalSelection, final Token closer) {
-        return new PartFin(new Terminal(preposition, "Al"), new Terminal(opener, "("), new Terminal(closer, ")"))
+        return new PartAl(new Terminal(preposition, "Al"), new Terminal(opener, "("), new Terminal(closer, ")"))
                 .setNominalSelection(nominalSelection);
     }
     
