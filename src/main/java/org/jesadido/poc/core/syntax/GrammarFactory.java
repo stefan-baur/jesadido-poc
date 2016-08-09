@@ -47,7 +47,7 @@ public class GrammarFactory {
                 ;
     }
     
-    public static void main(String[] arguments) {
+    public static void main(final String[] arguments) {
         Logger.getAnonymousLogger().info(new GrammarFactory().createDefaultGrammar("Jesadido").toString());
     }
 }

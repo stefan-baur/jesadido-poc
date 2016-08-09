@@ -166,7 +166,7 @@ public class Plotter implements Visitor<Src, Void> {
         return this.closeSrc(result);
     }
     
-    public static void main(String[] arguments) {
+    public static void main(final String[] arguments) {
         final Grammar grammar = new GrammarFactory().createDefaultGrammar("Jesadido");
         for (final Node sentence : new Node[] {
             grammar.parse("HeroIcxO TrovAs Fin SkribIlO .", Nonterminal.SENTENCE),
