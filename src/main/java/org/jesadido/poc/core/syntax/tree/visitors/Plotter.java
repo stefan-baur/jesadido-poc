@@ -34,15 +34,15 @@ public class Plotter implements Visitor<Src, Void> {
         return node.accept(new Plotter(), null);
     }
     
-    private Src openSrc(Node node) {
+    private Src openSrc(final Node node) {
         return new Src().line("• %s", node.getClass().getSimpleName()).inc();
     }
     
-    private Src closeSrc(Src src) {
+    private Src closeSrc(final Src src) {
         return src.dec();
     }
     
-    private void out(Src src, Terminal terminal) {
+    private void out(final Src src, final Terminal terminal) {
         if (terminal.hasToken()) {
             src.line("\"%s\" : %s", terminal.getConcept().getFullPhrase(), terminal.getToken());
         } else if (terminal.hasConcept()) {
