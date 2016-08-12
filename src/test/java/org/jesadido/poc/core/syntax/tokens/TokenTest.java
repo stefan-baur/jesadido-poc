@@ -7,120 +7,79 @@
  */
 package org.jesadido.poc.core.syntax.tokens;
 
-import java.util.Arrays;
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
-import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.concepts.ConceptRegistry;
-import org.jesadido.poc.core.concepts.ConceptTermination;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class TokenTest {
     
-    private static final TokenCreator TC = new TokenCreatorForTokenTest();
-    
     @Test
     public void testGetValue() {
-        Assert.assertEquals(".", TC.create(".").getValue());
-        Assert.assertEquals("LunO", TC.create("LunO").getValue());
-        Assert.assertEquals("LunOJ", TC.create("LunOJ").getValue());
-        Assert.assertEquals("LunA", TC.create("LunA").getValue());
-        Assert.assertEquals("LunAJ", TC.create("LunAJ").getValue());
-        Assert.assertEquals("LunE", TC.create("LunE").getValue());
-        Assert.assertEquals("LunEJ", TC.create("LunEJ").getValue());
-        Assert.assertEquals("/de/'Stefan'IcxO$Mi", TC.create("/de/'Stefan'IcxO$Mi").getValue());
-        Assert.assertEquals("/de/'Baurs'|'Baur'OJ$Ni", TC.create("/de/'Baurs'|'Baur'OJ$Ni").getValue());
-        Assert.assertEquals("/de/'Müllers'|'Müller'OJ$Vi", TC.create("/de/'Müllers'|'Müller'OJ$Vi").getValue());
+        Assert.assertEquals(".", new Token(".", TokenType.TERMINATOR, ConceptRegistry.getInstance().getConcept("."), 20, 5).getValue());
+        Assert.assertEquals("LunO", new Token("LunO", TokenType.SUBSTANTIVE_SINGULAR, ConceptRegistry.getInstance().getConcept("LunO"), -1, 1).getValue());
+        Assert.assertEquals("LunOJ", new Token("LunOJ", TokenType.SUBSTANTIVE_PLURAL, ConceptRegistry.getInstance().getConcept("LunOJ"), -1, 1).getValue());
+        Assert.assertEquals("LunA", new Token("LunA", TokenType.ADJECTIVE_SINGULAR, ConceptRegistry.getInstance().getConcept("LunA"), -1, 1).getValue());
+        Assert.assertEquals("LunAJ", new Token("LunAJ", TokenType.ADJECTIVE_PLURAL, ConceptRegistry.getInstance().getConcept("LunAJ"), -1, 1).getValue());
+        Assert.assertEquals("LunE", new Token("LunE", TokenType.ADVERB_SINGULAR, ConceptRegistry.getInstance().getConcept("LunE")).getValue());
+        Assert.assertEquals("LunEJ", new Token("LunEJ", TokenType.ADVERB_PLURAL, null).getValue());
+        Assert.assertEquals("/de/'Stefan'IcxO$Mi", new Token("/de/'Stefan'IcxO$Mi", TokenType.PERSONAL_PRONOUN_SINGULAR, null).getValue());
+        Assert.assertEquals("/de/'Baurs'|'Baur'OJ$Ni", new Token("/de/'Baurs'|'Baur'OJ$Ni", TokenType.PERSONAL_PRONOUN_PLURAL, null).getValue());
+        Assert.assertEquals("/de/'Müllers'|'Müller'OJ$Vi", new Token("/de/'Müllers'|'Müller'OJ$Vi", TokenType.PERSONAL_PRONOUN_PLURAL, null).getValue());
     }
     
     @Test
     public void testGetType() {
-        Assert.assertEquals(TokenType.TERMINATOR, TC.create(".").getType());
-        Assert.assertEquals(TokenType.SUBSTANTIVE, TC.create("LunO").getType());
-        Assert.assertEquals(TokenType.SUBSTANTIVE, TC.create("LunOJ").getType());
-        Assert.assertEquals(TokenType.ADJECTIVE, TC.create("LunA").getType());
-        Assert.assertEquals(TokenType.ADJECTIVE, TC.create("LunAJ").getType());
-        Assert.assertEquals(TokenType.ADVERB, TC.create("LunE").getType());
-        Assert.assertEquals(TokenType.ADVERB, TC.create("LunEJ").getType());
-        Assert.assertEquals(TokenType.PERSONAL_PRONOUN, TC.create("/de/'Stefan'IcxO$Mi").getType());
-        Assert.assertEquals(TokenType.PERSONAL_PRONOUN, TC.create("/de/'Baurs'|'Baur'OJ$Ni").getType());
-        Assert.assertEquals(TokenType.PERSONAL_PRONOUN, TC.create("/de/'Müllers'|'Müller'OJ$Vi").getType());
+        Assert.assertEquals(TokenType.TERMINATOR, new Token(".", TokenType.TERMINATOR, ConceptRegistry.getInstance().getConcept("."), 20, 5).getType());
+        Assert.assertEquals(TokenType.SUBSTANTIVE_SINGULAR, new Token("LunO", TokenType.SUBSTANTIVE_SINGULAR, ConceptRegistry.getInstance().getConcept("LunO"), -1, 1).getType());
+        Assert.assertEquals(TokenType.SUBSTANTIVE_PLURAL, new Token("LunOJ", TokenType.SUBSTANTIVE_PLURAL, ConceptRegistry.getInstance().getConcept("LunOJ"), -1, 1).getType());
+        Assert.assertEquals(TokenType.ADJECTIVE_SINGULAR, new Token("LunA", TokenType.ADJECTIVE_SINGULAR, ConceptRegistry.getInstance().getConcept("LunA"), -1, 1).getType());
+        Assert.assertEquals(TokenType.ADJECTIVE_PLURAL, new Token("LunAJ", TokenType.ADJECTIVE_PLURAL, ConceptRegistry.getInstance().getConcept("LunAJ"), -1, 1).getType());
+        Assert.assertEquals(TokenType.ADVERB_SINGULAR, new Token("LunE", TokenType.ADVERB_SINGULAR, ConceptRegistry.getInstance().getConcept("LunE")).getType());
+        Assert.assertEquals(TokenType.ADVERB_PLURAL, new Token("LunEJ", TokenType.ADVERB_PLURAL, null).getType());
+        Assert.assertEquals(TokenType.PERSONAL_PRONOUN_SINGULAR, new Token("/de/'Stefan'IcxO$Mi", TokenType.PERSONAL_PRONOUN_SINGULAR, null).getType());
+        Assert.assertEquals(TokenType.PERSONAL_PRONOUN_PLURAL, new Token("/de/'Baurs'|'Baur'OJ$Ni", TokenType.PERSONAL_PRONOUN_PLURAL, null).getType());
+        Assert.assertEquals(TokenType.PERSONAL_PRONOUN_PLURAL, new Token("/de/'Müllers'|'Müller'OJ$Vi", TokenType.PERSONAL_PRONOUN_PLURAL, null).getType());
     }
     
     @Test
     public void testGetConcept() {
-        Assert.assertEquals(".", TC.create(".").getConcept().getFullPhrase());
-        Assert.assertEquals("LunO", TC.create("LunO").getConcept().getFullPhrase());
-        Assert.assertEquals("LunOJ", TC.create("LunOJ").getConcept().getFullPhrase());
-        Assert.assertEquals("LunA", TC.create("LunA").getConcept().getFullPhrase());
-        Assert.assertEquals("LunAJ", TC.create("LunAJ").getConcept().getFullPhrase());
-        Assert.assertEquals("LunE", TC.create("LunE").getConcept().getFullPhrase());
-        Assert.assertEquals("LunEJ", TC.create("LunEJ").getConcept().getFullPhrase());
-        Assert.assertEquals("/de/'Stefan'IcxO$Mi", TC.create("/de/'Stefan'IcxO$Mi").getConcept().getFullPhrase());
-        Assert.assertEquals("/de/'Baurs'|'Baur'OJ$Ni", TC.create("/de/'Baurs'|'Baur'OJ$Ni").getConcept().getFullPhrase());
-        Assert.assertEquals("/de/'Müllers'|'Müller'OJ$Vi", TC.create("/de/'Müllers'|'Müller'OJ$Vi").getConcept().getFullPhrase());
+        Assert.assertEquals(".", new Token(".", TokenType.TERMINATOR, ConceptRegistry.getInstance().getConcept("."), 20, 5).getConcept().getFullPhrase());
+        Assert.assertEquals("LunO", new Token("LunO", TokenType.SUBSTANTIVE_SINGULAR, ConceptRegistry.getInstance().getConcept("LunO"), -1, 1).getConcept().getFullPhrase());
+        Assert.assertEquals("LunOJ", new Token("LunOJ", TokenType.SUBSTANTIVE_PLURAL, ConceptRegistry.getInstance().getConcept("LunOJ"), -1, 1).getConcept().getFullPhrase());
+        Assert.assertEquals("LunA", new Token("LunA", TokenType.ADJECTIVE_SINGULAR, ConceptRegistry.getInstance().getConcept("LunA"), -1, 1).getConcept().getFullPhrase());
+        Assert.assertEquals("LunAJ", new Token("LunAJ", TokenType.ADJECTIVE_PLURAL, ConceptRegistry.getInstance().getConcept("LunAJ"), -1, 1).getConcept().getFullPhrase());
+        Assert.assertEquals("LunE", new Token("LunE", TokenType.ADVERB_SINGULAR, ConceptRegistry.getInstance().getConcept("LunE")).getConcept().getFullPhrase());
+        Assert.assertNull(new Token("LunEJ", TokenType.ADVERB_PLURAL, null).getConcept());
+        Assert.assertNull(new Token("/de/'Stefan'IcxO$Mi", TokenType.PERSONAL_PRONOUN_SINGULAR, null).getConcept());
+        Assert.assertNull(new Token("/de/'Baurs'|'Baur'OJ$Ni", TokenType.PERSONAL_PRONOUN_PLURAL, null).getConcept());
+        Assert.assertNull(new Token("/de/'Müllers'|'Müller'OJ$Vi", TokenType.PERSONAL_PRONOUN_PLURAL, null).getConcept());
     }
     
     @Test
-    public void testToString() {
-        Assert.assertEquals("TERMINATOR[\".\"]", TC.create(".").toString());
-        Assert.assertEquals("SUBSTANTIVE[\"LunO\"]", TC.create("LunO").toString());
-        Assert.assertEquals("SUBSTANTIVE[\"LunOJ\"]", TC.create("LunOJ").toString());
-        Assert.assertEquals("ADJECTIVE[\"LunA\"]", TC.create("LunA").toString());
-        Assert.assertEquals("ADJECTIVE[\"LunAJ\"]", TC.create("LunAJ").toString());
-        Assert.assertEquals("ADVERB[\"LunE\"]", TC.create("LunE").toString());
-        Assert.assertEquals("ADVERB[\"LunEJ\"]", TC.create("LunEJ").toString());
-        Assert.assertEquals("PERSONAL_PRONOUN[\"/de/'Stefan'IcxO$Mi\"]", TC.create("/de/'Stefan'IcxO$Mi").toString());
-        Assert.assertEquals("PERSONAL_PRONOUN[\"/de/'Baurs'|'Baur'OJ$Ni\"]", TC.create("/de/'Baurs'|'Baur'OJ$Ni").toString());
-        Assert.assertEquals("PERSONAL_PRONOUN[\"/de/'Müllers'|'Müller'OJ$Vi\"]", TC.create("/de/'Müllers'|'Müller'OJ$Vi").toString());
+    public void testGetPositionX() {
+        Assert.assertEquals(20, new Token(".", TokenType.TERMINATOR, ConceptRegistry.getInstance().getConcept("."), 20, 5).getPositionX());
+        Assert.assertEquals(-1, new Token("LunO", TokenType.SUBSTANTIVE_SINGULAR, ConceptRegistry.getInstance().getConcept("LunO"), -1, 1).getPositionX());
+        Assert.assertEquals(-1, new Token("LunOJ", TokenType.SUBSTANTIVE_PLURAL, ConceptRegistry.getInstance().getConcept("LunOJ"), -1, 1).getPositionX());
+        Assert.assertEquals(-1, new Token("LunA", TokenType.ADJECTIVE_SINGULAR, ConceptRegistry.getInstance().getConcept("LunA"), -1, 1).getPositionX());
+        Assert.assertEquals(-1, new Token("LunAJ", TokenType.ADJECTIVE_PLURAL, ConceptRegistry.getInstance().getConcept("LunAJ"), -1, 1).getPositionX());
+        Assert.assertEquals(-1, new Token("LunE", TokenType.ADVERB_SINGULAR, ConceptRegistry.getInstance().getConcept("LunE")).getPositionX());
+        Assert.assertEquals(-1, new Token("LunEJ", TokenType.ADVERB_PLURAL, null).getPositionX());
+        Assert.assertEquals(-1, new Token("/de/'Stefan'IcxO$Mi", TokenType.PERSONAL_PRONOUN_SINGULAR, null).getPositionX());
+        Assert.assertEquals(-1, new Token("/de/'Baurs'|'Baur'OJ$Ni", TokenType.PERSONAL_PRONOUN_PLURAL, null).getPositionX());
+        Assert.assertEquals(-1, new Token("/de/'Müllers'|'Müller'OJ$Vi", TokenType.PERSONAL_PRONOUN_PLURAL, null).getPositionX());
     }
     
-    private static final class TokenCreatorForTokenTest extends TokenCreator {
-        
-        private static final List<TokenType> SUPPORTED = Arrays.asList(
-                TokenType.UNKNOWN,
-                TokenType.TERMINATOR,
-                TokenType.SUBSTANTIVE,
-                TokenType.ADJECTIVE,
-                TokenType.ADVERB,
-                TokenType.PERSONAL_PRONOUN
-        );
-        
-        private static final Map<ConceptTermination, Selector> SELECTIONS = new EnumMap<>(ConceptTermination.class);
-    
-        static {
-            SELECTIONS.put(ConceptTermination.PERIOD, (Selector) (Concept c) -> TokenType.TERMINATOR);
-            SELECTIONS.put(ConceptTermination.O, (Selector) (Concept c) -> TokenType.SUBSTANTIVE);
-            SELECTIONS.put(ConceptTermination.O_J, (Selector) (Concept c) -> TokenType.SUBSTANTIVE);
-            SELECTIONS.put(ConceptTermination.A, (Selector) (Concept c) -> TokenType.ADJECTIVE);
-            SELECTIONS.put(ConceptTermination.A_J, (Selector) (Concept c) -> TokenType.ADJECTIVE);
-            SELECTIONS.put(ConceptTermination.E, (Selector) (Concept c) -> TokenType.ADVERB);
-            SELECTIONS.put(ConceptTermination.E_J, (Selector) (Concept c) -> TokenType.ADVERB);
-            SELECTIONS.put(ConceptTermination.MI, (Selector) (Concept c) -> TokenType.PERSONAL_PRONOUN);
-            SELECTIONS.put(ConceptTermination.NI, (Selector) (Concept c) -> TokenType.PERSONAL_PRONOUN);
-            SELECTIONS.put(ConceptTermination.VI, (Selector) (Concept c) -> TokenType.PERSONAL_PRONOUN);
-        }
-        
-        @Override
-        public final Token create(final String conceptPhrase) {
-            final Concept concept = ConceptRegistry.getInstance().getConcept(conceptPhrase);
-            return new Token(conceptPhrase, this.selectTokenType(concept), concept);
-        }
-        
-        @Override
-        public final List<TokenType> getSupportedTokenTypes() {
-            return SUPPORTED;
-        }
-        
-        @Override
-        public final TokenType selectTokenType(final Concept concept) {
-            final ConceptTermination termination = concept.getProperties().getTermination();
-            if (SELECTIONS.containsKey(termination)) {
-                return SELECTIONS.get(termination).select(concept);
-            }
-            return TokenType.UNKNOWN;
-        }
+    @Test
+    public void testGetPositionY() {
+        Assert.assertEquals(5, new Token(".", TokenType.TERMINATOR, ConceptRegistry.getInstance().getConcept("."), 20, 5).getPositionY());
+        Assert.assertEquals(1, new Token("LunO", TokenType.SUBSTANTIVE_SINGULAR, ConceptRegistry.getInstance().getConcept("LunO"), -1, 1).getPositionY());
+        Assert.assertEquals(1, new Token("LunOJ", TokenType.SUBSTANTIVE_PLURAL, ConceptRegistry.getInstance().getConcept("LunOJ"), -1, 1).getPositionY());
+        Assert.assertEquals(1, new Token("LunA", TokenType.ADJECTIVE_SINGULAR, ConceptRegistry.getInstance().getConcept("LunA"), -1, 1).getPositionY());
+        Assert.assertEquals(1, new Token("LunAJ", TokenType.ADJECTIVE_PLURAL, ConceptRegistry.getInstance().getConcept("LunAJ"), -1, 1).getPositionY());
+        Assert.assertEquals(1, new Token("LunE", TokenType.ADVERB_SINGULAR, ConceptRegistry.getInstance().getConcept("LunE")).getPositionY());
+        Assert.assertEquals(1, new Token("LunEJ", TokenType.ADVERB_PLURAL, null).getPositionY());
+        Assert.assertEquals(1, new Token("/de/'Stefan'IcxO$Mi", TokenType.PERSONAL_PRONOUN_SINGULAR, null).getPositionY());
+        Assert.assertEquals(1, new Token("/de/'Baurs'|'Baur'OJ$Ni", TokenType.PERSONAL_PRONOUN_PLURAL, null).getPositionY());
+        Assert.assertEquals(1, new Token("/de/'Müllers'|'Müller'OJ$Vi", TokenType.PERSONAL_PRONOUN_PLURAL, null).getPositionY());
     }
 }

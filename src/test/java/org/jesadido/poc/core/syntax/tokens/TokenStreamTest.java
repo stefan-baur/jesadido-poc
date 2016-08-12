@@ -85,6 +85,8 @@ public class TokenStreamTest {
         {
             TokenStream tokenStream = new TokenStream("StelOJ", TC);
             Assert.assertEquals("StelOJ", tokenStream.peek().getValue());
+            Assert.assertEquals(1, tokenStream.peek().getPositionX());
+            Assert.assertEquals(1, tokenStream.peek().getPositionY());
             Assert.assertEquals(1, tokenStream.peek(1).size());
             Assert.assertEquals("StelOJ", tokenStream.peek(1).get(0).getValue());
             Assert.assertEquals(1, tokenStream.peek(2).size());
@@ -98,15 +100,21 @@ public class TokenStreamTest {
         {
             TokenStream tokenStream = new TokenStream("\tSunO .\r\n\tLunO .\r\n", TC);
             Assert.assertEquals("SunO", tokenStream.peek().getValue());
+            Assert.assertEquals(2, tokenStream.peek().getPositionX());
+            Assert.assertEquals(1, tokenStream.peek().getPositionY());
             Assert.assertEquals(1, tokenStream.peek(1).size());
             Assert.assertEquals("SunO", tokenStream.peek(1).get(0).getValue());
             Assert.assertEquals(2, tokenStream.peek(2).size());
             Assert.assertEquals("SunO", tokenStream.peek(2).get(0).getValue());
             Assert.assertEquals(".", tokenStream.peek(2).get(1).getValue());
+            Assert.assertEquals(7, tokenStream.peek(2).get(1).getPositionX());
+            Assert.assertEquals(1, tokenStream.peek(2).get(1).getPositionY());
             Assert.assertEquals(4, tokenStream.peek(4).size());
             Assert.assertEquals("SunO", tokenStream.peek(4).get(0).getValue());
             Assert.assertEquals(".", tokenStream.peek(4).get(1).getValue());
             Assert.assertEquals("LunO", tokenStream.peek(4).get(2).getValue());
+            Assert.assertEquals(2, tokenStream.peek(4).get(2).getPositionX());
+            Assert.assertEquals(2, tokenStream.peek(4).get(2).getPositionY());
             Assert.assertEquals(".", tokenStream.peek(4).get(3).getValue());
             Assert.assertEquals(4, tokenStream.peek(5).size());
             Assert.assertEquals("SunO", tokenStream.peek(5).get(0).getValue());

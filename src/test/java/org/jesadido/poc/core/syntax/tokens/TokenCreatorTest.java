@@ -24,9 +24,9 @@ public class TokenCreatorTest {
         {
             final TokenCreator tokenCreator = new TokenCreatorA();
             Assert.assertNotNull(tokenCreator.create("."));
-            Assert.assertEquals(TokenType.UNKNOWN, tokenCreator.create(".").getType());
+            Assert.assertEquals(TokenType.UNKNOWN, tokenCreator.create(".", 28, 1).getType());
             Assert.assertNotNull(tokenCreator.create("LunO"));
-            Assert.assertEquals(TokenType.UNKNOWN, tokenCreator.create("LunO").getType());
+            Assert.assertEquals(TokenType.UNKNOWN, tokenCreator.create("LunO", 7, 1).getType());
             Assert.assertNotNull(tokenCreator.create("LunOJ"));
             Assert.assertEquals(TokenType.UNKNOWN, tokenCreator.create("LunOJ").getType());
             Assert.assertNotNull(tokenCreator.create("LunA"));
@@ -49,13 +49,13 @@ public class TokenCreatorTest {
             Assert.assertNotNull(tokenCreator.create("."));
             Assert.assertEquals(TokenType.TERMINATOR, tokenCreator.create(".").getType());
             Assert.assertNotNull(tokenCreator.create("LunO"));
-            Assert.assertEquals(TokenType.SUBSTANTIVE_SINGULAR, tokenCreator.create("LunO").getType());
+            Assert.assertEquals(TokenType.SUBSTANTIVE_SINGULAR, tokenCreator.create("LunO", 40, 30).getType());
             Assert.assertNotNull(tokenCreator.create("LunOJ"));
             Assert.assertEquals(TokenType.SUBSTANTIVE_PLURAL, tokenCreator.create("LunOJ").getType());
             Assert.assertNotNull(tokenCreator.create("LunA"));
             Assert.assertEquals(TokenType.ADJECTIVE_SINGULAR, tokenCreator.create("LunA").getType());
             Assert.assertNotNull(tokenCreator.create("LunAJ"));
-            Assert.assertEquals(TokenType.ADJECTIVE_PLURAL, tokenCreator.create("LunAJ").getType());
+            Assert.assertEquals(TokenType.ADJECTIVE_PLURAL, tokenCreator.create("LunAJ", 30, 11).getType());
             Assert.assertNotNull(tokenCreator.create("LunE"));
             Assert.assertEquals(TokenType.ADVERB_SINGULAR, tokenCreator.create("LunE").getType());
             Assert.assertNotNull(tokenCreator.create("LunEJ"));

@@ -171,7 +171,7 @@ public class Plotter implements Visitor<Src, Void> {
         for (final Node sentence : new Node[] {
             grammar.parse("HeroIcxO TrovAs Fin SkribIlO .", Nonterminal.SENTENCE),
             grammar.parse("HeroIcxO DonAs Fin SkribIlO Al HeroInO .", Nonterminal.SENTENCE),
-            grammar.parse("HeroIcxO TrovAs Fin SkribIlO Kaj HeroIcxO DonAs TestO$Al HeroInO Fin SkribIlO .", Nonterminal.SENTENCE)
+            grammar.parse("HeroIcxO TrovAs Fin SkribIlO \r\nKaj HeroIcxO DonAs TestO$Al HeroInO Fin SkribIlO .", Nonterminal.SENTENCE)
         }) {
             Logger.getAnonymousLogger().info(Plotter.plot(sentence).toString());
         }

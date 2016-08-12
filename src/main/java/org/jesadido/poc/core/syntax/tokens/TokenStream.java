@@ -20,8 +20,10 @@ import java.util.logging.Logger;
 import org.jesadido.poc.core.StringUtils;
 
 /**
- * This <code>TokenStream</code> class implements the token iteration accoring
- * a <b>Jesadido</b> source code for the purpose of parsing.
+ * This <code>TokenStream</code> class implements the token iteration according
+ * a <b>Jesadido</b> source code for the purpose of parsing. The position of the
+ * first charakter is <code>1:1</code>. A new line will be caused by the sign
+ * <code>\n</code>, only.
  */
 public final class TokenStream implements Closeable {
     
@@ -30,6 +32,8 @@ public final class TokenStream implements Closeable {
     private final BufferedReader source;
     private final TokenCreator tokenCreator;
     private final List<Token> peekQueue;
+    private int positionX = 0;
+    private int positionY = 1;
     
     /**
      * Class constructor.
@@ -195,22 +199,34 @@ public final class TokenStream implements Closeable {
     
     private Token readToken() throws IOException {
         final StringBuilder value = new StringBuilder();
+        int x = -1;
+        int y = 1;
         int c;
         boolean skipping = true;
         while ((c = this.source.read()) != -1) {
             final char character = (char) c;
+            if (character == '\n') {
+                this.positionX = 0;
+                this.positionY++;
+            } else if (character != '\r') {
+                this.positionX++;
+            }
             final boolean whitespace = Character.isWhitespace(character);
             if (!skipping && whitespace) {
                 break;
             }
             if (!whitespace) {
+                if (x < 0) {
+                    x = this.positionX;
+                    y = this.positionY;
+                }
                 value.append(character);
                 skipping = false;
             }
         }
         final String conceptPhrase = value.toString();
         if (conceptPhrase.length() > 0) {
-            return this.tokenCreator.create(conceptPhrase);
+            return this.tokenCreator.create(conceptPhrase, x, y);
         }
         return null;
     }

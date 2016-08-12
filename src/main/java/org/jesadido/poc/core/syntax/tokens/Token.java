@@ -19,6 +19,24 @@ public final class Token {
     private final String value;
     private final TokenType type;
     private final Concept concept;
+    private final int positionX;
+    private final int positionY;
+    
+    /**
+     * Class constructor.
+     * @param value The token value/concept phrase/lexeme (not null).
+     * @param type The token type listed under <code>TokenType</code>.
+     * @param concept The appropriate concept instance (not null).
+     * @param positionX The x-cursor-position of the appearance of the lexeme.
+     * @param positionY The y-cursor-position of the appearance of the lexeme.
+     */
+    public Token(final String value, final TokenType type, final Concept concept, final int positionX, int positionY) {
+        this.value = value;
+        this.type = type;
+        this.concept = concept;
+        this.positionX = positionX;
+        this.positionY = positionY;
+    }
     
     /**
      * Class constructor.
@@ -27,9 +45,7 @@ public final class Token {
      * @param concept The appropriate concept instance (not null).
      */
     public Token(final String value, final TokenType type, final Concept concept) {
-        this.value = value;
-        this.type = type;
-        this.concept = concept;
+        this(value, type, concept, -1, 1);
     }
     
     /**
@@ -57,11 +73,34 @@ public final class Token {
     }
     
     /**
+     * Returns the x-position of the appearance of this token inside the
+     * source-code.
+     * @return The x-position. <code>-1</code> the position information is
+     * unused and can be ignored.
+     */
+    public final int getPositionX() {
+        return this.positionX;
+    }
+    
+    /**
+     * Returns the y-position of the appearance of this token inside the
+     * source-code.
+     * @return The y-position.
+     */
+    public final int getPositionY() {
+        return this.positionY;
+    }
+    
+    /**
      * Returns the type and the value of this token as a string.
      * @return The type and the value of this token as a string.
      */
     @Override
     public final String toString() {
-        return String.format("%s[\"%s\"]", this.getType().name(), this.getValue());
+        String positionInformation = "";
+        if (this.positionX >= 0) {
+            positionInformation = String.format("[%d:%d]", this.positionX, this.positionY);
+        }
+        return String.format("%s%s[\"%s\"]", this.getType().name(), positionInformation, this.getValue());
     }
 }

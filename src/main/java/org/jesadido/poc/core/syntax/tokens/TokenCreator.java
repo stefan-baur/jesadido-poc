@@ -71,6 +71,18 @@ public class TokenCreator {
     /**
      * Instantiates a token instance by the given concept phrase/lexeme.
      * @param conceptPhrase The given concept phrase used for the token value.
+     * @param positionX The x-cursor-position of the appearance of the lexeme.
+     * @param positionY The y-cursor-position of the appearance of the lexeme.
+     * @return The token instance.
+     */
+    public Token create(final String conceptPhrase, final int positionX, final int positionY) {
+        final Concept concept = ConceptRegistry.getInstance().getConcept(conceptPhrase);
+        return new Token(conceptPhrase, this.selectTokenType(concept), concept, positionX, positionY);
+    }
+
+    /**
+     * Instantiates a token instance by the given concept phrase/lexeme.
+     * @param conceptPhrase The given concept phrase used for the token value.
      * @return The token instance.
      */
     public Token create(final String conceptPhrase) {
