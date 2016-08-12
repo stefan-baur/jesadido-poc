@@ -25,8 +25,8 @@ import org.jesadido.poc.core.syntax.tree.SyntaxTreeFactory;
 
 public class GrammarFactory {
     
-    public final Grammar createDefaultGrammar(final String name) {
-        return new Grammar(name, new TokenCreator(), new SyntaxTreeFactory())
+    public final Grammar createJesadidoGrammar() {
+        return new Grammar("Jesadido", new TokenCreator(), new SyntaxTreeFactory())
                 
                 .register(false, new SubstantiveSelectionProduction())
                 .register(false, new NominalSelectionProduction())
@@ -48,6 +48,6 @@ public class GrammarFactory {
     }
     
     public static void main(final String[] arguments) {
-        Logger.getAnonymousLogger().info(new GrammarFactory().createDefaultGrammar("Jesadido").toString());
+        Logger.getAnonymousLogger().info(new GrammarFactory().createJesadidoGrammar().toString());
     }
 }
