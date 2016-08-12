@@ -56,17 +56,31 @@ public class TokenTest {
     }
     
     @Test
+    public void testHasPosition() {
+        Assert.assertTrue(new Token(".", TokenType.TERMINATOR, ConceptRegistry.getInstance().getConcept("."), 20, 5).hasPosition());
+        Assert.assertFalse(new Token("LunO", TokenType.SUBSTANTIVE_SINGULAR, ConceptRegistry.getInstance().getConcept("LunO"), -1, 1).hasPosition());
+        Assert.assertFalse(new Token("LunOJ", TokenType.SUBSTANTIVE_PLURAL, ConceptRegistry.getInstance().getConcept("LunOJ"), -1, 1).hasPosition());
+        Assert.assertFalse(new Token("LunA", TokenType.ADJECTIVE_SINGULAR, ConceptRegistry.getInstance().getConcept("LunA"), -1, 1).hasPosition());
+        Assert.assertFalse(new Token("LunAJ", TokenType.ADJECTIVE_PLURAL, ConceptRegistry.getInstance().getConcept("LunAJ"), -1, 1).hasPosition());
+        Assert.assertFalse(new Token("LunE", TokenType.ADVERB_SINGULAR, ConceptRegistry.getInstance().getConcept("LunE")).hasPosition());
+        Assert.assertFalse(new Token("LunEJ", TokenType.ADVERB_PLURAL, null).hasPosition());
+        Assert.assertFalse(new Token("/de/'Stefan'IcxO$Mi", TokenType.PERSONAL_PRONOUN_SINGULAR, null).hasPosition());
+        Assert.assertFalse(new Token("/de/'Baurs'|'Baur'OJ$Ni", TokenType.PERSONAL_PRONOUN_PLURAL, null).hasPosition());
+        Assert.assertFalse(new Token("/de/'Müllers'|'Müller'OJ$Vi", TokenType.PERSONAL_PRONOUN_PLURAL, null).hasPosition());
+    }
+    
+    @Test
     public void testGetPositionX() {
         Assert.assertEquals(20, new Token(".", TokenType.TERMINATOR, ConceptRegistry.getInstance().getConcept("."), 20, 5).getPositionX());
         Assert.assertEquals(-1, new Token("LunO", TokenType.SUBSTANTIVE_SINGULAR, ConceptRegistry.getInstance().getConcept("LunO"), -1, 1).getPositionX());
         Assert.assertEquals(-1, new Token("LunOJ", TokenType.SUBSTANTIVE_PLURAL, ConceptRegistry.getInstance().getConcept("LunOJ"), -1, 1).getPositionX());
         Assert.assertEquals(-1, new Token("LunA", TokenType.ADJECTIVE_SINGULAR, ConceptRegistry.getInstance().getConcept("LunA"), -1, 1).getPositionX());
         Assert.assertEquals(-1, new Token("LunAJ", TokenType.ADJECTIVE_PLURAL, ConceptRegistry.getInstance().getConcept("LunAJ"), -1, 1).getPositionX());
-        Assert.assertEquals(-1, new Token("LunE", TokenType.ADVERB_SINGULAR, ConceptRegistry.getInstance().getConcept("LunE")).getPositionX());
-        Assert.assertEquals(-1, new Token("LunEJ", TokenType.ADVERB_PLURAL, null).getPositionX());
-        Assert.assertEquals(-1, new Token("/de/'Stefan'IcxO$Mi", TokenType.PERSONAL_PRONOUN_SINGULAR, null).getPositionX());
-        Assert.assertEquals(-1, new Token("/de/'Baurs'|'Baur'OJ$Ni", TokenType.PERSONAL_PRONOUN_PLURAL, null).getPositionX());
-        Assert.assertEquals(-1, new Token("/de/'Müllers'|'Müller'OJ$Vi", TokenType.PERSONAL_PRONOUN_PLURAL, null).getPositionX());
+        Assert.assertEquals(0, new Token("LunE", TokenType.ADVERB_SINGULAR, ConceptRegistry.getInstance().getConcept("LunE")).getPositionX());
+        Assert.assertEquals(0, new Token("LunEJ", TokenType.ADVERB_PLURAL, null).getPositionX());
+        Assert.assertEquals(0, new Token("/de/'Stefan'IcxO$Mi", TokenType.PERSONAL_PRONOUN_SINGULAR, null).getPositionX());
+        Assert.assertEquals(0, new Token("/de/'Baurs'|'Baur'OJ$Ni", TokenType.PERSONAL_PRONOUN_PLURAL, null).getPositionX());
+        Assert.assertEquals(0, new Token("/de/'Müllers'|'Müller'OJ$Vi", TokenType.PERSONAL_PRONOUN_PLURAL, null).getPositionX());
     }
     
     @Test

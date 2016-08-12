@@ -45,7 +45,7 @@ public final class Token {
      * @param concept The appropriate concept instance (not null).
      */
     public Token(final String value, final TokenType type, final Concept concept) {
-        this(value, type, concept, -1, 1);
+        this(value, type, concept, 0, 1);
     }
     
     /**
@@ -73,10 +73,17 @@ public final class Token {
     }
     
     /**
+     * Indicates whether this token has position-informations.
+     * @return <code>true</code> if the position-informations can be used.
+     */
+    public final boolean hasPosition() {
+        return this.positionX > 0;
+    }
+    
+    /**
      * Returns the x-position of the appearance of this token inside the
      * source-code.
-     * @return The x-position. <code>-1</code> the position information is
-     * unused and can be ignored.
+     * @return The x-position.
      */
     public final int getPositionX() {
         return this.positionX;
@@ -98,9 +105,9 @@ public final class Token {
     @Override
     public final String toString() {
         String positionInformation = "";
-        if (this.positionX >= 0) {
-            positionInformation = String.format("[%d:%d]", this.positionX, this.positionY);
+        if (this.hasPosition()) {
+            positionInformation = String.format("[%d:%d]", this.getPositionX(), this.getPositionY());
         }
-        return String.format("%s%s[\"%s\"]", this.getType().name(), positionInformation, this.getValue());
+        return String.format("\"%s\" %s%s", this.getValue(), this.getType().name(), positionInformation);
     }
 }
