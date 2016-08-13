@@ -8,6 +8,7 @@
 package org.jesadido.poc.core.syntax.tree.visitors;
 
 import java.util.logging.Logger;
+import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.concepts.ConceptUtils;
 import org.jesadido.poc.core.scripting.Src;
 import org.jesadido.poc.core.syntax.Grammar;
@@ -64,15 +65,20 @@ public class PrettyPrinter implements Visitor<Src, Boolean> {
     @Override
     public Src visit(final PartSu node, final Boolean sugared) {
         Src result = new Src();
-        if (sugared && node.getPreposition().isDefault()) {
-            result.begin("%s", node.getOpener().getConcept());
+        if (sugared) {
+            final Concept prepositionConcept = node.getPreposition().isDefault() ? null : node.getPreposition().getConcept();
+            result.begin("%s", ConceptUtils.join(prepositionConcept, node.getOpener().getConcept()));
+            if (node.hasNominalSelection()) {
+                result.add(node.getNominalSelection().accept(this, sugared));
+            }
+            result.end("%s", node.getCloser().getConcept());
         } else {
             result.begin("%s", ConceptUtils.join(node.getPreposition().getConcept(), node.getOpener().getConcept()));
+            if (node.hasNominalSelection()) {
+                result.add(node.getNominalSelection().accept(this, sugared));
+            }
+            result.end("%s", node.getCloser().getConcept());
         }
-        if (node.hasNominalSelection()) {
-            result.add(node.getNominalSelection().accept(this, sugared));
-        }
-        result.end("%s", node.getCloser().getConcept());
         return result;
     }
 
@@ -153,7 +159,7 @@ public class PrettyPrinter implements Visitor<Src, Boolean> {
             "HeroIcxO DonAs Fin SkribIlO Al HeroInO .",
             "HeroIcxO TrovAs Fin SkribIlO Kaj HeroIcxO DonAs TestO$Al HeroInO Fin SkribIlO .",
             "{\n\tHeroIcxO TrovAs Fin SkribIlO\n} Kaj {\n\tHeroIcxO DonAs Al HeroInO Fin SkribIlO\n} .",
-            "{\n\tSu ( HeroIcxO )\n\tDom ( TrovAntAs )\n\tFin ( SkribIlO )\n} Kaj {\n\tSu ( HeroIcxO )\n\tDom ( DonAs )\n\tAl ( HeroInO )\n\tFin ( SkribIlO )\n} ."
+            "{\n\tTestO$Su ( HeroIcxO )\n\tDom ( TrovAntAs )\n\tFin ( SkribIlO )\n} Kaj {\n\tSu ( HeroIcxO )\n\tDom ( DonAs )\n\tAl ( HeroInO )\n\tFin ( SkribIlO )\n} ."
         }) {
             for (final Boolean sugared : new Boolean[] { false, true }) {
                 final Node sentenceOriginal = grammar.parse(sentencePhrase, Nonterminal.SENTENCE);
