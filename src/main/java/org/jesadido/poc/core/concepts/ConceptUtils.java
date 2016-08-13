@@ -7,6 +7,7 @@
  */
 package org.jesadido.poc.core.concepts;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.StringUtils;
@@ -214,5 +215,16 @@ public final class ConceptUtils {
      */
     public static String join(final List<Concept> concepts) {
         return join(DEFAULT_CONCEPT_DELIMITER, concepts);
+    }
+    
+    /**
+     * Returns a concatenation of the given concepts separated with the default
+     * delimiter (single white-space) defined under the constant
+     * <code>DEFAULT_CONCEPT_DELIMITER</code>.
+     * @param concepts The given concepts.
+     * @return The standard concatenation of the given concepts.
+     */
+    public static String join(final Concept ... concepts) {
+        return join(Arrays.asList(concepts));
     }
 }

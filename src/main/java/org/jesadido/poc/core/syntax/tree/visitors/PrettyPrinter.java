@@ -8,6 +8,7 @@
 package org.jesadido.poc.core.syntax.tree.visitors;
 
 import java.util.logging.Logger;
+import org.jesadido.poc.core.concepts.ConceptUtils;
 import org.jesadido.poc.core.scripting.Src;
 import org.jesadido.poc.core.syntax.Grammar;
 import org.jesadido.poc.core.syntax.GrammarFactory;
@@ -66,7 +67,7 @@ public class PrettyPrinter implements Visitor<Src, Boolean> {
         if (sugared && node.getPreposition().isDefault()) {
             result.begin("%s", node.getOpener().getConcept());
         } else {
-            result.begin("%s %s", node.getPreposition().getConcept(), node.getOpener().getConcept());
+            result.begin("%s", ConceptUtils.join(node.getPreposition().getConcept(), node.getOpener().getConcept()));
         }
         if (node.hasNominalSelection()) {
             result.add(node.getNominalSelection().accept(this, sugared));
@@ -78,7 +79,7 @@ public class PrettyPrinter implements Visitor<Src, Boolean> {
     @Override
     public Src visit(final PartDom node, final Boolean sugared) {
         Src result = new Src();
-        result.begin("%s %s", node.getPreposition().getConcept(), node.getOpener().getConcept());
+        result.begin("%s", ConceptUtils.join(node.getPreposition().getConcept(), node.getOpener().getConcept()));
         if (node.hasVerbalSelection()) {
             result.add(node.getVerbalSelection().accept(this, sugared));
         }
@@ -89,7 +90,7 @@ public class PrettyPrinter implements Visitor<Src, Boolean> {
     @Override
     public Src visit(final PartAl node, final Boolean sugared) {
         Src result = new Src();
-        result.begin("%s %s", node.getPreposition().getConcept(), node.getOpener().getConcept());
+        result.begin("%s", ConceptUtils.join(node.getPreposition().getConcept(), node.getOpener().getConcept()));
         if (node.hasNominalSelection()) {
             result.add(node.getNominalSelection().accept(this, sugared));
         }
@@ -100,7 +101,7 @@ public class PrettyPrinter implements Visitor<Src, Boolean> {
     @Override
     public Src visit(final PartFin node, final Boolean sugared) {
         Src result = new Src();
-        result.begin("%s %s", node.getPreposition().getConcept(), node.getOpener().getConcept());
+        result.begin("%s", ConceptUtils.join(node.getPreposition().getConcept(), node.getOpener().getConcept()));
         if (node.hasNominalSelection()) {
             result.add(node.getNominalSelection().accept(this, sugared));
         }
@@ -161,7 +162,8 @@ public class PrettyPrinter implements Visitor<Src, Boolean> {
                 final Src prettyPrintPrettyPrintOriginal = PrettyPrinter.print(sentencePrettyPrintOriginal, sugared);
                 final Src compressed0 = new Src(0).add(prettyPrintPrettyPrintOriginal);
                 final Src compressed1 = new Src(1).add(prettyPrintPrettyPrintOriginal);
-                Logger.getAnonymousLogger().info(String.format("Sugared=%s:\n\n", sugared)
+                Logger.getAnonymousLogger().info(
+                        "Sugared=".concat(sugared.toString()).concat(":\n\n")
                         .concat("Original-Phrase:\n\n").concat(sentencePhrase).concat("\n\n")
                         .concat("Pretty-Print:\n\n").concat(prettyPrintOriginal.toString()).concat("\n\n")
                         .concat("Pretty-Print of Pretty-Print:\n\n").concat(prettyPrintPrettyPrintOriginal.toString()).concat("\n\n")

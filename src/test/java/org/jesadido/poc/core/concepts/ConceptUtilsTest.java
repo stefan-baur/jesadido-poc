@@ -195,14 +195,24 @@ public class ConceptUtilsTest {
     
     @Test
     public void testJoin() {
-        Assert.assertEquals("", ConceptUtils.join(null));
-        Assert.assertEquals("", ConceptUtils.join(new LinkedList<>()));
-        Assert.assertEquals("SunO", ConceptUtils.join(Arrays.asList(ConceptRegistry.getInstance().getConcept("SunO"))));
-        Assert.assertEquals("La SunO", ConceptUtils.join(Arrays.asList(ConceptRegistry.getInstance().getConcept("La"), ConceptRegistry.getInstance().getConcept("SunO"))));
-        Assert.assertEquals("La SunO", ConceptUtils.join(Arrays.asList(null, ConceptRegistry.getInstance().getConcept("La"), ConceptRegistry.getInstance().getConcept("SunO"))));
-        Assert.assertEquals("La SunO", ConceptUtils.join(Arrays.asList(ConceptRegistry.getInstance().getConcept("La"), null, ConceptRegistry.getInstance().getConcept("SunO"))));
-        Assert.assertEquals("La SunO", ConceptUtils.join(Arrays.asList(ConceptRegistry.getInstance().getConcept("La"), ConceptRegistry.getInstance().getConcept("SunO"), null)));
-        Assert.assertEquals("Mi$La SunO", ConceptUtils.join(Arrays.asList(ConceptRegistry.getInstance().getConcept("Mi$La"), ConceptRegistry.getInstance().getConcept("SunO"))));
-        Assert.assertEquals("Mi$La\tSunO\tBelA", ConceptUtils.join("\t", Arrays.asList(ConceptRegistry.getInstance().getConcept("Mi$La"), ConceptRegistry.getInstance().getConcept("SunO"), ConceptRegistry.getInstance().getConcept("BelA"))));
+        {
+            Assert.assertEquals("", ConceptUtils.join(new LinkedList<>()));
+            Assert.assertEquals("SunO", ConceptUtils.join(Arrays.asList(ConceptRegistry.getInstance().getConcept("SunO"))));
+            Assert.assertEquals("La SunO", ConceptUtils.join(Arrays.asList(ConceptRegistry.getInstance().getConcept("La"), ConceptRegistry.getInstance().getConcept("SunO"))));
+            Assert.assertEquals("La SunO", ConceptUtils.join(Arrays.asList(null, ConceptRegistry.getInstance().getConcept("La"), ConceptRegistry.getInstance().getConcept("SunO"))));
+            Assert.assertEquals("La SunO", ConceptUtils.join(Arrays.asList(ConceptRegistry.getInstance().getConcept("La"), null, ConceptRegistry.getInstance().getConcept("SunO"))));
+            Assert.assertEquals("La SunO", ConceptUtils.join(Arrays.asList(ConceptRegistry.getInstance().getConcept("La"), ConceptRegistry.getInstance().getConcept("SunO"), null)));
+            Assert.assertEquals("Mi$La SunO", ConceptUtils.join(Arrays.asList(ConceptRegistry.getInstance().getConcept("Mi$La"), ConceptRegistry.getInstance().getConcept("SunO"))));
+            Assert.assertEquals("Mi$La\tSunO\tBelA", ConceptUtils.join("\t", Arrays.asList(ConceptRegistry.getInstance().getConcept("Mi$La"), ConceptRegistry.getInstance().getConcept("SunO"), ConceptRegistry.getInstance().getConcept("BelA"))));
+        }
+        {
+            Assert.assertEquals("", ConceptUtils.join());
+            Assert.assertEquals("SunO", ConceptUtils.join(ConceptRegistry.getInstance().getConcept("SunO")));
+            Assert.assertEquals("La SunO", ConceptUtils.join(ConceptRegistry.getInstance().getConcept("La"), ConceptRegistry.getInstance().getConcept("SunO")));
+            Assert.assertEquals("La SunO", ConceptUtils.join(null, ConceptRegistry.getInstance().getConcept("La"), ConceptRegistry.getInstance().getConcept("SunO")));
+            Assert.assertEquals("La SunO", ConceptUtils.join(ConceptRegistry.getInstance().getConcept("La"), null, ConceptRegistry.getInstance().getConcept("SunO")));
+            Assert.assertEquals("La SunO", ConceptUtils.join(ConceptRegistry.getInstance().getConcept("La"), ConceptRegistry.getInstance().getConcept("SunO"), null));
+            Assert.assertEquals("Mi$La SunO", ConceptUtils.join(ConceptRegistry.getInstance().getConcept("Mi$La"), ConceptRegistry.getInstance().getConcept("SunO")));
+        }
     }
 }
