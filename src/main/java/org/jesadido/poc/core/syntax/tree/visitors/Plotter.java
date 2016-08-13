@@ -168,14 +168,15 @@ public class Plotter implements Visitor<Src, Void> {
     
     public static void main(final String[] arguments) {
         final Grammar grammar = new GrammarFactory().createJesadidoGrammar();
-        for (final Node sentence : new Node[] {
-            grammar.parse("HeroIcxO TrovAs Fin SkribIlO .", Nonterminal.SENTENCE),
-            grammar.parse("HeroIcxO DonAs Fin SkribIlO Al HeroInO .", Nonterminal.SENTENCE),
-            grammar.parse("HeroIcxO TrovAs Fin SkribIlO Kaj HeroIcxO DonAs TestO$Al HeroInO Fin SkribIlO .", Nonterminal.SENTENCE),
-            grammar.parse("{\n\tHeroIcxO TrovAs Fin SkribIlO\n} Kaj {\n\tHeroIcxO DonAs Al HeroInO Fin SkribIlO\n} .", Nonterminal.SENTENCE),
-            grammar.parse("{\n\tSu ( HeroIcxO )\n\tDom ( TrovAntAs )\n\tFin ( SkribIlO )\n} Kaj {\n\tSu ( HeroIcxO )\n\tDom ( DonAs )\n\tAl ( HeroInO )\n\tFin ( SkribIlO )\n} .", Nonterminal.SENTENCE)
+        for (final String sentencePhrase : new String[] {
+            "HeroIcxO TrovAs Fin SkribIlO .",
+            "HeroIcxO DonAs Fin SkribIlO Al HeroInO .",
+            "HeroIcxO TrovAs Fin SkribIlO Kaj HeroIcxO DonAs TestO$Al HeroInO Fin SkribIlO .",
+            "{\n\tHeroIcxO TrovAs Fin SkribIlO\n} Kaj {\n\tHeroIcxO DonAs Al HeroInO Fin SkribIlO\n} .",
+            "{\n\tSu ( HeroIcxO )\n\tDom ( TrovAntAs )\n\tFin ( SkribIlO )\n} Kaj {\n\tSu ( HeroIcxO )\n\tDom ( DonAs )\n\tAl ( HeroInO )\n\tFin ( SkribIlO )\n} ."
         }) {
-            Logger.getAnonymousLogger().info(Plotter.plot(sentence).toString());
+            final Node sentence = grammar.parse(sentencePhrase, Nonterminal.SENTENCE);
+            Logger.getAnonymousLogger().info("\n\n".concat(sentencePhrase).concat("\n\n").concat(Plotter.plot(sentence).toString()));
         }
     }
 }
