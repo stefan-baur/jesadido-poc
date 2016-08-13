@@ -63,7 +63,11 @@ public class PrettyPrinter implements Visitor<Src, Boolean> {
     @Override
     public Src visit(final PartSu node, final Boolean sugared) {
         Src result = new Src();
-        result.begin("%s %s", node.getPreposition().getConcept(), node.getOpener().getConcept());
+        if (sugared && node.getPreposition().isDefault()) {
+            result.begin("%s", node.getOpener().getConcept());
+        } else {
+            result.begin("%s %s", node.getPreposition().getConcept(), node.getOpener().getConcept());
+        }
         if (node.hasNominalSelection()) {
             result.add(node.getNominalSelection().accept(this, sugared));
         }
@@ -150,11 +154,21 @@ public class PrettyPrinter implements Visitor<Src, Boolean> {
             "{\n\tHeroIcxO TrovAs Fin SkribIlO\n} Kaj {\n\tHeroIcxO DonAs Al HeroInO Fin SkribIlO\n} .",
             "{\n\tSu ( HeroIcxO )\n\tDom ( TrovAntAs )\n\tFin ( SkribIlO )\n} Kaj {\n\tSu ( HeroIcxO )\n\tDom ( DonAs )\n\tAl ( HeroInO )\n\tFin ( SkribIlO )\n} ."
         }) {
-            final Node sentenceOriginal = grammar.parse(sentencePhrase, Nonterminal.SENTENCE);
-            final String prettyPrintOriginal = PrettyPrinter.print(sentenceOriginal, false).toString();
-            final Node sentencePrettyPrintOriginal = grammar.parse(prettyPrintOriginal, Nonterminal.SENTENCE);
-            final String prettyPrintPrettyPrintOriginal = PrettyPrinter.print(sentencePrettyPrintOriginal, false).toString();
-            Logger.getAnonymousLogger().info("\n\n".concat(sentencePhrase).concat("\n\n").concat(prettyPrintOriginal).concat("\n\n").concat(prettyPrintPrettyPrintOriginal));
+            for (final Boolean sugared : new Boolean[] { false, true }) {
+                final Node sentenceOriginal = grammar.parse(sentencePhrase, Nonterminal.SENTENCE);
+                final Src prettyPrintOriginal = PrettyPrinter.print(sentenceOriginal, sugared);
+                final Node sentencePrettyPrintOriginal = grammar.parse(prettyPrintOriginal.toString(), Nonterminal.SENTENCE);
+                final Src prettyPrintPrettyPrintOriginal = PrettyPrinter.print(sentencePrettyPrintOriginal, sugared);
+                final Src compressed0 = new Src(0).add(prettyPrintPrettyPrintOriginal);
+                final Src compressed1 = new Src(1).add(prettyPrintPrettyPrintOriginal);
+                Logger.getAnonymousLogger().info(String.format("Sugared=%s:\n\n", sugared)
+                        .concat("Original-Phrase:\n\n").concat(sentencePhrase).concat("\n\n")
+                        .concat("Pretty-Print:\n\n").concat(prettyPrintOriginal.toString()).concat("\n\n")
+                        .concat("Pretty-Print of Pretty-Print:\n\n").concat(prettyPrintPrettyPrintOriginal.toString()).concat("\n\n")
+                        .concat("Compression-Level=0:\n\n").concat(compressed0.toString()).concat("\n\n")
+                        .concat("Compression-Level=1:\n\n").concat(compressed1.toString())
+                );
+            }
         }
     }
 }

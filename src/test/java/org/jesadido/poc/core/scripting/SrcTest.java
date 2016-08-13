@@ -16,7 +16,7 @@ public class SrcTest {
     public void testGetCompressionLevel() {
         Assert.assertEquals(Integer.MAX_VALUE, new Src().getCompressionLevel());
         Assert.assertEquals(0, new Src(0).getCompressionLevel());
-        Assert.assertEquals(5, new Src(5, "// ", "\r").getCompressionLevel());
+        Assert.assertEquals(5, new Src(5, "", "// ", "\r").getCompressionLevel());
         Assert.assertEquals(Integer.MAX_VALUE, new Src(Integer.MAX_VALUE).getCompressionLevel());
     }
     
@@ -24,26 +24,36 @@ public class SrcTest {
     public void testGetIndent() {
         Assert.assertEquals("\t", Src.DEFAULT_INDENT);
         Assert.assertEquals(Src.DEFAULT_INDENT, new Src().getIndent());
-        Assert.assertEquals("    ", new Src(0, "    ", "\n").getIndent());
-        Assert.assertEquals("// ", new Src(5, "// ", "\r").getIndent());
+        Assert.assertEquals("    ", new Src(0, "", "    ", "\n").getIndent());
+        Assert.assertEquals("// ", new Src(5, "", "// ", "\r").getIndent());
+    }
+    
+    @Test
+    public void testGetCompressionSeparator() {
+        Assert.assertEquals(" ", Src.DEFAULT_COMPRESSION_SEPARATOR);
+        Assert.assertEquals(Src.DEFAULT_COMPRESSION_SEPARATOR, new Src().getCompressionSeparator());
+        Assert.assertEquals(" /* a very short string */ ", new Src(0, " /* a very short string */ ", "    ", "\n").getCompressionSeparator());
+        Assert.assertEquals("", new Src(5, "", "// ", "\r").getCompressionSeparator());
     }
     
     @Test
     public void testGetNewline() {
         Assert.assertEquals("\r\n", Src.DEFAULT_NEWLINE);
         Assert.assertEquals(Src.DEFAULT_NEWLINE, new Src().getNewline());
-        Assert.assertEquals("\n", new Src(0, "\t", "\n").getNewline());
-        Assert.assertEquals("\r", new Src(5, " ", "\r").getNewline());
+        Assert.assertEquals("\n", new Src(0, "", "\t", "\n").getNewline());
+        Assert.assertEquals("\r", new Src(5, "", " ", "\r").getNewline());
     }
     
     @Test
     public void testBegin() {
         Assert.assertEquals("if (blah) {\r\n", new Src().begin("if (%s) {", "blah").toString());
-        Assert.assertEquals("if (blah) {", new Src(0).begin("if (blah) {").toString());
-        Assert.assertEquals("if (blah) {\n", new Src(1, " ", "\n").begin("if (blah) {").toString());
+        Assert.assertEquals("if (blah) {", new Src(0, "").begin("if (blah) {").toString());
+        Assert.assertEquals("if (blah) { ", new Src(0).begin("if (blah) {").toString());
+        Assert.assertEquals("if (blah) {\n", new Src(1, "", " ", "\n").begin("if (blah) {").toString());
         Assert.assertEquals("if (blah1) {\r\n\tif (blah2) {\r\n", new Src().begin("if (blah1) {").begin("if (%s) {", "blah2").toString());
-        Assert.assertEquals("if (blah1) {if (blah2) {", new Src(0).begin("if (blah1) {").begin("if (blah2) {").toString());
-        Assert.assertEquals("if (blah1) {\n if (blah2) {", new Src(1, " ", "\n").begin("if (blah1) {").begin("if (blah2) {").toString());
+        Assert.assertEquals("if (blah1) {if (blah2) {", new Src(0, "").begin("if (blah1) {").begin("if (blah2) {").toString());
+        Assert.assertEquals("if (blah1) { if (blah2) { ", new Src(0).begin("if (blah1) {").begin("if (blah2) {").toString());
+        Assert.assertEquals("if (blah1) {\n if (blah2) {", new Src(1, "", " ", "\n").begin("if (blah1) {").begin("if (blah2) {").toString());
     }
     
     @Test
@@ -53,13 +63,15 @@ public class SrcTest {
         Assert.assertEquals("} /* It terminates a typical C-family code-block! */\r\n", new Src().end("} /* %s */", "It terminates a typical C-family code-block!").toString());
         Assert.assertEquals("/* It terminates for example a PHP-block! */ ?>\r\n", new Src().end("/* %s */ ?>", "It terminates for example a PHP-block!").toString());
         Assert.assertEquals("{\r\n\t{\r\n\t}\r\n}\r\n", new Src().begin("{").begin("{").end("}").end("}").toString());
-        Assert.assertEquals("{{}}\r\n", new Src(0).begin("{").begin("{").end("}").end("}").toString());
+        Assert.assertEquals("{{}}\r\n", new Src(0, "").begin("{").begin("{").end("}").end("}").toString());
+        Assert.assertEquals("{ { } }\r\n", new Src(0).begin("{").begin("{").end("}").end("}").toString());
     }
     
     @Test
     public void testEndBegin() {
         Assert.assertEquals("if (x % 2 == 0) {\r\n\tcout << \"even\";\r\n} else {\r\n\tcout << \"odd\";\r\n}\r\n", new Src().begin("if (x %% 2 == 0) {").line("cout << \"even\";").endBegin("} else {").line("cout << \"odd\";").end("}").toString());
-        Assert.assertEquals("if (x % 2 == 0) {cout << \"even\";} else {cout << \"odd\";}\r\n", new Src(0).begin("if (x %% 2 == 0) {").line("cout << \"even\";").endBegin("} else {").line("cout << \"odd\";").end("}").toString());
+        Assert.assertEquals("if (x % 2 == 0) {cout << \"even\";} else {cout << \"odd\";}\r\n", new Src(0, "").begin("if (x %% 2 == 0) {").line("cout << \"even\";").endBegin("} else {").line("cout << \"odd\";").end("}").toString());
+        Assert.assertEquals("if (x % 2 == 0) { cout << \"even\"; } else { cout << \"odd\"; }\r\n", new Src(0).begin("if (x %% 2 == 0) {").line("cout << \"even\";").endBegin("} else {").line("cout << \"odd\";").end("}").toString());
     }
     
     @Test

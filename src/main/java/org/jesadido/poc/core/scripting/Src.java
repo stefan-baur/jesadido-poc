@@ -33,7 +33,13 @@ public final class Src {
      */
     public static final String DEFAULT_NEWLINE = "\r\n";
     
+    /**
+     * The default compression separator.
+     */
+    public static final String DEFAULT_COMPRESSION_SEPARATOR = " ";
+    
     private final int compressionLevel;
+    private final String compressionSeparator;
     private final String indent;
     private final String newline;
     
@@ -44,11 +50,13 @@ public final class Src {
      * @param compressionLevel The compression level
      * (<code>Integer.MAX_VALUE</code> for no compression; <code>0</code> for
      * full compression).
+     * @param compressionSeparator The compression separator.
      * @param indent The indentation phrase.
      * @param newline The phrase for a new line.
      */
-    public Src(final int compressionLevel, final String indent, final String newline) {
+    public Src(final int compressionLevel, final String compressionSeparator, final String indent, final String newline) {
         this.compressionLevel = compressionLevel;
+        this.compressionSeparator = compressionSeparator;
         this.indent = indent;
         this.newline = newline;
     }
@@ -58,9 +66,20 @@ public final class Src {
      * @param compressionLevel The compression level
      * (<code>Integer.MAX_VALUE</code> for no compression; <code>0</code> for
      * full compression).
+     * @param compressionSeparator The compression separator.
+     */
+    public Src(final int compressionLevel, final String compressionSeparator) {
+        this(compressionLevel, compressionSeparator, DEFAULT_INDENT, DEFAULT_NEWLINE);
+    }
+    
+    /**
+     * Constructor.
+     * @param compressionLevel The compression level
+     * (<code>Integer.MAX_VALUE</code> for no compression; <code>0</code> for
+     * full compression).
      */
     public Src(final int compressionLevel) {
-        this(compressionLevel, DEFAULT_INDENT, DEFAULT_NEWLINE);
+        this(compressionLevel, DEFAULT_COMPRESSION_SEPARATOR);
     }
     
     /**
@@ -78,6 +97,14 @@ public final class Src {
      */
     public final int getCompressionLevel() {
         return this.compressionLevel;
+    }
+    
+    /**
+     * Returns the compression separator.
+     * @return The compression separator.
+     */
+    public final String getCompressionSeparator() {
+        return this.compressionSeparator;
     }
     
     /**
@@ -271,6 +298,8 @@ public final class Src {
             } else if (item == Item.BREAK) {
                 if (this.compressionLevel >= compression) {
                     result.append(this.newline);
+                } else {
+                    result.append(this.compressionSeparator);
                 }
             } else {
                 result.append(item.getSnippet());
