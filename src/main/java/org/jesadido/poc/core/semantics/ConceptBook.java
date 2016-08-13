@@ -22,4 +22,28 @@ public class ConceptBook {
         this.book.put(conceptPhrase, entry);
         return true;
     }
+    
+    public static void main(String[] arguments) {
+        final ConceptBook conceptBook = new ConceptBook();
+        
+        conceptBook.add(new ConceptBookEntry("HeroIcxO"));
+        conceptBook.add(new ConceptBookEntry("HeroInO"));
+        conceptBook.add(new ConceptBookEntry("TrovAs"));
+        conceptBook.add(new ConceptBookEntry("DonAs"));
+        conceptBook.add(new ConceptBookEntry("SkribIlO"));
+        conceptBook.add(new ConceptBookEntry("FlorO"));
+        
+        conceptBook.add(new ConceptBookEntry("Su"));
+        conceptBook.add(new ConceptBookEntry("Dom"));
+        conceptBook.add(new ConceptBookEntry("Al"));
+        conceptBook.add(new ConceptBookEntry("Fin"));
+        
+        conceptBook.add(new ConceptBookEntry("("));
+        conceptBook.add(new ConceptBookEntry(")"));
+        
+        conceptBook.add(new ConceptBookEntry("{"));
+        conceptBook.add(new ConceptBookEntry("}"));
+        
+        conceptBook.add(new ConceptBookEntry("."));
+    }
 }
