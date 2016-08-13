@@ -24,6 +24,7 @@ import org.jesadido.poc.core.syntax.productions.ProductionAlternatives;
 import org.jesadido.poc.core.syntax.tokens.TokenCreator;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
+import org.jesadido.poc.core.syntax.tree.visitors.PrettyPrinter;
 
 public class Grammar {
     
@@ -32,16 +33,18 @@ public class Grammar {
     private final String name;
     private final TokenCreator tokenCreator;
     private final SyntaxTreeFactory syntaxTreeFactory;
+    private final PrettyPrinter prettyPrinter;
     
     private final List<Nonterminal> nonterminals = new LinkedList<>();
     private final List<TokenType> terminals = new LinkedList<>();
     private final Map<Nonterminal, Production> productions = new EnumMap<>(Nonterminal.class);
     private Nonterminal startSymbol = null;
     
-    public Grammar(final String name, final TokenCreator tokenCreator, final SyntaxTreeFactory syntaxTreeFactory) {
+    public Grammar(final String name, final TokenCreator tokenCreator, final SyntaxTreeFactory syntaxTreeFactory, final PrettyPrinter prettyPrinter) {
         this.name = name;
         this.tokenCreator = tokenCreator;
         this.syntaxTreeFactory = syntaxTreeFactory;
+        this.prettyPrinter = prettyPrinter;
     }
     
     public String getName() {
@@ -54,6 +57,10 @@ public class Grammar {
     
     public SyntaxTreeFactory getSyntaxTreeFactory() {
         return this.syntaxTreeFactory;
+    }
+    
+    public PrettyPrinter getPrettyPrinter() {
+        return this.prettyPrinter;
     }
     
     public List<Nonterminal> getNonterminalSymbols() {
