@@ -146,10 +146,15 @@ public class PrettyPrinter implements Visitor<Src, Void> {
         final Grammar grammar = new GrammarFactory().createJesadidoGrammar();
         for (final String sentencePhrase : new String[] {
             "HeroIcxO TrovAs Fin SkribIlO .",
+            "TrovAs HeroIcxO Fin SkribIlO .",
             "HeroIcxO DonAs Fin SkribIlO Al HeroInO .",
+            "Fin SkribIlO DonAs HeroIcxO Al HeroInO .",
             "HeroIcxO TrovAs Fin SkribIlO Kaj HeroIcxO DonAs TestO$Al HeroInO Fin SkribIlO .",
             "{\n\tHeroIcxO TrovAs Fin SkribIlO\n} Kaj {\n\tHeroIcxO DonAs Al HeroInO Fin SkribIlO\n} .",
-            "{\n\tTestO$Su ( HeroIcxO )\n\tDom ( TrovAntAs )\n\tFin ( SkribIlO )\n} Kaj {\n\tSu ( HeroIcxO )\n\tDom ( DonAs )\n\tAl ( HeroInO )\n\tFin ( SkribIlO )\n} ."
+            "{\n\tTestO$Su ( HeroIcxO )\n\tDom ( TrovAntAs )\n\tFin ( SkribIlO )\n} Kaj {\n\tSu ( HeroIcxO )\n\tDom ( DonAs )\n\tAl ( HeroInO )\n\tFin ( SkribIlO )\n} .",
+            "HeroIcxO DonAs Al HeroInO Fin FlorO Se HeroIcxO TrovAs Fin FlorO .",
+            "Se HeroIcxO TrovAs Fin FlorO { HeroIcxO DonAs Al HeroInO Fin FlorO } .",
+            "Se { HeroIcxO TrovAs Fin FlorO } { HeroIcxO DonAs Al HeroInO Fin FlorO } ."
         }) {
             final Node sentenceOriginal = grammar.parse(sentencePhrase, Nonterminal.SENTENCE);
             final Src prettyPrintOriginal = PrettyPrinter.print(sentenceOriginal);
