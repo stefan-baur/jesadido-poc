@@ -104,4 +104,13 @@ public final class Concept {
     public final ConceptProperties getProperties() {
         return this.properties;
     }
+    
+    /**
+     * Returns the full-phrase of this concept.
+     * @return The full-phrase.
+     */
+    @Override
+    public final String toString() {
+        return this.fullPhrase;
+    }
 }
