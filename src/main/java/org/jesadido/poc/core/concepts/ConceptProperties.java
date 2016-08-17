@@ -89,7 +89,7 @@ public final class ConceptProperties {
      * Returns the language of the parameter.
      * @return The language of the parameter.
      */
-    public Language getParameterLanguage() {
+    public final Language getParameterLanguage() {
         return this.parameterLanguage;
     }
     
