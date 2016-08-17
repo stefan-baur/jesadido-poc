@@ -25,121 +25,112 @@ import org.jesadido.poc.core.syntax.tree.sentence.SentenceMeatConjunction;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbalSelection;
 
-public class TerminalCollector implements Visitor<List<Terminal>, Void> {
+public class TerminalCollector implements Visitor<Void, List<Terminal>> {
     
     public static final List<Terminal> collect(final Node node) {
-        return node.accept(new TerminalCollector(), null);
-    }
-    
-    @Override
-    public List<Terminal> visit(final Sentence node, final Void unused) {
         List<Terminal> result = new LinkedList<>();
-        node.getMeats().stream().forEach(meat -> result.addAll(meat.accept(this, unused)));
-        result.add(node.getTerminator());
+        node.accept(new TerminalCollector(), result);
         return result;
     }
     
     @Override
-    public List<Terminal> visit(final SentenceMeat node, final Void unused) {
-        List<Terminal> result = new LinkedList<>();
+    public Void visit(final Sentence node, final List<Terminal> result) {
+        node.getMeats().stream().forEach(meat -> meat.accept(this, result));
+        result.add(node.getTerminator());
+        return null;
+    }
+    
+    @Override
+    public Void visit(final SentenceMeat node, final List<Terminal> result) {
         if (node.hasConjunction()) {
-            result.addAll(node.getConjunction().accept(this, unused));
+            node.getConjunction().accept(this, result);
         }
         result.add(node.getOpener());
-        node.getParts().stream().forEach(part -> result.addAll(part.accept(this, unused)));
+        node.getParts().stream().forEach(part -> part.accept(this, result));
         result.add(node.getCloser());
-        return result;
+        return null;
     }
     
     @Override
-    public List<Terminal> visit(final SentenceMeatConjunction node, final Void unused) {
-        List<Terminal> result = new LinkedList<>();
+    public Void visit(final SentenceMeatConjunction node, final List<Terminal> result) {
         result.add(node.getConjunction());
-        return result;
+        return null;
     }
     
     @Override
-    public List<Terminal> visit(final PartSu node, final Void unused) {
-        List<Terminal> result = new LinkedList<>();
+    public Void visit(final PartSu node, final List<Terminal> result) {
         result.add(node.getPreposition());
         result.add(node.getOpener());
         if (node.hasNominalSelection()) {
-            result.addAll(node.getNominalSelection().accept(this, unused));
+            node.getNominalSelection().accept(this, result);
         }
         result.add(node.getCloser());
-        return result;
+        return null;
     }
     
     @Override
-    public List<Terminal> visit(final PartDom node, final Void unused) {
-        List<Terminal> result = new LinkedList<>();
+    public Void visit(final PartDom node, final List<Terminal> result) {
         result.add(node.getPreposition());
         result.add(node.getOpener());
         if (node.hasVerbalSelection()) {
-            result.addAll(node.getVerbalSelection().accept(this, unused));
+            node.getVerbalSelection().accept(this, result);
         }
         result.add(node.getCloser());
-        return result;
+        return null;
     }
     
     @Override
-    public List<Terminal> visit(final PartAl node, final Void unused) {
-        List<Terminal> result = new LinkedList<>();
+    public Void visit(final PartAl node, final List<Terminal> result) {
         result.add(node.getPreposition());
         result.add(node.getOpener());
         if (node.hasNominalSelection()) {
-            result.addAll(node.getNominalSelection().accept(this, unused));
+            node.getNominalSelection().accept(this, result);
         }
         result.add(node.getCloser());
-        return result;
+        return null;
     }
     
     @Override
-    public List<Terminal> visit(final PartFin node, final Void unused) {
-        List<Terminal> result = new LinkedList<>();
+    public Void visit(final PartFin node, final List<Terminal> result) {
         result.add(node.getPreposition());
         result.add(node.getOpener());
         if (node.hasNominalSelection()) {
-            result.addAll(node.getNominalSelection().accept(this, unused));
+            node.getNominalSelection().accept(this, result);
         }
         result.add(node.getCloser());
-        return result;
+        return null;
     }
     
     @Override
-    public List<Terminal> visit(final NominalSelection node, final Void unused) {
-        List<Terminal> result = new LinkedList<>();
+    public Void visit(final NominalSelection node, final List<Terminal> result) {
         if (node.hasSubstantiveSelection()) {
-            result.addAll(node.getSubstantiveSelection().accept(this, unused));
+            node.getSubstantiveSelection().accept(this, result);
         }
-        return result;
+        return null;
     }
     
     @Override
-    public List<Terminal> visit(final SubstantiveSelection node, final Void unused) {
-        List<Terminal> result = new LinkedList<>();
+    public Void visit(final SubstantiveSelection node, final List<Terminal> result) {
         result.add(node.getSubstantive());
-        return result;
+        return null;
     }
     
     @Override
-    public List<Terminal> visit(final VerbalSelection node, final Void unused) {
-        List<Terminal> result = new LinkedList<>();
+    public Void visit(final VerbalSelection node, final List<Terminal> result) {
         if (node.hasVerbSelection()) {
-            result.addAll(node.getVerbSelection().accept(this, unused));
+            node.getVerbSelection().accept(this, result);
         }
-        return result;
+        return null;
     }
     
     @Override
-    public List<Terminal> visit(final VerbSelection node, final Void unused) {
-        List<Terminal> result = new LinkedList<>();
+    public Void visit(final VerbSelection node, final List<Terminal> result) {
         result.add(node.getVerb());
-        return result;
+        return null;
     }
     
     @Override
-    public List<Terminal> visit(final TroubleNode node, final Void unused) {
-        return new LinkedList<>();
+    public Void visit(final TroubleNode node, final List<Terminal> result) {
+        return null;
     }
 }
