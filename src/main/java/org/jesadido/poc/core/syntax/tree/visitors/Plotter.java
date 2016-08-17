@@ -52,7 +52,7 @@ public class Plotter implements Visitor<Void, Src> {
     }
     
     private Void visitNominalPartNode(final NominalPartNode node, final Src result) {
-        result.line(intro(node));
+        result.line("%s", intro(node));
         result.inc();
         result.line("%s", terminal(node.getPreposition()));
         result.line("%s", terminal(node.getOpener()));
@@ -66,7 +66,7 @@ public class Plotter implements Visitor<Void, Src> {
     
     @Override
     public Void visit(final Sentence node, final Src result) {
-        result.line(intro(node));
+        result.line("%s", intro(node));
         result.inc();
         node.getMeats().stream().forEach(meat -> meat.accept(this, result));
         result.line("%s", terminal(node.getTerminator()));
@@ -76,7 +76,7 @@ public class Plotter implements Visitor<Void, Src> {
     
     @Override
     public Void visit(final SentenceMeat node, final Src result) {
-        result.line(intro(node));
+        result.line("%s", intro(node));
         result.inc();
         if (node.hasConjunction()) {
             node.getConjunction().accept(this, result);
@@ -90,7 +90,7 @@ public class Plotter implements Visitor<Void, Src> {
     
     @Override
     public Void visit(final SentenceMeatConjunction node, final Src result) {
-        result.line(intro(node));
+        result.line("%s", intro(node));
         result.inc();
         result.line("%s", terminal(node.getConjunction()));
         result.dec();
@@ -104,7 +104,7 @@ public class Plotter implements Visitor<Void, Src> {
     
     @Override
     public Void visit(final PartDom node, final Src result) {
-        result.line(intro(node));
+        result.line("%s", intro(node));
         result.inc();
         result.line("%s", terminal(node.getPreposition()));
         result.line("%s", terminal(node.getOpener()));
@@ -128,7 +128,7 @@ public class Plotter implements Visitor<Void, Src> {
     
     @Override
     public Void visit(final NominalSelection node, final Src result) {
-        result.line(intro(node));
+        result.line("%s", intro(node));
         result.inc();
         if (node.hasSubstantiveSelection()) {
             node.getSubstantiveSelection().accept(this, result);
@@ -139,7 +139,7 @@ public class Plotter implements Visitor<Void, Src> {
     
     @Override
     public Void visit(final SubstantiveSelection node, final Src result) {
-        result.line(intro(node));
+        result.line("%s", intro(node));
         result.inc();
         result.line("%s", terminal(node.getSubstantive()));
         result.dec();
@@ -148,7 +148,7 @@ public class Plotter implements Visitor<Void, Src> {
     
     @Override
     public Void visit(final VerbalSelection node, final Src result) {
-        result.line(intro(node));
+        result.line("%s", intro(node));
         result.inc();
         if (node.hasVerbSelection()) {
             node.getVerbSelection().accept(this, result);
@@ -159,7 +159,7 @@ public class Plotter implements Visitor<Void, Src> {
     
     @Override
     public Void visit(final VerbSelection node, final Src result) {
-        result.line(intro(node));
+        result.line("%s", intro(node));
         result.inc();
         result.line("%s", terminal(node.getVerb()));
         result.dec();
@@ -168,7 +168,7 @@ public class Plotter implements Visitor<Void, Src> {
     
     @Override
     public Void visit(final TroubleNode node, final Src result) {
-        result.line(intro(node));
+        result.line("%s", intro(node));
         result.inc();
         result.line("••• %s", node.getMessage());
         result.dec();
