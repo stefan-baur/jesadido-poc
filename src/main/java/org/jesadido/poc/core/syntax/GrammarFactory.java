@@ -22,12 +22,11 @@ import org.jesadido.poc.core.syntax.productions.sentence.SentenceProduction;
 import org.jesadido.poc.core.syntax.productions.sentence.VerbSelectionProduction;
 import org.jesadido.poc.core.syntax.tokens.TokenCreator;
 import org.jesadido.poc.core.syntax.tree.SyntaxTreeFactory;
-import org.jesadido.poc.core.syntax.tree.visitors.PrettyPrinter;
 
 public class GrammarFactory {
     
     public final Grammar createJesadidoGrammar() {
-        return new Grammar("Jesadido", new TokenCreator(), new SyntaxTreeFactory(), new PrettyPrinter())
+        return new Grammar("Jesadido", new TokenCreator(), new SyntaxTreeFactory())
                 
                 .register(false, new SubstantiveSelectionProduction())
                 .register(false, new NominalSelectionProduction())
