@@ -9,6 +9,11 @@ package org.jesadido.poc.core.semantics;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.logging.Logger;
+import org.jesadido.poc.core.syntax.Grammar;
+import org.jesadido.poc.core.syntax.GrammarFactory;
+import org.jesadido.poc.core.syntax.Nonterminal;
+import org.jesadido.poc.core.syntax.tree.visitors.TroubleCollector;
 
 public class ConceptBook {
     
@@ -41,9 +46,11 @@ public class ConceptBook {
         conceptBook.add(new ConceptBookEntry("("));
         conceptBook.add(new ConceptBookEntry(")"));
         
-        conceptBook.add(new ConceptBookEntry("{"));
-        conceptBook.add(new ConceptBookEntry("}"));
+        final Grammar grammar = new GrammarFactory().createJesadidoGrammar();
         
-        conceptBook.add(new ConceptBookEntry("."));
+        conceptBook.book.keySet().stream().map(conceptPhrase -> {
+            Logger.getAnonymousLogger().info(conceptPhrase);
+            return conceptPhrase;
+        }).map(conceptPhrase -> grammar.parse(conceptPhrase, Nonterminal.SENTENCE_MEAT)).forEach(node -> TroubleCollector.collect(node).stream().forEach(trouble -> Logger.getAnonymousLogger().info("TROUBLE: ".concat(trouble.getMessage()))));
     }
 }

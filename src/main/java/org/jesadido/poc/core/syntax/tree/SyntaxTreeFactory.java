@@ -8,7 +8,6 @@
 package org.jesadido.poc.core.syntax.tree;
 
 import java.util.List;
-import java.util.logging.Logger;
 import org.jesadido.poc.core.syntax.tree.sentence.NominalSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.PartDom;
 import org.jesadido.poc.core.syntax.tree.sentence.PartFin;
@@ -23,8 +22,6 @@ import org.jesadido.poc.core.syntax.tree.sentence.SubstantiveSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbSelection;
 
 public class SyntaxTreeFactory {
-    
-    private static final Logger LOGGER = Logger.getLogger(SyntaxTreeFactory.class.getName());
     
     public Node createSentence(final List<Node> meats, final Token terminator) {
         return new Sentence(new Terminal(terminator, "."))
@@ -80,7 +77,6 @@ public class SyntaxTreeFactory {
     }
     
     public Node createTrouble(final String message) {
-        LOGGER.info(String.format("Creating a trouble-node with the message: %s", message));
         return new TroubleNode(message);
     }
 }
