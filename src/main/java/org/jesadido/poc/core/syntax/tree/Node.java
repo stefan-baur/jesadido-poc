@@ -7,6 +7,15 @@
  */
 package org.jesadido.poc.core.syntax.tree;
 
+import java.util.List;
+import org.jesadido.poc.core.concepts.Concept;
+import org.jesadido.poc.core.scripting.Src;
+import org.jesadido.poc.core.syntax.tree.visitors.ConceptCollector;
+import org.jesadido.poc.core.syntax.tree.visitors.Plotter;
+import org.jesadido.poc.core.syntax.tree.visitors.PrettyPrinter;
+import org.jesadido.poc.core.syntax.tree.visitors.TerminalCollector;
+import org.jesadido.poc.core.syntax.tree.visitors.TroubleCollector;
+
 public abstract class Node implements Visitable {
     
     private Node parent;
@@ -21,5 +30,25 @@ public abstract class Node implements Visitable {
     
     public void setParent(final Node node) {
         this.parent = node;
+    }
+    
+    public List<Concept> collectConcepts() {
+        return ConceptCollector.collect(this);
+    }
+    
+    public List<Terminal> collectTerminals() {
+        return TerminalCollector.collect(this);
+    }
+    
+    public List<TroubleNode> collectTroubles() {
+        return TroubleCollector.collect(this);
+    }
+    
+    public Src plot() {
+        return Plotter.plot(this);
+    }
+    
+    public Src prettyPrint() {
+        return PrettyPrinter.print(this);
     }
 }
