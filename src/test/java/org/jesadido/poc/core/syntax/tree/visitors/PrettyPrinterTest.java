@@ -16,7 +16,7 @@ import org.junit.Test;
 public class PrettyPrinterTest {
     
     @Test
-    public void testAcceptPrettyPrintWithSentence() {
+    public void testPrintWithSentence() {
         final Grammar grammar = new GrammarFactory().createJesadidoGrammar();
         {
             final String pp = PrettyPrinter.print(grammar.parse("HeroO .", Nonterminal.SENTENCE)).toString();

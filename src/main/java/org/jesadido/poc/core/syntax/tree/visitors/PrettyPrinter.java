@@ -28,118 +28,109 @@ import org.jesadido.poc.core.syntax.tree.sentence.SubstantiveSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbalSelection;
 
-public class PrettyPrinter implements Visitor<Src, Void> {
+public class PrettyPrinter implements Visitor<Void, Src> {
     
     public static final Src print(final Node node) {
-        return node.accept(new PrettyPrinter(), null);
+        Src result = new Src();
+        node.accept(new PrettyPrinter(), result);
+        return result;
     }
     
     @Override
-    public Src visit(final Sentence node, final Void unused) {
-        Src result = new Src();
-        node.getMeats().stream().forEach(meat -> result.add(meat.accept(this, unused)));
+    public Void visit(final Sentence node, final Src result) {
+        node.getMeats().stream().forEach(meat -> meat.accept(this, result));
         result.line("%s", node.getTerminator().getConcept());
-        return result;
+        return null;
     }
 
     @Override
-    public Src visit(final SentenceMeat node, final Void unused) {
-        Src result = new Src();
+    public Void visit(final SentenceMeat node, final Src result) {
         if (node.hasConjunction()) {
-            result.add(node.getConjunction().accept(this, unused));
+            node.getConjunction().accept(this, result);
         }
         result.begin("%s", node.getOpener().getConcept());
-        node.getParts().stream().forEach(part -> result.add(part.accept(this, unused)));
+        node.getParts().stream().forEach(part -> part.accept(this, result));
         result.end("%s", node.getCloser().getConcept());
-        return result;
+        return null;
     }
 
     @Override
-    public Src visit(final SentenceMeatConjunction node, final Void unused) {
-        Src result = new Src();
+    public Void visit(final SentenceMeatConjunction node, final Src result) {
         result.line("%s", node.getConjunction().getConcept());
-        return result;
+        return null;
     }
 
     @Override
-    public Src visit(final PartSu node, final Void unused) {
-        Src result = new Src();
+    public Void visit(final PartSu node, final Src result) {
         result.begin("%s", ConceptUtils.join(node.getPreposition().getConcept(), node.getOpener().getConcept()));
         if (node.hasNominalSelection()) {
-            result.add(node.getNominalSelection().accept(this, unused));
+            node.getNominalSelection().accept(this, result);
         }
         result.end("%s", node.getCloser().getConcept());
-        return result;
+        return null;
     }
 
     @Override
-    public Src visit(final PartDom node, final Void unused) {
-        Src result = new Src();
+    public Void visit(final PartDom node, final Src result) {
         result.begin("%s", ConceptUtils.join(node.getPreposition().getConcept(), node.getOpener().getConcept()));
         if (node.hasVerbalSelection()) {
-            result.add(node.getVerbalSelection().accept(this, unused));
+            node.getVerbalSelection().accept(this, result);
         }
         result.end("%s", node.getCloser().getConcept());
-        return result;
+        return null;
     }
 
     @Override
-    public Src visit(final PartAl node, final Void unused) {
-        Src result = new Src();
+    public Void visit(final PartAl node, final Src result) {
         result.begin("%s", ConceptUtils.join(node.getPreposition().getConcept(), node.getOpener().getConcept()));
         if (node.hasNominalSelection()) {
-            result.add(node.getNominalSelection().accept(this, unused));
+            node.getNominalSelection().accept(this, result);
         }
         result.end("%s", node.getCloser().getConcept());
-        return result;
+        return null;
     }
 
     @Override
-    public Src visit(final PartFin node, final Void unused) {
-        Src result = new Src();
+    public Void visit(final PartFin node, final Src result) {
         result.begin("%s", ConceptUtils.join(node.getPreposition().getConcept(), node.getOpener().getConcept()));
         if (node.hasNominalSelection()) {
-            result.add(node.getNominalSelection().accept(this, unused));
+            node.getNominalSelection().accept(this, result);
         }
         result.end("%s", node.getCloser().getConcept());
-        return result;
+        return null;
     }
 
     @Override
-    public Src visit(final NominalSelection node, final Void unused) {
-        Src result = new Src();
+    public Void visit(final NominalSelection node, final Src result) {
         if (node.hasSubstantiveSelection()) {
-            result.add(node.getSubstantiveSelection().accept(this, unused));
+            node.getSubstantiveSelection().accept(this, result);
         }
-        return result;
+        return null;
     }
 
     @Override
-    public Src visit(final SubstantiveSelection node, final Void unused) {
-        Src result = new Src();
+    public Void visit(final SubstantiveSelection node, final Src result) {
         result.line("%s", node.getSubstantive().getConcept());
-        return result;
+        return null;
     }
 
     @Override
-    public Src visit(final VerbalSelection node, final Void unused) {
-        Src result = new Src();
+    public Void visit(final VerbalSelection node, final Src result) {
         if (node.hasVerbSelection()) {
-            result.add(node.getVerbSelection().accept(this, unused));
+            node.getVerbSelection().accept(this, result);
         }
-        return result;
+        return null;
     }
 
     @Override
-    public Src visit(final VerbSelection node, final Void unused) {
-        Src result = new Src();
+    public Void visit(final VerbSelection node, final Src result) {
         result.line("%s", node.getVerb().getConcept());
-        return result;
+        return null;
     }
 
     @Override
-    public Src visit(final TroubleNode node, final Void unused) {
-        return new Src();
+    public Void visit(final TroubleNode node, final Src result) {
+        return null;
     }
     
     public static void main(final String[] arguments) {
