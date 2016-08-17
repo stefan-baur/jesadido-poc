@@ -30,7 +30,7 @@ public final class Token {
      * @param positionX The x-cursor-position of the appearance of the lexeme.
      * @param positionY The y-cursor-position of the appearance of the lexeme.
      */
-    public Token(final String value, final TokenType type, final Concept concept, final int positionX, int positionY) {
+    public Token(final String value, final TokenType type, final Concept concept, final int positionX, final int positionY) {
         this.value = value;
         this.type = type;
         this.concept = concept;
