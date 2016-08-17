@@ -112,9 +112,7 @@ public class TroubleCollector implements Visitor<Void, List<TroubleNode>> {
 
     @Override
     public Void visit(TroubleNode node, List<TroubleNode> result) {
-        if (result != null) {
-            result.add(node);
-        }
+        result.add(node);
         return null;
     }
 }
