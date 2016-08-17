@@ -120,7 +120,7 @@ public class Grammar {
         if (this.productions.containsKey(startSymbol)) {
             return this.productions.get(startSymbol).parse(tokenStream);
         } else {
-            return this.syntaxTreeFactory.createTrouble(String.format("No production available for the start-symbol '%s'.", startSymbol));
+            return this.syntaxTreeFactory.createTrouble(String.format("No production is available for the start-symbol '%s'.", startSymbol));
         }
     }
     
