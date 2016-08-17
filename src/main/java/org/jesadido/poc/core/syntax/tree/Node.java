@@ -7,10 +7,10 @@
  */
 package org.jesadido.poc.core.syntax.tree;
 
+import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.scripting.Src;
-import org.jesadido.poc.core.syntax.tree.visitors.ConceptCollector;
 import org.jesadido.poc.core.syntax.tree.visitors.Plotter;
 import org.jesadido.poc.core.syntax.tree.visitors.PrettyPrinter;
 import org.jesadido.poc.core.syntax.tree.visitors.TerminalCollector;
@@ -33,7 +33,9 @@ public abstract class Node implements Visitable {
     }
     
     public List<Concept> collectConcepts() {
-        return ConceptCollector.collect(this);
+        List<Concept> result = new LinkedList<>();
+        this.collectTerminals().stream().filter(terminal -> terminal.hasConcept()).forEach(terminal -> result.add(terminal.getConcept()));
+        return result;
     }
     
     public List<Terminal> collectTerminals() {
