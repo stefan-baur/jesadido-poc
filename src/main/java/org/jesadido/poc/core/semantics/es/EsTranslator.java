@@ -7,10 +7,9 @@
  */
 package org.jesadido.poc.core.semantics.es;
 
-import java.util.LinkedList;
-import java.util.List;
 import org.jesadido.poc.core.Language;
 import org.jesadido.poc.core.semantics.ConceptBook;
+import org.jesadido.poc.core.semantics.TranslatingResult;
 import org.jesadido.poc.core.semantics.Translator;
 
 public class EsTranslator extends Translator {
@@ -20,9 +19,9 @@ public class EsTranslator extends Translator {
     }
     
     @Override
-    public List<String> translate(final String code) {
-        List<String> result = new LinkedList<>();
-        result.add(String.format("%s: TODO %s", this.getLanguage().getCode(), code));
+    public TranslatingResult translate(final String code) {
+        final TranslatingResult result = new TranslatingResult();
+        result.getTranslations().add(String.format("%s: TODO %s", this.getLanguage().getCode(), code));
         return result;
     }
 }

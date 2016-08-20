@@ -7,7 +7,6 @@
  */
 package org.jesadido.poc.core.semantics;
 
-import java.util.List;
 import org.jesadido.poc.core.Language;
 
 public abstract class Translator {
@@ -28,5 +27,5 @@ public abstract class Translator {
         return this.conceptBook;
     }
     
-    public abstract List<String> translate(final String code);
+    public abstract TranslatingResult translate(final String code);
 }
