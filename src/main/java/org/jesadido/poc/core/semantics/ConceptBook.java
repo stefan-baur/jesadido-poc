@@ -9,10 +9,8 @@ package org.jesadido.poc.core.semantics;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 import org.jesadido.poc.core.syntax.Grammar;
 import org.jesadido.poc.core.syntax.GrammarFactory;
-import org.jesadido.poc.core.syntax.Nonterminal;
 
 public class ConceptBook {
     
@@ -47,13 +45,5 @@ public class ConceptBook {
         conceptBook.add(new ConceptBookEntry("SkribIlO"));
         
         conceptBook.add(new ConceptBookEntry("FlorO"));
-        
-        
-        conceptBook.getGrammar().parse("HeroIcxO TrovAs Fin SkribIlO . HeroInO").collectTroubles().stream().forEach(trouble -> Logger.getAnonymousLogger().info(trouble.getMessage()));
-        
-        conceptBook.book.keySet().stream().map(conceptPhrase -> {
-            Logger.getAnonymousLogger().info(conceptPhrase);
-            return conceptPhrase;
-        }).map(conceptPhrase -> conceptBook.getGrammar().parse(conceptPhrase, Nonterminal.SENTENCE_MEAT)).forEach(node -> node.collectTroubles().stream().forEach(trouble -> Logger.getAnonymousLogger().info("TROUBLE: ".concat(trouble.getMessage()))));
     }
 }
