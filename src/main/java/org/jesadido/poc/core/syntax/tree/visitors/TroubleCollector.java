@@ -20,6 +20,7 @@ import org.jesadido.poc.core.syntax.tree.sentence.PartSu;
 import org.jesadido.poc.core.syntax.tree.sentence.Sentence;
 import org.jesadido.poc.core.syntax.tree.sentence.SentenceMeat;
 import org.jesadido.poc.core.syntax.tree.sentence.SentenceMeatConjunction;
+import org.jesadido.poc.core.syntax.tree.sentence.SentenceSequence;
 import org.jesadido.poc.core.syntax.tree.sentence.SubstantiveSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbalSelection;
@@ -30,6 +31,12 @@ public class TroubleCollector implements Visitor<Void, List<TroubleNode>> {
         List<TroubleNode> result = new LinkedList<>();
         node.accept(new TroubleCollector(), result);
         return result;
+    }
+    
+    @Override
+    public Void visit(SentenceSequence node, List<TroubleNode> result) {
+        node.getSentences().stream().forEach(sentence -> sentence.accept(this, result));
+        return null;
     }
     
     @Override

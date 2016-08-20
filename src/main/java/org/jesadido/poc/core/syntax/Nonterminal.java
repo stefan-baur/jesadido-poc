@@ -9,6 +9,8 @@ package org.jesadido.poc.core.syntax;
 
 public enum Nonterminal {
     
+    SENTENCE_SEQUENCE("sentence-sequence"),
+    
     SENTENCE("sentence"),
     SENTENCE_MEAT("sentence-meat"),
     SENTENCE_MEAT_CONJUNCTION("sentence-meat-conjunction"),

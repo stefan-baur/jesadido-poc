@@ -22,6 +22,7 @@ import org.jesadido.poc.core.syntax.tree.sentence.PartDom;
 import org.jesadido.poc.core.syntax.tree.sentence.PartFin;
 import org.jesadido.poc.core.syntax.tree.sentence.PartSu;
 import org.jesadido.poc.core.syntax.tree.sentence.SentenceMeatConjunction;
+import org.jesadido.poc.core.syntax.tree.sentence.SentenceSequence;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbalSelection;
 
@@ -31,6 +32,12 @@ public class TerminalCollector implements Visitor<Void, List<Terminal>> {
         List<Terminal> result = new LinkedList<>();
         node.accept(new TerminalCollector(), result);
         return result;
+    }
+    
+    @Override
+    public Void visit(final SentenceSequence node, final List<Terminal> result) {
+        node.getSentences().stream().forEach(sentence -> sentence.accept(this, result));
+        return null;
     }
     
     @Override

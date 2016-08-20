@@ -18,10 +18,16 @@ import org.jesadido.poc.core.syntax.tree.sentence.SentenceMeatConjunction;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbalSelection;
 import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tree.sentence.PartAl;
+import org.jesadido.poc.core.syntax.tree.sentence.SentenceSequence;
 import org.jesadido.poc.core.syntax.tree.sentence.SubstantiveSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbSelection;
 
 public class SyntaxTreeFactory {
+    
+    public Node createSentenceSequence(final List<Node> sentences) {
+        return new SentenceSequence()
+                .addSentences(sentences);
+    }
     
     public Node createSentence(final List<Node> meats, final Token terminator) {
         return new Sentence(new Terminal(terminator, "."))

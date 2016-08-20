@@ -24,6 +24,7 @@ import org.jesadido.poc.core.syntax.tree.sentence.PartSu;
 import org.jesadido.poc.core.syntax.tree.sentence.Sentence;
 import org.jesadido.poc.core.syntax.tree.sentence.SentenceMeat;
 import org.jesadido.poc.core.syntax.tree.sentence.SentenceMeatConjunction;
+import org.jesadido.poc.core.syntax.tree.sentence.SentenceSequence;
 import org.jesadido.poc.core.syntax.tree.sentence.SubstantiveSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbalSelection;
@@ -34,6 +35,12 @@ public class PrettyPrinter implements Visitor<Void, Src> {
         Src result = new Src();
         node.accept(new PrettyPrinter(), result);
         return result;
+    }
+    
+    @Override
+    public Void visit(final SentenceSequence node, final Src result) {
+        node.getSentences().stream().forEach(sentence -> sentence.accept(this, result));
+        return null;
     }
     
     @Override
@@ -145,11 +152,12 @@ public class PrettyPrinter implements Visitor<Void, Src> {
             "{\n\tTestO$Su ( HeroIcxO )\n\tDom ( TrovAntAs )\n\tFin ( SkribIlO )\n} Kaj {\n\tSu ( HeroIcxO )\n\tDom ( DonAs )\n\tAl ( HeroInO )\n\tFin ( SkribIlO )\n} .",
             "HeroIcxO DonAs Al HeroInO Fin FlorO Se HeroIcxO TrovAs Fin FlorO .",
             "Se HeroIcxO TrovAs Fin FlorO { HeroIcxO DonAs Al HeroInO Fin FlorO } .",
-            "Se { HeroIcxO TrovAs Fin FlorO } { HeroIcxO DonAs Al HeroInO Fin FlorO } ."
+            "Se { HeroIcxO TrovAs Fin FlorO } { HeroIcxO DonAs Al HeroInO Fin FlorO } .",
+            "HeroIcxO TrovAs Fin SkribIlO . HeroIcxO DonAs Fin SkribIlO Al HeroInO ."
         }) {
-            final Node sentenceOriginal = grammar.parse(sentencePhrase, Nonterminal.SENTENCE);
+            final Node sentenceOriginal = grammar.parse(sentencePhrase, Nonterminal.SENTENCE_SEQUENCE);
             final Src prettyPrintOriginal = PrettyPrinter.print(sentenceOriginal);
-            final Node sentencePrettyPrintOriginal = grammar.parse(prettyPrintOriginal.toString(), Nonterminal.SENTENCE);
+            final Node sentencePrettyPrintOriginal = grammar.parse(prettyPrintOriginal.toString(), Nonterminal.SENTENCE_SEQUENCE);
             final Src prettyPrintPrettyPrintOriginal = PrettyPrinter.print(sentencePrettyPrintOriginal);
             final Src compressed0 = new Src(0).add(prettyPrintPrettyPrintOriginal);
             final Src compressed1 = new Src(1).add(prettyPrintPrettyPrintOriginal);

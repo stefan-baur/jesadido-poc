@@ -26,6 +26,7 @@ import org.jesadido.poc.core.syntax.tree.sentence.PartDom;
 import org.jesadido.poc.core.syntax.tree.sentence.PartFin;
 import org.jesadido.poc.core.syntax.tree.sentence.PartSu;
 import org.jesadido.poc.core.syntax.tree.sentence.SentenceMeatConjunction;
+import org.jesadido.poc.core.syntax.tree.sentence.SentenceSequence;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbalSelection;
 
@@ -60,6 +61,15 @@ public class Plotter implements Visitor<Void, Src> {
             node.getNominalSelection().accept(this, result);
         }
         result.line("%s", terminal(node.getCloser()));
+        result.dec();
+        return null;
+    }
+    
+    @Override
+    public Void visit(final SentenceSequence node, final Src result) {
+        result.line("%s", intro(node));
+        result.inc();
+        node.getSentences().stream().forEach(sentence -> sentence.accept(this, result));
         result.dec();
         return null;
     }
@@ -180,11 +190,12 @@ public class Plotter implements Visitor<Void, Src> {
         for (final String sentencePhrase : new String[] {
             "HeroIcxO TrovAs Fin SkribIlO .",
             "HeroIcxO DonAs Fin SkribIlO Al HeroInO .",
+            "HeroIcxO TrovAs Fin SkribIlO . HeroIcxO DonAs Fin SkribIlO Al HeroInO .",
             "HeroIcxO TrovAs Fin SkribIlO Kaj HeroIcxO DonAs TestO$Al HeroInO Fin SkribIlO .",
             "{\n\tHeroIcxO TrovAs Fin SkribIlO\n} Kaj {\n\tHeroIcxO DonAs Al HeroInO Fin SkribIlO\n} .",
             "{\n\tSu ( HeroIcxO )\n\tDom ( TrovAntAs )\n\tFin ( SkribIlO )\n} Kaj {\n\tSu ( HeroIcxO )\n\tDom ( DonAs )\n\tAl ( HeroInO )\n\tFin ( SkribIlO )\n} ."
         }) {
-            final Node sentence = grammar.parse(sentencePhrase, Nonterminal.SENTENCE);
+            final Node sentence = grammar.parse(sentencePhrase, Nonterminal.SENTENCE_SEQUENCE);
             Logger.getAnonymousLogger().info("\n\n".concat(sentencePhrase).concat("\n\n").concat(Plotter.plot(sentence).toString()));
         }
     }
