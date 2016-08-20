@@ -9,6 +9,8 @@ package org.jesadido.poc.core.semantics;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.logging.Logger;
+import org.jesadido.poc.core.Language;
 import org.jesadido.poc.core.syntax.Grammar;
 import org.jesadido.poc.core.syntax.GrammarFactory;
 
@@ -30,7 +32,7 @@ public class ConceptBook {
         return true;
     }
     
-    public static void main(String[] arguments) {
+    public static void main(final String[] arguments) {
         
         final ConceptBook conceptBook = new ConceptBook();
         
@@ -45,5 +47,10 @@ public class ConceptBook {
         conceptBook.add(new ConceptBookEntry("SkribIlO"));
         
         conceptBook.add(new ConceptBookEntry("FlorO"));
+        
+        for (Language language : Language.values()) {
+            Translator translator = Translator.create(language, conceptBook);
+            translator.translate("HeroIcxO TrovAs Fin SkribIlO .").stream().forEach(translation -> Logger.getAnonymousLogger().info("DUMMY-TRANSLATION: ".concat(translation)));
+        }
     }
 }
