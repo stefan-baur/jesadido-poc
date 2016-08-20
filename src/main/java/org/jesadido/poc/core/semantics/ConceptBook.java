@@ -49,7 +49,7 @@ public class ConceptBook {
         conceptBook.add(new ConceptBookEntry("FlorO"));
         
         for (Language language : Language.values()) {
-            Translator translator = Translator.create(language, conceptBook);
+            Translator translator = TranslatorFactory.createTranslator(language, conceptBook);
             translator.translate("HeroIcxO TrovAs Fin SkribIlO .").stream().forEach(translation -> Logger.getAnonymousLogger().info("DUMMY-TRANSLATION: ".concat(translation)));
         }
     }
