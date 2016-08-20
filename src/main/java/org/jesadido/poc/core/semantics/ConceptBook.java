@@ -16,7 +16,12 @@ import org.jesadido.poc.core.syntax.Nonterminal;
 
 public class ConceptBook {
     
+    private final Grammar grammar = GrammarFactory.createJesadidoGrammar();
     private final Map<String, ConceptBookEntry> book = new LinkedHashMap<>();
+    
+    public Grammar getGrammar() {
+        return this.grammar;
+    }
     
     public boolean add(final ConceptBookEntry entry) {
         final String conceptPhrase = entry.getConceptPhrase();
@@ -28,28 +33,27 @@ public class ConceptBook {
     }
     
     public static void main(String[] arguments) {
+        
         final ConceptBook conceptBook = new ConceptBook();
         
         conceptBook.add(new ConceptBookEntry("HeroIcxO"));
+        
         conceptBook.add(new ConceptBookEntry("HeroInO"));
+        // Required parts: Su Dom Fin
         conceptBook.add(new ConceptBookEntry("TrovAs"));
+        // Required parts: Su Dom Al Fin
         conceptBook.add(new ConceptBookEntry("DonAs"));
+        
         conceptBook.add(new ConceptBookEntry("SkribIlO"));
+        
         conceptBook.add(new ConceptBookEntry("FlorO"));
         
-        conceptBook.add(new ConceptBookEntry("Su"));
-        conceptBook.add(new ConceptBookEntry("Dom"));
-        conceptBook.add(new ConceptBookEntry("Al"));
-        conceptBook.add(new ConceptBookEntry("Fin"));
         
-        conceptBook.add(new ConceptBookEntry("("));
-        conceptBook.add(new ConceptBookEntry(")"));
-        
-        final Grammar grammar = new GrammarFactory().createJesadidoGrammar();
+        conceptBook.getGrammar().parse("HeroIcxO TrovAs Fin SkribIlO . HeroInO").collectTroubles().stream().forEach(trouble -> Logger.getAnonymousLogger().info(trouble.getMessage()));
         
         conceptBook.book.keySet().stream().map(conceptPhrase -> {
             Logger.getAnonymousLogger().info(conceptPhrase);
             return conceptPhrase;
-        }).map(conceptPhrase -> grammar.parse(conceptPhrase, Nonterminal.SENTENCE_MEAT)).forEach(node -> node.collectTroubles().stream().forEach(trouble -> Logger.getAnonymousLogger().info("TROUBLE: ".concat(trouble.getMessage()))));
+        }).map(conceptPhrase -> conceptBook.getGrammar().parse(conceptPhrase, Nonterminal.SENTENCE_MEAT)).forEach(node -> node.collectTroubles().stream().forEach(trouble -> Logger.getAnonymousLogger().info("TROUBLE: ".concat(trouble.getMessage()))));
     }
 }

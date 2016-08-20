@@ -134,7 +134,7 @@ public class PrettyPrinter implements Visitor<Void, Src> {
     }
     
     public static void main(final String[] arguments) {
-        final Grammar grammar = new GrammarFactory().createJesadidoGrammar();
+        final Grammar grammar = GrammarFactory.createJesadidoGrammar();
         for (final String sentencePhrase : new String[] {
             "HeroIcxO TrovAs Fin SkribIlO .",
             "TrovAs HeroIcxO Fin SkribIlO .",

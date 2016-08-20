@@ -23,9 +23,13 @@ import org.jesadido.poc.core.syntax.productions.sentence.VerbSelectionProduction
 import org.jesadido.poc.core.syntax.tokens.TokenCreator;
 import org.jesadido.poc.core.syntax.tree.SyntaxTreeFactory;
 
-public class GrammarFactory {
+public final class GrammarFactory {
     
-    public final Grammar createJesadidoGrammar() {
+    private GrammarFactory() {
+        // A private factory class constructor
+    }
+    
+    public static Grammar createJesadidoGrammar() {
         return new Grammar("Jesadido", new TokenCreator(), new SyntaxTreeFactory())
                 
                 .register(false, new SubstantiveSelectionProduction())
@@ -48,6 +52,6 @@ public class GrammarFactory {
     }
     
     public static void main(final String[] arguments) {
-        Logger.getAnonymousLogger().info(new GrammarFactory().createJesadidoGrammar().toString());
+        Logger.getAnonymousLogger().info(GrammarFactory.createJesadidoGrammar().toString());
     }
 }

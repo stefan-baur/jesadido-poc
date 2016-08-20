@@ -176,7 +176,7 @@ public class Plotter implements Visitor<Void, Src> {
     }
     
     public static void main(final String[] arguments) {
-        final Grammar grammar = new GrammarFactory().createJesadidoGrammar();
+        final Grammar grammar = GrammarFactory.createJesadidoGrammar();
         for (final String sentencePhrase : new String[] {
             "HeroIcxO TrovAs Fin SkribIlO .",
             "HeroIcxO DonAs Fin SkribIlO Al HeroInO .",
