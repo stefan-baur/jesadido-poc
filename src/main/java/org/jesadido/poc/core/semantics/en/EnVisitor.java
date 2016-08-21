@@ -117,7 +117,7 @@ public class EnVisitor implements Visitor<TranslationResult, EnVisitorArgument> 
     public TranslationResult visit(final SubstantiveSelection node, final EnVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
         final ConceptBookEntry conceptBookEntry = this.enTranslator.getConceptBook().get(node.getSubstantive().getConcept());
-        List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.EN, argument.getCaseAttribute());
+        List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.EN);
         if (defaultTargets.isEmpty()) {
             result.setTranslation(conceptBookEntry.getConceptPhrase());
         } else {

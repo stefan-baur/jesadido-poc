@@ -51,7 +51,7 @@ public class ConceptBook {
         
         conceptBook.add(new ConceptBookEntry("HeroIcxO"))
                 .addDefaultTargets(new DeTarget("Held", De.MASCULINE, De.NOMINATIVE), new DeTarget("Helden", De.MASCULINE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE))
-                .addDefaultTargets(new EnTarget("hero", En.NOMINATIVE, En.GENITIVE, En.DATIVE, En.ACCUSATIVE))
+                .addDefaultTargets(new EnTarget("hero"))
                 .addDefaultTargets(new EoTarget("heroo"))
                 .addDefaultTargets(new EsTarget("héroe", Es.MASCULINE))
                 .addDefaultTargets(new FrTarget("héros", Fr.MASCULINE))
@@ -59,7 +59,7 @@ public class ConceptBook {
         
         conceptBook.add(new ConceptBookEntry("HeroInO"))
                 .addDefaultTargets(new DeTarget("Heldin", De.FEMININE, De.NOMINATIVE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE))
-                .addDefaultTargets(new EnTarget("heroine", En.NOMINATIVE, En.GENITIVE, En.DATIVE, En.ACCUSATIVE))
+                .addDefaultTargets(new EnTarget("heroine"))
                 .addDefaultTargets(new EoTarget("heroino"))
                 .addDefaultTargets(new EsTarget("heroína", Es.FEMININE))
                 .addDefaultTargets(new FrTarget("héroïne", Fr.FEMININE))
@@ -83,7 +83,7 @@ public class ConceptBook {
         
         conceptBook.add(new ConceptBookEntry("SkribIlO"))
                 .addDefaultTargets(new DeTarget("Stift", De.MASCULINE, De.NOMINATIVE, De.DATIVE, De.ACCUSATIVE), new DeTarget("Stifts", De.MASCULINE, De.GENITIVE))
-                .addDefaultTargets(new EnTarget("pen", En.NOMINATIVE, En.GENITIVE, En.DATIVE, En.ACCUSATIVE))
+                .addDefaultTargets(new EnTarget("pen"))
                 .addDefaultTargets(new EoTarget("skribilo"))
                 .addDefaultTargets(new EsTarget("lapicero", Es.MASCULINE))
                 .addDefaultTargets(new FrTarget("crayon", Fr.MASCULINE))
@@ -91,7 +91,7 @@ public class ConceptBook {
         
         conceptBook.add(new ConceptBookEntry("FlorO"))
                 .addDefaultTargets(new DeTarget("Blume", De.FEMININE, De.NOMINATIVE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE))
-                .addDefaultTargets(new EnTarget("flower", En.NOMINATIVE, En.GENITIVE, En.DATIVE, En.ACCUSATIVE))
+                .addDefaultTargets(new EnTarget("flower"))
                 .addDefaultTargets(new EoTarget("floro"))
                 .addDefaultTargets(new EsTarget("flor", Es.FEMININE))
                 .addDefaultTargets(new FrTarget("fleur", Fr.FEMININE))
@@ -99,7 +99,7 @@ public class ConceptBook {
         
         conceptBook.add(new ConceptBookEntry("NomO"))
                 .addDefaultTargets(new DeTarget("Name", De.MASCULINE, De.NOMINATIVE), new DeTarget("Namens", De.MASCULINE, De.GENITIVE), new DeTarget("Namen", De.MASCULINE, De.DATIVE, De.ACCUSATIVE))
-                .addDefaultTargets(new EnTarget("name", En.NOMINATIVE, En.GENITIVE, En.DATIVE, En.ACCUSATIVE))
+                .addDefaultTargets(new EnTarget("name"))
                 .addDefaultTargets(new EoTarget("nomo"))
                 .addDefaultTargets(new EsTarget("nombre", Es.MASCULINE))
                 .addDefaultTargets(new FrTarget("nom", Fr.MASCULINE))
