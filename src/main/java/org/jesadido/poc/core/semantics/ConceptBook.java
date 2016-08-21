@@ -11,6 +11,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 import org.jesadido.poc.core.Language;
+import org.jesadido.poc.core.concepts.Concept;
+import org.jesadido.poc.core.semantics.de.De;
+import org.jesadido.poc.core.semantics.de.DeTarget;
 import org.jesadido.poc.core.syntax.Grammar;
 import org.jesadido.poc.core.syntax.GrammarFactory;
 
@@ -23,34 +26,49 @@ public class ConceptBook {
         return this.grammar;
     }
     
-    public boolean add(final ConceptBookEntry entry) {
-        final String conceptPhrase = entry.getConceptPhrase();
-        if (this.book.containsKey(conceptPhrase)) {
-            return this.book.get(conceptPhrase).expand(entry);
+    public ConceptBookEntry add(final ConceptBookEntry conceptBookEntry) {
+        this.book.put(conceptBookEntry.getConceptPhrase(), conceptBookEntry);
+        return conceptBookEntry;
+    }
+    
+    public ConceptBookEntry get(final Concept concept) {
+        if (this.book.containsKey(concept.getFullPhrase())) {
+            return this.book.get(concept.getFullPhrase());
         }
-        this.book.put(conceptPhrase, entry);
-        return true;
+        return new ConceptBookEntry(concept.getFullPhrase());
     }
     
     public static void main(final String[] arguments) {
         
         final ConceptBook conceptBook = new ConceptBook();
         
-        conceptBook.add(new ConceptBookEntry("HeroIcxO"));
+        conceptBook.add(new ConceptBookEntry("HeroIcxO"))
+                .addDefaultTargets(new DeTarget("Held", De.MASCULINE, De.NOMINATIVE), new DeTarget("Helden", De.MASCULINE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE));
         
-        conceptBook.add(new ConceptBookEntry("HeroInO"));
-        // Required parts: Su Dom Fin
-        conceptBook.add(new ConceptBookEntry("TrovAs"));
-        // Required parts: Su Dom Al Fin
-        conceptBook.add(new ConceptBookEntry("DonAs"));
+        conceptBook.add(new ConceptBookEntry("HeroInO"))
+                .addDefaultTargets(new DeTarget("Heldin", De.FEMININE, De.NOMINATIVE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE));
         
-        conceptBook.add(new ConceptBookEntry("SkribIlO"));
+        conceptBook.add(new ConceptBookEntry("TrovAs"))
+                .addDefaultTargets(new DeTarget("finde", De.MI), new DeTarget("findest", De.BI), new DeTarget("findet", De.GXI, De.VI), new DeTarget("finden", De.NI, De.ILI));
         
-        conceptBook.add(new ConceptBookEntry("FlorO"));
+        conceptBook.add(new ConceptBookEntry("DonAs"))
+                .addDefaultTargets(new DeTarget("gebe", De.MI), new DeTarget("gibst", De.BI), new DeTarget("gibt", De.GXI), new DeTarget("geben", De.NI, De.ILI), new DeTarget("gebt", De.VI));
+        
+        conceptBook.add(new ConceptBookEntry("SkribIlO"))
+                .addDefaultTargets(new DeTarget("Stift", De.MASCULINE, De.NOMINATIVE, De.DATIVE, De.ACCUSATIVE), new DeTarget("Stifts", De.MASCULINE, De.GENITIVE));
+        
+        conceptBook.add(new ConceptBookEntry("FlorO"))
+                .addDefaultTargets(new DeTarget("Blume", De.FEMININE, De.NOMINATIVE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE));
+        
+        conceptBook.add(new ConceptBookEntry("NomO"))
+                .addDefaultTargets(new DeTarget("Name", De.MASCULINE, De.NOMINATIVE), new DeTarget("Namens", De.MASCULINE, De.GENITIVE), new DeTarget("Namen", De.MASCULINE, De.DATIVE, De.ACCUSATIVE));
+        
+        conceptBook.add(new ConceptBookEntry("Kaj"))
+                .addDefaultTargets(new DeTarget("und"));
         
         for (Language language : Language.values()) {
             Translator translator = TranslatorFactory.createTranslator(language, conceptBook);
-            translator.translate("HeroIcxO TrovAs Fin SkribIlO .").getTranslations().stream().forEach(translation -> Logger.getAnonymousLogger().info("DUMMY-TRANSLATION: ".concat(translation)));
+            translator.translate("HeroInO TrovAs Fin NomO . Fin NomO DonAs HeroInO Al HeroIcxO . HeroIcxO TrovAs Fin SkribIlO Kaj HeroIcxO DonAs Al HeroInO Fin SkribIlO .").getTranslations().stream().forEach(translation -> Logger.getAnonymousLogger().info("DUMMY-TRANSLATION: ".concat(translation)));
         }
     }
 }
