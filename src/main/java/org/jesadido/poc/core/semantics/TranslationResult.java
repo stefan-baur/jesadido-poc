@@ -9,11 +9,12 @@ package org.jesadido.poc.core.semantics;
 
 import org.jesadido.poc.core.syntax.tree.Node;
 
-public abstract class TranslatingResult {
+public class TranslationResult {
     
     private final Node node;
+    private String translation = "";
     
-    public TranslatingResult(final Node node) {
+    public TranslationResult(final Node node) {
         this.node = node;
     }
     
@@ -25,5 +26,12 @@ public abstract class TranslatingResult {
         return this.getTranslation().length() > 0;
     }
     
-    public abstract String getTranslation();
+    public String getTranslation() {
+        return this.translation;
+    }
+    
+    public TranslationResult setTranslation(final String translation) {
+        this.translation = translation;
+        return this;
+    }
 }

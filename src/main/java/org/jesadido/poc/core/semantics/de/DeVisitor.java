@@ -12,6 +12,7 @@ import java.util.List;
 import org.jesadido.poc.core.Language;
 import org.jesadido.poc.core.StringUtils;
 import org.jesadido.poc.core.semantics.ConceptBookEntry;
+import org.jesadido.poc.core.semantics.TranslationResult;
 import org.jesadido.poc.core.semantics.TranslationTarget;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
 import org.jesadido.poc.core.syntax.tree.Visitor;
@@ -28,7 +29,7 @@ import org.jesadido.poc.core.syntax.tree.sentence.SubstantiveSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbalSelection;
 
-public class DeVisitor implements Visitor<String, DeVisitorArgument> {
+public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> {
     
     private final DeTranslator deTranslator;
     
@@ -37,106 +38,119 @@ public class DeVisitor implements Visitor<String, DeVisitorArgument> {
     }
     
     @Override
-    public String visit(final SentenceSequence node, final DeVisitorArgument argument) {
+    public TranslationResult visit(final SentenceSequence node, final DeVisitorArgument argument) {
+        final TranslationResult result = new TranslationResult(node);
         List<String> translatedSentences = new LinkedList<>();
-        node.getSentences().stream().forEach(sentence -> translatedSentences.add(sentence.accept(this, argument)));
-        return String.join(" ", translatedSentences);
+        node.getSentences().stream().forEach(sentence -> translatedSentences.add(sentence.accept(this, argument).getTranslation()));
+        return result.setTranslation(String.join(" ", translatedSentences));
     }
 
     @Override
-    public String visit(final Sentence node, final DeVisitorArgument argument) {
+    public TranslationResult visit(final Sentence node, final DeVisitorArgument argument) {
+        final TranslationResult result = new TranslationResult(node);
         List<String> translatedMeats = new LinkedList<>();
-        node.getMeats().stream().forEach(meat -> translatedMeats.add(meat.accept(this, argument)));
-        return StringUtils.up(String.format("%s.", String.join("", translatedMeats)));
+        node.getMeats().stream().forEach(meat -> translatedMeats.add(meat.accept(this, argument).getTranslation()));
+        return result.setTranslation(StringUtils.up(String.format("%s.", String.join("", translatedMeats))));
     }
 
     @Override
-    public String visit(final SentenceMeat node, final DeVisitorArgument argument) {
+    public TranslationResult visit(final SentenceMeat node, final DeVisitorArgument argument) {
+        final TranslationResult result = new TranslationResult(node);
         List<String> translatedParts = new LinkedList<>();
         if (node.hasConjunction()) {
-            translatedParts.add(node.getConjunction().accept(this, argument));
+            translatedParts.add(node.getConjunction().accept(this, argument).getTranslation());
         }
-        node.getParts().stream().forEach(part -> translatedParts.add(part.accept(this, argument)));
-        return String.join(" ", translatedParts);
+        node.getParts().stream().forEach(part -> translatedParts.add(part.accept(this, argument).getTranslation()));
+        return result.setTranslation(String.join(" ", translatedParts));
     }
 
     @Override
-    public String visit(final SentenceMeatConjunction node, final DeVisitorArgument argument) {
+    public TranslationResult visit(final SentenceMeatConjunction node, final DeVisitorArgument argument) {
+        final TranslationResult result = new TranslationResult(node);
         final ConceptBookEntry cbe = this.deTranslator.getConceptBook().get(node.getConjunction().getConcept());
         List<TranslationTarget> defaultTargets = cbe.getDefaultTargets(Language.DE);
         if (defaultTargets.isEmpty()) {
-            return cbe.getConceptPhrase();
+            result.setTranslation(cbe.getConceptPhrase());
         } else {
-            return String.format(", %s", defaultTargets.get(0).getPhrase());
+            result.setTranslation(String.format(", %s", defaultTargets.get(0).getPhrase()));
         }
+        return result;
     }
 
     @Override
-    public String visit(final PartSu node, final DeVisitorArgument argument) {
+    public TranslationResult visit(final PartSu node, final DeVisitorArgument argument) {
+        final TranslationResult result = new TranslationResult(node);
         argument.setCaseAttribute(De.NOMINATIVE);
-        return node.getNominalSelection().accept(this, argument);
+        return result.setTranslation(node.getNominalSelection().accept(this, argument).getTranslation());
     }
 
     @Override
-    public String visit(final PartDom node, final DeVisitorArgument argument) {
-        return node.getVerbalSelection().accept(this, argument);
+    public TranslationResult visit(final PartDom node, final DeVisitorArgument argument) {
+        final TranslationResult result = new TranslationResult(node);
+        return result.setTranslation(node.getVerbalSelection().accept(this, argument).getTranslation());
     }
 
     @Override
-    public String visit(final PartAl node, final DeVisitorArgument argument) {
+    public TranslationResult visit(final PartAl node, final DeVisitorArgument argument) {
+        final TranslationResult result = new TranslationResult(node);
         argument.setCaseAttribute(De.DATIVE);
-        return node.getNominalSelection().accept(this, argument);
+        return result.setTranslation(node.getNominalSelection().accept(this, argument).getTranslation());
     }
 
     @Override
-    public String visit(final PartFin node, final DeVisitorArgument argument) {
+    public TranslationResult visit(final PartFin node, final DeVisitorArgument argument) {
+        final TranslationResult result = new TranslationResult(node);
         argument.setCaseAttribute(De.ACCUSATIVE);
-        return node.getNominalSelection().accept(this, argument);
+        return result.setTranslation(node.getNominalSelection().accept(this, argument).getTranslation());
     }
 
     @Override
-    public String visit(final NominalSelection node, final DeVisitorArgument argument) {
+    public TranslationResult visit(final NominalSelection node, final DeVisitorArgument argument) {
+        final TranslationResult result = new TranslationResult(node);
         if (node.hasSubstantiveSelection()) {
-            return node.getSubstantiveSelection().accept(this, argument);
-        } else {
-            return "";
+            result.setTranslation(node.getSubstantiveSelection().accept(this, argument).getTranslation());
         }
+        return result;
     }
 
     @Override
-    public String visit(final SubstantiveSelection node, final DeVisitorArgument argument) {
+    public TranslationResult visit(final SubstantiveSelection node, final DeVisitorArgument argument) {
+        final TranslationResult result = new TranslationResult(node);
         final ConceptBookEntry cbe = this.deTranslator.getConceptBook().get(node.getSubstantive().getConcept());
         List<TranslationTarget> defaultTargets = cbe.getDefaultTargets(Language.DE, argument.getCaseAttribute());
         if (defaultTargets.isEmpty()) {
-            return cbe.getConceptPhrase();
+            result.setTranslation(cbe.getConceptPhrase());
         } else {
             final TranslationTarget substantiveTarget = defaultTargets.get(0);
-            return String.format("%s %s", DeUtils.getUndeterminedArticle(substantiveTarget, argument.getCaseAttribute()), substantiveTarget.getPhrase());
+            result.setTranslation(String.format("%s %s", DeUtils.getUndeterminedArticle(substantiveTarget, argument.getCaseAttribute()), substantiveTarget.getPhrase()));
         }
+        return result;
     }
 
     @Override
-    public String visit(final VerbalSelection node, final DeVisitorArgument argument) {
+    public TranslationResult visit(final VerbalSelection node, final DeVisitorArgument argument) {
+        final TranslationResult result = new TranslationResult(node);
         if (node.hasVerbSelection()) {
-            return node.getVerbSelection().accept(this, argument);
-        } else {
-            return "";
+            result.setTranslation(node.getVerbSelection().accept(this, argument).getTranslation());
         }
+        return result;
     }
 
     @Override
-    public String visit(final VerbSelection node, final DeVisitorArgument argument) {
+    public TranslationResult visit(final VerbSelection node, final DeVisitorArgument argument) {
+        final TranslationResult result = new TranslationResult(node);
         final ConceptBookEntry cbe = this.deTranslator.getConceptBook().get(node.getVerb().getConcept());
         List<TranslationTarget> defaultTargets = cbe.getDefaultTargets(Language.DE, De.GXI);
         if (defaultTargets.isEmpty()) {
-            return cbe.getConceptPhrase();
+            result.setTranslation(cbe.getConceptPhrase());
         } else {
-            return defaultTargets.get(0).getPhrase();
+            result.setTranslation(defaultTargets.get(0).getPhrase());
         }
+        return result;
     }
 
     @Override
-    public String visit(final TroubleNode node, final DeVisitorArgument argument) {
-        return "";
+    public TranslationResult visit(final TroubleNode node, final DeVisitorArgument argument) {
+        return new TranslationResult(node);
     }
 }

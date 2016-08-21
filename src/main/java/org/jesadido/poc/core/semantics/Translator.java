@@ -27,5 +27,5 @@ public abstract class Translator {
         return this.conceptBook;
     }
     
-    public abstract TranslatingResult translate(final String code);
+    public abstract TranslationResult translate(final String code);
 }
