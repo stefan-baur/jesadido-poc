@@ -14,6 +14,8 @@ import org.jesadido.poc.core.Language;
 import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.semantics.de.De;
 import org.jesadido.poc.core.semantics.de.DeTarget;
+import org.jesadido.poc.core.semantics.en.En;
+import org.jesadido.poc.core.semantics.en.EnTarget;
 import org.jesadido.poc.core.syntax.Grammar;
 import org.jesadido.poc.core.syntax.GrammarFactory;
 
@@ -43,28 +45,44 @@ public class ConceptBook {
         final ConceptBook conceptBook = new ConceptBook();
         
         conceptBook.add(new ConceptBookEntry("HeroIcxO"))
-                .addDefaultTargets(new DeTarget("Held", De.MASCULINE, De.NOMINATIVE), new DeTarget("Helden", De.MASCULINE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE));
+                .addDefaultTargets(new DeTarget("Held", De.MASCULINE, De.NOMINATIVE), new DeTarget("Helden", De.MASCULINE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE))
+                .addDefaultTargets(new EnTarget("hero", En.NOMINATIVE, En.GENITIVE, En.DATIVE, En.ACCUSATIVE))
+                ;
         
         conceptBook.add(new ConceptBookEntry("HeroInO"))
-                .addDefaultTargets(new DeTarget("Heldin", De.FEMININE, De.NOMINATIVE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE));
+                .addDefaultTargets(new DeTarget("Heldin", De.FEMININE, De.NOMINATIVE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE))
+                .addDefaultTargets(new EnTarget("heroine", En.NOMINATIVE, En.GENITIVE, En.DATIVE, En.ACCUSATIVE))
+                ;
         
         conceptBook.add(new ConceptBookEntry("TrovAs"))
-                .addDefaultTargets(new DeTarget("finde", De.MI), new DeTarget("findest", De.BI), new DeTarget("findet", De.GXI, De.VI), new DeTarget("finden", De.NI, De.ILI));
+                .addDefaultTargets(new DeTarget("finde", De.MI), new DeTarget("findest", De.BI), new DeTarget("findet", De.GXI, De.VI), new DeTarget("finden", De.NI, De.ILI))
+                .addDefaultTargets(new EnTarget("find", En.MI, En.BI, En.NI, En.VI, En.ILI), new EnTarget("finds", En.GXI))
+                ;
         
         conceptBook.add(new ConceptBookEntry("DonAs"))
-                .addDefaultTargets(new DeTarget("gebe", De.MI), new DeTarget("gibst", De.BI), new DeTarget("gibt", De.GXI), new DeTarget("geben", De.NI, De.ILI), new DeTarget("gebt", De.VI));
+                .addDefaultTargets(new DeTarget("gebe", De.MI), new DeTarget("gibst", De.BI), new DeTarget("gibt", De.GXI), new DeTarget("geben", De.NI, De.ILI), new DeTarget("gebt", De.VI))
+                .addDefaultTargets(new EnTarget("give", En.MI, En.BI, En.NI, En.VI, En.ILI), new EnTarget("gives", En.GXI))
+                ;
         
         conceptBook.add(new ConceptBookEntry("SkribIlO"))
-                .addDefaultTargets(new DeTarget("Stift", De.MASCULINE, De.NOMINATIVE, De.DATIVE, De.ACCUSATIVE), new DeTarget("Stifts", De.MASCULINE, De.GENITIVE));
+                .addDefaultTargets(new DeTarget("Stift", De.MASCULINE, De.NOMINATIVE, De.DATIVE, De.ACCUSATIVE), new DeTarget("Stifts", De.MASCULINE, De.GENITIVE))
+                .addDefaultTargets(new EnTarget("pen", En.NOMINATIVE, En.GENITIVE, En.DATIVE, En.ACCUSATIVE))
+                ;
         
         conceptBook.add(new ConceptBookEntry("FlorO"))
-                .addDefaultTargets(new DeTarget("Blume", De.FEMININE, De.NOMINATIVE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE));
+                .addDefaultTargets(new DeTarget("Blume", De.FEMININE, De.NOMINATIVE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE))
+                .addDefaultTargets(new EnTarget("flower", En.NOMINATIVE, En.GENITIVE, En.DATIVE, En.ACCUSATIVE))
+                ;
         
         conceptBook.add(new ConceptBookEntry("NomO"))
-                .addDefaultTargets(new DeTarget("Name", De.MASCULINE, De.NOMINATIVE), new DeTarget("Namens", De.MASCULINE, De.GENITIVE), new DeTarget("Namen", De.MASCULINE, De.DATIVE, De.ACCUSATIVE));
+                .addDefaultTargets(new DeTarget("Name", De.MASCULINE, De.NOMINATIVE), new DeTarget("Namens", De.MASCULINE, De.GENITIVE), new DeTarget("Namen", De.MASCULINE, De.DATIVE, De.ACCUSATIVE))
+                .addDefaultTargets(new EnTarget("name", En.NOMINATIVE, En.GENITIVE, En.DATIVE, En.ACCUSATIVE))
+                ;
         
         conceptBook.add(new ConceptBookEntry("Kaj"))
-                .addDefaultTargets(new DeTarget("und"));
+                .addDefaultTargets(new DeTarget("und"))
+                .addDefaultTargets(new EnTarget("and"))
+                ;
         
         for (final Language language : Language.values()) {
             final Translator translator = TranslatorFactory.createTranslator(language, conceptBook);

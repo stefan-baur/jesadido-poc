@@ -26,13 +26,14 @@ public class ConceptBookEntry {
         return this.conceptPhrase;
     }
     
-    public void addDefaultTargets(final TranslationTarget ... targets) {
+    public ConceptBookEntry addDefaultTargets(final TranslationTarget ... targets) {
         for (final TranslationTarget target : targets) {
             if (!this.defaultTargets.containsKey(target.getLanguage())) {
                 this.defaultTargets.put(target.getLanguage(), new LinkedList<>());
             }
             this.defaultTargets.get(target.getLanguage()).add(target);
         }
+        return this;
     }
     
     public List<TranslationTarget> getDefaultTargets(final Language language) {
