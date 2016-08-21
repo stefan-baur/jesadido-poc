@@ -23,7 +23,9 @@ public class FrTranslator extends Translator {
     public TranslationResult translate(final String code) {
         final Node node = this.getConceptBook().getGrammar().parse(code);
         final TranslationResult result = new TranslationResult(node);
-        result.setTranslation(String.format("%s: TODO %s", this.getLanguage().getCode(), code));
+        if (node.collectTroubles().isEmpty()) {
+            return node.accept(new FrVisitor(this), new FrVisitorArgument());
+        }
         return result;
     }
 }

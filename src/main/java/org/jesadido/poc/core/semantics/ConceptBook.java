@@ -19,6 +19,8 @@ import org.jesadido.poc.core.semantics.en.EnTarget;
 import org.jesadido.poc.core.semantics.eo.EoTarget;
 import org.jesadido.poc.core.semantics.es.Es;
 import org.jesadido.poc.core.semantics.es.EsTarget;
+import org.jesadido.poc.core.semantics.fr.Fr;
+import org.jesadido.poc.core.semantics.fr.FrTarget;
 import org.jesadido.poc.core.syntax.Grammar;
 import org.jesadido.poc.core.syntax.GrammarFactory;
 
@@ -52,6 +54,7 @@ public class ConceptBook {
                 .addDefaultTargets(new EnTarget("hero", En.NOMINATIVE, En.GENITIVE, En.DATIVE, En.ACCUSATIVE))
                 .addDefaultTargets(new EoTarget("heroo"))
                 .addDefaultTargets(new EsTarget("héroe", Es.MASCULINE))
+                .addDefaultTargets(new FrTarget("héros", Fr.MASCULINE))
                 ;
         
         conceptBook.add(new ConceptBookEntry("HeroInO"))
@@ -59,6 +62,7 @@ public class ConceptBook {
                 .addDefaultTargets(new EnTarget("heroine", En.NOMINATIVE, En.GENITIVE, En.DATIVE, En.ACCUSATIVE))
                 .addDefaultTargets(new EoTarget("heroino"))
                 .addDefaultTargets(new EsTarget("heroína", Es.FEMININE))
+                .addDefaultTargets(new FrTarget("héroïne", Fr.FEMININE))
                 ;
         
         conceptBook.add(new ConceptBookEntry("TrovAs"))
@@ -66,6 +70,7 @@ public class ConceptBook {
                 .addDefaultTargets(new EnTarget("find", En.MI, En.BI, En.NI, En.VI, En.ILI), new EnTarget("finds", En.GXI))
                 .addDefaultTargets(new EoTarget("trovas"))
                 .addDefaultTargets(new EsTarget("encuentro", Es.MI), new EsTarget("encuentras", Es.BI), new EsTarget("encuentra", Es.GXI), new EsTarget("encontramos", Es.NI), new EsTarget("encontráis", Es.VI), new EsTarget("encuentran", Es.ILI))
+                .addDefaultTargets(new FrTarget("trouve", Fr.MI, Fr.GXI), new FrTarget("trouves", Fr.BI), new FrTarget("trouvons", Fr.NI), new FrTarget("trouvez", Fr.VI), new FrTarget("trouvent", Fr.ILI))
                 ;
         
         conceptBook.add(new ConceptBookEntry("DonAs"))
@@ -73,6 +78,7 @@ public class ConceptBook {
                 .addDefaultTargets(new EnTarget("give", En.MI, En.BI, En.NI, En.VI, En.ILI), new EnTarget("gives", En.GXI))
                 .addDefaultTargets(new EoTarget("donas"))
                 .addDefaultTargets(new EsTarget("doy", Es.MI), new EsTarget("das", Es.BI), new EsTarget("da", Es.GXI), new EsTarget("damos", Es.NI), new EsTarget("dais", Es.VI), new EsTarget("dan", Es.ILI))
+                .addDefaultTargets(new FrTarget("donne", Fr.MI, Fr.GXI), new FrTarget("donnes", Fr.BI), new FrTarget("donnons", Fr.NI), new FrTarget("donnez", Fr.VI), new FrTarget("donnent", Fr.ILI))
                 ;
         
         conceptBook.add(new ConceptBookEntry("SkribIlO"))
@@ -80,6 +86,7 @@ public class ConceptBook {
                 .addDefaultTargets(new EnTarget("pen", En.NOMINATIVE, En.GENITIVE, En.DATIVE, En.ACCUSATIVE))
                 .addDefaultTargets(new EoTarget("skribilo"))
                 .addDefaultTargets(new EsTarget("lapicero", Es.MASCULINE))
+                .addDefaultTargets(new FrTarget("crayon", Fr.MASCULINE))
                 ;
         
         conceptBook.add(new ConceptBookEntry("FlorO"))
@@ -87,6 +94,7 @@ public class ConceptBook {
                 .addDefaultTargets(new EnTarget("flower", En.NOMINATIVE, En.GENITIVE, En.DATIVE, En.ACCUSATIVE))
                 .addDefaultTargets(new EoTarget("floro"))
                 .addDefaultTargets(new EsTarget("flor", Es.FEMININE))
+                .addDefaultTargets(new FrTarget("fleur", Fr.FEMININE))
                 ;
         
         conceptBook.add(new ConceptBookEntry("NomO"))
@@ -94,6 +102,7 @@ public class ConceptBook {
                 .addDefaultTargets(new EnTarget("name", En.NOMINATIVE, En.GENITIVE, En.DATIVE, En.ACCUSATIVE))
                 .addDefaultTargets(new EoTarget("nomo"))
                 .addDefaultTargets(new EsTarget("nombre", Es.MASCULINE))
+                .addDefaultTargets(new FrTarget("nom", Fr.MASCULINE))
                 ;
         
         conceptBook.add(new ConceptBookEntry("Kaj"))
@@ -101,6 +110,7 @@ public class ConceptBook {
                 .addDefaultTargets(new EnTarget("and"))
                 .addDefaultTargets(new EoTarget("kaj"))
                 .addDefaultTargets(new EsTarget("y"))
+                .addDefaultTargets(new FrTarget("et"))
                 ;
         
         for (final Language language : Language.values()) {
