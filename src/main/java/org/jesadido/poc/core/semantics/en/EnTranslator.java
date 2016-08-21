@@ -10,7 +10,9 @@ package org.jesadido.poc.core.semantics.en;
 import org.jesadido.poc.core.Language;
 import org.jesadido.poc.core.semantics.ConceptBook;
 import org.jesadido.poc.core.semantics.TranslatingResult;
+import org.jesadido.poc.core.semantics.TranslatingResultLeaf;
 import org.jesadido.poc.core.semantics.Translator;
+import org.jesadido.poc.core.syntax.tree.Node;
 
 public class EnTranslator extends Translator {
     
@@ -20,8 +22,9 @@ public class EnTranslator extends Translator {
     
     @Override
     public TranslatingResult translate(final String code) {
-        final TranslatingResult result = new TranslatingResult();
-        result.getTranslations().add(String.format("%s: TODO %s", this.getLanguage().getCode(), code));
+        final Node node = this.getConceptBook().getGrammar().parse(code);
+        final TranslatingResultLeaf result = new TranslatingResultLeaf(node);
+        result.setTranslation(String.format("%s: TODO %s", this.getLanguage().getCode(), code));
         return result;
     }
 }

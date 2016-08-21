@@ -8,9 +8,12 @@
 package org.jesadido.poc.core.semantics.ji;
 
 import org.jesadido.poc.core.Language;
+import org.jesadido.poc.core.concepts.ConceptUtils;
 import org.jesadido.poc.core.semantics.ConceptBook;
 import org.jesadido.poc.core.semantics.TranslatingResult;
+import org.jesadido.poc.core.semantics.TranslatingResultLeaf;
 import org.jesadido.poc.core.semantics.Translator;
+import org.jesadido.poc.core.syntax.tree.Node;
 
 public class JiTranslator extends Translator {
     
@@ -20,8 +23,9 @@ public class JiTranslator extends Translator {
     
     @Override
     public TranslatingResult translate(final String code) {
-        final TranslatingResult result = new TranslatingResult();
-        result.getTranslations().add(code);
+        final Node node = this.getConceptBook().getGrammar().parse(code);
+        final TranslatingResultLeaf result = new TranslatingResultLeaf(node);
+        result.setTranslation(ConceptUtils.join(node.collectConcepts()));
         return result;
     }
 }

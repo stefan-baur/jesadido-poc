@@ -96,7 +96,11 @@ public class DeVisitor implements Visitor<String, DeVisitorArgument> {
 
     @Override
     public String visit(final NominalSelection node, final DeVisitorArgument argument) {
-        return node.getSubstantiveSelection().accept(this, argument);
+        if (node.hasSubstantiveSelection()) {
+            return node.getSubstantiveSelection().accept(this, argument);
+        } else {
+            return "";
+        }
     }
 
     @Override
@@ -113,7 +117,11 @@ public class DeVisitor implements Visitor<String, DeVisitorArgument> {
 
     @Override
     public String visit(final VerbalSelection node, final DeVisitorArgument argument) {
-        return node.getVerbSelection().accept(this, argument);
+        if (node.hasVerbSelection()) {
+            return node.getVerbSelection().accept(this, argument);
+        } else {
+            return "";
+        }
     }
 
     @Override

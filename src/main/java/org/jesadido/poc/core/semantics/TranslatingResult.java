@@ -7,14 +7,23 @@
  */
 package org.jesadido.poc.core.semantics;
 
-import java.util.LinkedList;
-import java.util.List;
+import org.jesadido.poc.core.syntax.tree.Node;
 
-public class TranslatingResult {
+public abstract class TranslatingResult {
     
-    private final List<String> translations = new LinkedList<>();
+    private final Node node;
     
-    public List<String> getTranslations() {
-        return this.translations;
+    public TranslatingResult(final Node node) {
+        this.node = node;
     }
+    
+    public Node getNode() {
+        return this.node;
+    }
+    
+    public boolean hasTranslation() {
+        return this.getTranslation().length() > 0;
+    }
+    
+    public abstract String getTranslation();
 }

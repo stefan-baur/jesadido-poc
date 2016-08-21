@@ -66,9 +66,10 @@ public class ConceptBook {
         conceptBook.add(new ConceptBookEntry("Kaj"))
                 .addDefaultTargets(new DeTarget("und"));
         
-        for (Language language : Language.values()) {
-            Translator translator = TranslatorFactory.createTranslator(language, conceptBook);
-            translator.translate("HeroInO TrovAs Fin NomO . Fin NomO DonAs HeroInO Al HeroIcxO . HeroIcxO TrovAs Fin SkribIlO Kaj HeroIcxO DonAs Al HeroInO Fin SkribIlO .").getTranslations().stream().forEach(translation -> Logger.getAnonymousLogger().info("DUMMY-TRANSLATION: ".concat(translation)));
+        for (final Language language : Language.values()) {
+            final Translator translator = TranslatorFactory.createTranslator(language, conceptBook);
+            final String translation = translator.translate("HeroInO TrovAs Fin NomO . Fin NomO DonAs HeroInO Al HeroIcxO . HeroIcxO TrovAs Fin SkribIlO Kaj HeroIcxO DonAs Al HeroInO Fin SkribIlO .").getTranslation();
+            Logger.getAnonymousLogger().info(translation);
         }
     }
 }

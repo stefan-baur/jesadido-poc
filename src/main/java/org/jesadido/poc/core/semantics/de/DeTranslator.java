@@ -10,8 +10,8 @@ package org.jesadido.poc.core.semantics.de;
 import org.jesadido.poc.core.Language;
 import org.jesadido.poc.core.semantics.ConceptBook;
 import org.jesadido.poc.core.semantics.TranslatingResult;
+import org.jesadido.poc.core.semantics.TranslatingResultLeaf;
 import org.jesadido.poc.core.semantics.Translator;
-import org.jesadido.poc.core.syntax.Grammar;
 import org.jesadido.poc.core.syntax.tree.Node;
 
 public class DeTranslator extends Translator {
@@ -22,13 +22,11 @@ public class DeTranslator extends Translator {
     
     @Override
     public TranslatingResult translate(final String code) {
-        final TranslatingResult result = new TranslatingResult();
-        final ConceptBook conceptBook = this.getConceptBook();
-        final Grammar grammar = conceptBook.getGrammar();
-        final Node node = grammar.parse(code);
+        final Node node = this.getConceptBook().getGrammar().parse(code);
+        final TranslatingResultLeaf result = new TranslatingResultLeaf(node);
         if (node.collectTroubles().isEmpty()) {
             final String translation = node.accept(new DeVisitor(this), new DeVisitorArgument());
-            result.getTranslations().add(translation);
+            result.setTranslation(translation);
         }
         return result;
     }
