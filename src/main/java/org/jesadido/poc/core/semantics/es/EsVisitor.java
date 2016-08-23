@@ -122,7 +122,7 @@ public class EsVisitor implements Visitor<TranslationResult, EsVisitorArgument> 
             result.setTranslation(conceptBookEntry.getConceptPhrase());
         } else {
             final TranslationTarget substantiveTarget = defaultTargets.get(0);
-            result.setTranslation(String.format("%s%s %s", argument.getCaseAttribute() == Es.DATIVE ? "al " : "", EsUtils.getIndefiniteArticle(substantiveTarget), substantiveTarget.getPhrase()));
+            result.setTranslation(String.format("%s%s %s", argument.getCaseAttribute() == Es.DATIVE ? "a " : "", EsUtils.getIndefiniteArticle(substantiveTarget), substantiveTarget.getPhrase()));
         }
         return result;
     }
