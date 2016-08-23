@@ -15,7 +15,7 @@ public final class FrUtils {
         // A private utility class constructor
     }
     
-    public static String getUndeterminedArticle(final TranslationTarget substantiveTarget) {
+    public static String getIndefiniteArticle(final TranslationTarget substantiveTarget) {
         if (substantiveTarget.getAttributes().contains(Fr.FEMININE)) {
             return "une";
         } else {

@@ -122,7 +122,7 @@ public class EnVisitor implements Visitor<TranslationResult, EnVisitorArgument> 
             result.setTranslation(conceptBookEntry.getConceptPhrase());
         } else {
             final TranslationTarget substantiveTarget = defaultTargets.get(0);
-            result.setTranslation(String.format("%s %s", EnUtils.getUndeterminedArticle(substantiveTarget), substantiveTarget.getPhrase()));
+            result.setTranslation(String.format("%s %s", EnUtils.getIndefiniteArticle(substantiveTarget), substantiveTarget.getPhrase()));
         }
         return result;
     }

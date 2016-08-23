@@ -122,7 +122,7 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
             result.setTranslation(conceptBookEntry.getConceptPhrase());
         } else {
             final TranslationTarget substantiveTarget = defaultTargets.get(0);
-            result.setTranslation(String.format("%s %s", DeUtils.getUndeterminedArticle(substantiveTarget, argument.getCaseAttribute()), substantiveTarget.getPhrase()));
+            result.setTranslation(String.format("%s %s", DeUtils.getIndefiniteArticle(substantiveTarget, argument.getCaseAttribute()), substantiveTarget.getPhrase()));
         }
         return result;
     }

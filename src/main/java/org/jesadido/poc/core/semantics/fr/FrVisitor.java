@@ -122,7 +122,7 @@ public class FrVisitor implements Visitor<TranslationResult, FrVisitorArgument> 
             result.setTranslation(conceptBookEntry.getConceptPhrase());
         } else {
             final TranslationTarget substantiveTarget = defaultTargets.get(0);
-            result.setTranslation(String.format("%s %s", FrUtils.getUndeterminedArticle(substantiveTarget), substantiveTarget.getPhrase()));
+            result.setTranslation(String.format("%s %s", FrUtils.getIndefiniteArticle(substantiveTarget), substantiveTarget.getPhrase()));
         }
         return result;
     }

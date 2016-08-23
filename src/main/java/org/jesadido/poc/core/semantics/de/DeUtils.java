@@ -15,7 +15,7 @@ public final class DeUtils {
         // A private utility class constructor
     }
     
-    public static String getUndeterminedArticleFeminine(final De caseAttribute) {
+    public static String getIndefiniteArticleFeminine(final De caseAttribute) {
         if ((caseAttribute == De.NOMINATIVE) || (caseAttribute == De.ACCUSATIVE)) {
             return "eine";
         } else {
@@ -23,7 +23,7 @@ public final class DeUtils {
         }
     }
     
-    public static String getUndeterminedArticleNeuter(final De caseAttribute) {
+    public static String getIndefiniteArticleNeuter(final De caseAttribute) {
         if ((caseAttribute == De.NOMINATIVE) || (caseAttribute == De.ACCUSATIVE)) {
             return "ein";
         } else if (caseAttribute == De.DATIVE) {
@@ -33,7 +33,7 @@ public final class DeUtils {
         }
     }
     
-    public static String getUndeterminedArticleMasculine(final De caseAttribute) {
+    public static String getIndefiniteArticleMasculine(final De caseAttribute) {
         if (caseAttribute == De.NOMINATIVE) {
             return "ein";
         } else if (caseAttribute == De.GENITIVE) {
@@ -45,13 +45,13 @@ public final class DeUtils {
         }
     }
     
-    public static String getUndeterminedArticle(final TranslationTarget substantiveTarget, final De caseAttribute) {
+    public static String getIndefiniteArticle(final TranslationTarget substantiveTarget, final De caseAttribute) {
         if (substantiveTarget.getAttributes().contains(De.FEMININE)) {
-            return getUndeterminedArticleFeminine(caseAttribute);
+            return getIndefiniteArticleFeminine(caseAttribute);
         } else if (substantiveTarget.getAttributes().contains(De.NEUTER)) {
-            return getUndeterminedArticleNeuter(caseAttribute);
+            return getIndefiniteArticleNeuter(caseAttribute);
         } else {
-            return getUndeterminedArticleMasculine(caseAttribute);
+            return getIndefiniteArticleMasculine(caseAttribute);
         }
     }
 }

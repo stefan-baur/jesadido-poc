@@ -15,7 +15,7 @@ public final class EsUtils {
         // A private utility class constructor
     }
     
-    public static String getUndeterminedArticle(final TranslationTarget substantiveTarget) {
+    public static String getIndefiniteArticle(final TranslationTarget substantiveTarget) {
         if (substantiveTarget.getAttributes().contains(Es.FEMININE)) {
             return "una";
         } else {

@@ -15,7 +15,7 @@ public final class EnUtils {
         // A private utility class constructor
     }
     
-    public static String getUndeterminedArticle(final TranslationTarget followerTarget) {
+    public static String getIndefiniteArticle(final TranslationTarget followerTarget) {
         final String follower = followerTarget.getPhrase();
         if ("aeio".contains(Character.toString(follower.charAt(0)))) {
             return "an";
