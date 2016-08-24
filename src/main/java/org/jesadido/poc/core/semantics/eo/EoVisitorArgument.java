@@ -10,6 +10,7 @@ package org.jesadido.poc.core.semantics.eo;
 public class EoVisitorArgument {
     
     private Eo caseAttribute;
+    private int sentenceMeatIndex = -1;
     
     public Eo getCaseAttribute() {
         return this.caseAttribute;
@@ -17,5 +18,13 @@ public class EoVisitorArgument {
     
     public void setCaseAttribute(Eo caseAttribute) {
         this.caseAttribute = caseAttribute;
+    }
+    
+    public int getSentenceMeatIndex() {
+        return this.sentenceMeatIndex;
+    }
+    
+    public void setSentenceMeatIndex(int value) {
+        this.sentenceMeatIndex = value;
     }
 }

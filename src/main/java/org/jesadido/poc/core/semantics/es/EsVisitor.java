@@ -49,7 +49,10 @@ public class EsVisitor implements Visitor<TranslationResult, EsVisitorArgument> 
     public TranslationResult visit(final Sentence node, final EsVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
         List<String> translatedMeats = new LinkedList<>();
-        node.getMeats().stream().forEach(meat -> translatedMeats.add(meat.accept(this, argument).getTranslation()));
+        for (int i = 0; i < node.getMeats().size(); i++) {
+            argument.setSentenceMeatIndex(i);
+            translatedMeats.add(node.getMeats().get(i).accept(this, argument).getTranslation());
+        }
         return result.setTranslation(StringUtils.up(String.format("%s.", String.join("", translatedMeats))));
     }
 
@@ -72,7 +75,7 @@ public class EsVisitor implements Visitor<TranslationResult, EsVisitorArgument> 
         if (defaultTargets.isEmpty()) {
             result.setTranslation(conceptBookEntry.getConceptPhrase());
         } else {
-            result.setTranslation(String.format(", %s", defaultTargets.get(0).getPhrase()));
+            result.setTranslation(String.format("%s%s", argument.getSentenceMeatIndex() > 0 ? ", " : "", defaultTargets.get(0).getPhrase()));
         }
         return result;
     }

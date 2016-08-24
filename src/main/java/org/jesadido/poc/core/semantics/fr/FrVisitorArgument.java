@@ -10,6 +10,7 @@ package org.jesadido.poc.core.semantics.fr;
 public class FrVisitorArgument {
     
     private Fr caseAttribute;
+    private int sentenceMeatIndex = -1;
     
     public Fr getCaseAttribute() {
         return this.caseAttribute;
@@ -17,5 +18,13 @@ public class FrVisitorArgument {
     
     public void setCaseAttribute(Fr caseAttribute) {
         this.caseAttribute = caseAttribute;
+    }
+    
+    public int getSentenceMeatIndex() {
+        return this.sentenceMeatIndex;
+    }
+    
+    public void setSentenceMeatIndex(int value) {
+        this.sentenceMeatIndex = value;
     }
 }

@@ -10,6 +10,7 @@ package org.jesadido.poc.core.semantics.es;
 public class EsVisitorArgument {
     
     private Es caseAttribute;
+    private int sentenceMeatIndex = -1;
     
     public Es getCaseAttribute() {
         return this.caseAttribute;
@@ -17,5 +18,13 @@ public class EsVisitorArgument {
     
     public void setCaseAttribute(Es caseAttribute) {
         this.caseAttribute = caseAttribute;
+    }
+    
+    public int getSentenceMeatIndex() {
+        return this.sentenceMeatIndex;
+    }
+    
+    public void setSentenceMeatIndex(int value) {
+        this.sentenceMeatIndex = value;
     }
 }

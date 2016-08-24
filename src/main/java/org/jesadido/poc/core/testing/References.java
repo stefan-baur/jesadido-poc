@@ -92,12 +92,12 @@ public final class References {
         "HeroIcxO TrovAs Fin SkribIlO .",
         "HeroIcxO TrovAs Fin FlorO .",
         "HeroInO TrovAs Fin SkribIlO .",
-        "HeroInO TrovAs Fin FlorO .",
+        "Kaj HeroInO TrovAs Fin FlorO .",
         
         "HeroIcxO DonAs Al HeroInO Fin SkribIlO .",
         "HeroIcxO DonAs Al HeroInO Fin FlorO .",
         "HeroInO DonAs Al HeroIcxO Fin SkribIlO .",
-        "HeroInO DonAs Al HeroIcxO Fin FlorO ."
+        "Kaj HeroInO DonAs Al HeroIcxO Fin FlorO ."
         
         //"HeroInO TrovAs Fin NomO . Fin NomO DonAs HeroInO Al HeroIcxO . HeroIcxO TrovAs Fin SkribIlO Kaj HeroIcxO DonAs Al HeroInO Fin SkribIlO ."
     };

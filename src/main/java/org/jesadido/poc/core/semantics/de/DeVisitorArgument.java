@@ -10,6 +10,7 @@ package org.jesadido.poc.core.semantics.de;
 public class DeVisitorArgument {
     
     private De caseAttribute;
+    private int sentenceMeatIndex = -1;
     
     public De getCaseAttribute() {
         return this.caseAttribute;
@@ -17,5 +18,13 @@ public class DeVisitorArgument {
     
     public void setCaseAttribute(De caseAttribute) {
         this.caseAttribute = caseAttribute;
+    }
+    
+    public int getSentenceMeatIndex() {
+        return this.sentenceMeatIndex;
+    }
+    
+    public void setSentenceMeatIndex(int value) {
+        this.sentenceMeatIndex = value;
     }
 }
