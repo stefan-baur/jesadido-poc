@@ -24,12 +24,20 @@ import org.jesadido.poc.core.syntax.productions.sentence.VerbSelectionProduction
 import org.jesadido.poc.core.syntax.tokens.TokenCreator;
 import org.jesadido.poc.core.syntax.tree.SyntaxTreeFactory;
 
+/**
+ * This <code>GrammarFactory</code> class is a factory for relevant grammars of
+ * this language-framework.
+ */
 public final class GrammarFactory {
     
     private GrammarFactory() {
         // A private factory class constructor
     }
     
+    /**
+     * Creates an instance of the <b>Jesadido</b>-grammar.
+     * @return The grammar of Jesadido.
+     */
     public static Grammar createJesadidoGrammar() {
         return new Grammar("Jesadido", new TokenCreator(), new SyntaxTreeFactory())
                 
@@ -54,6 +62,10 @@ public final class GrammarFactory {
                 ;
     }
     
+    /**
+     * Plots the grammar of Jesadido to the logging-output.
+     * @param arguments Unused.
+     */
     public static void main(final String[] arguments) {
         Logger.getAnonymousLogger().info(GrammarFactory.createJesadidoGrammar().toString());
     }
