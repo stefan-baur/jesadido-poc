@@ -122,7 +122,8 @@ public class Grammar {
      * terminal-symbols and the used nonterminal-symbols are already provided by
      * this grammar. If there is already a production with the same
      * nonterminal-symbol registered, the new production will be added as an
-     * alternative production.
+     * alternative production. But ensure, that the first-sets of the involved
+     * productions are disjoint.
      * @param start <code>true</code> if the nonterminal-symbol of the new
      * production should by used as start-symbol for this grammar.
      * @param production The new production.
