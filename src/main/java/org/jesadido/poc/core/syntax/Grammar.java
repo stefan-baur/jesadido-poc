@@ -47,7 +47,7 @@ public class Grammar {
     
     /**
      * Constructor. Use the <code>GrammarFactory</code> for creating a new
-     * grammar-instance.
+     * grammar-instance!
      * @param name The name of the grammar.
      * @param tokenCreator The token-creator maps each element of the
      * token-stream to a token during the parsing process.

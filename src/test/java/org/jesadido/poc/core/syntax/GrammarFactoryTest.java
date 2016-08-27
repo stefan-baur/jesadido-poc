@@ -67,12 +67,12 @@ public class GrammarFactoryTest {
             Assert.assertEquals("{ Su ( TestIcxO ) } { Su ( TestInO ) } .", ConceptUtils.join(sentence.collectConcepts()));
         }
         {
-            final Node sentence = grammar.parse("{ Su ( TestO ) }", Nonterminal.SENTENCE_MEAT);
-            Assert.assertEquals("{ Su ( TestO ) }", ConceptUtils.join(sentence.collectConcepts()));
+            final Node sentenceMeat = grammar.parse("{ Su ( TestO ) }", Nonterminal.SENTENCE_MEAT);
+            Assert.assertEquals("{ Su ( TestO ) }", ConceptUtils.join(sentenceMeat.collectConcepts()));
         }
         {
-            final Node sentence = grammar.parse("Kaj", Nonterminal.SENTENCE_MEAT_CONJUNCTION);
-            Assert.assertEquals("Kaj", ConceptUtils.join(sentence.collectConcepts()));
+            final Node sentenceMeatConjunction = grammar.parse("Kaj", Nonterminal.SENTENCE_MEAT_CONJUNCTION);
+            Assert.assertEquals("Kaj", ConceptUtils.join(sentenceMeatConjunction.collectConcepts()));
         }
         {
             final Node sentence = grammar.parse("Se { Su ( TestO ) } { Dom ( HavAs ) } .", Nonterminal.SENTENCE);
@@ -107,8 +107,12 @@ public class GrammarFactoryTest {
             Assert.assertEquals("{ Su ( HeroIcxO ) Dom ( DonAs ) Al ( HeroInO ) Fin ( SkribIlO ) } .", ConceptUtils.join(sentence.collectConcepts()));
         }
         {
-            final Node sentence = grammar.parse("Al HeroO", Nonterminal.PART_AL);
-            Assert.assertEquals("Al ( HeroO )", ConceptUtils.join(sentence.collectConcepts()));
+            final Node partAl = grammar.parse("Al HeroO", Nonterminal.PART_AL);
+            Assert.assertEquals("Al ( HeroO )", ConceptUtils.join(partAl.collectConcepts()));
+        }
+        {
+            final Node sentenceSequence = grammar.parse("HeroIcxO TrovAs Fin SkribIlO . HeroIcxO DonAs Al HeroInO Fin SkribIlO .", Nonterminal.SENTENCE_SEQUENCE);
+            Assert.assertEquals("{ Su ( HeroIcxO ) Dom ( TrovAs ) Fin ( SkribIlO ) } . { Su ( HeroIcxO ) Dom ( DonAs ) Al ( HeroInO ) Fin ( SkribIlO ) } .", ConceptUtils.join(sentenceSequence.collectConcepts()));
         }
     }
 }
