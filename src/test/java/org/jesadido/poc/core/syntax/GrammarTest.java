@@ -8,96 +8,108 @@
 package org.jesadido.poc.core.syntax;
 
 import org.jesadido.poc.core.concepts.ConceptUtils;
+import org.jesadido.poc.core.scripting.Src;
+import org.jesadido.poc.core.syntax.productions.Production;
+import org.jesadido.poc.core.syntax.productions.sentence.SentenceMeatConjunctionProduction;
+import org.jesadido.poc.core.syntax.tokens.TokenCreator;
 import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.SyntaxTreeFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class GrammarTest {
     
     @Test
-    public void testCreateBitOfParsing() {
+    public void testGetName() {
+        Assert.assertEquals("NullGrammar", new Grammar("NullGrammar", null, null).getName());
+        Assert.assertEquals("NoProductionsGrammar", new Grammar("NoProductionsGrammar", new TokenCreator(), new SyntaxTreeFactory()).getName());
+    }
+    
+    @Test
+    public void testGetTokenCreator() {
+        Assert.assertNull(new Grammar("NullGrammar", null, null).getTokenCreator());
+        Assert.assertNotNull(new Grammar("NoProductionsGrammar", new TokenCreator(), new SyntaxTreeFactory()).getTokenCreator());
+    }
+    
+    @Test
+    public void testGetSyntaxTreeFactory() {
+        Assert.assertNull(new Grammar("NullGrammar", null, null).getSyntaxTreeFactory());
+        Assert.assertNotNull(new Grammar("NoProductionsGrammar", new TokenCreator(), new SyntaxTreeFactory()).getSyntaxTreeFactory());
+    }
+    
+    @Test
+    public void testGetNonterminalSymbols() {
+        Assert.assertTrue(new Grammar("NullGrammar", null, null).getNonterminalSymbols().isEmpty());
+        Assert.assertTrue(new Grammar("NoProductionsGrammar", new TokenCreator(), new SyntaxTreeFactory()).getNonterminalSymbols().isEmpty());
+        Assert.assertFalse(new Grammar("ConjunctionGrammar", new TokenCreator(), new SyntaxTreeFactory()).register(true, new SentenceMeatConjunctionProduction()).getNonterminalSymbols().isEmpty());
+    }
+    
+    @Test
+    public void testGetTerminalSymbols() {
+        Assert.assertTrue(new Grammar("NullGrammar", null, null).getTerminalSymbols().isEmpty());
+        Assert.assertTrue(new Grammar("NoProductionsGrammar", new TokenCreator(), new SyntaxTreeFactory()).getTerminalSymbols().isEmpty());
+        Assert.assertFalse(new Grammar("ConjunctionGrammar", new TokenCreator(), new SyntaxTreeFactory()).register(true, new SentenceMeatConjunctionProduction()).getTerminalSymbols().isEmpty());
+    }
+    
+    @Test
+    public void testGetProductionRules() {
+        Assert.assertTrue(new Grammar("NullGrammar", null, null).getProductionRules().isEmpty());
+        Assert.assertTrue(new Grammar("NoProductionsGrammar", new TokenCreator(), new SyntaxTreeFactory()).getProductionRules().isEmpty());
+        Assert.assertFalse(new Grammar("ConjunctionGrammar", new TokenCreator(), new SyntaxTreeFactory()).register(true, new SentenceMeatConjunctionProduction()).getProductionRules().isEmpty());
+    }
+    
+    @Test
+    public void testGetStartSymbol() {
+        Assert.assertNull(new Grammar("NullGrammar", null, null).getStartSymbol());
+        Assert.assertNull(new Grammar("NoProductionsGrammar", new TokenCreator(), new SyntaxTreeFactory()).getStartSymbol());
+        Assert.assertNull(new Grammar("ConjunctionGrammar", new TokenCreator(), new SyntaxTreeFactory()).register(false, new SentenceMeatConjunctionProduction()).getStartSymbol());
+        Assert.assertNotNull(new Grammar("ConjunctionGrammar", new TokenCreator(), new SyntaxTreeFactory()).register(true, new SentenceMeatConjunctionProduction()).getStartSymbol());
+        Assert.assertNotNull(new Grammar("Conjunction2Grammar", new TokenCreator(), new SyntaxTreeFactory()).register(true, new SentenceMeatConjunctionProduction()).register(false, new SentenceMeatConjunctionProduction()).getStartSymbol());
+    }
+    
+    @Test
+    public void testRegister() {
+        final Production conjunction = new SentenceMeatConjunctionProduction();
+        final Grammar conjunctionGrammar = new Grammar("ConjunctionGrammar", new TokenCreator(), new SyntaxTreeFactory()).register(false, conjunction);
+        Assert.assertNull(conjunctionGrammar.getStartSymbol());
+        Assert.assertFalse(conjunctionGrammar.getProductionRules().isEmpty());
+        Assert.assertEquals(conjunction, conjunctionGrammar.getProductionRules().get(conjunction.getNonterminalSymbol()));
+        conjunctionGrammar.register(true, conjunction);
+        Assert.assertEquals(conjunction.getNonterminalSymbol(), conjunctionGrammar.getStartSymbol());
+        Assert.assertNotEquals(conjunction, conjunctionGrammar.getProductionRules().get(conjunction.getNonterminalSymbol()));
+    }
+    
+    @Test
+    public void testParse() {
+        final Production conjunctionProduction = new SentenceMeatConjunctionProduction();
+        final Grammar grammar = new Grammar("ConjunctionGrammar", new TokenCreator(), new SyntaxTreeFactory()).register(false, conjunctionProduction);
         {
-            final Grammar grammar = GrammarFactory.createJesadidoGrammar();
-            {
-                Node sentence = grammar.parse("{ Su ( HeroO ) Dom ( HavAs ) Fin ( SkribIlO ) } .", Nonterminal.SENTENCE);
-                Assert.assertEquals("{ Su ( HeroO ) Dom ( HavAs ) Fin ( SkribIlO ) } .", ConceptUtils.join(sentence.collectConcepts()));
-            }
-            {
-                Node sentence = grammar.parse("{ Su ( HeroO ) } X.", Nonterminal.SENTENCE);
-                Assert.assertEquals("{ Su ( HeroO ) } X.", ConceptUtils.join(sentence.collectConcepts()));
-            }
-            {
-                Node sentence = grammar.parse("{ Su ( HeroO ) } K", Nonterminal.SENTENCE);
-                Assert.assertEquals("", ConceptUtils.join(sentence.collectConcepts()));
-            }
-            {
-                Node sentence = grammar.parse("\t{ Su ( HeroO ) }    .", Nonterminal.SENTENCE);
-                Assert.assertEquals("{ Su ( HeroO ) } .", ConceptUtils.join(sentence.collectConcepts()));
-            }
-            {
-                Node sentence = grammar.parse("{ Su ( HeroInO ) } Kaj { Su ( HeroIcxO ) } .", Nonterminal.SENTENCE);
-                Assert.assertEquals("{ Su ( HeroInO ) } Kaj { Su ( HeroIcxO ) } .", ConceptUtils.join(sentence.collectConcepts()));
-            }
-            {
-                Node sentence = grammar.parse("{ Su ( HeroO ) } Aux$, { Su ( HeroInO ) } Aux { Su ( HeroIcxO ) } .", Nonterminal.SENTENCE);
-                Assert.assertEquals("{ Su ( HeroO ) } Aux$, { Su ( HeroInO ) } Aux { Su ( HeroIcxO ) } .", ConceptUtils.join(sentence.collectConcepts()));
-            }
-            {
-                Node sentence = grammar.parse("{ Su ( HeroIcxO ) } Aux$, { Su ( HeroInO ) } Aux { .", Nonterminal.SENTENCE);
-                Assert.assertEquals("{ Su ( HeroIcxO ) } Aux$, { Su ( HeroInO ) } .", ConceptUtils.join(sentence.collectConcepts()));
-            }
-            {
-                Node sentence = grammar.parse("Kaj { Su ( HeroO ) } { Dom ( HavAs ) Su ( TestO ) } Aux { Su ( HeroInO ) } .", Nonterminal.SENTENCE);
-                Assert.assertEquals("Kaj { Su ( HeroO ) } { Dom ( HavAs ) Su ( TestO ) } Aux { Su ( HeroInO ) } .", ConceptUtils.join(sentence.collectConcepts()));
-            }
-            {
-                Node sentence = grammar.parse("{ Su ( TestIcxO ) } { Su ( TestInO ) } .", Nonterminal.SENTENCE);
-                Assert.assertEquals("{ Su ( TestIcxO ) } { Su ( TestInO ) } .", ConceptUtils.join(sentence.collectConcepts()));
-            }
-            {
-                Node sentence = grammar.parse("{ Su ( TestO ) }", Nonterminal.SENTENCE_MEAT);
-                Assert.assertEquals("{ Su ( TestO ) }", ConceptUtils.join(sentence.collectConcepts()));
-            }
-            {
-                Node sentence = grammar.parse("Kaj", Nonterminal.SENTENCE_MEAT_CONJUNCTION);
-                Assert.assertEquals("Kaj", ConceptUtils.join(sentence.collectConcepts()));
-            }
-            {
-                Node sentence = grammar.parse("Se { Su ( TestO ) } { Dom ( HavAs ) } .", Nonterminal.SENTENCE);
-                Assert.assertEquals("Se { Su ( TestO ) } { Dom ( HavAs ) } .", ConceptUtils.join(sentence.collectConcepts()));
-            }
-            {
-                Node sentence = grammar.parse("Aux Su ( HeroO ) Dom ( HavAs ) .", Nonterminal.SENTENCE);
-                Assert.assertEquals("Aux { Su ( HeroO ) Dom ( HavAs ) } .", ConceptUtils.join(sentence.collectConcepts()));
-            }
-            {
-                Node sentence = grammar.parse("Su ( HeroO ) Dom ( HavAs ) Fin ( SkribIlO ) .", Nonterminal.SENTENCE);
-                Assert.assertEquals("{ Su ( HeroO ) Dom ( HavAs ) Fin ( SkribIlO ) } .", ConceptUtils.join(sentence.collectConcepts()));
-            }
-            {
-                Node sentence = grammar.parse("Aux ( HeroO ) Dom ( HavAs ) .", Nonterminal.SENTENCE);
-                Assert.assertEquals("Aux { Su ( HeroO ) Dom ( HavAs ) } .", ConceptUtils.join(sentence.collectConcepts()));
-            }
-            {
-                Node sentence = grammar.parse("HeroO HavAs Fin SkribIlO .", Nonterminal.SENTENCE);
-                Assert.assertEquals("{ Su ( HeroO ) Dom ( HavAs ) Fin ( SkribIlO ) } .", ConceptUtils.join(sentence.collectConcepts()));
-            }
-            {
-                Node sentence = grammar.parse("Kaj Fin SkribIlO Dom HavAs HeroO .", Nonterminal.SENTENCE);
-                Assert.assertEquals("Kaj { Fin ( SkribIlO ) Dom ( HavAs ) Su ( HeroO ) } .", ConceptUtils.join(sentence.collectConcepts()));
-            }
-            {
-                Node sentence = grammar.parse("( HeroO ) Kaj Fin ( SkribIlO ) Dom ( HavAs ) ( HeroO ) .", Nonterminal.SENTENCE);
-                Assert.assertEquals("{ Su ( HeroO ) } Kaj { Fin ( SkribIlO ) Dom ( HavAs ) Su ( HeroO ) } .", ConceptUtils.join(sentence.collectConcepts()));
-            }
-            {
-                Node sentence = grammar.parse("HeroIcxO DonAs Al HeroInO Fin SkribIlO .", Nonterminal.SENTENCE);
-                Assert.assertEquals("{ Su ( HeroIcxO ) Dom ( DonAs ) Al ( HeroInO ) Fin ( SkribIlO ) } .", ConceptUtils.join(sentence.collectConcepts()));
-            }
-            {
-                Node sentence = grammar.parse("Al HeroO", Nonterminal.PART_AL);
-                Assert.assertEquals("Al ( HeroO )", ConceptUtils.join(sentence.collectConcepts()));
-            }
+            final Node node = grammar.parse("Kaj");
+            Assert.assertEquals("", ConceptUtils.join(node.collectConcepts()));
         }
+        {
+            final Node conjunction = grammar.parse("Kaj", conjunctionProduction.getNonterminalSymbol());
+            Assert.assertEquals("Kaj", ConceptUtils.join(conjunction.collectConcepts()));
+        }
+        {
+            final Node conjunction = grammar.parse("Aux$,", conjunctionProduction.getNonterminalSymbol());
+            Assert.assertEquals("Aux$,", ConceptUtils.join(conjunction.collectConcepts()));
+        }
+        grammar.register(true, conjunctionProduction);
+        {
+            final Node conjunction = grammar.parse("Kaj");
+            Assert.assertEquals("Kaj", ConceptUtils.join(conjunction.collectConcepts()));
+        }
+        {
+            final Node conjunction = grammar.parse("Aux$,");
+            Assert.assertEquals("Aux$,", ConceptUtils.join(conjunction.collectConcepts()));
+        }
+    }
+    
+    @Test
+    public void testToPlot() {
+        final Grammar grammar = new Grammar("PlotTest", new TokenCreator(), new SyntaxTreeFactory()).register(true, new SentenceMeatConjunctionProduction());
+        final Src plotSrc = grammar.toPlot();
+        Assert.assertEquals("Grammar PlotTest = (N, T, P, s) = (\r\n\t{\r\n\t\tsentence-meat-conjunction\r\n\t}, {\r\n\t\tSEPARATOR_SE, SEPARATOR_KAJ, SEPARATOR_AUX, SEPARATOR\r\n\t}, {\r\n\t\tsentence-meat-conjunction ::= SEPARATOR_SE | SEPARATOR_KAJ | SEPARATOR_AUX | SEPARATOR\r\n\t}, sentence-meat-conjunction\r\n)\r\n", plotSrc.toString());
     }
 }
