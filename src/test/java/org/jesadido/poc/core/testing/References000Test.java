@@ -15,7 +15,7 @@ import org.junit.Test;
 public class References000Test {
     
     @Test
-    public void testVerticalTranslation000Game20160828023552MESZ() {
+    public void testVerticalTranslation000Game20160828040213MESZ() {
         final String source = "HeroIcxO TrovAs Fin SkribIlO .";
         Assert.assertEquals("{ Su ( HeroIcxO ) Dom ( TrovAs ) Fin ( SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, References.GAME_BOOK).translate(source).getTranslation());
         Assert.assertEquals("Ein Held findet einen Stift.", TranslatorFactory.createTranslator(Language.DE, References.GAME_BOOK).translate(source).getTranslation());
@@ -26,7 +26,7 @@ public class References000Test {
     }
 
     @Test
-    public void testVerticalTranslation001Game20160828023552MESZ() {
+    public void testVerticalTranslation001Game20160828040213MESZ() {
         final String source = "HeroIcxO TrovAs Fin FlorO .";
         Assert.assertEquals("{ Su ( HeroIcxO ) Dom ( TrovAs ) Fin ( FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, References.GAME_BOOK).translate(source).getTranslation());
         Assert.assertEquals("Ein Held findet eine Blume.", TranslatorFactory.createTranslator(Language.DE, References.GAME_BOOK).translate(source).getTranslation());
@@ -37,7 +37,7 @@ public class References000Test {
     }
 
     @Test
-    public void testVerticalTranslation002Game20160828023552MESZ() {
+    public void testVerticalTranslation002Game20160828040213MESZ() {
         final String source = "HeroInO TrovAs Fin SkribIlO .";
         Assert.assertEquals("{ Su ( HeroInO ) Dom ( TrovAs ) Fin ( SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, References.GAME_BOOK).translate(source).getTranslation());
         Assert.assertEquals("Eine Heldin findet einen Stift.", TranslatorFactory.createTranslator(Language.DE, References.GAME_BOOK).translate(source).getTranslation());
@@ -48,7 +48,7 @@ public class References000Test {
     }
 
     @Test
-    public void testVerticalTranslation003Game20160828023552MESZ() {
+    public void testVerticalTranslation003Game20160828040213MESZ() {
         final String source = "Kaj HeroInO TrovAs Fin FlorO .";
         Assert.assertEquals("Kaj { Su ( HeroInO ) Dom ( TrovAs ) Fin ( FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, References.GAME_BOOK).translate(source).getTranslation());
         Assert.assertEquals("Und eine Heldin findet eine Blume.", TranslatorFactory.createTranslator(Language.DE, References.GAME_BOOK).translate(source).getTranslation());
@@ -59,7 +59,7 @@ public class References000Test {
     }
 
     @Test
-    public void testVerticalTranslation004Game20160828023552MESZ() {
+    public void testVerticalTranslation004Game20160828040213MESZ() {
         final String source = "HeroIcxO DonAs Al HeroInO Fin SkribIlO .";
         Assert.assertEquals("{ Su ( HeroIcxO ) Dom ( DonAs ) Al ( HeroInO ) Fin ( SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, References.GAME_BOOK).translate(source).getTranslation());
         Assert.assertEquals("Ein Held gibt einer Heldin einen Stift.", TranslatorFactory.createTranslator(Language.DE, References.GAME_BOOK).translate(source).getTranslation());
@@ -70,7 +70,7 @@ public class References000Test {
     }
 
     @Test
-    public void testVerticalTranslation005Game20160828023552MESZ() {
+    public void testVerticalTranslation005Game20160828040213MESZ() {
         final String source = "HeroIcxO DonAs Al HeroInO Fin FlorO .";
         Assert.assertEquals("{ Su ( HeroIcxO ) Dom ( DonAs ) Al ( HeroInO ) Fin ( FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, References.GAME_BOOK).translate(source).getTranslation());
         Assert.assertEquals("Ein Held gibt einer Heldin eine Blume.", TranslatorFactory.createTranslator(Language.DE, References.GAME_BOOK).translate(source).getTranslation());
@@ -81,7 +81,7 @@ public class References000Test {
     }
 
     @Test
-    public void testVerticalTranslation006Game20160828023552MESZ() {
+    public void testVerticalTranslation006Game20160828040213MESZ() {
         final String source = "HeroInO DonAs Al HeroIcxO Fin SkribIlO .";
         Assert.assertEquals("{ Su ( HeroInO ) Dom ( DonAs ) Al ( HeroIcxO ) Fin ( SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, References.GAME_BOOK).translate(source).getTranslation());
         Assert.assertEquals("Eine Heldin gibt einem Helden einen Stift.", TranslatorFactory.createTranslator(Language.DE, References.GAME_BOOK).translate(source).getTranslation());
@@ -92,7 +92,7 @@ public class References000Test {
     }
 
     @Test
-    public void testVerticalTranslation007Game20160828023552MESZ() {
+    public void testVerticalTranslation007Game20160828040213MESZ() {
         final String source = "Kaj HeroInO DonAs Al HeroIcxO Fin FlorO .";
         Assert.assertEquals("Kaj { Su ( HeroInO ) Dom ( DonAs ) Al ( HeroIcxO ) Fin ( FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, References.GAME_BOOK).translate(source).getTranslation());
         Assert.assertEquals("Und eine Heldin gibt einem Helden eine Blume.", TranslatorFactory.createTranslator(Language.DE, References.GAME_BOOK).translate(source).getTranslation());
@@ -103,7 +103,7 @@ public class References000Test {
     }
 
     @Test
-    public void testVerticalTranslation008Game20160828023552MESZ() {
+    public void testVerticalTranslation008Game20160828040213MESZ() {
         final String source = "HeroIcxO TrovAs Fin FlorO Kaj HeroInO TrovAs Fin SkribIlO .";
         Assert.assertEquals("{ Su ( HeroIcxO ) Dom ( TrovAs ) Fin ( FlorO ) } Kaj { Su ( HeroInO ) Dom ( TrovAs ) Fin ( SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, References.GAME_BOOK).translate(source).getTranslation());
         Assert.assertEquals("Ein Held findet eine Blume, und eine Heldin findet einen Stift.", TranslatorFactory.createTranslator(Language.DE, References.GAME_BOOK).translate(source).getTranslation());
@@ -114,7 +114,7 @@ public class References000Test {
     }
 
     @Test
-    public void testVerticalTranslation009Game20160828023552MESZ() {
+    public void testVerticalTranslation009Game20160828040213MESZ() {
         final String source = "HeroIcxO DonAs Al HeroInO Fin FlorO Kaj HeroInO DonAs Al HeroIcxO Fin SkribIlO .";
         Assert.assertEquals("{ Su ( HeroIcxO ) Dom ( DonAs ) Al ( HeroInO ) Fin ( FlorO ) } Kaj { Su ( HeroInO ) Dom ( DonAs ) Al ( HeroIcxO ) Fin ( SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, References.GAME_BOOK).translate(source).getTranslation());
         Assert.assertEquals("Ein Held gibt einer Heldin eine Blume, und eine Heldin gibt einem Helden einen Stift.", TranslatorFactory.createTranslator(Language.DE, References.GAME_BOOK).translate(source).getTranslation());
@@ -125,7 +125,7 @@ public class References000Test {
     }
 
     @Test
-    public void testVerticalTranslation010Game20160828023552MESZ() {
+    public void testVerticalTranslation010Game20160828040213MESZ() {
         final String source = "Fin SkribIlO Su HeroIcxO TrovAs . Fin NomO Al HeroIcxO DonAs HeroInO .";
         Assert.assertEquals("{ Fin ( SkribIlO ) Su ( HeroIcxO ) Dom ( TrovAs ) } . { Fin ( NomO ) Al ( HeroIcxO ) Dom ( DonAs ) Su ( HeroInO ) } .", TranslatorFactory.createTranslator(Language.JI, References.GAME_BOOK).translate(source).getTranslation());
         Assert.assertEquals("Einen Stift findet ein Held. Einen Namen gibt eine Heldin einem Helden.", TranslatorFactory.createTranslator(Language.DE, References.GAME_BOOK).translate(source).getTranslation());
@@ -133,5 +133,16 @@ public class References000Test {
         Assert.assertEquals("Skribilon heroo trovas. Nomon al heroo donas heroino.", TranslatorFactory.createTranslator(Language.EO, References.GAME_BOOK).translate(source).getTranslation());
         Assert.assertEquals("Un héroe encuentra un lapicero. Una heroína da a un héroe un nombre.", TranslatorFactory.createTranslator(Language.ES, References.GAME_BOOK).translate(source).getTranslation());
         Assert.assertEquals("Un héros trouve un crayon. Une héroïne donne à un héros un nom.", TranslatorFactory.createTranslator(Language.FR, References.GAME_BOOK).translate(source).getTranslation());
+    }
+
+    @Test
+    public void testVerticalTranslation011Game20160828040213MESZ() {
+        final String source = "Fin SkribIlO TrovAs Su HeroIcxO Kaj TrovAs Fin FlorO Su HeroInO Kaj Al HeroIcxO Fin FlorO DonAs HeroInO .";
+        Assert.assertEquals("{ Fin ( SkribIlO ) Dom ( TrovAs ) Su ( HeroIcxO ) } Kaj { Dom ( TrovAs ) Fin ( FlorO ) Su ( HeroInO ) } Kaj { Al ( HeroIcxO ) Fin ( FlorO ) Dom ( DonAs ) Su ( HeroInO ) } .", TranslatorFactory.createTranslator(Language.JI, References.GAME_BOOK).translate(source).getTranslation());
+        Assert.assertEquals("Einen Stift findet ein Held, und eine Blume findet eine Heldin, und eine Blume gibt eine Heldin einem Helden.", TranslatorFactory.createTranslator(Language.DE, References.GAME_BOOK).translate(source).getTranslation());
+        Assert.assertEquals("A hero finds a pen, and a heroine finds a flower, and a heroine gives a hero a flower.", TranslatorFactory.createTranslator(Language.EN, References.GAME_BOOK).translate(source).getTranslation());
+        Assert.assertEquals("Skribilon trovas heroo, kaj trovas floron heroino, kaj al heroo floron donas heroino.", TranslatorFactory.createTranslator(Language.EO, References.GAME_BOOK).translate(source).getTranslation());
+        Assert.assertEquals("Un héroe encuentra un lapicero, y una heroína encuentra una flor, y una heroína da a un héroe una flor.", TranslatorFactory.createTranslator(Language.ES, References.GAME_BOOK).translate(source).getTranslation());
+        Assert.assertEquals("Un héros trouve un crayon et une héroïne trouve une fleur et une héroïne donne à un héros une fleur.", TranslatorFactory.createTranslator(Language.FR, References.GAME_BOOK).translate(source).getTranslation());
     }
 }
