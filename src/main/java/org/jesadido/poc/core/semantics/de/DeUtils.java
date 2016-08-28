@@ -7,12 +7,18 @@
  */
 package org.jesadido.poc.core.semantics.de;
 
+import java.util.List;
 import org.jesadido.poc.core.semantics.TranslationTarget;
+import org.jesadido.poc.core.syntax.tree.Node;
 
 public final class DeUtils {
     
     private DeUtils() {
         // A private utility class constructor
+    }
+    
+    public static List<Node> orderParts(List<Node> parts) {
+        return parts;
     }
     
     public static String getIndefiniteArticleFeminine(final De caseAttribute) {

@@ -63,7 +63,7 @@ public class EsVisitor implements Visitor<TranslationResult, EsVisitorArgument> 
         if (node.hasConjunction()) {
             translatedParts.add(node.getConjunction().accept(this, argument).getTranslation());
         }
-        node.getParts().stream().forEach(part -> translatedParts.add(part.accept(this, argument).getTranslation()));
+        EsUtils.orderParts(node.getParts()).stream().forEach(part -> translatedParts.add(part.accept(this, argument).getTranslation()));
         return result.setTranslation(String.join(" ", translatedParts));
     }
     

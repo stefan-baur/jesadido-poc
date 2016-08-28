@@ -63,7 +63,7 @@ public class EoVisitor implements Visitor<TranslationResult, EoVisitorArgument> 
         if (node.hasConjunction()) {
             translatedParts.add(node.getConjunction().accept(this, argument).getTranslation());
         }
-        node.getParts().stream().forEach(part -> translatedParts.add(part.accept(this, argument).getTranslation()));
+        EoUtils.orderParts(node.getParts()).stream().forEach(part -> translatedParts.add(part.accept(this, argument).getTranslation()));
         return result.setTranslation(String.join(" ", translatedParts));
     }
     
