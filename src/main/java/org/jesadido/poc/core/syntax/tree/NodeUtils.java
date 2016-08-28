@@ -16,6 +16,15 @@ public final class NodeUtils {
         // A private utility class constructor.
     }
     
+    public static Node getFirstNode(final List<Node> nodes, final Class clazz) {
+        for (final Node node : nodes) {
+            if (node.objectOf(clazz)) {
+                return node;
+            }
+        }
+        return null;
+    }
+    
     public static List<Node> rearrange(final List<Node> nodes, final Class ... classSequence) {
         final List<Node> result = new LinkedList<>();
         final List<Node> nodeList = new LinkedList<>(nodes);
@@ -23,16 +32,10 @@ public final class NodeUtils {
             if (clazz == null) {
                 continue;
             }
-            Node foundNode = null;
-            for (final Node node : nodeList) {
-                if (node.objectOf(clazz)) {
-                    foundNode = node;
-                    break;
-                }
-            }
-            if (foundNode != null) {
-                result.add(foundNode);
-                nodeList.remove(foundNode);
+            final Node firstNode = getFirstNode(nodeList, clazz);
+            if (firstNode != null) {
+                result.add(firstNode);
+                nodeList.remove(firstNode);
             }
         }
         return result;
