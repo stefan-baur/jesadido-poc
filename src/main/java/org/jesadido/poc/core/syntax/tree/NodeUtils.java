@@ -16,26 +16,32 @@ public final class NodeUtils {
         // A private utility class constructor.
     }
     
-    public static Node getFirstNode(final List<Node> nodes, final Class clazz) {
+    public static List<Node> find(final List<Node> nodes, final Class filter) {
+        final List<Node> result = new LinkedList<>();
+        nodes.stream().filter(node -> node.objectOf(filter)).forEach(result::add);
+        return result;
+    }
+    
+    public static Node findFirst(final List<Node> nodes, final Class filter) {
         for (final Node node : nodes) {
-            if (node.objectOf(clazz)) {
+            if (node.objectOf(filter)) {
                 return node;
             }
         }
         return null;
     }
     
-    public static List<Node> rearrange(final List<Node> nodes, final Class ... classSequence) {
+    public static List<Node> rearrange(final List<Node> nodes, final Class ... filterSequence) {
         final List<Node> result = new LinkedList<>();
         final List<Node> nodeList = new LinkedList<>(nodes);
-        for (final Class clazz : classSequence) {
-            if (clazz == null) {
+        for (final Class filter : filterSequence) {
+            if (filter == null) {
                 continue;
             }
-            final Node firstNode = getFirstNode(nodeList, clazz);
-            if (firstNode != null) {
-                result.add(firstNode);
-                nodeList.remove(firstNode);
+            final Node firstOccurrence = findFirst(nodeList, filter);
+            if (firstOccurrence != null) {
+                result.add(firstOccurrence);
+                nodeList.remove(firstOccurrence);
             }
         }
         return result;
