@@ -24,7 +24,7 @@ public final class DeUtils {
     
     public static List<Node> orderParts(final List<Node> parts) {
         boolean fin = false;
-        for (Node part : parts) {
+        for (final Node part : parts) {
             if (part.objectOf(PartSu.class)) {
                 break;
             } else if (part.objectOf(PartFin.class)) {

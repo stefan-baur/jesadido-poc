@@ -17,9 +17,12 @@ public final class NodeUtils {
     }
     
     public static List<Node> rearrange(final List<Node> nodes, final Class ... classSequence) {
-        final List<Node> nodeList = new LinkedList<>(nodes);
         final List<Node> result = new LinkedList<>();
+        final List<Node> nodeList = new LinkedList<>(nodes);
         for (final Class clazz : classSequence) {
+            if (clazz == null) {
+                continue;
+            }
             Node foundNode = null;
             for (final Node node : nodeList) {
                 if (node.objectOf(clazz)) {

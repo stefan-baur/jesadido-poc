@@ -21,8 +21,7 @@ public final class Playground {
     public static void nextTranslations() {
         for (final Language language : Language.values()) {
             final Translator translator = TranslatorFactory.createTranslator(language, References.GAME_BOOK);
-            // Kaj HeroInO TrovAs Fin NomO . Fin NomO DonAs HeroInO Al HeroIcxO . HeroIcxO TrovAs Fin SkribIlO Kaj HeroIcxO DonAs Al HeroInO Fin SkribIlO .
-            final String translation = translator.translate("Fin SkribIlO Su HeroIcxO TrovAs . Fin NomO Al HeroIcxO DonAs HeroInO .").getTranslation();
+            final String translation = translator.translate("Fin NomO Al HeroIcxO DonAs HeroInO .").getTranslation();
             Logger.getAnonymousLogger().info(translation);
         }
     }
