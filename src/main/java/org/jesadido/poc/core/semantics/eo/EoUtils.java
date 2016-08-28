@@ -17,7 +17,7 @@ public final class EoUtils {
         // A private utility class constructor
     }
     
-    public static List<Node> orderParts(List<Node> parts) {
+    public static List<Node> rearrangeParts(List<Node> parts) {
         return parts;
     }
     

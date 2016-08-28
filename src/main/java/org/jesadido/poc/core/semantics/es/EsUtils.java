@@ -22,7 +22,7 @@ public final class EsUtils {
         // A private utility class constructor
     }
     
-    public static List<Node> orderParts(final List<Node> parts) {
+    public static List<Node> rearrangeParts(final List<Node> parts) {
         return NodeUtils.rearrange(parts, PartSu.class, PartDom.class, PartAl.class, PartFin.class);
     }
     

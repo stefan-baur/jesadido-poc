@@ -63,7 +63,7 @@ public class FrVisitor implements Visitor<TranslationResult, FrVisitorArgument> 
         if (node.hasConjunction()) {
             translatedParts.add(node.getConjunction().accept(this, argument).getTranslation());
         }
-        FrUtils.orderParts(node.getParts()).stream().forEach(part -> translatedParts.add(part.accept(this, argument).getTranslation()));
+        FrUtils.rearrangeParts(node.getParts()).stream().forEach(part -> translatedParts.add(part.accept(this, argument).getTranslation()));
         return result.setTranslation(String.join(" ", translatedParts));
     }
     

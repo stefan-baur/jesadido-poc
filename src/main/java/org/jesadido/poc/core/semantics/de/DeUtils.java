@@ -22,7 +22,7 @@ public final class DeUtils {
         // A private utility class constructor
     }
     
-    public static List<Node> orderParts(final List<Node> parts) {
+    public static List<Node> rearrangeParts(final List<Node> parts) {
         boolean fin = false;
         for (final Node part : parts) {
             if (part.objectOf(PartSu.class)) {

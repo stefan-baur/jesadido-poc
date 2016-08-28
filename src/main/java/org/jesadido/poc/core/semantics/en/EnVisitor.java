@@ -63,7 +63,7 @@ public class EnVisitor implements Visitor<TranslationResult, EnVisitorArgument> 
         if (node.hasConjunction()) {
             translatedParts.add(node.getConjunction().accept(this, argument).getTranslation());
         }
-        EnUtils.orderParts(node.getParts()).stream().forEach(part -> translatedParts.add(part.accept(this, argument).getTranslation()));
+        EnUtils.rearrangeParts(node.getParts()).stream().forEach(part -> translatedParts.add(part.accept(this, argument).getTranslation()));
         return result.setTranslation(String.join(" ", translatedParts));
     }
     
