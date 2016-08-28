@@ -97,9 +97,10 @@ public final class References {
         "HeroIcxO DonAs Al HeroInO Fin SkribIlO .",
         "HeroIcxO DonAs Al HeroInO Fin FlorO .",
         "HeroInO DonAs Al HeroIcxO Fin SkribIlO .",
-        "Kaj HeroInO DonAs Al HeroIcxO Fin FlorO ."
+        "Kaj HeroInO DonAs Al HeroIcxO Fin FlorO .",
         
-        //"HeroInO TrovAs Fin NomO . Fin NomO DonAs HeroInO Al HeroIcxO . HeroIcxO TrovAs Fin SkribIlO Kaj HeroIcxO DonAs Al HeroInO Fin SkribIlO ."
+        "HeroIcxO TrovAs Fin FlorO Kaj HeroInO TrovAs Fin SkribIlO .",
+        "HeroIcxO DonAs Al HeroInO Fin FlorO Kaj HeroInO DonAs Al HeroIcxO Fin SkribIlO ."
     };
     
     private References() {
