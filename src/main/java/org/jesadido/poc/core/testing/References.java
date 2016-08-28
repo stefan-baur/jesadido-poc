@@ -30,6 +30,7 @@ public final class References {
     public static final ConceptBook GAME_BOOK = new ConceptBook()
             
             .add(new ConceptBookEntry("HeroIcxO")
+                    // Substantive
                     .addDefaultTargets(new DeTarget("Held", De.MASCULINE, De.NOMINATIVE), new DeTarget("Helden", De.MASCULINE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE))
                     .addDefaultTargets(new EnTarget("hero"))
                     .addDefaultTargets(new EoTarget("heroo"))
@@ -61,6 +62,7 @@ public final class References {
                     .addDefaultTargets(new FrTarget("donne", Fr.MI, Fr.GXI), new FrTarget("donnes", Fr.BI), new FrTarget("donnons", Fr.NI), new FrTarget("donnez", Fr.VI), new FrTarget("donnent", Fr.ILI))
             )
             .add(new ConceptBookEntry("SkribIlO")
+                    // Substantive
                     .addDefaultTargets(new DeTarget("Stift", De.MASCULINE, De.NOMINATIVE, De.DATIVE, De.ACCUSATIVE), new DeTarget("Stifts", De.MASCULINE, De.GENITIVE))
                     .addDefaultTargets(new EnTarget("pen"))
                     .addDefaultTargets(new EoTarget("skribilo"))
@@ -68,6 +70,7 @@ public final class References {
                     .addDefaultTargets(new FrTarget("crayon", Fr.MASCULINE))
             )
             .add(new ConceptBookEntry("FlorO")
+                    // Substantive
                     .addDefaultTargets(new DeTarget("Blume", De.FEMININE, De.NOMINATIVE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE))
                     .addDefaultTargets(new EnTarget("flower"))
                     .addDefaultTargets(new EoTarget("floro"))
@@ -75,6 +78,7 @@ public final class References {
                     .addDefaultTargets(new FrTarget("fleur", Fr.FEMININE))
             )
             .add(new ConceptBookEntry("NomO")
+                    // Substantive
                     .addDefaultTargets(new DeTarget("Name", De.MASCULINE, De.NOMINATIVE), new DeTarget("Namens", De.MASCULINE, De.GENITIVE), new DeTarget("Namen", De.MASCULINE, De.DATIVE, De.ACCUSATIVE))
                     .addDefaultTargets(new EnTarget("name"))
                     .addDefaultTargets(new EoTarget("nomo"))
@@ -82,6 +86,7 @@ public final class References {
                     .addDefaultTargets(new FrTarget("nom", Fr.MASCULINE))
             )
             .add(new ConceptBookEntry("Kaj")
+                    // Linking word
                     .addDefaultTargets(new DeTarget("und"))
                     .addDefaultTargets(new EnTarget("and"))
                     .addDefaultTargets(new EoTarget("kaj"))
