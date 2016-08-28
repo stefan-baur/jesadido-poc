@@ -32,6 +32,10 @@ public abstract class Node implements Visitable {
         this.parent = node;
     }
     
+    public boolean objectOf(final Class clazz) {
+        return this.getClass() == clazz;
+    }
+    
     public List<Concept> collectConcepts() {
         List<Concept> result = new LinkedList<>();
         this.collectTerminals().stream().filter(terminal -> terminal.hasConcept()).forEach(terminal -> result.add(terminal.getConcept()));

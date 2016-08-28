@@ -10,6 +10,11 @@ package org.jesadido.poc.core.semantics.fr;
 import java.util.List;
 import org.jesadido.poc.core.semantics.TranslationTarget;
 import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.NodeUtils;
+import org.jesadido.poc.core.syntax.tree.sentence.PartAl;
+import org.jesadido.poc.core.syntax.tree.sentence.PartDom;
+import org.jesadido.poc.core.syntax.tree.sentence.PartFin;
+import org.jesadido.poc.core.syntax.tree.sentence.PartSu;
 
 public final class FrUtils {
     
@@ -17,8 +22,8 @@ public final class FrUtils {
         // A private utility class constructor
     }
     
-    public static List<Node> orderParts(List<Node> parts) {
-        return parts;
+    public static List<Node> orderParts(final List<Node> parts) {
+        return NodeUtils.rearrange(parts, PartSu.class, PartDom.class, PartAl.class, PartFin.class);
     }
     
     public static String getIndefiniteArticle(final TranslationTarget substantiveTarget) {

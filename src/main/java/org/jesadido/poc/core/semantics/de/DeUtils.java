@@ -10,6 +10,11 @@ package org.jesadido.poc.core.semantics.de;
 import java.util.List;
 import org.jesadido.poc.core.semantics.TranslationTarget;
 import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.NodeUtils;
+import org.jesadido.poc.core.syntax.tree.sentence.PartAl;
+import org.jesadido.poc.core.syntax.tree.sentence.PartDom;
+import org.jesadido.poc.core.syntax.tree.sentence.PartFin;
+import org.jesadido.poc.core.syntax.tree.sentence.PartSu;
 
 public final class DeUtils {
     
@@ -17,8 +22,20 @@ public final class DeUtils {
         // A private utility class constructor
     }
     
-    public static List<Node> orderParts(List<Node> parts) {
-        return parts;
+    public static List<Node> orderParts(final List<Node> parts) {
+        boolean fin = false;
+        for (Node part : parts) {
+            if (part.objectOf(PartSu.class)) {
+                break;
+            } else if (part.objectOf(PartFin.class)) {
+                fin = true;
+            }
+        }
+        if (fin) {
+            return NodeUtils.rearrange(parts, PartFin.class, PartDom.class, PartSu.class, PartAl.class);
+        } else {
+            return NodeUtils.rearrange(parts, PartSu.class, PartDom.class, PartAl.class, PartFin.class);
+        }
     }
     
     public static String getIndefiniteArticleFeminine(final De caseAttribute) {

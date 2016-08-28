@@ -37,6 +37,7 @@ public final class References {
                     .addDefaultTargets(new FrTarget("héros", Fr.MASCULINE))
             )
             .add(new ConceptBookEntry("HeroInO")
+                    // Substantive
                     .addDefaultTargets(new DeTarget("Heldin", De.FEMININE, De.NOMINATIVE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE))
                     .addDefaultTargets(new EnTarget("heroine"))
                     .addDefaultTargets(new EoTarget("heroino"))
@@ -44,6 +45,7 @@ public final class References {
                     .addDefaultTargets(new FrTarget("héroïne", Fr.FEMININE))
             )
             .add(new ConceptBookEntry("TrovAs")
+                    // Verb: Su Dom Fin
                     .addDefaultTargets(new DeTarget("finde", De.MI), new DeTarget("findest", De.BI), new DeTarget("findet", De.GXI, De.VI), new DeTarget("finden", De.NI, De.ILI))
                     .addDefaultTargets(new EnTarget("find", En.MI, En.BI, En.NI, En.VI, En.ILI), new EnTarget("finds", En.GXI))
                     .addDefaultTargets(new EoTarget("trovas"))
@@ -51,6 +53,7 @@ public final class References {
                     .addDefaultTargets(new FrTarget("trouve", Fr.MI, Fr.GXI), new FrTarget("trouves", Fr.BI), new FrTarget("trouvons", Fr.NI), new FrTarget("trouvez", Fr.VI), new FrTarget("trouvent", Fr.ILI))
             )
             .add(new ConceptBookEntry("DonAs")
+                    // Verb: Su Dom Al Fin
                     .addDefaultTargets(new DeTarget("gebe", De.MI), new DeTarget("gibst", De.BI), new DeTarget("gibt", De.GXI), new DeTarget("geben", De.NI, De.ILI), new DeTarget("gebt", De.VI))
                     .addDefaultTargets(new EnTarget("give", En.MI, En.BI, En.NI, En.VI, En.ILI), new EnTarget("gives", En.GXI))
                     .addDefaultTargets(new EoTarget("donas"))
@@ -100,7 +103,9 @@ public final class References {
         "Kaj HeroInO DonAs Al HeroIcxO Fin FlorO .",
         
         "HeroIcxO TrovAs Fin FlorO Kaj HeroInO TrovAs Fin SkribIlO .",
-        "HeroIcxO DonAs Al HeroInO Fin FlorO Kaj HeroInO DonAs Al HeroIcxO Fin SkribIlO ."
+        "HeroIcxO DonAs Al HeroInO Fin FlorO Kaj HeroInO DonAs Al HeroIcxO Fin SkribIlO .",
+        
+        "Fin SkribIlO Su HeroIcxO TrovAs . Fin NomO Al HeroIcxO DonAs HeroInO ."
     };
     
     private References() {
