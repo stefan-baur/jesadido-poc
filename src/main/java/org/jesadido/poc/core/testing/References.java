@@ -45,6 +45,14 @@ public final class References {
                     .addDefaultTargets(new EsTarget("heroína", Es.FEMININE))
                     .addDefaultTargets(new FrTarget("héroïne", Fr.FEMININE))
             )
+            .add(new ConceptBookEntry("HavAs")
+                    // Verb: Su Dom Fin
+                    .addDefaultTargets(new DeTarget("habe", De.MI), new DeTarget("hast", De.BI), new DeTarget("hat", De.GXI), new DeTarget("haben", De.NI, De.ILI), new DeTarget("habt", De.VI))
+                    .addDefaultTargets(new EnTarget("have", En.MI, En.BI, En.NI, En.VI, En.ILI), new EnTarget("has", En.GXI))
+                    .addDefaultTargets(new EoTarget("havas"))
+                    .addDefaultTargets(new EsTarget("tengo", Es.MI), new EsTarget("tienes", Es.BI), new EsTarget("tiene", Es.GXI), new EsTarget("tenemos", Es.NI), new EsTarget("tenéis", Es.VI), new EsTarget("tienen", Es.ILI))
+                    .addDefaultTargets(new FrTarget("ai", Fr.MI), new FrTarget("as", Fr.BI), new FrTarget("a", Fr.GXI), new FrTarget("avons", Fr.NI), new FrTarget("avez", Fr.VI), new FrTarget("ont", Fr.ILI))
+            )
             .add(new ConceptBookEntry("TrovAs")
                     // Verb: Su Dom Fin
                     .addDefaultTargets(new DeTarget("finde", De.MI), new DeTarget("findest", De.BI), new DeTarget("findet", De.GXI, De.VI), new DeTarget("finden", De.NI, De.ILI))
@@ -111,7 +119,8 @@ public final class References {
         "HeroIcxO DonAs Al HeroInO Fin FlorO Kaj HeroInO DonAs Al HeroIcxO Fin SkribIlO .",
         
         "Fin SkribIlO Su HeroIcxO TrovAs . Fin NomO Al HeroIcxO DonAs HeroInO .",
-        "Fin SkribIlO TrovAs Su HeroIcxO Kaj TrovAs Fin FlorO Su HeroInO Kaj Al HeroIcxO Fin FlorO DonAs HeroInO ."
+        "Fin SkribIlO TrovAs Su HeroIcxO Kaj TrovAs Fin FlorO Su HeroInO Kaj Al HeroIcxO Fin FlorO DonAs HeroInO .",
+        "HeroIcxO TrovAs Fin SkribIlO . HeroIcxO HavAs Fin SkribIlO ."
     };
     
     private References() {
