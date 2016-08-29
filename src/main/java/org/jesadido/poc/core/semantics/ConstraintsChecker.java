@@ -28,6 +28,10 @@ import org.jesadido.poc.core.syntax.tree.sentence.VerbalSelection;
 
 public class ConstraintsChecker implements Visitor<List<String>, ConceptBook>{
 
+    public static List<String> check(final Node node, final ConceptBook conceptBook) {
+        return node.accept(new ConstraintsChecker(), conceptBook);
+    }
+    
     @Override
     public List<String> visit(final SentenceSequence node, final ConceptBook conceptBook) {
         final List<String> result = new LinkedList<>();

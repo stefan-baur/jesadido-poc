@@ -22,7 +22,7 @@ public final class Playground {
     public static void nextTranslations() {
         for (final Language language : Language.values()) {
             final Translator translator = TranslatorFactory.createTranslator(language, References.GAME_BOOK);
-            final TranslationResult translationResult = translator.translate("HeroIcxO HavAs Fin SkribIlO . HeroIcxO HavAs Fin SkribIlO Al HeroInO .");
+            final TranslationResult translationResult = translator.translate("HeroIcxO HavAs . HeroIcxO HavAs Fin SkribIlO Al HeroInO .");
             Logger.getAnonymousLogger().info(translationResult.getTranslation());
             Logger.getAnonymousLogger().info(translationResult.getConstraintsTroubles().toString());
         }

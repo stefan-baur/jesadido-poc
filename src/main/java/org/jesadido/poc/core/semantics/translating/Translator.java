@@ -35,7 +35,7 @@ public abstract class Translator {
         final TranslationResult result = new TranslationResult(node);
         result.addParsingTroubles(node.collectTroubles());
         if (!result.hasParsingTroubles()) {
-            result.addConstraintsTroubles(node.accept(new ConstraintsChecker(), this.getConceptBook()));
+            result.addConstraintsTroubles(ConstraintsChecker.check(node, this.getConceptBook()));
             if (!result.hasConstraintsTroubles()) {
                 return this.translate(node);
             }
