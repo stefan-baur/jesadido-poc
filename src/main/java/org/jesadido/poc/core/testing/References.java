@@ -14,16 +14,16 @@ import org.jesadido.poc.core.Language;
 import org.jesadido.poc.core.scripting.Src;
 import org.jesadido.poc.core.semantics.ConceptBook;
 import org.jesadido.poc.core.semantics.ConceptBookEntry;
-import org.jesadido.poc.core.semantics.TranslatorFactory;
-import org.jesadido.poc.core.semantics.de.De;
-import org.jesadido.poc.core.semantics.de.DeTarget;
-import org.jesadido.poc.core.semantics.en.En;
-import org.jesadido.poc.core.semantics.en.EnTarget;
-import org.jesadido.poc.core.semantics.eo.EoTarget;
-import org.jesadido.poc.core.semantics.es.Es;
-import org.jesadido.poc.core.semantics.es.EsTarget;
-import org.jesadido.poc.core.semantics.fr.Fr;
-import org.jesadido.poc.core.semantics.fr.FrTarget;
+import org.jesadido.poc.core.semantics.translating.TranslatorFactory;
+import org.jesadido.poc.core.semantics.translating.de.De;
+import org.jesadido.poc.core.semantics.translating.de.DeTarget;
+import org.jesadido.poc.core.semantics.translating.en.En;
+import org.jesadido.poc.core.semantics.translating.en.EnTarget;
+import org.jesadido.poc.core.semantics.translating.eo.EoTarget;
+import org.jesadido.poc.core.semantics.translating.es.Es;
+import org.jesadido.poc.core.semantics.translating.es.EsTarget;
+import org.jesadido.poc.core.semantics.translating.fr.Fr;
+import org.jesadido.poc.core.semantics.translating.fr.FrTarget;
 
 public final class References {
     

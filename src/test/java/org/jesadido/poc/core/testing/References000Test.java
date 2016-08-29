@@ -8,7 +8,7 @@
 package org.jesadido.poc.core.testing;
 
 import org.jesadido.poc.core.Language;
-import org.jesadido.poc.core.semantics.TranslatorFactory;
+import org.jesadido.poc.core.semantics.translating.TranslatorFactory;
 import org.junit.Assert;
 import org.junit.Test;
 

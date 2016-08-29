@@ -7,6 +7,7 @@
  */
 package org.jesadido.poc.core.semantics;
 
+import org.jesadido.poc.core.semantics.translating.TranslationTarget;
 import java.util.EnumMap;
 import java.util.LinkedList;
 import java.util.List;
