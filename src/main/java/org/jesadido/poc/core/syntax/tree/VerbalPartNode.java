@@ -7,18 +7,12 @@
  */
 package org.jesadido.poc.core.syntax.tree;
 
-public abstract class VerbalPartNode extends ClapsedNode {
+public abstract class VerbalPartNode extends PartNode {
     
-    private final Terminal preposition;
     private Node verbalSelection;
     
     public VerbalPartNode(final Terminal preposition, final Terminal opener, final Terminal closer) {
-        super(opener, closer);
-        this.preposition = preposition;
-    }
-    
-    public Terminal getPreposition() {
-        return this.preposition;
+        super(preposition, opener, closer);
     }
     
     public boolean hasVerbalSelection() {
@@ -35,5 +29,16 @@ public abstract class VerbalPartNode extends ClapsedNode {
             this.verbalSelection.setParent(this);
         }
         return this;
+    }
+    
+    
+    @Override
+    public boolean hasChild() {
+        return this.hasVerbalSelection();
+    }
+    
+    @Override
+    public Node getChild() {
+        return this.getVerbalSelection();
     }
 }

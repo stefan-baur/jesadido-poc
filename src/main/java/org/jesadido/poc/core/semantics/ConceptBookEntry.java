@@ -41,6 +41,12 @@ public class ConceptBookEntry {
         return this.requiredParts;
     }
     
+    public List<Class> getRequiredPartClasses() {
+        final List<Class> result = new LinkedList<>();
+        this.requiredParts.stream().forEach(part -> result.add(part.getPartClass()));
+        return result;
+    }
+    
     public ConceptBookEntry addExcludedParts(final Part ... parts) {
         for (final Part part : parts) {
             this.excludedParts.remove(part);
@@ -51,6 +57,12 @@ public class ConceptBookEntry {
     
     public List<Part> getExcludedParts() {
         return this.excludedParts;
+    }
+    
+    public List<Class> getExcludedPartClasses() {
+        final List<Class> result = new LinkedList<>();
+        this.excludedParts.stream().forEach(part -> result.add(part.getPartClass()));
+        return result;
     }
     
     public ConceptBookEntry addDefaultTargets(final TranslationTarget ... targets) {

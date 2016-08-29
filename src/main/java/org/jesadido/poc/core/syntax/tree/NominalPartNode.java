@@ -7,18 +7,12 @@
  */
 package org.jesadido.poc.core.syntax.tree;
 
-public abstract class NominalPartNode extends ClapsedNode {
+public abstract class NominalPartNode extends PartNode {
     
-    private final Terminal preposition;
     private Node nominalSelection;
     
     public NominalPartNode(final Terminal preposition, final Terminal opener, final Terminal closer) {
-        super(opener, closer);
-        this.preposition = preposition;
-    }
-    
-    public Terminal getPreposition() {
-        return this.preposition;
+        super(preposition, opener, closer);
     }
     
     public boolean hasNominalSelection() {
@@ -35,5 +29,15 @@ public abstract class NominalPartNode extends ClapsedNode {
             this.nominalSelection.setParent(this);
         }
         return this;
+    }
+    
+    @Override
+    public boolean hasChild() {
+        return this.hasNominalSelection();
+    }
+    
+    @Override
+    public Node getChild() {
+        return this.getNominalSelection();
     }
 }

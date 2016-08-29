@@ -9,6 +9,7 @@ package org.jesadido.poc.core.testing;
 
 import java.util.logging.Logger;
 import org.jesadido.poc.core.Language;
+import org.jesadido.poc.core.semantics.translating.TranslationResult;
 import org.jesadido.poc.core.semantics.translating.Translator;
 import org.jesadido.poc.core.semantics.translating.TranslatorFactory;
 
@@ -21,8 +22,9 @@ public final class Playground {
     public static void nextTranslations() {
         for (final Language language : Language.values()) {
             final Translator translator = TranslatorFactory.createTranslator(language, References.GAME_BOOK);
-            final String translation = translator.translate("HeroIcxO HavAs Fin SkribIlO Al HeroInO .").getTranslation();
-            Logger.getAnonymousLogger().info(translation);
+            final TranslationResult translationResult = translator.translate("HeroIcxO HavAs Fin SkribIlO . HeroIcxO HavAs Fin SkribIlO Al HeroInO .");
+            Logger.getAnonymousLogger().info(translationResult.getTranslation());
+            Logger.getAnonymousLogger().info(translationResult.getConstraintsTroubles().toString());
         }
     }
     

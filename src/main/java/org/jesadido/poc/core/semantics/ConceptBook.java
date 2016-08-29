@@ -28,9 +28,12 @@ public class ConceptBook {
     }
     
     public ConceptBookEntry get(final Concept concept) {
-        if (this.conceptBookMap.containsKey(concept.getFullPhrase())) {
-            return this.conceptBookMap.get(concept.getFullPhrase());
+        if (concept != null) {
+            if (this.conceptBookMap.containsKey(concept.getFullPhrase())) {
+                return this.conceptBookMap.get(concept.getFullPhrase());
+            }
+            return new ConceptBookEntry(concept.getFullPhrase());
         }
-        return new ConceptBookEntry(concept.getFullPhrase());
+        throw new IllegalArgumentException("The concept is null.");
     }
 }

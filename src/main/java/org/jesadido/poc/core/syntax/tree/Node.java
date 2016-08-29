@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.scripting.Src;
+import org.jesadido.poc.core.syntax.tree.visitors.MasterTerminalSelector;
 import org.jesadido.poc.core.syntax.tree.visitors.Plotter;
 import org.jesadido.poc.core.syntax.tree.visitors.PrettyPrinter;
 import org.jesadido.poc.core.syntax.tree.visitors.TerminalCollector;
@@ -36,25 +37,34 @@ public abstract class Node implements Visitable {
         return this.getClass() == clazz;
     }
     
-    public List<Concept> collectConcepts() {
+    public final List<Concept> collectConcepts() {
         List<Concept> result = new LinkedList<>();
         this.collectTerminals().stream().filter(terminal -> terminal.hasConcept()).forEach(terminal -> result.add(terminal.getConcept()));
         return result;
     }
     
-    public List<Terminal> collectTerminals() {
+    public final List<Terminal> collectTerminals() {
         return TerminalCollector.collect(this);
     }
     
-    public List<TroubleNode> collectTroubles() {
+    public final Concept selectMasterConcept() {
+        final Terminal result = this.selectMasterTerminal();
+        return result != null && result.hasConcept() ? result.getConcept() : null;
+    }
+    
+    public final Terminal selectMasterTerminal() {
+        return MasterTerminalSelector.select(this);
+    }
+    
+    public final List<TroubleNode> collectTroubles() {
         return TroubleCollector.collect(this);
     }
     
-    public Src plot() {
+    public final Src plot() {
         return Plotter.plot(this);
     }
     
-    public Src prettyPrint() {
+    public final Src prettyPrint() {
         return PrettyPrinter.print(this);
     }
 }

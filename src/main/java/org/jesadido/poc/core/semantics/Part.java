@@ -7,10 +7,25 @@
  */
 package org.jesadido.poc.core.semantics;
 
+import org.jesadido.poc.core.syntax.tree.sentence.PartAl;
+import org.jesadido.poc.core.syntax.tree.sentence.PartDom;
+import org.jesadido.poc.core.syntax.tree.sentence.PartFin;
+import org.jesadido.poc.core.syntax.tree.sentence.PartSu;
+
 public enum Part {
     
-    SU,
-    DOM,
-    AL,
-    FIN
+    SU(PartSu.class),
+    DOM(PartDom.class),
+    AL(PartAl.class),
+    FIN(PartFin.class);
+    
+    private final Class partClass;
+    
+    private Part(final Class partClass) {
+        this.partClass = partClass;
+    }
+    
+    public Class getPartClass() {
+        return this.partClass;
+    }
 }

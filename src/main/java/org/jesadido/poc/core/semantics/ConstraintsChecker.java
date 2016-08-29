@@ -9,6 +9,10 @@ package org.jesadido.poc.core.semantics;
 
 import java.util.LinkedList;
 import java.util.List;
+import org.jesadido.poc.core.concepts.Concept;
+import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.NodeUtils;
+import org.jesadido.poc.core.syntax.tree.Terminal;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 import org.jesadido.poc.core.syntax.tree.sentence.NominalSelection;
@@ -45,6 +49,16 @@ public class ConstraintsChecker implements Visitor<List<String>, ConceptBook>{
         final List<String> result = new LinkedList<>();
         if (node.hasConjunction()) {
             result.addAll(node.getConjunction().accept(this, conceptBook));
+        }
+        final Node dom = NodeUtils.findFirst(node.getParts(), PartDom.class);
+        if (dom != null) {
+            ConceptBookEntry conceptBookEntry = conceptBook.get(dom.selectMasterConcept());
+            if (!NodeUtils.containsAll(node.getParts(), conceptBookEntry.getRequiredPartClasses())) {
+                result.add("Required parts are missing.");
+            }
+            if (!NodeUtils.containsNo(node.getParts(), conceptBookEntry.getExcludedPartClasses())) {
+                result.add("Excluded parts are used.");
+            }
         }
         node.getParts().stream().forEach(part -> result.addAll(part.accept(this, conceptBook)));
         return result;

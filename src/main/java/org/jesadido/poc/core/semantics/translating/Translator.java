@@ -34,9 +34,11 @@ public abstract class Translator {
         final Node node = this.getConceptBook().getGrammar().parse(code);
         final TranslationResult result = new TranslationResult(node);
         result.addParsingTroubles(node.collectTroubles());
-        result.addConstraintsTroubles(node.accept(new ConstraintsChecker(), this.getConceptBook()));
-        if (!result.hasTroubles()) {
-            return this.translate(node);
+        if (!result.hasParsingTroubles()) {
+            result.addConstraintsTroubles(node.accept(new ConstraintsChecker(), this.getConceptBook()));
+            if (!result.hasConstraintsTroubles()) {
+                return this.translate(node);
+            }
         }
         return result;
     }

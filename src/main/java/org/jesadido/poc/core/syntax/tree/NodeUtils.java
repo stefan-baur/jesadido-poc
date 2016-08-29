@@ -46,4 +46,12 @@ public final class NodeUtils {
         }
         return result;
     }
+    
+    public static boolean containsAll(final List<Node> nodes, final List<Class> filterSequence) {
+        return filterSequence.stream().noneMatch(filter -> findFirst(nodes, filter) == null);
+    }
+    
+    public static boolean containsNo(final List<Node> nodes, final List<Class> filterSequence) {
+        return filterSequence.stream().noneMatch(filter -> findFirst(nodes, filter) != null);
+    }
 }
