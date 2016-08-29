@@ -9,10 +9,8 @@ package org.jesadido.poc.core.semantics;
 
 import java.util.LinkedList;
 import java.util.List;
-import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.tree.NodeUtils;
-import org.jesadido.poc.core.syntax.tree.Terminal;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 import org.jesadido.poc.core.syntax.tree.sentence.NominalSelection;

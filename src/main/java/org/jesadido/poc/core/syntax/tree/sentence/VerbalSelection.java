@@ -8,7 +8,6 @@
 package org.jesadido.poc.core.syntax.tree.sentence;
 
 import org.jesadido.poc.core.syntax.tree.Node;
-import org.jesadido.poc.core.syntax.tree.Terminal;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 
 public class VerbalSelection extends Node {
