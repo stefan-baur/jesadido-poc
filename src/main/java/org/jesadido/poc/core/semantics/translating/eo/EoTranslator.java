@@ -20,12 +20,7 @@ public class EoTranslator extends Translator {
     }
     
     @Override
-    public TranslationResult translate(final String code) {
-        final Node node = this.getConceptBook().getGrammar().parse(code);
-        final TranslationResult result = new TranslationResult(node);
-        if (node.collectTroubles().isEmpty()) {
-            return node.accept(new EoVisitor(this), new EoVisitorArgument());
-        }
-        return result;
+    public TranslationResult translate(final Node validatedNode) {
+        return validatedNode.accept(new EoVisitor(this), new EoVisitorArgument());
     }
 }

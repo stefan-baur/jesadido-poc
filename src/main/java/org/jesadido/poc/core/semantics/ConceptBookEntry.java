@@ -17,6 +17,8 @@ import org.jesadido.poc.core.Language;
 public class ConceptBookEntry {
     
     private final String conceptPhrase;
+    private final List<Part> requiredParts = new LinkedList<>();
+    private final List<Part> excludedParts = new LinkedList<>();
     private final Map<Language, List<TranslationTarget>> defaultTargets = new EnumMap<>(Language.class);
     
     public ConceptBookEntry(final String conceptPhrase) {
@@ -25,6 +27,30 @@ public class ConceptBookEntry {
     
     public String getConceptPhrase() {
         return this.conceptPhrase;
+    }
+    
+    public ConceptBookEntry addRequiredParts(final Part ... parts) {
+        for (final Part part : parts) {
+            this.requiredParts.remove(part);
+            this.requiredParts.add(part);
+        }
+        return this;
+    }
+    
+    public List<Part> getRequiredParts() {
+        return this.requiredParts;
+    }
+    
+    public ConceptBookEntry addExcludedParts(final Part ... parts) {
+        for (final Part part : parts) {
+            this.excludedParts.remove(part);
+            this.excludedParts.add(part);
+        }
+        return this;
+    }
+    
+    public List<Part> getExcludedParts() {
+        return this.excludedParts;
     }
     
     public ConceptBookEntry addDefaultTargets(final TranslationTarget ... targets) {

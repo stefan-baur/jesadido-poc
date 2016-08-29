@@ -20,12 +20,7 @@ public class DeTranslator extends Translator {
     }
     
     @Override
-    public TranslationResult translate(final String code) {
-        final Node node = this.getConceptBook().getGrammar().parse(code);
-        final TranslationResult result = new TranslationResult(node);
-        if (node.collectTroubles().isEmpty()) {
-            return node.accept(new DeVisitor(this), new DeVisitorArgument());
-        }
-        return result;
+    public TranslationResult translate(final Node validatedNode) {
+        return validatedNode.accept(new DeVisitor(this), new DeVisitorArgument());
     }
 }

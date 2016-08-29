@@ -14,6 +14,7 @@ import org.jesadido.poc.core.Language;
 import org.jesadido.poc.core.scripting.Src;
 import org.jesadido.poc.core.semantics.ConceptBook;
 import org.jesadido.poc.core.semantics.ConceptBookEntry;
+import org.jesadido.poc.core.semantics.Part;
 import org.jesadido.poc.core.semantics.translating.TranslatorFactory;
 import org.jesadido.poc.core.semantics.translating.de.De;
 import org.jesadido.poc.core.semantics.translating.de.DeTarget;
@@ -30,7 +31,6 @@ public final class References {
     public static final ConceptBook GAME_BOOK = new ConceptBook()
             
             .add(new ConceptBookEntry("HeroIcxO")
-                    // Substantive
                     .addDefaultTargets(new DeTarget("Held", De.MASCULINE, De.NOMINATIVE), new DeTarget("Helden", De.MASCULINE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE))
                     .addDefaultTargets(new EnTarget("hero"))
                     .addDefaultTargets(new EoTarget("heroo"))
@@ -38,7 +38,6 @@ public final class References {
                     .addDefaultTargets(new FrTarget("héros", Fr.MASCULINE))
             )
             .add(new ConceptBookEntry("HeroInO")
-                    // Substantive
                     .addDefaultTargets(new DeTarget("Heldin", De.FEMININE, De.NOMINATIVE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE))
                     .addDefaultTargets(new EnTarget("heroine"))
                     .addDefaultTargets(new EoTarget("heroino"))
@@ -46,7 +45,8 @@ public final class References {
                     .addDefaultTargets(new FrTarget("héroïne", Fr.FEMININE))
             )
             .add(new ConceptBookEntry("HavAs")
-                    // Verb: Su Dom Fin
+                    .addRequiredParts(Part.SU, Part.DOM, Part.FIN)
+                    .addExcludedParts(Part.AL)
                     .addDefaultTargets(new DeTarget("habe", De.MI), new DeTarget("hast", De.BI), new DeTarget("hat", De.GXI), new DeTarget("haben", De.NI, De.ILI), new DeTarget("habt", De.VI))
                     .addDefaultTargets(new EnTarget("have", En.MI, En.BI, En.NI, En.VI, En.ILI), new EnTarget("has", En.GXI))
                     .addDefaultTargets(new EoTarget("havas"))
@@ -54,7 +54,8 @@ public final class References {
                     .addDefaultTargets(new FrTarget("ai", Fr.MI), new FrTarget("as", Fr.BI), new FrTarget("a", Fr.GXI), new FrTarget("avons", Fr.NI), new FrTarget("avez", Fr.VI), new FrTarget("ont", Fr.ILI))
             )
             .add(new ConceptBookEntry("TrovAs")
-                    // Verb: Su Dom Fin
+                    .addRequiredParts(Part.SU, Part.DOM, Part.FIN)
+                    .addExcludedParts(Part.AL)
                     .addDefaultTargets(new DeTarget("finde", De.MI), new DeTarget("findest", De.BI), new DeTarget("findet", De.GXI, De.VI), new DeTarget("finden", De.NI, De.ILI))
                     .addDefaultTargets(new EnTarget("find", En.MI, En.BI, En.NI, En.VI, En.ILI), new EnTarget("finds", En.GXI))
                     .addDefaultTargets(new EoTarget("trovas"))
@@ -62,7 +63,7 @@ public final class References {
                     .addDefaultTargets(new FrTarget("trouve", Fr.MI, Fr.GXI), new FrTarget("trouves", Fr.BI), new FrTarget("trouvons", Fr.NI), new FrTarget("trouvez", Fr.VI), new FrTarget("trouvent", Fr.ILI))
             )
             .add(new ConceptBookEntry("DonAs")
-                    // Verb: Su Dom Al Fin
+                    .addRequiredParts(Part.SU, Part.DOM, Part.AL, Part.FIN)
                     .addDefaultTargets(new DeTarget("gebe", De.MI), new DeTarget("gibst", De.BI), new DeTarget("gibt", De.GXI), new DeTarget("geben", De.NI, De.ILI), new DeTarget("gebt", De.VI))
                     .addDefaultTargets(new EnTarget("give", En.MI, En.BI, En.NI, En.VI, En.ILI), new EnTarget("gives", En.GXI))
                     .addDefaultTargets(new EoTarget("donas"))
@@ -70,7 +71,6 @@ public final class References {
                     .addDefaultTargets(new FrTarget("donne", Fr.MI, Fr.GXI), new FrTarget("donnes", Fr.BI), new FrTarget("donnons", Fr.NI), new FrTarget("donnez", Fr.VI), new FrTarget("donnent", Fr.ILI))
             )
             .add(new ConceptBookEntry("SkribIlO")
-                    // Substantive
                     .addDefaultTargets(new DeTarget("Stift", De.MASCULINE, De.NOMINATIVE, De.DATIVE, De.ACCUSATIVE), new DeTarget("Stifts", De.MASCULINE, De.GENITIVE))
                     .addDefaultTargets(new EnTarget("pen"))
                     .addDefaultTargets(new EoTarget("skribilo"))
@@ -78,7 +78,6 @@ public final class References {
                     .addDefaultTargets(new FrTarget("crayon", Fr.MASCULINE))
             )
             .add(new ConceptBookEntry("FlorO")
-                    // Substantive
                     .addDefaultTargets(new DeTarget("Blume", De.FEMININE, De.NOMINATIVE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE))
                     .addDefaultTargets(new EnTarget("flower"))
                     .addDefaultTargets(new EoTarget("floro"))
@@ -86,7 +85,6 @@ public final class References {
                     .addDefaultTargets(new FrTarget("fleur", Fr.FEMININE))
             )
             .add(new ConceptBookEntry("NomO")
-                    // Substantive
                     .addDefaultTargets(new DeTarget("Name", De.MASCULINE, De.NOMINATIVE), new DeTarget("Namens", De.MASCULINE, De.GENITIVE), new DeTarget("Namen", De.MASCULINE, De.DATIVE, De.ACCUSATIVE))
                     .addDefaultTargets(new EnTarget("name"))
                     .addDefaultTargets(new EoTarget("nomo"))
@@ -94,7 +92,6 @@ public final class References {
                     .addDefaultTargets(new FrTarget("nom", Fr.MASCULINE))
             )
             .add(new ConceptBookEntry("Kaj")
-                    // Linking word
                     .addDefaultTargets(new DeTarget("und"))
                     .addDefaultTargets(new EnTarget("and"))
                     .addDefaultTargets(new EoTarget("kaj"))

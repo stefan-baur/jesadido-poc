@@ -20,12 +20,7 @@ public class FrTranslator extends Translator {
     }
     
     @Override
-    public TranslationResult translate(final String code) {
-        final Node node = this.getConceptBook().getGrammar().parse(code);
-        final TranslationResult result = new TranslationResult(node);
-        if (node.collectTroubles().isEmpty()) {
-            return node.accept(new FrVisitor(this), new FrVisitorArgument());
-        }
-        return result;
+    public TranslationResult translate(final Node validatedNode) {
+        return validatedNode.accept(new FrVisitor(this), new FrVisitorArgument());
     }
 }

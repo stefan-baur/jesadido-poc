@@ -21,10 +21,9 @@ public class JiTranslator extends Translator {
     }
     
     @Override
-    public TranslationResult translate(final String code) {
-        final Node node = this.getConceptBook().getGrammar().parse(code);
-        final TranslationResult result = new TranslationResult(node);
-        result.setTranslation(ConceptUtils.join(node.collectConcepts()));
+    public TranslationResult translate(final Node validatedNode) {
+        final TranslationResult result = new TranslationResult(validatedNode);
+        result.setTranslation(ConceptUtils.join(validatedNode.collectConcepts()));
         return result;
     }
 }

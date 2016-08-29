@@ -9,6 +9,8 @@ package org.jesadido.poc.core.semantics.translating;
 
 import org.jesadido.poc.core.Language;
 import org.jesadido.poc.core.semantics.ConceptBook;
+import org.jesadido.poc.core.semantics.ConstraintsChecker;
+import org.jesadido.poc.core.syntax.tree.Node;
 
 public abstract class Translator {
     
@@ -28,5 +30,16 @@ public abstract class Translator {
         return this.conceptBook;
     }
     
-    public abstract TranslationResult translate(final String code);
+    public TranslationResult translate(final String code) {
+        final Node node = this.getConceptBook().getGrammar().parse(code);
+        final TranslationResult result = new TranslationResult(node);
+        result.addParsingTroubles(node.collectTroubles());
+        result.addConstraintsTroubles(node.accept(new ConstraintsChecker(), this.getConceptBook()));
+        if (!result.hasTroubles()) {
+            return this.translate(node);
+        }
+        return result;
+    }
+    
+    public abstract TranslationResult translate(final Node validatedNode);
 }
