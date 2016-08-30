@@ -118,32 +118,8 @@ public final class References {
             )
             ;
     
-    private static final String[] GAME_SOURCES = new String[] {
-        
-        "HeroIcxO TrovAs Fin SkribIlO .",
-        "HeroIcxO TrovAs Fin FlorO .",
-        "HeroInO TrovAs Fin SkribIlO .",
-        "Kaj HeroInO TrovAs Fin FlorO .",
-        
-        "HeroIcxO DonAs Al HeroInO Fin SkribIlO .",
-        "HeroIcxO DonAs Al HeroInO Fin FlorO .",
-        "HeroInO DonAs Al HeroIcxO Fin SkribIlO .",
-        "Kaj HeroInO DonAs Al HeroIcxO Fin FlorO .",
-        
-        "HeroIcxO TrovAs Fin FlorO Kaj HeroInO TrovAs Fin SkribIlO .",
-        "HeroIcxO DonAs Al HeroInO Fin FlorO Kaj HeroInO DonAs Al HeroIcxO Fin SkribIlO .",
-        
-        "Fin SkribIlO Su HeroIcxO TrovAs . Fin NomO Al HeroIcxO DonAs HeroInO .",
-        "Fin SkribIlO TrovAs Su HeroIcxO Kaj TrovAs Fin FlorO Su HeroInO Kaj Al HeroIcxO Fin FlorO DonAs HeroInO .",
-        "HeroIcxO TrovAs Fin SkribIlO . HeroIcxO HavAs Fin SkribIlO ."
-    };
-    
     private References() {
         // A private utility class constructor
-    }
-    
-    public static String[] getGameSources() {
-        return GAME_SOURCES;
     }
     
     private static Src generateSingleGameTest(final String methodId, final String source) {
@@ -162,8 +138,8 @@ public final class References {
     
     public static Src generateGameTests() {
         final Src result = new Src(Integer.MAX_VALUE, "", "    ", "\r\n").line().inc();
-        for (int i = 0; i < GAME_SOURCES.length; i++) {
-            result.add(generateSingleGameTest(String.format("VerticalTranslation%03d", i), GAME_SOURCES[i]));
+        for (int i = 0; i < GAME_BOOK.getReferenceSources().size(); i++) {
+            result.add(generateSingleGameTest(String.format("VerticalTranslation%03d", i), GAME_BOOK.getReferenceSources().get(i)));
         }
         return result.dec().line();
     }
