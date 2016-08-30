@@ -27,7 +27,7 @@ public final class EnUtils {
     }
     
     public static String getIndefiniteArticle(final TranslationTarget followerTarget) {
-        final String follower = followerTarget.getPhrase();
+        final String follower = followerTarget.getMainPhrase();
         if ("aeio".contains(Character.toString(follower.charAt(0)))) {
             return "an";
         } else {

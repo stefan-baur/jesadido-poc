@@ -75,7 +75,7 @@ public class EnVisitor implements Visitor<TranslationResult, EnVisitorArgument> 
         if (defaultTargets.isEmpty()) {
             result.setTranslation(conceptBookEntry.getConceptPhrase());
         } else {
-            result.setTranslation(String.format("%s%s", argument.getSentenceMeatIndex() > 0 ? ", " : "", defaultTargets.get(0).getPhrase()));
+            result.setTranslation(String.format("%s%s", argument.getSentenceMeatIndex() > 0 ? ", " : "", defaultTargets.get(0).getMainPhrase()));
         }
         return result;
     }
@@ -125,7 +125,7 @@ public class EnVisitor implements Visitor<TranslationResult, EnVisitorArgument> 
             result.setTranslation(conceptBookEntry.getConceptPhrase());
         } else {
             final TranslationTarget substantiveTarget = defaultTargets.get(0);
-            result.setTranslation(String.format("%s %s", EnUtils.getIndefiniteArticle(substantiveTarget), substantiveTarget.getPhrase()));
+            result.setTranslation(String.format("%s %s", EnUtils.getIndefiniteArticle(substantiveTarget), substantiveTarget.getMainPhrase()));
         }
         return result;
     }
@@ -147,7 +147,7 @@ public class EnVisitor implements Visitor<TranslationResult, EnVisitorArgument> 
         if (defaultTargets.isEmpty()) {
             result.setTranslation(conceptBookEntry.getConceptPhrase());
         } else {
-            result.setTranslation(defaultTargets.get(0).getPhrase());
+            result.setTranslation(defaultTargets.get(0).getMainPhrase());
         }
         return result;
     }

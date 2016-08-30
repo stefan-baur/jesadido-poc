@@ -15,12 +15,12 @@ import org.jesadido.poc.core.StringUtils;
 public class TranslationTarget<A> {
     
     private final Language language;
-    private final String masterPhrase;
+    private final String mainPhrase;
     private final List<A> attributes;
     
-    public TranslationTarget(final Language language, final String phrase, final A ... attributes) {
+    public TranslationTarget(final Language language, final String mainPhrase, final A ... attributes) {
         this.language = language;
-        this.masterPhrase = phrase;
+        this.mainPhrase = mainPhrase;
         this.attributes = Arrays.asList(attributes);
     }
     
@@ -28,8 +28,8 @@ public class TranslationTarget<A> {
         return this.language;
     }
     
-    public String getPhrase() {
-        return this.masterPhrase;
+    public String getMainPhrase() {
+        return this.mainPhrase;
     }
     
     public List<A> getAttributes() {
@@ -38,6 +38,6 @@ public class TranslationTarget<A> {
     
     @Override
     public String toString() {
-        return String.format("%s (%s)", this.masterPhrase, StringUtils.join(", ", this.attributes));
+        return String.format("%s (%s)", this.mainPhrase, StringUtils.join(", ", this.attributes));
     }
 }

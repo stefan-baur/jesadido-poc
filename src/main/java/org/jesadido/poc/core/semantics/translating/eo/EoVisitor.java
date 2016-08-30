@@ -75,7 +75,7 @@ public class EoVisitor implements Visitor<TranslationResult, EoVisitorArgument> 
         if (defaultTargets.isEmpty()) {
             result.setTranslation(conceptBookEntry.getConceptPhrase());
         } else {
-            result.setTranslation(String.format("%s%s", argument.getSentenceMeatIndex() > 0 ? ", " : "", defaultTargets.get(0).getPhrase()));
+            result.setTranslation(String.format("%s%s", argument.getSentenceMeatIndex() > 0 ? ", " : "", defaultTargets.get(0).getMainPhrase()));
         }
         return result;
     }
@@ -147,7 +147,7 @@ public class EoVisitor implements Visitor<TranslationResult, EoVisitorArgument> 
         if (defaultTargets.isEmpty()) {
             result.setTranslation(conceptBookEntry.getConceptPhrase());
         } else {
-            result.setTranslation(defaultTargets.get(0).getPhrase());
+            result.setTranslation(defaultTargets.get(0).getMainPhrase());
         }
         return result;
     }

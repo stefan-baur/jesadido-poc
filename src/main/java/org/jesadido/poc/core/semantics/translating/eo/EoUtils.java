@@ -22,6 +22,6 @@ public final class EoUtils {
     }
     
     public static String getCasedSubstantive(final TranslationTarget substantiveTarget, final Eo caseAttribute) {
-        return String.format("%s%s", substantiveTarget.getPhrase(), caseAttribute == Eo.ACCUSATIVE ? "n" : "");
+        return String.format("%s%s", substantiveTarget.getMainPhrase(), caseAttribute == Eo.ACCUSATIVE ? "n" : "");
     }
 }
