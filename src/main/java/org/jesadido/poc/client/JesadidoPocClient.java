@@ -12,6 +12,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -19,10 +20,14 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import org.jesadido.poc.JesadidoPoc;
 import org.jesadido.poc.core.Language;
@@ -68,51 +73,61 @@ public class JesadidoPocClient extends Application {
         final Grammar jesadidoGrammar = GrammarFactory.createJesadidoGrammar();
         final ConceptBook gameBook = References.GAME_BOOK;
         
+        final BorderPane masterPane = new BorderPane();
+        masterPane.setPadding(new Insets(8, 8, 8, 8));
+        
+        final MenuItem menuItemGrammarJesadido = new MenuItem(jesadidoGrammar.getName());
+        menuItemGrammarJesadido.setOnAction((ActionEvent e) -> {
+            masterPane.setTop(this.createHeaderControl(String.format("Grammar: %s", jesadidoGrammar.getName())));
+            masterPane.setCenter(this.createGrammarControl(jesadidoGrammar));
+        });
+        final Menu menuGrammars = new Menu("Grammars");
+        menuGrammars.getItems().addAll(menuItemGrammarJesadido);
+        
+        final MenuItem menuItemGameBook = new MenuItem(gameBook.getName());
+        menuItemGameBook.setOnAction((ActionEvent e) -> {
+            masterPane.setTop(this.createHeaderControl(String.format("Concept-Book: %s (Grammar: %s)", gameBook.getName(), gameBook.getGrammar().getName())));
+            masterPane.setCenter(this.createConceptBookControl(gameBook));
+        });
+        final Menu menuConceptBooks = new Menu("Concept-Books");
+        menuConceptBooks.getItems().addAll(menuItemGameBook);
         
         final MenuBar menuBar = new MenuBar();
+        menuBar.getMenus().addAll(menuGrammars, menuConceptBooks);
         
         final VBox masterBox = new VBox();
-        final BorderPane masterPane = new BorderPane();
         masterBox.getChildren().addAll(menuBar, masterPane);
-        
-        final MenuItem menu0Item1 = new MenuItem(jesadidoGrammar.getName());
-        menu0Item1.setOnAction((ActionEvent e) -> {
-            masterPane.setTop(new Text(String.format("Grammar: %s", jesadidoGrammar.getName())));
-            masterPane.setCenter(this.createGrammarNode(jesadidoGrammar));
-        });
-        final Menu menu0 = new Menu("Grammars");
-        menu0.getItems().addAll(menu0Item1);
-        
-        final MenuItem menu1Item1 = new MenuItem(gameBook.getName());
-        menu1Item1.setOnAction((ActionEvent e) -> {
-            masterPane.setTop(new Text(String.format("Concept-Book: %s (Grammar: %s)", gameBook.getName(), gameBook.getGrammar().getName())));
-            masterPane.setCenter(this.createConceptBookNode(gameBook));
-        });
-        final Menu menu1 = new Menu("Concept-Books");
-        menu1.getItems().addAll(menu1Item1);
-        
-        menuBar.getMenus().addAll(menu0, menu1);
-        
-        return new Scene(masterBox, 800, 600);
+        final StackPane rootPane = new StackPane(masterBox);
+        return new Scene(rootPane, 800, 600);
     }
     
-    private Node createGrammarNode(final Grammar grammar) {
-        final Label result = new Label(grammar.toString());
-        result.setWrapText(true);
+    private Node createHeaderControl(final String text) {
+        final Label result = new Label(text);
+        result.setFont(Font.font(null, FontWeight.BOLD, FontPosture.REGULAR, 24));
+        result.setPadding(new Insets(2, 2, 8, 12));
         return result;
     }
     
-    private Node createConceptBookNode(final ConceptBook conceptBook) {
+    private Node createGrammarControl(final Grammar grammar) {
+        final TextArea result = new TextArea(grammar.toString());
+        result.setFont(Font.font("Courier New", FontWeight.NORMAL, FontPosture.REGULAR, 14));
+        result.setEditable(false);
+        result.setPrefHeight(2400);
+        result.setPadding(new Insets(6, 6, 6, 8));
+        return result;
+    }
+    
+    private Node createConceptBookControl(final ConceptBook conceptBook) {
         final ObservableList<String> conceptPhrases = FXCollections.observableArrayList();
         conceptBook.getEntries().stream().forEach(conceptBookEntry -> conceptPhrases.add(conceptBookEntry.getConceptPhrase()));
         final ListView<String> listView = new ListView<>(conceptPhrases);
         
         final VBox entryKeysControl = new VBox(10, listView);
         
-        final Text concept = new Text("Concept: -");
-        final Text requiredParts = new Text("Required Parts: -");
-        final Text excludedParts = new Text("Excluded Parts: -");
-        final Text defaultTargets = new Text("Default Targets: -");
+        final Label concept = new Label("Concept: -");
+        final Label requiredParts = new Label("Required Parts: -");
+        final Label excludedParts = new Label("Excluded Parts: -");
+        final Label defaultTargets = new Label("Default Targets: -");
         final VBox entryControl = new VBox(10, concept, requiredParts, excludedParts, defaultTargets);
         
         listView.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
