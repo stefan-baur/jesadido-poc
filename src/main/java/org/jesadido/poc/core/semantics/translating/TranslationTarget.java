@@ -10,16 +10,17 @@ package org.jesadido.poc.core.semantics.translating;
 import java.util.Arrays;
 import java.util.List;
 import org.jesadido.poc.core.Language;
+import org.jesadido.poc.core.StringUtils;
 
 public class TranslationTarget<A> {
     
     private final Language language;
-    private final String phrase;
+    private final String masterPhrase;
     private final List<A> attributes;
     
     public TranslationTarget(final Language language, final String phrase, final A ... attributes) {
         this.language = language;
-        this.phrase = phrase;
+        this.masterPhrase = phrase;
         this.attributes = Arrays.asList(attributes);
     }
     
@@ -28,10 +29,15 @@ public class TranslationTarget<A> {
     }
     
     public String getPhrase() {
-        return this.phrase;
+        return this.masterPhrase;
     }
     
     public List<A> getAttributes() {
         return this.attributes;
+    }
+    
+    @Override
+    public String toString() {
+        return String.format("%s (%s)", this.masterPhrase, StringUtils.join(", ", this.attributes));
     }
 }

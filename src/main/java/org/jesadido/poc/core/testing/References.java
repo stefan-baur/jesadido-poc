@@ -28,7 +28,7 @@ import org.jesadido.poc.core.semantics.translating.fr.FrTarget;
 
 public final class References {
     
-    public static final ConceptBook GAME_BOOK = new ConceptBook()
+    public static final ConceptBook GAME_BOOK = new ConceptBook("Game Concepts")
             
             .add(new ConceptBookEntry("HeroIcxO")
                     .addDefaultTargets(new DeTarget("Held", De.MASCULINE, De.NOMINATIVE), new DeTarget("Helden", De.MASCULINE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE))
@@ -97,6 +97,24 @@ public final class References {
                     .addDefaultTargets(new EoTarget("kaj"))
                     .addDefaultTargets(new EsTarget("y"))
                     .addDefaultTargets(new FrTarget("et"))
+            )
+            .addReferenceSources(
+                    "HeroIcxO TrovAs Fin SkribIlO .",
+                    "HeroIcxO TrovAs Fin FlorO .",
+                    "HeroInO TrovAs Fin SkribIlO .",
+                    "Kaj HeroInO TrovAs Fin FlorO .",
+
+                    "HeroIcxO DonAs Al HeroInO Fin SkribIlO .",
+                    "HeroIcxO DonAs Al HeroInO Fin FlorO .",
+                    "HeroInO DonAs Al HeroIcxO Fin SkribIlO .",
+                    "Kaj HeroInO DonAs Al HeroIcxO Fin FlorO .",
+
+                    "HeroIcxO TrovAs Fin FlorO Kaj HeroInO TrovAs Fin SkribIlO .",
+                    "HeroIcxO DonAs Al HeroInO Fin FlorO Kaj HeroInO DonAs Al HeroIcxO Fin SkribIlO .",
+
+                    "Fin SkribIlO Su HeroIcxO TrovAs . Fin NomO Al HeroIcxO DonAs HeroInO .",
+                    "Fin SkribIlO TrovAs Su HeroIcxO Kaj TrovAs Fin FlorO Su HeroInO Kaj Al HeroIcxO Fin FlorO DonAs HeroInO .",
+                    "HeroIcxO TrovAs Fin SkribIlO . HeroIcxO HavAs Fin SkribIlO ."
             )
             ;
     

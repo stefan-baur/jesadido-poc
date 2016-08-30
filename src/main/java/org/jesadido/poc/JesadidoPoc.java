@@ -32,7 +32,6 @@ public class JesadidoPoc {
 
     /**
      * Launches a standalone project client application.
-     *
      * @param arguments Used for running the client application.
      */
     public static void main(final String[] arguments) {
