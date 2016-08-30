@@ -98,12 +98,20 @@ public final class References {
                     .addDefaultTargets(new EsTarget("y"))
                     .addDefaultTargets(new FrTarget("et"))
             )
+            .add(new ConceptBookEntry("Aux")
+                    .addDefaultTargets(new DeTarget("oder"))
+                    .addDefaultTargets(new EnTarget("or"))
+                    .addDefaultTargets(new EoTarget("aŭ"))
+                    .addDefaultTargets(new EsTarget("o"))
+                    .addDefaultTargets(new FrTarget("ou"))
+            )
             .addReferenceSources(
                     "HeroIcxO TrovAs Fin SkribIlO .",
                     "HeroIcxO TrovAs Fin FlorO .",
                     "HeroInO TrovAs Fin SkribIlO .",
                     "Kaj HeroInO TrovAs Fin FlorO .",
 
+                    "HeroIcxO HavAs Fin NomO .",
                     "HeroIcxO DonAs Al HeroInO Fin SkribIlO .",
                     "HeroIcxO DonAs Al HeroInO Fin FlorO .",
                     "HeroInO DonAs Al HeroIcxO Fin SkribIlO .",
@@ -111,9 +119,11 @@ public final class References {
 
                     "HeroIcxO TrovAs Fin FlorO Kaj HeroInO TrovAs Fin SkribIlO .",
                     "HeroIcxO DonAs Al HeroInO Fin FlorO Kaj HeroInO DonAs Al HeroIcxO Fin SkribIlO .",
+                    "HeroIcxO DonAs Al HeroInO Fin FlorO Aux HeroInO DonAs Al HeroIcxO Fin SkribIlO .",
 
                     "Fin SkribIlO Su HeroIcxO TrovAs . Fin NomO Al HeroIcxO DonAs HeroInO .",
                     "Fin SkribIlO TrovAs Su HeroIcxO Kaj TrovAs Fin FlorO Su HeroInO Kaj Al HeroIcxO Fin FlorO DonAs HeroInO .",
+                    "Fin SkribIlO TrovAs Su HeroIcxO , TrovAs Fin FlorO Su HeroInO , Al HeroIcxO Fin FlorO DonAs HeroInO .",
                     "HeroIcxO TrovAs Fin SkribIlO . HeroIcxO HavAs Fin SkribIlO ."
             )
             ;
