@@ -68,7 +68,7 @@ public class PartAlProduction extends ProductionLeaf {
             return this.parsingTrouble(tokenStream, TokenType.CLOSE);
         } else if (this.hasFirstOf(tokenStream, Nonterminal.NOMINAL_SELECTION)) {
             final Node nominalSelection = this.parse(tokenStream, Nonterminal.NOMINAL_SELECTION);
-            return this.getGrammar().getSyntaxTreeFactory().createPartAl(preposition, null, nominalSelection, null);
+            return this.getGrammar().getSyntaxTreeFactory().createPartAl(preposition, this.createToken(TokenType.OPEN), nominalSelection, this.createToken(TokenType.CLOSE));
         }
         return this.parsingTrouble(tokenStream);
     }

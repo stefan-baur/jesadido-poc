@@ -64,7 +64,7 @@ public class SentenceMeatProduction extends ProductionLeaf {
             return this.parsingTrouble(tokenStream, TokenType.CLOSE_SET);
         } else {
             final List<Node> parts = this.parseParts(tokenStream);
-            return this.getGrammar().getSyntaxTreeFactory().createSentenceMeat(meatConjunction, null, parts, null);
+            return this.getGrammar().getSyntaxTreeFactory().createSentenceMeat(meatConjunction, this.createToken(TokenType.OPEN_SET), parts, this.createToken(TokenType.CLOSE_SET));
         }
     }
     

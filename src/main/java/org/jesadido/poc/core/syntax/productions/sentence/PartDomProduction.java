@@ -61,11 +61,11 @@ public class PartDomProduction extends ProductionLeaf {
                 return this.parsingTrouble(tokenStream, TokenType.CLOSE);
             } else {
                 final Node verbalSelection = this.parseVerbalSelection(tokenStream);
-                return this.getGrammar().getSyntaxTreeFactory().createPartDom(preposition, null, verbalSelection, null);
+                return this.getGrammar().getSyntaxTreeFactory().createPartDom(preposition, this.createToken(TokenType.OPEN), verbalSelection, this.createToken(TokenType.CLOSE));
             }
         } else {
             final Node verbalSelection = this.parseVerbalSelection(tokenStream);
-            return this.getGrammar().getSyntaxTreeFactory().createPartDom(null, null, verbalSelection, null);
+            return this.getGrammar().getSyntaxTreeFactory().createPartDom(this.createToken(TokenType.PART_DOM), this.createToken(TokenType.OPEN), verbalSelection, this.createToken(TokenType.CLOSE));
         }
     }
     

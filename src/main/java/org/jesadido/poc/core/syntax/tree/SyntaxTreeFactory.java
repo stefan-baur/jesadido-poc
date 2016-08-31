@@ -30,37 +30,37 @@ public class SyntaxTreeFactory {
     }
     
     public Node createSentence(final List<Node> meats, final Token terminator) {
-        return new Sentence(new Terminal(terminator, "."))
+        return new Sentence(new Terminal(terminator))
                 .addMeats(meats);
     }
     
     public Node createSentenceMeat(final Node conjunction, final Token opener, final List<Node> parts, final Token closer) {
-        return new SentenceMeat(new Terminal(opener, "{"), new Terminal(closer, "}"))
+        return new SentenceMeat(new Terminal(opener), new Terminal(closer))
                 .setConjunction(conjunction)
                 .addParts(parts);
     }
     
     public Node createSentenceMeatConjunction(final Token conjunction) {
-        return new SentenceMeatConjunction(new Terminal(conjunction, "Kaj"));
+        return new SentenceMeatConjunction(new Terminal(conjunction));
     }
     
     public Node createPartSu(final Token preposition, final Token opener, final Node nominalSelection, final Token closer) {
-        return new PartSu(new Terminal(preposition, "Su"), new Terminal(opener, "("), new Terminal(closer, ")"))
+        return new PartSu(new Terminal(preposition), new Terminal(opener), new Terminal(closer))
                 .setNominalSelection(nominalSelection);
     }
     
     public Node createPartDom(final Token preposition, final Token opener, final Node verbalSelection, final Token closer) {
-        return new PartDom(new Terminal(preposition, "Dom"), new Terminal(opener, "("), new Terminal(closer, ")"))
+        return new PartDom(new Terminal(preposition), new Terminal(opener), new Terminal(closer))
                 .setVerbalSelection(verbalSelection);
     }
     
     public Node createPartAl(final Token preposition, final Token opener, final Node nominalSelection, final Token closer) {
-        return new PartAl(new Terminal(preposition, "Al"), new Terminal(opener, "("), new Terminal(closer, ")"))
+        return new PartAl(new Terminal(preposition), new Terminal(opener), new Terminal(closer))
                 .setNominalSelection(nominalSelection);
     }
     
     public Node createPartFin(final Token preposition, final Token opener, final Node nominalSelection, final Token closer) {
-        return new PartFin(new Terminal(preposition, "Fin"), new Terminal(opener, "("), new Terminal(closer, ")"))
+        return new PartFin(new Terminal(preposition), new Terminal(opener), new Terminal(closer))
                 .setNominalSelection(nominalSelection);
     }
     
@@ -69,8 +69,8 @@ public class SyntaxTreeFactory {
                 .setSubstantiveSelection(substantiveSelection);
     }
     
-    public Node createSubstantiveSelection(final Token requiredSubstantive) {
-        return new SubstantiveSelection(new Terminal(requiredSubstantive));
+    public Node createSubstantiveSelection(final Token substantive) {
+        return new SubstantiveSelection(new Terminal(substantive));
     }
     
     public Node createVerbalSelection(final Node verbSelection) {
@@ -78,8 +78,8 @@ public class SyntaxTreeFactory {
                 .setVerbSelection(verbSelection);
     }
     
-    public Node createVerbSelection(final Token requiredVerb) {
-        return new VerbSelection(new Terminal(requiredVerb));
+    public Node createVerbSelection(final Token verb) {
+        return new VerbSelection(new Terminal(verb));
     }
     
     public Node createTrouble(final String message) {

@@ -10,6 +10,7 @@ package org.jesadido.poc.core.syntax.tree;
 import java.util.Arrays;
 import org.jesadido.poc.core.concepts.ConceptUtils;
 import org.jesadido.poc.core.syntax.tokens.TokenCreator;
+import org.jesadido.poc.core.syntax.tokens.TokenType;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -20,7 +21,7 @@ public class NodeTest {
         final TokenCreator tokenCreator = new TokenCreator();
         final SyntaxTreeFactory syntaxTreeFactory = new SyntaxTreeFactory();
         {
-            final Node sentence = syntaxTreeFactory.createSentence(null, null);
+            final Node sentence = syntaxTreeFactory.createSentence(null, tokenCreator.create(TokenType.TERMINATOR));
             Assert.assertEquals(".", ConceptUtils.join(sentence.collectConcepts()));
         }
         {
@@ -32,7 +33,7 @@ public class NodeTest {
             Assert.assertEquals("Titl.", ConceptUtils.join(sentence.collectConcepts()));
         }
         {
-            final Node sentenceMeat = syntaxTreeFactory.createSentenceMeat(null, null, null, null);
+            final Node sentenceMeat = syntaxTreeFactory.createSentenceMeat(null, tokenCreator.create(TokenType.OPEN_SET), null, tokenCreator.create(TokenType.CLOSE_SET));
             final Node sentence = syntaxTreeFactory.createSentence(Arrays.asList(sentenceMeat), tokenCreator.create("!."));
             Assert.assertEquals("{ } !.", ConceptUtils.join(sentence.collectConcepts()));
         }
@@ -47,42 +48,42 @@ public class NodeTest {
             Assert.assertEquals("{-}-.", ConceptUtils.join("-", sentence.collectConcepts()));
         }
         {
-            final Node sentenceMeatA = syntaxTreeFactory.createSentenceMeat(null, null, null, null);
-            final Node sentenceMeatConjunction = syntaxTreeFactory.createSentenceMeatConjunction(null);
-            final Node sentenceMeatB = syntaxTreeFactory.createSentenceMeat(null, null, null, null);
-            final Node sentence = syntaxTreeFactory.createSentence(Arrays.asList(sentenceMeatA, sentenceMeatConjunction, sentenceMeatB), null);
+            final Node sentenceMeatA = syntaxTreeFactory.createSentenceMeat(null, tokenCreator.create(TokenType.OPEN_SET), null, tokenCreator.create(TokenType.CLOSE_SET));
+            final Node sentenceMeatConjunction = syntaxTreeFactory.createSentenceMeatConjunction(tokenCreator.create(TokenType.SEPARATOR_KAJ));
+            final Node sentenceMeatB = syntaxTreeFactory.createSentenceMeat(null, tokenCreator.create(TokenType.OPEN_SET), null, tokenCreator.create(TokenType.CLOSE_SET));
+            final Node sentence = syntaxTreeFactory.createSentence(Arrays.asList(sentenceMeatA, sentenceMeatConjunction, sentenceMeatB), tokenCreator.create(TokenType.TERMINATOR));
             Assert.assertEquals("{ \t } \t Kaj \t { \t } \t .", ConceptUtils.join(" \t ", sentence.collectConcepts()));
         }
         {
-            final Node sentenceMeatA = syntaxTreeFactory.createSentenceMeat(null, null, null, null);
+            final Node sentenceMeatA = syntaxTreeFactory.createSentenceMeat(null, tokenCreator.create(TokenType.OPEN_SET), null, tokenCreator.create(TokenType.CLOSE_SET));
             final Node sentenceMeatConjunctionX = syntaxTreeFactory.createSentenceMeatConjunction(tokenCreator.create(","));
-            final Node sentenceMeatB = syntaxTreeFactory.createSentenceMeat(null, null, null, null);
+            final Node sentenceMeatB = syntaxTreeFactory.createSentenceMeat(null, tokenCreator.create(TokenType.OPEN_SET), null, tokenCreator.create(TokenType.CLOSE_SET));
             final Node sentenceMeatConjunctionY = syntaxTreeFactory.createSentenceMeatConjunction(tokenCreator.create("Aux"));
-            final Node sentenceMeatC = syntaxTreeFactory.createSentenceMeat(null, null, null, null);
-            final Node sentence = syntaxTreeFactory.createSentence(Arrays.asList(sentenceMeatA, sentenceMeatConjunctionX, sentenceMeatB, sentenceMeatConjunctionY, sentenceMeatC), null);
+            final Node sentenceMeatC = syntaxTreeFactory.createSentenceMeat(null, tokenCreator.create(TokenType.OPEN_SET), null, tokenCreator.create(TokenType.CLOSE_SET));
+            final Node sentence = syntaxTreeFactory.createSentence(Arrays.asList(sentenceMeatA, sentenceMeatConjunctionX, sentenceMeatB, sentenceMeatConjunctionY, sentenceMeatC), tokenCreator.create(TokenType.TERMINATOR));
             Assert.assertEquals("{ } , { } Aux { } .", ConceptUtils.join(null, sentence.collectConcepts()));
         }
         {
-            final Node su1 = syntaxTreeFactory.createPartSu(null, null, null, null);
-            final Node sentenceMeatA = syntaxTreeFactory.createSentenceMeat(null, null, Arrays.asList(su1), null);
+            final Node su1 = syntaxTreeFactory.createPartSu(tokenCreator.create(TokenType.PART_SU), tokenCreator.create(TokenType.OPEN), null, tokenCreator.create(TokenType.CLOSE));
+            final Node sentenceMeatA = syntaxTreeFactory.createSentenceMeat(null, tokenCreator.create(TokenType.OPEN_SET), Arrays.asList(su1), tokenCreator.create(TokenType.CLOSE_SET));
             final Node sentenceMeatConjunctionX = syntaxTreeFactory.createSentenceMeatConjunction(tokenCreator.create(","));
-            final Node su2 = syntaxTreeFactory.createPartSu(null, tokenCreator.create("'X'O$("), null, null);
-            final Node sentenceMeatB = syntaxTreeFactory.createSentenceMeat(null, null, Arrays.asList(su2), null);
+            final Node su2 = syntaxTreeFactory.createPartSu(tokenCreator.create(TokenType.PART_SU), tokenCreator.create("'X'O$("), null, tokenCreator.create(TokenType.CLOSE));
+            final Node sentenceMeatB = syntaxTreeFactory.createSentenceMeat(null, tokenCreator.create(TokenType.OPEN_SET), Arrays.asList(su2), tokenCreator.create(TokenType.CLOSE_SET));
             final Node sentenceMeatConjunctionY = syntaxTreeFactory.createSentenceMeatConjunction(tokenCreator.create("Kaj"));
-            final Node su3 = syntaxTreeFactory.createPartSu(null, tokenCreator.create("(("), null, tokenCreator.create("Cxu$))"));
-            final Node sentenceMeatC = syntaxTreeFactory.createSentenceMeat(null, null, Arrays.asList(su3), null);
-            final Node sentence = syntaxTreeFactory.createSentence(Arrays.asList(sentenceMeatA, sentenceMeatConjunctionX, sentenceMeatB, sentenceMeatConjunctionY, sentenceMeatC), null);
+            final Node su3 = syntaxTreeFactory.createPartSu(tokenCreator.create(TokenType.PART_SU), tokenCreator.create("(("), null, tokenCreator.create("Cxu$))"));
+            final Node sentenceMeatC = syntaxTreeFactory.createSentenceMeat(null, tokenCreator.create(TokenType.OPEN_SET), Arrays.asList(su3), tokenCreator.create(TokenType.CLOSE_SET));
+            final Node sentence = syntaxTreeFactory.createSentence(Arrays.asList(sentenceMeatA, sentenceMeatConjunctionX, sentenceMeatB, sentenceMeatConjunctionY, sentenceMeatC), tokenCreator.create(TokenType.TERMINATOR));
             Assert.assertEquals("{ Su ( ) } , { Su 'X'O$( ) } Kaj { Su (( Cxu$)) } .", ConceptUtils.join(sentence.collectConcepts()));
         }
         {
-            final Node suA = syntaxTreeFactory.createPartSu(null, null, null, null);
-            final Node domA = syntaxTreeFactory.createPartDom(null, null, null, null);
-            final Node sentenceMeatA = syntaxTreeFactory.createSentenceMeat(null, null, Arrays.asList(suA, domA), null);
-            final Node sentenceMeatConjunction = syntaxTreeFactory.createSentenceMeatConjunction(null);
-            final Node suB = syntaxTreeFactory.createPartSu(null, null, null, null);
-            final Node domB = syntaxTreeFactory.createPartDom(null, null, null, null);
-            final Node sentenceMeatB = syntaxTreeFactory.createSentenceMeat(null, null, Arrays.asList(domB, suB), null);
-            final Node sentence = syntaxTreeFactory.createSentence(Arrays.asList(sentenceMeatA, sentenceMeatConjunction, sentenceMeatB), null);
+            final Node suA = syntaxTreeFactory.createPartSu(tokenCreator.create(TokenType.PART_SU), tokenCreator.create(TokenType.OPEN), null, tokenCreator.create(TokenType.CLOSE));
+            final Node domA = syntaxTreeFactory.createPartDom(tokenCreator.create(TokenType.PART_DOM), tokenCreator.create(TokenType.OPEN), null, tokenCreator.create(TokenType.CLOSE));
+            final Node sentenceMeatA = syntaxTreeFactory.createSentenceMeat(null, tokenCreator.create(TokenType.OPEN_SET), Arrays.asList(suA, domA), tokenCreator.create(TokenType.CLOSE_SET));
+            final Node sentenceMeatConjunction = syntaxTreeFactory.createSentenceMeatConjunction(tokenCreator.create(TokenType.SEPARATOR_KAJ));
+            final Node suB = syntaxTreeFactory.createPartSu(tokenCreator.create(TokenType.PART_SU), tokenCreator.create(TokenType.OPEN), null, tokenCreator.create(TokenType.CLOSE));
+            final Node domB = syntaxTreeFactory.createPartDom(tokenCreator.create(TokenType.PART_DOM), tokenCreator.create(TokenType.OPEN), null, tokenCreator.create(TokenType.CLOSE));
+            final Node sentenceMeatB = syntaxTreeFactory.createSentenceMeat(null, tokenCreator.create(TokenType.OPEN_SET), Arrays.asList(domB, suB), tokenCreator.create(TokenType.CLOSE_SET));
+            final Node sentence = syntaxTreeFactory.createSentence(Arrays.asList(sentenceMeatA, sentenceMeatConjunction, sentenceMeatB), tokenCreator.create(TokenType.TERMINATOR));
             Assert.assertEquals("{ Su ( ) Dom ( ) } Kaj { Dom ( ) Su ( ) } .", ConceptUtils.join(sentence.collectConcepts()));
         }
         {
@@ -99,19 +100,19 @@ public class NodeTest {
             Assert.assertEquals("( SUBJ [ ] PRED [ ] ACC [ ] ) CONJ ( ACC [ ] PRED [ ] SUBJ [ ] ) PERIOD", ConceptUtils.join(sentence.collectConcepts()));
         }
         {
-            final Node sentenceMeat = syntaxTreeFactory.createSentenceMeat(null, null, null, null);
+            final Node sentenceMeat = syntaxTreeFactory.createSentenceMeat(null, tokenCreator.create(TokenType.OPEN_SET), null, tokenCreator.create(TokenType.CLOSE_SET));
             Assert.assertEquals("{ MEAT }", ConceptUtils.join(" MEAT ", sentenceMeat.collectConcepts()));
         }
         {
-            final Node su = syntaxTreeFactory.createPartSu(null, null, null, null);
-            final Node dom = syntaxTreeFactory.createPartDom(null, null, null, null);
-            final Node sentenceMeat = syntaxTreeFactory.createSentenceMeat(null, null, Arrays.asList(dom, su), null);
+            final Node su = syntaxTreeFactory.createPartSu(tokenCreator.create(TokenType.PART_SU), tokenCreator.create(TokenType.OPEN), null, tokenCreator.create(TokenType.CLOSE));
+            final Node dom = syntaxTreeFactory.createPartDom(tokenCreator.create(TokenType.PART_DOM), tokenCreator.create(TokenType.OPEN), null, tokenCreator.create(TokenType.CLOSE));
+            final Node sentenceMeat = syntaxTreeFactory.createSentenceMeat(null, tokenCreator.create(TokenType.OPEN_SET), Arrays.asList(dom, su), tokenCreator.create(TokenType.CLOSE_SET));
             Assert.assertEquals("{ Dom ( ) Su ( ) }", ConceptUtils.join(sentenceMeat.collectConcepts()));
         }
         {
-            final Node su = syntaxTreeFactory.createPartSu(null, null, null, null);
-            final Node dom = syntaxTreeFactory.createPartDom(null, null, null, null);
-            final Node fin = syntaxTreeFactory.createPartFin(null, null, null, null);
+            final Node su = syntaxTreeFactory.createPartSu(tokenCreator.create(TokenType.PART_SU), tokenCreator.create(TokenType.OPEN), null, tokenCreator.create(TokenType.CLOSE));
+            final Node dom = syntaxTreeFactory.createPartDom(tokenCreator.create(TokenType.PART_DOM), tokenCreator.create(TokenType.OPEN), null, tokenCreator.create(TokenType.CLOSE));
+            final Node fin = syntaxTreeFactory.createPartFin(tokenCreator.create(TokenType.PART_FIN), tokenCreator.create(TokenType.OPEN), null, tokenCreator.create(TokenType.CLOSE));
             final Node sentenceMeat = syntaxTreeFactory.createSentenceMeat(null, tokenCreator.create("[["), Arrays.asList(fin, dom, su), tokenCreator.create("]]"));
             Assert.assertEquals("[[ Fin ( ) Dom ( ) Su ( ) ]]", ConceptUtils.join(sentenceMeat.collectConcepts()));
         }

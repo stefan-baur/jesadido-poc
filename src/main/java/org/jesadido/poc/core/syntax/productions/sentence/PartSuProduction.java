@@ -54,7 +54,7 @@ public class PartSuProduction extends ProductionLeaf {
             final Token preposition = tokenStream.next();
             return this.parsePrefixless(tokenStream, preposition);
         }
-        return this.parsePrefixless(tokenStream, null);
+        return this.parsePrefixless(tokenStream, this.createToken(TokenType.PART_SU));
     }
     
     private Node parsePrefixless(final TokenStream tokenStream, final Token preposition) {
@@ -70,7 +70,7 @@ public class PartSuProduction extends ProductionLeaf {
             return this.parsingTrouble(tokenStream, TokenType.CLOSE);
         } else if (this.hasFirstOf(tokenStream, Nonterminal.NOMINAL_SELECTION)) {
             final Node nominalSelection = this.parse(tokenStream, Nonterminal.NOMINAL_SELECTION);
-            return this.getGrammar().getSyntaxTreeFactory().createPartSu(preposition, null, nominalSelection, null);
+            return this.getGrammar().getSyntaxTreeFactory().createPartSu(preposition, this.createToken(TokenType.OPEN), nominalSelection, this.createToken(TokenType.CLOSE));
         }
         return this.parsingTrouble(tokenStream);
     }

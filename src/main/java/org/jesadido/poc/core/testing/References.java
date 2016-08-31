@@ -105,6 +105,13 @@ public final class References {
                     .addDefaultTargets(new EsTarget("o"))
                     .addDefaultTargets(new FrTarget("ou"))
             )
+            .add(new ConceptBookEntry("Se")
+                    .addDefaultTargets(new DeTarget("wenn"))
+                    .addDefaultTargets(new EnTarget("if"))
+                    .addDefaultTargets(new EoTarget("se"))
+                    .addDefaultTargets(new EsTarget("si"))
+                    .addDefaultTargets(new FrTarget("si"))
+            )
             .addReferenceSources(
                     "HeroIcxO TrovAs Fin SkribIlO .",
                     "HeroIcxO TrovAs Fin FlorO .",
@@ -124,7 +131,10 @@ public final class References {
                     "Fin SkribIlO Su HeroIcxO TrovAs . Fin NomO Al HeroIcxO DonAs HeroInO .",
                     "Fin SkribIlO TrovAs Su HeroIcxO Kaj TrovAs Fin FlorO Su HeroInO Kaj Al HeroIcxO Fin FlorO DonAs HeroInO .",
                     "Fin SkribIlO TrovAs Su HeroIcxO , TrovAs Fin FlorO Su HeroInO , Al HeroIcxO Fin FlorO DonAs HeroInO .",
-                    "HeroIcxO TrovAs Fin SkribIlO . HeroIcxO HavAs Fin SkribIlO ."
+                    "HeroIcxO TrovAs Fin SkribIlO . HeroIcxO HavAs Fin SkribIlO .",
+                    
+                    "Se { HeroIcxO TrovAs Fin FlorO } { HeroIcxO DonAs Fin FlorO Al HeroInO } .",
+                    "HeroIcxO DonAs Fin FlorO Al HeroInO Se HeroIcxO TrovAs Fin FlorO ."
             )
             ;
     

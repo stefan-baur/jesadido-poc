@@ -7,8 +7,8 @@
  */
 package org.jesadido.poc.core.syntax.tokens;
 
-import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import org.jesadido.poc.core.concepts.Concept;
@@ -21,51 +21,51 @@ import org.jesadido.poc.core.concepts.ConceptTermination;
  */
 public class TokenCreator {
     
-    private static final List<TokenType> SUPPORTED_TOKEN_TYPES = Arrays.asList(TokenType.UNKNOWN,
-            
-            TokenType.TERMINATOR,
-            
-            TokenType.SEPARATOR,
-            TokenType.SEPARATOR_KAJ,
-            TokenType.SEPARATOR_AUX,
-            TokenType.SEPARATOR_SE,
-            
-            TokenType.OPEN_SET,
-            TokenType.CLOSE_SET,
-            TokenType.OPEN,
-            TokenType.CLOSE,
-            
-            TokenType.PART_SU,
-            TokenType.PART_DOM,
-            TokenType.PART_AL,
-            TokenType.PART_FIN,
-            
-            TokenType.SUBSTANTIVE_SINGULAR,
-            TokenType.VERB_PRESENT_TENSE
-    );
-
-    private static final Map<ConceptTermination, TokenCreator.Selector> SELECTIONS = new EnumMap<>(ConceptTermination.class);
+    private static final Map<TokenType, String> DEFAULTS = new EnumMap<>(TokenType.class);
+    private static final Map<ConceptTermination, Selector> SELECTIONS = new EnumMap<>(ConceptTermination.class);
 
     static {
-        SELECTIONS.put(ConceptTermination.PERIOD, (TokenCreator.Selector) (Concept c) -> TokenType.TERMINATOR);
+        DEFAULTS.put(TokenType.UNKNOWN, "");
         
-        SELECTIONS.put(ConceptTermination.COMMA, (TokenCreator.Selector) (Concept c) -> TokenType.SEPARATOR);
-        SELECTIONS.put(ConceptTermination.KAJ, (TokenCreator.Selector) (Concept c) -> TokenType.SEPARATOR_KAJ);
-        SELECTIONS.put(ConceptTermination.AUX, (TokenCreator.Selector) (Concept c) -> TokenType.SEPARATOR_AUX);
-        SELECTIONS.put(ConceptTermination.SE, (TokenCreator.Selector) (Concept c) -> TokenType.SEPARATOR_SE);
+        DEFAULTS.put(TokenType.TERMINATOR, ConceptTermination.PERIOD.getTerminationPhrase());
         
-        SELECTIONS.put(ConceptTermination.LEFT_CURLY, (TokenCreator.Selector) (Concept c) -> TokenType.OPEN_SET);
-        SELECTIONS.put(ConceptTermination.RIGHT_CURLY, (TokenCreator.Selector) (Concept c) -> TokenType.CLOSE_SET);
-        SELECTIONS.put(ConceptTermination.LEFT_PARENTHESIS, (TokenCreator.Selector) (Concept c) -> TokenType.OPEN);
-        SELECTIONS.put(ConceptTermination.RIGHT_PARENTHESIS, (TokenCreator.Selector) (Concept c) -> TokenType.CLOSE);
+        DEFAULTS.put(TokenType.SEPARATOR, ConceptTermination.COMMA.getTerminationPhrase());
+        DEFAULTS.put(TokenType.SEPARATOR_KAJ, ConceptTermination.KAJ.getTerminationPhrase());
+        DEFAULTS.put(TokenType.SEPARATOR_AUX, ConceptTermination.AUX.getTerminationPhrase());
+        DEFAULTS.put(TokenType.SEPARATOR_SE, ConceptTermination.SE.getTerminationPhrase());
         
-        SELECTIONS.put(ConceptTermination.SU, (TokenCreator.Selector) (Concept c) -> TokenType.PART_SU);
-        SELECTIONS.put(ConceptTermination.DOM, (TokenCreator.Selector) (Concept c) -> TokenType.PART_DOM);
-        SELECTIONS.put(ConceptTermination.AL, (TokenCreator.Selector) (Concept c) -> TokenType.PART_AL);
-        SELECTIONS.put(ConceptTermination.FIN, (TokenCreator.Selector) (Concept c) -> TokenType.PART_FIN);
+        DEFAULTS.put(TokenType.OPEN_SET, ConceptTermination.LEFT_CURLY.getTerminationPhrase());
+        DEFAULTS.put(TokenType.CLOSE_SET, ConceptTermination.RIGHT_CURLY.getTerminationPhrase());
+        DEFAULTS.put(TokenType.OPEN, ConceptTermination.LEFT_PARENTHESIS.getTerminationPhrase());
+        DEFAULTS.put(TokenType.CLOSE, ConceptTermination.RIGHT_PARENTHESIS.getTerminationPhrase());
         
-        SELECTIONS.put(ConceptTermination.O, (TokenCreator.Selector) (Concept c) -> TokenType.SUBSTANTIVE_SINGULAR);
-        SELECTIONS.put(ConceptTermination.AS, (TokenCreator.Selector) (Concept c) -> TokenType.VERB_PRESENT_TENSE);
+        DEFAULTS.put(TokenType.PART_SU, ConceptTermination.SU.getTerminationPhrase());
+        DEFAULTS.put(TokenType.PART_DOM, ConceptTermination.DOM.getTerminationPhrase());
+        DEFAULTS.put(TokenType.PART_AL, ConceptTermination.AL.getTerminationPhrase());
+        DEFAULTS.put(TokenType.PART_FIN, ConceptTermination.FIN.getTerminationPhrase());
+        
+        DEFAULTS.put(TokenType.SUBSTANTIVE_SINGULAR, "Test" + ConceptTermination.O.getTerminationPhrase());
+        DEFAULTS.put(TokenType.VERB_PRESENT_TENSE, "Test" + ConceptTermination.AS.getTerminationPhrase());
+        
+        SELECTIONS.put(ConceptTermination.PERIOD, (Selector) (Concept c) -> TokenType.TERMINATOR);
+        
+        SELECTIONS.put(ConceptTermination.COMMA, (Selector) (Concept c) -> TokenType.SEPARATOR);
+        SELECTIONS.put(ConceptTermination.KAJ, (Selector) (Concept c) -> TokenType.SEPARATOR_KAJ);
+        SELECTIONS.put(ConceptTermination.AUX, (Selector) (Concept c) -> TokenType.SEPARATOR_AUX);
+        SELECTIONS.put(ConceptTermination.SE, (Selector) (Concept c) -> TokenType.SEPARATOR_SE);
+        
+        SELECTIONS.put(ConceptTermination.LEFT_CURLY, (Selector) (Concept c) -> TokenType.OPEN_SET);
+        SELECTIONS.put(ConceptTermination.RIGHT_CURLY, (Selector) (Concept c) -> TokenType.CLOSE_SET);
+        SELECTIONS.put(ConceptTermination.LEFT_PARENTHESIS, (Selector) (Concept c) -> TokenType.OPEN);
+        SELECTIONS.put(ConceptTermination.RIGHT_PARENTHESIS, (Selector) (Concept c) -> TokenType.CLOSE);
+        
+        SELECTIONS.put(ConceptTermination.SU, (Selector) (Concept c) -> TokenType.PART_SU);
+        SELECTIONS.put(ConceptTermination.DOM, (Selector) (Concept c) -> TokenType.PART_DOM);
+        SELECTIONS.put(ConceptTermination.AL, (Selector) (Concept c) -> TokenType.PART_AL);
+        SELECTIONS.put(ConceptTermination.FIN, (Selector) (Concept c) -> TokenType.PART_FIN);
+        
+        SELECTIONS.put(ConceptTermination.O, (Selector) (Concept c) -> TokenType.SUBSTANTIVE_SINGULAR);
+        SELECTIONS.put(ConceptTermination.AS, (Selector) (Concept c) -> TokenType.VERB_PRESENT_TENSE);
     }
 
     /**
@@ -89,6 +89,19 @@ public class TokenCreator {
         final Concept concept = ConceptRegistry.getInstance().getConcept(conceptPhrase);
         return new Token(conceptPhrase, this.selectTokenType(concept), concept);
     }
+    
+    /**
+     * Instantiates at token instance by the given token-type which has to be
+     * supported.
+     * @param tokenType The token type.
+     * @return The token instance.
+     */
+    public Token create(final TokenType tokenType) {
+        if (DEFAULTS.containsKey(tokenType)) {
+            return this.create(DEFAULTS.get(tokenType));
+        }
+        throw new IllegalArgumentException(String.format("The given token-type %s is not supported.", tokenType));
+    }
 
     /**
      * Returns the list of the supported token types. This method should return
@@ -96,7 +109,7 @@ public class TokenCreator {
      * @return The supported token types.
      */
     public List<TokenType> getSupportedTokenTypes() {
-        return SUPPORTED_TOKEN_TYPES;
+        return new LinkedList<>(DEFAULTS.keySet());
     }
 
     /**

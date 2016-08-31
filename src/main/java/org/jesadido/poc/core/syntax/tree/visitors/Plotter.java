@@ -14,7 +14,6 @@ import org.jesadido.poc.core.syntax.GrammarFactory;
 import org.jesadido.poc.core.syntax.Nonterminal;
 import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.tree.NominalPartNode;
-import org.jesadido.poc.core.syntax.tree.Terminal;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
 import org.jesadido.poc.core.syntax.tree.sentence.SubstantiveSelection;
@@ -42,25 +41,15 @@ public class Plotter implements Visitor<Void, Src> {
         return String.format("• %s", node.getClass().getSimpleName());
     }
     
-    private static String terminal(final Terminal terminal) {
-        if (terminal.hasToken()) {
-            return String.format("%s", terminal.getToken());
-        } else if (terminal.hasConcept()) {
-            return String.format("\"%s\"", terminal.getConcept().getFullPhrase());
-        } else {
-            return "•••";
-        }
-    }
-    
     private Void visitNominalPartNode(final NominalPartNode node, final Src result) {
         result.line("%s", intro(node));
         result.inc();
-        result.line("%s", terminal(node.getPreposition()));
-        result.line("%s", terminal(node.getOpener()));
+        result.line("%s", node.getPreposition());
+        result.line("%s", node.getOpener());
         if (node.hasNominalSelection()) {
             node.getNominalSelection().accept(this, result);
         }
-        result.line("%s", terminal(node.getCloser()));
+        result.line("%s", node.getCloser());
         result.dec();
         return null;
     }
@@ -79,7 +68,7 @@ public class Plotter implements Visitor<Void, Src> {
         result.line("%s", intro(node));
         result.inc();
         node.getMeats().stream().forEach(meat -> meat.accept(this, result));
-        result.line("%s", terminal(node.getTerminator()));
+        result.line("%s", node.getTerminator());
         result.dec();
         return null;
     }
@@ -91,9 +80,9 @@ public class Plotter implements Visitor<Void, Src> {
         if (node.hasConjunction()) {
             node.getConjunction().accept(this, result);
         }
-        result.line("%s", terminal(node.getOpener()));
+        result.line("%s", node.getOpener());
         node.getParts().stream().forEach(part -> part.accept(this, result));
-        result.line("%s", terminal(node.getCloser()));
+        result.line("%s", node.getCloser());
         result.dec();
         return null;
     }
@@ -102,7 +91,7 @@ public class Plotter implements Visitor<Void, Src> {
     public Void visit(final SentenceMeatConjunction node, final Src result) {
         result.line("%s", intro(node));
         result.inc();
-        result.line("%s", terminal(node.getConjunction()));
+        result.line("%s", node.getConjunction());
         result.dec();
         return null;
     }
@@ -116,12 +105,12 @@ public class Plotter implements Visitor<Void, Src> {
     public Void visit(final PartDom node, final Src result) {
         result.line("%s", intro(node));
         result.inc();
-        result.line("%s", terminal(node.getPreposition()));
-        result.line("%s", terminal(node.getOpener()));
+        result.line("%s", node.getPreposition());
+        result.line("%s", node.getOpener());
         if (node.hasVerbalSelection()) {
             node.getVerbalSelection().accept(this, result);
         }
-        result.line("%s", terminal(node.getCloser()));
+        result.line("%s", node.getCloser());
         result.dec();
         return null;
     }
@@ -151,7 +140,7 @@ public class Plotter implements Visitor<Void, Src> {
     public Void visit(final SubstantiveSelection node, final Src result) {
         result.line("%s", intro(node));
         result.inc();
-        result.line("%s", terminal(node.getSubstantive()));
+        result.line("%s", node.getSubstantive());
         result.dec();
         return null;
     }
@@ -171,7 +160,7 @@ public class Plotter implements Visitor<Void, Src> {
     public Void visit(final VerbSelection node, final Src result) {
         result.line("%s", intro(node));
         result.inc();
-        result.line("%s", terminal(node.getVerb()));
+        result.line("%s", node.getVerb());
         result.dec();
         return null;
     }

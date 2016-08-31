@@ -39,7 +39,7 @@ public abstract class Node implements Visitable {
     
     public final List<Concept> collectConcepts() {
         List<Concept> result = new LinkedList<>();
-        this.collectTerminals().stream().filter(terminal -> terminal.hasConcept()).forEach(terminal -> result.add(terminal.getConcept()));
+        this.collectTerminals().stream().forEach(terminal -> result.add(terminal.getConcept()));
         return result;
     }
     
@@ -49,7 +49,7 @@ public abstract class Node implements Visitable {
     
     public final Concept selectMasterConcept() {
         final Terminal result = this.selectMasterTerminal();
-        return result != null && result.hasConcept() ? result.getConcept() : null;
+        return result != null ? result.getConcept() : null;
     }
     
     public final Terminal selectMasterTerminal() {

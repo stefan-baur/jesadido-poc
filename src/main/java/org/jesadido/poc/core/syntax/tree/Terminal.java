@@ -8,48 +8,33 @@
 package org.jesadido.poc.core.syntax.tree;
 
 import org.jesadido.poc.core.concepts.Concept;
-import org.jesadido.poc.core.concepts.ConceptRegistry;
 import org.jesadido.poc.core.syntax.tokens.Token;
 
 public final class Terminal {
     
-    private final String defaultConceptPhrase;
     private final Token token;
     
-    public Terminal(final Token token, final String defaultConceptPhrase) {
-        this.defaultConceptPhrase = defaultConceptPhrase;
-        this.token = token;
-    }
-    
     public Terminal(final Token token) {
-        this(token, null);
-    }
-    
-    public Terminal(final String defaultConceptPhrase) {
-        this(null, defaultConceptPhrase);
-    }
-    
-    public final boolean isRequired() {
-        return this.defaultConceptPhrase == null;
-    }
-    
-    public final boolean hasToken() {
-        return this.token != null;
+        this.token = token;
+        if (this.token == null) {
+            throw new IllegalArgumentException("A token has to be not null.");
+        }
     }
     
     public final Token getToken() {
         return this.token;
     }
     
-    public final boolean hasConcept() {
-        return this.token != null || this.defaultConceptPhrase != null;
-    }
-    
     public final Concept getConcept() {
-        return this.token != null ? this.token.getConcept() : ConceptRegistry.getInstance().getConcept(this.defaultConceptPhrase);
+        return this.token.getConcept();
     }
     
     public final boolean isDefault() {
-        return this.token == null || this.token.getConcept().getFullPhrase().equals(this.defaultConceptPhrase);
+        return !this.token.hasPosition();
+    }
+    
+    @Override
+    public final String toString() {
+        return this.token.toString();
     }
 }

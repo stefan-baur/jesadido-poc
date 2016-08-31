@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import org.jesadido.poc.core.syntax.Grammar;
 import org.jesadido.poc.core.syntax.Nonterminal;
+import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
@@ -65,6 +66,10 @@ public abstract class Production {
             }
         }
         return false;
+    }
+    
+    public Token createToken(final TokenType tokenType) {
+        return this.getGrammar().getTokenCreator().create(tokenType);
     }
     
     public Node parse(final TokenStream tokenStream, final Nonterminal nonterminalSymbol) {
