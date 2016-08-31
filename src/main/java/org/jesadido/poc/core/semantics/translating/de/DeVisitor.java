@@ -14,6 +14,7 @@ import org.jesadido.poc.core.StringUtils;
 import org.jesadido.poc.core.semantics.ConceptBookEntry;
 import org.jesadido.poc.core.semantics.translating.TranslationResult;
 import org.jesadido.poc.core.semantics.translating.TranslationTarget;
+import org.jesadido.poc.core.syntax.tokens.TokenType;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 import org.jesadido.poc.core.syntax.tree.sentence.NominalSelection;
@@ -48,6 +49,8 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
     @Override
     public TranslationResult visit(final Sentence node, final DeVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
+        argument.setConditionalMeatB(false);
+        argument.setConditionalMeatA(false);
         List<String> translatedMeats = new LinkedList<>();
         for (int i = 0; i < node.getMeats().size(); i++) {
             argument.setSentenceMeatIndex(i);
@@ -60,10 +63,18 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
     public TranslationResult visit(final SentenceMeat node, final DeVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
         List<String> translatedParts = new LinkedList<>();
+        argument.setConditionalMeatB(argument.getConditionalMeatA());
+        argument.setConditionalMeatA(false);
         if (node.hasConjunction()) {
             translatedParts.add(node.getConjunction().accept(this, argument).getTranslation());
         }
-        DeUtils.rearrangeParts(node.getParts()).stream().forEach(part -> translatedParts.add(part.accept(this, argument).getTranslation()));
+        if (argument.getConditionalMeatA()) {
+            DeUtils.rearrangeConditionalMeatAParts(node.getParts()).stream().forEach(part -> translatedParts.add(part.accept(this, argument).getTranslation()));
+        } else if (argument.getConditionalMeatB()) {
+            DeUtils.rearrangeConditionalMeatBParts(node.getParts()).stream().forEach(part -> translatedParts.add(part.accept(this, argument).getTranslation()));
+        } else {
+            DeUtils.rearrangeParts(node.getParts()).stream().forEach(part -> translatedParts.add(part.accept(this, argument).getTranslation()));
+        }
         return result.setTranslation(String.join(" ", translatedParts));
     }
     
@@ -72,6 +83,7 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
         final TranslationResult result = new TranslationResult(node);
         final ConceptBookEntry conceptBookEntry = this.deTranslator.getConceptBook().get(node.getConjunction().getConcept());
         List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.DE);
+        argument.setConditionalMeatA(node.getConjunction().getToken().getType() == TokenType.SEPARATOR_SE);
         if (defaultTargets.isEmpty()) {
             result.setTranslation(conceptBookEntry.getConceptPhrase());
         } else {

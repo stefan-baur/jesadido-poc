@@ -11,12 +11,14 @@ public class DeVisitorArgument {
     
     private De caseAttribute;
     private int sentenceMeatIndex = -1;
+    private boolean conditionalMeatA = false;
+    private boolean conditionalMeatB = false;
     
     public De getCaseAttribute() {
         return this.caseAttribute;
     }
     
-    public void setCaseAttribute(De caseAttribute) {
+    public void setCaseAttribute(final De caseAttribute) {
         this.caseAttribute = caseAttribute;
     }
     
@@ -24,7 +26,23 @@ public class DeVisitorArgument {
         return this.sentenceMeatIndex;
     }
     
-    public void setSentenceMeatIndex(int value) {
+    public void setSentenceMeatIndex(final int value) {
         this.sentenceMeatIndex = value;
+    }
+    
+    public boolean getConditionalMeatA() {
+        return this.conditionalMeatA;
+    }
+    
+    public void setConditionalMeatA(final boolean value) {
+        this.conditionalMeatA = value;
+    }
+    
+    public boolean getConditionalMeatB() {
+        return this.conditionalMeatB;
+    }
+    
+    public void setConditionalMeatB(final boolean value) {
+        this.conditionalMeatB = value;
     }
 }

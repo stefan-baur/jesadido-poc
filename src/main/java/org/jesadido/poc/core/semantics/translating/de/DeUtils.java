@@ -38,6 +38,14 @@ public final class DeUtils {
         }
     }
     
+    public static List<Node> rearrangeConditionalMeatAParts(final List<Node> parts) {
+        return NodeUtils.rearrange(parts, PartSu.class, PartAl.class, PartFin.class, PartDom.class);
+    }
+    
+    public static List<Node> rearrangeConditionalMeatBParts(final List<Node> parts) {
+        return NodeUtils.rearrange(parts, PartDom.class, PartSu.class, PartAl.class, PartFin.class);
+    }
+    
     public static String getIndefiniteArticleFeminine(final De caseAttribute) {
         if ((caseAttribute == De.NOMINATIVE) || (caseAttribute == De.ACCUSATIVE)) {
             return "eine";

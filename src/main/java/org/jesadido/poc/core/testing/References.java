@@ -133,7 +133,7 @@ public final class References {
                     "Fin SkribIlO TrovAs Su HeroIcxO , TrovAs Fin FlorO Su HeroInO , Al HeroIcxO Fin FlorO DonAs HeroInO .",
                     "HeroIcxO TrovAs Fin SkribIlO . HeroIcxO HavAs Fin SkribIlO .",
                     
-                    "Se { HeroIcxO TrovAs Fin FlorO } { HeroIcxO DonAs Fin FlorO Al HeroInO } .",
+                    "Se HeroIcxO TrovAs Fin FlorO , HeroIcxO DonAs Fin FlorO Al HeroInO .",
                     "HeroIcxO DonAs Fin FlorO Al HeroInO Se HeroIcxO TrovAs Fin FlorO ."
             )
             ;

@@ -14,6 +14,7 @@ import org.jesadido.poc.core.StringUtils;
 import org.jesadido.poc.core.semantics.ConceptBookEntry;
 import org.jesadido.poc.core.semantics.translating.TranslationResult;
 import org.jesadido.poc.core.semantics.translating.TranslationTarget;
+import org.jesadido.poc.core.syntax.tokens.TokenType;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 import org.jesadido.poc.core.syntax.tree.sentence.NominalSelection;
@@ -74,6 +75,8 @@ public class EsVisitor implements Visitor<TranslationResult, EsVisitorArgument> 
         List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.ES);
         if (defaultTargets.isEmpty()) {
             result.setTranslation(conceptBookEntry.getConceptPhrase());
+        } else if (node.getConjunction().getToken().getType() == TokenType.SEPARATOR_SE) {
+            result.setTranslation(String.format("%s%s", argument.getSentenceMeatIndex() > 0 ? " " : "", defaultTargets.get(0).getMainPhrase()));
         } else {
             result.setTranslation(String.format("%s%s", argument.getSentenceMeatIndex() > 0 ? ", " : "", defaultTargets.get(0).getMainPhrase()));
         }
