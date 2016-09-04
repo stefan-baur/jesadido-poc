@@ -20,13 +20,16 @@ public class NominalSelectionProduction extends ProductionOneOf {
         super(
                 Nonterminal.NOMINAL_SELECTION,
                 new LinkedList<>(),
-                Arrays.asList(Nonterminal.SUBSTANTIVE_SELECTION)
+                Arrays.asList(Nonterminal.ARTICLE_SELECTION, Nonterminal.SUBSTANTIVE_SELECTION)
         );
     }
     
     @Override
     public Node parse(final TokenStream tokenStream) {
-        if (this.hasFirstOf(tokenStream, Nonterminal.SUBSTANTIVE_SELECTION)) {
+        if (this.hasFirstOf(tokenStream, Nonterminal.ARTICLE_SELECTION)) {
+            final Node articleSelection = this.parse(tokenStream, Nonterminal.ARTICLE_SELECTION);
+            return this.getGrammar().getSyntaxTreeFactory().createNominalSelection(articleSelection);
+        } else if (this.hasFirstOf(tokenStream, Nonterminal.SUBSTANTIVE_SELECTION)) {
             final Node substantiveSelection = this.parse(tokenStream, Nonterminal.SUBSTANTIVE_SELECTION);
             return this.getGrammar().getSyntaxTreeFactory().createNominalSelection(substantiveSelection);
         }

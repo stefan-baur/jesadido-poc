@@ -8,6 +8,7 @@
 package org.jesadido.poc.core.syntax;
 
 import java.util.logging.Logger;
+import org.jesadido.poc.core.syntax.productions.sentence.ArticleSelectionProduction;
 import org.jesadido.poc.core.syntax.productions.sentence.SubstantiveSelectionProduction;
 import org.jesadido.poc.core.syntax.productions.sentence.NominalSelectionProduction;
 import org.jesadido.poc.core.syntax.productions.sentence.PartAlProduction;
@@ -42,6 +43,7 @@ public final class GrammarFactory {
         return new Grammar("Jesadido", new TokenCreator(), new SyntaxTreeFactory())
                 
                 .register(false, new SubstantiveSelectionProduction())
+                .register(false, new ArticleSelectionProduction())
                 .register(false, new NominalSelectionProduction())
                 
                 .register(false, new PartSuProduction())

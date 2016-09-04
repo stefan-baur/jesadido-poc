@@ -134,7 +134,9 @@ public final class References {
                     "HeroIcxO TrovAs Fin SkribIlO . HeroIcxO HavAs Fin SkribIlO .",
                     
                     "Se HeroIcxO TrovAs Fin FlorO , HeroIcxO DonAs Fin FlorO Al HeroInO .",
-                    "HeroIcxO DonAs Fin FlorO Al HeroInO Se HeroIcxO TrovAs Fin FlorO ."
+                    "HeroIcxO DonAs Fin FlorO Al HeroInO Se HeroIcxO TrovAs Fin FlorO .",
+                    
+                    "La HeroIcxO TrovAs Fin La SkribIlO ."
             )
             ;
     

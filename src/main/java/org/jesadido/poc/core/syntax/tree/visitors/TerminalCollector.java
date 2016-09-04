@@ -13,6 +13,7 @@ import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.tree.Terminal;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
+import org.jesadido.poc.core.syntax.tree.sentence.ArticleSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.SubstantiveSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.NominalSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.PartAl;
@@ -110,6 +111,15 @@ public class TerminalCollector implements Visitor<Void, List<Terminal>> {
     
     @Override
     public Void visit(final NominalSelection node, final List<Terminal> result) {
+        if (node.hasChildSelection()) {
+            node.getChildSelection().accept(this, result);
+        }
+        return null;
+    }
+    
+    @Override
+    public Void visit(final ArticleSelection node, final List<Terminal> result) {
+        result.add(node.getArticle());
         if (node.hasSubstantiveSelection()) {
             node.getSubstantiveSelection().accept(this, result);
         }

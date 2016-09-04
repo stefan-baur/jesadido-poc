@@ -16,6 +16,7 @@ import org.jesadido.poc.core.semantics.translating.TranslationResult;
 import org.jesadido.poc.core.semantics.translating.TranslationTarget;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
 import org.jesadido.poc.core.syntax.tree.Visitor;
+import org.jesadido.poc.core.syntax.tree.sentence.ArticleSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.NominalSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.PartAl;
 import org.jesadido.poc.core.syntax.tree.sentence.PartDom;
@@ -110,9 +111,16 @@ public class EoVisitor implements Visitor<TranslationResult, EoVisitorArgument> 
     @Override
     public TranslationResult visit(final NominalSelection node, final EoVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        if (node.hasSubstantiveSelection()) {
-            result.setTranslation(node.getSubstantiveSelection().accept(this, argument).getTranslation());
+        if (node.hasChildSelection()) {
+            result.setTranslation(node.getChildSelection().accept(this, argument).getTranslation());
         }
+        return result;
+    }
+
+    @Override
+    public TranslationResult visit(final ArticleSelection node, final EoVisitorArgument argument) {
+        final TranslationResult result = new TranslationResult(node);
+        result.setTranslation("ARTICLE");
         return result;
     }
 

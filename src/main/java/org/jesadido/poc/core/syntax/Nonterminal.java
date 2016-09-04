@@ -14,6 +14,8 @@ public enum Nonterminal {
     
     /**
      * The nonterminal-symbol for the <b>sentence-sequence</b>.
+     *//**
+     * The nonterminal-symbol for the <b>sentence-sequence</b>.
      */
     SENTENCE_SEQUENCE("sentence-sequence"),
     
@@ -65,6 +67,11 @@ public enum Nonterminal {
      * nominal-phrase).
      */
     NOMINAL_SELECTION("nominal-selection"),
+    
+    /**
+     * The nonterminal-symbol for the <b>article</b> (an indefinite article).
+     */
+    ARTICLE_SELECTION("article-selection"),
     
     /**
      * The nonterminal-symbol for the <b>substantive-selection</b> (a special

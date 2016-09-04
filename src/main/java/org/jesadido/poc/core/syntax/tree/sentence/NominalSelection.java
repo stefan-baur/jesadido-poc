@@ -12,20 +12,20 @@ import org.jesadido.poc.core.syntax.tree.Visitor;
 
 public class NominalSelection extends Node {
     
-    private Node substantiveSelection;
+    private Node childSelection;
     
-    public boolean hasSubstantiveSelection() {
-        return this.substantiveSelection != null;
+    public boolean hasChildSelection() {
+        return this.childSelection != null;
     }
     
-    public Node getSubstantiveSelection() {
-        return this.substantiveSelection;
+    public Node getChildSelection() {
+        return this.childSelection;
     }
     
-    public NominalSelection setSubstantiveSelection(final Node substantiveSelection) {
-        this.substantiveSelection = substantiveSelection;
-        if (this.substantiveSelection != null) {
-            this.substantiveSelection.setParent(this);
+    public NominalSelection setChildSelection(final Node childSelection) {
+        this.childSelection = childSelection;
+        if (this.childSelection != null) {
+            this.childSelection.setParent(this);
         }
         return this;
     }

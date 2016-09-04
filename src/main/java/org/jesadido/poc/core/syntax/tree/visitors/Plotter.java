@@ -16,6 +16,7 @@ import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.tree.NominalPartNode;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
+import org.jesadido.poc.core.syntax.tree.sentence.ArticleSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.SubstantiveSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.NominalSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.PartAl;
@@ -129,6 +130,18 @@ public class Plotter implements Visitor<Void, Src> {
     public Void visit(final NominalSelection node, final Src result) {
         result.line("%s", intro(node));
         result.inc();
+        if (node.hasChildSelection()) {
+            node.getChildSelection().accept(this, result);
+        }
+        result.dec();
+        return null;
+    }
+    
+    @Override
+    public Void visit(final ArticleSelection node, final Src result) {
+        result.line("%s", intro(node));
+        result.inc();
+        result.line("%s", node.getArticle());
         if (node.hasSubstantiveSelection()) {
             node.getSubstantiveSelection().accept(this, result);
         }

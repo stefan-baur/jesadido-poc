@@ -44,6 +44,7 @@ public class TokenCreator {
         DEFAULTS.put(TokenType.PART_AL, ConceptTermination.AL.getTerminationPhrase());
         DEFAULTS.put(TokenType.PART_FIN, ConceptTermination.FIN.getTerminationPhrase());
         
+        DEFAULTS.put(TokenType.ARTICLE, ConceptTermination.LA.getTerminationPhrase());
         DEFAULTS.put(TokenType.SUBSTANTIVE_SINGULAR, "Test" + ConceptTermination.O.getTerminationPhrase());
         DEFAULTS.put(TokenType.VERB_PRESENT_TENSE, "Test" + ConceptTermination.AS.getTerminationPhrase());
         
@@ -64,6 +65,7 @@ public class TokenCreator {
         SELECTIONS.put(ConceptTermination.AL, (Selector) (Concept c) -> TokenType.PART_AL);
         SELECTIONS.put(ConceptTermination.FIN, (Selector) (Concept c) -> TokenType.PART_FIN);
         
+        SELECTIONS.put(ConceptTermination.LA, (Selector) (Concept c) -> TokenType.ARTICLE);
         SELECTIONS.put(ConceptTermination.O, (Selector) (Concept c) -> TokenType.SUBSTANTIVE_SINGULAR);
         SELECTIONS.put(ConceptTermination.AS, (Selector) (Concept c) -> TokenType.VERB_PRESENT_TENSE);
     }

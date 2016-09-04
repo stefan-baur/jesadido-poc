@@ -13,6 +13,7 @@ import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.tree.NodeUtils;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
 import org.jesadido.poc.core.syntax.tree.Visitor;
+import org.jesadido.poc.core.syntax.tree.sentence.ArticleSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.NominalSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.PartAl;
 import org.jesadido.poc.core.syntax.tree.sentence.PartDom;
@@ -110,10 +111,15 @@ public class ConstraintsChecker implements Visitor<List<String>, ConceptBook>{
     @Override
     public List<String> visit(final NominalSelection node, final ConceptBook conceptBook) {
         final List<String> result = new LinkedList<>();
-        if (node.hasSubstantiveSelection()) {
-            result.addAll(node.getSubstantiveSelection().accept(this, conceptBook));
+        if (node.hasChildSelection()) {
+            result.addAll(node.getChildSelection().accept(this, conceptBook));
         }
         return result;
+    }
+
+    @Override
+    public List<String> visit(final ArticleSelection node, final ConceptBook conceptBook) {
+        return new LinkedList<>();
     }
 
     @Override

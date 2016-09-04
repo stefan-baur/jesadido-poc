@@ -16,6 +16,7 @@ import org.jesadido.poc.core.syntax.Nonterminal;
 import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
 import org.jesadido.poc.core.syntax.tree.Visitor;
+import org.jesadido.poc.core.syntax.tree.sentence.ArticleSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.NominalSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.PartAl;
 import org.jesadido.poc.core.syntax.tree.sentence.PartDom;
@@ -109,6 +110,15 @@ public class PrettyPrinter implements Visitor<Void, Src> {
 
     @Override
     public Void visit(final NominalSelection node, final Src result) {
+        if (node.hasChildSelection()) {
+            node.getChildSelection().accept(this, result);
+        }
+        return null;
+    }
+
+    @Override
+    public Void visit(final ArticleSelection node, final Src result) {
+        result.line("%s", node.getArticle().getConcept());
         if (node.hasSubstantiveSelection()) {
             node.getSubstantiveSelection().accept(this, result);
         }
