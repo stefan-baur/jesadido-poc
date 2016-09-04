@@ -33,4 +33,12 @@ public final class EsUtils {
             return "un";
         }
     }
+    
+    public static String getDefiniteArticle(final TranslationTarget substantiveTarget, final Es caseAttribute) {
+        if (substantiveTarget.getAttributes().contains(Es.FEMININE)) {
+            return caseAttribute == Es.DATIVE ? "a la" : "la";
+        } else {
+            return caseAttribute == Es.DATIVE ? "al" : "el";
+        }
+    }
 }

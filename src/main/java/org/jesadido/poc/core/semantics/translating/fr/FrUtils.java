@@ -33,4 +33,21 @@ public final class FrUtils {
             return "un";
         }
     }
+    
+    public static String getDefiniteArticleSubstantive(final TranslationTarget substantiveTarget) {
+        final String follower = substantiveTarget.getMainPhrase();
+        if (substantiveTarget.getAttributes().contains(Fr.FEMININE)) {
+            return isVocalical(follower) ? String.format("l'%s", follower) : String.format("la %s", follower);
+        } else {
+            return isVocalical(follower) ? String.format("l'%s", follower) : String.format("le %s", follower);
+        }
+    }
+    
+    private static boolean isVocalical(String follower) {
+        if (follower != null && follower.length() > 0) {
+            final String firstCharOfFollower = Character.toString(follower.charAt(0));
+            return ("aeioué".contains(firstCharOfFollower)) || ("ha|he|hi|ho|hu".contains(firstCharOfFollower));
+        }
+        return false;
+    }
 }

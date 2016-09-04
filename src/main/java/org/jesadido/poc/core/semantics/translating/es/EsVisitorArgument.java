@@ -7,10 +7,13 @@
  */
 package org.jesadido.poc.core.semantics.translating.es;
 
+import org.jesadido.poc.core.syntax.tree.Terminal;
+
 public class EsVisitorArgument {
     
     private Es caseAttribute = null;
     private int sentenceMeatIndex = -1;
+    private Terminal article = null;
     
     public Es getCaseAttribute() {
         return this.caseAttribute;
@@ -26,5 +29,13 @@ public class EsVisitorArgument {
     
     public void setSentenceMeatIndex(int value) {
         this.sentenceMeatIndex = value;
+    }
+    
+    public Terminal getArticle() {
+        return this.article;
+    }
+    
+    public void setArticle(final Terminal article) {
+        this.article = article;
     }
 }

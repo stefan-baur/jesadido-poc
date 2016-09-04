@@ -114,6 +114,7 @@ public class EsVisitor implements Visitor<TranslationResult, EsVisitorArgument> 
     @Override
     public TranslationResult visit(final NominalSelection node, final EsVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
+        argument.setArticle(null);
         if (node.hasChildSelection()) {
             result.setTranslation(node.getChildSelection().accept(this, argument).getTranslation());
         }
@@ -123,7 +124,10 @@ public class EsVisitor implements Visitor<TranslationResult, EsVisitorArgument> 
     @Override
     public TranslationResult visit(final ArticleSelection node, final EsVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        result.setTranslation("ARTICLE");
+        argument.setArticle(node.getArticle());
+        if (node.hasSubstantiveSelection()) {
+            result.setTranslation(node.getSubstantiveSelection().accept(this, argument).getTranslation());
+        }
         return result;
     }
 
@@ -134,6 +138,9 @@ public class EsVisitor implements Visitor<TranslationResult, EsVisitorArgument> 
         List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.ES);
         if (defaultTargets.isEmpty()) {
             result.setTranslation(conceptBookEntry.getConceptPhrase());
+        } else if (argument.getArticle() != null) {
+            final TranslationTarget substantiveTarget = defaultTargets.get(0);
+            result.setTranslation(String.format("%s %s", EsUtils.getDefiniteArticle(substantiveTarget, argument.getCaseAttribute()), substantiveTarget.getMainPhrase()));
         } else {
             final TranslationTarget substantiveTarget = defaultTargets.get(0);
             result.setTranslation(String.format("%s%s %s", argument.getCaseAttribute() == Es.DATIVE ? "a " : "", EsUtils.getIndefiniteArticle(substantiveTarget), substantiveTarget.getMainPhrase()));

@@ -114,6 +114,7 @@ public class FrVisitor implements Visitor<TranslationResult, FrVisitorArgument> 
     @Override
     public TranslationResult visit(final NominalSelection node, final FrVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
+        argument.setArticle(null);
         if (node.hasChildSelection()) {
             result.setTranslation(node.getChildSelection().accept(this, argument).getTranslation());
         }
@@ -123,7 +124,10 @@ public class FrVisitor implements Visitor<TranslationResult, FrVisitorArgument> 
     @Override
     public TranslationResult visit(final ArticleSelection node, final FrVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        result.setTranslation("ARTICLE");
+        argument.setArticle(node.getArticle());
+        if (node.hasSubstantiveSelection()) {
+            result.setTranslation(node.getSubstantiveSelection().accept(this, argument).getTranslation());
+        }
         return result;
     }
 
@@ -134,6 +138,9 @@ public class FrVisitor implements Visitor<TranslationResult, FrVisitorArgument> 
         List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.FR);
         if (defaultTargets.isEmpty()) {
             result.setTranslation(conceptBookEntry.getConceptPhrase());
+        } else if (argument.getArticle() != null) {
+            final TranslationTarget substantiveTarget = defaultTargets.get(0);
+            result.setTranslation(String.format("%s%s", argument.getCaseAttribute() == Fr.DATIVE ? "à " : "", FrUtils.getDefiniteArticleSubstantive(substantiveTarget)));
         } else {
             final TranslationTarget substantiveTarget = defaultTargets.get(0);
             result.setTranslation(String.format("%s%s %s", argument.getCaseAttribute() == Fr.DATIVE ? "à " : "", FrUtils.getIndefiniteArticle(substantiveTarget), substantiveTarget.getMainPhrase()));
