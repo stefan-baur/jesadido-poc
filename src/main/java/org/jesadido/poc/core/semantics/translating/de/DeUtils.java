@@ -46,6 +46,16 @@ public final class DeUtils {
         return NodeUtils.rearrange(parts, PartDom.class, PartSu.class, PartAl.class, PartFin.class);
     }
     
+    public static String getIndefiniteArticle(final TranslationTarget substantiveTarget, final De caseAttribute) {
+        if (substantiveTarget.getAttributes().contains(De.FEMININE)) {
+            return getIndefiniteArticleFeminine(caseAttribute);
+        } else if (substantiveTarget.getAttributes().contains(De.NEUTER)) {
+            return getIndefiniteArticleNeuter(caseAttribute);
+        } else {
+            return getIndefiniteArticleMasculine(caseAttribute);
+        }
+    }
+    
     public static String getIndefiniteArticleFeminine(final De caseAttribute) {
         if ((caseAttribute == De.NOMINATIVE) || (caseAttribute == De.ACCUSATIVE)) {
             return "eine";
@@ -76,13 +86,43 @@ public final class DeUtils {
         }
     }
     
-    public static String getIndefiniteArticle(final TranslationTarget substantiveTarget, final De caseAttribute) {
+    public static String getDefiniteArticle(final TranslationTarget substantiveTarget, final De caseAttribute) {
         if (substantiveTarget.getAttributes().contains(De.FEMININE)) {
-            return getIndefiniteArticleFeminine(caseAttribute);
+            return getDefiniteArticleFeminine(caseAttribute);
         } else if (substantiveTarget.getAttributes().contains(De.NEUTER)) {
-            return getIndefiniteArticleNeuter(caseAttribute);
+            return getDefiniteArticleNeuter(caseAttribute);
         } else {
-            return getIndefiniteArticleMasculine(caseAttribute);
+            return getDefiniteArticleMasculine(caseAttribute);
+        }
+    }
+    
+    public static String getDefiniteArticleFeminine(final De caseAttribute) {
+        if ((caseAttribute == De.NOMINATIVE) || (caseAttribute == De.ACCUSATIVE)) {
+            return "die";
+        } else {
+            return "der";
+        }
+    }
+    
+    public static String getDefiniteArticleNeuter(final De caseAttribute) {
+        if ((caseAttribute == De.NOMINATIVE) || (caseAttribute == De.ACCUSATIVE)) {
+            return "das";
+        } else if (caseAttribute == De.DATIVE) {
+            return "dem";
+        } else {
+            return "des";
+        }
+    }
+    
+    public static String getDefiniteArticleMasculine(final De caseAttribute) {
+        if (caseAttribute == De.NOMINATIVE) {
+            return "der";
+        } else if (caseAttribute == De.GENITIVE) {
+            return "des";
+        } else if (caseAttribute == De.DATIVE) {
+            return "dem";
+        } else {
+            return "den";
         }
     }
 }

@@ -136,7 +136,28 @@ public final class References {
                     "Se HeroIcxO TrovAs Fin FlorO , HeroIcxO DonAs Fin FlorO Al HeroInO .",
                     "HeroIcxO DonAs Fin FlorO Al HeroInO Se HeroIcxO TrovAs Fin FlorO .",
                     
-                    "La HeroIcxO TrovAs Fin La SkribIlO ."
+                    "La HeroIcxO TrovAs Fin La SkribIlO .",
+                    "La HeroIcxO TrovAs Fin La FlorO .",
+                    "La HeroInO TrovAs Fin La SkribIlO .",
+                    "Kaj La HeroInO TrovAs Fin La FlorO .",
+
+                    "La HeroIcxO HavAs Fin La NomO .",
+                    "La HeroIcxO DonAs Al La HeroInO Fin La SkribIlO .",
+                    "La HeroIcxO DonAs Al La HeroInO Fin La FlorO .",
+                    "La HeroInO DonAs Al La HeroIcxO Fin La SkribIlO .",
+                    "Kaj La HeroInO DonAs Al La HeroIcxO Fin La FlorO .",
+
+                    "La HeroIcxO TrovAs Fin La FlorO Kaj La HeroInO TrovAs Fin La SkribIlO .",
+                    "La HeroIcxO DonAs Al La HeroInO Fin La FlorO Kaj La HeroInO DonAs Al La HeroIcxO Fin La SkribIlO .",
+                    "La HeroIcxO DonAs Al La HeroInO Fin La FlorO Aux La HeroInO DonAs Al La HeroIcxO Fin La SkribIlO .",
+
+                    "Fin La SkribIlO Su La HeroIcxO TrovAs . Fin La NomO Al La HeroIcxO DonAs La HeroInO .",
+                    "Fin La SkribIlO TrovAs Su La HeroIcxO Kaj TrovAs Fin La FlorO Su La HeroInO Kaj Al La HeroIcxO Fin La FlorO DonAs La HeroInO .",
+                    "Fin La SkribIlO TrovAs Su La HeroIcxO , TrovAs Fin La FlorO Su La HeroInO , Al La HeroIcxO Fin La FlorO DonAs La HeroInO .",
+                    "La HeroIcxO TrovAs Fin La SkribIlO . La HeroIcxO HavAs Fin La SkribIlO .",
+                    
+                    "Se La HeroIcxO TrovAs Fin La FlorO , La HeroIcxO DonAs Fin La FlorO Al La HeroInO .",
+                    "La HeroIcxO DonAs Fin La FlorO Al La HeroInO Se La HeroIcxO TrovAs Fin La FlorO ."
             )
             ;
     

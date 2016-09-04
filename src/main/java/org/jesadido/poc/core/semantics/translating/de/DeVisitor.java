@@ -123,6 +123,7 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
     @Override
     public TranslationResult visit(final NominalSelection node, final DeVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
+        argument.setArticle(null);
         if (node.hasChildSelection()) {
             result.setTranslation(node.getChildSelection().accept(this, argument).getTranslation());
         }
@@ -132,7 +133,10 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
     @Override
     public TranslationResult visit(final ArticleSelection node, final DeVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        result.setTranslation("ARTICLE");
+        argument.setArticle(node.getArticle());
+        if (node.hasSubstantiveSelection()) {
+            result.setTranslation(node.getSubstantiveSelection().accept(this, argument).getTranslation());
+        }
         return result;
     }
 
@@ -143,6 +147,9 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
         List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.DE, argument.getCaseAttribute());
         if (defaultTargets.isEmpty()) {
             result.setTranslation(conceptBookEntry.getConceptPhrase());
+        } else if (argument.getArticle() != null) {
+            final TranslationTarget substantiveTarget = defaultTargets.get(0);
+            result.setTranslation(String.format("%s %s", DeUtils.getDefiniteArticle(substantiveTarget, argument.getCaseAttribute()), substantiveTarget.getMainPhrase()));
         } else {
             final TranslationTarget substantiveTarget = defaultTargets.get(0);
             result.setTranslation(String.format("%s %s", DeUtils.getIndefiniteArticle(substantiveTarget, argument.getCaseAttribute()), substantiveTarget.getMainPhrase()));

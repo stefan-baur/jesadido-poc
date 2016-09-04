@@ -7,12 +7,15 @@
  */
 package org.jesadido.poc.core.semantics.translating.de;
 
+import org.jesadido.poc.core.syntax.tree.Terminal;
+
 public class DeVisitorArgument {
     
     private De caseAttribute;
     private int sentenceMeatIndex = -1;
     private boolean conditionalMeatA = false;
     private boolean conditionalMeatB = false;
+    private Terminal article = null;
     
     public De getCaseAttribute() {
         return this.caseAttribute;
@@ -44,5 +47,13 @@ public class DeVisitorArgument {
     
     public void setConditionalMeatB(final boolean value) {
         this.conditionalMeatB = value;
+    }
+    
+    public Terminal getArticle() {
+        return this.article;
+    }
+    
+    public void setArticle(final Terminal article) {
+        this.article = article;
     }
 }
