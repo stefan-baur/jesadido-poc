@@ -9,7 +9,7 @@ package org.jesadido.poc.core.semantics.translating.fr;
 
 public class FrVisitorArgument {
     
-    private Fr caseAttribute;
+    private Fr caseAttribute = null;
     private int sentenceMeatIndex = -1;
     
     public Fr getCaseAttribute() {

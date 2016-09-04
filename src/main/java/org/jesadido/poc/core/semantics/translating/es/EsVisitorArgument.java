@@ -9,7 +9,7 @@ package org.jesadido.poc.core.semantics.translating.es;
 
 public class EsVisitorArgument {
     
-    private Es caseAttribute;
+    private Es caseAttribute = null;
     private int sentenceMeatIndex = -1;
     
     public Es getCaseAttribute() {

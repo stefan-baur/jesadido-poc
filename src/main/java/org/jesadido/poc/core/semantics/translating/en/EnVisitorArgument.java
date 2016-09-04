@@ -11,7 +11,7 @@ import org.jesadido.poc.core.syntax.tree.Terminal;
 
 public class EnVisitorArgument {
     
-    private En caseAttribute;
+    private En caseAttribute = null;
     private int sentenceMeatIndex = -1;
     private Terminal article = null;
     

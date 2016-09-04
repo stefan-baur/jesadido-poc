@@ -11,7 +11,7 @@ import org.jesadido.poc.core.syntax.tree.Terminal;
 
 public class DeVisitorArgument {
     
-    private De caseAttribute;
+    private De caseAttribute = null;
     private int sentenceMeatIndex = -1;
     private boolean conditionalMeatA = false;
     private boolean conditionalMeatB = false;
