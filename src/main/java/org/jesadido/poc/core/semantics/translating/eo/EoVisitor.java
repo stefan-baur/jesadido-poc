@@ -111,6 +111,7 @@ public class EoVisitor implements Visitor<TranslationResult, EoVisitorArgument> 
     @Override
     public TranslationResult visit(final NominalSelection node, final EoVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
+        argument.setArticle(null);
         if (node.hasChildSelection()) {
             result.setTranslation(node.getChildSelection().accept(this, argument).getTranslation());
         }
@@ -120,7 +121,10 @@ public class EoVisitor implements Visitor<TranslationResult, EoVisitorArgument> 
     @Override
     public TranslationResult visit(final ArticleSelection node, final EoVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        result.setTranslation("ARTICLE");
+        argument.setArticle(node.getArticle());
+        if (node.hasSubstantiveSelection()) {
+            result.setTranslation(node.getSubstantiveSelection().accept(this, argument).getTranslation());
+        }
         return result;
     }
 
@@ -131,6 +135,9 @@ public class EoVisitor implements Visitor<TranslationResult, EoVisitorArgument> 
         List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.EO);
         if (defaultTargets.isEmpty()) {
             result.setTranslation(conceptBookEntry.getConceptPhrase());
+        } else if (argument.getArticle() != null) {
+            final TranslationTarget substantiveTarget = defaultTargets.get(0);
+            result.setTranslation(String.format("la %s", EoUtils.getCasedSubstantive(substantiveTarget, argument.getCaseAttribute())));
         } else {
             final TranslationTarget substantiveTarget = defaultTargets.get(0);
             result.setTranslation(EoUtils.getCasedSubstantive(substantiveTarget, argument.getCaseAttribute()));
