@@ -80,6 +80,7 @@ public class JesadidoPocClient extends Application {
         
         final BorderPane masterPane = new BorderPane();
         masterPane.setPadding(new Insets(8, 8, 8, 8));
+        masterPane.setCenter(this.createGaming());
         
         final MenuItem menuItemGrammarJesadido = new MenuItem(jesadidoGrammar.getName());
         menuItemGrammarJesadido.setOnAction((ActionEvent e) -> {
@@ -97,10 +98,16 @@ public class JesadidoPocClient extends Application {
         final Menu menuConceptBooks = new Menu("Concept-Books");
         menuConceptBooks.getItems().addAll(menuItemGameBook);
         
-        final MenuBar menuBar = new MenuBar();
-        menuBar.getMenus().addAll(menuGrammars, menuConceptBooks);
+        final MenuItem menuItemGaming = new MenuItem("Gaming");
+        menuItemGaming.setOnAction((ActionEvent e) -> {
+            masterPane.setTop(null);
+            masterPane.setCenter(this.createGaming());
+        });
+        final Menu menuUseCases = new Menu("Use-Cases");
+        menuUseCases.getItems().addAll(menuItemGaming);
         
-        masterPane.setCenter(this.createExperimental());
+        final MenuBar menuBar = new MenuBar();
+        menuBar.getMenus().addAll(menuGrammars, menuConceptBooks, menuUseCases);
         
         final VBox masterBox = new VBox();
         masterBox.getChildren().addAll(menuBar, masterPane);
@@ -108,9 +115,9 @@ public class JesadidoPocClient extends Application {
         return new Scene(rootPane, 800, 600);
     }
     
-    private Node createExperimental() {
+    private Node createGaming() {
         final Group result = new Group();
-        result.getChildren().add(new RagScale(0.25).add(new RagPath(new RagProperties(Color.WHITE, Color.DARKBLUE, 5), "m -227.14286,103.79075 120,12.85715 114.2857171,-7.14286 145.7142829,1.42857 37.14286,1.42857 62.85714,-5.71428 -1.42857,94.28571 -5.71428,85.71429 0,214.28571 12.85714,222.85714 -2.85714,155.71429 -7.14286,174.28576 -215.714287,1.4285 -252.857143,1.4286 -2.85714,-118.57143 -1.42857,-100 12.85714,-125.71429 -12.85714,-185.71428 5.71428,-265.71429 -2.85714,-87.14286 z")).createJavaFx());
+        result.getChildren().add(new RagScale(0.25).add(new RagPath(new RagProperties(Color.DARKBLUE), "m -227.14286,103.79075 120,12.85715 114.2857171,-7.14286 145.7142829,1.42857 37.14286,1.42857 62.85714,-5.71428 -1.42857,94.28571 -5.71428,85.71429 0,214.28571 12.85714,222.85714 -2.85714,155.71429 -7.14286,174.28576 -215.714287,1.4285 -252.857143,1.4286 -2.85714,-118.57143 -1.42857,-100 12.85714,-125.71429 -12.85714,-185.71428 5.71428,-265.71429 -2.85714,-87.14286 z")).createJavaFx());
         return result;
     }
     

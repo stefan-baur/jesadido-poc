@@ -21,6 +21,10 @@ public class RagProperties {
         this.strokeWidth = strokeWidth;
     }
     
+    public RagProperties(final Color fill) {
+        this(fill, Color.TRANSPARENT, 0);
+    }
+    
     public Color getFill() {
         return this.fill;
     }
