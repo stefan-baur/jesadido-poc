@@ -28,7 +28,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -41,9 +40,9 @@ import org.jesadido.poc.core.semantics.translating.TranslatorFactory;
 import org.jesadido.poc.core.syntax.Grammar;
 import org.jesadido.poc.core.syntax.GrammarFactory;
 import org.jesadido.poc.core.testing.References;
-import org.jesadido.poc.usecases.gaming.graphics.rags.RagPath;
-import org.jesadido.poc.usecases.gaming.graphics.rags.RagProperties;
-import org.jesadido.poc.usecases.gaming.graphics.rags.RagScale;
+import org.jesadido.poc.usecases.gaming.Layer;
+import org.jesadido.poc.usecases.gaming.Thing;
+import org.jesadido.poc.usecases.gaming.ThingFactory;
 
 /**
  * This <code>JesadidoPocClient</code> class implements the JavaFX client
@@ -117,7 +116,16 @@ public class JesadidoPocClient extends Application {
     
     private Node createGaming() {
         final Group result = new Group();
-        result.getChildren().add(new RagScale(0.25).add(new RagPath(new RagProperties(Color.DARKBLUE), "m -227.14286,103.79075 120,12.85715 114.2857171,-7.14286 145.7142829,1.42857 37.14286,1.42857 62.85714,-5.71428 -1.42857,94.28571 -5.71428,85.71429 0,214.28571 12.85714,222.85714 -2.85714,155.71429 -7.14286,174.28576 -215.714287,1.4285 -252.857143,1.4286 -2.85714,-118.57143 -1.42857,-100 12.85714,-125.71429 -12.85714,-185.71428 5.71428,-265.71429 -2.85714,-87.14286 z")).createJavaFx());
+        
+        final Thing heroIcxO = ThingFactory.createHeroIcxO();
+        heroIcxO.setPosition(-400, 0);
+        final Thing heroInO = ThingFactory.createHeroInO();
+        
+        final Layer layer = new Layer();
+        layer.getThings().add(heroIcxO);
+        layer.getThings().add(heroInO);
+        
+        result.getChildren().add(layer.createJavaFx());
         return result;
     }
     
