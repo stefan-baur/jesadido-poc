@@ -7,17 +7,12 @@
  */
 package org.jesadido.poc.client;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -39,17 +34,15 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import org.jesadido.poc.JesadidoPoc;
 import org.jesadido.poc.core.Language;
-import org.jesadido.poc.core.scripting.Src;
 import org.jesadido.poc.core.semantics.ConceptBook;
 import org.jesadido.poc.core.semantics.ConceptBookEntry;
 import org.jesadido.poc.core.semantics.translating.TranslatorFactory;
 import org.jesadido.poc.core.syntax.Grammar;
 import org.jesadido.poc.core.syntax.GrammarFactory;
 import org.jesadido.poc.core.testing.References;
-import org.jesadido.poc.usecases.gaming.Layer;
 import org.jesadido.poc.usecases.gaming.ReferenceGames;
-import org.jesadido.poc.usecases.gaming.Thing;
-import org.jesadido.poc.usecases.gaming.ThingFactory;
+import org.jesadido.poc.usecases.gaming.generators.html.HtmlGameGenerator;
+import org.jesadido.poc.usecases.gaming.generators.javafx.NodeGameGenerator;
 import org.jesadido.poc.usecases.gaming.models.GameModel;
 
 /**
@@ -138,14 +131,7 @@ public class JesadidoPocClient extends Application {
         gameModelTab.setContent(gameModelContent);
         gameModelTab.setClosable(false);
         
-        final Thing heroIcxO = ThingFactory.createHeroIcxO();
-        heroIcxO.setPosition(-400, 0);
-        final Thing heroInO = ThingFactory.createHeroInO();
-        final Layer layer = new Layer();
-        layer.getThings().add(heroIcxO);
-        layer.getThings().add(heroInO);
-        
-        final Group playGameContent = new Group(layer.createJavaFx());
+        final BorderPane playGameContent = new BorderPane(new NodeGameGenerator().generate(gameModel));
         
         final Tab playGameTab = new Tab("Play the Game!");
         playGameTab.setContent(playGameContent);
@@ -153,23 +139,9 @@ public class JesadidoPocClient extends Application {
         
         final Button generateStaticWebsite = new Button("Generate a Static Website!");
         generateStaticWebsite.setOnAction((ActionEvent e) -> {
-            final File baseDirectory = new File(new File(System.getProperty("user.home"), JesadidoPoc.ABBREVIATION), "html");
-            final File indexHtml = new File(baseDirectory, "index.html");
-            try {
-                new Src()
-                        .line("<!DOCTYPE html>")
-                        .begin("<html>")
-                        .begin("<head>")
-                        .line("<title>%s</title>", gameModel.getTitle())
-                        .end("</head>")
-                        .begin("<body>")
-                        .line("%s", gameModel.getTitle())
-                        .end("</body>")
-                        .end("</html>")
-                        .save(indexHtml);
-                getHostServices().showDocument(indexHtml.getAbsolutePath());
-            } catch (IOException ex) {
-                Logger.getAnonymousLogger().log(Level.SEVERE, "The static website can not be stored to the directory: " + indexHtml.getAbsolutePath(), ex);
+            final HtmlGameGenerator htmlGameGenerator = new HtmlGameGenerator();
+            if (htmlGameGenerator.generate(gameModel)) {
+                getHostServices().showDocument(htmlGameGenerator.getIndexPageFile().getAbsolutePath());
             }
         });
         
