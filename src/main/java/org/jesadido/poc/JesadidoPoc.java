@@ -17,6 +17,11 @@ import org.jesadido.poc.client.JesadidoPocClient;
 public class JesadidoPoc {
     
     /**
+     * The abbreviation name of this language project.
+     */
+    public static final String ABBREVIATION = "jesadido-poc";
+    
+    /**
      * The full name of this language project.
      */
     public static final String NAME = "Jesadido - Proof of Concept";

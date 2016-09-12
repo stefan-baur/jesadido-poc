@@ -7,6 +7,10 @@
  */
 package org.jesadido.poc.client;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -16,6 +20,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
@@ -34,6 +39,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import org.jesadido.poc.JesadidoPoc;
 import org.jesadido.poc.core.Language;
+import org.jesadido.poc.core.scripting.Src;
 import org.jesadido.poc.core.semantics.ConceptBook;
 import org.jesadido.poc.core.semantics.ConceptBookEntry;
 import org.jesadido.poc.core.semantics.translating.TranslatorFactory;
@@ -41,8 +47,10 @@ import org.jesadido.poc.core.syntax.Grammar;
 import org.jesadido.poc.core.syntax.GrammarFactory;
 import org.jesadido.poc.core.testing.References;
 import org.jesadido.poc.usecases.gaming.Layer;
+import org.jesadido.poc.usecases.gaming.ReferenceGames;
 import org.jesadido.poc.usecases.gaming.Thing;
 import org.jesadido.poc.usecases.gaming.ThingFactory;
+import org.jesadido.poc.usecases.gaming.models.GameModel;
 
 /**
  * This <code>JesadidoPocClient</code> class implements the JavaFX client
@@ -76,10 +84,11 @@ public class JesadidoPocClient extends Application {
         
         final Grammar jesadidoGrammar = GrammarFactory.createJesadidoGrammar();
         final ConceptBook gameBook = References.GAME_BOOK;
+        final GameModel myTinyGame = ReferenceGames.MY_TINY_GAME;
         
         final BorderPane masterPane = new BorderPane();
         masterPane.setPadding(new Insets(8, 8, 8, 8));
-        masterPane.setCenter(this.createGaming());
+        masterPane.setCenter(this.createGame(myTinyGame));
         
         final MenuItem menuItemGrammarJesadido = new MenuItem(jesadidoGrammar.getName());
         menuItemGrammarJesadido.setOnAction((ActionEvent e) -> {
@@ -97,11 +106,15 @@ public class JesadidoPocClient extends Application {
         final Menu menuConceptBooks = new Menu("Concept-Books");
         menuConceptBooks.getItems().addAll(menuItemGameBook);
         
-        final MenuItem menuItemGaming = new MenuItem("Gaming");
-        menuItemGaming.setOnAction((ActionEvent e) -> {
-            masterPane.setTop(null);
-            masterPane.setCenter(this.createGaming());
+        final MenuItem menuItemMyTinyGame = new MenuItem(myTinyGame.getTitle());
+        menuItemMyTinyGame.setOnAction((ActionEvent e) -> {
+            masterPane.setTop(this.createPageHeader(String.format("Game: %s", myTinyGame.getTitle())));
+            masterPane.setCenter(this.createGame(myTinyGame));
         });
+        
+        final Menu menuItemGaming = new Menu("Gaming");
+        menuItemGaming.getItems().addAll(menuItemMyTinyGame);
+        
         final Menu menuUseCases = new Menu("Use-Cases");
         menuUseCases.getItems().addAll(menuItemGaming);
         
@@ -114,18 +127,62 @@ public class JesadidoPocClient extends Application {
         return new Scene(rootPane, 800, 600);
     }
     
-    private Node createGaming() {
-        final Group result = new Group();
+    private Node createGame(final GameModel gameModel) {
+        
+        final TextArea gameModelContent = new TextArea(gameModel.getTitle());
+        gameModelContent.setFont(SOURCE_FONT_11);
+        gameModelContent.setEditable(false);
+        gameModelContent.setPadding(new Insets(8, 0, 0, 0));
+        
+        final Tab gameModelTab = new Tab("Game-Model");
+        gameModelTab.setContent(gameModelContent);
+        gameModelTab.setClosable(false);
         
         final Thing heroIcxO = ThingFactory.createHeroIcxO();
         heroIcxO.setPosition(-400, 0);
         final Thing heroInO = ThingFactory.createHeroInO();
-        
         final Layer layer = new Layer();
         layer.getThings().add(heroIcxO);
         layer.getThings().add(heroInO);
         
-        result.getChildren().add(layer.createJavaFx());
+        final Group playGameContent = new Group(layer.createJavaFx());
+        
+        final Tab playGameTab = new Tab("Play the Game!");
+        playGameTab.setContent(playGameContent);
+        playGameTab.setClosable(false);
+        
+        final Button generateStaticWebsite = new Button("Generate a Static Website!");
+        generateStaticWebsite.setOnAction((ActionEvent e) -> {
+            final File baseDirectory = new File(new File(System.getProperty("user.home"), JesadidoPoc.ABBREVIATION), "html");
+            final File indexHtml = new File(baseDirectory, "index.html");
+            try {
+                new Src()
+                        .line("<!DOCTYPE html>")
+                        .begin("<html>")
+                        .begin("<head>")
+                        .line("<title>%s</title>", gameModel.getTitle())
+                        .end("</head>")
+                        .begin("<body>")
+                        .line("%s", gameModel.getTitle())
+                        .end("</body>")
+                        .end("</html>")
+                        .save(indexHtml);
+                getHostServices().showDocument(indexHtml.getAbsolutePath());
+            } catch (IOException ex) {
+                Logger.getAnonymousLogger().log(Level.SEVERE, "The static website can not be stored to the directory: " + indexHtml.getAbsolutePath(), ex);
+            }
+        });
+        
+        final VBox crossPlatformContent = new VBox();
+        crossPlatformContent.getChildren().add(generateStaticWebsite);
+        
+        final Tab crossPlatformTab = new Tab("Code-Generation");
+        crossPlatformTab.setContent(crossPlatformContent);
+        crossPlatformTab.setClosable(false);
+        
+        final TabPane result = new TabPane();
+        result.setPrefHeight(2400);
+        result.getTabs().addAll(gameModelTab, playGameTab, crossPlatformTab);
         return result;
     }
     

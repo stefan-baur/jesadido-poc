@@ -46,7 +46,7 @@ public final class RGBO {
     }
     
     public double getTransparency() {
-        return this.opacity == 0.0 ? 1.0 : Double.max(0.0, 1.0 - this.opacity);
+        return Double.compare(this.opacity, 0.0) == 0 ? 1.0 : Double.max(0.0, 1.0 - this.opacity);
     }
     
     @Override
