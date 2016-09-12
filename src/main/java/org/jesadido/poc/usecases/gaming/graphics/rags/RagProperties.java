@@ -7,37 +7,37 @@
  */
 package org.jesadido.poc.usecases.gaming.graphics.rags;
 
-import javafx.scene.paint.Color;
+import org.jesadido.poc.usecases.gaming.graphics.RGBO;
 
 public class RagProperties {
     
-    private Color fill;
-    private Color stroke;
+    private RGBO fill;
+    private RGBO stroke;
     private double strokeWidth;
     
-    public RagProperties(final Color fill, final Color stroke, final double strokeWidth) {
+    public RagProperties(final RGBO fill, final RGBO stroke, final double strokeWidth) {
         this.fill = fill;
         this.stroke = stroke;
         this.strokeWidth = strokeWidth;
     }
     
-    public RagProperties(final Color fill) {
-        this(fill, Color.TRANSPARENT, 0);
+    public RagProperties(final RGBO fill) {
+        this(fill, RGBO.TRANSPARENT, 0);
     }
     
-    public Color getFill() {
+    public RGBO getFill() {
         return this.fill;
     }
     
-    public void setFill(final Color fill) {
+    public void setFill(final RGBO fill) {
         this.fill = fill;
     }
     
-    public Color getStroke() {
+    public RGBO getStroke() {
         return this.stroke;
     }
     
-    public void setStroke(final Color stroke) {
+    public void setStroke(final RGBO stroke) {
         this.stroke = stroke;
     }
     
