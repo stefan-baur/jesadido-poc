@@ -9,13 +9,23 @@ package org.jesadido.poc.usecases.gaming.models;
 
 public class GameModel {
     
-    private final String title;
+    private final String key;
+    private String title = null;
     
-    public GameModel(final String title) {
-        this.title = title;
+    public GameModel(final String key) {
+        this.key = key;
+    }
+    
+    public String getKey() {
+        return this.key;
     }
     
     public String getTitle() {
         return this.title;
+    }
+    
+    public GameModel initTitle(final String title) {
+        this.title = title;
+        return this;
     }
 }

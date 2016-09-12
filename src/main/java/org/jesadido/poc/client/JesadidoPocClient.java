@@ -141,7 +141,7 @@ public class JesadidoPocClient extends Application {
         generateStaticWebsite.setOnAction((ActionEvent e) -> {
             final HtmlGameGenerator htmlGameGenerator = new HtmlGameGenerator();
             if (htmlGameGenerator.generate(gameModel)) {
-                getHostServices().showDocument(htmlGameGenerator.getIndexPageFile().getAbsolutePath());
+                getHostServices().showDocument(htmlGameGenerator.getIndexPageFile(gameModel).getAbsolutePath());
             }
         });
         

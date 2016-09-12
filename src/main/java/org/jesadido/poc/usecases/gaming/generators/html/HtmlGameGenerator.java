@@ -21,7 +21,7 @@ public class HtmlGameGenerator {
         try {
             this.generateIndexPage(gameModel);
         } catch (IOException ex) {
-            Logger.getAnonymousLogger().log(Level.SEVERE, "The static website can not be stored to the directory: " + this.getHtmlDirectory().getAbsolutePath(), ex);
+            Logger.getAnonymousLogger().log(Level.SEVERE, "The static-html website can not be stored to the directory: " + this.getHtmlDirectory().getAbsolutePath(), ex);
             return false;
         }
         return true;
@@ -31,12 +31,20 @@ public class HtmlGameGenerator {
         return new File(System.getProperty("user.home"), JesadidoPoc.ABBREVIATION);
     }
     
-    public File getHtmlDirectory() {
-        return new File(this.getBaseDirectory(), "html");
+    public File getOutputDirectory() {
+        return new File(this.getBaseDirectory(), "output");
     }
     
-    public File getIndexPageFile() {
-        return new File(this.getHtmlDirectory(), "index.html");
+    public File getHtmlDirectory() {
+        return new File(this.getOutputDirectory(), "html");
+    }
+    
+    public File getKeyDirectory(final GameModel gameModel) {
+        return new File(this.getHtmlDirectory(), gameModel.getKey());
+    }
+    
+    public File getIndexPageFile(final GameModel gameModel) {
+        return new File(this.getKeyDirectory(gameModel), "index.html");
     }
     
     public void generateIndexPage(final GameModel gameModel) throws IOException {
@@ -50,6 +58,6 @@ public class HtmlGameGenerator {
                 .line("<code>%s</code>", gameModel.getTitle())
                 .end("</body>")
                 .end("</html>")
-                .save(this.getIndexPageFile());
+                .save(this.getIndexPageFile(gameModel));
     }
 }

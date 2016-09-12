@@ -11,7 +11,9 @@ import org.jesadido.poc.usecases.gaming.models.GameModel;
 
 public final class ReferenceGames {
     
-    public static final GameModel MY_TINY_GAME = new GameModel("Mi$La LudO MalGrandEgA !.");
+    public static final GameModel MY_TINY_GAME = new GameModel("my-tiny-game")
+            .initTitle("Mi$La LudO MalGrandEgA !.")
+            ;
     
     private ReferenceGames() {
         // A private class constructor
