@@ -30,6 +30,13 @@ public final class References {
     
     public static final ConceptBook GAME_BOOK = new ConceptBook("Game Concepts")
             
+            .add(new ConceptBookEntry("LudO")
+                    .addDefaultTargets(new DeTarget("Spiel", De.NEUTER, De.NOMINATIVE, De.DATIVE, De.ACCUSATIVE), new DeTarget("Spieles", De.NEUTER, De.GENITIVE))
+                    .addDefaultTargets(new EnTarget("game"))
+                    .addDefaultTargets(new EoTarget("ludo"))
+                    .addDefaultTargets(new EsTarget("juego", Es.MASCULINE))
+                    .addDefaultTargets(new FrTarget("jeu", Fr.MASCULINE))
+            )
             .add(new ConceptBookEntry("HeroIcxO")
                     .addDefaultTargets(new DeTarget("Held", De.MASCULINE, De.NOMINATIVE), new DeTarget("Helden", De.MASCULINE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE))
                     .addDefaultTargets(new EnTarget("hero"))
@@ -113,6 +120,10 @@ public final class References {
                     .addDefaultTargets(new FrTarget("si"))
             )
             .addReferenceSources(
+                    "LudO !.",
+                    "La LudO !.",
+                    "Mi$La LudO !.",
+                    
                     "HeroIcxO TrovAs Fin SkribIlO .",
                     "HeroIcxO TrovAs Fin FlorO .",
                     "HeroInO TrovAs Fin SkribIlO .",
