@@ -9,9 +9,7 @@ package org.jesadido.poc.core.semantics.translating.de;
 
 import java.util.LinkedList;
 import java.util.List;
-import org.jesadido.poc.core.Language;
 import org.jesadido.poc.core.StringUtils;
-import org.jesadido.poc.core.semantics.ConceptBookEntry;
 import org.jesadido.poc.core.semantics.translating.TranslationResult;
 import org.jesadido.poc.core.semantics.translating.TranslationTarget;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
@@ -44,7 +42,7 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
         final TranslationResult result = new TranslationResult(node);
         List<String> translatedSentences = new LinkedList<>();
         node.getSentences().stream().forEach(sentence -> translatedSentences.add(sentence.accept(this, argument).getTranslation()));
-        return result.setTranslation(String.join(" ", translatedSentences));
+        return result.setTranslation(translatedSentences);
     }
 
     @Override
@@ -76,19 +74,18 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
         } else {
             DeUtils.rearrangeParts(node.getParts()).stream().forEach(part -> translatedParts.add(part.accept(this, argument).getTranslation()));
         }
-        return result.setTranslation(String.join(" ", translatedParts));
+        return result.setTranslation(translatedParts);
     }
     
     @Override
     public TranslationResult visit(final SentenceMeatConjunction node, final DeVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        final ConceptBookEntry conceptBookEntry = this.deTranslator.getConceptBook().get(node.getConjunction().getConcept());
-        List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.DE);
         argument.setConditionalMeatA(node.getConjunction().getToken().getType() == TokenType.SEPARATOR_SE);
-        if (defaultTargets.isEmpty()) {
-            result.setTranslation(conceptBookEntry.getConceptPhrase());
+        final TranslationTarget conjunctionTarget = this.deTranslator.getFirstDefaultTarget(node.getConjunction().getConcept());
+        if (",".equals(conjunctionTarget.getMainPhrase())) {
+            result.setTranslation(conjunctionTarget.getMainPhrase());
         } else {
-            result.setTranslation(String.format("%s%s", argument.getSentenceMeatIndex() > 0 ? ", " : "", defaultTargets.get(0).getMainPhrase()));
+            result.setTranslation(String.format("%s%s", argument.getSentenceMeatIndex() > 0 ? ", " : "", conjunctionTarget.getMainPhrase()));
         }
         return result;
     }
@@ -143,16 +140,11 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
     @Override
     public TranslationResult visit(final SubstantiveSelection node, final DeVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        final ConceptBookEntry conceptBookEntry = this.deTranslator.getConceptBook().get(node.getSubstantive().getConcept());
-        List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.DE, argument.getCaseAttribute());
-        if (defaultTargets.isEmpty()) {
-            result.setTranslation(conceptBookEntry.getConceptPhrase());
-        } else if (argument.getArticle() != null) {
-            final TranslationTarget substantiveTarget = defaultTargets.get(0);
-            result.setTranslation(String.format("%s %s", DeUtils.getDefiniteArticle(substantiveTarget, argument.getCaseAttribute()), substantiveTarget.getMainPhrase()));
+        final TranslationTarget substantiveTarget = this.deTranslator.getFirstDefaultTarget(node.getSubstantive().getConcept(), argument.getCaseAttribute());
+        if (argument.getArticle() != null) {
+            result.setTranslation(DeUtils.getDefiniteArticle(substantiveTarget, argument.getCaseAttribute()), substantiveTarget.getMainPhrase());
         } else {
-            final TranslationTarget substantiveTarget = defaultTargets.get(0);
-            result.setTranslation(String.format("%s %s", DeUtils.getIndefiniteArticle(substantiveTarget, argument.getCaseAttribute()), substantiveTarget.getMainPhrase()));
+            result.setTranslation(DeUtils.getIndefiniteArticle(substantiveTarget, argument.getCaseAttribute()), substantiveTarget.getMainPhrase());
         }
         return result;
     }
@@ -169,13 +161,8 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
     @Override
     public TranslationResult visit(final VerbSelection node, final DeVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        final ConceptBookEntry conceptBookEntry = this.deTranslator.getConceptBook().get(node.getVerb().getConcept());
-        List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.DE, De.GXI);
-        if (defaultTargets.isEmpty()) {
-            result.setTranslation(conceptBookEntry.getConceptPhrase());
-        } else {
-            result.setTranslation(defaultTargets.get(0).getMainPhrase());
-        }
+        final TranslationTarget verbTarget = this.deTranslator.getFirstDefaultTarget(node.getVerb().getConcept(), De.GXI);
+        result.setTranslation(verbTarget.getMainPhrase());
         return result;
     }
 

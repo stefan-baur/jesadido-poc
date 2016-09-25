@@ -120,9 +120,14 @@ public final class References {
                     .addDefaultTargets(new FrTarget("si"))
             )
             .addReferenceSources(
+                    
+                    "Mi$La HeroIcxO TrovAs Fin SkribIlO .",
+                    
                     "LudO !.",
                     "La LudO !.",
                     "Mi$La LudO !.",
+                    
+                    
                     
                     "HeroIcxO TrovAs Fin SkribIlO .",
                     "HeroIcxO TrovAs Fin FlorO .",

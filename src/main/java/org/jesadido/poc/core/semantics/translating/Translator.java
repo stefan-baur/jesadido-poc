@@ -7,7 +7,9 @@
  */
 package org.jesadido.poc.core.semantics.translating;
 
+import java.util.List;
 import org.jesadido.poc.core.Language;
+import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.semantics.ConceptBook;
 import org.jesadido.poc.core.semantics.ConstraintsChecker;
 import org.jesadido.poc.core.syntax.tree.Node;
@@ -44,4 +46,17 @@ public abstract class Translator {
     }
     
     public abstract TranslationResult translate(final Node validatedNode);
+    
+    public List<TranslationTarget> getDefaultTargets(final Concept concept, final Object ... attributes) {
+        return this.getConceptBook().get(concept).getDefaultTargets(this.getLanguage(), attributes);
+    }
+    
+    public TranslationTarget getFirstDefaultTarget(final Concept concept, final Object ... attributes) {
+        List<TranslationTarget> defaultTargets = this.getDefaultTargets(concept, attributes);
+        if (defaultTargets.isEmpty()) {
+            return new TranslationTarget(Language.JI, concept.getFullPhrase());
+        } else {
+            return defaultTargets.get(0);
+        }
+    }
 }

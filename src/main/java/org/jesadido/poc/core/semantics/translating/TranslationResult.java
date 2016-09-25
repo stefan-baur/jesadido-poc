@@ -9,6 +9,7 @@ package org.jesadido.poc.core.semantics.translating;
 
 import java.util.LinkedList;
 import java.util.List;
+import org.jesadido.poc.core.StringUtils;
 import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
 
@@ -28,15 +29,20 @@ public class TranslationResult {
     }
     
     public boolean hasTranslation() {
-        return this.getTranslation().length() > 0;
+        return this.translation != null &&  this.translation.length() > 0;
     }
     
     public String getTranslation() {
         return this.translation;
     }
     
-    public TranslationResult setTranslation(final String translation) {
-        this.translation = translation;
+    public TranslationResult setTranslation(final String ... translations) {
+        this.translation = String.join(" ", translations);
+        return this;
+    }
+    
+    public TranslationResult setTranslation(final List<String> translations) {
+        this.translation = StringUtils.join(" ", translations);
         return this;
     }
     
