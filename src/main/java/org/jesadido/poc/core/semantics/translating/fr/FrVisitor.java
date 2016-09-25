@@ -9,9 +9,7 @@ package org.jesadido.poc.core.semantics.translating.fr;
 
 import java.util.LinkedList;
 import java.util.List;
-import org.jesadido.poc.core.Language;
 import org.jesadido.poc.core.StringUtils;
-import org.jesadido.poc.core.semantics.ConceptBookEntry;
 import org.jesadido.poc.core.semantics.translating.TranslationResult;
 import org.jesadido.poc.core.semantics.translating.TranslationTarget;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
@@ -72,14 +70,13 @@ public class FrVisitor implements Visitor<TranslationResult, FrVisitorArgument> 
     @Override
     public TranslationResult visit(final SentenceMeatConjunction node, final FrVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        final ConceptBookEntry conceptBookEntry = this.frTranslator.getConceptBook().get(node.getConjunction().getConcept());
-        final List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.FR);
-        if (defaultTargets.isEmpty()) {
-            result.setTranslation(conceptBookEntry.getConceptPhrase());
+        final TranslationTarget conjunctionTarget = this.frTranslator.getFirstDefaultTarget(node.getConjunction().getConcept());
+        if (",".equals(conjunctionTarget.getMainPhrase())) {
+            result.setTranslation(conjunctionTarget.getMainPhrase());
         } else if (node.getConjunction().getToken().getType() == TokenType.SEPARATOR_SE) {
-            result.setTranslation(String.format("%s%s", argument.getSentenceMeatIndex() > 0 ? ", " : "", defaultTargets.get(0).getMainPhrase()));
+            result.setTranslation(String.format("%s%s", argument.getSentenceMeatIndex() > 0 ? ", " : "", conjunctionTarget.getMainPhrase()));
         } else {
-            result.setTranslation(String.format("%s%s", argument.getSentenceMeatIndex() > 0 ? " " : "", defaultTargets.get(0).getMainPhrase()));
+            result.setTranslation(String.format("%s%s", argument.getSentenceMeatIndex() > 0 ? " " : "", conjunctionTarget.getMainPhrase()));
         }
         return result;
     }
@@ -134,15 +131,10 @@ public class FrVisitor implements Visitor<TranslationResult, FrVisitorArgument> 
     @Override
     public TranslationResult visit(final SubstantiveSelection node, final FrVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        final ConceptBookEntry conceptBookEntry = this.frTranslator.getConceptBook().get(node.getSubstantive().getConcept());
-        final List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.FR);
-        if (defaultTargets.isEmpty()) {
-            result.setTranslation(conceptBookEntry.getConceptPhrase());
-        } else if (argument.getArticle() != null) {
-            final TranslationTarget substantiveTarget = defaultTargets.get(0);
+        final TranslationTarget substantiveTarget = this.frTranslator.getFirstDefaultTarget(node.getSubstantive().getConcept());
+        if (argument.getArticle() != null) {
             result.setTranslation(String.format("%s%s", argument.getCaseAttribute() == Fr.DATIVE ? "à " : "", FrUtils.getDefiniteArticleSubstantive(substantiveTarget)));
         } else {
-            final TranslationTarget substantiveTarget = defaultTargets.get(0);
             result.setTranslation(String.format("%s%s %s", argument.getCaseAttribute() == Fr.DATIVE ? "à " : "", FrUtils.getIndefiniteArticle(substantiveTarget), substantiveTarget.getMainPhrase()));
         }
         return result;
@@ -160,13 +152,8 @@ public class FrVisitor implements Visitor<TranslationResult, FrVisitorArgument> 
     @Override
     public TranslationResult visit(final VerbSelection node, final FrVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        final ConceptBookEntry conceptBookEntry = this.frTranslator.getConceptBook().get(node.getVerb().getConcept());
-        final List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.FR, Fr.GXI);
-        if (defaultTargets.isEmpty()) {
-            result.setTranslation(conceptBookEntry.getConceptPhrase());
-        } else {
-            result.setTranslation(defaultTargets.get(0).getMainPhrase());
-        }
+        final TranslationTarget verbTarget = this.frTranslator.getFirstDefaultTarget(node.getVerb().getConcept(), Fr.GXI);
+        result.setTranslation(verbTarget.getMainPhrase());
         return result;
     }
 

@@ -9,9 +9,7 @@ package org.jesadido.poc.core.semantics.translating.eo;
 
 import java.util.LinkedList;
 import java.util.List;
-import org.jesadido.poc.core.Language;
 import org.jesadido.poc.core.StringUtils;
-import org.jesadido.poc.core.semantics.ConceptBookEntry;
 import org.jesadido.poc.core.semantics.translating.TranslationResult;
 import org.jesadido.poc.core.semantics.translating.TranslationTarget;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
@@ -71,12 +69,11 @@ public class EoVisitor implements Visitor<TranslationResult, EoVisitorArgument> 
     @Override
     public TranslationResult visit(final SentenceMeatConjunction node, final EoVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        final ConceptBookEntry conceptBookEntry = this.eoTranslator.getConceptBook().get(node.getConjunction().getConcept());
-        List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.EO);
-        if (defaultTargets.isEmpty()) {
-            result.setTranslation(conceptBookEntry.getConceptPhrase());
+        final TranslationTarget conjunctionTarget = this.eoTranslator.getFirstDefaultTarget(node.getConjunction().getConcept());
+        if (",".equals(conjunctionTarget.getMainPhrase())) {
+            result.setTranslation(conjunctionTarget.getMainPhrase());
         } else {
-            result.setTranslation(String.format("%s%s", argument.getSentenceMeatIndex() > 0 ? ", " : "", defaultTargets.get(0).getMainPhrase()));
+            result.setTranslation(String.format("%s%s", argument.getSentenceMeatIndex() > 0 ? ", " : "", conjunctionTarget.getMainPhrase()));
         }
         return result;
     }
@@ -131,15 +128,10 @@ public class EoVisitor implements Visitor<TranslationResult, EoVisitorArgument> 
     @Override
     public TranslationResult visit(final SubstantiveSelection node, final EoVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        final ConceptBookEntry conceptBookEntry = this.eoTranslator.getConceptBook().get(node.getSubstantive().getConcept());
-        List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.EO);
-        if (defaultTargets.isEmpty()) {
-            result.setTranslation(conceptBookEntry.getConceptPhrase());
-        } else if (argument.getArticle() != null) {
-            final TranslationTarget substantiveTarget = defaultTargets.get(0);
+        final TranslationTarget substantiveTarget = this.eoTranslator.getFirstDefaultTarget(node.getSubstantive().getConcept());
+        if (argument.getArticle() != null) {
             result.setTranslation("la", EoUtils.getCasedSubstantive(substantiveTarget, argument.getCaseAttribute()));
         } else {
-            final TranslationTarget substantiveTarget = defaultTargets.get(0);
             result.setTranslation(EoUtils.getCasedSubstantive(substantiveTarget, argument.getCaseAttribute()));
         }
         return result;
@@ -157,13 +149,8 @@ public class EoVisitor implements Visitor<TranslationResult, EoVisitorArgument> 
     @Override
     public TranslationResult visit(final VerbSelection node, final EoVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        final ConceptBookEntry conceptBookEntry = this.eoTranslator.getConceptBook().get(node.getVerb().getConcept());
-        List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.EO);
-        if (defaultTargets.isEmpty()) {
-            result.setTranslation(conceptBookEntry.getConceptPhrase());
-        } else {
-            result.setTranslation(defaultTargets.get(0).getMainPhrase());
-        }
+        final TranslationTarget verbTarget = this.eoTranslator.getFirstDefaultTarget(node.getVerb().getConcept());
+        result.setTranslation(verbTarget.getMainPhrase());
         return result;
     }
 

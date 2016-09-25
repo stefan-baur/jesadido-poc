@@ -9,9 +9,7 @@ package org.jesadido.poc.core.semantics.translating.en;
 
 import java.util.LinkedList;
 import java.util.List;
-import org.jesadido.poc.core.Language;
 import org.jesadido.poc.core.StringUtils;
-import org.jesadido.poc.core.semantics.ConceptBookEntry;
 import org.jesadido.poc.core.semantics.translating.TranslationResult;
 import org.jesadido.poc.core.semantics.translating.TranslationTarget;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
@@ -71,12 +69,11 @@ public class EnVisitor implements Visitor<TranslationResult, EnVisitorArgument> 
     @Override
     public TranslationResult visit(final SentenceMeatConjunction node, final EnVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        final ConceptBookEntry conceptBookEntry = this.enTranslator.getConceptBook().get(node.getConjunction().getConcept());
-        final List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.EN);
-        if (defaultTargets.isEmpty()) {
-            result.setTranslation(conceptBookEntry.getConceptPhrase());
+        final TranslationTarget conjunctionTarget = this.enTranslator.getFirstDefaultTarget(node.getConjunction().getConcept());
+        if (",".equals(conjunctionTarget.getMainPhrase())) {
+            result.setTranslation(conjunctionTarget.getMainPhrase());
         } else {
-            result.setTranslation(String.format("%s%s", argument.getSentenceMeatIndex() > 0 ? ", " : "", defaultTargets.get(0).getMainPhrase()));
+            result.setTranslation(String.format("%s%s", argument.getSentenceMeatIndex() > 0 ? ", " : "", conjunctionTarget.getMainPhrase()));
         }
         return result;
     }
@@ -131,15 +128,10 @@ public class EnVisitor implements Visitor<TranslationResult, EnVisitorArgument> 
     @Override
     public TranslationResult visit(final SubstantiveSelection node, final EnVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        final ConceptBookEntry conceptBookEntry = this.enTranslator.getConceptBook().get(node.getSubstantive().getConcept());
-        final List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.EN);
-        if (defaultTargets.isEmpty()) {
-            result.setTranslation(conceptBookEntry.getConceptPhrase());
-        } else if (argument.getArticle() != null) {
-            final TranslationTarget substantiveTarget = defaultTargets.get(0);
+        final TranslationTarget substantiveTarget = this.enTranslator.getFirstDefaultTarget(node.getSubstantive().getConcept());
+        if (argument.getArticle() != null) {
             result.setTranslation("the", substantiveTarget.getMainPhrase());
         } else {
-            final TranslationTarget substantiveTarget = defaultTargets.get(0);
             result.setTranslation(EnUtils.getIndefiniteArticle(substantiveTarget), substantiveTarget.getMainPhrase());
         }
         return result;
@@ -157,13 +149,8 @@ public class EnVisitor implements Visitor<TranslationResult, EnVisitorArgument> 
     @Override
     public TranslationResult visit(final VerbSelection node, final EnVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        final ConceptBookEntry conceptBookEntry = this.enTranslator.getConceptBook().get(node.getVerb().getConcept());
-        final List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.EN, En.GXI);
-        if (defaultTargets.isEmpty()) {
-            result.setTranslation(conceptBookEntry.getConceptPhrase());
-        } else {
-            result.setTranslation(defaultTargets.get(0).getMainPhrase());
-        }
+        final TranslationTarget verbTarget = this.enTranslator.getFirstDefaultTarget(node.getVerb().getConcept(), En.GXI);
+        result.setTranslation(verbTarget.getMainPhrase());
         return result;
     }
 
