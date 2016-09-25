@@ -40,7 +40,7 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
     @Override
     public TranslationResult visit(final SentenceSequence node, final DeVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        List<String> translatedSentences = new LinkedList<>();
+        final List<String> translatedSentences = new LinkedList<>();
         node.getSentences().stream().forEach(sentence -> translatedSentences.add(sentence.accept(this, argument).getTranslation()));
         return result.setTranslation(translatedSentences);
     }
@@ -50,7 +50,7 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
         final TranslationResult result = new TranslationResult(node);
         argument.setConditionalMeatB(false);
         argument.setConditionalMeatA(false);
-        List<String> translatedMeats = new LinkedList<>();
+        final List<String> translatedMeats = new LinkedList<>();
         for (int i = 0; i < node.getMeats().size(); i++) {
             argument.setSentenceMeatIndex(i);
             translatedMeats.add(node.getMeats().get(i).accept(this, argument).getTranslation());
@@ -61,7 +61,7 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
     @Override
     public TranslationResult visit(final SentenceMeat node, final DeVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        List<String> translatedParts = new LinkedList<>();
+        final List<String> translatedParts = new LinkedList<>();
         argument.setConditionalMeatB(argument.getConditionalMeatA());
         argument.setConditionalMeatA(false);
         if (node.hasConjunction()) {

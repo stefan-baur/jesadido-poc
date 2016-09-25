@@ -42,15 +42,15 @@ public class EsVisitor implements Visitor<TranslationResult, EsVisitorArgument> 
     @Override
     public TranslationResult visit(final SentenceSequence node, final EsVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        List<String> translatedSentences = new LinkedList<>();
+        final List<String> translatedSentences = new LinkedList<>();
         node.getSentences().stream().forEach(sentence -> translatedSentences.add(sentence.accept(this, argument).getTranslation()));
-        return result.setTranslation(String.join(" ", translatedSentences));
+        return result.setTranslation(translatedSentences);
     }
 
     @Override
     public TranslationResult visit(final Sentence node, final EsVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        List<String> translatedMeats = new LinkedList<>();
+        final List<String> translatedMeats = new LinkedList<>();
         for (int i = 0; i < node.getMeats().size(); i++) {
             argument.setSentenceMeatIndex(i);
             translatedMeats.add(node.getMeats().get(i).accept(this, argument).getTranslation());
@@ -61,19 +61,19 @@ public class EsVisitor implements Visitor<TranslationResult, EsVisitorArgument> 
     @Override
     public TranslationResult visit(final SentenceMeat node, final EsVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        List<String> translatedParts = new LinkedList<>();
+        final List<String> translatedParts = new LinkedList<>();
         if (node.hasConjunction()) {
             translatedParts.add(node.getConjunction().accept(this, argument).getTranslation());
         }
         EsUtils.rearrangeParts(node.getParts()).stream().forEach(part -> translatedParts.add(part.accept(this, argument).getTranslation()));
-        return result.setTranslation(String.join(" ", translatedParts));
+        return result.setTranslation(translatedParts);
     }
     
     @Override
     public TranslationResult visit(final SentenceMeatConjunction node, final EsVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
         final ConceptBookEntry conceptBookEntry = this.esTranslator.getConceptBook().get(node.getConjunction().getConcept());
-        List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.ES);
+        final List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.ES);
         if (defaultTargets.isEmpty()) {
             result.setTranslation(conceptBookEntry.getConceptPhrase());
         } else if (node.getConjunction().getToken().getType() == TokenType.SEPARATOR_SE) {
@@ -135,12 +135,12 @@ public class EsVisitor implements Visitor<TranslationResult, EsVisitorArgument> 
     public TranslationResult visit(final SubstantiveSelection node, final EsVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
         final ConceptBookEntry conceptBookEntry = this.esTranslator.getConceptBook().get(node.getSubstantive().getConcept());
-        List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.ES);
+        final List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.ES);
         if (defaultTargets.isEmpty()) {
             result.setTranslation(conceptBookEntry.getConceptPhrase());
         } else if (argument.getArticle() != null) {
             final TranslationTarget substantiveTarget = defaultTargets.get(0);
-            result.setTranslation(String.format("%s %s", EsUtils.getDefiniteArticle(substantiveTarget, argument.getCaseAttribute()), substantiveTarget.getMainPhrase()));
+            result.setTranslation(EsUtils.getDefiniteArticle(substantiveTarget, argument.getCaseAttribute()), substantiveTarget.getMainPhrase());
         } else {
             final TranslationTarget substantiveTarget = defaultTargets.get(0);
             result.setTranslation(String.format("%s%s %s", argument.getCaseAttribute() == Es.DATIVE ? "a " : "", EsUtils.getIndefiniteArticle(substantiveTarget), substantiveTarget.getMainPhrase()));
@@ -161,7 +161,7 @@ public class EsVisitor implements Visitor<TranslationResult, EsVisitorArgument> 
     public TranslationResult visit(final VerbSelection node, final EsVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
         final ConceptBookEntry conceptBookEntry = this.esTranslator.getConceptBook().get(node.getVerb().getConcept());
-        List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.ES, Es.GXI);
+        final List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.ES, Es.GXI);
         if (defaultTargets.isEmpty()) {
             result.setTranslation(conceptBookEntry.getConceptPhrase());
         } else {

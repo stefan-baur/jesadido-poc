@@ -41,15 +41,15 @@ public class EnVisitor implements Visitor<TranslationResult, EnVisitorArgument> 
     @Override
     public TranslationResult visit(final SentenceSequence node, final EnVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        List<String> translatedSentences = new LinkedList<>();
+        final List<String> translatedSentences = new LinkedList<>();
         node.getSentences().stream().forEach(sentence -> translatedSentences.add(sentence.accept(this, argument).getTranslation()));
-        return result.setTranslation(String.join(" ", translatedSentences));
+        return result.setTranslation(translatedSentences);
     }
 
     @Override
     public TranslationResult visit(final Sentence node, final EnVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        List<String> translatedMeats = new LinkedList<>();
+        final List<String> translatedMeats = new LinkedList<>();
         for (int i = 0; i < node.getMeats().size(); i++) {
             argument.setSentenceMeatIndex(i);
             translatedMeats.add(node.getMeats().get(i).accept(this, argument).getTranslation());
@@ -60,19 +60,19 @@ public class EnVisitor implements Visitor<TranslationResult, EnVisitorArgument> 
     @Override
     public TranslationResult visit(final SentenceMeat node, final EnVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        List<String> translatedParts = new LinkedList<>();
+        final List<String> translatedParts = new LinkedList<>();
         if (node.hasConjunction()) {
             translatedParts.add(node.getConjunction().accept(this, argument).getTranslation());
         }
         EnUtils.rearrangeParts(node.getParts()).stream().forEach(part -> translatedParts.add(part.accept(this, argument).getTranslation()));
-        return result.setTranslation(String.join(" ", translatedParts));
+        return result.setTranslation(translatedParts);
     }
     
     @Override
     public TranslationResult visit(final SentenceMeatConjunction node, final EnVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
         final ConceptBookEntry conceptBookEntry = this.enTranslator.getConceptBook().get(node.getConjunction().getConcept());
-        List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.EN);
+        final List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.EN);
         if (defaultTargets.isEmpty()) {
             result.setTranslation(conceptBookEntry.getConceptPhrase());
         } else {
@@ -132,15 +132,15 @@ public class EnVisitor implements Visitor<TranslationResult, EnVisitorArgument> 
     public TranslationResult visit(final SubstantiveSelection node, final EnVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
         final ConceptBookEntry conceptBookEntry = this.enTranslator.getConceptBook().get(node.getSubstantive().getConcept());
-        List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.EN);
+        final List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.EN);
         if (defaultTargets.isEmpty()) {
             result.setTranslation(conceptBookEntry.getConceptPhrase());
         } else if (argument.getArticle() != null) {
             final TranslationTarget substantiveTarget = defaultTargets.get(0);
-            result.setTranslation(String.format("the %s", substantiveTarget.getMainPhrase()));
+            result.setTranslation("the", substantiveTarget.getMainPhrase());
         } else {
             final TranslationTarget substantiveTarget = defaultTargets.get(0);
-            result.setTranslation(String.format("%s %s", EnUtils.getIndefiniteArticle(substantiveTarget), substantiveTarget.getMainPhrase()));
+            result.setTranslation(EnUtils.getIndefiniteArticle(substantiveTarget), substantiveTarget.getMainPhrase());
         }
         return result;
     }
@@ -158,7 +158,7 @@ public class EnVisitor implements Visitor<TranslationResult, EnVisitorArgument> 
     public TranslationResult visit(final VerbSelection node, final EnVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
         final ConceptBookEntry conceptBookEntry = this.enTranslator.getConceptBook().get(node.getVerb().getConcept());
-        List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.EN, En.GXI);
+        final List<TranslationTarget> defaultTargets = conceptBookEntry.getDefaultTargets(Language.EN, En.GXI);
         if (defaultTargets.isEmpty()) {
             result.setTranslation(conceptBookEntry.getConceptPhrase());
         } else {

@@ -41,15 +41,15 @@ public class EoVisitor implements Visitor<TranslationResult, EoVisitorArgument> 
     @Override
     public TranslationResult visit(final SentenceSequence node, final EoVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        List<String> translatedSentences = new LinkedList<>();
+        final List<String> translatedSentences = new LinkedList<>();
         node.getSentences().stream().forEach(sentence -> translatedSentences.add(sentence.accept(this, argument).getTranslation()));
-        return result.setTranslation(String.join(" ", translatedSentences));
+        return result.setTranslation(translatedSentences);
     }
 
     @Override
     public TranslationResult visit(final Sentence node, final EoVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        List<String> translatedMeats = new LinkedList<>();
+        final List<String> translatedMeats = new LinkedList<>();
         for (int i = 0; i < node.getMeats().size(); i++) {
             argument.setSentenceMeatIndex(i);
             translatedMeats.add(node.getMeats().get(i).accept(this, argument).getTranslation());
@@ -60,12 +60,12 @@ public class EoVisitor implements Visitor<TranslationResult, EoVisitorArgument> 
     @Override
     public TranslationResult visit(final SentenceMeat node, final EoVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        List<String> translatedParts = new LinkedList<>();
+        final List<String> translatedParts = new LinkedList<>();
         if (node.hasConjunction()) {
             translatedParts.add(node.getConjunction().accept(this, argument).getTranslation());
         }
         EoUtils.rearrangeParts(node.getParts()).stream().forEach(part -> translatedParts.add(part.accept(this, argument).getTranslation()));
-        return result.setTranslation(String.join(" ", translatedParts));
+        return result.setTranslation(translatedParts);
     }
     
     @Override
@@ -96,7 +96,7 @@ public class EoVisitor implements Visitor<TranslationResult, EoVisitorArgument> 
     @Override
     public TranslationResult visit(final PartAl node, final EoVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(node);
-        return result.setTranslation(String.format("al %s", node.getNominalSelection().accept(this, argument).getTranslation()));
+        return result.setTranslation("al", node.getNominalSelection().accept(this, argument).getTranslation());
     }
 
     @Override
@@ -137,7 +137,7 @@ public class EoVisitor implements Visitor<TranslationResult, EoVisitorArgument> 
             result.setTranslation(conceptBookEntry.getConceptPhrase());
         } else if (argument.getArticle() != null) {
             final TranslationTarget substantiveTarget = defaultTargets.get(0);
-            result.setTranslation(String.format("la %s", EoUtils.getCasedSubstantive(substantiveTarget, argument.getCaseAttribute())));
+            result.setTranslation("la", EoUtils.getCasedSubstantive(substantiveTarget, argument.getCaseAttribute()));
         } else {
             final TranslationTarget substantiveTarget = defaultTargets.get(0);
             result.setTranslation(EoUtils.getCasedSubstantive(substantiveTarget, argument.getCaseAttribute()));
