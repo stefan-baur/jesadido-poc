@@ -9,14 +9,19 @@ package org.jesadido.poc.core.semantics.translating.eo;
 
 import org.jesadido.poc.core.Language;
 import org.jesadido.poc.core.semantics.ConceptBook;
+import org.jesadido.poc.core.semantics.translating.TranslationContext;
 import org.jesadido.poc.core.semantics.translating.TranslationResult;
 import org.jesadido.poc.core.semantics.translating.Translator;
 import org.jesadido.poc.core.syntax.tree.Node;
 
 public class EoTranslator extends Translator {
     
+    public EoTranslator(final ConceptBook conceptBook, final TranslationContext translationContext) {
+        super(Language.EO, conceptBook, translationContext);
+    }
+    
     public EoTranslator(final ConceptBook conceptBook) {
-        super(Language.EO, conceptBook);
+        super(Language.EO, conceptBook, new TranslationContext() {});
     }
     
     @Override

@@ -15,13 +15,19 @@ import org.jesadido.poc.core.syntax.tree.TroubleNode;
 
 public class TranslationResult {
     
+    private final Translator translator;
     private final Node node;
     private String translation = "";
     private final List<TroubleNode> parsingTroubles = new LinkedList<>();
     private final List<String> constraintsTroubles = new LinkedList<>();
     
-    public TranslationResult(final Node node) {
+    public TranslationResult(final Translator translator, final Node node) {
+        this.translator = translator;
         this.node = node;
+    }
+    
+    public Translator getTranslator() {
+        return this.translator;
     }
     
     public Node getNode() {

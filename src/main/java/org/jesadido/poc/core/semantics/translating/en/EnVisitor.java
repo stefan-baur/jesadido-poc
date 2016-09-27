@@ -38,7 +38,7 @@ public class EnVisitor implements Visitor<TranslationResult, EnVisitorArgument> 
     
     @Override
     public TranslationResult visit(final SentenceSequence node, final EnVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.enTranslator, node);
         final List<String> translatedSentences = new LinkedList<>();
         node.getSentences().stream().forEach(sentence -> translatedSentences.add(sentence.accept(this, argument).getTranslation()));
         return result.setTranslation(translatedSentences);
@@ -46,7 +46,7 @@ public class EnVisitor implements Visitor<TranslationResult, EnVisitorArgument> 
 
     @Override
     public TranslationResult visit(final Sentence node, final EnVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.enTranslator, node);
         final List<String> translatedMeats = new LinkedList<>();
         for (int i = 0; i < node.getMeats().size(); i++) {
             argument.setSentenceMeatIndex(i);
@@ -57,7 +57,7 @@ public class EnVisitor implements Visitor<TranslationResult, EnVisitorArgument> 
 
     @Override
     public TranslationResult visit(final SentenceMeat node, final EnVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.enTranslator, node);
         final List<String> translatedParts = new LinkedList<>();
         if (node.hasConjunction()) {
             translatedParts.add(node.getConjunction().accept(this, argument).getTranslation());
@@ -68,7 +68,7 @@ public class EnVisitor implements Visitor<TranslationResult, EnVisitorArgument> 
     
     @Override
     public TranslationResult visit(final SentenceMeatConjunction node, final EnVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.enTranslator, node);
         final TranslationTarget conjunctionTarget = this.enTranslator.getFirstDefaultTarget(node.getConjunction().getConcept());
         if (",".equals(conjunctionTarget.getMainPhrase())) {
             result.setTranslation(conjunctionTarget.getMainPhrase());
@@ -80,34 +80,34 @@ public class EnVisitor implements Visitor<TranslationResult, EnVisitorArgument> 
 
     @Override
     public TranslationResult visit(final PartSu node, final EnVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.enTranslator, node);
         argument.setCaseAttribute(En.NOMINATIVE);
         return result.setTranslation(node.getNominalSelection().accept(this, argument).getTranslation());
     }
 
     @Override
     public TranslationResult visit(final PartDom node, final EnVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.enTranslator, node);
         return result.setTranslation(node.getVerbalSelection().accept(this, argument).getTranslation());
     }
 
     @Override
     public TranslationResult visit(final PartAl node, final EnVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.enTranslator, node);
         argument.setCaseAttribute(En.DATIVE);
         return result.setTranslation(node.getNominalSelection().accept(this, argument).getTranslation());
     }
 
     @Override
     public TranslationResult visit(final PartFin node, final EnVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.enTranslator, node);
         argument.setCaseAttribute(En.ACCUSATIVE);
         return result.setTranslation(node.getNominalSelection().accept(this, argument).getTranslation());
     }
 
     @Override
     public TranslationResult visit(final NominalSelection node, final EnVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.enTranslator, node);
         argument.setArticle(null);
         if (node.hasChildSelection()) {
             result.setTranslation(node.getChildSelection().accept(this, argument).getTranslation());
@@ -117,7 +117,7 @@ public class EnVisitor implements Visitor<TranslationResult, EnVisitorArgument> 
 
     @Override
     public TranslationResult visit(final ArticleSelection node, final EnVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.enTranslator, node);
         argument.setArticle(node.getArticle());
         if (node.hasSubstantiveSelection()) {
             result.setTranslation(node.getSubstantiveSelection().accept(this, argument).getTranslation());
@@ -127,7 +127,7 @@ public class EnVisitor implements Visitor<TranslationResult, EnVisitorArgument> 
 
     @Override
     public TranslationResult visit(final SubstantiveSelection node, final EnVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.enTranslator, node);
         final TranslationTarget substantiveTarget = this.enTranslator.getFirstDefaultTarget(node.getSubstantive().getConcept());
         if (argument.getArticle() != null) {
             result.setTranslation("the", substantiveTarget.getMainPhrase());
@@ -139,7 +139,7 @@ public class EnVisitor implements Visitor<TranslationResult, EnVisitorArgument> 
 
     @Override
     public TranslationResult visit(final VerbalSelection node, final EnVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.enTranslator, node);
         if (node.hasVerbSelection()) {
             result.setTranslation(node.getVerbSelection().accept(this, argument).getTranslation());
         }
@@ -148,7 +148,7 @@ public class EnVisitor implements Visitor<TranslationResult, EnVisitorArgument> 
 
     @Override
     public TranslationResult visit(final VerbSelection node, final EnVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.enTranslator, node);
         final TranslationTarget verbTarget = this.enTranslator.getFirstDefaultTarget(node.getVerb().getConcept(), En.GXI);
         result.setTranslation(verbTarget.getMainPhrase());
         return result;
@@ -156,6 +156,6 @@ public class EnVisitor implements Visitor<TranslationResult, EnVisitorArgument> 
 
     @Override
     public TranslationResult visit(final TroubleNode node, final EnVisitorArgument argument) {
-        return new TranslationResult(node);
+        return new TranslationResult(this.enTranslator, node);
     }
 }

@@ -39,7 +39,7 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
     
     @Override
     public TranslationResult visit(final SentenceSequence node, final DeVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.deTranslator, node);
         final List<String> translatedSentences = new LinkedList<>();
         node.getSentences().stream().forEach(sentence -> translatedSentences.add(sentence.accept(this, argument).getTranslation()));
         return result.setTranslation(translatedSentences);
@@ -47,7 +47,7 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
 
     @Override
     public TranslationResult visit(final Sentence node, final DeVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.deTranslator, node);
         argument.setConditionalMeatB(false);
         argument.setConditionalMeatA(false);
         final List<String> translatedMeats = new LinkedList<>();
@@ -60,7 +60,7 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
 
     @Override
     public TranslationResult visit(final SentenceMeat node, final DeVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.deTranslator, node);
         final List<String> translatedParts = new LinkedList<>();
         argument.setConditionalMeatB(argument.getConditionalMeatA());
         argument.setConditionalMeatA(false);
@@ -79,7 +79,7 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
     
     @Override
     public TranslationResult visit(final SentenceMeatConjunction node, final DeVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.deTranslator, node);
         argument.setConditionalMeatA(node.getConjunction().getToken().getType() == TokenType.SEPARATOR_SE);
         final TranslationTarget conjunctionTarget = this.deTranslator.getFirstDefaultTarget(node.getConjunction().getConcept());
         if (",".equals(conjunctionTarget.getMainPhrase())) {
@@ -92,34 +92,34 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
 
     @Override
     public TranslationResult visit(final PartSu node, final DeVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.deTranslator, node);
         argument.setCaseAttribute(De.NOMINATIVE);
         return result.setTranslation(node.getNominalSelection().accept(this, argument).getTranslation());
     }
 
     @Override
     public TranslationResult visit(final PartDom node, final DeVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.deTranslator, node);
         return result.setTranslation(node.getVerbalSelection().accept(this, argument).getTranslation());
     }
 
     @Override
     public TranslationResult visit(final PartAl node, final DeVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.deTranslator, node);
         argument.setCaseAttribute(De.DATIVE);
         return result.setTranslation(node.getNominalSelection().accept(this, argument).getTranslation());
     }
 
     @Override
     public TranslationResult visit(final PartFin node, final DeVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.deTranslator, node);
         argument.setCaseAttribute(De.ACCUSATIVE);
         return result.setTranslation(node.getNominalSelection().accept(this, argument).getTranslation());
     }
 
     @Override
     public TranslationResult visit(final NominalSelection node, final DeVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.deTranslator, node);
         argument.setArticle(null);
         if (node.hasChildSelection()) {
             result.setTranslation(node.getChildSelection().accept(this, argument).getTranslation());
@@ -129,7 +129,7 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
 
     @Override
     public TranslationResult visit(final ArticleSelection node, final DeVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.deTranslator, node);
         argument.setArticle(node.getArticle());
         if (node.hasSubstantiveSelection()) {
             result.setTranslation(node.getSubstantiveSelection().accept(this, argument).getTranslation());
@@ -139,7 +139,7 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
 
     @Override
     public TranslationResult visit(final SubstantiveSelection node, final DeVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.deTranslator, node);
         final TranslationTarget substantiveTarget = this.deTranslator.getFirstDefaultTarget(node.getSubstantive().getConcept(), argument.getCaseAttribute());
         if (argument.getArticle() != null) {
             result.setTranslation(DeUtils.getDefiniteArticle(substantiveTarget, argument.getCaseAttribute()), substantiveTarget.getMainPhrase());
@@ -151,7 +151,7 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
 
     @Override
     public TranslationResult visit(final VerbalSelection node, final DeVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.deTranslator, node);
         if (node.hasVerbSelection()) {
             result.setTranslation(node.getVerbSelection().accept(this, argument).getTranslation());
         }
@@ -160,7 +160,7 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
 
     @Override
     public TranslationResult visit(final VerbSelection node, final DeVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.deTranslator, node);
         final TranslationTarget verbTarget = this.deTranslator.getFirstDefaultTarget(node.getVerb().getConcept(), De.GXI);
         result.setTranslation(verbTarget.getMainPhrase());
         return result;
@@ -168,6 +168,6 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
 
     @Override
     public TranslationResult visit(final TroubleNode node, final DeVisitorArgument argument) {
-        return new TranslationResult(node);
+        return new TranslationResult(this.deTranslator, node);
     }
 }

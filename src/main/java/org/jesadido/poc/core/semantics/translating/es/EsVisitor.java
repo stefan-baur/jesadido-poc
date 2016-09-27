@@ -39,7 +39,7 @@ public class EsVisitor implements Visitor<TranslationResult, EsVisitorArgument> 
     
     @Override
     public TranslationResult visit(final SentenceSequence node, final EsVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.esTranslator, node);
         final List<String> translatedSentences = new LinkedList<>();
         node.getSentences().stream().forEach(sentence -> translatedSentences.add(sentence.accept(this, argument).getTranslation()));
         return result.setTranslation(translatedSentences);
@@ -47,7 +47,7 @@ public class EsVisitor implements Visitor<TranslationResult, EsVisitorArgument> 
 
     @Override
     public TranslationResult visit(final Sentence node, final EsVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.esTranslator, node);
         final List<String> translatedMeats = new LinkedList<>();
         for (int i = 0; i < node.getMeats().size(); i++) {
             argument.setSentenceMeatIndex(i);
@@ -58,7 +58,7 @@ public class EsVisitor implements Visitor<TranslationResult, EsVisitorArgument> 
 
     @Override
     public TranslationResult visit(final SentenceMeat node, final EsVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.esTranslator, node);
         final List<String> translatedParts = new LinkedList<>();
         if (node.hasConjunction()) {
             translatedParts.add(node.getConjunction().accept(this, argument).getTranslation());
@@ -69,7 +69,7 @@ public class EsVisitor implements Visitor<TranslationResult, EsVisitorArgument> 
     
     @Override
     public TranslationResult visit(final SentenceMeatConjunction node, final EsVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.esTranslator, node);
         final TranslationTarget conjunctionTarget = this.esTranslator.getFirstDefaultTarget(node.getConjunction().getConcept());
         if (",".equals(conjunctionTarget.getMainPhrase())) {
             result.setTranslation(conjunctionTarget.getMainPhrase());
@@ -83,34 +83,34 @@ public class EsVisitor implements Visitor<TranslationResult, EsVisitorArgument> 
 
     @Override
     public TranslationResult visit(final PartSu node, final EsVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.esTranslator, node);
         argument.setCaseAttribute(Es.NOMINATIVE);
         return result.setTranslation(node.getNominalSelection().accept(this, argument).getTranslation());
     }
 
     @Override
     public TranslationResult visit(final PartDom node, final EsVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.esTranslator, node);
         return result.setTranslation(node.getVerbalSelection().accept(this, argument).getTranslation());
     }
 
     @Override
     public TranslationResult visit(final PartAl node, final EsVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.esTranslator, node);
         argument.setCaseAttribute(Es.DATIVE);
         return result.setTranslation(node.getNominalSelection().accept(this, argument).getTranslation());
     }
 
     @Override
     public TranslationResult visit(final PartFin node, final EsVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.esTranslator, node);
         argument.setCaseAttribute(Es.ACCUSATIVE);
         return result.setTranslation(node.getNominalSelection().accept(this, argument).getTranslation());
     }
 
     @Override
     public TranslationResult visit(final NominalSelection node, final EsVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.esTranslator, node);
         argument.setArticle(null);
         if (node.hasChildSelection()) {
             result.setTranslation(node.getChildSelection().accept(this, argument).getTranslation());
@@ -120,7 +120,7 @@ public class EsVisitor implements Visitor<TranslationResult, EsVisitorArgument> 
     
     @Override
     public TranslationResult visit(final ArticleSelection node, final EsVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.esTranslator, node);
         argument.setArticle(node.getArticle());
         if (node.hasSubstantiveSelection()) {
             result.setTranslation(node.getSubstantiveSelection().accept(this, argument).getTranslation());
@@ -130,7 +130,7 @@ public class EsVisitor implements Visitor<TranslationResult, EsVisitorArgument> 
 
     @Override
     public TranslationResult visit(final SubstantiveSelection node, final EsVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.esTranslator, node);
         final TranslationTarget substantiveTarget = this.esTranslator.getFirstDefaultTarget(node.getSubstantive().getConcept());
         if (argument.getArticle() != null) {
             result.setTranslation(EsUtils.getDefiniteArticle(substantiveTarget, argument.getCaseAttribute()), substantiveTarget.getMainPhrase());
@@ -142,7 +142,7 @@ public class EsVisitor implements Visitor<TranslationResult, EsVisitorArgument> 
 
     @Override
     public TranslationResult visit(final VerbalSelection node, final EsVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.esTranslator, node);
         if (node.hasVerbSelection()) {
             result.setTranslation(node.getVerbSelection().accept(this, argument).getTranslation());
         }
@@ -151,7 +151,7 @@ public class EsVisitor implements Visitor<TranslationResult, EsVisitorArgument> 
 
     @Override
     public TranslationResult visit(final VerbSelection node, final EsVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this.esTranslator, node);
         final TranslationTarget verbTarget = this.esTranslator.getFirstDefaultTarget(node.getVerb().getConcept(), Es.GXI);
         result.setTranslation(verbTarget.getMainPhrase());
         return result;
@@ -159,6 +159,6 @@ public class EsVisitor implements Visitor<TranslationResult, EsVisitorArgument> 
 
     @Override
     public TranslationResult visit(final TroubleNode node, final EsVisitorArgument argument) {
-        return new TranslationResult(node);
+        return new TranslationResult(this.esTranslator, node);
     }
 }

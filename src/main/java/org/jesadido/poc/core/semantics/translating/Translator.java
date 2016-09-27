@@ -18,10 +18,12 @@ public abstract class Translator {
     
     private final Language language;
     private final ConceptBook conceptBook;
+    private final TranslationContext translationContext;
     
-    public Translator(final Language language, final ConceptBook conceptBook) {
+    public Translator(final Language language, final ConceptBook conceptBook, final TranslationContext translationContext) {
         this.language = language;
         this.conceptBook = conceptBook;
+        this.translationContext = translationContext;
     }
     
     public Language getLanguage() {
@@ -32,9 +34,13 @@ public abstract class Translator {
         return this.conceptBook;
     }
     
+    public TranslationContext getTranslationContext() {
+        return this.translationContext;
+    }
+    
     public TranslationResult translate(final String code) {
         final Node node = this.getConceptBook().getGrammar().parse(code);
-        final TranslationResult result = new TranslationResult(node);
+        final TranslationResult result = new TranslationResult(this, node);
         result.addParsingTroubles(node.collectTroubles());
         if (!result.hasParsingTroubles()) {
             result.addConstraintsTroubles(ConstraintsChecker.check(node, this.getConceptBook()));
