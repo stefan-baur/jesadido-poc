@@ -12,6 +12,7 @@ import java.util.List;
 import org.jesadido.poc.core.StringUtils;
 import org.jesadido.poc.core.semantics.translating.TranslationResult;
 import org.jesadido.poc.core.semantics.translating.TranslationTarget;
+import org.jesadido.poc.core.semantics.translating.TransletParameters;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 import org.jesadido.poc.core.syntax.tree.sentence.ArticleSelection;
@@ -108,33 +109,18 @@ public class EnVisitor implements Visitor<TranslationResult, EnVisitorArgument> 
     @Override
     public TranslationResult visit(final NominalSelection node, final EnVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(this.enTranslator, node);
-        argument.setArticle(null);
-        if (node.hasChildSelection()) {
-            result.setTranslation(node.getChildSelection().accept(this, argument).getTranslation());
-        }
+        EnTransletors.getNominalTransletor().translate(result, new TransletParameters(node.collectTerminals()));
         return result;
     }
 
     @Override
     public TranslationResult visit(final ArticleSelection node, final EnVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(this.enTranslator, node);
-        argument.setArticle(node.getArticle());
-        if (node.hasSubstantiveSelection()) {
-            result.setTranslation(node.getSubstantiveSelection().accept(this, argument).getTranslation());
-        }
-        return result;
+        return new TranslationResult(this.enTranslator, node);
     }
 
     @Override
     public TranslationResult visit(final SubstantiveSelection node, final EnVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(this.enTranslator, node);
-        final TranslationTarget substantiveTarget = this.enTranslator.getFirstDefaultTarget(node.getSubstantive().getConcept());
-        if (argument.getArticle() != null) {
-            result.setTranslation("the", substantiveTarget.getMainPhrase());
-        } else {
-            result.setTranslation(EnUtils.getIndefiniteArticle(substantiveTarget), substantiveTarget.getMainPhrase());
-        }
-        return result;
+        return new TranslationResult(this.enTranslator, node);
     }
 
     @Override

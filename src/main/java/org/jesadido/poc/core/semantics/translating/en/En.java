@@ -14,6 +14,10 @@ public enum En {
     DATIVE,
     ACCUSATIVE,
     
+    MASCULINE,
+    FEMININE,
+    NEUTER,
+    
     MI,
     BI,
     GXI,
