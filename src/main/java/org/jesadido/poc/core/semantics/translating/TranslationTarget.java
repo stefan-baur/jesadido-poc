@@ -36,6 +36,10 @@ public class TranslationTarget<A> {
         return this.attributes;
     }
     
+    public boolean has(final A ... attributes) {
+        return this.attributes.containsAll(Arrays.asList(attributes));
+    }
+    
     @Override
     public String toString() {
         return String.format("%s (%s)", this.mainPhrase, StringUtils.join(", ", this.attributes));

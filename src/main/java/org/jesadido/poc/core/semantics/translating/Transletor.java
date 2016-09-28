@@ -16,7 +16,7 @@ import org.jesadido.poc.core.StringUtils;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 import org.jesadido.poc.core.syntax.tree.Terminal;
 
-public class Translets {
+public class Transletor {
     
     private final Map<String, Translet> transletMap = new HashMap<>();
     
@@ -30,7 +30,7 @@ public class Translets {
         return createTokenTypesKey(tokenTypes);
     }
     
-    public Translets add(final List<TokenType> tokenTypes, final Translet translet) {
+    public Transletor add(final List<TokenType> tokenTypes, final Translet translet) {
         final String key = createTokenTypesKey(tokenTypes);
         if (!this.transletMap.containsKey(key)) {
             this.transletMap.put(createTokenTypesKey(tokenTypes), translet);
@@ -40,10 +40,11 @@ public class Translets {
         return this;
     }
     
-    public void translate(final TranslationResult result, final List<Terminal> terminals) {
-        final String key = createTerminalsKey(terminals);
+    public boolean translate(final TranslationResult result, final TransletParameters parameters) {
+        final String key = createTerminalsKey(parameters.getTerminals());
         if (this.transletMap.containsKey(key)) {
-            this.transletMap.get(key).translate(result, terminals);
+            this.transletMap.get(key).translate(result, parameters);
         }
+        return result.hasTranslation();
     }
 }

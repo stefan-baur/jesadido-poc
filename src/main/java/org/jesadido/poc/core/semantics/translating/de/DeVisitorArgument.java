@@ -49,6 +49,10 @@ public class DeVisitorArgument {
         this.conditionalMeatB = value;
     }
     
+    public boolean hasArticle() {
+        return this.article != null;
+    }
+    
     public Terminal getArticle() {
         return this.article;
     }

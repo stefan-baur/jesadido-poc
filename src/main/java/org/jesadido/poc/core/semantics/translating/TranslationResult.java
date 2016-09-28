@@ -7,6 +7,7 @@
  */
 package org.jesadido.poc.core.semantics.translating;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.StringUtils;
@@ -43,7 +44,7 @@ public class TranslationResult {
     }
     
     public TranslationResult setTranslation(final String ... translations) {
-        this.translation = String.join(" ", translations);
+        this.translation = StringUtils.join(" ", Arrays.asList(translations));
         return this;
     }
     

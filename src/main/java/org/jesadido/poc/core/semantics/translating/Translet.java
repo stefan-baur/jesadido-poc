@@ -7,11 +7,8 @@
  */
 package org.jesadido.poc.core.semantics.translating;
 
-import java.util.List;
-import org.jesadido.poc.core.syntax.tree.Terminal;
-
 @FunctionalInterface
 public interface Translet {
     
-    void translate(final TranslationResult result, final List<Terminal> terminals);
+    void translate(final TranslationResult result, final TransletParameters parameters);
 }

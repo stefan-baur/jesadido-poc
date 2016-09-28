@@ -7,17 +7,12 @@
  */
 package org.jesadido.poc.core.semantics.translating.de;
 
-import java.util.Arrays;
-import java.util.EnumMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import org.jesadido.poc.core.StringUtils;
 import org.jesadido.poc.core.semantics.translating.TranslationResult;
 import org.jesadido.poc.core.semantics.translating.TranslationTarget;
-import org.jesadido.poc.core.semantics.translating.Translets;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
-import org.jesadido.poc.core.syntax.tree.Terminal;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 import org.jesadido.poc.core.syntax.tree.sentence.ArticleSelection;
@@ -33,61 +28,14 @@ import org.jesadido.poc.core.syntax.tree.sentence.SentenceSequence;
 import org.jesadido.poc.core.syntax.tree.sentence.SubstantiveSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbalSelection;
+import org.jesadido.poc.core.semantics.translating.TransletParameters;
 
 public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> {
     
     private final DeTranslator deTranslator;
     
-    private static final Translets NOMINATIVE_TRANSLETS = new Translets()
-            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR), (TranslationResult r, List<Terminal> t) -> {
-                final TranslationTarget substantiveTarget = r.getTranslator().getFirstDefaultTarget(t.get(0).getConcept(), De.NOMINATIVE);
-                r.setTranslation(DeUtils.getIndefiniteArticle(substantiveTarget, De.NOMINATIVE), substantiveTarget.getMainPhrase());
-            })
-            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR), (TranslationResult r, List<Terminal> t) -> {
-                final TranslationTarget substantiveTarget = r.getTranslator().getFirstDefaultTarget(t.get(1).getConcept(), De.NOMINATIVE);
-                r.setTranslation(DeUtils.getDefiniteArticle(substantiveTarget, De.NOMINATIVE), substantiveTarget.getMainPhrase());
-            })
-            ;
-    
-    private static final Translets DATIVE_TRANSLETS = new Translets()
-            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR), (TranslationResult r, List<Terminal> t) -> {
-                final TranslationTarget substantiveTarget = r.getTranslator().getFirstDefaultTarget(t.get(0).getConcept(), De.DATIVE);
-                r.setTranslation(DeUtils.getIndefiniteArticle(substantiveTarget, De.DATIVE), substantiveTarget.getMainPhrase());
-            })
-            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR), (TranslationResult r, List<Terminal> t) -> {
-                final TranslationTarget substantiveTarget = r.getTranslator().getFirstDefaultTarget(t.get(1).getConcept(), De.DATIVE);
-                r.setTranslation(DeUtils.getDefiniteArticle(substantiveTarget, De.DATIVE), substantiveTarget.getMainPhrase());
-            })
-            ;
-    
-    private static final Translets ACCUSATIVE_TRANSLETS = new Translets()
-            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR), (TranslationResult r, List<Terminal> t) -> {
-                final TranslationTarget substantiveTarget = r.getTranslator().getFirstDefaultTarget(t.get(0).getConcept(), De.ACCUSATIVE);
-                r.setTranslation(DeUtils.getIndefiniteArticle(substantiveTarget, De.ACCUSATIVE), substantiveTarget.getMainPhrase());
-            })
-            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR), (TranslationResult r, List<Terminal> t) -> {
-                final TranslationTarget substantiveTarget = r.getTranslator().getFirstDefaultTarget(t.get(1).getConcept(), De.ACCUSATIVE);
-                r.setTranslation(DeUtils.getDefiniteArticle(substantiveTarget, De.ACCUSATIVE), substantiveTarget.getMainPhrase());
-            })
-            ;
-    
-    private static final Map<De, Translets> NOMINAL_TRANSLETS = new EnumMap(De.class);
-    
-    static {
-        NOMINAL_TRANSLETS.put(De.NOMINATIVE, NOMINATIVE_TRANSLETS);
-        NOMINAL_TRANSLETS.put(De.DATIVE, DATIVE_TRANSLETS);
-        NOMINAL_TRANSLETS.put(De.ACCUSATIVE, ACCUSATIVE_TRANSLETS);
-    }
-    
     public DeVisitor(final DeTranslator deTranslator) {
         this.deTranslator = deTranslator;
-    }
-    
-    private static Translets getTranslets(final De caseAttribute) {
-        if (NOMINAL_TRANSLETS.containsKey(caseAttribute)) {
-            return NOMINAL_TRANSLETS.get(caseAttribute);
-        }
-        return new Translets();
     }
     
     @Override
@@ -173,8 +121,7 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
     @Override
     public TranslationResult visit(final NominalSelection node, final DeVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(this.deTranslator, node);
-        getTranslets(argument.getCaseAttribute()).translate(result, node.collectTerminals());
-        if (!result.hasTranslation()) {
+        if (!DeTransletors.getNominalTransletor(argument.getCaseAttribute()).translate(result, new TransletParameters(node.collectTerminals()))) {
             argument.setArticle(null);
             if (node.hasChildSelection()) {
                 result.setTranslation(node.getChildSelection().accept(this, argument).getTranslation());
@@ -197,8 +144,8 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
     public TranslationResult visit(final SubstantiveSelection node, final DeVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(this.deTranslator, node);
         final TranslationTarget substantiveTarget = this.deTranslator.getFirstDefaultTarget(node.getSubstantive().getConcept(), argument.getCaseAttribute());
-        if (argument.getArticle() != null) {
-            result.setTranslation(DeUtils.getDefiniteArticle(substantiveTarget, argument.getCaseAttribute()), substantiveTarget.getMainPhrase());
+        if (argument.hasArticle()) {
+            result.setTranslation(DeUtils.getDefiniteArticle(result.getTranslator(), argument.getCaseAttribute(), argument.getArticle().getConcept(), substantiveTarget), substantiveTarget.getMainPhrase());
         } else {
             result.setTranslation(DeUtils.getIndefiniteArticle(substantiveTarget, argument.getCaseAttribute()), substantiveTarget.getMainPhrase());
         }

@@ -8,7 +8,10 @@
 package org.jesadido.poc.core.semantics.translating.de;
 
 import java.util.List;
+import org.jesadido.poc.core.concepts.Concept;
+import org.jesadido.poc.core.concepts.ConceptTermination;
 import org.jesadido.poc.core.semantics.translating.TranslationTarget;
+import org.jesadido.poc.core.semantics.translating.Translator;
 import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.tree.NodeUtils;
 import org.jesadido.poc.core.syntax.tree.sentence.PartAl;
@@ -47,16 +50,16 @@ public final class DeUtils {
     }
     
     public static String getIndefiniteArticle(final TranslationTarget substantiveTarget, final De caseAttribute) {
-        if (substantiveTarget.getAttributes().contains(De.FEMININE)) {
+        if (substantiveTarget.has(De.FEMININE)) {
             return getIndefiniteArticleFeminine(caseAttribute);
-        } else if (substantiveTarget.getAttributes().contains(De.NEUTER)) {
+        } else if (substantiveTarget.has(De.NEUTER)) {
             return getIndefiniteArticleNeuter(caseAttribute);
         } else {
             return getIndefiniteArticleMasculine(caseAttribute);
         }
     }
     
-    public static String getIndefiniteArticleFeminine(final De caseAttribute) {
+    private static String getIndefiniteArticleFeminine(final De caseAttribute) {
         if ((caseAttribute == De.NOMINATIVE) || (caseAttribute == De.ACCUSATIVE)) {
             return "eine";
         } else {
@@ -64,7 +67,7 @@ public final class DeUtils {
         }
     }
     
-    public static String getIndefiniteArticleNeuter(final De caseAttribute) {
+    private static String getIndefiniteArticleNeuter(final De caseAttribute) {
         if ((caseAttribute == De.NOMINATIVE) || (caseAttribute == De.ACCUSATIVE)) {
             return "ein";
         } else if (caseAttribute == De.DATIVE) {
@@ -74,7 +77,7 @@ public final class DeUtils {
         }
     }
     
-    public static String getIndefiniteArticleMasculine(final De caseAttribute) {
+    private static String getIndefiniteArticleMasculine(final De caseAttribute) {
         if (caseAttribute == De.NOMINATIVE) {
             return "ein";
         } else if (caseAttribute == De.GENITIVE) {
@@ -86,43 +89,67 @@ public final class DeUtils {
         }
     }
     
-    public static String getDefiniteArticle(final TranslationTarget substantiveTarget, final De caseAttribute) {
-        if (substantiveTarget.getAttributes().contains(De.FEMININE)) {
-            return getDefiniteArticleFeminine(caseAttribute);
-        } else if (substantiveTarget.getAttributes().contains(De.NEUTER)) {
-            return getDefiniteArticleNeuter(caseAttribute);
-        } else {
-            return getDefiniteArticleMasculine(caseAttribute);
-        }
-    }
-    
-    public static String getDefiniteArticleFeminine(final De caseAttribute) {
-        if ((caseAttribute == De.NOMINATIVE) || (caseAttribute == De.ACCUSATIVE)) {
-            return "die";
-        } else {
-            return "der";
-        }
-    }
-    
-    public static String getDefiniteArticleNeuter(final De caseAttribute) {
-        if ((caseAttribute == De.NOMINATIVE) || (caseAttribute == De.ACCUSATIVE)) {
-            return "das";
-        } else if (caseAttribute == De.DATIVE) {
-            return "dem";
-        } else {
-            return "des";
-        }
-    }
-    
-    public static String getDefiniteArticleMasculine(final De caseAttribute) {
+    public static String getDefiniteArticle(final Translator translator, final De caseAttribute, final Concept articleConcept, final TranslationTarget substantiveTarget) {
         if (caseAttribute == De.NOMINATIVE) {
-            return "der";
-        } else if (caseAttribute == De.GENITIVE) {
-            return "des";
+            return getNominativeDefiniteArticle(translator, articleConcept, substantiveTarget);
         } else if (caseAttribute == De.DATIVE) {
-            return "dem";
+            return getDativeDefiniteArticle(translator, articleConcept, substantiveTarget);
         } else {
-            return "den";
+            return getAccusativeDefiniteArticle(translator, articleConcept, substantiveTarget);
         }
+    }
+    
+    private static String getDefiniteArticle(final Translator translator, final Concept articleConcept, final String miPhrase, final String biPhrase, final String gxiFemininePhrase, final String gxiDefaultPhrase, final String defaultPhrase) {
+        if (articleConcept.hasReferenceConcept()) {
+            final Concept referenceConcept = articleConcept.getReferenceConcept();
+            final ConceptTermination referenceConceptTermination = referenceConcept.getProperties().getTermination();
+            if (referenceConceptTermination.isOneOf(ConceptTermination.MI)) {
+                return miPhrase;
+            } else if (referenceConceptTermination.isOneOf(ConceptTermination.BI)) {
+                return biPhrase;
+            } else if (referenceConceptTermination.isOneOf(ConceptTermination.GXI)) {
+                return getGxiArticle(translator, referenceConcept, gxiFemininePhrase, gxiDefaultPhrase);
+            }
+        }
+        return defaultPhrase;
+    }
+    
+    private static String getNominativeDefiniteArticle(final Translator translator, final Concept articleConcept, final TranslationTarget substantiveTarget) {
+        if (substantiveTarget.has(De.FEMININE)) {
+            return getDefiniteArticle(translator, articleConcept, "meine", "deine", "ihre", "seine", "die");
+        } else if (substantiveTarget.has(De.NEUTER)) {
+            return getDefiniteArticle(translator, articleConcept, "mein", "dein", "ihr", "sein", "das");
+        } else {
+            return getDefiniteArticle(translator, articleConcept, "mein", "dein", "ihr", "sein", "der");
+        }
+    }
+    
+    private static String getDativeDefiniteArticle(final Translator translator, final Concept articleConcept, final TranslationTarget substantiveTarget) {
+        if (substantiveTarget.has(De.FEMININE)) {
+            return getDefiniteArticle(translator, articleConcept, "meiner", "deiner", "ihrer", "seiner", "der");
+        } else {
+            return getDefiniteArticle(translator, articleConcept, "meinem", "deinem", "ihrem", "seinem", "dem");
+        }
+    }
+    
+    private static String getAccusativeDefiniteArticle(final Translator translator, final Concept articleConcept, final TranslationTarget substantiveTarget) {
+        if (substantiveTarget.has(De.FEMININE)) {
+            return getDefiniteArticle(translator, articleConcept, "meine", "deine", "ihre", "seine", "die");
+        } else if (substantiveTarget.has(De.NEUTER)) {
+            return getDefiniteArticle(translator, articleConcept, "mein", "dein", "ihr", "sein", "das");
+        } else {
+            return getDefiniteArticle(translator, articleConcept, "meinen", "deinen", "ihren", "seinen", "den");
+        }
+    }
+    
+    private static String getGxiArticle(final Translator translator, final Concept gxiConcept, final String femininePhrase, final String musculineOrNeuterPhrase) {
+        if (gxiConcept.hasReferenceConcept()) {
+            final Concept gxiReferenceConcept = gxiConcept.getReferenceConcept();
+            final TranslationTarget gxiReferenceTarget = translator.getFirstDefaultTarget(gxiReferenceConcept);
+            if (gxiReferenceTarget.has(De.FEMININE)) {
+                return femininePhrase;
+            }
+        }
+        return musculineOrNeuterPhrase;
     }
 }

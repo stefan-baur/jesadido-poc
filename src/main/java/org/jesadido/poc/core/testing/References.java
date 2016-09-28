@@ -98,6 +98,41 @@ public final class References {
                     .addDefaultTargets(new EsTarget("nombre", Es.MASCULINE))
                     .addDefaultTargets(new FrTarget("nom", Fr.MASCULINE))
             )
+            .add(new ConceptBookEntry("IcxO")
+                    .addDefaultTargets(new DeTarget("Mann", De.MASCULINE, De.NOMINATIVE, De.DATIVE, De.ACCUSATIVE), new DeTarget("Mannes", De.MASCULINE, De.GENITIVE))
+                    .addDefaultTargets(new EnTarget("man"))
+                    .addDefaultTargets(new EoTarget("viro"))
+                    .addDefaultTargets(new EsTarget("hombre", Es.MASCULINE))
+                    .addDefaultTargets(new FrTarget("homme", Fr.MASCULINE))
+            )
+            .add(new ConceptBookEntry("InO")
+                    .addDefaultTargets(new DeTarget("Frau", De.FEMININE, De.NOMINATIVE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE))
+                    .addDefaultTargets(new EnTarget("woman"))
+                    .addDefaultTargets(new EoTarget("virino"))
+                    .addDefaultTargets(new EsTarget("mujer", Es.FEMININE))
+                    .addDefaultTargets(new FrTarget("femme", Fr.FEMININE))
+            )
+            .add(new ConceptBookEntry("Mi")
+                    .addDefaultTargets(new DeTarget("ich", De.MI))
+                    .addDefaultTargets(new EnTarget("I", En.MI))
+                    .addDefaultTargets(new EoTarget("mi"))
+                    .addDefaultTargets(new EsTarget("yo", Es.MI))
+                    .addDefaultTargets(new FrTarget("je", Fr.MI))
+            )
+            .add(new ConceptBookEntry("Bi")
+                    .addDefaultTargets(new DeTarget("du", De.BI))
+                    .addDefaultTargets(new EnTarget("you", En.BI))
+                    .addDefaultTargets(new EoTarget("vi"))
+                    .addDefaultTargets(new EsTarget("tú", Es.BI))
+                    .addDefaultTargets(new FrTarget("tu", Fr.BI))
+            )
+            .add(new ConceptBookEntry("Gxi")
+                    .addDefaultTargets(new DeTarget("es", De.GXI))
+                    .addDefaultTargets(new EnTarget("it", En.GXI))
+                    .addDefaultTargets(new EoTarget("ĝi"))
+                    .addDefaultTargets(new EsTarget("él", Es.GXI))
+                    .addDefaultTargets(new FrTarget("il", Fr.GXI))
+            )
             .add(new ConceptBookEntry("Kaj")
                     .addDefaultTargets(new DeTarget("und"))
                     .addDefaultTargets(new EnTarget("and"))
@@ -120,14 +155,6 @@ public final class References {
                     .addDefaultTargets(new FrTarget("si"))
             )
             .addReferenceSources(
-                    
-                    "Mi$La HeroIcxO TrovAs Fin SkribIlO .",
-                    
-                    "LudO !.",
-                    "La LudO !.",
-                    "Mi$La LudO !.",
-                    
-                    
                     
                     "HeroIcxO TrovAs Fin SkribIlO .",
                     "HeroIcxO TrovAs Fin FlorO .",
@@ -173,7 +200,30 @@ public final class References {
                     "La HeroIcxO TrovAs Fin La SkribIlO . La HeroIcxO HavAs Fin La SkribIlO .",
                     
                     "Se La HeroIcxO TrovAs Fin La FlorO , La HeroIcxO DonAs Fin La FlorO Al La HeroInO .",
-                    "La HeroIcxO DonAs Fin La FlorO Al La HeroInO Se La HeroIcxO TrovAs Fin La FlorO ."
+                    "La HeroIcxO DonAs Fin La FlorO Al La HeroInO Se La HeroIcxO TrovAs Fin La FlorO .",
+                    
+                    "Mi$La HeroIcxO TrovAs Fin Bi$La SkribIlO .",
+                    "Bi$La HeroIcxO TrovAs Fin Mi$La FlorO .",
+                    "IcxO$Gxi$La HeroInO TrovAs Fin LudO$Gxi$La SkribIlO .",
+                    "Kaj InO$Gxi$La HeroInO TrovAs Fin InO$Bi$La FlorO .",
+
+                    "IcxO$Mi$La HeroIcxO HavAs Fin HeroInO$Gxi$La NomO .",
+                    "InO$Bi$La HeroIcxO DonAs Al HeroIcxO$Mi$La HeroInO Fin LudO$Gxi$La SkribIlO .",
+                    "IcxO$Gxi$La HeroIcxO DonAs Al Bi$La HeroInO Fin Mi$La FlorO .",
+                    "InO$Gxi$La HeroInO DonAs Al Mi$La HeroIcxO Fin Bi$La SkribIlO .",
+                    "Kaj Gxi$La HeroInO DonAs Al Bi$La HeroIcxO Fin HeroInO$Gxi$La FlorO .",
+
+                    "Mi$La HeroIcxO TrovAs Fin Bi$La FlorO Kaj Bi$La HeroInO TrovAs Fin Mi$La SkribIlO .",
+                    "Bi$La HeroIcxO DonAs Al Mi$La HeroInO Fin LudO$Gxi$La FlorO Kaj Mi$La HeroInO DonAs Al InO$Bi$La HeroIcxO Fin HeroInO$Gxi$La SkribIlO .",
+                    "LudO$Gxi$La HeroIcxO DonAs Al Mi$La HeroInO Fin Bi$La FlorO Aux Mi$La HeroInO DonAs Al Gxi$La HeroIcxO Fin Mi$La SkribIlO .",
+
+                    "Fin Mi$La SkribIlO Su Bi$La HeroIcxO TrovAs . Fin Bi$La NomO Al Mi$La HeroIcxO DonAs Bi$La HeroInO .",
+                    "Fin Bi$La SkribIlO TrovAs Su Mi$La HeroIcxO Kaj TrovAs Fin Bi$La FlorO Su Mi$La HeroInO Kaj Al Bi$La HeroIcxO Fin Mi$La FlorO DonAs Bi$La HeroInO .",
+                    "Fin LudO$Gxi$La SkribIlO TrovAs Su Mi$La HeroIcxO , TrovAs Fin Bi$La FlorO Su Mi$La HeroInO , Al Bi$La HeroIcxO Fin Mi$La FlorO DonAs Bi$La HeroInO .",
+                    "SkribIlO$Gxi$La HeroIcxO TrovAs Fin Bi$La SkribIlO . Mi$La HeroIcxO HavAs Fin Bi$La SkribIlO .",
+                    
+                    "Se Mi$La HeroIcxO TrovAs Fin Gxi$La FlorO , Mi$La HeroIcxO DonAs Fin Gxi$La FlorO Al Bi$La HeroInO .",
+                    "Bi$La HeroIcxO DonAs Fin Gxi$La FlorO Al Mi$La HeroInO Se Bi$La HeroIcxO TrovAs Fin Gxi$La FlorO ."
             )
             ;
     
