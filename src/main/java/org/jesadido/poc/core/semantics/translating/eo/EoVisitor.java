@@ -12,6 +12,7 @@ import java.util.List;
 import org.jesadido.poc.core.StringUtils;
 import org.jesadido.poc.core.semantics.translating.TranslationResult;
 import org.jesadido.poc.core.semantics.translating.TranslationTarget;
+import org.jesadido.poc.core.semantics.translating.TransletParameters;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 import org.jesadido.poc.core.syntax.tree.sentence.ArticleSelection;
@@ -108,33 +109,18 @@ public class EoVisitor implements Visitor<TranslationResult, EoVisitorArgument> 
     @Override
     public TranslationResult visit(final NominalSelection node, final EoVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(this.eoTranslator, node);
-        argument.setArticle(null);
-        if (node.hasChildSelection()) {
-            result.setTranslation(node.getChildSelection().accept(this, argument).getTranslation());
-        }
+        EoTransletors.getNominalTransletor(argument.getCaseAttribute()).translate(result, new TransletParameters(node.collectTerminals()));
         return result;
     }
 
     @Override
     public TranslationResult visit(final ArticleSelection node, final EoVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(this.eoTranslator, node);
-        argument.setArticle(node.getArticle());
-        if (node.hasSubstantiveSelection()) {
-            result.setTranslation(node.getSubstantiveSelection().accept(this, argument).getTranslation());
-        }
-        return result;
+        return new TranslationResult(this.eoTranslator, node);
     }
 
     @Override
     public TranslationResult visit(final SubstantiveSelection node, final EoVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(this.eoTranslator, node);
-        final TranslationTarget substantiveTarget = this.eoTranslator.getFirstDefaultTarget(node.getSubstantive().getConcept());
-        if (argument.getArticle() != null) {
-            result.setTranslation("la", EoUtils.getCasedSubstantive(substantiveTarget, argument.getCaseAttribute()));
-        } else {
-            result.setTranslation(EoUtils.getCasedSubstantive(substantiveTarget, argument.getCaseAttribute()));
-        }
-        return result;
+        return new TranslationResult(this.eoTranslator, node);
     }
 
     @Override

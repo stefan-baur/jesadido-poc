@@ -204,16 +204,25 @@ public class JesadidoPocClient extends Application {
             referencesReferenceResultPane.setCenter(this.createReferenceResult(conceptBook, newValue))
         );
         
-        final VBox referencesContent = new VBox(10, referencesListView, referencesReferenceResultPane);
-        referencesContent.setPadding(new Insets(8, 0, 0, 0));
+        final VBox referenceSourcesContent = new VBox(10, referencesListView, referencesReferenceResultPane);
+        referenceSourcesContent.setPadding(new Insets(8, 0, 0, 0));
         
-        final Tab referencesTab = new Tab("Reference-Sources");
-        referencesTab.setContent(referencesContent);
-        referencesTab.setClosable(false);
+        final Tab referenceSourcesTab = new Tab("Reference-Sources");
+        referenceSourcesTab.setContent(referenceSourcesContent);
+        referenceSourcesTab.setClosable(false);
+        
+        final TextArea referenceTestsContent = new TextArea(References.generateGameTests().toString());
+        referenceTestsContent.setFont(Font.font("Courier New", FontWeight.NORMAL, FontPosture.REGULAR, 14));
+        referenceTestsContent.setEditable(false);
+        referenceTestsContent.setPrefHeight(2400);
+        
+        final Tab referenceTestsTab = new Tab("Reference-Tests");
+        referenceTestsTab.setContent(referenceTestsContent);
+        referenceTestsTab.setClosable(false);
         
         final TabPane result = new TabPane();
         result.setPrefHeight(2400);
-        result.getTabs().addAll(entriesTab, referencesTab);
+        result.getTabs().addAll(entriesTab, referenceSourcesTab, referenceTestsTab);
         return result;
     }
     

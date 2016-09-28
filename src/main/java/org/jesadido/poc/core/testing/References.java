@@ -7,6 +7,7 @@
  */
 package org.jesadido.poc.core.testing;
 
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Logger;
@@ -20,6 +21,7 @@ import org.jesadido.poc.core.semantics.translating.de.De;
 import org.jesadido.poc.core.semantics.translating.de.DeTarget;
 import org.jesadido.poc.core.semantics.translating.en.En;
 import org.jesadido.poc.core.semantics.translating.en.EnTarget;
+import org.jesadido.poc.core.semantics.translating.eo.Eo;
 import org.jesadido.poc.core.semantics.translating.eo.EoTarget;
 import org.jesadido.poc.core.semantics.translating.es.Es;
 import org.jesadido.poc.core.semantics.translating.es.EsTarget;
@@ -33,21 +35,21 @@ public final class References {
             .add(new ConceptBookEntry("LudO")
                     .addDefaultTargets(new DeTarget("Spiel", De.NEUTER, De.NOMINATIVE, De.DATIVE, De.ACCUSATIVE), new DeTarget("Spieles", De.NEUTER, De.GENITIVE))
                     .addDefaultTargets(new EnTarget("game", En.NEUTER))
-                    .addDefaultTargets(new EoTarget("ludo"))
+                    .addDefaultTargets(new EoTarget("ludo", Eo.NEUTER))
                     .addDefaultTargets(new EsTarget("juego", Es.MASCULINE))
                     .addDefaultTargets(new FrTarget("jeu", Fr.MASCULINE))
             )
             .add(new ConceptBookEntry("HeroIcxO")
                     .addDefaultTargets(new DeTarget("Held", De.MASCULINE, De.NOMINATIVE), new DeTarget("Helden", De.MASCULINE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE))
                     .addDefaultTargets(new EnTarget("hero", En.MASCULINE))
-                    .addDefaultTargets(new EoTarget("heroo"))
+                    .addDefaultTargets(new EoTarget("heroo", Eo.MASCULINE))
                     .addDefaultTargets(new EsTarget("héroe", Es.MASCULINE))
                     .addDefaultTargets(new FrTarget("héros", Fr.MASCULINE))
             )
             .add(new ConceptBookEntry("HeroInO")
                     .addDefaultTargets(new DeTarget("Heldin", De.FEMININE, De.NOMINATIVE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE))
                     .addDefaultTargets(new EnTarget("heroine", En.FEMININE))
-                    .addDefaultTargets(new EoTarget("heroino"))
+                    .addDefaultTargets(new EoTarget("heroino", Eo.FEMININE))
                     .addDefaultTargets(new EsTarget("heroína", Es.FEMININE))
                     .addDefaultTargets(new FrTarget("héroïne", Fr.FEMININE))
             )
@@ -80,35 +82,35 @@ public final class References {
             .add(new ConceptBookEntry("SkribIlO")
                     .addDefaultTargets(new DeTarget("Stift", De.MASCULINE, De.NOMINATIVE, De.DATIVE, De.ACCUSATIVE), new DeTarget("Stifts", De.MASCULINE, De.GENITIVE))
                     .addDefaultTargets(new EnTarget("pen", En.NEUTER))
-                    .addDefaultTargets(new EoTarget("skribilo"))
+                    .addDefaultTargets(new EoTarget("skribilo", Eo.NEUTER))
                     .addDefaultTargets(new EsTarget("lapicero", Es.MASCULINE))
                     .addDefaultTargets(new FrTarget("crayon", Fr.MASCULINE))
             )
             .add(new ConceptBookEntry("FlorO")
                     .addDefaultTargets(new DeTarget("Blume", De.FEMININE, De.NOMINATIVE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE))
                     .addDefaultTargets(new EnTarget("flower", En.NEUTER))
-                    .addDefaultTargets(new EoTarget("floro"))
+                    .addDefaultTargets(new EoTarget("floro", Eo.NEUTER))
                     .addDefaultTargets(new EsTarget("flor", Es.FEMININE))
                     .addDefaultTargets(new FrTarget("fleur", Fr.FEMININE))
             )
             .add(new ConceptBookEntry("NomO")
                     .addDefaultTargets(new DeTarget("Name", De.MASCULINE, De.NOMINATIVE), new DeTarget("Namens", De.MASCULINE, De.GENITIVE), new DeTarget("Namen", De.MASCULINE, De.DATIVE, De.ACCUSATIVE))
                     .addDefaultTargets(new EnTarget("name", En.NEUTER))
-                    .addDefaultTargets(new EoTarget("nomo"))
+                    .addDefaultTargets(new EoTarget("nomo", Eo.NEUTER))
                     .addDefaultTargets(new EsTarget("nombre", Es.MASCULINE))
                     .addDefaultTargets(new FrTarget("nom", Fr.MASCULINE))
             )
             .add(new ConceptBookEntry("IcxO")
                     .addDefaultTargets(new DeTarget("Mann", De.MASCULINE, De.NOMINATIVE, De.DATIVE, De.ACCUSATIVE), new DeTarget("Mannes", De.MASCULINE, De.GENITIVE))
                     .addDefaultTargets(new EnTarget("man", En.MASCULINE))
-                    .addDefaultTargets(new EoTarget("viro"))
+                    .addDefaultTargets(new EoTarget("viro", Eo.MASCULINE))
                     .addDefaultTargets(new EsTarget("hombre", Es.MASCULINE))
                     .addDefaultTargets(new FrTarget("homme", Fr.MASCULINE))
             )
             .add(new ConceptBookEntry("InO")
                     .addDefaultTargets(new DeTarget("Frau", De.FEMININE, De.NOMINATIVE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE))
                     .addDefaultTargets(new EnTarget("woman", En.FEMININE))
-                    .addDefaultTargets(new EoTarget("virino"))
+                    .addDefaultTargets(new EoTarget("virino", Eo.FEMININE))
                     .addDefaultTargets(new EsTarget("mujer", Es.FEMININE))
                     .addDefaultTargets(new FrTarget("femme", Fr.FEMININE))
             )
