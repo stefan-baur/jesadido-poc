@@ -49,7 +49,17 @@ public final class DeUtils {
         return NodeUtils.rearrange(parts, PartDom.class, PartSu.class, PartAl.class, PartFin.class);
     }
     
-    public static String getIndefiniteArticle(final TranslationTarget substantiveTarget, final De caseAttribute) {
+    public static String getIndefinite(final Translator translator, final De caseAttribute, final Concept substantiveConcept) {
+        final TranslationTarget substantiveTarget = translator.getFirstDefaultTarget(substantiveConcept, caseAttribute);
+        return String.join(" ", getIndefiniteArticle(substantiveTarget, caseAttribute), substantiveTarget.getMainPhrase());
+    }
+    
+    public static String getDefinite(final Translator translator, final De caseAttribute, final Concept articleConcept, final Concept substantiveConcept) {
+        final TranslationTarget substantiveTarget = translator.getFirstDefaultTarget(substantiveConcept, caseAttribute);
+        return String.join(" ", getDefiniteArticle(translator, caseAttribute, articleConcept, substantiveTarget), substantiveTarget.getMainPhrase());
+    }
+    
+    private static String getIndefiniteArticle(final TranslationTarget substantiveTarget, final De caseAttribute) {
         if (substantiveTarget.has(De.FEMININE)) {
             return getIndefiniteArticleFeminine(caseAttribute);
         } else if (substantiveTarget.has(De.NEUTER)) {
@@ -89,7 +99,7 @@ public final class DeUtils {
         }
     }
     
-    public static String getDefiniteArticle(final Translator translator, final De caseAttribute, final Concept articleConcept, final TranslationTarget substantiveTarget) {
+    private static String getDefiniteArticle(final Translator translator, final De caseAttribute, final Concept articleConcept, final TranslationTarget substantiveTarget) {
         if (caseAttribute == De.NOMINATIVE) {
             return getNominativeDefiniteArticle(translator, articleConcept, substantiveTarget);
         } else if (caseAttribute == De.DATIVE) {

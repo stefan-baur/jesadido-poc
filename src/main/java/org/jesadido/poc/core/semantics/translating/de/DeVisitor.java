@@ -121,35 +121,18 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
     @Override
     public TranslationResult visit(final NominalSelection node, final DeVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(this.deTranslator, node);
-        if (!DeTransletors.getNominalTransletor(argument.getCaseAttribute()).translate(result, new TransletParameters(node.collectTerminals()))) {
-            argument.setArticle(null);
-            if (node.hasChildSelection()) {
-                result.setTranslation(node.getChildSelection().accept(this, argument).getTranslation());
-            }
-        }
+        DeTransletors.getNominalTransletor(argument.getCaseAttribute()).translate(result, new TransletParameters(node.collectTerminals()));
         return result;
     }
 
     @Override
     public TranslationResult visit(final ArticleSelection node, final DeVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(this.deTranslator, node);
-        argument.setArticle(node.getArticle());
-        if (node.hasSubstantiveSelection()) {
-            result.setTranslation(node.getSubstantiveSelection().accept(this, argument).getTranslation());
-        }
-        return result;
+        return new TranslationResult(this.deTranslator, node);
     }
 
     @Override
     public TranslationResult visit(final SubstantiveSelection node, final DeVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(this.deTranslator, node);
-        final TranslationTarget substantiveTarget = this.deTranslator.getFirstDefaultTarget(node.getSubstantive().getConcept(), argument.getCaseAttribute());
-        if (argument.hasArticle()) {
-            result.setTranslation(DeUtils.getDefiniteArticle(result.getTranslator(), argument.getCaseAttribute(), argument.getArticle().getConcept(), substantiveTarget), substantiveTarget.getMainPhrase());
-        } else {
-            result.setTranslation(DeUtils.getIndefiniteArticle(substantiveTarget, argument.getCaseAttribute()), substantiveTarget.getMainPhrase());
-        }
-        return result;
+        return new TranslationResult(this.deTranslator, node);
     }
 
     @Override

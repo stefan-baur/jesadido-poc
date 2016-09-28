@@ -11,7 +11,6 @@ import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
 import org.jesadido.poc.core.semantics.translating.TranslationResult;
-import org.jesadido.poc.core.semantics.translating.TranslationTarget;
 import org.jesadido.poc.core.semantics.translating.TransletParameters;
 import org.jesadido.poc.core.semantics.translating.Transletor;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
@@ -54,38 +53,26 @@ public final class DeTransletors {
     }
     
     private static void nomQO(final TranslationResult result, final Terminal substantive) {
-        final De caseAttribute = De.NOMINATIVE;
-        final TranslationTarget substantiveTarget = result.getTranslator().getFirstDefaultTarget(substantive.getConcept(), caseAttribute);
-        result.setTranslation(DeUtils.getIndefiniteArticle(substantiveTarget, caseAttribute), substantiveTarget.getMainPhrase());
+        result.setTranslation(DeUtils.getIndefinite(result.getTranslator(), De.NOMINATIVE, substantive.getConcept()));
     }
     
     private static void nomQLaQO(final TranslationResult result, final Terminal article, final Terminal substantive) {
-        final De caseAttribute = De.NOMINATIVE;
-        final TranslationTarget substantiveTarget = result.getTranslator().getFirstDefaultTarget(substantive.getConcept(), caseAttribute);
-        result.setTranslation(DeUtils.getDefiniteArticle(result.getTranslator(), caseAttribute, article.getConcept(), substantiveTarget), substantiveTarget.getMainPhrase());
+        result.setTranslation(DeUtils.getDefinite(result.getTranslator(), De.NOMINATIVE, article.getConcept(), substantive.getConcept()));
     }
     
     private static void datQO(final TranslationResult result, final Terminal substantive) {
-        final De caseAttribute = De.DATIVE;
-        final TranslationTarget substantiveTarget = result.getTranslator().getFirstDefaultTarget(substantive.getConcept(), caseAttribute);
-        result.setTranslation(DeUtils.getIndefiniteArticle(substantiveTarget, caseAttribute), substantiveTarget.getMainPhrase());
+        result.setTranslation(DeUtils.getIndefinite(result.getTranslator(), De.DATIVE, substantive.getConcept()));
     }
     
     private static void datQLaQO(final TranslationResult result, final Terminal article, final Terminal substantive) {
-        final De caseAttribute = De.DATIVE;
-        final TranslationTarget substantiveTarget = result.getTranslator().getFirstDefaultTarget(substantive.getConcept(), caseAttribute);
-        result.setTranslation(DeUtils.getDefiniteArticle(result.getTranslator(), caseAttribute, article.getConcept(), substantiveTarget), substantiveTarget.getMainPhrase());
+        result.setTranslation(DeUtils.getDefinite(result.getTranslator(), De.DATIVE, article.getConcept(), substantive.getConcept()));
     }
     
     private static void accQO(final TranslationResult result, final Terminal substantive) {
-        final De caseAttribute = De.ACCUSATIVE;
-        final TranslationTarget substantiveTarget = result.getTranslator().getFirstDefaultTarget(substantive.getConcept(), caseAttribute);
-        result.setTranslation(DeUtils.getIndefiniteArticle(substantiveTarget, caseAttribute), substantiveTarget.getMainPhrase());
+        result.setTranslation(DeUtils.getIndefinite(result.getTranslator(), De.ACCUSATIVE, substantive.getConcept()));
     }
     
     private static void accQLaQO(final TranslationResult result, final Terminal article, final Terminal substantive) {
-        final De caseAttribute = De.ACCUSATIVE;
-        final TranslationTarget substantiveTarget = result.getTranslator().getFirstDefaultTarget(substantive.getConcept(), caseAttribute);
-        result.setTranslation(DeUtils.getDefiniteArticle(result.getTranslator(), caseAttribute, article.getConcept(), substantiveTarget), substantiveTarget.getMainPhrase());
+        result.setTranslation(DeUtils.getDefinite(result.getTranslator(), De.ACCUSATIVE, article.getConcept(), substantive.getConcept()));
     }
 }
