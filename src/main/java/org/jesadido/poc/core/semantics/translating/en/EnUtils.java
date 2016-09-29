@@ -51,15 +51,34 @@ public final class EnUtils {
     private static String getDefiniteArticle(final Translator translator, final Concept articleConcept) {
         if (articleConcept.hasReferenceConcept()) {
             final Concept referenceConcept = articleConcept.getReferenceConcept();
-            if (referenceConcept.getProperties().getTermination().isOneOf(ConceptTermination.MI)) {
-                return "my";
-            } else if (referenceConcept.getProperties().getTermination().isOneOf(ConceptTermination.BI)) {
-                return "your";
-            } else if (referenceConcept.getProperties().getTermination().isOneOf(ConceptTermination.GXI)) {
-                return getGxiArticle(translator, referenceConcept);
+            final ConceptTermination referenceConceptTermination = referenceConcept.getProperties().getTermination();
+            if (referenceConceptTermination.isOneOf(ConceptTermination.MI, ConceptTermination.BI, ConceptTermination.GXI)) {
+                return getSingularPossessivePronoun(translator, referenceConcept);
+            } else if (referenceConcept.getProperties().getTermination().isOneOf(ConceptTermination.NI, ConceptTermination.VI, ConceptTermination.ILI)) {
+                return getPluralPossessivePronoun(referenceConcept);
             }
         }
         return "the";
+    }
+    
+    private static String getSingularPossessivePronoun(final Translator translator, final Concept personalPronounConcept) {
+        final ConceptTermination referenceConceptTermination = personalPronounConcept.getProperties().getTermination();
+        if (referenceConceptTermination == ConceptTermination.BI) {
+            return "your";
+        } else if (referenceConceptTermination == ConceptTermination.GXI) {
+            return getGxiArticle(translator, personalPronounConcept);
+        }
+        return "my";
+    }
+    
+    private static String getPluralPossessivePronoun(final Concept personalPronounConcept) {
+        final ConceptTermination personalPronounConceptTermination = personalPronounConcept.getProperties().getTermination();
+        if (personalPronounConceptTermination == ConceptTermination.VI) {
+            return "your";
+        } else if (personalPronounConceptTermination == ConceptTermination.ILI) {
+            return "their";
+        }
+        return "our";
     }
     
     private static String getGxiArticle(final Translator translator, final Concept gxiConcept) {
