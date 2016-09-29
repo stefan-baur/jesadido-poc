@@ -17,6 +17,8 @@ public enum Es {
     MASCULINE,
     FEMININE,
     
+    PRE,
+    
     MI,
     BI,
     GXI,
