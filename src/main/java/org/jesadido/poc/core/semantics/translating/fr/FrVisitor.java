@@ -12,6 +12,7 @@ import java.util.List;
 import org.jesadido.poc.core.StringUtils;
 import org.jesadido.poc.core.semantics.translating.TranslationResult;
 import org.jesadido.poc.core.semantics.translating.TranslationTarget;
+import org.jesadido.poc.core.semantics.translating.TransletParameters;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
 import org.jesadido.poc.core.syntax.tree.Visitor;
@@ -111,33 +112,18 @@ public class FrVisitor implements Visitor<TranslationResult, FrVisitorArgument> 
     @Override
     public TranslationResult visit(final NominalSelection node, final FrVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(this.frTranslator, node);
-        argument.setArticle(null);
-        if (node.hasChildSelection()) {
-            result.setTranslation(node.getChildSelection().accept(this, argument).getTranslation());
-        }
+        FrTransletors.getNominalTransletor(argument.getCaseAttribute()).translate(result, new TransletParameters(node.collectTerminals()));
         return result;
     }
 
     @Override
     public TranslationResult visit(final ArticleSelection node, final FrVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(this.frTranslator, node);
-        argument.setArticle(node.getArticle());
-        if (node.hasSubstantiveSelection()) {
-            result.setTranslation(node.getSubstantiveSelection().accept(this, argument).getTranslation());
-        }
-        return result;
+        return new TranslationResult(this.frTranslator, node);
     }
 
     @Override
     public TranslationResult visit(final SubstantiveSelection node, final FrVisitorArgument argument) {
-        final TranslationResult result = new TranslationResult(this.frTranslator, node);
-        final TranslationTarget substantiveTarget = this.frTranslator.getFirstDefaultTarget(node.getSubstantive().getConcept());
-        if (argument.getArticle() != null) {
-            result.setTranslation(String.format("%s%s", argument.getCaseAttribute() == Fr.DATIVE ? "à " : "", FrUtils.getDefiniteArticleSubstantive(substantiveTarget)));
-        } else {
-            result.setTranslation(String.format("%s%s %s", argument.getCaseAttribute() == Fr.DATIVE ? "à " : "", FrUtils.getIndefiniteArticle(substantiveTarget), substantiveTarget.getMainPhrase()));
-        }
-        return result;
+        return new TranslationResult(this.frTranslator, node);
     }
 
     @Override
