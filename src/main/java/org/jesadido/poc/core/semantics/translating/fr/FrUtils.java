@@ -63,8 +63,8 @@ public final class FrUtils {
         return getGendered(substantiveTarget, getVocalized("le", "l", substantivePhrase), getVocalized("la", "l", substantivePhrase));
     }
     
-    private static String getGendered(final TranslationTarget substantiveTarget, final String musculinePhrase, final String femininePhrase) {
-        return substantiveTarget.has(Fr.FEMININE) ? femininePhrase : musculinePhrase;
+    private static String getGendered(final TranslationTarget substantiveTarget, final String masculinePhrase, final String femininePhrase) {
+        return substantiveTarget.has(Fr.FEMININE) ? femininePhrase : masculinePhrase;
     }
     
     private static String getVocalized(final String prefixPhrase, final String shortPrefixPhrase, final String followerPhrase) {

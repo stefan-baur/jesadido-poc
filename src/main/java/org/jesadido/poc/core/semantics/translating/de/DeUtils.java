@@ -152,7 +152,7 @@ public final class DeUtils {
         }
     }
     
-    private static String getGxiArticle(final Translator translator, final Concept gxiConcept, final String femininePhrase, final String musculineOrNeuterPhrase) {
+    private static String getGxiArticle(final Translator translator, final Concept gxiConcept, final String femininePhrase, final String masculineOrNeuterPhrase) {
         if (gxiConcept.hasReferenceConcept()) {
             final Concept gxiReferenceConcept = gxiConcept.getReferenceConcept();
             final TranslationTarget gxiReferenceTarget = translator.getFirstDefaultTarget(gxiReferenceConcept);
@@ -160,6 +160,6 @@ public final class DeUtils {
                 return femininePhrase;
             }
         }
-        return musculineOrNeuterPhrase;
+        return masculineOrNeuterPhrase;
     }
 }
