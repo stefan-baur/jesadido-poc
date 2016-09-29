@@ -17,21 +17,21 @@ import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 
-public class SubstantiveSelectionProduction extends ProductionLeaf {
+public class AdjectiveSelectionProduction extends ProductionLeaf {
     
     private List<TokenType> firsts = null;
     
-    public SubstantiveSelectionProduction() {
-        super(Nonterminal.SUBSTANTIVE_SELECTION,
-                Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR),
-                Arrays.asList(Nonterminal.ADJECTIVE_SELECTION)
+    public AdjectiveSelectionProduction() {
+        super(Nonterminal.ADJECTIVE_SELECTION,
+                Arrays.asList(TokenType.ADJECTIVE_SINGULAR),
+                new LinkedList<>()
         );
     }
     
     @Override
     public List<String> getRules() {
         return Arrays.asList(
-                String.format("%s ::= %s %s*", this.getNonterminalSymbol(), TokenType.SUBSTANTIVE_SINGULAR, Nonterminal.ADJECTIVE_SELECTION)
+                String.format("%s ::= %s", this.getNonterminalSymbol(), TokenType.ADJECTIVE_SINGULAR)
         );
     }
     
@@ -39,20 +39,16 @@ public class SubstantiveSelectionProduction extends ProductionLeaf {
     public List<TokenType> getFirsts() {
         if (this.firsts == null) {
             this.firsts = new LinkedList<>();
-            this.firsts.add(TokenType.SUBSTANTIVE_SINGULAR);
+            this.firsts.add(TokenType.ADJECTIVE_SINGULAR);
         }
         return this.firsts;
     }
     
     @Override
     public Node parse(final TokenStream tokenStream) {
-        if (tokenStream.hasOneOf(TokenType.SUBSTANTIVE_SINGULAR)) {
-            final Token substantive = tokenStream.next();
-            final List<Node> adjectiveSelections = new LinkedList<>();
-            while (this.hasFirstOf(tokenStream, Nonterminal.ADJECTIVE_SELECTION)) {
-                adjectiveSelections.add(this.parse(tokenStream, Nonterminal.ADJECTIVE_SELECTION));
-            }
-            return this.getGrammar().getSyntaxTreeFactory().createSubstantiveSelection(substantive, adjectiveSelections);
+        if (tokenStream.hasOneOf(TokenType.ADJECTIVE_SINGULAR)) {
+            final Token adjective = tokenStream.next();
+            return this.getGrammar().getSyntaxTreeFactory().createAdjectiveSelection(adjective);
         }
         return this.parsingTrouble(tokenStream);
     }

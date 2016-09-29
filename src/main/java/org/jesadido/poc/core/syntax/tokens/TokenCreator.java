@@ -46,6 +46,7 @@ public class TokenCreator {
         
         DEFAULTS.put(TokenType.ARTICLE, ConceptTermination.LA.getTerminationPhrase());
         DEFAULTS.put(TokenType.SUBSTANTIVE_SINGULAR, "Test" + ConceptTermination.O.getTerminationPhrase());
+        DEFAULTS.put(TokenType.ADJECTIVE_SINGULAR, "Test" + ConceptTermination.A.getTerminationPhrase());
         DEFAULTS.put(TokenType.VERB_PRESENT_TENSE, "Test" + ConceptTermination.AS.getTerminationPhrase());
         
         SELECTIONS.put(ConceptTermination.PERIOD, (Selector) (Concept c) -> TokenType.TERMINATOR);
@@ -67,6 +68,7 @@ public class TokenCreator {
         
         SELECTIONS.put(ConceptTermination.LA, (Selector) (Concept c) -> TokenType.ARTICLE);
         SELECTIONS.put(ConceptTermination.O, (Selector) (Concept c) -> TokenType.SUBSTANTIVE_SINGULAR);
+        SELECTIONS.put(ConceptTermination.A, (Selector) (Concept c) -> TokenType.ADJECTIVE_SINGULAR);
         SELECTIONS.put(ConceptTermination.AS, (Selector) (Concept c) -> TokenType.VERB_PRESENT_TENSE);
     }
 

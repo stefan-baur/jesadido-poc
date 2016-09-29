@@ -80,6 +80,12 @@ public enum Nonterminal {
     SUBSTANTIVE_SELECTION("substantive-selection"),
     
     /**
+     * The nonterminal-symbol for the <b>adjective-selection</b> (a special
+     * kind of substantive-attribute).
+     */
+    ADJECTIVE_SELECTION("adjective-selection"),
+    
+    /**
      * The nonterminal-symbol for the <b>verbal-selection</b> (a kind of
      * predicate).
      */
