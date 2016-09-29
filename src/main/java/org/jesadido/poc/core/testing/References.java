@@ -179,73 +179,94 @@ public final class References {
             .addReferenceSources(
                     
                     "HeroIcxO TrovAs Fin SkribIlO .",
+                    "La HeroIcxO TrovAs Fin La SkribIlO .",
+                    "Mi$La HeroIcxO TrovAs Fin Bi$La SkribIlO .",
+                    "Mi$La HeroIcxO TrovAs Fin La SkribIlO .",
+                    
                     "HeroIcxO TrovAs Fin FlorO .",
+                    "La HeroIcxO TrovAs Fin La FlorO .",
+                    "Bi$La HeroIcxO TrovAs Fin Mi$La FlorO .",
+                    "Bi$La HeroIcxO TrovAs Fin FlorO .",
+                    
                     "HeroInO TrovAs Fin SkribIlO .",
+                    "La HeroInO TrovAs Fin La SkribIlO .",
+                    "IcxO$Gxi$La HeroInO TrovAs Fin LudO$Gxi$La SkribIlO .",
+                    "La HeroInO TrovAs Fin LudO$Gxi$La SkribIlO .",
+                    
                     "Kaj HeroInO TrovAs Fin FlorO .",
+                    "Kaj La HeroInO TrovAs Fin La FlorO .",
+                    "Kaj InO$Gxi$La HeroInO TrovAs Fin InO$Bi$La FlorO .",
+                    "Kaj HeroInO TrovAs Fin InO$Bi$La FlorO .",
 
                     "HeroIcxO HavAs Fin NomO .",
+                    "La HeroIcxO HavAs Fin La NomO .",
+                    "IcxO$Mi$La HeroIcxO HavAs Fin HeroInO$Gxi$La NomO .",
+                    "IcxO$Mi$La HeroIcxO HavAs Fin NomO .",
+                    
                     "HeroIcxO DonAs Al HeroInO Fin SkribIlO .",
+                    "La HeroIcxO DonAs Al La HeroInO Fin La SkribIlO .",
+                    "InO$Bi$La HeroIcxO DonAs Al HeroIcxO$Mi$La HeroInO Fin LudO$Gxi$La SkribIlO .",
+                    "HeroIcxO DonAs Al La HeroInO Fin SkribIlO .",
+                    
                     "HeroIcxO DonAs Al HeroInO Fin FlorO .",
+                    "La HeroIcxO DonAs Al La HeroInO Fin La FlorO .",
+                    "IcxO$Gxi$La HeroIcxO DonAs Al Bi$La HeroInO Fin Mi$La FlorO .",
+                    "HeroIcxO DonAs Al HeroInO Fin Mi$La FlorO .",
+                    
                     "HeroInO DonAs Al HeroIcxO Fin SkribIlO .",
+                    "La HeroInO DonAs Al La HeroIcxO Fin La SkribIlO .",
+                    "InO$Gxi$La HeroInO DonAs Al Mi$La HeroIcxO Fin Bi$La SkribIlO .",
+                    "HeroInO DonAs Al La HeroIcxO Fin Bi$La SkribIlO .",
+                    
                     "Kaj HeroInO DonAs Al HeroIcxO Fin FlorO .",
-
+                    "Kaj La HeroInO DonAs Al La HeroIcxO Fin La FlorO .",
+                    "Kaj Gxi$La HeroInO DonAs Al Bi$La HeroIcxO Fin HeroInO$Gxi$La FlorO .",
+                    "Kaj La HeroInO DonAs Al HeroIcxO Fin HeroInO$Gxi$La FlorO .",
+                    
                     "HeroIcxO TrovAs Fin FlorO Kaj HeroInO TrovAs Fin SkribIlO .",
+                    "La HeroIcxO TrovAs Fin La FlorO Kaj La HeroInO TrovAs Fin La SkribIlO .",
+                    "Mi$La HeroIcxO TrovAs Fin Bi$La FlorO Kaj Bi$La HeroInO TrovAs Fin Mi$La SkribIlO .",
+                    "La HeroIcxO TrovAs Fin FlorO Kaj Bi$La HeroInO TrovAs Fin SkribIlO .",
+                    
                     "HeroIcxO DonAs Al HeroInO Fin FlorO Kaj HeroInO DonAs Al HeroIcxO Fin SkribIlO .",
+                    "La HeroIcxO DonAs Al La HeroInO Fin La FlorO Kaj La HeroInO DonAs Al La HeroIcxO Fin La SkribIlO .",
+                    "Bi$La HeroIcxO DonAs Al Mi$La HeroInO Fin LudO$Gxi$La FlorO Kaj Mi$La HeroInO DonAs Al InO$Bi$La HeroIcxO Fin HeroInO$Gxi$La SkribIlO .",
+                    "Bi$La HeroIcxO DonAs Al HeroInO Fin La FlorO Kaj HeroInO DonAs Al HeroIcxO Fin SkribIlO .",
+                    
                     "HeroIcxO DonAs Al HeroInO Fin FlorO Aux HeroInO DonAs Al HeroIcxO Fin SkribIlO .",
+                    "La HeroIcxO DonAs Al La HeroInO Fin La FlorO Aux La HeroInO DonAs Al La HeroIcxO Fin La SkribIlO .",
+                    "LudO$Gxi$La HeroIcxO DonAs Al Mi$La HeroInO Fin Bi$La FlorO Aux Mi$La HeroInO DonAs Al Gxi$La HeroIcxO Fin Mi$La SkribIlO .",
+                    "HeroIcxO DonAs Al Mi$La HeroInO Fin FlorO Aux La HeroInO DonAs Al HeroIcxO Fin SkribIlO .",
 
                     "Fin SkribIlO Su HeroIcxO TrovAs . Fin NomO Al HeroIcxO DonAs HeroInO .",
+                    "Fin La SkribIlO Su La HeroIcxO TrovAs . Fin La NomO Al La HeroIcxO DonAs La HeroInO .",
+                    "Fin Mi$La SkribIlO Su Bi$La HeroIcxO TrovAs . Fin Bi$La NomO Al Mi$La HeroIcxO DonAs Bi$La HeroInO .",
+                    "Fin SkribIlO Su Bi$La HeroIcxO TrovAs . Fin NomO Al Mi$La HeroIcxO DonAs La HeroInO .",
+                    
                     "Fin SkribIlO TrovAs Su HeroIcxO Kaj TrovAs Fin FlorO Su HeroInO Kaj Al HeroIcxO Fin FlorO DonAs HeroInO .",
+                    "Fin La SkribIlO TrovAs Su La HeroIcxO Kaj TrovAs Fin La FlorO Su La HeroInO Kaj Al La HeroIcxO Fin La FlorO DonAs La HeroInO .",
+                    "Fin Bi$La SkribIlO TrovAs Su Mi$La HeroIcxO Kaj TrovAs Fin Bi$La FlorO Su Mi$La HeroInO Kaj Al Bi$La HeroIcxO Fin Mi$La FlorO DonAs Bi$La HeroInO .",
+                    "Fin Bi$La SkribIlO TrovAs Su HeroIcxO Kaj TrovAs Fin FlorO Su Mi$La HeroInO Kaj Al La HeroIcxO Fin FlorO DonAs Bi$La HeroInO .",
+                    
                     "Fin SkribIlO TrovAs Su HeroIcxO , TrovAs Fin FlorO Su HeroInO , Al HeroIcxO Fin FlorO DonAs HeroInO .",
+                    "Fin La SkribIlO TrovAs Su La HeroIcxO , TrovAs Fin La FlorO Su La HeroInO , Al La HeroIcxO Fin La FlorO DonAs La HeroInO .",
+                    "Fin LudO$Gxi$La SkribIlO TrovAs Su Mi$La HeroIcxO , TrovAs Fin Bi$La FlorO Su Mi$La HeroInO , Al Bi$La HeroIcxO Fin Mi$La FlorO DonAs Bi$La HeroInO .",
+                    "Fin La SkribIlO TrovAs Su HeroIcxO , TrovAs Fin FlorO Su Mi$La HeroInO , Al HeroIcxO Fin Mi$La FlorO DonAs Bi$La HeroInO .",
+                    
                     "HeroIcxO TrovAs Fin SkribIlO . HeroIcxO HavAs Fin SkribIlO .",
+                    "La HeroIcxO TrovAs Fin La SkribIlO . La HeroIcxO HavAs Fin La SkribIlO .",
+                    "SkribIlO$Gxi$La HeroIcxO TrovAs Fin Bi$La SkribIlO . Mi$La HeroIcxO HavAs Fin Bi$La SkribIlO .",
+                    "La HeroIcxO TrovAs Fin SkribIlO . HeroIcxO HavAs Fin Bi$La SkribIlO .",
                     
                     "Se HeroIcxO TrovAs Fin FlorO , HeroIcxO DonAs Fin FlorO Al HeroInO .",
-                    "HeroIcxO DonAs Fin FlorO Al HeroInO Se HeroIcxO TrovAs Fin FlorO .",
-                    
-                    "La HeroIcxO TrovAs Fin La SkribIlO .",
-                    "La HeroIcxO TrovAs Fin La FlorO .",
-                    "La HeroInO TrovAs Fin La SkribIlO .",
-                    "Kaj La HeroInO TrovAs Fin La FlorO .",
-
-                    "La HeroIcxO HavAs Fin La NomO .",
-                    "La HeroIcxO DonAs Al La HeroInO Fin La SkribIlO .",
-                    "La HeroIcxO DonAs Al La HeroInO Fin La FlorO .",
-                    "La HeroInO DonAs Al La HeroIcxO Fin La SkribIlO .",
-                    "Kaj La HeroInO DonAs Al La HeroIcxO Fin La FlorO .",
-
-                    "La HeroIcxO TrovAs Fin La FlorO Kaj La HeroInO TrovAs Fin La SkribIlO .",
-                    "La HeroIcxO DonAs Al La HeroInO Fin La FlorO Kaj La HeroInO DonAs Al La HeroIcxO Fin La SkribIlO .",
-                    "La HeroIcxO DonAs Al La HeroInO Fin La FlorO Aux La HeroInO DonAs Al La HeroIcxO Fin La SkribIlO .",
-
-                    "Fin La SkribIlO Su La HeroIcxO TrovAs . Fin La NomO Al La HeroIcxO DonAs La HeroInO .",
-                    "Fin La SkribIlO TrovAs Su La HeroIcxO Kaj TrovAs Fin La FlorO Su La HeroInO Kaj Al La HeroIcxO Fin La FlorO DonAs La HeroInO .",
-                    "Fin La SkribIlO TrovAs Su La HeroIcxO , TrovAs Fin La FlorO Su La HeroInO , Al La HeroIcxO Fin La FlorO DonAs La HeroInO .",
-                    "La HeroIcxO TrovAs Fin La SkribIlO . La HeroIcxO HavAs Fin La SkribIlO .",
-                    
                     "Se La HeroIcxO TrovAs Fin La FlorO , La HeroIcxO DonAs Fin La FlorO Al La HeroInO .",
-                    "La HeroIcxO DonAs Fin La FlorO Al La HeroInO Se La HeroIcxO TrovAs Fin La FlorO .",
-                    
-                    "Mi$La HeroIcxO TrovAs Fin Bi$La SkribIlO .",
-                    "Bi$La HeroIcxO TrovAs Fin Mi$La FlorO .",
-                    "IcxO$Gxi$La HeroInO TrovAs Fin LudO$Gxi$La SkribIlO .",
-                    "Kaj InO$Gxi$La HeroInO TrovAs Fin InO$Bi$La FlorO .",
-
-                    "IcxO$Mi$La HeroIcxO HavAs Fin HeroInO$Gxi$La NomO .",
-                    "InO$Bi$La HeroIcxO DonAs Al HeroIcxO$Mi$La HeroInO Fin LudO$Gxi$La SkribIlO .",
-                    "IcxO$Gxi$La HeroIcxO DonAs Al Bi$La HeroInO Fin Mi$La FlorO .",
-                    "InO$Gxi$La HeroInO DonAs Al Mi$La HeroIcxO Fin Bi$La SkribIlO .",
-                    "Kaj Gxi$La HeroInO DonAs Al Bi$La HeroIcxO Fin HeroInO$Gxi$La FlorO .",
-
-                    "Mi$La HeroIcxO TrovAs Fin Bi$La FlorO Kaj Bi$La HeroInO TrovAs Fin Mi$La SkribIlO .",
-                    "Bi$La HeroIcxO DonAs Al Mi$La HeroInO Fin LudO$Gxi$La FlorO Kaj Mi$La HeroInO DonAs Al InO$Bi$La HeroIcxO Fin HeroInO$Gxi$La SkribIlO .",
-                    "LudO$Gxi$La HeroIcxO DonAs Al Mi$La HeroInO Fin Bi$La FlorO Aux Mi$La HeroInO DonAs Al Gxi$La HeroIcxO Fin Mi$La SkribIlO .",
-
-                    "Fin Mi$La SkribIlO Su Bi$La HeroIcxO TrovAs . Fin Bi$La NomO Al Mi$La HeroIcxO DonAs Bi$La HeroInO .",
-                    "Fin Bi$La SkribIlO TrovAs Su Mi$La HeroIcxO Kaj TrovAs Fin Bi$La FlorO Su Mi$La HeroInO Kaj Al Bi$La HeroIcxO Fin Mi$La FlorO DonAs Bi$La HeroInO .",
-                    "Fin LudO$Gxi$La SkribIlO TrovAs Su Mi$La HeroIcxO , TrovAs Fin Bi$La FlorO Su Mi$La HeroInO , Al Bi$La HeroIcxO Fin Mi$La FlorO DonAs Bi$La HeroInO .",
-                    "SkribIlO$Gxi$La HeroIcxO TrovAs Fin Bi$La SkribIlO . Mi$La HeroIcxO HavAs Fin Bi$La SkribIlO .",
-                    
                     "Se Mi$La HeroIcxO TrovAs Fin Gxi$La FlorO , Mi$La HeroIcxO DonAs Fin Gxi$La FlorO Al Bi$La HeroInO .",
-                    "Bi$La HeroIcxO DonAs Fin Gxi$La FlorO Al Mi$La HeroInO Se Bi$La HeroIcxO TrovAs Fin Gxi$La FlorO ."
+                    "Se Mi$La HeroIcxO TrovAs Fin La FlorO , HeroIcxO DonAs Fin FlorO Al HeroInO .",
+                    
+                    "HeroIcxO DonAs Fin FlorO Al HeroInO Se HeroIcxO TrovAs Fin FlorO .",
+                    "La HeroIcxO DonAs Fin La FlorO Al La HeroInO Se La HeroIcxO TrovAs Fin La FlorO .",
+                    "Bi$La HeroIcxO DonAs Fin Gxi$La FlorO Al Mi$La HeroInO Se Bi$La HeroIcxO TrovAs Fin Gxi$La FlorO .",
+                    "Bi$La HeroIcxO DonAs Fin FlorO Al Mi$La HeroInO Se La HeroIcxO TrovAs Fin FlorO ."
             )
             ;
     
