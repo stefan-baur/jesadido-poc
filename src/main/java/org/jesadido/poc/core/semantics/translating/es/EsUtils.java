@@ -47,15 +47,33 @@ public final class EsUtils {
         if (articleConcept.hasReferenceConcept()) {
             final Concept referenceConcept = articleConcept.getReferenceConcept();
             final ConceptTermination referenceConceptTermination = referenceConcept.getProperties().getTermination();
-            if (referenceConceptTermination.isOneOf(ConceptTermination.MI)) {
-                return getCased(caseAttribute, "mi");
-            } else if (referenceConceptTermination.isOneOf(ConceptTermination.BI)) {
-                return getCased(caseAttribute, "tu");
-            } else if (referenceConceptTermination.isOneOf(ConceptTermination.GXI)) {
-                return getCased(caseAttribute, "su");
+            if (referenceConceptTermination.isOneOf(ConceptTermination.MI, ConceptTermination.BI, ConceptTermination.GXI)) {
+                return getSingularPossessivePronoun(caseAttribute, referenceConcept);
+            } else if (referenceConceptTermination.isOneOf(ConceptTermination.NI, ConceptTermination.VI, ConceptTermination.ILI)) {
+                return getPluralPossessivePronoun(caseAttribute, referenceConcept, substantiveTarget);
             }
         }
         return getDefiniteArticle(caseAttribute, substantiveTarget);
+    }
+    
+    private static String getSingularPossessivePronoun(final Es caseAttribute, final Concept personalPronounConcept) {
+        final ConceptTermination personalPronounConceptTermination = personalPronounConcept.getProperties().getTermination();
+        if (personalPronounConceptTermination == ConceptTermination.BI) {
+            return getCased(caseAttribute, "tu");
+        } else if (personalPronounConceptTermination == ConceptTermination.GXI) {
+            return getCased(caseAttribute, "su");
+        }
+        return getCased(caseAttribute, "mi");
+    }
+    
+    private static String getPluralPossessivePronoun(final Es caseAttribute, final Concept personalPronounConcept, final TranslationTarget substantiveTarget) {
+        final ConceptTermination personalPronounConceptTermination = personalPronounConcept.getProperties().getTermination();
+        if (personalPronounConceptTermination == ConceptTermination.VI) {
+            return getCased(caseAttribute, substantiveTarget.has(Es.FEMININE) ? "vuestra" : "vuestro");
+        } else if (personalPronounConceptTermination == ConceptTermination.ILI) {
+            return getCased(caseAttribute, "su");
+        }
+        return getCased(caseAttribute, substantiveTarget.has(Es.FEMININE) ? "nuestra" : "nuestro");
     }
     
     private static String getDefiniteArticle(final Es caseAttribute, final TranslationTarget substantiveTarget) {
