@@ -46,11 +46,12 @@ public final class EsUtils {
     private static String getDefiniteArticle(final Es caseAttribute, final Concept articleConcept, final TranslationTarget substantiveTarget) {
         if (articleConcept.hasReferenceConcept()) {
             final Concept referenceConcept = articleConcept.getReferenceConcept();
-            if (referenceConcept.getProperties().getTermination().isOneOf(ConceptTermination.MI)) {
+            final ConceptTermination referenceConceptTermination = referenceConcept.getProperties().getTermination();
+            if (referenceConceptTermination.isOneOf(ConceptTermination.MI)) {
                 return getCased(caseAttribute, "mi");
-            } else if (referenceConcept.getProperties().getTermination().isOneOf(ConceptTermination.BI)) {
+            } else if (referenceConceptTermination.isOneOf(ConceptTermination.BI)) {
                 return getCased(caseAttribute, "tu");
-            } else if (referenceConcept.getProperties().getTermination().isOneOf(ConceptTermination.GXI)) {
+            } else if (referenceConceptTermination.isOneOf(ConceptTermination.GXI)) {
                 return getCased(caseAttribute, "su");
             }
         }
