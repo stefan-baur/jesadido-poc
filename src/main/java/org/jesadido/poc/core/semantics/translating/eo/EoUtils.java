@@ -41,15 +41,34 @@ public final class EoUtils {
     private static String getDefiniteArticle(final Translator translator, final Eo caseAttribute, final Concept articleConcept) {
         if (articleConcept.hasReferenceConcept()) {
             final Concept referenceConcept = articleConcept.getReferenceConcept();
-            if (referenceConcept.getProperties().getTermination().isOneOf(ConceptTermination.MI)) {
-                return getCased(caseAttribute, "mia");
-            } else if (referenceConcept.getProperties().getTermination().isOneOf(ConceptTermination.BI)) {
-                return getCased(caseAttribute, "via");
-            } else if (referenceConcept.getProperties().getTermination().isOneOf(ConceptTermination.GXI)) {
-                return getGxiArticle(translator, caseAttribute, referenceConcept);
+            final ConceptTermination referenceConceptTermination = referenceConcept.getProperties().getTermination();
+            if (referenceConceptTermination.isOneOf(ConceptTermination.MI, ConceptTermination.BI, ConceptTermination.GXI)) {
+                return getSingularPossessivePronoun(translator, caseAttribute, referenceConcept);
+            } else if (referenceConceptTermination.isOneOf(ConceptTermination.NI, ConceptTermination.VI, ConceptTermination.ILI)) {
+                return getPluralPossessivePronoun(caseAttribute, referenceConcept);
             }
         }
         return "la";
+    }
+    
+    private static String getSingularPossessivePronoun(final Translator translator, final Eo caseAttribute, final Concept personalPronounConcept) {
+        final ConceptTermination personalPronounConceptTermination = personalPronounConcept.getProperties().getTermination();
+        if (personalPronounConceptTermination == ConceptTermination.BI) {
+            return getCased(caseAttribute, "via");
+        } else if (personalPronounConceptTermination == ConceptTermination.GXI) {
+            return getGxiArticle(translator, caseAttribute, personalPronounConcept);
+        }
+        return getCased(caseAttribute, "mia");
+    }
+    
+    private static String getPluralPossessivePronoun(final Eo caseAttribute, final Concept personalPronounConcept) {
+        final ConceptTermination personalPronounConceptTermination = personalPronounConcept.getProperties().getTermination();
+        if (personalPronounConceptTermination == ConceptTermination.VI) {
+            return getCased(caseAttribute, "via");
+        } else if (personalPronounConceptTermination == ConceptTermination.ILI) {
+            return getCased(caseAttribute, "ilia");
+        }
+        return getCased(caseAttribute, "nia");
     }
     
     private static String getGxiArticle(final Translator translator, final Eo caseAttribute, final Concept gxiConcept) {
