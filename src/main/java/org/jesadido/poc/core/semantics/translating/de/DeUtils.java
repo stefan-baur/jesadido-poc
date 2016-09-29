@@ -117,15 +117,15 @@ public final class DeUtils {
             final Concept referenceConcept = articleConcept.getReferenceConcept();
             final ConceptTermination referenceConceptTermination = referenceConcept.getProperties().getTermination();
             if (referenceConceptTermination.isOneOf(ConceptTermination.MI, ConceptTermination.BI, ConceptTermination.GXI)) {
-                return getSingularPossessiva(translator, referenceConcept, singularPersonalPronounPhrases.get(0), singularPersonalPronounPhrases.get(1), singularPersonalPronounPhrases.get(2), singularPersonalPronounPhrases.get(3));
+                return getSingularPossessivePronoun(translator, referenceConcept, singularPersonalPronounPhrases.get(0), singularPersonalPronounPhrases.get(1), singularPersonalPronounPhrases.get(2), singularPersonalPronounPhrases.get(3));
             } else if (referenceConceptTermination.isOneOf(ConceptTermination.NI, ConceptTermination.VI, ConceptTermination.ILI)) {
-                return getPluralPossessiva(referenceConcept, pluralPersonalPronounPhrases.get(0), pluralPersonalPronounPhrases.get(1), pluralPersonalPronounPhrases.get(2));
+                return getPluralPossessivePronoun(referenceConcept, pluralPersonalPronounPhrases.get(0), pluralPersonalPronounPhrases.get(1), pluralPersonalPronounPhrases.get(2));
             }
         }
         return defaultPhrase;
     }
     
-    private static String getSingularPossessiva(final Translator translator, final Concept personalPronounConcept, final String miPhrase, final String biPhrase, final String gxiFemininePhrase, final String gxiDefaultPhrase) {
+    private static String getSingularPossessivePronoun(final Translator translator, final Concept personalPronounConcept, final String miPhrase, final String biPhrase, final String gxiFemininePhrase, final String gxiDefaultPhrase) {
         final ConceptTermination personalPronounConceptTermination = personalPronounConcept.getProperties().getTermination();
         if (personalPronounConceptTermination.isOneOf(ConceptTermination.BI)) {
             return biPhrase;
@@ -135,7 +135,7 @@ public final class DeUtils {
         return miPhrase;
     }
     
-    private static String getPluralPossessiva(final Concept personalPronounConcept, final String niPhrase, final String viPhrase, final String iliPhrase) {
+    private static String getPluralPossessivePronoun(final Concept personalPronounConcept, final String niPhrase, final String viPhrase, final String iliPhrase) {
         final ConceptTermination personalPronounConceptTermination = personalPronounConcept.getProperties().getTermination();
         if (personalPronounConceptTermination.isOneOf(ConceptTermination.VI)) {
             return viPhrase;
