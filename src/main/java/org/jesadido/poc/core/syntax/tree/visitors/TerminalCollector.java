@@ -13,6 +13,7 @@ import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.tree.Terminal;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
+import org.jesadido.poc.core.syntax.tree.sentence.AdjectiveSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.ArticleSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.SubstantiveSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.NominalSelection;
@@ -129,6 +130,13 @@ public class TerminalCollector implements Visitor<Void, List<Terminal>> {
     @Override
     public Void visit(final SubstantiveSelection node, final List<Terminal> result) {
         result.add(node.getSubstantive());
+        node.getAdjectiveSelections().stream().forEach(adjectiveSelection -> adjectiveSelection.accept(this, result));
+        return null;
+    }
+    
+    @Override
+    public Void visit(final AdjectiveSelection node, final List<Terminal> result) {
+        result.add(node.getAdjective());
         return null;
     }
     

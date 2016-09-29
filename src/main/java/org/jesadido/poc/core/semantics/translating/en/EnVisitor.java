@@ -15,6 +15,7 @@ import org.jesadido.poc.core.semantics.translating.TranslationTarget;
 import org.jesadido.poc.core.semantics.translating.TransletParameters;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
 import org.jesadido.poc.core.syntax.tree.Visitor;
+import org.jesadido.poc.core.syntax.tree.sentence.AdjectiveSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.ArticleSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.NominalSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.PartAl;
@@ -120,6 +121,11 @@ public class EnVisitor implements Visitor<TranslationResult, EnVisitorArgument> 
 
     @Override
     public TranslationResult visit(final SubstantiveSelection node, final EnVisitorArgument argument) {
+        return new TranslationResult(this.enTranslator, node);
+    }
+
+    @Override
+    public TranslationResult visit(final AdjectiveSelection node, final EnVisitorArgument argument) {
         return new TranslationResult(this.enTranslator, node);
     }
 

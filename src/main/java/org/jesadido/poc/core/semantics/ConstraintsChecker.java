@@ -13,6 +13,7 @@ import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.tree.NodeUtils;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
 import org.jesadido.poc.core.syntax.tree.Visitor;
+import org.jesadido.poc.core.syntax.tree.sentence.AdjectiveSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.ArticleSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.NominalSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.PartAl;
@@ -28,7 +29,9 @@ import org.jesadido.poc.core.syntax.tree.sentence.VerbSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbalSelection;
 
 public class ConstraintsChecker implements Visitor<List<String>, ConceptBook>{
-
+    
+    private static final int ADJECTIVES_MAX_COUNT = 3;
+    
     public static List<String> check(final Node node, final ConceptBook conceptBook) {
         return node.accept(new ConstraintsChecker(), conceptBook);
     }
@@ -119,11 +122,25 @@ public class ConstraintsChecker implements Visitor<List<String>, ConceptBook>{
 
     @Override
     public List<String> visit(final ArticleSelection node, final ConceptBook conceptBook) {
-        return new LinkedList<>();
+        final List<String> result = new LinkedList<>();
+        if (node.hasSubstantiveSelection()) {
+            result.addAll(node.getSubstantiveSelection().accept(this, conceptBook));
+        }
+        return result;
     }
 
     @Override
     public List<String> visit(final SubstantiveSelection node, final ConceptBook conceptBook) {
+        final List<String> result = new LinkedList<>();
+        if (node.getAdjectiveSelections().size() > ADJECTIVES_MAX_COUNT) {
+            result.add("Too many adjectives.");
+        }
+        node.getAdjectiveSelections().stream().forEach(adjectiveSelection -> result.addAll(adjectiveSelection.accept(this, conceptBook)));
+        return result;
+    }
+    
+    @Override
+    public List<String> visit(final AdjectiveSelection node, final ConceptBook conceptBook) {
         return new LinkedList<>();
     }
 

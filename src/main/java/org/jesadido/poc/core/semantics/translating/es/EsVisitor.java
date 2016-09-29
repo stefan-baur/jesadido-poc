@@ -16,6 +16,7 @@ import org.jesadido.poc.core.semantics.translating.TransletParameters;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
 import org.jesadido.poc.core.syntax.tree.Visitor;
+import org.jesadido.poc.core.syntax.tree.sentence.AdjectiveSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.ArticleSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.NominalSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.PartAl;
@@ -123,6 +124,11 @@ public class EsVisitor implements Visitor<TranslationResult, EsVisitorArgument> 
 
     @Override
     public TranslationResult visit(final SubstantiveSelection node, final EsVisitorArgument argument) {
+        return new TranslationResult(this.esTranslator, node);
+    }
+
+    @Override
+    public TranslationResult visit(final AdjectiveSelection node, final EsVisitorArgument argument) {
         return new TranslationResult(this.esTranslator, node);
     }
 

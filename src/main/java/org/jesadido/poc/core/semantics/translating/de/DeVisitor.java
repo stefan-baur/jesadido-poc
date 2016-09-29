@@ -29,6 +29,7 @@ import org.jesadido.poc.core.syntax.tree.sentence.SubstantiveSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbalSelection;
 import org.jesadido.poc.core.semantics.translating.TransletParameters;
+import org.jesadido.poc.core.syntax.tree.sentence.AdjectiveSelection;
 
 public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> {
     
@@ -132,6 +133,11 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
 
     @Override
     public TranslationResult visit(final SubstantiveSelection node, final DeVisitorArgument argument) {
+        return new TranslationResult(this.deTranslator, node);
+    }
+
+    @Override
+    public TranslationResult visit(final AdjectiveSelection node, final DeVisitorArgument argument) {
         return new TranslationResult(this.deTranslator, node);
     }
 

@@ -11,6 +11,7 @@ import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.tree.Terminal;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
 import org.jesadido.poc.core.syntax.tree.Visitor;
+import org.jesadido.poc.core.syntax.tree.sentence.AdjectiveSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.ArticleSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.NominalSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.PartAl;
@@ -79,6 +80,11 @@ public class MasterTerminalSelector implements Visitor<Terminal, Void> {
     @Override
     public Terminal visit(final SubstantiveSelection node, final Void unused) {
         return node.getSubstantive();
+    }
+
+    @Override
+    public Terminal visit(final AdjectiveSelection node, final Void unused) {
+        return node.getAdjective();
     }
     
     @Override

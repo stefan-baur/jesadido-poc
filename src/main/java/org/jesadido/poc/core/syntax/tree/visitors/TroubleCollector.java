@@ -12,6 +12,7 @@ import java.util.List;
 import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
 import org.jesadido.poc.core.syntax.tree.Visitor;
+import org.jesadido.poc.core.syntax.tree.sentence.AdjectiveSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.ArticleSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.NominalSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.PartAl;
@@ -110,6 +111,12 @@ public class TroubleCollector implements Visitor<Void, List<TroubleNode>> {
 
     @Override
     public Void visit(SubstantiveSelection node, List<TroubleNode> result) {
+        node.getAdjectiveSelections().stream().forEach(adjectiveSelections -> adjectiveSelections.accept(this, result));
+        return null;
+    }
+
+    @Override
+    public Void visit(AdjectiveSelection node, List<TroubleNode> result) {
         return null;
     }
 
