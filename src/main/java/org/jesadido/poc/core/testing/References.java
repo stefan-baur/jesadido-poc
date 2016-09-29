@@ -7,7 +7,6 @@
  */
 package org.jesadido.poc.core.testing;
 
-import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Logger;

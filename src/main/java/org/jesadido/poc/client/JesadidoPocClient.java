@@ -51,7 +51,9 @@ import org.jesadido.poc.usecases.gaming.models.GameModel;
  */
 public class JesadidoPocClient extends Application {
 
-    private static final Font SOURCE_FONT_11 = Font.font("Courier New", FontWeight.NORMAL, FontPosture.REGULAR, 11);
+    private static final String SOURCE_FONT_FAMILY = "Courier New";
+    private static final Font SOURCE_FONT_11 = Font.font(SOURCE_FONT_FAMILY, FontWeight.NORMAL, FontPosture.REGULAR, 11);
+    private static final Font SOURCE_FONT_14 = Font.font(SOURCE_FONT_FAMILY, FontWeight.NORMAL, FontPosture.REGULAR, 14);
     
     /**
      * Launches this JavaFX client application.
@@ -167,7 +169,7 @@ public class JesadidoPocClient extends Application {
     
     private Node createGrammarOverview(final Grammar grammar) {
         final TextArea result = new TextArea(grammar.toString());
-        result.setFont(Font.font("Courier New", FontWeight.NORMAL, FontPosture.REGULAR, 14));
+        result.setFont(SOURCE_FONT_14);
         result.setEditable(false);
         result.setPrefHeight(2400);
         result.setPadding(new Insets(6, 6, 6, 8));
@@ -212,7 +214,7 @@ public class JesadidoPocClient extends Application {
         referenceSourcesTab.setClosable(false);
         
         final TextArea referenceTestsContent = new TextArea(References.generateGameTests().toString());
-        referenceTestsContent.setFont(Font.font("Courier New", FontWeight.NORMAL, FontPosture.REGULAR, 14));
+        referenceTestsContent.setFont(SOURCE_FONT_14);
         referenceTestsContent.setEditable(false);
         referenceTestsContent.setPrefHeight(2400);
         
