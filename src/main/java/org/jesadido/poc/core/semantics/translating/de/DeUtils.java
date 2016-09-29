@@ -127,9 +127,9 @@ public final class DeUtils {
     
     private static String getSingularPossessivePronoun(final Translator translator, final Concept personalPronounConcept, final String miPhrase, final String biPhrase, final String gxiFemininePhrase, final String gxiDefaultPhrase) {
         final ConceptTermination personalPronounConceptTermination = personalPronounConcept.getProperties().getTermination();
-        if (personalPronounConceptTermination.isOneOf(ConceptTermination.BI)) {
+        if (personalPronounConceptTermination == ConceptTermination.BI) {
             return biPhrase;
-        } else if (personalPronounConceptTermination.isOneOf(ConceptTermination.GXI)) {
+        } else if (personalPronounConceptTermination == ConceptTermination.GXI) {
             return getGxiArticle(translator, personalPronounConcept, gxiFemininePhrase, gxiDefaultPhrase);
         }
         return miPhrase;
@@ -137,9 +137,9 @@ public final class DeUtils {
     
     private static String getPluralPossessivePronoun(final Concept personalPronounConcept, final String niPhrase, final String viPhrase, final String iliPhrase) {
         final ConceptTermination personalPronounConceptTermination = personalPronounConcept.getProperties().getTermination();
-        if (personalPronounConceptTermination.isOneOf(ConceptTermination.VI)) {
+        if (personalPronounConceptTermination == ConceptTermination.VI) {
             return viPhrase;
-        } else if (personalPronounConceptTermination.isOneOf(ConceptTermination.ILI)) {
+        } else if (personalPronounConceptTermination == ConceptTermination.ILI) {
             return iliPhrase;
         }
         return niPhrase;
