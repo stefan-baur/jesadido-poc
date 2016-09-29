@@ -52,15 +52,35 @@ public final class FrUtils {
         if (articleConcept.hasReferenceConcept()) {
             final Concept referenceConcept = articleConcept.getReferenceConcept();
             final ConceptTermination referenceConceptTermination = referenceConcept.getProperties().getTermination();
-            if (referenceConceptTermination.isOneOf(ConceptTermination.MI)) {
-                return getGendered(substantiveTarget, String.format("mon %s", substantivePhrase), getVocalized("ma", "m", substantivePhrase));
-            } else if (referenceConceptTermination.isOneOf(ConceptTermination.BI)) {
-                return getGendered(substantiveTarget, String.format("ton %s", substantivePhrase), getVocalized("ta", "t", substantivePhrase));
-            } else if (referenceConceptTermination.isOneOf(ConceptTermination.GXI)) {
-                return getGendered(substantiveTarget, String.format("son %s", substantivePhrase), getVocalized("sa", "s", substantivePhrase));
+            if (referenceConceptTermination.isOneOf(ConceptTermination.MI, ConceptTermination.BI, ConceptTermination.GXI)) {
+                return getSingularPossessivePronounedSubstantive(referenceConcept, substantiveTarget);
+            } else if (referenceConceptTermination.isOneOf(ConceptTermination.NI, ConceptTermination.VI, ConceptTermination.ILI)) {
+                return getPluralPossessivePronounedSubstantive(referenceConcept, substantiveTarget);
             }
         }
         return getGendered(substantiveTarget, getVocalized("le", "l", substantivePhrase), getVocalized("la", "l", substantivePhrase));
+    }
+    
+    private static String getSingularPossessivePronounedSubstantive(final Concept personalPronounConcept, final TranslationTarget substantiveTarget) {
+        final String substantivePhrase = substantiveTarget.getMainPhrase();
+        final ConceptTermination personalPronounConceptTermination = personalPronounConcept.getProperties().getTermination();
+        if (personalPronounConceptTermination == ConceptTermination.BI) {
+            return getGendered(substantiveTarget, String.format("ton %s", substantivePhrase), getVocalized("ta", "t", substantivePhrase));
+        } else if (personalPronounConceptTermination == ConceptTermination.GXI) {
+            return getGendered(substantiveTarget, String.format("son %s", substantivePhrase), getVocalized("sa", "s", substantivePhrase));
+        }
+        return getGendered(substantiveTarget, String.format("mon %s", substantivePhrase), getVocalized("ma", "m", substantivePhrase));
+    }
+    
+    private static String getPluralPossessivePronounedSubstantive(final Concept personalPronounConcept, final TranslationTarget substantiveTarget) {
+        final String substantivePhrase = substantiveTarget.getMainPhrase();
+        final ConceptTermination personalPronounConceptTermination = personalPronounConcept.getProperties().getTermination();
+        if (personalPronounConceptTermination == ConceptTermination.VI) {
+            return String.format("votre %s", substantivePhrase);
+        } else if (personalPronounConceptTermination == ConceptTermination.ILI) {
+            return String.format("leur %s", substantivePhrase);
+        }
+        return String.format("notre %s", substantivePhrase);
     }
     
     private static String getGendered(final TranslationTarget substantiveTarget, final String masculinePhrase, final String femininePhrase) {
