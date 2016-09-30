@@ -148,12 +148,12 @@ public final class References {
                     .addDefaultTargets(new EsTarget("valiente", Es.MASCULINE, Es.FEMININE))
                     .addDefaultTargets(new FrTarget("courageux", Fr.MASCULINE), new FrTarget("courageuse", Fr.FEMININE))
             )
-            .add(new ConceptBookEntry("SanA")
-                    .addDefaultTargets(new DeTarget("gesund"))
-                    .addDefaultTargets(new EnTarget("sane"))
-                    .addDefaultTargets(new EoTarget("sana"))
-                    .addDefaultTargets(new EsTarget("sano", Es.MASCULINE), new EsTarget("sana", Es.FEMININE))
-                    .addDefaultTargets(new FrTarget("sain", Fr.MASCULINE), new FrTarget("saine", Fr.FEMININE))
+            .add(new ConceptBookEntry("MalGrandEgA")
+                    .addDefaultTargets(new DeTarget("winzig"))
+                    .addDefaultTargets(new EnTarget("tiny"))
+                    .addDefaultTargets(new EoTarget("malgrandega"))
+                    .addDefaultTargets(new EsTarget("menudo", Es.MASCULINE, Es.PREPOSED), new EsTarget("menuda", Es.FEMININE, Es.PREPOSED))
+                    .addDefaultTargets(new FrTarget("infime", Fr.MASCULINE, Fr.FEMININE))
             )
             .add(new ConceptBookEntry("MalSanA")
                     .addDefaultTargets(new DeTarget("krank"))
@@ -161,6 +161,13 @@ public final class References {
                     .addDefaultTargets(new EoTarget("sana"))
                     .addDefaultTargets(new EsTarget("enfermo", Es.MASCULINE), new EsTarget("enferma", Es.FEMININE))
                     .addDefaultTargets(new FrTarget("malade", Fr.MASCULINE, Fr.FEMININE))
+            )
+            .add(new ConceptBookEntry("SanA")
+                    .addDefaultTargets(new DeTarget("gesund"))
+                    .addDefaultTargets(new EnTarget("sane"))
+                    .addDefaultTargets(new EoTarget("sana"))
+                    .addDefaultTargets(new EsTarget("sano", Es.MASCULINE), new EsTarget("sana", Es.FEMININE))
+                    .addDefaultTargets(new FrTarget("sain", Fr.MASCULINE), new FrTarget("saine", Fr.FEMININE))
             )
             .add(new ConceptBookEntry("Mi")
                     .addDefaultTargets(new DeTarget("ich", De.MI))
@@ -231,8 +238,8 @@ public final class References {
                     "La LudO HavAs Fin La HeroIcxO .",
                     "Mi$La LudO HavAs Fin Bi$La HeroIcxO .",
                     "Ni$La LudO HavAs Fin Vi$La HeroIcxO .",
-                    "La LudO HavAs Fin Vi$La HeroIcxO .",
-                    "La LudO HavAs Fin Vi$La HeroIcxO SanA .",
+                    "Mi$La LudO HavAs Fin HeroIcxO .",
+                    "Mi$La LudO MalGrandEgA HavAs Fin HeroIcxO SanA .",
                     
                     "HeroIcxO TrovAs Fin SkribIlO .",
                     "La HeroIcxO TrovAs Fin La SkribIlO .",
