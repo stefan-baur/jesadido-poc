@@ -113,7 +113,7 @@ public class EsVisitor implements Visitor<TranslationResult, EsVisitorArgument> 
     @Override
     public TranslationResult visit(final NominalSelection node, final EsVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(this.esTranslator, node);
-        EsTransletors.getNominalTransletor(argument.getCaseAttribute()).translate(result, new TransletParameters(node.collectTerminals()));
+        EsTransletors.getNominalTransletor().translate(result, new TransletParameters(argument.getCaseAttribute(), node.collectTerminals()));
         return result;
     }
     

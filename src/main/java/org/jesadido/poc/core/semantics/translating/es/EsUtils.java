@@ -7,7 +7,10 @@
  */
 package org.jesadido.poc.core.semantics.translating.es;
 
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
+import org.jesadido.poc.core.StringUtils;
 import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.concepts.ConceptTermination;
 import org.jesadido.poc.core.semantics.translating.TranslationTarget;
@@ -29,21 +32,71 @@ public final class EsUtils {
         return NodeUtils.rearrange(parts, PartSu.class, PartDom.class, PartAl.class, PartFin.class);
     }
     
-    public static String getIndefinite(final Translator translator, final Es caseAttribute, final Concept substantiveConcept) {
+    public static String getIndefinite(final Translator translator, final Object caseAttribute, final Concept substantiveConcept, final List<Concept> adjectiveConcepts) {
         final TranslationTarget substantiveTarget = translator.getFirstDefaultTarget(substantiveConcept);
-        return String.join(" ", getIndefiniteArticle(caseAttribute, substantiveTarget), substantiveTarget.getMainPhrase());
+        final String substantivePhrase = substantiveTarget.getMainPhrase();
+        final String articlePhrase = getIndefiniteArticle(caseAttribute, substantiveTarget);
+        if (adjectiveConcepts.isEmpty()) {
+            return String.join(" ", articlePhrase, substantivePhrase);
+        } else {
+            return String.join(" ", articlePhrase, getSubstantiveAdjectives(translator, substantiveConcept, adjectiveConcepts));
+        }
     }
     
-    public static String getDefinite(final Translator translator, final Es caseAttribute, final Concept articleConcept, final Concept substantiveConcept) {
+    public static String getDefinite(final Translator translator, final Object caseAttribute, final Concept articleConcept, final Concept substantiveConcept, final List<Concept> adjectiveConcepts) {
         final TranslationTarget substantiveTarget = translator.getFirstDefaultTarget(substantiveConcept);
-        return String.join(" ", getDefiniteArticle(caseAttribute, articleConcept, substantiveTarget), substantiveTarget.getMainPhrase());
+        final String substantivePhrase = substantiveTarget.getMainPhrase();
+        final String articlePhrase = getDefiniteArticle(caseAttribute, articleConcept, substantiveTarget);
+        if (adjectiveConcepts.isEmpty()) {
+            return String.join(" ", articlePhrase, substantivePhrase);
+        } else {
+            return String.join(" ", articlePhrase, getSubstantiveAdjectives(translator, substantiveConcept, adjectiveConcepts));
+        }
     }
     
-    private static String getIndefiniteArticle(final Es caseAttribute, final TranslationTarget substantiveTarget) {
+    private static String getSubstantiveAdjectives(final Translator translator, final Concept substantiveConcept, final List<Concept> adjectiveConcepts) {
+        final TranslationTarget substantiveTarget = translator.getFirstDefaultTarget(substantiveConcept);
+        final String substantivePhrase = substantiveTarget.getMainPhrase();
+        if (adjectiveConcepts.isEmpty()) {
+            return substantivePhrase;
+        } else {
+            final List<TranslationTarget> adjectiveTargets = getAdjectiveTargets(translator, substantiveTarget, adjectiveConcepts);
+            final String preposedAdjectives = getPreposedAdjectives(adjectiveTargets);
+            final String postposedAdjectives = getPostposedAdjectives(adjectiveTargets);
+            return StringUtils.join(" ", Arrays.asList(preposedAdjectives.length() > 0 ? preposedAdjectives : null, substantivePhrase, postposedAdjectives.length() > 0 ? postposedAdjectives : null));
+        }
+    }
+    
+    private static String getPreposedAdjectives(final List<TranslationTarget> adjectiveTargets) {
+        final List<String> adjectivePhrases = new LinkedList<>();
+        adjectiveTargets.stream().filter(adjectiveTarget -> adjectiveTarget.has(Es.PRE)).forEach(adjectiveTarget -> adjectivePhrases.add(adjectiveTarget.getMainPhrase()));
+        return StringUtils.join(", ", " y ", adjectivePhrases);
+    }
+    
+    private static String getPostposedAdjectives(final List<TranslationTarget> adjectiveTargets) {
+        final List<String> adjectivePhrases = new LinkedList<>();
+        adjectiveTargets.stream().filter(adjectiveTarget -> !adjectiveTarget.has(Es.PRE)).forEach(adjectiveTarget -> adjectivePhrases.add(adjectiveTarget.getMainPhrase()));
+        return StringUtils.join(", ", " y ", adjectivePhrases);
+    }
+    
+    private static List<TranslationTarget> getAdjectiveTargets(final Translator translator, final TranslationTarget substantiveTarget, final List<Concept> adjectiveConcepts) {
+        final List<TranslationTarget> result = new LinkedList<>();
+        adjectiveConcepts.stream().forEach(adjectiveConcept -> result.add(getAdjectiveTarget(translator, substantiveTarget, adjectiveConcept)));
+        return result;
+    }
+    
+    private static TranslationTarget getAdjectiveTarget(final Translator translator, final TranslationTarget substantiveTarget, final Concept adjectiveConcept) {
+        if (substantiveTarget.has(Es.FEMININE)) {
+            return translator.getFirstDefaultTarget(adjectiveConcept, Es.FEMININE);
+        }
+        return translator.getFirstDefaultTarget(adjectiveConcept, Es.MASCULINE);
+    }
+    
+    private static String getIndefiniteArticle(final Object caseAttribute, final TranslationTarget substantiveTarget) {
         return getCased(caseAttribute, substantiveTarget.has(Es.FEMININE) ? "una" : "un");
     }
     
-    private static String getDefiniteArticle(final Es caseAttribute, final Concept articleConcept, final TranslationTarget substantiveTarget) {
+    private static String getDefiniteArticle(final Object caseAttribute, final Concept articleConcept, final TranslationTarget substantiveTarget) {
         if (articleConcept.hasReferenceConcept()) {
             final Concept referenceConcept = articleConcept.getReferenceConcept();
             final ConceptTermination referenceConceptTermination = referenceConcept.getProperties().getTermination();
@@ -56,7 +109,7 @@ public final class EsUtils {
         return getDefiniteArticle(caseAttribute, substantiveTarget);
     }
     
-    private static String getSingularPossessivePronoun(final Es caseAttribute, final Concept personalPronounConcept) {
+    private static String getSingularPossessivePronoun(final Object caseAttribute, final Concept personalPronounConcept) {
         final ConceptTermination personalPronounConceptTermination = personalPronounConcept.getProperties().getTermination();
         if (personalPronounConceptTermination == ConceptTermination.BI) {
             return getCased(caseAttribute, "tu");
@@ -66,7 +119,7 @@ public final class EsUtils {
         return getCased(caseAttribute, "mi");
     }
     
-    private static String getPluralPossessivePronoun(final Es caseAttribute, final Concept personalPronounConcept, final TranslationTarget substantiveTarget) {
+    private static String getPluralPossessivePronoun(final Object caseAttribute, final Concept personalPronounConcept, final TranslationTarget substantiveTarget) {
         final ConceptTermination personalPronounConceptTermination = personalPronounConcept.getProperties().getTermination();
         if (personalPronounConceptTermination == ConceptTermination.VI) {
             return getCased(caseAttribute, substantiveTarget.has(Es.FEMININE) ? "vuestra" : "vuestro");
@@ -76,7 +129,7 @@ public final class EsUtils {
         return getCased(caseAttribute, substantiveTarget.has(Es.FEMININE) ? "nuestra" : "nuestro");
     }
     
-    private static String getDefiniteArticle(final Es caseAttribute, final TranslationTarget substantiveTarget) {
+    private static String getDefiniteArticle(final Object caseAttribute, final TranslationTarget substantiveTarget) {
         if (substantiveTarget.has(Es.FEMININE)) {
             return getCased(caseAttribute, "la");
         } else {
@@ -84,7 +137,7 @@ public final class EsUtils {
         }
     }
     
-    private static String getCased(final Es caseAttribute, final String phrase) {
+    private static String getCased(final Object caseAttribute, final String phrase) {
         return String.format("%s%s", caseAttribute == Es.DATIVE ? "a " : "", phrase);
     }
 }
