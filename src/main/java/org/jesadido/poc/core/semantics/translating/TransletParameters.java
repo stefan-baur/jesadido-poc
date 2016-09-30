@@ -13,10 +13,20 @@ import org.jesadido.poc.core.syntax.tree.Terminal;
 
 public class TransletParameters {
     
+    private final Object caseAttribute;
     private final List<Terminal> terminals;
     
-    public TransletParameters(final List<Terminal> terminals) {
+    public TransletParameters(final Object caseAttibute, final List<Terminal> terminals) {
+        this.caseAttribute = caseAttibute;
         this.terminals = terminals;
+    }
+    
+    public TransletParameters(final List<Terminal> terminals) {
+        this(null, terminals);
+    }
+    
+    public Object getCaseAttribute() {
+        return this.caseAttribute;
     }
     
     public List<Terminal> getTerminals() {

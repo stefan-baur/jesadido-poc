@@ -24,7 +24,7 @@ public final class EoUtils {
         return parts;
     }
     
-    public static String getIndefinite(final Translator translator, final Eo caseAttribute, final Concept substantiveConcept, final Concept ... adjectiveConcepts) {
+    public static String getIndefinite(final Translator translator, final Object caseAttribute, final Concept substantiveConcept, final Concept ... adjectiveConcepts) {
         final String substantivePhrase = getCased(caseAttribute, getTarget(translator, substantiveConcept).getMainPhrase());
         if (adjectiveConcepts.length > 0) {
             final String adjectivesPhrase = getCasedAdjectives(translator, caseAttribute, adjectiveConcepts);
@@ -33,7 +33,7 @@ public final class EoUtils {
         return substantivePhrase;
     }
     
-    public static String getDefinite(final Translator translator, final Eo caseAttribute, final Concept articleConcept, final Concept substantiveConcept, final Concept ... adjectiveConcepts) {
+    public static String getDefinite(final Translator translator, final Object caseAttribute, final Concept articleConcept, final Concept substantiveConcept, final Concept ... adjectiveConcepts) {
         final String articlePhrase = getDefiniteArticle(translator, caseAttribute, articleConcept);
         final String substantivePhrase = getCased(caseAttribute, getTarget(translator, substantiveConcept).getMainPhrase());
         if (adjectiveConcepts.length > 0) {
@@ -47,11 +47,11 @@ public final class EoUtils {
         return translator.getFirstDefaultTarget(concept);
     }
     
-    private static String getCased(final Eo caseAttribute, final String phrase) {
+    private static String getCased(final Object caseAttribute, final String phrase) {
         return caseAttribute == Eo.ACCUSATIVE ? String.format("%sn", phrase) : phrase;
     }
     
-    private static String getCasedAdjectives(final Translator translator, final Eo caseAttribute, final Concept ... adjectiveConcepts) {
+    private static String getCasedAdjectives(final Translator translator, final Object caseAttribute, final Concept ... adjectiveConcepts) {
         final StringBuilder result = new StringBuilder();
         for (int i = 0; i < adjectiveConcepts.length; i++) {
             if (i > 0) {
@@ -66,7 +66,7 @@ public final class EoUtils {
         return result.toString();
     }
     
-    private static String getDefiniteArticle(final Translator translator, final Eo caseAttribute, final Concept articleConcept) {
+    private static String getDefiniteArticle(final Translator translator, final Object caseAttribute, final Concept articleConcept) {
         if (articleConcept.hasReferenceConcept()) {
             final Concept referenceConcept = articleConcept.getReferenceConcept();
             final ConceptTermination referenceConceptTermination = referenceConcept.getProperties().getTermination();
@@ -79,7 +79,7 @@ public final class EoUtils {
         return "la";
     }
     
-    private static String getSingularPossessivePronoun(final Translator translator, final Eo caseAttribute, final Concept personalPronounConcept) {
+    private static String getSingularPossessivePronoun(final Translator translator, final Object caseAttribute, final Concept personalPronounConcept) {
         final ConceptTermination personalPronounConceptTermination = personalPronounConcept.getProperties().getTermination();
         if (personalPronounConceptTermination == ConceptTermination.BI) {
             return getCased(caseAttribute, "via");
@@ -89,7 +89,7 @@ public final class EoUtils {
         return getCased(caseAttribute, "mia");
     }
     
-    private static String getPluralPossessivePronoun(final Eo caseAttribute, final Concept personalPronounConcept) {
+    private static String getPluralPossessivePronoun(final Object caseAttribute, final Concept personalPronounConcept) {
         final ConceptTermination personalPronounConceptTermination = personalPronounConcept.getProperties().getTermination();
         if (personalPronounConceptTermination == ConceptTermination.VI) {
             return getCased(caseAttribute, "via");
@@ -99,7 +99,7 @@ public final class EoUtils {
         return getCased(caseAttribute, "nia");
     }
     
-    private static String getGxiArticle(final Translator translator, final Eo caseAttribute, final Concept gxiConcept) {
+    private static String getGxiArticle(final Translator translator, final Object caseAttribute, final Concept gxiConcept) {
         if (gxiConcept.hasReferenceConcept()) {
             final Concept gxiReferenceConcept = gxiConcept.getReferenceConcept();
             final TranslationTarget gxiReferenceTarget = translator.getFirstDefaultTarget(gxiReferenceConcept);

@@ -110,7 +110,7 @@ public class EoVisitor implements Visitor<TranslationResult, EoVisitorArgument> 
     @Override
     public TranslationResult visit(final NominalSelection node, final EoVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(this.eoTranslator, node);
-        EoTransletors.getNominalTransletor(argument.getCaseAttribute()).translate(result, new TransletParameters(node.collectTerminals()));
+        EoTransletors.getNominalTransletor().translate(result, new TransletParameters(argument.getCaseAttribute(), node.collectTerminals()));
         return result;
     }
 
