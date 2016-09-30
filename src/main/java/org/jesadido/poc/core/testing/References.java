@@ -124,7 +124,7 @@ public final class References {
                     .addDefaultTargets(new DeTarget("gigantisch"))
                     .addDefaultTargets(new EnTarget("gigantic"))
                     .addDefaultTargets(new EoTarget("giganta"))
-                    .addDefaultTargets(new EsTarget("gigantesco", Es.MASCULINE, Es.PRE), new EsTarget("gigantesca", Es.FEMININE, Es.PRE))
+                    .addDefaultTargets(new EsTarget("gigantesco", Es.MASCULINE, Es.PREPOSED), new EsTarget("gigantesca", Es.FEMININE, Es.PREPOSED))
                     .addDefaultTargets(new FrTarget("gigantesque", Fr.MASCULINE, Fr.FEMININE, Fr.PREPOSED))
             )
             .add(new ConceptBookEntry("KarA")

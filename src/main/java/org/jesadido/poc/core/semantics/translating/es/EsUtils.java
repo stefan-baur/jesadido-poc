@@ -64,13 +64,13 @@ public final class EsUtils {
     
     private static String getPreposedAdjectives(final List<TranslationTarget> adjectiveTargets) {
         final List<String> adjectivePhrases = new LinkedList<>();
-        adjectiveTargets.stream().filter(adjectiveTarget -> adjectiveTarget.has(Es.PRE)).forEach(adjectiveTarget -> adjectivePhrases.add(adjectiveTarget.getMainPhrase()));
+        adjectiveTargets.stream().filter(adjectiveTarget -> adjectiveTarget.has(Es.PREPOSED)).forEach(adjectiveTarget -> adjectivePhrases.add(adjectiveTarget.getMainPhrase()));
         return StringUtils.join(", ", " y ", adjectivePhrases);
     }
     
     private static String getPostposedAdjectives(final List<TranslationTarget> adjectiveTargets) {
         final List<String> adjectivePhrases = new LinkedList<>();
-        adjectiveTargets.stream().filter(adjectiveTarget -> !adjectiveTarget.has(Es.PRE)).forEach(adjectiveTarget -> adjectivePhrases.add(adjectiveTarget.getMainPhrase()));
+        adjectiveTargets.stream().filter(adjectiveTarget -> !adjectiveTarget.has(Es.PREPOSED)).forEach(adjectiveTarget -> adjectivePhrases.add(adjectiveTarget.getMainPhrase()));
         return StringUtils.join(", ", " y ", adjectivePhrases);
     }
     
