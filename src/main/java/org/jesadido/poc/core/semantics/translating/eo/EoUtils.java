@@ -24,18 +24,46 @@ public final class EoUtils {
         return parts;
     }
     
-    public static String getIndefinite(final Translator translator, final Eo caseAttribute, final Concept substantiveConcept) {
-        final TranslationTarget substantiveTarget = translator.getFirstDefaultTarget(substantiveConcept);
-        return getCased(caseAttribute, substantiveTarget.getMainPhrase());
+    public static String getIndefinite(final Translator translator, final Eo caseAttribute, final Concept substantiveConcept, final Concept ... adjectiveConcepts) {
+        final String substantivePhrase = getCased(caseAttribute, getTarget(translator, substantiveConcept).getMainPhrase());
+        if (adjectiveConcepts.length > 0) {
+            final String adjectivesPhrase = getCasedAdjectives(translator, caseAttribute, adjectiveConcepts);
+            return String.join(" ", adjectivesPhrase, substantivePhrase);
+        }
+        return substantivePhrase;
     }
     
-    public static String getDefinite(final Translator translator, final Eo caseAttribute, final Concept articleConcept, final Concept substantiveConcept) {
-        final TranslationTarget substantiveTarget = translator.getFirstDefaultTarget(substantiveConcept);
-        return String.join(" ", getDefiniteArticle(translator, caseAttribute, articleConcept), getCased(caseAttribute, substantiveTarget.getMainPhrase()));
+    public static String getDefinite(final Translator translator, final Eo caseAttribute, final Concept articleConcept, final Concept substantiveConcept, final Concept ... adjectiveConcepts) {
+        final String articlePhrase = getDefiniteArticle(translator, caseAttribute, articleConcept);
+        final String substantivePhrase = getCased(caseAttribute, getTarget(translator, substantiveConcept).getMainPhrase());
+        if (adjectiveConcepts.length > 0) {
+            final String adjectivesPhrase = getCasedAdjectives(translator, caseAttribute, adjectiveConcepts);
+            return String.join(" ", articlePhrase, adjectivesPhrase, substantivePhrase);
+        }
+        return String.join(" ", articlePhrase, substantivePhrase);
+    }
+    
+    private static TranslationTarget getTarget(final Translator translator, final Concept concept) {
+        return translator.getFirstDefaultTarget(concept);
     }
     
     private static String getCased(final Eo caseAttribute, final String phrase) {
         return caseAttribute == Eo.ACCUSATIVE ? String.format("%sn", phrase) : phrase;
+    }
+    
+    private static String getCasedAdjectives(final Translator translator, final Eo caseAttribute, final Concept ... adjectiveConcepts) {
+        final StringBuilder result = new StringBuilder();
+        for (int i = 0; i < adjectiveConcepts.length; i++) {
+            if (i > 0) {
+                if (i == adjectiveConcepts.length - 1) {
+                    result.append(" kaj ");
+                } else {
+                    result.append(", ");
+                }
+            }
+            result.append(getCased(caseAttribute, getTarget(translator, adjectiveConcepts[i]).getMainPhrase()));
+        }
+        return result.toString();
     }
     
     private static String getDefiniteArticle(final Translator translator, final Eo caseAttribute, final Concept articleConcept) {

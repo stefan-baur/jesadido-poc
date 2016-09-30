@@ -341,7 +341,9 @@ public final class References {
                     "Vi$La HeroIcxO DonAs Fin Ili$La FlorO Al Ni$La HeroInO Se Vi$La HeroIcxO TrovAs Fin Ili$La FlorO .",
                     "Vi$La HeroIcxO DonAs Fin FlorO Al Mi$La HeroInO Se La HeroIcxO TrovAs Fin FlorO .",
                     
-                    "Mi$La HeroIcxO KuragxA TrovAs Fin LudO ."
+                    "Mi$La HeroIcxO KuragxA TrovAs Fin LudO .",
+                    "HeroIcxO KuragxA TrovAs Fin LudO .",
+                    "Mi$La HeroIcxO KuragxA GigantA SanA TrovAs Fin La LudO GigantA ."
             )
             ;
     

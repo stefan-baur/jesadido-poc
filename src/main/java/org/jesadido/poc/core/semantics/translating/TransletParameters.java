@@ -8,6 +8,7 @@
 package org.jesadido.poc.core.semantics.translating;
 
 import java.util.List;
+import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.syntax.tree.Terminal;
 
 public class TransletParameters {
@@ -24,5 +25,9 @@ public class TransletParameters {
     
     public Terminal getTerminal(final int index) {
         return this.terminals.get(index);
+    }
+    
+    public Concept getConcept(final int index) {
+        return this.getTerminal(index).getConcept();
     }
 }

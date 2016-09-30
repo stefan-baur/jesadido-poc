@@ -12,18 +12,29 @@ import org.jesadido.poc.core.semantics.translating.TranslationResult;
 import org.jesadido.poc.core.semantics.translating.TransletParameters;
 import org.jesadido.poc.core.semantics.translating.Transletor;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
-import org.jesadido.poc.core.syntax.tree.Terminal;
 
 public final class EoTransletors {
     
     private static final Transletor NOMINAL_TRANSLETOR = new Transletor()
-            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> nomQO(r, p.getTerminal(0)))
-            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> nomQLaQO(r, p.getTerminal(0), p.getTerminal(1)))
+            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getIndefinite(r.getTranslator(), Eo.DEFAULT, p.getConcept(0))))
+            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getIndefinite(r.getTranslator(), Eo.DEFAULT, p.getConcept(0), p.getConcept(1))))
+            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getIndefinite(r.getTranslator(), Eo.DEFAULT, p.getConcept(0), p.getConcept(1), p.getConcept(2))))
+            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getIndefinite(r.getTranslator(), Eo.DEFAULT, p.getConcept(0), p.getConcept(1), p.getConcept(2), p.getConcept(3))))
+            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getDefinite(r.getTranslator(), Eo.DEFAULT, p.getConcept(0), p.getConcept(1))))
+            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getDefinite(r.getTranslator(), Eo.DEFAULT, p.getConcept(0), p.getConcept(1), p.getConcept(2))))
+            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getDefinite(r.getTranslator(), Eo.DEFAULT, p.getConcept(0), p.getConcept(1), p.getConcept(2), p.getConcept(3))))
+            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getDefinite(r.getTranslator(), Eo.DEFAULT, p.getConcept(0), p.getConcept(1), p.getConcept(2), p.getConcept(3), p.getConcept(4))))
             ;
     
     private static final Transletor ACCUSATIVE_TRANSLETOR = new Transletor()
-            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> accQO(r, p.getTerminal(0)))
-            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> accQLaQO(r, p.getTerminal(0), p.getTerminal(1)))
+            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getIndefinite(r.getTranslator(), Eo.ACCUSATIVE, p.getConcept(0))))
+            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getIndefinite(r.getTranslator(), Eo.ACCUSATIVE, p.getConcept(0), p.getConcept(1))))
+            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getIndefinite(r.getTranslator(), Eo.ACCUSATIVE, p.getConcept(0), p.getConcept(1), p.getConcept(2))))
+            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getIndefinite(r.getTranslator(), Eo.ACCUSATIVE, p.getConcept(0), p.getConcept(1), p.getConcept(2), p.getConcept(3))))
+            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getDefinite(r.getTranslator(), Eo.ACCUSATIVE, p.getConcept(0), p.getConcept(1))))
+            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getDefinite(r.getTranslator(), Eo.ACCUSATIVE, p.getConcept(0), p.getConcept(1), p.getConcept(2))))
+            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getDefinite(r.getTranslator(), Eo.ACCUSATIVE, p.getConcept(0), p.getConcept(1), p.getConcept(2), p.getConcept(3))))
+            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getDefinite(r.getTranslator(), Eo.ACCUSATIVE, p.getConcept(0), p.getConcept(1), p.getConcept(2), p.getConcept(3), p.getConcept(4))))
             ;
     
     private EoTransletors() {
@@ -35,21 +46,5 @@ public final class EoTransletors {
             return ACCUSATIVE_TRANSLETOR;
         }
         return NOMINAL_TRANSLETOR;
-    }
-    
-    private static void nomQO(final TranslationResult result, final Terminal substantive) {
-        result.setTranslation(EoUtils.getIndefinite(result.getTranslator(), Eo.DEFAULT, substantive.getConcept()));
-    }
-    
-    private static void nomQLaQO(final TranslationResult result, final Terminal article, final Terminal substantive) {
-        result.setTranslation(EoUtils.getDefinite(result.getTranslator(), Eo.DEFAULT, article.getConcept(), substantive.getConcept()));
-    }
-    
-    private static void accQO(final TranslationResult result, final Terminal substantive) {
-        result.setTranslation(EoUtils.getIndefinite(result.getTranslator(), Eo.ACCUSATIVE, substantive.getConcept()));
-    }
-    
-    private static void accQLaQO(final TranslationResult result, final Terminal article, final Terminal substantive) {
-        result.setTranslation(EoUtils.getDefinite(result.getTranslator(), Eo.ACCUSATIVE, article.getConcept(), substantive.getConcept()));
     }
 }
