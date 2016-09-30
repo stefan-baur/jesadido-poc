@@ -39,7 +39,7 @@ public final class EsUtils {
         if (adjectiveConcepts.isEmpty()) {
             return String.join(" ", articlePhrase, substantivePhrase);
         } else {
-            return String.join(" ", articlePhrase, getSubstantiveAdjectives(translator, substantiveConcept, adjectiveConcepts));
+            return String.join(" ", articlePhrase, getSubstantiveAdjectives(translator, substantiveTarget, adjectiveConcepts));
         }
     }
     
@@ -50,12 +50,11 @@ public final class EsUtils {
         if (adjectiveConcepts.isEmpty()) {
             return String.join(" ", articlePhrase, substantivePhrase);
         } else {
-            return String.join(" ", articlePhrase, getSubstantiveAdjectives(translator, substantiveConcept, adjectiveConcepts));
+            return String.join(" ", articlePhrase, getSubstantiveAdjectives(translator, substantiveTarget, adjectiveConcepts));
         }
     }
     
-    private static String getSubstantiveAdjectives(final Translator translator, final Concept substantiveConcept, final List<Concept> adjectiveConcepts) {
-        final TranslationTarget substantiveTarget = translator.getFirstDefaultTarget(substantiveConcept);
+    private static String getSubstantiveAdjectives(final Translator translator, final TranslationTarget substantiveTarget, final List<Concept> adjectiveConcepts) {
         final String substantivePhrase = substantiveTarget.getMainPhrase();
         if (adjectiveConcepts.isEmpty()) {
             return substantivePhrase;
