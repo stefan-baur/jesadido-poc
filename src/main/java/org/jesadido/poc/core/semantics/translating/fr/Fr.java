@@ -17,7 +17,7 @@ public enum Fr {
     MASCULINE,
     FEMININE,
     
-    PRE,
+    PREPOSED,
     
     MI,
     BI,

@@ -113,7 +113,7 @@ public class FrVisitor implements Visitor<TranslationResult, FrVisitorArgument> 
     @Override
     public TranslationResult visit(final NominalSelection node, final FrVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(this.frTranslator, node);
-        FrTransletors.getNominalTransletor(argument.getCaseAttribute()).translate(result, new TransletParameters(node.collectTerminals()));
+        FrTransletors.getNominalTransletor().translate(result, new TransletParameters(argument.getCaseAttribute(), node.collectTerminals()));
         return result;
     }
 

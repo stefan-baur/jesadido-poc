@@ -56,14 +56,10 @@ public final class EsUtils {
     
     private static String getSubstantiveAdjectives(final Translator translator, final TranslationTarget substantiveTarget, final List<Concept> adjectiveConcepts) {
         final String substantivePhrase = substantiveTarget.getMainPhrase();
-        if (adjectiveConcepts.isEmpty()) {
-            return substantivePhrase;
-        } else {
-            final List<TranslationTarget> adjectiveTargets = getAdjectiveTargets(translator, substantiveTarget, adjectiveConcepts);
-            final String preposedAdjectives = getPreposedAdjectives(adjectiveTargets);
-            final String postposedAdjectives = getPostposedAdjectives(adjectiveTargets);
-            return StringUtils.join(" ", Arrays.asList(preposedAdjectives.length() > 0 ? preposedAdjectives : null, substantivePhrase, postposedAdjectives.length() > 0 ? postposedAdjectives : null));
-        }
+        final List<TranslationTarget> adjectiveTargets = getAdjectiveTargets(translator, substantiveTarget, adjectiveConcepts);
+        final String preposedAdjectives = getPreposedAdjectives(adjectiveTargets);
+        final String postposedAdjectives = getPostposedAdjectives(adjectiveTargets);
+        return StringUtils.join(" ", Arrays.asList(preposedAdjectives.length() > 0 ? preposedAdjectives : null, substantivePhrase, postposedAdjectives.length() > 0 ? postposedAdjectives : null));
     }
     
     private static String getPreposedAdjectives(final List<TranslationTarget> adjectiveTargets) {
