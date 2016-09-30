@@ -89,10 +89,40 @@ public final class StringUtils {
      * @return The delimiter-separated join of the given elements.
      */
     public static final String join(final String delimiter, List<?> elements) {
-        List<String> convertedElements = new LinkedList<>();
-        if (elements != null) {
-            elements.stream().filter(element -> element != null).forEach(element -> convertedElements.add(element.toString()));
+        return String.join(delimiter, nonNullElements(elements));
+    }
+    
+    /**
+     * Joins the objects of the given list as strings separated with the given
+     * delimiters.
+     * @param delimiter The given default delimiter.
+     * @param lastDelimiter The given delimiter for the last separation.
+     * @param elements The objects of the given list (null-elements will be
+     * skipped).
+     * @return The delimiter-separated join of the given elements.
+     */
+    public static final String join(final String delimiter, final String lastDelimiter, List<?> elements) {
+        final StringBuilder result = new StringBuilder();
+        final List<String> convertedElements = nonNullElements(elements);
+        final int maxIndex = convertedElements.size() - 1;
+        for (int i = 0; i <= maxIndex; i++) {
+            if (i > 0) {
+                if (i == maxIndex) {
+                    result.append(lastDelimiter);
+                } else {
+                    result.append(delimiter);
+                }
+            }
+            result.append(convertedElements.get(i));
         }
-        return String.join(delimiter, convertedElements);
+        return result.toString();
+    }
+    
+    private static List<String> nonNullElements(List<?> elements) {
+        final List<String> result = new LinkedList<>();
+        if (elements != null) {
+            elements.stream().filter(element -> element != null).forEach(element -> result.add(element.toString()));
+        }
+        return result;
     }
 }

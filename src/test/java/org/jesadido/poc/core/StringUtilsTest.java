@@ -74,5 +74,12 @@ public class StringUtilsTest {
         Assert.assertEquals("TERMINATOR", StringUtils.join(", ", Arrays.asList(TokenType.TERMINATOR)));
         Assert.assertEquals("ARTICLE, TERMINATOR", StringUtils.join(", ", Arrays.asList(TokenType.ARTICLE, null, TokenType.TERMINATOR)));
         Assert.assertEquals("ARTICLE, TERMINATOR, user-defined", StringUtils.join(", ", Arrays.asList(TokenType.ARTICLE, null, TokenType.TERMINATOR, "user-defined")));
+        Assert.assertEquals("", StringUtils.join(", ", " and ", null));
+        Assert.assertEquals("", StringUtils.join(", ", " and ", new LinkedList<>()));
+        Assert.assertEquals("Sun", StringUtils.join(", ", " and ", Arrays.asList("Sun", null)));
+        Assert.assertEquals("Sun and Moon", StringUtils.join(", ", " and ", Arrays.asList("Sun", "Moon")));
+        Assert.assertEquals("Sun, Moon and Stars", StringUtils.join(", ", " and ", Arrays.asList("Sun", "Moon", "Stars")));
+        Assert.assertEquals("Sun, Moon, Stars and Earth", StringUtils.join(", ", " and ", Arrays.asList("Sun", "Moon", "Stars", null, "Earth")));
+        Assert.assertEquals("ARTICLE, TERMINATOR or user-defined", StringUtils.join(", ", " or ", Arrays.asList(null, TokenType.ARTICLE, TokenType.TERMINATOR, "user-defined")));
     }
 }

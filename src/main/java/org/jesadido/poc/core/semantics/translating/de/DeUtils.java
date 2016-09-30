@@ -8,7 +8,9 @@
 package org.jesadido.poc.core.semantics.translating.de;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
+import org.jesadido.poc.core.StringUtils;
 import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.concepts.ConceptTermination;
 import org.jesadido.poc.core.semantics.translating.TranslationTarget;
@@ -52,14 +54,78 @@ public final class DeUtils {
         return NodeUtils.rearrange(parts, PartDom.class, PartSu.class, PartAl.class, PartFin.class);
     }
     
-    public static String getIndefinite(final Translator translator, final Object caseAttribute, final Concept substantiveConcept) {
+    public static String getIndefinite(final Translator translator, final Object caseAttribute, final Concept substantiveConcept, final List<Concept> adjectiveConcepts) {
         final TranslationTarget substantiveTarget = translator.getFirstDefaultTarget(substantiveConcept, caseAttribute);
-        return String.join(" ", getIndefiniteArticle(substantiveTarget, caseAttribute), substantiveTarget.getMainPhrase());
+        final String articlePhrase = getIndefiniteArticle(substantiveTarget, caseAttribute);
+        final String substantivePhrase = substantiveTarget.getMainPhrase();
+        if (adjectiveConcepts.isEmpty()) {
+            return String.join(" ", articlePhrase, substantivePhrase);
+        } else {
+            final String adjectivesPhrase = getIndefiniteAdjectives(translator, caseAttribute, substantiveTarget, adjectiveConcepts);
+            return String.join(" ", articlePhrase, adjectivesPhrase, substantivePhrase);
+        }
     }
     
-    public static String getDefinite(final Translator translator, final Object caseAttribute, final Concept articleConcept, final Concept substantiveConcept) {
+    public static String getDefinite(final Translator translator, final Object caseAttribute, final Concept articleConcept, final Concept substantiveConcept, final List<Concept> adjectiveConcepts) {
         final TranslationTarget substantiveTarget = translator.getFirstDefaultTarget(substantiveConcept, caseAttribute);
-        return String.join(" ", getDefiniteArticle(translator, caseAttribute, articleConcept, substantiveTarget), substantiveTarget.getMainPhrase());
+        final String articlePhrase = getDefiniteArticle(translator, caseAttribute, articleConcept, substantiveTarget);
+        final String substantivePhrase = substantiveTarget.getMainPhrase();
+        if (adjectiveConcepts.isEmpty()) {
+            return String.join(" ", articlePhrase, substantivePhrase);
+        } else {
+            final String adjectivesPhrase = getDefiniteAdjectives(translator, caseAttribute, substantiveTarget, adjectiveConcepts);
+            return String.join(" ", articlePhrase, adjectivesPhrase, substantivePhrase);
+        }
+    }
+    
+    private static String getIndefiniteAdjectives(final Translator translator, final Object caseAttribute, final TranslationTarget substantiveTarget, final List<Concept> adjectiveConcepts) {
+        final List<String> adjectivePhrases = new LinkedList<>();
+        adjectiveConcepts.stream().forEach(adjectiveConcept -> adjectivePhrases.add(getIndefiniteAdjective(translator, caseAttribute, substantiveTarget, adjectiveConcept)));
+        return StringUtils.join(", ", " und ", adjectivePhrases);
+    }
+    
+    private static String getIndefiniteAdjective(final Translator translator, final Object caseAttribute, final TranslationTarget substantiveTarget, final Concept adjectiveConcept) {
+        if (caseAttribute == De.NOMINATIVE) {
+            return getIndefiniteAdjective(translator, substantiveTarget, adjectiveConcept, "er", "e", "es");
+        } else if (caseAttribute == De.DATIVE) {
+            return getIndefiniteAdjective(translator, substantiveTarget, adjectiveConcept, "en", "en", "en");
+        } else {
+            return getIndefiniteAdjective(translator, substantiveTarget, adjectiveConcept, "en", "e", "es");
+        }
+    }
+    
+    private static String getIndefiniteAdjective(final Translator translator, final TranslationTarget substantiveTarget, final Concept adjectiveConcept, final String masulinSuffix, final String feminieSuffix, final String neuterSuffix) {
+        if (substantiveTarget.has(De.MASCULINE)) {
+            return translator.getFirstDefaultTarget(adjectiveConcept).getMainPhrase().concat(masulinSuffix);
+        } else if (substantiveTarget.has(De.FEMININE)) {
+            return translator.getFirstDefaultTarget(adjectiveConcept).getMainPhrase().concat(feminieSuffix);
+        }
+        return translator.getFirstDefaultTarget(adjectiveConcept).getMainPhrase().concat(neuterSuffix);
+    }
+    
+    private static String getDefiniteAdjectives(final Translator translator, final Object caseAttribute, final TranslationTarget substantiveTarget, final List<Concept> adjectiveConcepts) {
+        final List<String> adjectivePhrases = new LinkedList<>();
+        adjectiveConcepts.stream().forEach(adjectiveConcept -> adjectivePhrases.add(getDefiniteAdjective(translator, caseAttribute, substantiveTarget, adjectiveConcept)));
+        return StringUtils.join(", ", " und ", adjectivePhrases);
+    }
+    
+    private static String getDefiniteAdjective(final Translator translator, final Object caseAttribute, final TranslationTarget substantiveTarget, final Concept adjectiveConcept) {
+        if (caseAttribute == De.NOMINATIVE) {
+            return getDefiniteAdjective(translator, substantiveTarget, adjectiveConcept, "er", "e", "es");
+        } else if (caseAttribute == De.DATIVE) {
+            return getDefiniteAdjective(translator, substantiveTarget, adjectiveConcept, "en", "en", "en");
+        } else {
+            return getDefiniteAdjective(translator, substantiveTarget, adjectiveConcept, "en", "e", "e");
+        }
+    }
+    
+    private static String getDefiniteAdjective(final Translator translator, final TranslationTarget substantiveTarget, final Concept adjectiveConcept, final String masulinSuffix, final String feminieSuffix, final String neuterSuffix) {
+        if (substantiveTarget.has(De.MASCULINE)) {
+            return translator.getFirstDefaultTarget(adjectiveConcept).getMainPhrase().concat(masulinSuffix);
+        } else if (substantiveTarget.has(De.FEMININE)) {
+            return translator.getFirstDefaultTarget(adjectiveConcept).getMainPhrase().concat(feminieSuffix);
+        }
+        return translator.getFirstDefaultTarget(adjectiveConcept).getMainPhrase().concat(neuterSuffix);
     }
     
     private static String getIndefiniteArticle(final TranslationTarget substantiveTarget, final Object caseAttribute) {
@@ -93,8 +159,6 @@ public final class DeUtils {
     private static String getIndefiniteArticleMasculine(final Object caseAttribute) {
         if (caseAttribute == De.NOMINATIVE) {
             return "ein";
-        } else if (caseAttribute == De.GENITIVE) {
-            return "eines";
         } else if (caseAttribute == De.DATIVE) {
             return "einem";
         } else {

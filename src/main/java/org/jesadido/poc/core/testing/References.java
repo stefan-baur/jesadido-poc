@@ -343,7 +343,8 @@ public final class References {
                     
                     "Mi$La HeroIcxO KuragxA TrovAs Fin LudO .",
                     "HeroIcxO KuragxA TrovAs Fin LudO .",
-                    "Mi$La HeroIcxO KuragxA GigantA SanA TrovAs Fin La LudO GigantA ."
+                    "Mi$La HeroIcxO KuragxA GigantA SanA TrovAs Fin La LudO GigantA .",
+                    "HeroIcxO KuragxA GigantA SanA TrovAs Fin LudO GigantA ."
             )
             ;
     

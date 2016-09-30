@@ -7,6 +7,7 @@
  */
 package org.jesadido.poc.core.semantics.translating;
 
+import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.syntax.tree.Terminal;
@@ -35,6 +36,12 @@ public class TransletParameters {
     
     public Terminal getTerminal(final int index) {
         return this.terminals.get(index);
+    }
+    
+    public List<Concept> getConcepts() {
+        final List<Concept> result = new LinkedList<>();
+        this.terminals.stream().forEach(terminal -> result.add(terminal.getConcept()));
+        return result;
     }
     
     public Concept getConcept(final int index) {
