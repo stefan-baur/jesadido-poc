@@ -122,7 +122,7 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
     @Override
     public TranslationResult visit(final NominalSelection node, final DeVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(this.deTranslator, node);
-        DeTransletors.getNominalTransletor(argument.getCaseAttribute()).translate(result, new TransletParameters(node.collectTerminals()));
+        DeTransletors.getNominalTransletor().translate(result, new TransletParameters(argument.getCaseAttribute(), node.collectTerminals()));
         return result;
     }
 
