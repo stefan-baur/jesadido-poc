@@ -9,7 +9,6 @@ package org.jesadido.poc.core.semantics.translating.eo;
 
 public enum Eo {
     
-    DEFAULT,
     ACCUSATIVE,
     
     MASCULINE,
