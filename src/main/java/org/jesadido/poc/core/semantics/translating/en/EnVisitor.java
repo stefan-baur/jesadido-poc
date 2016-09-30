@@ -110,7 +110,7 @@ public class EnVisitor implements Visitor<TranslationResult, EnVisitorArgument> 
     @Override
     public TranslationResult visit(final NominalSelection node, final EnVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(this.enTranslator, node);
-        EnTransletors.getNominalTransletor().translate(result, new TransletParameters(node.collectTerminals()));
+        EnTransletors.getNominalTransletor().translate(result, new TransletParameters(argument.getCaseAttribute(), node.collectTerminals()));
         return result;
     }
 

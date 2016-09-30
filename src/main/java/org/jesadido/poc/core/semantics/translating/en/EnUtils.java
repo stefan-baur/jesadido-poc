@@ -7,7 +7,9 @@
  */
 package org.jesadido.poc.core.semantics.translating.en;
 
+import java.util.LinkedList;
 import java.util.List;
+import org.jesadido.poc.core.StringUtils;
 import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.concepts.ConceptTermination;
 import org.jesadido.poc.core.semantics.translating.TranslationTarget;
@@ -29,23 +31,37 @@ public final class EnUtils {
         return NodeUtils.rearrange(parts, PartSu.class, PartDom.class, PartAl.class, PartFin.class);
     }
     
-    public static String getIndefinite(final Translator translator, final Concept substantiveConcept) {
+    public static String getIndefinite(final Translator translator, final Concept substantiveConcept, final List<Concept> adjectiveConcepts) {
         final TranslationTarget substantiveTarget = translator.getFirstDefaultTarget(substantiveConcept);
-        return String.join(" ", getIndefiniteArticle(substantiveTarget), substantiveTarget.getMainPhrase());
-    }
-    
-    public static String getDefinite(final Translator translator, final Concept articleConcept, final Concept substantiveConcept) {
-        final TranslationTarget substantiveTarget = translator.getFirstDefaultTarget(substantiveConcept);
-        return String.join(" ", getDefiniteArticle(translator, articleConcept), substantiveTarget.getMainPhrase());
-    }
-    
-    private static String getIndefiniteArticle(final TranslationTarget followerTarget) {
-        final String follower = followerTarget.getMainPhrase();
-        if ("aeio".contains(Character.toString(follower.charAt(0)))) {
-            return "an";
+        final String substantivePhrase = substantiveTarget.getMainPhrase();
+        if (adjectiveConcepts.isEmpty()) {
+            return String.join(" ", getIndefiniteArticle(substantivePhrase), substantivePhrase);
         } else {
-            return "a";
+            final String adjectivesPhrase = getAdjectives(translator, adjectiveConcepts);
+            return String.join(" ", getIndefiniteArticle(adjectivesPhrase), adjectivesPhrase, substantivePhrase);
         }
+    }
+    
+    public static String getDefinite(final Translator translator, final Concept articleConcept, final Concept substantiveConcept, final List<Concept> adjectiveConcepts) {
+        final TranslationTarget substantiveTarget = translator.getFirstDefaultTarget(substantiveConcept);
+        final String substantivePhrase = substantiveTarget.getMainPhrase();
+        final String articlePhrase = getDefiniteArticle(translator, articleConcept);
+        if (adjectiveConcepts.isEmpty()) {
+            return String.join(" ", articlePhrase, substantivePhrase);
+        } else {
+            final String adjectivesPhrase = getAdjectives(translator, adjectiveConcepts);
+            return String.join(" ", articlePhrase, adjectivesPhrase, substantivePhrase);
+        }
+    }
+    
+    private static String getAdjectives(final Translator translator, final List<Concept> adjectiveConcepts) {
+        final List<String> adjectivePhrases = new LinkedList<>();
+        adjectiveConcepts.stream().forEach(adjectiveConcept -> adjectivePhrases.add(translator.getFirstDefaultTarget(adjectiveConcept).getMainPhrase()));
+        return StringUtils.join(", ", " and ", adjectivePhrases);
+    }
+    
+    private static String getIndefiniteArticle(final String followerPhrase) {
+        return isVocalical(followerPhrase) ? "an" : "a";
     }
     
     private static String getDefiniteArticle(final Translator translator, final Concept articleConcept) {
@@ -92,5 +108,9 @@ public final class EnUtils {
             }
         }
         return "its";
+    }
+    
+    private static boolean isVocalical(final String phrase) {
+        return phrase != null && phrase.length() > 0 && "aeio".contains(Character.toString(phrase.toLowerCase().charAt(0)));
     }
 }
