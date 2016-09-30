@@ -8,6 +8,7 @@
 package org.jesadido.poc.core.semantics.translating.eo;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import org.jesadido.poc.core.semantics.translating.TranslationResult;
 import org.jesadido.poc.core.semantics.translating.TransletParameters;
 import org.jesadido.poc.core.semantics.translating.Transletor;
@@ -16,14 +17,14 @@ import org.jesadido.poc.core.syntax.tokens.TokenType;
 public final class EoTransletors {
     
     private static final Transletor NOMINAL_TRANSLETOR = new Transletor()
-            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getIndefinite(r.getTranslator(), p.getCaseAttribute(), p.getConcept(0))))
-            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getIndefinite(r.getTranslator(), p.getCaseAttribute(), p.getConcept(0), p.getConcept(1))))
-            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getIndefinite(r.getTranslator(), p.getCaseAttribute(), p.getConcept(0), p.getConcept(1), p.getConcept(2))))
-            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getIndefinite(r.getTranslator(), p.getCaseAttribute(), p.getConcept(0), p.getConcept(1), p.getConcept(2), p.getConcept(3))))
-            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getDefinite(r.getTranslator(), p.getCaseAttribute(), p.getConcept(0), p.getConcept(1))))
-            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getDefinite(r.getTranslator(), p.getCaseAttribute(), p.getConcept(0), p.getConcept(1), p.getConcept(2))))
-            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getDefinite(r.getTranslator(), p.getCaseAttribute(), p.getConcept(0), p.getConcept(1), p.getConcept(2), p.getConcept(3))))
-            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getDefinite(r.getTranslator(), p.getCaseAttribute(), p.getConcept(0), p.getConcept(1), p.getConcept(2), p.getConcept(3), p.getConcept(4))))
+            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getIndefinite(r.getTranslator(), p.getCaseAttribute(), p.getConcept(0), new LinkedList<>())))
+            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getIndefinite(r.getTranslator(), p.getCaseAttribute(), p.getConcept(0), p.getConcepts().subList(1, 2))))
+            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getIndefinite(r.getTranslator(), p.getCaseAttribute(), p.getConcept(0), p.getConcepts().subList(1, 3))))
+            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getIndefinite(r.getTranslator(), p.getCaseAttribute(), p.getConcept(0), p.getConcepts().subList(1, 4))))
+            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getDefinite(r.getTranslator(), p.getCaseAttribute(), p.getConcept(0), p.getConcept(1), new LinkedList<>())))
+            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getDefinite(r.getTranslator(), p.getCaseAttribute(), p.getConcept(0), p.getConcept(1), p.getConcepts().subList(2, 3))))
+            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getDefinite(r.getTranslator(), p.getCaseAttribute(), p.getConcept(0), p.getConcept(1), p.getConcepts().subList(2, 4))))
+            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> r.setTranslation(EoUtils.getDefinite(r.getTranslator(), p.getCaseAttribute(), p.getConcept(0), p.getConcept(1), p.getConcepts().subList(2, 5))))
             ;
     
     private EoTransletors() {

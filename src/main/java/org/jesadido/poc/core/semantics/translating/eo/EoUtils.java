@@ -7,7 +7,9 @@
  */
 package org.jesadido.poc.core.semantics.translating.eo;
 
+import java.util.LinkedList;
 import java.util.List;
+import org.jesadido.poc.core.StringUtils;
 import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.concepts.ConceptTermination;
 import org.jesadido.poc.core.semantics.translating.TranslationTarget;
@@ -24,23 +26,25 @@ public final class EoUtils {
         return parts;
     }
     
-    public static String getIndefinite(final Translator translator, final Object caseAttribute, final Concept substantiveConcept, final Concept ... adjectiveConcepts) {
+    public static String getIndefinite(final Translator translator, final Object caseAttribute, final Concept substantiveConcept, final List<Concept> adjectiveConcepts) {
         final String substantivePhrase = getCased(caseAttribute, getTarget(translator, substantiveConcept).getMainPhrase());
-        if (adjectiveConcepts.length > 0) {
+        if (adjectiveConcepts.isEmpty()) {
+            return substantivePhrase;
+        } else {
             final String adjectivesPhrase = getCasedAdjectives(translator, caseAttribute, adjectiveConcepts);
             return String.join(" ", adjectivesPhrase, substantivePhrase);
         }
-        return substantivePhrase;
     }
     
-    public static String getDefinite(final Translator translator, final Object caseAttribute, final Concept articleConcept, final Concept substantiveConcept, final Concept ... adjectiveConcepts) {
+    public static String getDefinite(final Translator translator, final Object caseAttribute, final Concept articleConcept, final Concept substantiveConcept, final List<Concept> adjectiveConcepts) {
         final String articlePhrase = getDefiniteArticle(translator, caseAttribute, articleConcept);
         final String substantivePhrase = getCased(caseAttribute, getTarget(translator, substantiveConcept).getMainPhrase());
-        if (adjectiveConcepts.length > 0) {
+        if (adjectiveConcepts.isEmpty()) {
+            return String.join(" ", articlePhrase, substantivePhrase);
+        } else {
             final String adjectivesPhrase = getCasedAdjectives(translator, caseAttribute, adjectiveConcepts);
             return String.join(" ", articlePhrase, adjectivesPhrase, substantivePhrase);
         }
-        return String.join(" ", articlePhrase, substantivePhrase);
     }
     
     private static TranslationTarget getTarget(final Translator translator, final Concept concept) {
@@ -51,19 +55,10 @@ public final class EoUtils {
         return caseAttribute == Eo.ACCUSATIVE ? String.format("%sn", phrase) : phrase;
     }
     
-    private static String getCasedAdjectives(final Translator translator, final Object caseAttribute, final Concept ... adjectiveConcepts) {
-        final StringBuilder result = new StringBuilder();
-        for (int i = 0; i < adjectiveConcepts.length; i++) {
-            if (i > 0) {
-                if (i == adjectiveConcepts.length - 1) {
-                    result.append(" kaj ");
-                } else {
-                    result.append(", ");
-                }
-            }
-            result.append(getCased(caseAttribute, getTarget(translator, adjectiveConcepts[i]).getMainPhrase()));
-        }
-        return result.toString();
+    private static String getCasedAdjectives(final Translator translator, final Object caseAttribute, final List<Concept> adjectiveConcepts) {
+        final List<String> adjectivePhrases = new LinkedList<>();
+        adjectiveConcepts.stream().forEach(adjectiveConcept -> adjectivePhrases.add(getCased(caseAttribute, getTarget(translator, adjectiveConcept).getMainPhrase())));
+        return StringUtils.join(", ", " kaj ", adjectivePhrases);
     }
     
     private static String getDefiniteArticle(final Translator translator, final Object caseAttribute, final Concept articleConcept) {
