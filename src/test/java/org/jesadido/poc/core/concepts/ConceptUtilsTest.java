@@ -215,4 +215,154 @@ public class ConceptUtilsTest {
             Assert.assertEquals("Mi$La SunO", ConceptUtils.join(ConceptRegistry.getInstance().getConcept("Mi$La"), ConceptRegistry.getInstance().getConcept("SunO")));
         }
     }
+    
+    @Test
+    public void testIsPersonalPronoun() {
+        Assert.assertTrue(ConceptUtils.isPersonalPronoun(ConceptRegistry.getInstance().getConcept("Mi")));
+        Assert.assertTrue(ConceptUtils.isPersonalPronoun(ConceptRegistry.getInstance().getConcept("Bi")));
+        Assert.assertTrue(ConceptUtils.isPersonalPronoun(ConceptRegistry.getInstance().getConcept("Gxi")));
+        Assert.assertTrue(ConceptUtils.isPersonalPronoun(ConceptRegistry.getInstance().getConcept("InO$Gxi")));
+        Assert.assertTrue(ConceptUtils.isPersonalPronoun(ConceptRegistry.getInstance().getConcept("IcxO$Gxi")));
+        Assert.assertTrue(ConceptUtils.isPersonalPronoun(ConceptRegistry.getInstance().getConcept("Ni")));
+        Assert.assertTrue(ConceptUtils.isPersonalPronoun(ConceptRegistry.getInstance().getConcept("Vi")));
+        Assert.assertTrue(ConceptUtils.isPersonalPronoun(ConceptRegistry.getInstance().getConcept("Ili")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronoun(ConceptRegistry.getInstance().getConcept(".")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronoun(ConceptRegistry.getInstance().getConcept("La")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronoun(ConceptRegistry.getInstance().getConcept("Mi$La")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronoun(ConceptRegistry.getInstance().getConcept("Bi$La")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronoun(ConceptRegistry.getInstance().getConcept("Gxi$La")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronoun(ConceptRegistry.getInstance().getConcept("InO$Gxi$La")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronoun(ConceptRegistry.getInstance().getConcept("IcxO$Gxi$La")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronoun(ConceptRegistry.getInstance().getConcept("Ni$La")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronoun(ConceptRegistry.getInstance().getConcept("Vi$La")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronoun(ConceptRegistry.getInstance().getConcept("Ili$La")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronoun(ConceptRegistry.getInstance().getConcept("SunO")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronoun(ConceptRegistry.getInstance().getConcept("HavAs")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronoun(ConceptRegistry.getInstance().getConcept("SanA")));
+    }
+    
+    @Test
+    public void testIsPersonalPronounSingular() {
+        Assert.assertTrue(ConceptUtils.isPersonalPronounSingular(ConceptRegistry.getInstance().getConcept("Mi")));
+        Assert.assertTrue(ConceptUtils.isPersonalPronounSingular(ConceptRegistry.getInstance().getConcept("Bi")));
+        Assert.assertTrue(ConceptUtils.isPersonalPronounSingular(ConceptRegistry.getInstance().getConcept("Gxi")));
+        Assert.assertTrue(ConceptUtils.isPersonalPronounSingular(ConceptRegistry.getInstance().getConcept("InO$Gxi")));
+        Assert.assertTrue(ConceptUtils.isPersonalPronounSingular(ConceptRegistry.getInstance().getConcept("IcxO$Gxi")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounSingular(ConceptRegistry.getInstance().getConcept("Ni")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounSingular(ConceptRegistry.getInstance().getConcept("Vi")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounSingular(ConceptRegistry.getInstance().getConcept("Ili")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounSingular(ConceptRegistry.getInstance().getConcept(".")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounSingular(ConceptRegistry.getInstance().getConcept("La")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounSingular(ConceptRegistry.getInstance().getConcept("Mi$La")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounSingular(ConceptRegistry.getInstance().getConcept("Bi$La")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounSingular(ConceptRegistry.getInstance().getConcept("Gxi$La")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounSingular(ConceptRegistry.getInstance().getConcept("InO$Gxi$La")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounSingular(ConceptRegistry.getInstance().getConcept("IcxO$Gxi$La")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounSingular(ConceptRegistry.getInstance().getConcept("Ni$La")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounSingular(ConceptRegistry.getInstance().getConcept("Vi$La")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounSingular(ConceptRegistry.getInstance().getConcept("Ili$La")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounSingular(ConceptRegistry.getInstance().getConcept("SunO")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounSingular(ConceptRegistry.getInstance().getConcept("HavAs")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounSingular(ConceptRegistry.getInstance().getConcept("SanA")));
+    }
+    
+    @Test
+    public void testIsPersonalPronounPlural() {
+        Assert.assertFalse(ConceptUtils.isPersonalPronounPlural(ConceptRegistry.getInstance().getConcept("Mi")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounPlural(ConceptRegistry.getInstance().getConcept("Bi")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounPlural(ConceptRegistry.getInstance().getConcept("Gxi")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounPlural(ConceptRegistry.getInstance().getConcept("InO$Gxi")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounPlural(ConceptRegistry.getInstance().getConcept("IcxO$Gxi")));
+        Assert.assertTrue(ConceptUtils.isPersonalPronounPlural(ConceptRegistry.getInstance().getConcept("Ni")));
+        Assert.assertTrue(ConceptUtils.isPersonalPronounPlural(ConceptRegistry.getInstance().getConcept("Vi")));
+        Assert.assertTrue(ConceptUtils.isPersonalPronounPlural(ConceptRegistry.getInstance().getConcept("Ili")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounPlural(ConceptRegistry.getInstance().getConcept(".")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounPlural(ConceptRegistry.getInstance().getConcept("La")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounPlural(ConceptRegistry.getInstance().getConcept("Mi$La")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounPlural(ConceptRegistry.getInstance().getConcept("Bi$La")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounPlural(ConceptRegistry.getInstance().getConcept("Gxi$La")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounPlural(ConceptRegistry.getInstance().getConcept("InO$Gxi$La")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounPlural(ConceptRegistry.getInstance().getConcept("IcxO$Gxi$La")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounPlural(ConceptRegistry.getInstance().getConcept("Ni$La")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounPlural(ConceptRegistry.getInstance().getConcept("Vi$La")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounPlural(ConceptRegistry.getInstance().getConcept("Ili$La")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounPlural(ConceptRegistry.getInstance().getConcept("SunO")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounPlural(ConceptRegistry.getInstance().getConcept("HavAs")));
+        Assert.assertFalse(ConceptUtils.isPersonalPronounPlural(ConceptRegistry.getInstance().getConcept("SanA")));
+    }
+    
+    @Test
+    public void testIsPossessivePronoun() {
+        Assert.assertFalse(ConceptUtils.isPossessivePronoun(ConceptRegistry.getInstance().getConcept("Mi")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronoun(ConceptRegistry.getInstance().getConcept("Bi")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronoun(ConceptRegistry.getInstance().getConcept("Gxi")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronoun(ConceptRegistry.getInstance().getConcept("InO$Gxi")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronoun(ConceptRegistry.getInstance().getConcept("IcxO$Gxi")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronoun(ConceptRegistry.getInstance().getConcept("Ni")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronoun(ConceptRegistry.getInstance().getConcept("Vi")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronoun(ConceptRegistry.getInstance().getConcept("Ili")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronoun(ConceptRegistry.getInstance().getConcept(".")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronoun(ConceptRegistry.getInstance().getConcept("La")));
+        Assert.assertTrue(ConceptUtils.isPossessivePronoun(ConceptRegistry.getInstance().getConcept("Mi$La")));
+        Assert.assertTrue(ConceptUtils.isPossessivePronoun(ConceptRegistry.getInstance().getConcept("Bi$La")));
+        Assert.assertTrue(ConceptUtils.isPossessivePronoun(ConceptRegistry.getInstance().getConcept("Gxi$La")));
+        Assert.assertTrue(ConceptUtils.isPossessivePronoun(ConceptRegistry.getInstance().getConcept("InO$Gxi$La")));
+        Assert.assertTrue(ConceptUtils.isPossessivePronoun(ConceptRegistry.getInstance().getConcept("IcxO$Gxi$La")));
+        Assert.assertTrue(ConceptUtils.isPossessivePronoun(ConceptRegistry.getInstance().getConcept("Ni$La")));
+        Assert.assertTrue(ConceptUtils.isPossessivePronoun(ConceptRegistry.getInstance().getConcept("Vi$La")));
+        Assert.assertTrue(ConceptUtils.isPossessivePronoun(ConceptRegistry.getInstance().getConcept("Ili$La")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronoun(ConceptRegistry.getInstance().getConcept("SunO")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronoun(ConceptRegistry.getInstance().getConcept("HavAs")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronoun(ConceptRegistry.getInstance().getConcept("SanA")));
+    }
+    
+    @Test
+    public void testIsPossessivePronounSingular() {
+        Assert.assertFalse(ConceptUtils.isPossessivePronounSingular(ConceptRegistry.getInstance().getConcept("Mi")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounSingular(ConceptRegistry.getInstance().getConcept("Bi")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounSingular(ConceptRegistry.getInstance().getConcept("Gxi")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounSingular(ConceptRegistry.getInstance().getConcept("InO$Gxi")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounSingular(ConceptRegistry.getInstance().getConcept("IcxO$Gxi")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounSingular(ConceptRegistry.getInstance().getConcept("Ni")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounSingular(ConceptRegistry.getInstance().getConcept("Vi")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounSingular(ConceptRegistry.getInstance().getConcept("Ili")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounSingular(ConceptRegistry.getInstance().getConcept(".")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounSingular(ConceptRegistry.getInstance().getConcept("La")));
+        Assert.assertTrue(ConceptUtils.isPossessivePronounSingular(ConceptRegistry.getInstance().getConcept("Mi$La")));
+        Assert.assertTrue(ConceptUtils.isPossessivePronounSingular(ConceptRegistry.getInstance().getConcept("Bi$La")));
+        Assert.assertTrue(ConceptUtils.isPossessivePronounSingular(ConceptRegistry.getInstance().getConcept("Gxi$La")));
+        Assert.assertTrue(ConceptUtils.isPossessivePronounSingular(ConceptRegistry.getInstance().getConcept("InO$Gxi$La")));
+        Assert.assertTrue(ConceptUtils.isPossessivePronounSingular(ConceptRegistry.getInstance().getConcept("IcxO$Gxi$La")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounSingular(ConceptRegistry.getInstance().getConcept("Ni$La")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounSingular(ConceptRegistry.getInstance().getConcept("Vi$La")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounSingular(ConceptRegistry.getInstance().getConcept("Ili$La")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounSingular(ConceptRegistry.getInstance().getConcept("SunO")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounSingular(ConceptRegistry.getInstance().getConcept("HavAs")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounSingular(ConceptRegistry.getInstance().getConcept("SanA")));
+    }
+    
+    @Test
+    public void testIsPossessivePronounPlural() {
+        Assert.assertFalse(ConceptUtils.isPossessivePronounPlural(ConceptRegistry.getInstance().getConcept("Mi")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounPlural(ConceptRegistry.getInstance().getConcept("Bi")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounPlural(ConceptRegistry.getInstance().getConcept("Gxi")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounPlural(ConceptRegistry.getInstance().getConcept("InO$Gxi")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounPlural(ConceptRegistry.getInstance().getConcept("IcxO$Gxi")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounPlural(ConceptRegistry.getInstance().getConcept("Ni")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounPlural(ConceptRegistry.getInstance().getConcept("Vi")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounPlural(ConceptRegistry.getInstance().getConcept("Ili")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounPlural(ConceptRegistry.getInstance().getConcept(".")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounPlural(ConceptRegistry.getInstance().getConcept("La")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounPlural(ConceptRegistry.getInstance().getConcept("Mi$La")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounPlural(ConceptRegistry.getInstance().getConcept("Bi$La")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounPlural(ConceptRegistry.getInstance().getConcept("Gxi$La")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounPlural(ConceptRegistry.getInstance().getConcept("InO$Gxi$La")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounPlural(ConceptRegistry.getInstance().getConcept("IcxO$Gxi$La")));
+        Assert.assertTrue(ConceptUtils.isPossessivePronounPlural(ConceptRegistry.getInstance().getConcept("Ni$La")));
+        Assert.assertTrue(ConceptUtils.isPossessivePronounPlural(ConceptRegistry.getInstance().getConcept("Vi$La")));
+        Assert.assertTrue(ConceptUtils.isPossessivePronounPlural(ConceptRegistry.getInstance().getConcept("Ili$La")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounPlural(ConceptRegistry.getInstance().getConcept("SunO")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounPlural(ConceptRegistry.getInstance().getConcept("HavAs")));
+        Assert.assertFalse(ConceptUtils.isPossessivePronounPlural(ConceptRegistry.getInstance().getConcept("SanA")));
+    }
 }

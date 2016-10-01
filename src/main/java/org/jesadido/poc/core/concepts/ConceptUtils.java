@@ -228,18 +228,38 @@ public final class ConceptUtils {
         return join(Arrays.asList(concepts));
     }
     
+    /**
+     * Determines whether the given concept is a personal pronoun.
+     * @param concept The given concept.
+     * @return <code>true</code> if the concept is a personal pronoun.
+     */
     public static boolean isPersonalPronoun(final Concept concept) {
         return isPersonalPronounSingular(concept) || isPersonalPronounPlural(concept);
     }
     
+    /**
+     * Determines whether the given concept is a singular personal pronoun.
+     * @param concept The given concept.
+     * @return <code>true</code> if the concept is a singular personal pronoun.
+     */
     public static boolean isPersonalPronounSingular(final Concept concept) {
         return concept.getProperties().getTermination().isOneOf(ConceptTermination.MI, ConceptTermination.BI, ConceptTermination.GXI);
     }
     
+    /**
+     * Determines whether the given concept is a plural personal pronoun.
+     * @param concept The given concept.
+     * @return <code>true</code> if the concept is a plural personal pronoun.
+     */
     public static boolean isPersonalPronounPlural(final Concept concept) {
         return concept.getProperties().getTermination().isOneOf(ConceptTermination.NI, ConceptTermination.VI, ConceptTermination.ILI);
     }
     
+    /**
+     * Determines whether the given concept is a possessive pronoun.
+     * @param concept The given concept.
+     * @return <code>true</code> if the concept is a possessive pronoun.
+     */
     public static boolean isPossessivePronoun(final Concept concept) {
         if (concept.getProperties().getTermination() == ConceptTermination.LA && concept.hasReferenceConcept()) {
             return isPersonalPronoun(concept.getReferenceConcept());
@@ -247,6 +267,12 @@ public final class ConceptUtils {
         return false;
     }
     
+    /**
+     * Determines whether the given concept is a singular possessive pronoun.
+     * @param concept The given concept.
+     * @return <code>true</code> if the concept is a singular possessive
+     * pronoun.
+     */
     public static boolean isPossessivePronounSingular(final Concept concept) {
         if (concept.getProperties().getTermination() == ConceptTermination.LA && concept.hasReferenceConcept()) {
             return isPersonalPronounSingular(concept.getReferenceConcept());
@@ -254,6 +280,11 @@ public final class ConceptUtils {
         return false;
     }
     
+    /**
+     * Determines whether the given concept is a plural possessive pronoun.
+     * @param concept The given concept.
+     * @return <code>true</code> if the concept is a plural possessive pronoun.
+     */
     public static boolean isPossessivePronounPlural(final Concept concept) {
         if (concept.getProperties().getTermination() == ConceptTermination.LA && concept.hasReferenceConcept()) {
             return isPersonalPronounPlural(concept.getReferenceConcept());
