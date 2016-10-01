@@ -7,11 +7,13 @@
  */
 package org.jesadido.poc.usecases.gaming;
 
+import org.jesadido.poc.core.Language;
 import org.jesadido.poc.usecases.gaming.models.GameModel;
 
 public final class ReferenceGames {
     
     public static final GameModel MY_TINY_GAME = new GameModel("my-tiny-game")
+            .initSupportedLanguages(Language.DE, Language.EN, Language.EO, Language.ES, Language.FR)
             .initTitle("Mi$La LudO MalGrandEgA ..")
             ;
     

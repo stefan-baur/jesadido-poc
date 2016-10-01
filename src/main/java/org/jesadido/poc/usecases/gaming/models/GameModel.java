@@ -7,10 +7,16 @@
  */
 package org.jesadido.poc.usecases.gaming.models;
 
+import java.util.Arrays;
+import java.util.List;
+import org.jesadido.poc.core.Language;
+
 public class GameModel {
     
     private final String key;
-    private String title = null;
+    
+    private List<Language> supportedLanguages = Arrays.asList(Language.EO);
+    private String title = "TestO ..";
     
     public GameModel(final String key) {
         this.key = key;
@@ -18,6 +24,15 @@ public class GameModel {
     
     public String getKey() {
         return this.key;
+    }
+    
+    public List<Language> getSupportedLanguages() {
+        return this.supportedLanguages;
+    }
+    
+    public GameModel initSupportedLanguages(final Language ... languages) {
+        this.supportedLanguages = Arrays.asList(languages);
+        return this;
     }
     
     public String getTitle() {
