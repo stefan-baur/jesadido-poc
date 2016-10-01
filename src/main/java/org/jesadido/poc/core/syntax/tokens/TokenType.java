@@ -33,13 +33,6 @@ public enum TokenType {
     ARTICLE,
     
     /**
-     * The appropriate token value represents an arbitrary substantive (singular
-     * or plural), for example <b>SunO</b> <i>(sun)</i> or <b>SunOJ</b>
-     * <i>(suns)</i>.
-     */
-    SUBSTANTIVE,
-    
-    /**
      * The appropriate token value represents a singular substantive, for
      * example <b>SunO</b> <i>(sun)</i> or <b>LunO</b> <i>(moon)</i>.
      */
@@ -66,12 +59,6 @@ public enum TokenType {
     PARAMETERED_SUBSTANTIVE_PLURAL,
     
     /**
-     * The appropriate token value represents an arbitrary adjective (singular
-     * or plural).
-     */
-    ADJECTIVE,
-    
-    /**
      * The appropriate token value represents a singular adjective, for example
      * <b>SunA</b> <i>(sunny)</i>.
      */
@@ -84,12 +71,6 @@ public enum TokenType {
     ADJECTIVE_PLURAL,
     
     /**
-     * The appropriate token value represents an arbitrary adverb (singular or
-     * plural).
-     */
-    ADVERB,
-    
-    /**
      * The appropriate token value represents a singular adverb, for example
      * <b>SunE</b> <i>(sunnily)</i>.
      */
@@ -100,11 +81,6 @@ public enum TokenType {
      * <b>SunEJ</b> <i>(sunnily)</i>.
      */
     ADVERB_PLURAL,
-    
-    /**
-     * The appropriate token value represents an arbitrary personal pronoun.
-     */
-    PERSONAL_PRONOUN,
     
     /**
      * The appropriate token value represents a singular personal pronoun, for

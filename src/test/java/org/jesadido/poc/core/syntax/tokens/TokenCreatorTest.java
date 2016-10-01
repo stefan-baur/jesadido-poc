@@ -33,7 +33,7 @@ public class TokenCreatorTest {
         Assert.assertTrue(TokenType.SUBSTANTIVE_SINGULAR.isOneOf(tokenCreator.getSupportedTokenTypes()));
         Assert.assertTrue(TokenType.OPEN.isOneOf(tokenCreator.getSupportedTokenTypes()));
         Assert.assertTrue(TokenType.CLOSE.isOneOf(tokenCreator.getSupportedTokenTypes()));
-        Assert.assertFalse(TokenType.SUBSTANTIVE.isOneOf(tokenCreator.getSupportedTokenTypes()));
+        Assert.assertFalse(TokenType.SUBSTANTIVE_PLURAL.isOneOf(tokenCreator.getSupportedTokenTypes()));
         Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("X")).isOneOf(tokenCreator.getSupportedTokenTypes()));
         Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept(".")).isOneOf(tokenCreator.getSupportedTokenTypes()));
         Assert.assertTrue(tokenCreator.selectTokenType(ConceptRegistry.getInstance().getConcept("Titl.")).isOneOf(tokenCreator.getSupportedTokenTypes()));
