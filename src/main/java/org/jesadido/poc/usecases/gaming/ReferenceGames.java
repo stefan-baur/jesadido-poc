@@ -7,6 +7,7 @@
  */
 package org.jesadido.poc.usecases.gaming;
 
+import java.util.logging.Logger;
 import org.jesadido.poc.core.Language;
 import org.jesadido.poc.usecases.gaming.models.GameModel;
 
@@ -20,5 +21,11 @@ public final class ReferenceGames {
     
     private ReferenceGames() {
         // A private class constructor
+    }
+    
+    public static void main(final String[] arguments) {
+        Logger.getAnonymousLogger().info(MY_TINY_GAME.getSupportedLanguages().toString());
+        Logger.getAnonymousLogger().info(MY_TINY_GAME.getDefaultLanguages().toString());
+        Logger.getAnonymousLogger().info(MY_TINY_GAME.getTitle());
     }
 }

@@ -8,6 +8,7 @@
 package org.jesadido.poc.usecases.gaming.models;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.Language;
 
@@ -17,12 +18,14 @@ public class GameModel {
     
     private final String key;
     
-    private List<Language> supportedLanguages = Arrays.asList(FALLBACK_LANGUAGE);
-    private List<Language> defaultLanguages = Arrays.asList(FALLBACK_LANGUAGE);
+    private final List<Language> supportedLanguages = new LinkedList<>();
+    private final List<Language> defaultLanguages = new LinkedList<>();
     private String title = "TestO ..";
     
     public GameModel(final String key) {
         this.key = key;
+        this.supportedLanguages.add(FALLBACK_LANGUAGE);
+        this.defaultLanguages.add(FALLBACK_LANGUAGE);
     }
     
     public String getKey() {
@@ -35,7 +38,7 @@ public class GameModel {
     
     public GameModel initSupportedLanguages(final Language ... languages) {
         this.supportedLanguages.clear();
-        this.supportedLanguages = Arrays.asList(languages);
+        this.supportedLanguages.addAll(Arrays.asList(languages));
         if (this.supportedLanguages.isEmpty()) {
             this.supportedLanguages.add(FALLBACK_LANGUAGE);
         }
