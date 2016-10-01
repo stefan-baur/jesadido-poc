@@ -19,6 +19,12 @@ public enum ConceptTermination {
     NONE(null),
     
     /**
+     * The appropriated concept is a elliptical termination symbol, a
+     * linguistical ellipsis.
+     */
+    ELLIPSIS(".."),
+    
+    /**
      * The appropriated concept is a standard termination symbol, for example a
      * sentence/clause termination.
      */

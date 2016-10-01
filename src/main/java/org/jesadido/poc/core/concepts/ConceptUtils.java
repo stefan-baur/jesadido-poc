@@ -298,6 +298,6 @@ public final class ConceptUtils {
      * @return <code>true</code> if the concept is a ellipsis.
      */
     public static boolean isEllipsis(final Concept concept) {
-        return ".".concat(ConceptTermination.PERIOD.getTerminationPhrase()).equals(concept.getBasePhrase());
+        return concept.getProperties().getTermination() == ConceptTermination.ELLIPSIS;
     }
 }

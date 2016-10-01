@@ -49,6 +49,7 @@ public class TokenCreator {
         DEFAULTS.put(TokenType.ADJECTIVE_SINGULAR, "Test" + ConceptTermination.A.getTerminationPhrase());
         DEFAULTS.put(TokenType.VERB_PRESENT_TENSE, "Test" + ConceptTermination.AS.getTerminationPhrase());
         
+        SELECTIONS.put(ConceptTermination.ELLIPSIS, (Selector) (Concept c) -> TokenType.TERMINATOR);
         SELECTIONS.put(ConceptTermination.PERIOD, (Selector) (Concept c) -> TokenType.TERMINATOR);
         
         SELECTIONS.put(ConceptTermination.COMMA, (Selector) (Concept c) -> TokenType.SEPARATOR);
