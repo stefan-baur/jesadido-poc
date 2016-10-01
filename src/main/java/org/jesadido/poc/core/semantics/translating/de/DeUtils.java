@@ -13,6 +13,7 @@ import java.util.List;
 import org.jesadido.poc.core.StringUtils;
 import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.concepts.ConceptTermination;
+import org.jesadido.poc.core.concepts.ConceptUtils;
 import org.jesadido.poc.core.semantics.translating.TranslationTarget;
 import org.jesadido.poc.core.semantics.translating.Translator;
 import org.jesadido.poc.core.syntax.tree.Node;
@@ -72,10 +73,12 @@ public final class DeUtils {
         final String substantivePhrase = substantiveTarget.getMainPhrase();
         if (adjectiveConcepts.isEmpty()) {
             return String.join(" ", articlePhrase, substantivePhrase);
-        } else {
-            final String adjectivesPhrase = getDefiniteAdjectives(translator, caseAttribute, substantiveTarget, adjectiveConcepts);
+        } else if (ConceptUtils.isPossessivePronoun(articleConcept)) {
+            final String adjectivesPhrase = getIndefiniteAdjectives(translator, caseAttribute, substantiveTarget, adjectiveConcepts);
             return String.join(" ", articlePhrase, adjectivesPhrase, substantivePhrase);
         }
+        final String adjectivesPhrase = getDefiniteAdjectives(translator, caseAttribute, substantiveTarget, adjectiveConcepts);
+        return String.join(" ", articlePhrase, adjectivesPhrase, substantivePhrase);
     }
     
     private static String getIndefiniteAdjectives(final Translator translator, final Object caseAttribute, final TranslationTarget substantiveTarget, final List<Concept> adjectiveConcepts) {
@@ -111,7 +114,7 @@ public final class DeUtils {
     
     private static String getDefiniteAdjective(final Translator translator, final Object caseAttribute, final TranslationTarget substantiveTarget, final Concept adjectiveConcept) {
         if (caseAttribute == De.NOMINATIVE) {
-            return getDefiniteAdjective(translator, substantiveTarget, adjectiveConcept, "er", "e", "es");
+            return getDefiniteAdjective(translator, substantiveTarget, adjectiveConcept, "e", "e", "e");
         } else if (caseAttribute == De.DATIVE) {
             return getDefiniteAdjective(translator, substantiveTarget, adjectiveConcept, "en", "en", "en");
         } else {

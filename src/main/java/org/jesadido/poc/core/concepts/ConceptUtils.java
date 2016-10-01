@@ -227,4 +227,37 @@ public final class ConceptUtils {
     public static String join(final Concept ... concepts) {
         return join(Arrays.asList(concepts));
     }
+    
+    public static boolean isPersonalPronoun(final Concept concept) {
+        return isPersonalPronounSingular(concept) || isPersonalPronounPlural(concept);
+    }
+    
+    public static boolean isPersonalPronounSingular(final Concept concept) {
+        return concept.getProperties().getTermination().isOneOf(ConceptTermination.MI, ConceptTermination.BI, ConceptTermination.GXI);
+    }
+    
+    public static boolean isPersonalPronounPlural(final Concept concept) {
+        return concept.getProperties().getTermination().isOneOf(ConceptTermination.NI, ConceptTermination.VI, ConceptTermination.ILI);
+    }
+    
+    public static boolean isPossessivePronoun(final Concept concept) {
+        if (concept.getProperties().getTermination() == ConceptTermination.LA && concept.hasReferenceConcept()) {
+            return isPersonalPronoun(concept.getReferenceConcept());
+        }
+        return false;
+    }
+    
+    public static boolean isPossessivePronounSingular(final Concept concept) {
+        if (concept.getProperties().getTermination() == ConceptTermination.LA && concept.hasReferenceConcept()) {
+            return isPersonalPronounSingular(concept.getReferenceConcept());
+        }
+        return false;
+    }
+    
+    public static boolean isPossessivePronounPlural(final Concept concept) {
+        if (concept.getProperties().getTermination() == ConceptTermination.LA && concept.hasReferenceConcept()) {
+            return isPersonalPronounPlural(concept.getReferenceConcept());
+        }
+        return false;
+    }
 }

@@ -733,7 +733,7 @@ public class References004Test {
     public void testVerticalTranslation065Game20160930023201MESZ() {
         final String source = "La HeroIcxO KontentA TrovAs Fin FlorO GigantA Kaj Vi$La HeroInO TrovAs Fin SkribIlO GigantA .";
         Assert.assertEquals("{ Su ( La HeroIcxO KontentA ) Dom ( TrovAs ) Fin ( FlorO GigantA ) } Kaj { Su ( Vi$La HeroInO ) Dom ( TrovAs ) Fin ( SkribIlO GigantA ) } .", TranslatorFactory.createTranslator(Language.JI, References.GAME_BOOK).translate(source).getTranslation());
-        Assert.assertEquals("Der zufriedener Held findet eine gigantische Blume, und eure Heldin findet einen gigantischen Stift.", TranslatorFactory.createTranslator(Language.DE, References.GAME_BOOK).translate(source).getTranslation());
+        Assert.assertEquals("Der zufriedene Held findet eine gigantische Blume, und eure Heldin findet einen gigantischen Stift.", TranslatorFactory.createTranslator(Language.DE, References.GAME_BOOK).translate(source).getTranslation());
         Assert.assertEquals("The satisfied hero finds a gigantic flower, and your heroine finds a gigantic pen.", TranslatorFactory.createTranslator(Language.EN, References.GAME_BOOK).translate(source).getTranslation());
         Assert.assertEquals("La kontenta heroo trovas gigantan floron, kaj via heroino trovas gigantan skribilon.", TranslatorFactory.createTranslator(Language.EO, References.GAME_BOOK).translate(source).getTranslation());
         Assert.assertEquals("El héroe satisfecho encuentra una gigantesca flor, y vuestra heroína encuentra un gigantesco lapicero.", TranslatorFactory.createTranslator(Language.ES, References.GAME_BOOK).translate(source).getTranslation());
@@ -1129,7 +1129,7 @@ public class References004Test {
     public void testVerticalTranslation101Game20160930023201MESZ() {
         final String source = "La HeroIcxO KontentA SanA TrovAs Fin SkribIlO . HeroIcxO SanA KontentA HavAs Fin Ili$La SkribIlO .";
         Assert.assertEquals("{ Su ( La HeroIcxO KontentA SanA ) Dom ( TrovAs ) Fin ( SkribIlO ) } . { Su ( HeroIcxO SanA KontentA ) Dom ( HavAs ) Fin ( Ili$La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, References.GAME_BOOK).translate(source).getTranslation());
-        Assert.assertEquals("Der zufriedener und gesunder Held findet einen Stift. Ein gesunder und zufriedener Held hat ihren Stift.", TranslatorFactory.createTranslator(Language.DE, References.GAME_BOOK).translate(source).getTranslation());
+        Assert.assertEquals("Der zufriedene und gesunde Held findet einen Stift. Ein gesunder und zufriedener Held hat ihren Stift.", TranslatorFactory.createTranslator(Language.DE, References.GAME_BOOK).translate(source).getTranslation());
         Assert.assertEquals("The satisfied and sane hero finds a pen. A sane and satisfied hero has their pen.", TranslatorFactory.createTranslator(Language.EN, References.GAME_BOOK).translate(source).getTranslation());
         Assert.assertEquals("La kontenta kaj sana heroo trovas skribilon. Sana kaj kontenta heroo havas ilian skribilon.", TranslatorFactory.createTranslator(Language.EO, References.GAME_BOOK).translate(source).getTranslation());
         Assert.assertEquals("El héroe satisfecho y sano encuentra un lapicero. Un héroe sano y satisfecho tiene su lapicero.", TranslatorFactory.createTranslator(Language.ES, References.GAME_BOOK).translate(source).getTranslation());
@@ -1261,7 +1261,7 @@ public class References004Test {
     public void testVerticalTranslation113Game20160930023201MESZ() {
         final String source = "Vi$La HeroIcxO KontentA GigantA KuragxA DonAs Fin FlorO Al Mi$La HeroInO Se La HeroIcxO KontentA TrovAs Fin FlorO .";
         Assert.assertEquals("{ Su ( Vi$La HeroIcxO KontentA GigantA KuragxA ) Dom ( DonAs ) Fin ( FlorO ) Al ( Mi$La HeroInO ) } Se { Su ( La HeroIcxO KontentA ) Dom ( TrovAs ) Fin ( FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, References.GAME_BOOK).translate(source).getTranslation());
-        Assert.assertEquals("Euer zufriedener, gigantischer und beherzter Held gibt meiner Heldin eine Blume, wenn der zufriedener Held eine Blume findet.", TranslatorFactory.createTranslator(Language.DE, References.GAME_BOOK).translate(source).getTranslation());
+        Assert.assertEquals("Euer zufriedener, gigantischer und beherzter Held gibt meiner Heldin eine Blume, wenn der zufriedene Held eine Blume findet.", TranslatorFactory.createTranslator(Language.DE, References.GAME_BOOK).translate(source).getTranslation());
         Assert.assertEquals("Your satisfied, gigantic and valiant hero gives my heroine a flower, if the satisfied hero finds a flower.", TranslatorFactory.createTranslator(Language.EN, References.GAME_BOOK).translate(source).getTranslation());
         Assert.assertEquals("Via kontenta, giganta kaj kuraĝa heroo donas floron al mia heroino, se la kontenta heroo trovas floron.", TranslatorFactory.createTranslator(Language.EO, References.GAME_BOOK).translate(source).getTranslation());
         Assert.assertEquals("Vuestro gigantesco héroe satisfecho y valiente da a mi heroína una flor si el héroe satisfecho encuentra una flor.", TranslatorFactory.createTranslator(Language.ES, References.GAME_BOOK).translate(source).getTranslation());
