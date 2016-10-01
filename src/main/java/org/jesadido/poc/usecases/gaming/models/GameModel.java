@@ -13,12 +13,12 @@ import org.jesadido.poc.core.Language;
 
 public class GameModel {
     
-    private static final Language DEFAULT_LANGUAGE = Language.EO;
+    private static final Language FALLBACK_LANGUAGE = Language.EO;
     
     private final String key;
     
-    private List<Language> supportedLanguages = Arrays.asList(DEFAULT_LANGUAGE);
-    private List<Language> defaultLanguages = Arrays.asList(DEFAULT_LANGUAGE);
+    private List<Language> supportedLanguages = Arrays.asList(FALLBACK_LANGUAGE);
+    private List<Language> defaultLanguages = Arrays.asList(FALLBACK_LANGUAGE);
     private String title = "TestO ..";
     
     public GameModel(final String key) {
@@ -37,7 +37,7 @@ public class GameModel {
         this.supportedLanguages.clear();
         this.supportedLanguages = Arrays.asList(languages);
         if (this.supportedLanguages.isEmpty()) {
-            this.supportedLanguages.add(DEFAULT_LANGUAGE);
+            this.supportedLanguages.add(FALLBACK_LANGUAGE);
         }
         return this;
     }
