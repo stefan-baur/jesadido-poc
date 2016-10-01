@@ -232,6 +232,10 @@ public final class References {
             )
             .addReferenceSources(
                     
+                    "Mi$La LudO ..",
+                    "Mi$La LudO MalGrandEgA ..",
+                    "Mi$La LudO GigantA ..",
+                    
                     "LudO HavAs Fin HeroIcxO .",
                     "La LudO HavAs Fin La HeroIcxO .",
                     "Mi$La LudO HavAs Fin Bi$La HeroIcxO .",

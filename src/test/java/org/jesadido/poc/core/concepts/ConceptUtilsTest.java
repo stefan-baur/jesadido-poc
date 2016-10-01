@@ -365,4 +365,23 @@ public class ConceptUtilsTest {
         Assert.assertFalse(ConceptUtils.isPossessivePronounPlural(ConceptRegistry.getInstance().getConcept("HavAs")));
         Assert.assertFalse(ConceptUtils.isPossessivePronounPlural(ConceptRegistry.getInstance().getConcept("SanA")));
     }
+    
+    @Test
+    public void testIsEllipsis() {
+        Assert.assertFalse(ConceptUtils.isEllipsis(ConceptRegistry.getInstance().getConcept("Mi")));
+        Assert.assertFalse(ConceptUtils.isEllipsis(ConceptRegistry.getInstance().getConcept("Bi")));
+        Assert.assertFalse(ConceptUtils.isEllipsis(ConceptRegistry.getInstance().getConcept("Vi")));
+        Assert.assertFalse(ConceptUtils.isEllipsis(ConceptRegistry.getInstance().getConcept("Ili")));
+        Assert.assertFalse(ConceptUtils.isEllipsis(ConceptRegistry.getInstance().getConcept(".")));
+        Assert.assertTrue(ConceptUtils.isEllipsis(ConceptRegistry.getInstance().getConcept("..")));
+        Assert.assertTrue(ConceptUtils.isEllipsis(ConceptRegistry.getInstance().getConcept("TitlO$..")));
+        Assert.assertFalse(ConceptUtils.isEllipsis(ConceptRegistry.getInstance().getConcept("La")));
+        Assert.assertFalse(ConceptUtils.isEllipsis(ConceptRegistry.getInstance().getConcept("Mi$La")));
+        Assert.assertFalse(ConceptUtils.isEllipsis(ConceptRegistry.getInstance().getConcept("Bi$La")));
+        Assert.assertFalse(ConceptUtils.isEllipsis(ConceptRegistry.getInstance().getConcept("Gxi$La")));
+        Assert.assertFalse(ConceptUtils.isEllipsis(ConceptRegistry.getInstance().getConcept("InO$Gxi$La")));
+        Assert.assertFalse(ConceptUtils.isEllipsis(ConceptRegistry.getInstance().getConcept("SunO")));
+        Assert.assertFalse(ConceptUtils.isEllipsis(ConceptRegistry.getInstance().getConcept("HavAs")));
+        Assert.assertFalse(ConceptUtils.isEllipsis(ConceptRegistry.getInstance().getConcept("SanA")));
+    }
 }

@@ -291,4 +291,13 @@ public final class ConceptUtils {
         }
         return false;
     }
+    
+    /**
+     * Determines whether the given concept is an elliptical terminator.
+     * @param concept The given concept.
+     * @return <code>true</code> if the concept is a ellipsis.
+     */
+    public static boolean isEllipsis(final Concept concept) {
+        return ".".concat(ConceptTermination.PERIOD.getTerminationPhrase()).equals(concept.getBasePhrase());
+    }
 }

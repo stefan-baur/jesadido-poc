@@ -10,6 +10,7 @@ package org.jesadido.poc.core.semantics.translating.de;
 import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.StringUtils;
+import org.jesadido.poc.core.concepts.ConceptUtils;
 import org.jesadido.poc.core.semantics.translating.TranslationResult;
 import org.jesadido.poc.core.semantics.translating.TranslationTarget;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
@@ -57,7 +58,7 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
             argument.setSentenceMeatIndex(i);
             translatedMeats.add(node.getMeats().get(i).accept(this, argument).getTranslation());
         }
-        return result.setTranslation(StringUtils.up(String.format("%s.", String.join("", translatedMeats))));
+        return result.setTranslation(StringUtils.up(String.format("%s%s", String.join("", translatedMeats), ConceptUtils.isEllipsis(node.getTerminator().getConcept()) ? "" : ".")));
     }
 
     @Override
