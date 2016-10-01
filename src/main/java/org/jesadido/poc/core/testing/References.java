@@ -7,15 +7,13 @@
  */
 package org.jesadido.poc.core.testing;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
-import org.jesadido.poc.core.Language;
 import org.jesadido.poc.core.scripting.Src;
 import org.jesadido.poc.core.semantics.ConceptBook;
 import org.jesadido.poc.core.semantics.ConceptBookEntry;
 import org.jesadido.poc.core.semantics.Part;
-import org.jesadido.poc.core.semantics.translating.TranslatorFactory;
 import org.jesadido.poc.core.semantics.translating.de.De;
 import org.jesadido.poc.core.semantics.translating.de.DeTarget;
 import org.jesadido.poc.core.semantics.translating.en.En;
@@ -29,7 +27,7 @@ import org.jesadido.poc.core.semantics.translating.fr.FrTarget;
 
 public final class References {
     
-    public static final ConceptBook GAME_BOOK = new ConceptBook("Game Concepts")
+    public static final ConceptBook GAME_CONCEPTS = new ConceptBook("Game Concepts")
             
             .add(new ConceptBookEntry("LudO")
                     .addDefaultTargets(new DeTarget("Spiel", De.NEUTER, De.NOMINATIVE, De.DATIVE, De.ACCUSATIVE), new DeTarget("Spieles", De.NEUTER, De.GENITIVE))
@@ -369,33 +367,24 @@ public final class References {
             )
             ;
     
+    private static final Map<ConceptBook, ConceptBookTestsGenerator> CONCEPT_BOOK_TESTS_GENERATOR = new HashMap<>();
+    
+    static {
+        CONCEPT_BOOK_TESTS_GENERATOR.put(GAME_CONCEPTS, new ConceptBookTestsGenerator(GAME_CONCEPTS, "References.GAME_CONCEPTS", "GameConcepts"));
+    }
+    
     private References() {
         // A private utility class constructor
     }
     
-    private static Src generateSingleGameTest(final String methodId, final String source) {
-        final Src result = new Src()
-                .line()
-                .line("@Test")
-                .begin("public void test%sGame%s() {", methodId, new SimpleDateFormat("yyyyMMddhhmmsszzz").format(new Date()))
-                .line("final String source = \"%s\";", source)
-                ;
-        for (final Language language : Language.values()) {
-            final String translation = TranslatorFactory.createTranslator(language, GAME_BOOK).translate(source).getTranslation();
-            result.line("Assert.assertEquals(\"%s\", TranslatorFactory.createTranslator(Language.%s, References.GAME_BOOK).translate(source).getTranslation());", translation, language.name());
+    public static Src generateTests(final ConceptBook conceptBook) {
+        if (CONCEPT_BOOK_TESTS_GENERATOR.containsKey(conceptBook)) {
+            return CONCEPT_BOOK_TESTS_GENERATOR.get(conceptBook).generate();
         }
-        return result.end("}");
-    }
-    
-    public static Src generateGameTests() {
-        final Src result = new Src(Integer.MAX_VALUE, "", "    ", "\r\n").line().inc();
-        for (int i = 0; i < GAME_BOOK.getReferenceSources().size(); i++) {
-            result.add(generateSingleGameTest(String.format("VerticalTranslation%03d", i), GAME_BOOK.getReferenceSources().get(i)));
-        }
-        return result.dec().line();
+        return new Src();
     }
     
     public static void main(final String[] arguments) {
-        Logger.getAnonymousLogger().info(generateGameTests().toString());
+        Logger.getAnonymousLogger().info(generateTests(GAME_CONCEPTS).toString());
     }
 }

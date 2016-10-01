@@ -78,7 +78,7 @@ public class JesadidoPocClient extends Application {
     private Scene createMasterScene() {
         
         final Grammar jesadidoGrammar = GrammarFactory.createJesadidoGrammar();
-        final ConceptBook gameBook = References.GAME_BOOK;
+        final ConceptBook gameBook = References.GAME_CONCEPTS;
         final GameModel myTinyGame = ReferenceGames.MY_TINY_GAME;
         
         final BorderPane masterPane = new BorderPane();
@@ -213,7 +213,7 @@ public class JesadidoPocClient extends Application {
         referenceSourcesTab.setContent(referenceSourcesContent);
         referenceSourcesTab.setClosable(false);
         
-        final TextArea referenceTestsContent = new TextArea(References.generateGameTests().toString());
+        final TextArea referenceTestsContent = new TextArea(References.generateTests(conceptBook).toString());
         referenceTestsContent.setFont(SOURCE_FONT_14);
         referenceTestsContent.setEditable(false);
         referenceTestsContent.setPrefHeight(2400);
