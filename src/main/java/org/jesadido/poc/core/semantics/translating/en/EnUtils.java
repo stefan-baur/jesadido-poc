@@ -12,6 +12,7 @@ import java.util.List;
 import org.jesadido.poc.core.StringUtils;
 import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.concepts.ConceptTermination;
+import org.jesadido.poc.core.concepts.ConceptUtils;
 import org.jesadido.poc.core.semantics.translating.TranslationTarget;
 import org.jesadido.poc.core.semantics.translating.Translator;
 import org.jesadido.poc.core.syntax.tree.Node;
@@ -67,17 +68,16 @@ public final class EnUtils {
     private static String getDefiniteArticle(final Translator translator, final Concept articleConcept) {
         if (articleConcept.hasReferenceConcept()) {
             final Concept referenceConcept = articleConcept.getReferenceConcept();
-            final ConceptTermination referenceConceptTermination = referenceConcept.getProperties().getTermination();
-            if (referenceConceptTermination.isOneOf(ConceptTermination.MI, ConceptTermination.BI, ConceptTermination.GXI)) {
-                return getSingularPossessivePronoun(translator, referenceConcept);
-            } else if (referenceConcept.getProperties().getTermination().isOneOf(ConceptTermination.NI, ConceptTermination.VI, ConceptTermination.ILI)) {
-                return getPluralPossessivePronoun(referenceConcept);
+            if (ConceptUtils.isPersonalPronounSingular(referenceConcept)) {
+                return getPossessivePronounSingular(translator, referenceConcept);
+            } else if (ConceptUtils.isPersonalPronounPlural(referenceConcept)) {
+                return getPossessivePronounPlural(referenceConcept);
             }
         }
         return "the";
     }
     
-    private static String getSingularPossessivePronoun(final Translator translator, final Concept personalPronounConcept) {
+    private static String getPossessivePronounSingular(final Translator translator, final Concept personalPronounConcept) {
         final ConceptTermination referenceConceptTermination = personalPronounConcept.getProperties().getTermination();
         if (referenceConceptTermination == ConceptTermination.BI) {
             return "your";
@@ -87,7 +87,7 @@ public final class EnUtils {
         return "my";
     }
     
-    private static String getPluralPossessivePronoun(final Concept personalPronounConcept) {
+    private static String getPossessivePronounPlural(final Concept personalPronounConcept) {
         final ConceptTermination personalPronounConceptTermination = personalPronounConcept.getProperties().getTermination();
         if (personalPronounConceptTermination == ConceptTermination.VI) {
             return "your";

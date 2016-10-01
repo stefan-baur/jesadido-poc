@@ -12,6 +12,7 @@ import java.util.List;
 import org.jesadido.poc.core.StringUtils;
 import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.concepts.ConceptTermination;
+import org.jesadido.poc.core.concepts.ConceptUtils;
 import org.jesadido.poc.core.semantics.translating.TranslationTarget;
 import org.jesadido.poc.core.semantics.translating.Translator;
 import org.jesadido.poc.core.syntax.tree.Node;
@@ -64,17 +65,16 @@ public final class EoUtils {
     private static String getDefiniteArticle(final Translator translator, final Object caseAttribute, final Concept articleConcept) {
         if (articleConcept.hasReferenceConcept()) {
             final Concept referenceConcept = articleConcept.getReferenceConcept();
-            final ConceptTermination referenceConceptTermination = referenceConcept.getProperties().getTermination();
-            if (referenceConceptTermination.isOneOf(ConceptTermination.MI, ConceptTermination.BI, ConceptTermination.GXI)) {
-                return getSingularPossessivePronoun(translator, caseAttribute, referenceConcept);
-            } else if (referenceConceptTermination.isOneOf(ConceptTermination.NI, ConceptTermination.VI, ConceptTermination.ILI)) {
-                return getPluralPossessivePronoun(caseAttribute, referenceConcept);
+            if (ConceptUtils.isPersonalPronounSingular(referenceConcept)) {
+                return getPossessivePronounSingular(translator, caseAttribute, referenceConcept);
+            } else if (ConceptUtils.isPersonalPronounPlural(referenceConcept)) {
+                return getPossessivePronounPlural(caseAttribute, referenceConcept);
             }
         }
         return "la";
     }
     
-    private static String getSingularPossessivePronoun(final Translator translator, final Object caseAttribute, final Concept personalPronounConcept) {
+    private static String getPossessivePronounSingular(final Translator translator, final Object caseAttribute, final Concept personalPronounConcept) {
         final ConceptTermination personalPronounConceptTermination = personalPronounConcept.getProperties().getTermination();
         if (personalPronounConceptTermination == ConceptTermination.BI) {
             return getCased(caseAttribute, "via");
@@ -84,7 +84,7 @@ public final class EoUtils {
         return getCased(caseAttribute, "mia");
     }
     
-    private static String getPluralPossessivePronoun(final Object caseAttribute, final Concept personalPronounConcept) {
+    private static String getPossessivePronounPlural(final Object caseAttribute, final Concept personalPronounConcept) {
         final ConceptTermination personalPronounConceptTermination = personalPronounConcept.getProperties().getTermination();
         if (personalPronounConceptTermination == ConceptTermination.VI) {
             return getCased(caseAttribute, "via");

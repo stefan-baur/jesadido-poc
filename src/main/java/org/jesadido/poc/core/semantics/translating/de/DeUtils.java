@@ -182,17 +182,16 @@ public final class DeUtils {
     private static String getDefiniteArticle(final Translator translator, final Concept articleConcept, final List<String> singularPersonalPronounPhrases, final List<String> pluralPersonalPronounPhrases, final String defaultPhrase) {
         if (articleConcept.hasReferenceConcept()) {
             final Concept referenceConcept = articleConcept.getReferenceConcept();
-            final ConceptTermination referenceConceptTermination = referenceConcept.getProperties().getTermination();
-            if (referenceConceptTermination.isOneOf(ConceptTermination.MI, ConceptTermination.BI, ConceptTermination.GXI)) {
-                return getSingularPossessivePronoun(translator, referenceConcept, singularPersonalPronounPhrases.get(0), singularPersonalPronounPhrases.get(1), singularPersonalPronounPhrases.get(2), singularPersonalPronounPhrases.get(3));
-            } else if (referenceConceptTermination.isOneOf(ConceptTermination.NI, ConceptTermination.VI, ConceptTermination.ILI)) {
-                return getPluralPossessivePronoun(referenceConcept, pluralPersonalPronounPhrases.get(0), pluralPersonalPronounPhrases.get(1), pluralPersonalPronounPhrases.get(2));
+            if (ConceptUtils.isPersonalPronounSingular(referenceConcept)) {
+                return getPossessivePronounSingular(translator, referenceConcept, singularPersonalPronounPhrases.get(0), singularPersonalPronounPhrases.get(1), singularPersonalPronounPhrases.get(2), singularPersonalPronounPhrases.get(3));
+            } else if (ConceptUtils.isPersonalPronounPlural(referenceConcept)) {
+                return getPossessivePronounPlural(referenceConcept, pluralPersonalPronounPhrases.get(0), pluralPersonalPronounPhrases.get(1), pluralPersonalPronounPhrases.get(2));
             }
         }
         return defaultPhrase;
     }
     
-    private static String getSingularPossessivePronoun(final Translator translator, final Concept personalPronounConcept, final String miPhrase, final String biPhrase, final String gxiFemininePhrase, final String gxiDefaultPhrase) {
+    private static String getPossessivePronounSingular(final Translator translator, final Concept personalPronounConcept, final String miPhrase, final String biPhrase, final String gxiFemininePhrase, final String gxiDefaultPhrase) {
         final ConceptTermination personalPronounConceptTermination = personalPronounConcept.getProperties().getTermination();
         if (personalPronounConceptTermination == ConceptTermination.BI) {
             return biPhrase;
@@ -202,7 +201,7 @@ public final class DeUtils {
         return miPhrase;
     }
     
-    private static String getPluralPossessivePronoun(final Concept personalPronounConcept, final String niPhrase, final String viPhrase, final String iliPhrase) {
+    private static String getPossessivePronounPlural(final Concept personalPronounConcept, final String niPhrase, final String viPhrase, final String iliPhrase) {
         final ConceptTermination personalPronounConceptTermination = personalPronounConcept.getProperties().getTermination();
         if (personalPronounConceptTermination == ConceptTermination.VI) {
             return viPhrase;

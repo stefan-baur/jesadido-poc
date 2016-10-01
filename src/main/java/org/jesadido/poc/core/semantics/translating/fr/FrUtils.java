@@ -13,6 +13,7 @@ import java.util.List;
 import org.jesadido.poc.core.StringUtils;
 import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.concepts.ConceptTermination;
+import org.jesadido.poc.core.concepts.ConceptUtils;
 import org.jesadido.poc.core.semantics.translating.TranslationTarget;
 import org.jesadido.poc.core.semantics.translating.Translator;
 import org.jesadido.poc.core.syntax.tree.Node;
@@ -91,10 +92,9 @@ public final class FrUtils {
         final String followerPhrase = getSubstantiveAdjectives(translator, substantiveTarget, adjectiveConcepts);
         if (articleConcept.hasReferenceConcept()) {
             final Concept referenceConcept = articleConcept.getReferenceConcept();
-            final ConceptTermination referenceConceptTermination = referenceConcept.getProperties().getTermination();
-            if (referenceConceptTermination.isOneOf(ConceptTermination.MI, ConceptTermination.BI, ConceptTermination.GXI)) {
+            if (ConceptUtils.isPersonalPronounSingular(referenceConcept)) {
                 return getSingularPossessivePronounedSubstantive(referenceConcept, substantiveTarget, followerPhrase);
-            } else if (referenceConceptTermination.isOneOf(ConceptTermination.NI, ConceptTermination.VI, ConceptTermination.ILI)) {
+            } else if (ConceptUtils.isPersonalPronounPlural(referenceConcept)) {
                 return getPluralPossessivePronounedSubstantive(referenceConcept, followerPhrase);
             }
         }
