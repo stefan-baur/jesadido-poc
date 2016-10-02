@@ -7,6 +7,8 @@
  */
 package org.jesadido.poc.core.testing;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -27,7 +29,7 @@ import org.jesadido.poc.core.semantics.translating.fr.FrTarget;
 
 public final class References {
     
-    public static final ConceptBook GAME_CONCEPTS = new ConceptBook("Game Concepts")
+    public static final ConceptBook TEST_CONCEPTS = new ConceptBook("test-concepts")
             
             .add(new ConceptBookEntry("LudO")
                     .addDefaultTargets(new DeTarget("Spiel", De.NEUTER, De.NOMINATIVE, De.DATIVE, De.ACCUSATIVE), new DeTarget("Spieles", De.NEUTER, De.GENITIVE))
@@ -371,14 +373,41 @@ public final class References {
             )
             ;
     
+    public static final ConceptBook GAME_CONCEPTS = new ConceptBook("game-concepts")
+            
+            .add(new ConceptBookEntry("LudO")
+                    .addDefaultTargets(new DeTarget("Spiel", De.NEUTER, De.NOMINATIVE, De.DATIVE, De.ACCUSATIVE), new DeTarget("Spieles", De.NEUTER, De.GENITIVE))
+                    .addDefaultTargets(new EnTarget("game", En.NEUTER))
+                    .addDefaultTargets(new EoTarget("ludo", Eo.NEUTER))
+                    .addDefaultTargets(new EsTarget("juego", Es.MASCULINE))
+                    .addDefaultTargets(new FrTarget("jeu", Fr.MASCULINE))
+            )
+            .add(new ConceptBookEntry("MalGrandEgA")
+                    .addDefaultTargets(new DeTarget("winzig"))
+                    .addDefaultTargets(new EnTarget("tiny"))
+                    .addDefaultTargets(new EoTarget("malgrandega"))
+                    .addDefaultTargets(new EsTarget("menudo", Es.MASCULINE, Es.PREPOSED), new EsTarget("menuda", Es.FEMININE, Es.PREPOSED))
+                    .addDefaultTargets(new FrTarget("infime", Fr.MASCULINE, Fr.FEMININE))
+            )
+            .addReferenceSources(
+                    
+                    "Mi$La LudO MalGrandEgA .."
+            )
+            ;
+    
     private static final Map<ConceptBook, ConceptBookTestsGenerator> CONCEPT_BOOK_TESTS_GENERATOR = new HashMap<>();
     
     static {
+        CONCEPT_BOOK_TESTS_GENERATOR.put(TEST_CONCEPTS, new ConceptBookTestsGenerator(TEST_CONCEPTS, "References.TEST_CONCEPTS", "TestConcepts"));
         CONCEPT_BOOK_TESTS_GENERATOR.put(GAME_CONCEPTS, new ConceptBookTestsGenerator(GAME_CONCEPTS, "References.GAME_CONCEPTS", "GameConcepts"));
     }
     
     private References() {
         // A private utility class constructor
+    }
+    
+    public static Collection<ConceptBook> getConceptBooks() {
+        return Collections.unmodifiableCollection(CONCEPT_BOOK_TESTS_GENERATOR.keySet());
     }
     
     public static Src generateTests(final ConceptBook conceptBook) {
@@ -389,6 +418,6 @@ public final class References {
     }
     
     public static void main(final String[] arguments) {
-        Logger.getAnonymousLogger().info(generateTests(GAME_CONCEPTS).toString());
+        Logger.getAnonymousLogger().info(generateTests(TEST_CONCEPTS).toString());
     }
 }

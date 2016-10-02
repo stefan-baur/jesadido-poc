@@ -79,7 +79,6 @@ public class JesadidoPocClient extends Application {
     private Scene createMasterScene() {
         
         final Grammar jesadidoGrammar = GrammarFactory.createJesadidoGrammar();
-        final ConceptBook gameBook = References.GAME_CONCEPTS;
         final GameModel myTinyGame = ReferenceGames.MY_TINY_GAME;
         
         final BorderPane masterPane = new BorderPane();
@@ -94,13 +93,8 @@ public class JesadidoPocClient extends Application {
         final Menu menuGrammars = new Menu("Grammars");
         menuGrammars.getItems().addAll(menuItemGrammarJesadido);
         
-        final MenuItem menuItemGameBook = new MenuItem(gameBook.getName());
-        menuItemGameBook.setOnAction((ActionEvent e) -> {
-            masterPane.setTop(this.createPageHeader(String.format("Concept-Book: %s (Grammar: %s)", gameBook.getName(), gameBook.getGrammar().getName())));
-            masterPane.setCenter(this.createConceptBookOverview(gameBook));
-        });
         final Menu menuConceptBooks = new Menu("Concept-Books");
-        menuConceptBooks.getItems().addAll(menuItemGameBook);
+        References.getConceptBooks().stream().forEach(conceptBook -> this.addConceptBookMenuItem(masterPane, menuConceptBooks, conceptBook));
         
         final MenuItem menuItemMyTinyGame = new MenuItem(myTinyGame.getKey());
         menuItemMyTinyGame.setOnAction((ActionEvent e) -> {
@@ -121,6 +115,15 @@ public class JesadidoPocClient extends Application {
         masterBox.getChildren().addAll(menuBar, masterPane);
         final StackPane rootPane = new StackPane(masterBox);
         return new Scene(rootPane, 800, 600);
+    }
+    
+    private void addConceptBookMenuItem(final BorderPane masterPane, final Menu menuConceptBooks, final ConceptBook conceptBook) {
+        final MenuItem menuItemGameBook = new MenuItem(conceptBook.getKey());
+        menuItemGameBook.setOnAction((ActionEvent e) -> {
+            masterPane.setTop(this.createPageHeader(String.format("Concept-Book: \"%s\" (Grammar: %s)", conceptBook.getKey(), conceptBook.getGrammar().getName())));
+            masterPane.setCenter(this.createConceptBookOverview(conceptBook));
+        });
+        menuConceptBooks.getItems().addAll(menuItemGameBook);
     }
     
     private Node createGame(final GameModel gameModel) {

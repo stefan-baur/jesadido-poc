@@ -30,7 +30,7 @@ public class TextGameGenerator {
                 .add(this.generateProperty("GameModel"))
                 .inc()
                 .add(this.generateStringProperty("Key", this.gameModel.getKey()))
-                .add(this.generateStringProperty("Concept-Book", this.gameModel.getConceptBook().getName()))
+                .add(this.generateStringProperty("Concept-Book", this.gameModel.getConceptBook().getKey()))
                 .add(this.generateProperty("Supported Languages", this.gameModel.getSupportedLanguages().toString()))
                 .add(this.generateSourceProperty("Title", this.gameModel.getTitle()))
                 .dec()

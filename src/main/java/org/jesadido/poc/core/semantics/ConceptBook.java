@@ -20,17 +20,17 @@ import org.jesadido.poc.core.syntax.GrammarFactory;
 
 public class ConceptBook {
     
-    private final String name;
+    private final String key;
     private final Grammar grammar = GrammarFactory.createJesadidoGrammar();
     private final Map<String, ConceptBookEntry> conceptBookMap = new LinkedHashMap<>();
     private final List<String> referenceSources = new LinkedList<>();
     
-    public ConceptBook(final String name) {
-        this.name = name;
+    public ConceptBook(final String key) {
+        this.key = key;
     }
     
-    public String getName() {
-        return this.name;
+    public String getKey() {
+        return this.key;
     }
     
     public Grammar getGrammar() {
