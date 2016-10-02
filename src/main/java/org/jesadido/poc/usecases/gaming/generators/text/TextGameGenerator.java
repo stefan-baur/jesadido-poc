@@ -27,8 +27,9 @@ public class TextGameGenerator {
     
     public Src generate() {
         return new Src(Integer.MAX_VALUE, " ", "   ", "\r\n")
-                .add(this.generateStringProperty("GameModel", this.gameModel.getKey()))
+                .add(this.generateProperty("GameModel"))
                 .inc()
+                .add(this.generateStringProperty("Key", this.gameModel.getKey()))
                 .add(this.generateStringProperty("Concept-Book", this.gameModel.getConceptBook().getName()))
                 .add(this.generateProperty("Supported Languages", this.gameModel.getSupportedLanguages().toString()))
                 .add(this.generateSourceProperty("Title", this.gameModel.getTitle()))
@@ -39,6 +40,12 @@ public class TextGameGenerator {
     private Src generateProperty(final String name, final String value) {
         return new Src()
                 .line("%s: %s", name, value)
+                ;
+    }
+    
+    private Src generateProperty(final String name) {
+        return new Src()
+                .add(this.generateProperty(name, ""))
                 ;
     }
     

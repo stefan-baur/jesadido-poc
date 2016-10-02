@@ -102,9 +102,9 @@ public class JesadidoPocClient extends Application {
         final Menu menuConceptBooks = new Menu("Concept-Books");
         menuConceptBooks.getItems().addAll(menuItemGameBook);
         
-        final MenuItem menuItemMyTinyGame = new MenuItem(myTinyGame.getTitle());
+        final MenuItem menuItemMyTinyGame = new MenuItem(myTinyGame.getKey());
         menuItemMyTinyGame.setOnAction((ActionEvent e) -> {
-            masterPane.setTop(this.createPageHeader(String.format("Game: %s", myTinyGame.getTitle())));
+            masterPane.setTop(this.createPageHeader(String.format("Game: \"%s\"", myTinyGame.getKey())));
             masterPane.setCenter(this.createGame(myTinyGame));
         });
         
