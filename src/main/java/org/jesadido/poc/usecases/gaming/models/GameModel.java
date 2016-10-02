@@ -18,15 +18,13 @@ public class GameModel {
     private static final Language FALLBACK_LANGUAGE = Language.EO;
     
     private final String key;
-    private final ConceptBook conceptBook;
-    
+    private ConceptBook gameConceptBook = new ConceptBook("empty-book");
     private final List<Language> supportedLanguages = new LinkedList<>();
     private final List<Language> selectedLanguages = new LinkedList<>();
     private String title = "TestO ..";
     
-    public GameModel(final String key, final ConceptBook conceptBook) {
+    public GameModel(final String key) {
         this.key = key;
-        this.conceptBook = conceptBook;
         this.supportedLanguages.add(FALLBACK_LANGUAGE);
         this.selectedLanguages.add(FALLBACK_LANGUAGE);
     }
@@ -35,8 +33,13 @@ public class GameModel {
         return this.key;
     }
     
-    public ConceptBook getConceptBook() {
-        return this.conceptBook;
+    public ConceptBook getGameConceptBook() {
+        return this.gameConceptBook;
+    }
+    
+    public GameModel initGameConceptBook(final ConceptBook gameConceptBook) {
+        this.gameConceptBook = gameConceptBook;
+        return this;
     }
     
     public List<Language> getSupportedLanguages() {

@@ -13,7 +13,8 @@ import org.jesadido.poc.usecases.gaming.models.GameModel;
 
 public final class ReferenceGameModels {
     
-    public static final GameModel MY_TINY_GAME = new GameModel("my-tiny-game", ReferenceConceptBooks.GAME_CONCEPTS)
+    public static final GameModel MY_TINY_GAME = new GameModel("my-tiny-game")
+            .initGameConceptBook(ReferenceConceptBooks.GAME_CONCEPTS)
             .initSupportedLanguages(Language.DE, Language.EN, Language.EO, Language.ES, Language.FR, Language.JI)
             .initSelectedLanguages(Language.EO, Language.EN)
             .initTitle("Mi$La LudO MalGrandEgA ..")

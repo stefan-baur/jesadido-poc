@@ -30,7 +30,7 @@ public class TextGameGenerator {
                 .add(this.generateProperty("GameModel"))
                 .inc()
                 .add(this.generateStringProperty("Key", this.gameModel.getKey()))
-                .add(this.generateStringProperty("Concept-Book", this.gameModel.getConceptBook().getKey()))
+                .add(this.generateStringProperty("Game-Concept-Book", this.gameModel.getGameConceptBook().getKey()))
                 .add(this.generateProperty("Supported Languages", this.gameModel.getSupportedLanguages().toString()))
                 .add(this.generateProperty("Selected Languages", this.gameModel.getSelectedLanguages().toString()))
                 .add(this.generateSourceProperty("Title", this.gameModel.getTitle()))
@@ -55,7 +55,7 @@ public class TextGameGenerator {
     }
     
     private Src generateTranslation(final Language language, final String source) {
-        final String translation = TranslatorFactory.createTranslator(language, this.gameModel.getConceptBook()).translate(source).getTranslation();
+        final String translation = TranslatorFactory.createTranslator(language, this.gameModel.getGameConceptBook()).translate(source).getTranslation();
         return new Src().line("[%s] %s", language, translation);
     }
     
