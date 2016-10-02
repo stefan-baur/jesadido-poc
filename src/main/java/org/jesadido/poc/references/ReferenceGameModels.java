@@ -15,7 +15,7 @@ public final class ReferenceGameModels {
     
     public static final GameModel MY_TINY_GAME = new GameModel("my-tiny-game", ReferenceConceptBooks.GAME_CONCEPTS)
             .initSupportedLanguages(Language.JI, Language.DE, Language.EN, Language.EO, Language.ES, Language.FR)
-            .initDefaultLanguages(Language.DE, Language.EN)
+            .initSelectedLanguages(Language.DE, Language.EN)
             .initTitle("Mi$La LudO MalGrandEgA ..")
             ;
     

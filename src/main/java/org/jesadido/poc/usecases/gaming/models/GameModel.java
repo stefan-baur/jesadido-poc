@@ -21,14 +21,14 @@ public class GameModel {
     private final ConceptBook conceptBook;
     
     private final List<Language> supportedLanguages = new LinkedList<>();
-    private final List<Language> defaultLanguages = new LinkedList<>();
+    private final List<Language> selectedLanguages = new LinkedList<>();
     private String title = "TestO ..";
     
     public GameModel(final String key, final ConceptBook conceptBook) {
         this.key = key;
         this.conceptBook = conceptBook;
         this.supportedLanguages.add(FALLBACK_LANGUAGE);
-        this.defaultLanguages.add(FALLBACK_LANGUAGE);
+        this.selectedLanguages.add(FALLBACK_LANGUAGE);
     }
     
     public String getKey() {
@@ -52,19 +52,19 @@ public class GameModel {
         return this;
     }
     
-    public List<Language> getDefaultLanguages() {
-        return this.defaultLanguages;
+    public List<Language> getSelectedLanguages() {
+        return this.selectedLanguages;
     }
     
-    public GameModel initDefaultLanguages(final Language ... languages) {
-        this.defaultLanguages.clear();
+    public GameModel initSelectedLanguages(final Language ... languages) {
+        this.selectedLanguages.clear();
         for (final Language language : languages) {
-            if ((this.supportedLanguages.contains(language)) && (!this.defaultLanguages.contains(language))) {
-                this.defaultLanguages.add(language);
+            if ((this.supportedLanguages.contains(language)) && (!this.selectedLanguages.contains(language))) {
+                this.selectedLanguages.add(language);
             }
         }
-        if (this.defaultLanguages.isEmpty()) {
-            this.defaultLanguages.add(this.supportedLanguages.get(0));
+        if (this.selectedLanguages.isEmpty()) {
+            this.selectedLanguages.add(this.supportedLanguages.get(0));
         }
         return this;
     }
