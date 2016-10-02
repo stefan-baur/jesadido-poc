@@ -44,17 +44,10 @@ public class JesadidoPoc {
     }
     
     /**
-     * Launches a standalone project client application without any arguments.
-     */
-    public static void run() {
-        run(new String[] {});
-    }
-    
-    /**
      * Launches a standalone project client application.
      * @param arguments Used for running the client application.
      */
     public static void main(final String[] arguments) {
-        JesadidoPoc.run();
+        JesadidoPoc.run(arguments);
     }
 }

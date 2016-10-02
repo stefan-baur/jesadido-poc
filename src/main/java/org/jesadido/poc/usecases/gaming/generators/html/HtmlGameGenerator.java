@@ -61,4 +61,8 @@ public class HtmlGameGenerator {
                 .end("</html>")
                 .save(this.getIndexPageFile(gameModel));
     }
+    
+    public static void main(final String[] arguments) {
+        JesadidoPoc.run(arguments);
+    }
 }

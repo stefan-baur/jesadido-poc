@@ -71,6 +71,6 @@ public class TextGameGenerator {
     }
     
     public static void main(final String[] arguments) {
-        JesadidoPoc.run();
+        JesadidoPoc.run(arguments);
     }
 }

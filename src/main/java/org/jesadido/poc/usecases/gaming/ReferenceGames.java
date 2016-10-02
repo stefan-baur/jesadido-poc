@@ -7,6 +7,7 @@
  */
 package org.jesadido.poc.usecases.gaming;
 
+import org.jesadido.poc.JesadidoPoc;
 import org.jesadido.poc.core.Language;
 import org.jesadido.poc.core.testing.References;
 import org.jesadido.poc.usecases.gaming.models.GameModel;
@@ -21,5 +22,9 @@ public final class ReferenceGames {
     
     private ReferenceGames() {
         // A private class constructor
+    }
+    
+    public static void main(final String[] arguments) {
+        JesadidoPoc.run(arguments);
     }
 }
