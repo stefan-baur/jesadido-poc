@@ -41,7 +41,7 @@ public final class GrammarFactory {
      * @return The grammar of Jesadido.
      */
     public static Grammar createJesadidoGrammar() {
-        return new Grammar("Jesadido", new TokenCreator(), new SyntaxTreeFactory())
+        return new Grammar("jesadido-grammar", new TokenCreator(), new SyntaxTreeFactory())
                 
                 .register(false, new AdjectiveSelectionProduction())
                 .register(false, new SubstantiveSelectionProduction())

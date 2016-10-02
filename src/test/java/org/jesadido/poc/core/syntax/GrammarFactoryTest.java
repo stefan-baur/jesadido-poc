@@ -18,7 +18,7 @@ public class GrammarFactoryTest {
     @Test
     public void testCreateJesadidoGrammar() {
         final Grammar grammar = GrammarFactory.createJesadidoGrammar();
-        Assert.assertEquals("Jesadido", grammar.getName());
+        Assert.assertEquals("jesadido-grammar", grammar.getKey());
         Assert.assertEquals(Nonterminal.SENTENCE_SEQUENCE, grammar.getStartSymbol());
         Assert.assertFalse(grammar.getNonterminalSymbols().isEmpty());
         Assert.assertTrue(grammar.getNonterminalSymbols().contains(Nonterminal.SENTENCE_SEQUENCE));

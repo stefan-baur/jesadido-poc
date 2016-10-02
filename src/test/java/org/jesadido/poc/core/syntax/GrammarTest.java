@@ -21,8 +21,8 @@ public class GrammarTest {
     
     @Test
     public void testGetName() {
-        Assert.assertEquals("NullGrammar", new Grammar("NullGrammar", null, null).getName());
-        Assert.assertEquals("NoProductionsGrammar", new Grammar("NoProductionsGrammar", new TokenCreator(), new SyntaxTreeFactory()).getName());
+        Assert.assertEquals("NullGrammar", new Grammar("NullGrammar", null, null).getKey());
+        Assert.assertEquals("NoProductionsGrammar", new Grammar("NoProductionsGrammar", new TokenCreator(), new SyntaxTreeFactory()).getKey());
     }
     
     @Test
@@ -110,6 +110,6 @@ public class GrammarTest {
     public void testToPlot() {
         final Grammar grammar = new Grammar("PlotTest", new TokenCreator(), new SyntaxTreeFactory()).register(true, new SentenceMeatConjunctionProduction());
         final Src plotSrc = grammar.toPlot();
-        Assert.assertEquals("Grammar PlotTest = (N, T, P, s) = (\r\n\t{\r\n\t\tsentence-meat-conjunction\r\n\t}, {\r\n\t\tSEPARATOR_SE, SEPARATOR_KAJ, SEPARATOR_AUX, SEPARATOR\r\n\t}, {\r\n\t\tsentence-meat-conjunction ::= SEPARATOR_SE | SEPARATOR_KAJ | SEPARATOR_AUX | SEPARATOR\r\n\t}, sentence-meat-conjunction\r\n)\r\n", plotSrc.toString());
+        Assert.assertEquals("Grammar \"PlotTest\" = (N, T, P, s) = (\r\n\t{\r\n\t\tsentence-meat-conjunction\r\n\t}, {\r\n\t\tSEPARATOR_SE, SEPARATOR_KAJ, SEPARATOR_AUX, SEPARATOR\r\n\t}, {\r\n\t\tsentence-meat-conjunction ::= SEPARATOR_SE | SEPARATOR_KAJ | SEPARATOR_AUX | SEPARATOR\r\n\t}, sentence-meat-conjunction\r\n)\r\n", plotSrc.toString());
     }
 }

@@ -85,9 +85,9 @@ public class JesadidoPocClient extends Application {
         masterPane.setPadding(new Insets(8, 8, 8, 8));
         masterPane.setCenter(this.createGame(myTinyGame));
         
-        final MenuItem menuItemGrammarJesadido = new MenuItem(jesadidoGrammar.getName());
+        final MenuItem menuItemGrammarJesadido = new MenuItem(jesadidoGrammar.getKey());
         menuItemGrammarJesadido.setOnAction((ActionEvent e) -> {
-            masterPane.setTop(this.createPageHeader(String.format("Grammar: %s", jesadidoGrammar.getName())));
+            masterPane.setTop(this.createPageHeader(String.format("Grammar: \"%s\"", jesadidoGrammar.getKey())));
             masterPane.setCenter(this.createGrammarOverview(jesadidoGrammar));
         });
         final Menu menuGrammars = new Menu("Grammars");
@@ -120,7 +120,7 @@ public class JesadidoPocClient extends Application {
     private void addConceptBookMenuItem(final BorderPane masterPane, final Menu menuConceptBooks, final ConceptBook conceptBook) {
         final MenuItem menuItemGameBook = new MenuItem(conceptBook.getKey());
         menuItemGameBook.setOnAction((ActionEvent e) -> {
-            masterPane.setTop(this.createPageHeader(String.format("Concept-Book: \"%s\" (Grammar: %s)", conceptBook.getKey(), conceptBook.getGrammar().getName())));
+            masterPane.setTop(this.createPageHeader(String.format("Concept-Book: \"%s\" (Grammar: \"%s\")", conceptBook.getKey(), conceptBook.getGrammar().getKey())));
             masterPane.setCenter(this.createConceptBookOverview(conceptBook));
         });
         menuConceptBooks.getItems().addAll(menuItemGameBook);

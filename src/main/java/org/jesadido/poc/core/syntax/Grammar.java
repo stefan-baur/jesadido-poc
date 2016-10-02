@@ -36,7 +36,7 @@ public class Grammar {
     
     private static final Logger LOGGER = Logger.getLogger(Grammar.class.getName());
     
-    private final String name;
+    private final String key;
     private final TokenCreator tokenCreator;
     private final SyntaxTreeFactory syntaxTreeFactory;
     
@@ -48,24 +48,24 @@ public class Grammar {
     /**
      * Constructor. Use the <code>GrammarFactory</code> for creating a new
      * grammar-instance!
-     * @param name The name of the grammar.
+     * @param key The key of the grammar.
      * @param tokenCreator The token-creator maps each element of the
      * token-stream to a token during the parsing process.
      * @param syntaxTreeFactory The factory for the syntax-tree, creating the
      * nodes of the tree.
      */
-    public Grammar(final String name, final TokenCreator tokenCreator, final SyntaxTreeFactory syntaxTreeFactory) {
-        this.name = name;
+    public Grammar(final String key, final TokenCreator tokenCreator, final SyntaxTreeFactory syntaxTreeFactory) {
+        this.key = key;
         this.tokenCreator = tokenCreator;
         this.syntaxTreeFactory = syntaxTreeFactory;
     }
     
     /**
-     * Returns the name of this grammar.
-     * @return The name.
+     * Returns the key (non-whitespaced phrase) of this grammar.
+     * @return The key.
      */
-    public String getName() {
-        return this.name;
+    public String getKey() {
+        return this.key;
     }
     
     /**
@@ -149,7 +149,7 @@ public class Grammar {
             }
             return this;
         }
-        throw new IllegalArgumentException(String.format("A production can not registered to the grammar '%s'.", this.name));
+        throw new IllegalArgumentException(String.format("A production can not registered to the grammar '%s'.", this.key));
     }
     
     /**
@@ -216,7 +216,7 @@ public class Grammar {
             srcProductionRules.line("%s%s", rules.get(i), i < max ? "," : "");
         }
         return new Src()
-                .begin("Grammar %s = (N, T, P, s) = (", this.name)
+                .begin("Grammar \"%s\" = (N, T, P, s) = (", this.key)
                 .begin("{")
                 .line(StringUtils.join(", ", this.nonterminals))
                 .endBegin("}, {")
