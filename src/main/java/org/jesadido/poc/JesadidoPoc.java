@@ -34,12 +34,19 @@ public class JesadidoPoc {
     private JesadidoPoc() {
         // A private main class constructor.
     }
+    
+    /**
+     * Launches a standalone project client application.
+     */
+    public static void run() {
+        new JesadidoPocClient().launchClient(new String[] {});
+    }
 
     /**
      * Launches a standalone project client application.
      * @param arguments Used for running the client application.
      */
     public static void main(final String[] arguments) {
-        new JesadidoPocClient().launchClient(arguments);
+        JesadidoPoc.run();
     }
 }

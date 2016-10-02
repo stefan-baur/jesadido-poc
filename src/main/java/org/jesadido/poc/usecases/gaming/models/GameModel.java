@@ -11,25 +11,32 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.Language;
+import org.jesadido.poc.core.semantics.ConceptBook;
 
 public class GameModel {
     
     private static final Language FALLBACK_LANGUAGE = Language.EO;
     
     private final String key;
+    private final ConceptBook conceptBook;
     
     private final List<Language> supportedLanguages = new LinkedList<>();
     private final List<Language> defaultLanguages = new LinkedList<>();
     private String title = "TestO ..";
     
-    public GameModel(final String key) {
+    public GameModel(final String key, final ConceptBook conceptBook) {
         this.key = key;
+        this.conceptBook = conceptBook;
         this.supportedLanguages.add(FALLBACK_LANGUAGE);
         this.defaultLanguages.add(FALLBACK_LANGUAGE);
     }
     
     public String getKey() {
         return this.key;
+    }
+    
+    public ConceptBook getConceptBook() {
+        return this.conceptBook;
     }
     
     public List<Language> getSupportedLanguages() {

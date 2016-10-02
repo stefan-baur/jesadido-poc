@@ -55,6 +55,7 @@ public class HtmlGameGenerator {
                 .line("<title>%s</title>", gameModel.getTitle())
                 .end("</head>")
                 .begin("<body>")
+                .line("<div>%s</div>", gameModel.getSupportedLanguages().toString())
                 .line("<code>%s</code>", gameModel.getTitle())
                 .end("</body>")
                 .end("</html>")

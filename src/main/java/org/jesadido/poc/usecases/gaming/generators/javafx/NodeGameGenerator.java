@@ -7,17 +7,17 @@
  */
 package org.jesadido.poc.usecases.gaming.generators.javafx;
 
-import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.text.Text;
+import org.jesadido.poc.JesadidoPoc;
 import org.jesadido.poc.usecases.gaming.models.GameModel;
 
 public class NodeGameGenerator {
     
     public Node generate(final GameModel gameModel) {
-        final Group result = new Group();
-        final Text title = new Text(gameModel.getTitle());
-        result.getChildren().add(title);
-        return result;
+        return new GamePane(gameModel);
+    }
+    
+    public static void main(final String[] arguments) {
+        JesadidoPoc.run();
     }
 }

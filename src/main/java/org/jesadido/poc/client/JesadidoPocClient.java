@@ -43,6 +43,7 @@ import org.jesadido.poc.core.testing.References;
 import org.jesadido.poc.usecases.gaming.ReferenceGames;
 import org.jesadido.poc.usecases.gaming.generators.html.HtmlGameGenerator;
 import org.jesadido.poc.usecases.gaming.generators.javafx.NodeGameGenerator;
+import org.jesadido.poc.usecases.gaming.generators.text.TextGameGenerator;
 import org.jesadido.poc.usecases.gaming.models.GameModel;
 
 /**
@@ -124,7 +125,7 @@ public class JesadidoPocClient extends Application {
     
     private Node createGame(final GameModel gameModel) {
         
-        final TextArea gameModelContent = new TextArea(gameModel.getTitle());
+        final TextArea gameModelContent = new TextArea(new TextGameGenerator(gameModel).generate().toString());
         gameModelContent.setFont(SOURCE_FONT_11);
         gameModelContent.setEditable(false);
         gameModelContent.setPadding(new Insets(8, 0, 0, 0));
