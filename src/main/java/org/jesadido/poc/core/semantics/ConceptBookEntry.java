@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import org.jesadido.poc.core.Language;
+import org.jesadido.poc.core.scripting.Src;
 
 public class ConceptBookEntry {
     
@@ -92,5 +93,27 @@ public class ConceptBookEntry {
         }
         this.getDefaultTargets(language).stream().filter(target -> target.getAttributes().containsAll(attributeList)).forEach(result::add);
         return result;
+    }
+    
+    public Src toPlot() {
+        final Src result = new Src(Integer.MAX_VALUE, " ", "   ", "\r\n")
+                .line("Concept-Phrase: \"%s\"", this.conceptPhrase)
+                .line("Required Parts: %s", this.requiredParts.toString())
+                .line("Excluded Parts: %s", this.excludedParts.toString())
+                .line("Default Targets:")
+                .inc()
+                ;
+        for (final Language language : new Language[] { Language.DE, Language.EN, Language.EO, Language.ES, Language.FR }) {
+            result.line("%s: %s", language, this.getDefaultTargets(language).toString());
+        }
+        result
+                .dec()
+                ;
+        return result;
+    }
+    
+    @Override
+    public String toString() {
+        return this.toPlot().toString();
     }
 }

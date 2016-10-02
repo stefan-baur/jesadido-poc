@@ -25,7 +25,6 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -35,7 +34,6 @@ import javafx.stage.Stage;
 import org.jesadido.poc.JesadidoPoc;
 import org.jesadido.poc.core.Language;
 import org.jesadido.poc.core.semantics.ConceptBook;
-import org.jesadido.poc.core.semantics.ConceptBookEntry;
 import org.jesadido.poc.core.semantics.translating.TranslatorFactory;
 import org.jesadido.poc.core.syntax.Grammar;
 import org.jesadido.poc.core.syntax.GrammarFactory;
@@ -83,7 +81,7 @@ public class JesadidoPocClient extends Application {
         
         final BorderPane masterPane = new BorderPane();
         masterPane.setPadding(new Insets(8, 8, 8, 8));
-        masterPane.setCenter(this.createGame(myTinyGame));
+        masterPane.setCenter(this.createGameModelOverview(myTinyGame));
         
         final MenuItem menuItemGrammarJesadido = new MenuItem(jesadidoGrammar.getKey());
         menuItemGrammarJesadido.setOnAction((ActionEvent e) -> {
@@ -99,7 +97,7 @@ public class JesadidoPocClient extends Application {
         final MenuItem menuItemMyTinyGame = new MenuItem(myTinyGame.getKey());
         menuItemMyTinyGame.setOnAction((ActionEvent e) -> {
             masterPane.setTop(this.createPageHeader(String.format("Game: \"%s\"", myTinyGame.getKey())));
-            masterPane.setCenter(this.createGame(myTinyGame));
+            masterPane.setCenter(this.createGameModelOverview(myTinyGame));
         });
         
         final Menu menuItemGaming = new Menu("Gaming");
@@ -126,7 +124,7 @@ public class JesadidoPocClient extends Application {
         menuConceptBooks.getItems().addAll(menuItemGameBook);
     }
     
-    private Node createGame(final GameModel gameModel) {
+    private Node createGameModelOverview(final GameModel gameModel) {
         
         final TextArea gameModelContent = new TextArea(new TextGameGenerator(gameModel).generate().toString());
         gameModelContent.setFont(SOURCE_FONT_11);
@@ -188,16 +186,16 @@ public class JesadidoPocClient extends Application {
     
     private Node createConceptBookOverview(final ConceptBook conceptBook) {
         
-        final BorderPane entriesEntryPane = new BorderPane();
+        final BorderPane entriesContent = new BorderPane();
+        entriesContent.setPadding(new Insets(8, 0, 0, 0));
         
         final ListView<String> entriesListView = new ListView<>(toConceptPhrases(conceptBook));
         entriesListView.setPrefHeight(2400);
         entriesListView.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) ->
-            entriesEntryPane.setCenter(this.createConceptBookEntryInfos(conceptBook, newValue))
+            entriesContent.setCenter(this.createConceptBookEntryPlot(conceptBook, newValue))
         );
-        
-        final HBox entriesContent = new HBox(10, new VBox(4, entriesListView), entriesEntryPane);
-        entriesContent.setPadding(new Insets(8, 0, 0, 0));
+        entriesContent.setLeft(entriesListView);
+        BorderPane.setMargin(entriesListView, new Insets(0, 8, 0, 0));
         
         final Tab entriesTab = new Tab("Concept-Entries");
         entriesTab.setContent(entriesContent);
@@ -232,25 +230,12 @@ public class JesadidoPocClient extends Application {
         return result;
     }
     
-    private Node createConceptBookEntryInfos(final ConceptBook conceptBook, final String conceptPhrase) {
-        final Label concept = new Label("Concept: -");
-        final Label requiredParts = new Label("Required Parts: -");
-        final Label excludedParts = new Label("Excluded Parts: -");
-        final Label defaultTargets = new Label("Default Targets: -");
-        final VBox entryControl = new VBox(10, concept, requiredParts, excludedParts, defaultTargets);
-        
-        concept.setText("Concept: " + conceptPhrase);
-        final ConceptBookEntry conceptBookEntry = conceptBook.get(conceptPhrase);
-        requiredParts.setText("Required Parts: " + conceptBookEntry.getRequiredParts().toString());
-        excludedParts.setText("Excluded Parts: " + conceptBookEntry.getExcludedParts().toString());
-        defaultTargets.setText(String.format("Default Targets:%n   %s: %s%n   %s: %s%n   %s: %s%n   %s: %s%n   %s: %s%n",
-                Language.DE, conceptBookEntry.getDefaultTargets(Language.DE),
-                Language.EN, conceptBookEntry.getDefaultTargets(Language.EN),
-                Language.EO, conceptBookEntry.getDefaultTargets(Language.EO),
-                Language.ES, conceptBookEntry.getDefaultTargets(Language.ES),
-                Language.FR, conceptBookEntry.getDefaultTargets(Language.FR)
-        ));
-        return entryControl;
+    private Node createConceptBookEntryPlot(final ConceptBook conceptBook, final String conceptPhrase) {
+        final TextArea result = new TextArea(conceptBook.get(conceptPhrase).toString());
+        result.setFont(SOURCE_FONT_14);
+        result.setEditable(false);
+        result.setPadding(new Insets(6, 6, 6, 8));
+        return result;
     }
     
     private static ObservableList<String> toTranslations(final ConceptBook conceptBook, String referenceSource) {
