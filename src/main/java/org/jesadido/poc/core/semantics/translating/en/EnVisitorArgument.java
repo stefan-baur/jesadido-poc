@@ -9,8 +9,17 @@ package org.jesadido.poc.core.semantics.translating.en;
 
 public class EnVisitorArgument {
     
+    private boolean nextSentence = false;
     private En caseAttribute = null;
     private int sentenceMeatIndex = -1;
+    
+    public boolean getNextSentence() {
+        return this.nextSentence;
+    }
+    
+    public void setNextSentence(final boolean value) {
+        this.nextSentence = value;
+    }
     
     public En getCaseAttribute() {
         return this.caseAttribute;

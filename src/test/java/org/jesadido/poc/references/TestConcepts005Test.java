@@ -15,7 +15,7 @@ import org.junit.Test;
 public class TestConcepts005Test {
     
     @Test
-    public void testMethod000TestConcepts20161002122936MESZ() {
+    public void testMethod000TestConcepts20161002090946MESZ() {
         final String source = "Mi$La LudO ..";
         Assert.assertEquals("{ Su ( Mi$La LudO ) } ..", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Mein Spiel", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -26,7 +26,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod001TestConcepts20161002122936MESZ() {
+    public void testMethod001TestConcepts20161002090946MESZ() {
         final String source = "Mi$La LudO MalGrandEgA ..";
         Assert.assertEquals("{ Su ( Mi$La LudO MalGrandEgA ) } ..", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Mein winziges Spiel", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -37,7 +37,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod002TestConcepts20161002122936MESZ() {
+    public void testMethod002TestConcepts20161002090946MESZ() {
         final String source = "Mi$La LudO GigantA ..";
         Assert.assertEquals("{ Su ( Mi$La LudO GigantA ) } ..", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Mein gigantisches Spiel", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -48,7 +48,29 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod003TestConcepts20161002122936MESZ() {
+    public void testMethod003TestConcepts20161002090946MESZ() {
+        final String source = "Mi$La LudO MalGrandEgA .. Vi$La LudO GigantA ..";
+        Assert.assertEquals("{ Su ( Mi$La LudO MalGrandEgA ) } .. { Su ( Vi$La LudO GigantA ) } ..", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Mein winziges Spiel; Euer gigantisches Spiel", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("My tiny game; Your gigantic game", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Mia malgrandega ludo; Via giganta ludo", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Mi menudo juego; Vuestro gigantesco juego", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Mon jeu infime; Votre gigantesque jeu", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+    }
+
+    @Test
+    public void testMethod004TestConcepts20161002090946MESZ() {
+        final String source = "Mi$La LudO MalGrandEgA .. Bi$La HeroIcxO GigantA KontentA .. Ni$La FlorO ..";
+        Assert.assertEquals("{ Su ( Mi$La LudO MalGrandEgA ) } .. { Su ( Bi$La HeroIcxO GigantA KontentA ) } .. { Su ( Ni$La FlorO ) } ..", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Mein winziges Spiel; Dein gigantischer und zufriedener Held; Unsere Blume", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("My tiny game; Your gigantic and satisfied hero; Our flower", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Mia malgrandega ludo; Via giganta kaj kontenta heroo; Nia floro", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Mi menudo juego; Tu gigantesco héroe satisfecho; Nuestra flor", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Mon jeu infime; Ton gigantesque héros satisfait; Notre fleur", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+    }
+
+    @Test
+    public void testMethod005TestConcepts20161002090946MESZ() {
         final String source = "LudO HavAs Fin HeroIcxO .";
         Assert.assertEquals("{ Su ( LudO ) Dom ( HavAs ) Fin ( HeroIcxO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ein Spiel hat einen Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -59,7 +81,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod004TestConcepts20161002122936MESZ() {
+    public void testMethod006TestConcepts20161002090946MESZ() {
         final String source = "La LudO HavAs Fin La HeroIcxO .";
         Assert.assertEquals("{ Su ( La LudO ) Dom ( HavAs ) Fin ( La HeroIcxO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Das Spiel hat den Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -70,7 +92,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod005TestConcepts20161002122936MESZ() {
+    public void testMethod007TestConcepts20161002090946MESZ() {
         final String source = "Mi$La LudO HavAs Fin Bi$La HeroIcxO .";
         Assert.assertEquals("{ Su ( Mi$La LudO ) Dom ( HavAs ) Fin ( Bi$La HeroIcxO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Mein Spiel hat deinen Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -81,7 +103,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod006TestConcepts20161002122936MESZ() {
+    public void testMethod008TestConcepts20161002090946MESZ() {
         final String source = "Ni$La LudO HavAs Fin Vi$La HeroIcxO .";
         Assert.assertEquals("{ Su ( Ni$La LudO ) Dom ( HavAs ) Fin ( Vi$La HeroIcxO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Unser Spiel hat euren Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -92,7 +114,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod007TestConcepts20161002122936MESZ() {
+    public void testMethod009TestConcepts20161002090946MESZ() {
         final String source = "Mi$La LudO HavAs Fin HeroIcxO .";
         Assert.assertEquals("{ Su ( Mi$La LudO ) Dom ( HavAs ) Fin ( HeroIcxO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Mein Spiel hat einen Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -103,7 +125,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod008TestConcepts20161002122936MESZ() {
+    public void testMethod010TestConcepts20161002090946MESZ() {
         final String source = "Mi$La LudO MalGrandEgA HavAs Fin HeroIcxO SanA .";
         Assert.assertEquals("{ Su ( Mi$La LudO MalGrandEgA ) Dom ( HavAs ) Fin ( HeroIcxO SanA ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Mein winziges Spiel hat einen gesunden Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -114,7 +136,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod009TestConcepts20161002122936MESZ() {
+    public void testMethod011TestConcepts20161002090946MESZ() {
         final String source = "HeroIcxO TrovAs Fin SkribIlO .";
         Assert.assertEquals("{ Su ( HeroIcxO ) Dom ( TrovAs ) Fin ( SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ein Held findet einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -125,7 +147,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod010TestConcepts20161002122936MESZ() {
+    public void testMethod012TestConcepts20161002090946MESZ() {
         final String source = "La HeroIcxO TrovAs Fin La SkribIlO .";
         Assert.assertEquals("{ Su ( La HeroIcxO ) Dom ( TrovAs ) Fin ( La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Der Held findet den Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -136,7 +158,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod011TestConcepts20161002122936MESZ() {
+    public void testMethod013TestConcepts20161002090946MESZ() {
         final String source = "Mi$La HeroIcxO TrovAs Fin Bi$La SkribIlO .";
         Assert.assertEquals("{ Su ( Mi$La HeroIcxO ) Dom ( TrovAs ) Fin ( Bi$La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Mein Held findet deinen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -147,7 +169,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod012TestConcepts20161002122936MESZ() {
+    public void testMethod014TestConcepts20161002090946MESZ() {
         final String source = "Vi$La HeroIcxO TrovAs Fin Ni$La SkribIlO .";
         Assert.assertEquals("{ Su ( Vi$La HeroIcxO ) Dom ( TrovAs ) Fin ( Ni$La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Euer Held findet unseren Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -158,7 +180,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod013TestConcepts20161002122936MESZ() {
+    public void testMethod015TestConcepts20161002090946MESZ() {
         final String source = "Mi$La HeroIcxO TrovAs Fin La SkribIlO .";
         Assert.assertEquals("{ Su ( Mi$La HeroIcxO ) Dom ( TrovAs ) Fin ( La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Mein Held findet den Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -169,7 +191,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod014TestConcepts20161002122936MESZ() {
+    public void testMethod016TestConcepts20161002090946MESZ() {
         final String source = "Mi$La HeroIcxO TrovAs Fin La SkribIlO GigantA KontentA .";
         Assert.assertEquals("{ Su ( Mi$La HeroIcxO ) Dom ( TrovAs ) Fin ( La SkribIlO GigantA KontentA ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Mein Held findet den gigantischen und zufriedenen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -180,7 +202,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod015TestConcepts20161002122936MESZ() {
+    public void testMethod017TestConcepts20161002090946MESZ() {
         final String source = "HeroIcxO TrovAs Fin FlorO .";
         Assert.assertEquals("{ Su ( HeroIcxO ) Dom ( TrovAs ) Fin ( FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ein Held findet eine Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -191,7 +213,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod016TestConcepts20161002122936MESZ() {
+    public void testMethod018TestConcepts20161002090946MESZ() {
         final String source = "La HeroIcxO TrovAs Fin La FlorO .";
         Assert.assertEquals("{ Su ( La HeroIcxO ) Dom ( TrovAs ) Fin ( La FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Der Held findet die Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -202,7 +224,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod017TestConcepts20161002122936MESZ() {
+    public void testMethod019TestConcepts20161002090946MESZ() {
         final String source = "Bi$La HeroIcxO TrovAs Fin Mi$La FlorO .";
         Assert.assertEquals("{ Su ( Bi$La HeroIcxO ) Dom ( TrovAs ) Fin ( Mi$La FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Dein Held findet meine Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -213,7 +235,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod018TestConcepts20161002122936MESZ() {
+    public void testMethod020TestConcepts20161002090946MESZ() {
         final String source = "Vi$La HeroIcxO TrovAs Fin Ni$La FlorO .";
         Assert.assertEquals("{ Su ( Vi$La HeroIcxO ) Dom ( TrovAs ) Fin ( Ni$La FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Euer Held findet unsere Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -224,7 +246,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod019TestConcepts20161002122936MESZ() {
+    public void testMethod021TestConcepts20161002090946MESZ() {
         final String source = "Vi$La HeroIcxO TrovAs Fin FlorO .";
         Assert.assertEquals("{ Su ( Vi$La HeroIcxO ) Dom ( TrovAs ) Fin ( FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Euer Held findet eine Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -235,7 +257,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod020TestConcepts20161002122936MESZ() {
+    public void testMethod022TestConcepts20161002090946MESZ() {
         final String source = "Vi$La HeroIcxO SanA KontentA GigantA TrovAs Fin FlorO .";
         Assert.assertEquals("{ Su ( Vi$La HeroIcxO SanA KontentA GigantA ) Dom ( TrovAs ) Fin ( FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Euer gesunder, zufriedener und gigantischer Held findet eine Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -246,7 +268,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod021TestConcepts20161002122936MESZ() {
+    public void testMethod023TestConcepts20161002090946MESZ() {
         final String source = "HeroInO TrovAs Fin SkribIlO .";
         Assert.assertEquals("{ Su ( HeroInO ) Dom ( TrovAs ) Fin ( SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Eine Heldin findet einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -257,7 +279,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod022TestConcepts20161002122936MESZ() {
+    public void testMethod024TestConcepts20161002090946MESZ() {
         final String source = "La HeroInO TrovAs Fin La SkribIlO .";
         Assert.assertEquals("{ Su ( La HeroInO ) Dom ( TrovAs ) Fin ( La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Die Heldin findet den Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -268,7 +290,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod023TestConcepts20161002122936MESZ() {
+    public void testMethod025TestConcepts20161002090946MESZ() {
         final String source = "IcxO$Gxi$La HeroInO TrovAs Fin LudO$Gxi$La SkribIlO .";
         Assert.assertEquals("{ Su ( IcxO$Gxi$La HeroInO ) Dom ( TrovAs ) Fin ( LudO$Gxi$La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Seine Heldin findet seinen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -279,7 +301,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod024TestConcepts20161002122936MESZ() {
+    public void testMethod026TestConcepts20161002090946MESZ() {
         final String source = "IcxArO$Ili$La HeroInO TrovAs Fin InArO$Ili$La SkribIlO .";
         Assert.assertEquals("{ Su ( IcxArO$Ili$La HeroInO ) Dom ( TrovAs ) Fin ( InArO$Ili$La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ihre Heldin findet ihren Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -290,7 +312,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod025TestConcepts20161002122936MESZ() {
+    public void testMethod027TestConcepts20161002090946MESZ() {
         final String source = "La HeroInO TrovAs Fin LudO$Gxi$La SkribIlO .";
         Assert.assertEquals("{ Su ( La HeroInO ) Dom ( TrovAs ) Fin ( LudO$Gxi$La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Die Heldin findet seinen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -301,7 +323,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod026TestConcepts20161002122936MESZ() {
+    public void testMethod028TestConcepts20161002090946MESZ() {
         final String source = "La HeroInO GigantA KontentA TrovAs Fin LudO$Gxi$La SkribIlO GigantA .";
         Assert.assertEquals("{ Su ( La HeroInO GigantA KontentA ) Dom ( TrovAs ) Fin ( LudO$Gxi$La SkribIlO GigantA ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Die gigantische und zufriedene Heldin findet seinen gigantischen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -312,7 +334,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod027TestConcepts20161002122936MESZ() {
+    public void testMethod029TestConcepts20161002090946MESZ() {
         final String source = "Kaj HeroInO TrovAs Fin FlorO .";
         Assert.assertEquals("Kaj { Su ( HeroInO ) Dom ( TrovAs ) Fin ( FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Und eine Heldin findet eine Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -323,7 +345,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod028TestConcepts20161002122936MESZ() {
+    public void testMethod030TestConcepts20161002090946MESZ() {
         final String source = "Kaj La HeroInO TrovAs Fin La FlorO .";
         Assert.assertEquals("Kaj { Su ( La HeroInO ) Dom ( TrovAs ) Fin ( La FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Und die Heldin findet die Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -334,7 +356,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod029TestConcepts20161002122936MESZ() {
+    public void testMethod031TestConcepts20161002090946MESZ() {
         final String source = "Kaj InO$Gxi$La HeroInO TrovAs Fin InO$Bi$La FlorO .";
         Assert.assertEquals("Kaj { Su ( InO$Gxi$La HeroInO ) Dom ( TrovAs ) Fin ( InO$Bi$La FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Und ihre Heldin findet deine Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -345,7 +367,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod030TestConcepts20161002122936MESZ() {
+    public void testMethod032TestConcepts20161002090946MESZ() {
         final String source = "Kaj InArO$Ili$La HeroInO TrovAs Fin InArO$Vi$La FlorO .";
         Assert.assertEquals("Kaj { Su ( InArO$Ili$La HeroInO ) Dom ( TrovAs ) Fin ( InArO$Vi$La FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Und ihre Heldin findet eure Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -356,7 +378,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod031TestConcepts20161002122936MESZ() {
+    public void testMethod033TestConcepts20161002090946MESZ() {
         final String source = "Kaj HeroInO TrovAs Fin InArO$Vi$La FlorO .";
         Assert.assertEquals("Kaj { Su ( HeroInO ) Dom ( TrovAs ) Fin ( InArO$Vi$La FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Und eine Heldin findet eure Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -367,7 +389,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod032TestConcepts20161002122936MESZ() {
+    public void testMethod034TestConcepts20161002090946MESZ() {
         final String source = "Kaj HeroInO AtentA KontentA TrovAs Fin InArO$Vi$La FlorO GigantA SanA .";
         Assert.assertEquals("Kaj { Su ( HeroInO AtentA KontentA ) Dom ( TrovAs ) Fin ( InArO$Vi$La FlorO GigantA SanA ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Und eine aufmerksame und zufriedene Heldin findet eure gigantische und gesunde Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -378,7 +400,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod033TestConcepts20161002122936MESZ() {
+    public void testMethod035TestConcepts20161002090946MESZ() {
         final String source = "HeroIcxO HavAs Fin NomO .";
         Assert.assertEquals("{ Su ( HeroIcxO ) Dom ( HavAs ) Fin ( NomO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ein Held hat einen Namen.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -389,7 +411,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod034TestConcepts20161002122936MESZ() {
+    public void testMethod036TestConcepts20161002090946MESZ() {
         final String source = "La HeroIcxO HavAs Fin La NomO .";
         Assert.assertEquals("{ Su ( La HeroIcxO ) Dom ( HavAs ) Fin ( La NomO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Der Held hat den Namen.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -400,7 +422,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod035TestConcepts20161002122936MESZ() {
+    public void testMethod037TestConcepts20161002090946MESZ() {
         final String source = "IcxO$Mi$La HeroIcxO HavAs Fin HeroInO$Gxi$La NomO .";
         Assert.assertEquals("{ Su ( IcxO$Mi$La HeroIcxO ) Dom ( HavAs ) Fin ( HeroInO$Gxi$La NomO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Mein Held hat ihren Namen.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -411,7 +433,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod036TestConcepts20161002122936MESZ() {
+    public void testMethod038TestConcepts20161002090946MESZ() {
         final String source = "IcxArO$Ni$La HeroIcxO HavAs Fin HeroInArO$Ili$La NomO .";
         Assert.assertEquals("{ Su ( IcxArO$Ni$La HeroIcxO ) Dom ( HavAs ) Fin ( HeroInArO$Ili$La NomO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Unser Held hat ihren Namen.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -422,7 +444,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod037TestConcepts20161002122936MESZ() {
+    public void testMethod039TestConcepts20161002090946MESZ() {
         final String source = "IcxO$Mi$La HeroIcxO HavAs Fin NomO .";
         Assert.assertEquals("{ Su ( IcxO$Mi$La HeroIcxO ) Dom ( HavAs ) Fin ( NomO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Mein Held hat einen Namen.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -433,7 +455,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod038TestConcepts20161002122936MESZ() {
+    public void testMethod040TestConcepts20161002090946MESZ() {
         final String source = "IcxO$Mi$La HeroIcxO KontentA HavAs Fin NomO GigantA .";
         Assert.assertEquals("{ Su ( IcxO$Mi$La HeroIcxO KontentA ) Dom ( HavAs ) Fin ( NomO GigantA ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Mein zufriedener Held hat einen gigantischen Namen.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -444,7 +466,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod039TestConcepts20161002122936MESZ() {
+    public void testMethod041TestConcepts20161002090946MESZ() {
         final String source = "HeroIcxO DonAs Al HeroInO Fin SkribIlO .";
         Assert.assertEquals("{ Su ( HeroIcxO ) Dom ( DonAs ) Al ( HeroInO ) Fin ( SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ein Held gibt einer Heldin einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -455,7 +477,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod040TestConcepts20161002122936MESZ() {
+    public void testMethod042TestConcepts20161002090946MESZ() {
         final String source = "La HeroIcxO DonAs Al La HeroInO Fin La SkribIlO .";
         Assert.assertEquals("{ Su ( La HeroIcxO ) Dom ( DonAs ) Al ( La HeroInO ) Fin ( La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Der Held gibt der Heldin den Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -466,7 +488,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod041TestConcepts20161002122936MESZ() {
+    public void testMethod043TestConcepts20161002090946MESZ() {
         final String source = "InO$Bi$La HeroIcxO DonAs Al HeroIcxO$Mi$La HeroInO Fin LudO$Gxi$La SkribIlO .";
         Assert.assertEquals("{ Su ( InO$Bi$La HeroIcxO ) Dom ( DonAs ) Al ( HeroIcxO$Mi$La HeroInO ) Fin ( LudO$Gxi$La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Dein Held gibt meiner Heldin seinen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -477,7 +499,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod042TestConcepts20161002122936MESZ() {
+    public void testMethod044TestConcepts20161002090946MESZ() {
         final String source = "InArO$Vi$La HeroIcxO DonAs Al HeroIcxArO$Ni$La HeroInO Fin LudArO$Ili$La SkribIlO .";
         Assert.assertEquals("{ Su ( InArO$Vi$La HeroIcxO ) Dom ( DonAs ) Al ( HeroIcxArO$Ni$La HeroInO ) Fin ( LudArO$Ili$La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Euer Held gibt unserer Heldin ihren Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -488,7 +510,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod043TestConcepts20161002122936MESZ() {
+    public void testMethod045TestConcepts20161002090946MESZ() {
         final String source = "HeroIcxO DonAs Al La HeroInO Fin SkribIlO .";
         Assert.assertEquals("{ Su ( HeroIcxO ) Dom ( DonAs ) Al ( La HeroInO ) Fin ( SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ein Held gibt der Heldin einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -499,7 +521,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod044TestConcepts20161002122936MESZ() {
+    public void testMethod046TestConcepts20161002090946MESZ() {
         final String source = "HeroIcxO KontentA KuragxA DonAs Al La HeroInO SanA Fin SkribIlO .";
         Assert.assertEquals("{ Su ( HeroIcxO KontentA KuragxA ) Dom ( DonAs ) Al ( La HeroInO SanA ) Fin ( SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ein zufriedener und beherzter Held gibt der gesunden Heldin einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -510,7 +532,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod045TestConcepts20161002122936MESZ() {
+    public void testMethod047TestConcepts20161002090946MESZ() {
         final String source = "HeroIcxO DonAs Al HeroInO Fin FlorO .";
         Assert.assertEquals("{ Su ( HeroIcxO ) Dom ( DonAs ) Al ( HeroInO ) Fin ( FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ein Held gibt einer Heldin eine Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -521,7 +543,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod046TestConcepts20161002122936MESZ() {
+    public void testMethod048TestConcepts20161002090946MESZ() {
         final String source = "La HeroIcxO DonAs Al La HeroInO Fin La FlorO .";
         Assert.assertEquals("{ Su ( La HeroIcxO ) Dom ( DonAs ) Al ( La HeroInO ) Fin ( La FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Der Held gibt der Heldin die Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -532,7 +554,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod047TestConcepts20161002122936MESZ() {
+    public void testMethod049TestConcepts20161002090946MESZ() {
         final String source = "IcxO$Gxi$La HeroIcxO DonAs Al Bi$La HeroInO Fin Mi$La FlorO .";
         Assert.assertEquals("{ Su ( IcxO$Gxi$La HeroIcxO ) Dom ( DonAs ) Al ( Bi$La HeroInO ) Fin ( Mi$La FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Sein Held gibt deiner Heldin meine Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -543,7 +565,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod048TestConcepts20161002122936MESZ() {
+    public void testMethod050TestConcepts20161002090946MESZ() {
         final String source = "Ili$La HeroIcxO DonAs Al Vi$La HeroInO Fin Ni$La FlorO .";
         Assert.assertEquals("{ Su ( Ili$La HeroIcxO ) Dom ( DonAs ) Al ( Vi$La HeroInO ) Fin ( Ni$La FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ihr Held gibt euerer Heldin unsere Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -554,7 +576,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod049TestConcepts20161002122936MESZ() {
+    public void testMethod051TestConcepts20161002090946MESZ() {
         final String source = "HeroIcxO DonAs Al HeroInO Fin HomArO$Ni$La FlorO .";
         Assert.assertEquals("{ Su ( HeroIcxO ) Dom ( DonAs ) Al ( HeroInO ) Fin ( HomArO$Ni$La FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ein Held gibt einer Heldin unsere Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -565,7 +587,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod050TestConcepts20161002122936MESZ() {
+    public void testMethod052TestConcepts20161002090946MESZ() {
         final String source = "HeroIcxO GigantA DonAs Al HeroInO Fin HomArO$Ni$La FlorO GigantA .";
         Assert.assertEquals("{ Su ( HeroIcxO GigantA ) Dom ( DonAs ) Al ( HeroInO ) Fin ( HomArO$Ni$La FlorO GigantA ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ein gigantischer Held gibt einer Heldin unsere gigantische Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -576,7 +598,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod051TestConcepts20161002122936MESZ() {
+    public void testMethod053TestConcepts20161002090946MESZ() {
         final String source = "HeroInO DonAs Al HeroIcxO Fin SkribIlO .";
         Assert.assertEquals("{ Su ( HeroInO ) Dom ( DonAs ) Al ( HeroIcxO ) Fin ( SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Eine Heldin gibt einem Helden einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -587,7 +609,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod052TestConcepts20161002122936MESZ() {
+    public void testMethod054TestConcepts20161002090946MESZ() {
         final String source = "La HeroInO DonAs Al La HeroIcxO Fin La SkribIlO .";
         Assert.assertEquals("{ Su ( La HeroInO ) Dom ( DonAs ) Al ( La HeroIcxO ) Fin ( La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Die Heldin gibt dem Helden den Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -598,7 +620,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod053TestConcepts20161002122936MESZ() {
+    public void testMethod055TestConcepts20161002090946MESZ() {
         final String source = "InO$Gxi$La HeroInO DonAs Al Mi$La HeroIcxO Fin Bi$La SkribIlO .";
         Assert.assertEquals("{ Su ( InO$Gxi$La HeroInO ) Dom ( DonAs ) Al ( Mi$La HeroIcxO ) Fin ( Bi$La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ihre Heldin gibt meinem Helden deinen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -609,7 +631,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod054TestConcepts20161002122936MESZ() {
+    public void testMethod056TestConcepts20161002090946MESZ() {
         final String source = "InArO$Ili$La HeroInO DonAs Al Ni$La HeroIcxO Fin Vi$La SkribIlO .";
         Assert.assertEquals("{ Su ( InArO$Ili$La HeroInO ) Dom ( DonAs ) Al ( Ni$La HeroIcxO ) Fin ( Vi$La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ihre Heldin gibt unserem Helden euren Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -620,7 +642,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod055TestConcepts20161002122936MESZ() {
+    public void testMethod057TestConcepts20161002090946MESZ() {
         final String source = "HeroInO DonAs Al La HeroIcxO Fin Bi$La SkribIlO .";
         Assert.assertEquals("{ Su ( HeroInO ) Dom ( DonAs ) Al ( La HeroIcxO ) Fin ( Bi$La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Eine Heldin gibt dem Helden deinen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -631,7 +653,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod056TestConcepts20161002122936MESZ() {
+    public void testMethod058TestConcepts20161002090946MESZ() {
         final String source = "HeroInO GigantA AtentA DonAs Al La HeroIcxO GigantA KontentA Fin Bi$La SkribIlO GigantA .";
         Assert.assertEquals("{ Su ( HeroInO GigantA AtentA ) Dom ( DonAs ) Al ( La HeroIcxO GigantA KontentA ) Fin ( Bi$La SkribIlO GigantA ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Eine gigantische und aufmerksame Heldin gibt dem gigantischen und zufriedenen Helden deinen gigantischen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -642,7 +664,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod057TestConcepts20161002122936MESZ() {
+    public void testMethod059TestConcepts20161002090946MESZ() {
         final String source = "Kaj HeroInO DonAs Al HeroIcxO Fin FlorO .";
         Assert.assertEquals("Kaj { Su ( HeroInO ) Dom ( DonAs ) Al ( HeroIcxO ) Fin ( FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Und eine Heldin gibt einem Helden eine Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -653,7 +675,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod058TestConcepts20161002122936MESZ() {
+    public void testMethod060TestConcepts20161002090947MESZ() {
         final String source = "Kaj La HeroInO DonAs Al La HeroIcxO Fin La FlorO .";
         Assert.assertEquals("Kaj { Su ( La HeroInO ) Dom ( DonAs ) Al ( La HeroIcxO ) Fin ( La FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Und die Heldin gibt dem Helden die Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -664,7 +686,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod059TestConcepts20161002122936MESZ() {
+    public void testMethod061TestConcepts20161002090947MESZ() {
         final String source = "Kaj Gxi$La HeroInO DonAs Al Bi$La HeroIcxO Fin HeroInO$Gxi$La FlorO .";
         Assert.assertEquals("Kaj { Su ( Gxi$La HeroInO ) Dom ( DonAs ) Al ( Bi$La HeroIcxO ) Fin ( HeroInO$Gxi$La FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Und seine Heldin gibt deinem Helden ihre Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -675,7 +697,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod060TestConcepts20161002122936MESZ() {
+    public void testMethod062TestConcepts20161002090947MESZ() {
         final String source = "Kaj Ili$La HeroInO DonAs Al Vi$La HeroIcxO Fin HeroInArO$Ili$La FlorO .";
         Assert.assertEquals("Kaj { Su ( Ili$La HeroInO ) Dom ( DonAs ) Al ( Vi$La HeroIcxO ) Fin ( HeroInArO$Ili$La FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Und ihre Heldin gibt eurem Helden ihre Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -686,7 +708,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod061TestConcepts20161002122936MESZ() {
+    public void testMethod063TestConcepts20161002090947MESZ() {
         final String source = "Kaj La HeroInO DonAs Al HeroIcxO Fin HeroInArO$Ili$La FlorO .";
         Assert.assertEquals("Kaj { Su ( La HeroInO ) Dom ( DonAs ) Al ( HeroIcxO ) Fin ( HeroInArO$Ili$La FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Und die Heldin gibt einem Helden ihre Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -697,7 +719,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod062TestConcepts20161002122936MESZ() {
+    public void testMethod064TestConcepts20161002090947MESZ() {
         final String source = "Kaj La HeroInO SanA AtentA KuragxA DonAs Al HeroIcxO KontentA Fin HeroInArO$Ili$La FlorO .";
         Assert.assertEquals("Kaj { Su ( La HeroInO SanA AtentA KuragxA ) Dom ( DonAs ) Al ( HeroIcxO KontentA ) Fin ( HeroInArO$Ili$La FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Und die gesunde, aufmerksame und beherzte Heldin gibt einem zufriedenen Helden ihre Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -708,7 +730,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod063TestConcepts20161002122936MESZ() {
+    public void testMethod065TestConcepts20161002090947MESZ() {
         final String source = "HeroIcxO TrovAs Fin FlorO Kaj HeroInO TrovAs Fin SkribIlO .";
         Assert.assertEquals("{ Su ( HeroIcxO ) Dom ( TrovAs ) Fin ( FlorO ) } Kaj { Su ( HeroInO ) Dom ( TrovAs ) Fin ( SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ein Held findet eine Blume, und eine Heldin findet einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -719,7 +741,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod064TestConcepts20161002122936MESZ() {
+    public void testMethod066TestConcepts20161002090947MESZ() {
         final String source = "La HeroIcxO TrovAs Fin La FlorO Kaj La HeroInO TrovAs Fin La SkribIlO .";
         Assert.assertEquals("{ Su ( La HeroIcxO ) Dom ( TrovAs ) Fin ( La FlorO ) } Kaj { Su ( La HeroInO ) Dom ( TrovAs ) Fin ( La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Der Held findet die Blume, und die Heldin findet den Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -730,7 +752,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod065TestConcepts20161002122936MESZ() {
+    public void testMethod067TestConcepts20161002090947MESZ() {
         final String source = "Mi$La HeroIcxO TrovAs Fin Bi$La FlorO Kaj Bi$La HeroInO TrovAs Fin Mi$La SkribIlO .";
         Assert.assertEquals("{ Su ( Mi$La HeroIcxO ) Dom ( TrovAs ) Fin ( Bi$La FlorO ) } Kaj { Su ( Bi$La HeroInO ) Dom ( TrovAs ) Fin ( Mi$La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Mein Held findet deine Blume, und deine Heldin findet meinen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -741,7 +763,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod066TestConcepts20161002122936MESZ() {
+    public void testMethod068TestConcepts20161002090947MESZ() {
         final String source = "Ni$La HeroIcxO TrovAs Fin Vi$La FlorO Kaj Vi$La HeroInO TrovAs Fin Ni$La SkribIlO .";
         Assert.assertEquals("{ Su ( Ni$La HeroIcxO ) Dom ( TrovAs ) Fin ( Vi$La FlorO ) } Kaj { Su ( Vi$La HeroInO ) Dom ( TrovAs ) Fin ( Ni$La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Unser Held findet eure Blume, und eure Heldin findet unseren Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -752,7 +774,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod067TestConcepts20161002122936MESZ() {
+    public void testMethod069TestConcepts20161002090947MESZ() {
         final String source = "La HeroIcxO TrovAs Fin FlorO Kaj Vi$La HeroInO TrovAs Fin SkribIlO .";
         Assert.assertEquals("{ Su ( La HeroIcxO ) Dom ( TrovAs ) Fin ( FlorO ) } Kaj { Su ( Vi$La HeroInO ) Dom ( TrovAs ) Fin ( SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Der Held findet eine Blume, und eure Heldin findet einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -763,7 +785,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod068TestConcepts20161002122936MESZ() {
+    public void testMethod070TestConcepts20161002090947MESZ() {
         final String source = "La HeroIcxO KontentA TrovAs Fin FlorO GigantA Kaj Vi$La HeroInO TrovAs Fin SkribIlO GigantA .";
         Assert.assertEquals("{ Su ( La HeroIcxO KontentA ) Dom ( TrovAs ) Fin ( FlorO GigantA ) } Kaj { Su ( Vi$La HeroInO ) Dom ( TrovAs ) Fin ( SkribIlO GigantA ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Der zufriedene Held findet eine gigantische Blume, und eure Heldin findet einen gigantischen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -774,7 +796,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod069TestConcepts20161002122936MESZ() {
+    public void testMethod071TestConcepts20161002090947MESZ() {
         final String source = "HeroIcxO DonAs Al HeroInO Fin FlorO Kaj HeroInO DonAs Al HeroIcxO Fin SkribIlO .";
         Assert.assertEquals("{ Su ( HeroIcxO ) Dom ( DonAs ) Al ( HeroInO ) Fin ( FlorO ) } Kaj { Su ( HeroInO ) Dom ( DonAs ) Al ( HeroIcxO ) Fin ( SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ein Held gibt einer Heldin eine Blume, und eine Heldin gibt einem Helden einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -785,7 +807,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod070TestConcepts20161002122936MESZ() {
+    public void testMethod072TestConcepts20161002090947MESZ() {
         final String source = "La HeroIcxO DonAs Al La HeroInO Fin La FlorO Kaj La HeroInO DonAs Al La HeroIcxO Fin La SkribIlO .";
         Assert.assertEquals("{ Su ( La HeroIcxO ) Dom ( DonAs ) Al ( La HeroInO ) Fin ( La FlorO ) } Kaj { Su ( La HeroInO ) Dom ( DonAs ) Al ( La HeroIcxO ) Fin ( La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Der Held gibt der Heldin die Blume, und die Heldin gibt dem Helden den Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -796,7 +818,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod071TestConcepts20161002122936MESZ() {
+    public void testMethod073TestConcepts20161002090947MESZ() {
         final String source = "Bi$La HeroIcxO DonAs Al Mi$La HeroInO Fin LudO$Gxi$La FlorO Kaj Mi$La HeroInO DonAs Al InO$Bi$La HeroIcxO Fin HeroInO$Gxi$La SkribIlO .";
         Assert.assertEquals("{ Su ( Bi$La HeroIcxO ) Dom ( DonAs ) Al ( Mi$La HeroInO ) Fin ( LudO$Gxi$La FlorO ) } Kaj { Su ( Mi$La HeroInO ) Dom ( DonAs ) Al ( InO$Bi$La HeroIcxO ) Fin ( HeroInO$Gxi$La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Dein Held gibt meiner Heldin seine Blume, und meine Heldin gibt deinem Helden ihren Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -807,7 +829,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod072TestConcepts20161002122936MESZ() {
+    public void testMethod074TestConcepts20161002090947MESZ() {
         final String source = "Vi$La HeroIcxO DonAs Al Ni$La HeroInO Fin LudArO$Ili$La FlorO Kaj Ni$La HeroInO DonAs Al InArO$Vi$La HeroIcxO Fin HeroInArO$Ili$La SkribIlO .";
         Assert.assertEquals("{ Su ( Vi$La HeroIcxO ) Dom ( DonAs ) Al ( Ni$La HeroInO ) Fin ( LudArO$Ili$La FlorO ) } Kaj { Su ( Ni$La HeroInO ) Dom ( DonAs ) Al ( InArO$Vi$La HeroIcxO ) Fin ( HeroInArO$Ili$La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Euer Held gibt unserer Heldin ihre Blume, und unsere Heldin gibt eurem Helden ihren Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -818,7 +840,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod073TestConcepts20161002122936MESZ() {
+    public void testMethod075TestConcepts20161002090947MESZ() {
         final String source = "Bi$La HeroIcxO DonAs Al HeroInO Fin La FlorO Kaj HeroInO DonAs Al HeroIcxO Fin SkribIlO .";
         Assert.assertEquals("{ Su ( Bi$La HeroIcxO ) Dom ( DonAs ) Al ( HeroInO ) Fin ( La FlorO ) } Kaj { Su ( HeroInO ) Dom ( DonAs ) Al ( HeroIcxO ) Fin ( SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Dein Held gibt einer Heldin die Blume, und eine Heldin gibt einem Helden einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -829,7 +851,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod074TestConcepts20161002122936MESZ() {
+    public void testMethod076TestConcepts20161002090947MESZ() {
         final String source = "Bi$La HeroIcxO KontentA AtentA DonAs Al HeroInO MalSanA KontentA Fin La FlorO Kaj HeroInO MalSanA DonAs Al HeroIcxO Fin SkribIlO .";
         Assert.assertEquals("{ Su ( Bi$La HeroIcxO KontentA AtentA ) Dom ( DonAs ) Al ( HeroInO MalSanA KontentA ) Fin ( La FlorO ) } Kaj { Su ( HeroInO MalSanA ) Dom ( DonAs ) Al ( HeroIcxO ) Fin ( SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Dein zufriedener und aufmerksamer Held gibt einer kranken und zufriedenen Heldin die Blume, und eine kranke Heldin gibt einem Helden einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -840,7 +862,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod075TestConcepts20161002122936MESZ() {
+    public void testMethod077TestConcepts20161002090947MESZ() {
         final String source = "HeroIcxO DonAs Al HeroInO Fin FlorO Aux HeroInO DonAs Al HeroIcxO Fin SkribIlO .";
         Assert.assertEquals("{ Su ( HeroIcxO ) Dom ( DonAs ) Al ( HeroInO ) Fin ( FlorO ) } Aux { Su ( HeroInO ) Dom ( DonAs ) Al ( HeroIcxO ) Fin ( SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ein Held gibt einer Heldin eine Blume, oder eine Heldin gibt einem Helden einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -851,7 +873,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod076TestConcepts20161002122936MESZ() {
+    public void testMethod078TestConcepts20161002090947MESZ() {
         final String source = "La HeroIcxO DonAs Al La HeroInO Fin La FlorO Aux La HeroInO DonAs Al La HeroIcxO Fin La SkribIlO .";
         Assert.assertEquals("{ Su ( La HeroIcxO ) Dom ( DonAs ) Al ( La HeroInO ) Fin ( La FlorO ) } Aux { Su ( La HeroInO ) Dom ( DonAs ) Al ( La HeroIcxO ) Fin ( La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Der Held gibt der Heldin die Blume, oder die Heldin gibt dem Helden den Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -862,7 +884,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod077TestConcepts20161002122936MESZ() {
+    public void testMethod079TestConcepts20161002090947MESZ() {
         final String source = "LudO$Gxi$La HeroIcxO DonAs Al Mi$La HeroInO Fin Bi$La FlorO Aux Mi$La HeroInO DonAs Al Gxi$La HeroIcxO Fin Mi$La SkribIlO .";
         Assert.assertEquals("{ Su ( LudO$Gxi$La HeroIcxO ) Dom ( DonAs ) Al ( Mi$La HeroInO ) Fin ( Bi$La FlorO ) } Aux { Su ( Mi$La HeroInO ) Dom ( DonAs ) Al ( Gxi$La HeroIcxO ) Fin ( Mi$La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Sein Held gibt meiner Heldin deine Blume, oder meine Heldin gibt seinem Helden meinen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -873,7 +895,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod078TestConcepts20161002122936MESZ() {
+    public void testMethod080TestConcepts20161002090947MESZ() {
         final String source = "LudArO$Ili$La HeroIcxO DonAs Al Ni$La HeroInO Fin Vi$La FlorO Aux Ni$La HeroInO DonAs Al Ili$La HeroIcxO Fin Ni$La SkribIlO .";
         Assert.assertEquals("{ Su ( LudArO$Ili$La HeroIcxO ) Dom ( DonAs ) Al ( Ni$La HeroInO ) Fin ( Vi$La FlorO ) } Aux { Su ( Ni$La HeroInO ) Dom ( DonAs ) Al ( Ili$La HeroIcxO ) Fin ( Ni$La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ihr Held gibt unserer Heldin eure Blume, oder unsere Heldin gibt ihrem Helden unseren Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -884,7 +906,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod079TestConcepts20161002122936MESZ() {
+    public void testMethod081TestConcepts20161002090947MESZ() {
         final String source = "HeroIcxO DonAs Al Ni$La HeroInO Fin FlorO Aux La HeroInO DonAs Al HeroIcxO Fin SkribIlO .";
         Assert.assertEquals("{ Su ( HeroIcxO ) Dom ( DonAs ) Al ( Ni$La HeroInO ) Fin ( FlorO ) } Aux { Su ( La HeroInO ) Dom ( DonAs ) Al ( HeroIcxO ) Fin ( SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ein Held gibt unserer Heldin eine Blume, oder die Heldin gibt einem Helden einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -895,7 +917,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod080TestConcepts20161002122936MESZ() {
+    public void testMethod082TestConcepts20161002090947MESZ() {
         final String source = "HeroIcxO SanA DonAs Al Ni$La HeroInO Fin FlorO Aux La HeroInO KontentA KuragxA DonAs Al HeroIcxO Fin SkribIlO .";
         Assert.assertEquals("{ Su ( HeroIcxO SanA ) Dom ( DonAs ) Al ( Ni$La HeroInO ) Fin ( FlorO ) } Aux { Su ( La HeroInO KontentA KuragxA ) Dom ( DonAs ) Al ( HeroIcxO ) Fin ( SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ein gesunder Held gibt unserer Heldin eine Blume, oder die zufriedene und beherzte Heldin gibt einem Helden einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -906,7 +928,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod081TestConcepts20161002122936MESZ() {
+    public void testMethod083TestConcepts20161002090947MESZ() {
         final String source = "Fin SkribIlO Su HeroIcxO TrovAs . Fin NomO Al HeroIcxO DonAs HeroInO .";
         Assert.assertEquals("{ Fin ( SkribIlO ) Su ( HeroIcxO ) Dom ( TrovAs ) } . { Fin ( NomO ) Al ( HeroIcxO ) Dom ( DonAs ) Su ( HeroInO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Einen Stift findet ein Held. Einen Namen gibt eine Heldin einem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -917,7 +939,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod082TestConcepts20161002122936MESZ() {
+    public void testMethod084TestConcepts20161002090947MESZ() {
         final String source = "Fin La SkribIlO Su La HeroIcxO TrovAs . Fin La NomO Al La HeroIcxO DonAs La HeroInO .";
         Assert.assertEquals("{ Fin ( La SkribIlO ) Su ( La HeroIcxO ) Dom ( TrovAs ) } . { Fin ( La NomO ) Al ( La HeroIcxO ) Dom ( DonAs ) Su ( La HeroInO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Den Stift findet der Held. Den Namen gibt die Heldin dem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -928,7 +950,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod083TestConcepts20161002122936MESZ() {
+    public void testMethod085TestConcepts20161002090947MESZ() {
         final String source = "Fin Mi$La SkribIlO Su Bi$La HeroIcxO TrovAs . Fin Bi$La NomO Al Mi$La HeroIcxO DonAs Bi$La HeroInO .";
         Assert.assertEquals("{ Fin ( Mi$La SkribIlO ) Su ( Bi$La HeroIcxO ) Dom ( TrovAs ) } . { Fin ( Bi$La NomO ) Al ( Mi$La HeroIcxO ) Dom ( DonAs ) Su ( Bi$La HeroInO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Meinen Stift findet dein Held. Deinen Namen gibt deine Heldin meinem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -939,7 +961,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod084TestConcepts20161002122936MESZ() {
+    public void testMethod086TestConcepts20161002090947MESZ() {
         final String source = "Fin Ni$La SkribIlO Su Vi$La HeroIcxO TrovAs . Fin Vi$La NomO Al Ni$La HeroIcxO DonAs Vi$La HeroInO .";
         Assert.assertEquals("{ Fin ( Ni$La SkribIlO ) Su ( Vi$La HeroIcxO ) Dom ( TrovAs ) } . { Fin ( Vi$La NomO ) Al ( Ni$La HeroIcxO ) Dom ( DonAs ) Su ( Vi$La HeroInO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Unseren Stift findet euer Held. Euren Namen gibt eure Heldin unserem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -950,7 +972,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod085TestConcepts20161002122936MESZ() {
+    public void testMethod087TestConcepts20161002090947MESZ() {
         final String source = "Fin SkribIlO Su Vi$La HeroIcxO TrovAs . Fin NomO Al Mi$La HeroIcxO DonAs La HeroInO .";
         Assert.assertEquals("{ Fin ( SkribIlO ) Su ( Vi$La HeroIcxO ) Dom ( TrovAs ) } . { Fin ( NomO ) Al ( Mi$La HeroIcxO ) Dom ( DonAs ) Su ( La HeroInO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Einen Stift findet euer Held. Einen Namen gibt die Heldin meinem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -961,7 +983,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod086TestConcepts20161002122936MESZ() {
+    public void testMethod088TestConcepts20161002090947MESZ() {
         final String source = "Fin SkribIlO Su Vi$La HeroIcxO SanA TrovAs . Fin NomO GigantA KontentA Al Mi$La HeroIcxO DonAs La HeroInO .";
         Assert.assertEquals("{ Fin ( SkribIlO ) Su ( Vi$La HeroIcxO SanA ) Dom ( TrovAs ) } . { Fin ( NomO GigantA KontentA ) Al ( Mi$La HeroIcxO ) Dom ( DonAs ) Su ( La HeroInO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Einen Stift findet euer gesunder Held. Einen gigantischen und zufriedenen Namen gibt die Heldin meinem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -972,7 +994,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod087TestConcepts20161002122936MESZ() {
+    public void testMethod089TestConcepts20161002090947MESZ() {
         final String source = "Fin SkribIlO TrovAs Su HeroIcxO Kaj TrovAs Fin FlorO Su HeroInO Kaj Al HeroIcxO Fin FlorO DonAs HeroInO .";
         Assert.assertEquals("{ Fin ( SkribIlO ) Dom ( TrovAs ) Su ( HeroIcxO ) } Kaj { Dom ( TrovAs ) Fin ( FlorO ) Su ( HeroInO ) } Kaj { Al ( HeroIcxO ) Fin ( FlorO ) Dom ( DonAs ) Su ( HeroInO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Einen Stift findet ein Held, und eine Blume findet eine Heldin, und eine Blume gibt eine Heldin einem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -983,7 +1005,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod088TestConcepts20161002122936MESZ() {
+    public void testMethod090TestConcepts20161002090947MESZ() {
         final String source = "Fin La SkribIlO TrovAs Su La HeroIcxO Kaj TrovAs Fin La FlorO Su La HeroInO Kaj Al La HeroIcxO Fin La FlorO DonAs La HeroInO .";
         Assert.assertEquals("{ Fin ( La SkribIlO ) Dom ( TrovAs ) Su ( La HeroIcxO ) } Kaj { Dom ( TrovAs ) Fin ( La FlorO ) Su ( La HeroInO ) } Kaj { Al ( La HeroIcxO ) Fin ( La FlorO ) Dom ( DonAs ) Su ( La HeroInO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Den Stift findet der Held, und die Blume findet die Heldin, und die Blume gibt die Heldin dem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -994,7 +1016,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod089TestConcepts20161002122936MESZ() {
+    public void testMethod091TestConcepts20161002090947MESZ() {
         final String source = "Fin Bi$La SkribIlO TrovAs Su Mi$La HeroIcxO Kaj TrovAs Fin Bi$La FlorO Su Mi$La HeroInO Kaj Al Bi$La HeroIcxO Fin Mi$La FlorO DonAs Bi$La HeroInO .";
         Assert.assertEquals("{ Fin ( Bi$La SkribIlO ) Dom ( TrovAs ) Su ( Mi$La HeroIcxO ) } Kaj { Dom ( TrovAs ) Fin ( Bi$La FlorO ) Su ( Mi$La HeroInO ) } Kaj { Al ( Bi$La HeroIcxO ) Fin ( Mi$La FlorO ) Dom ( DonAs ) Su ( Bi$La HeroInO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Deinen Stift findet mein Held, und deine Blume findet meine Heldin, und meine Blume gibt deine Heldin deinem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -1005,7 +1027,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod090TestConcepts20161002122936MESZ() {
+    public void testMethod092TestConcepts20161002090947MESZ() {
         final String source = "Fin Vi$La SkribIlO TrovAs Su Ni$La HeroIcxO Kaj TrovAs Fin Vi$La FlorO Su Ni$La HeroInO Kaj Al Vi$La HeroIcxO Fin Ni$La FlorO DonAs Vi$La HeroInO .";
         Assert.assertEquals("{ Fin ( Vi$La SkribIlO ) Dom ( TrovAs ) Su ( Ni$La HeroIcxO ) } Kaj { Dom ( TrovAs ) Fin ( Vi$La FlorO ) Su ( Ni$La HeroInO ) } Kaj { Al ( Vi$La HeroIcxO ) Fin ( Ni$La FlorO ) Dom ( DonAs ) Su ( Vi$La HeroInO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Euren Stift findet unser Held, und eure Blume findet unsere Heldin, und unsere Blume gibt eure Heldin eurem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -1016,7 +1038,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod091TestConcepts20161002122936MESZ() {
+    public void testMethod093TestConcepts20161002090947MESZ() {
         final String source = "Fin Bi$La SkribIlO TrovAs Su HeroIcxO Kaj TrovAs Fin FlorO Su Ni$La HeroInO Kaj Al La HeroIcxO Fin FlorO DonAs Bi$La HeroInO .";
         Assert.assertEquals("{ Fin ( Bi$La SkribIlO ) Dom ( TrovAs ) Su ( HeroIcxO ) } Kaj { Dom ( TrovAs ) Fin ( FlorO ) Su ( Ni$La HeroInO ) } Kaj { Al ( La HeroIcxO ) Fin ( FlorO ) Dom ( DonAs ) Su ( Bi$La HeroInO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Deinen Stift findet ein Held, und eine Blume findet unsere Heldin, und eine Blume gibt deine Heldin dem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -1027,7 +1049,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod092TestConcepts20161002122936MESZ() {
+    public void testMethod094TestConcepts20161002090947MESZ() {
         final String source = "Fin Bi$La SkribIlO GigantA AtentA TrovAs Su HeroIcxO SanA Kaj TrovAs Fin FlorO Su Ni$La HeroInO Kaj Al La HeroIcxO Fin FlorO GigantA DonAs Bi$La HeroInO .";
         Assert.assertEquals("{ Fin ( Bi$La SkribIlO GigantA AtentA ) Dom ( TrovAs ) Su ( HeroIcxO SanA ) } Kaj { Dom ( TrovAs ) Fin ( FlorO ) Su ( Ni$La HeroInO ) } Kaj { Al ( La HeroIcxO ) Fin ( FlorO GigantA ) Dom ( DonAs ) Su ( Bi$La HeroInO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Deinen gigantischen und aufmerksamen Stift findet ein gesunder Held, und eine Blume findet unsere Heldin, und eine gigantische Blume gibt deine Heldin dem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -1038,7 +1060,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod093TestConcepts20161002122936MESZ() {
+    public void testMethod095TestConcepts20161002090947MESZ() {
         final String source = "Fin SkribIlO TrovAs Su HeroIcxO , TrovAs Fin FlorO Su HeroInO , Al HeroIcxO Fin FlorO DonAs HeroInO .";
         Assert.assertEquals("{ Fin ( SkribIlO ) Dom ( TrovAs ) Su ( HeroIcxO ) } , { Dom ( TrovAs ) Fin ( FlorO ) Su ( HeroInO ) } , { Al ( HeroIcxO ) Fin ( FlorO ) Dom ( DonAs ) Su ( HeroInO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Einen Stift findet ein Held, eine Blume findet eine Heldin, eine Blume gibt eine Heldin einem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -1049,7 +1071,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod094TestConcepts20161002122936MESZ() {
+    public void testMethod096TestConcepts20161002090947MESZ() {
         final String source = "Fin La SkribIlO TrovAs Su La HeroIcxO , TrovAs Fin La FlorO Su La HeroInO , Al La HeroIcxO Fin La FlorO DonAs La HeroInO .";
         Assert.assertEquals("{ Fin ( La SkribIlO ) Dom ( TrovAs ) Su ( La HeroIcxO ) } , { Dom ( TrovAs ) Fin ( La FlorO ) Su ( La HeroInO ) } , { Al ( La HeroIcxO ) Fin ( La FlorO ) Dom ( DonAs ) Su ( La HeroInO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Den Stift findet der Held, die Blume findet die Heldin, die Blume gibt die Heldin dem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -1060,7 +1082,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod095TestConcepts20161002122936MESZ() {
+    public void testMethod097TestConcepts20161002090947MESZ() {
         final String source = "Fin LudO$Gxi$La SkribIlO TrovAs Su Mi$La HeroIcxO , TrovAs Fin Bi$La FlorO Su Mi$La HeroInO , Al Bi$La HeroIcxO Fin Mi$La FlorO DonAs Bi$La HeroInO .";
         Assert.assertEquals("{ Fin ( LudO$Gxi$La SkribIlO ) Dom ( TrovAs ) Su ( Mi$La HeroIcxO ) } , { Dom ( TrovAs ) Fin ( Bi$La FlorO ) Su ( Mi$La HeroInO ) } , { Al ( Bi$La HeroIcxO ) Fin ( Mi$La FlorO ) Dom ( DonAs ) Su ( Bi$La HeroInO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Seinen Stift findet mein Held, deine Blume findet meine Heldin, meine Blume gibt deine Heldin deinem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -1071,7 +1093,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod096TestConcepts20161002122936MESZ() {
+    public void testMethod098TestConcepts20161002090947MESZ() {
         final String source = "Fin LudArO$Ili$La SkribIlO TrovAs Su Ni$La HeroIcxO , TrovAs Fin Vi$La FlorO Su Ni$La HeroInO , Al Vi$La HeroIcxO Fin Ni$La FlorO DonAs Vi$La HeroInO .";
         Assert.assertEquals("{ Fin ( LudArO$Ili$La SkribIlO ) Dom ( TrovAs ) Su ( Ni$La HeroIcxO ) } , { Dom ( TrovAs ) Fin ( Vi$La FlorO ) Su ( Ni$La HeroInO ) } , { Al ( Vi$La HeroIcxO ) Fin ( Ni$La FlorO ) Dom ( DonAs ) Su ( Vi$La HeroInO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ihren Stift findet unser Held, eure Blume findet unsere Heldin, unsere Blume gibt eure Heldin eurem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -1082,7 +1104,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod097TestConcepts20161002122936MESZ() {
+    public void testMethod099TestConcepts20161002090947MESZ() {
         final String source = "Fin La SkribIlO TrovAs Su HeroIcxO , TrovAs Fin FlorO Su Ni$La HeroInO , Al HeroIcxO Fin Mi$La FlorO DonAs Bi$La HeroInO .";
         Assert.assertEquals("{ Fin ( La SkribIlO ) Dom ( TrovAs ) Su ( HeroIcxO ) } , { Dom ( TrovAs ) Fin ( FlorO ) Su ( Ni$La HeroInO ) } , { Al ( HeroIcxO ) Fin ( Mi$La FlorO ) Dom ( DonAs ) Su ( Bi$La HeroInO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Den Stift findet ein Held, eine Blume findet unsere Heldin, meine Blume gibt deine Heldin einem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -1093,7 +1115,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod098TestConcepts20161002122936MESZ() {
+    public void testMethod100TestConcepts20161002090947MESZ() {
         final String source = "Fin La SkribIlO TrovAs Su HeroIcxO GigantA , TrovAs Fin FlorO Su Ni$La HeroInO GigantA , Al HeroIcxO GigantA Fin Mi$La FlorO DonAs Bi$La HeroInO GigantA .";
         Assert.assertEquals("{ Fin ( La SkribIlO ) Dom ( TrovAs ) Su ( HeroIcxO GigantA ) } , { Dom ( TrovAs ) Fin ( FlorO ) Su ( Ni$La HeroInO GigantA ) } , { Al ( HeroIcxO GigantA ) Fin ( Mi$La FlorO ) Dom ( DonAs ) Su ( Bi$La HeroInO GigantA ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Den Stift findet ein gigantischer Held, eine Blume findet unsere gigantische Heldin, meine Blume gibt deine gigantische Heldin einem gigantischen Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -1104,7 +1126,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod099TestConcepts20161002122936MESZ() {
+    public void testMethod101TestConcepts20161002090947MESZ() {
         final String source = "HeroIcxO TrovAs Fin SkribIlO . HeroIcxO HavAs Fin SkribIlO .";
         Assert.assertEquals("{ Su ( HeroIcxO ) Dom ( TrovAs ) Fin ( SkribIlO ) } . { Su ( HeroIcxO ) Dom ( HavAs ) Fin ( SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ein Held findet einen Stift. Ein Held hat einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -1115,7 +1137,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod100TestConcepts20161002122936MESZ() {
+    public void testMethod102TestConcepts20161002090947MESZ() {
         final String source = "La HeroIcxO TrovAs Fin La SkribIlO . La HeroIcxO HavAs Fin La SkribIlO .";
         Assert.assertEquals("{ Su ( La HeroIcxO ) Dom ( TrovAs ) Fin ( La SkribIlO ) } . { Su ( La HeroIcxO ) Dom ( HavAs ) Fin ( La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Der Held findet den Stift. Der Held hat den Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -1126,7 +1148,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod101TestConcepts20161002122936MESZ() {
+    public void testMethod103TestConcepts20161002090947MESZ() {
         final String source = "SkribIlO$Gxi$La HeroIcxO TrovAs Fin Bi$La SkribIlO . Mi$La HeroIcxO HavAs Fin Bi$La SkribIlO .";
         Assert.assertEquals("{ Su ( SkribIlO$Gxi$La HeroIcxO ) Dom ( TrovAs ) Fin ( Bi$La SkribIlO ) } . { Su ( Mi$La HeroIcxO ) Dom ( HavAs ) Fin ( Bi$La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Sein Held findet deinen Stift. Mein Held hat deinen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -1137,7 +1159,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod102TestConcepts20161002122936MESZ() {
+    public void testMethod104TestConcepts20161002090947MESZ() {
         final String source = "SkribIlArO$Ili$La HeroIcxO TrovAs Fin Vi$La SkribIlO . Ni$La HeroIcxO HavAs Fin Vi$La SkribIlO .";
         Assert.assertEquals("{ Su ( SkribIlArO$Ili$La HeroIcxO ) Dom ( TrovAs ) Fin ( Vi$La SkribIlO ) } . { Su ( Ni$La HeroIcxO ) Dom ( HavAs ) Fin ( Vi$La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ihr Held findet euren Stift. Unser Held hat euren Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -1148,7 +1170,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod103TestConcepts20161002122936MESZ() {
+    public void testMethod105TestConcepts20161002090947MESZ() {
         final String source = "La HeroIcxO TrovAs Fin SkribIlO . HeroIcxO HavAs Fin Ili$La SkribIlO .";
         Assert.assertEquals("{ Su ( La HeroIcxO ) Dom ( TrovAs ) Fin ( SkribIlO ) } . { Su ( HeroIcxO ) Dom ( HavAs ) Fin ( Ili$La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Der Held findet einen Stift. Ein Held hat ihren Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -1159,7 +1181,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod104TestConcepts20161002122936MESZ() {
+    public void testMethod106TestConcepts20161002090947MESZ() {
         final String source = "La HeroIcxO KontentA SanA TrovAs Fin SkribIlO . HeroIcxO SanA KontentA HavAs Fin Ili$La SkribIlO .";
         Assert.assertEquals("{ Su ( La HeroIcxO KontentA SanA ) Dom ( TrovAs ) Fin ( SkribIlO ) } . { Su ( HeroIcxO SanA KontentA ) Dom ( HavAs ) Fin ( Ili$La SkribIlO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Der zufriedene und gesunde Held findet einen Stift. Ein gesunder und zufriedener Held hat ihren Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -1170,7 +1192,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod105TestConcepts20161002122936MESZ() {
+    public void testMethod107TestConcepts20161002090947MESZ() {
         final String source = "Se HeroIcxO TrovAs Fin FlorO , HeroIcxO DonAs Fin FlorO Al HeroInO .";
         Assert.assertEquals("Se { Su ( HeroIcxO ) Dom ( TrovAs ) Fin ( FlorO ) } , { Su ( HeroIcxO ) Dom ( DonAs ) Fin ( FlorO ) Al ( HeroInO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Wenn ein Held eine Blume findet, gibt ein Held einer Heldin eine Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -1181,7 +1203,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod106TestConcepts20161002122936MESZ() {
+    public void testMethod108TestConcepts20161002090947MESZ() {
         final String source = "Se La HeroIcxO TrovAs Fin La FlorO , La HeroIcxO DonAs Fin La FlorO Al La HeroInO .";
         Assert.assertEquals("Se { Su ( La HeroIcxO ) Dom ( TrovAs ) Fin ( La FlorO ) } , { Su ( La HeroIcxO ) Dom ( DonAs ) Fin ( La FlorO ) Al ( La HeroInO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Wenn der Held die Blume findet, gibt der Held der Heldin die Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -1192,7 +1214,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod107TestConcepts20161002122936MESZ() {
+    public void testMethod109TestConcepts20161002090947MESZ() {
         final String source = "Se Mi$La HeroIcxO TrovAs Fin Gxi$La FlorO , Mi$La HeroIcxO DonAs Fin Gxi$La FlorO Al Bi$La HeroInO .";
         Assert.assertEquals("Se { Su ( Mi$La HeroIcxO ) Dom ( TrovAs ) Fin ( Gxi$La FlorO ) } , { Su ( Mi$La HeroIcxO ) Dom ( DonAs ) Fin ( Gxi$La FlorO ) Al ( Bi$La HeroInO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Wenn mein Held seine Blume findet, gibt mein Held deiner Heldin seine Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -1203,7 +1225,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod108TestConcepts20161002122936MESZ() {
+    public void testMethod110TestConcepts20161002090947MESZ() {
         final String source = "Se Ni$La HeroIcxO TrovAs Fin Ili$La FlorO , Ni$La HeroIcxO DonAs Fin Ili$La FlorO Al Vi$La HeroInO .";
         Assert.assertEquals("Se { Su ( Ni$La HeroIcxO ) Dom ( TrovAs ) Fin ( Ili$La FlorO ) } , { Su ( Ni$La HeroIcxO ) Dom ( DonAs ) Fin ( Ili$La FlorO ) Al ( Vi$La HeroInO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Wenn unser Held ihre Blume findet, gibt unser Held euerer Heldin ihre Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -1214,7 +1236,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod109TestConcepts20161002122936MESZ() {
+    public void testMethod111TestConcepts20161002090947MESZ() {
         final String source = "Se Mi$La HeroIcxO TrovAs Fin La FlorO , HeroIcxO DonAs Fin FlorO Al HeroInO .";
         Assert.assertEquals("Se { Su ( Mi$La HeroIcxO ) Dom ( TrovAs ) Fin ( La FlorO ) } , { Su ( HeroIcxO ) Dom ( DonAs ) Fin ( FlorO ) Al ( HeroInO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Wenn mein Held die Blume findet, gibt ein Held einer Heldin eine Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -1225,7 +1247,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod110TestConcepts20161002122936MESZ() {
+    public void testMethod112TestConcepts20161002090947MESZ() {
         final String source = "Se Mi$La HeroIcxO GigantA TrovAs Fin La FlorO SanA , HeroIcxO GigantA KontentA SanA DonAs Fin FlorO SanA Al HeroInO .";
         Assert.assertEquals("Se { Su ( Mi$La HeroIcxO GigantA ) Dom ( TrovAs ) Fin ( La FlorO SanA ) } , { Su ( HeroIcxO GigantA KontentA SanA ) Dom ( DonAs ) Fin ( FlorO SanA ) Al ( HeroInO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Wenn mein gigantischer Held die gesunde Blume findet, gibt ein gigantischer, zufriedener und gesunder Held einer Heldin eine gesunde Blume.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -1236,7 +1258,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod111TestConcepts20161002122936MESZ() {
+    public void testMethod113TestConcepts20161002090947MESZ() {
         final String source = "HeroIcxO DonAs Fin FlorO Al HeroInO Se HeroIcxO TrovAs Fin FlorO .";
         Assert.assertEquals("{ Su ( HeroIcxO ) Dom ( DonAs ) Fin ( FlorO ) Al ( HeroInO ) } Se { Su ( HeroIcxO ) Dom ( TrovAs ) Fin ( FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ein Held gibt einer Heldin eine Blume, wenn ein Held eine Blume findet.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -1247,7 +1269,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod112TestConcepts20161002122936MESZ() {
+    public void testMethod114TestConcepts20161002090947MESZ() {
         final String source = "La HeroIcxO DonAs Fin La FlorO Al La HeroInO Se La HeroIcxO TrovAs Fin La FlorO .";
         Assert.assertEquals("{ Su ( La HeroIcxO ) Dom ( DonAs ) Fin ( La FlorO ) Al ( La HeroInO ) } Se { Su ( La HeroIcxO ) Dom ( TrovAs ) Fin ( La FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Der Held gibt der Heldin die Blume, wenn der Held die Blume findet.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -1258,7 +1280,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod113TestConcepts20161002122936MESZ() {
+    public void testMethod115TestConcepts20161002090947MESZ() {
         final String source = "Bi$La HeroIcxO DonAs Fin Gxi$La FlorO Al Mi$La HeroInO Se Bi$La HeroIcxO TrovAs Fin Gxi$La FlorO .";
         Assert.assertEquals("{ Su ( Bi$La HeroIcxO ) Dom ( DonAs ) Fin ( Gxi$La FlorO ) Al ( Mi$La HeroInO ) } Se { Su ( Bi$La HeroIcxO ) Dom ( TrovAs ) Fin ( Gxi$La FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Dein Held gibt meiner Heldin seine Blume, wenn dein Held seine Blume findet.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -1269,7 +1291,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod114TestConcepts20161002122936MESZ() {
+    public void testMethod116TestConcepts20161002090947MESZ() {
         final String source = "Vi$La HeroIcxO DonAs Fin Ili$La FlorO Al Ni$La HeroInO Se Vi$La HeroIcxO TrovAs Fin Ili$La FlorO .";
         Assert.assertEquals("{ Su ( Vi$La HeroIcxO ) Dom ( DonAs ) Fin ( Ili$La FlorO ) Al ( Ni$La HeroInO ) } Se { Su ( Vi$La HeroIcxO ) Dom ( TrovAs ) Fin ( Ili$La FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Euer Held gibt unserer Heldin ihre Blume, wenn euer Held ihre Blume findet.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -1280,7 +1302,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod115TestConcepts20161002122936MESZ() {
+    public void testMethod117TestConcepts20161002090947MESZ() {
         final String source = "Vi$La HeroIcxO DonAs Fin FlorO Al Mi$La HeroInO Se La HeroIcxO TrovAs Fin FlorO .";
         Assert.assertEquals("{ Su ( Vi$La HeroIcxO ) Dom ( DonAs ) Fin ( FlorO ) Al ( Mi$La HeroInO ) } Se { Su ( La HeroIcxO ) Dom ( TrovAs ) Fin ( FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Euer Held gibt meiner Heldin eine Blume, wenn der Held eine Blume findet.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
@@ -1291,7 +1313,7 @@ public class TestConcepts005Test {
     }
 
     @Test
-    public void testMethod116TestConcepts20161002122936MESZ() {
+    public void testMethod118TestConcepts20161002090947MESZ() {
         final String source = "Vi$La HeroIcxO KontentA GigantA KuragxA DonAs Fin FlorO Al Mi$La HeroInO Se La HeroIcxO KontentA TrovAs Fin FlorO .";
         Assert.assertEquals("{ Su ( Vi$La HeroIcxO KontentA GigantA KuragxA ) Dom ( DonAs ) Fin ( FlorO ) Al ( Mi$La HeroInO ) } Se { Su ( La HeroIcxO KontentA ) Dom ( TrovAs ) Fin ( FlorO ) } .", TranslatorFactory.createTranslator(Language.JI, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Euer zufriedener, gigantischer und beherzter Held gibt meiner Heldin eine Blume, wenn der zufriedene Held eine Blume findet.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());

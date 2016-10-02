@@ -15,6 +15,7 @@ import org.jesadido.poc.core.semantics.translating.TranslationResult;
 import org.jesadido.poc.core.semantics.translating.TranslationTarget;
 import org.jesadido.poc.core.semantics.translating.TransletParameters;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
+import org.jesadido.poc.core.syntax.tree.Node;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 import org.jesadido.poc.core.syntax.tree.sentence.AdjectiveSelection;
@@ -44,7 +45,11 @@ public class FrVisitor implements Visitor<TranslationResult, FrVisitorArgument> 
     public TranslationResult visit(final SentenceSequence node, final FrVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(this.frTranslator, node);
         final List<String> translatedSentences = new LinkedList<>();
-        node.getSentences().stream().forEach(sentence -> translatedSentences.add(sentence.accept(this, argument).getTranslation()));
+        final List<Node> sentences = node.getSentences();
+        for (int i = 0; i < sentences.size(); i++) {
+            argument.setNextSentence(i < sentences.size() - 1);
+            translatedSentences.add(sentences.get(i).accept(this, argument).getTranslation());
+        }
         return result.setTranslation(translatedSentences);
     }
 
@@ -56,7 +61,11 @@ public class FrVisitor implements Visitor<TranslationResult, FrVisitorArgument> 
             argument.setSentenceMeatIndex(i);
             translatedMeats.add(node.getMeats().get(i).accept(this, argument).getTranslation());
         }
-        return result.setTranslation(StringUtils.up(String.format("%s%s", String.join("", translatedMeats), ConceptUtils.isEllipsis(node.getTerminator().getConcept()) ? "" : ".")));
+        String sentenceTerminator = ".";
+        if (ConceptUtils.isEllipsis(node.getTerminator().getConcept())) {
+            sentenceTerminator = argument.getNextSentence() ? ";" : "";
+        }
+        return result.setTranslation(StringUtils.up(String.format("%s%s", String.join("", translatedMeats), sentenceTerminator)));
     }
 
     @Override

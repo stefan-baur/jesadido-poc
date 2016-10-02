@@ -237,6 +237,8 @@ public final class ReferenceConceptBooks {
                     "Mi$La LudO ..",
                     "Mi$La LudO MalGrandEgA ..",
                     "Mi$La LudO GigantA ..",
+                    "Mi$La LudO MalGrandEgA .. Vi$La LudO GigantA ..",
+                    "Mi$La LudO MalGrandEgA .. Bi$La HeroIcxO GigantA KontentA .. Ni$La FlorO ..",
                     
                     "LudO HavAs Fin HeroIcxO .",
                     "La LudO HavAs Fin La HeroIcxO .",

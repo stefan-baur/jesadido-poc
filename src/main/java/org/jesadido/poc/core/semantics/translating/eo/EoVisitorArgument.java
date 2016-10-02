@@ -9,8 +9,17 @@ package org.jesadido.poc.core.semantics.translating.eo;
 
 public class EoVisitorArgument {
     
+    private boolean nextSentence = false;
     private Eo caseAttribute = null;
     private int sentenceMeatIndex = -1;
+    
+    public boolean getNextSentence() {
+        return this.nextSentence;
+    }
+    
+    public void setNextSentence(final boolean value) {
+        this.nextSentence = value;
+    }
     
     public Eo getCaseAttribute() {
         return this.caseAttribute;

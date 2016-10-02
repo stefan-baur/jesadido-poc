@@ -9,10 +9,19 @@ package org.jesadido.poc.core.semantics.translating.de;
 
 public class DeVisitorArgument {
     
+    private boolean nextSentence = false;
     private De caseAttribute = null;
     private int sentenceMeatIndex = -1;
     private boolean conditionalMeatA = false;
     private boolean conditionalMeatB = false;
+    
+    public boolean getNextSentence() {
+        return this.nextSentence;
+    }
+    
+    public void setNextSentence(final boolean value) {
+        this.nextSentence = value;
+    }
     
     public De getCaseAttribute() {
         return this.caseAttribute;
