@@ -5,22 +5,21 @@
  * Licensed under the GNU Lesser General Public License, Version 3.0 (LGPL-3.0)
  * https://www.gnu.org/licenses/lgpl-3.0.txt
  */
-package org.jesadido.poc.usecases.gaming;
+package org.jesadido.poc.references;
 
 import org.jesadido.poc.JesadidoPoc;
 import org.jesadido.poc.core.Language;
-import org.jesadido.poc.core.testing.References;
 import org.jesadido.poc.usecases.gaming.models.GameModel;
 
-public final class ReferenceGames {
+public final class ReferenceGameModels {
     
-    public static final GameModel MY_TINY_GAME = new GameModel("my-tiny-game", References.GAME_CONCEPTS)
+    public static final GameModel MY_TINY_GAME = new GameModel("my-tiny-game", ReferenceConceptBooks.GAME_CONCEPTS)
             .initSupportedLanguages(Language.JI, Language.DE, Language.EN, Language.EO, Language.ES, Language.FR)
             .initDefaultLanguages(Language.DE, Language.EN)
             .initTitle("Mi$La LudO MalGrandEgA ..")
             ;
     
-    private ReferenceGames() {
+    private ReferenceGameModels() {
         // A private class constructor
     }
     

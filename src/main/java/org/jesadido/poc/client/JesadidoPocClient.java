@@ -39,8 +39,8 @@ import org.jesadido.poc.core.semantics.ConceptBookEntry;
 import org.jesadido.poc.core.semantics.translating.TranslatorFactory;
 import org.jesadido.poc.core.syntax.Grammar;
 import org.jesadido.poc.core.syntax.GrammarFactory;
-import org.jesadido.poc.core.testing.References;
-import org.jesadido.poc.usecases.gaming.ReferenceGames;
+import org.jesadido.poc.references.ReferenceConceptBooks;
+import org.jesadido.poc.references.ReferenceGameModels;
 import org.jesadido.poc.usecases.gaming.generators.html.HtmlGameGenerator;
 import org.jesadido.poc.usecases.gaming.generators.javafx.NodeGameGenerator;
 import org.jesadido.poc.usecases.gaming.generators.text.TextGameGenerator;
@@ -79,7 +79,7 @@ public class JesadidoPocClient extends Application {
     private Scene createMasterScene() {
         
         final Grammar jesadidoGrammar = GrammarFactory.createJesadidoGrammar();
-        final GameModel myTinyGame = ReferenceGames.MY_TINY_GAME;
+        final GameModel myTinyGame = ReferenceGameModels.MY_TINY_GAME;
         
         final BorderPane masterPane = new BorderPane();
         masterPane.setPadding(new Insets(8, 8, 8, 8));
@@ -94,7 +94,7 @@ public class JesadidoPocClient extends Application {
         menuGrammars.getItems().addAll(menuItemGrammarJesadido);
         
         final Menu menuConceptBooks = new Menu("Concept-Books");
-        References.getConceptBooks().stream().forEach(conceptBook -> this.addConceptBookMenuItem(masterPane, menuConceptBooks, conceptBook));
+        ReferenceConceptBooks.getConceptBooks().stream().forEach(conceptBook -> this.addConceptBookMenuItem(masterPane, menuConceptBooks, conceptBook));
         
         final MenuItem menuItemMyTinyGame = new MenuItem(myTinyGame.getKey());
         menuItemMyTinyGame.setOnAction((ActionEvent e) -> {
@@ -217,7 +217,7 @@ public class JesadidoPocClient extends Application {
         referenceSourcesTab.setContent(referenceSourcesContent);
         referenceSourcesTab.setClosable(false);
         
-        final TextArea referenceTestsContent = new TextArea(References.generateTests(conceptBook).toString());
+        final TextArea referenceTestsContent = new TextArea(ReferenceConceptBooks.generateTests(conceptBook).toString());
         referenceTestsContent.setFont(SOURCE_FONT_14);
         referenceTestsContent.setEditable(false);
         referenceTestsContent.setPrefHeight(2400);

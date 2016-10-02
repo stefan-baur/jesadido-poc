@@ -5,7 +5,7 @@
  * Licensed under the GNU Lesser General Public License, Version 3.0 (LGPL-3.0)
  * https://www.gnu.org/licenses/lgpl-3.0.txt
  */
-package org.jesadido.poc.core.testing;
+package org.jesadido.poc.references;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -27,7 +27,7 @@ import org.jesadido.poc.core.semantics.translating.es.EsTarget;
 import org.jesadido.poc.core.semantics.translating.fr.Fr;
 import org.jesadido.poc.core.semantics.translating.fr.FrTarget;
 
-public final class References {
+public final class ReferenceConceptBooks {
     
     public static final ConceptBook TEST_CONCEPTS = new ConceptBook("test-concepts")
             
@@ -398,11 +398,11 @@ public final class References {
     private static final Map<ConceptBook, ConceptBookTestsGenerator> CONCEPT_BOOK_TESTS_GENERATOR = new HashMap<>();
     
     static {
-        CONCEPT_BOOK_TESTS_GENERATOR.put(TEST_CONCEPTS, new ConceptBookTestsGenerator(TEST_CONCEPTS, "References.TEST_CONCEPTS", "TestConcepts"));
-        CONCEPT_BOOK_TESTS_GENERATOR.put(GAME_CONCEPTS, new ConceptBookTestsGenerator(GAME_CONCEPTS, "References.GAME_CONCEPTS", "GameConcepts"));
+        CONCEPT_BOOK_TESTS_GENERATOR.put(TEST_CONCEPTS, new ConceptBookTestsGenerator(TEST_CONCEPTS, "ReferenceConceptBooks.TEST_CONCEPTS", "TestConcepts"));
+        CONCEPT_BOOK_TESTS_GENERATOR.put(GAME_CONCEPTS, new ConceptBookTestsGenerator(GAME_CONCEPTS, "ReferenceConceptBooks.GAME_CONCEPTS", "GameConcepts"));
     }
     
-    private References() {
+    private ReferenceConceptBooks() {
         // A private utility class constructor
     }
     
