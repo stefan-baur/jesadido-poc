@@ -7,14 +7,15 @@
  */
 package org.jesadido.poc.usecases.gaming.generators.javafx;
 
-import javafx.scene.Node;
 import org.jesadido.poc.JesadidoPoc;
 import org.jesadido.poc.usecases.gaming.models.GameModel;
 
 public class GamePaneGenerator {
     
-    public Node generate(final GameModel gameModel) {
-        return new GamePane(gameModel);
+    public GamePane generate(final GameModel gameModel) {
+        final GamePane result = new GamePane(gameModel);
+        result.setPrefHeight(2400);
+        return result;
     }
     
     public static void main(final String[] arguments) {
