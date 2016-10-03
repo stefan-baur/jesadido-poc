@@ -40,7 +40,7 @@ import org.jesadido.poc.core.syntax.GrammarFactory;
 import org.jesadido.poc.references.ReferenceConceptBooks;
 import org.jesadido.poc.references.ReferenceGameModels;
 import org.jesadido.poc.usecases.gaming.generators.html.HtmlGameGenerator;
-import org.jesadido.poc.usecases.gaming.generators.javafx.NodeGameGenerator;
+import org.jesadido.poc.usecases.gaming.generators.javafx.GamePaneGenerator;
 import org.jesadido.poc.usecases.gaming.generators.text.TextGameGenerator;
 import org.jesadido.poc.usecases.gaming.models.GameModel;
 
@@ -135,7 +135,8 @@ public class JesadidoPocClient extends Application {
         gameModelTab.setContent(gameModelContent);
         gameModelTab.setClosable(false);
         
-        final BorderPane playGameContent = new BorderPane(new NodeGameGenerator().generate(gameModel));
+        final BorderPane playGameContent = new BorderPane(new GamePaneGenerator().generate(gameModel));
+        playGameContent.setPadding(new Insets(8, 0, 0, 0));
         
         final Tab playGameTab = new Tab("Play the Game!");
         playGameTab.setContent(playGameContent);

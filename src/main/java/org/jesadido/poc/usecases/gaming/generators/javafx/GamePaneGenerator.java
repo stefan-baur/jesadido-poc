@@ -11,7 +11,7 @@ import javafx.scene.Node;
 import org.jesadido.poc.JesadidoPoc;
 import org.jesadido.poc.usecases.gaming.models.GameModel;
 
-public class NodeGameGenerator {
+public class GamePaneGenerator {
     
     public Node generate(final GameModel gameModel) {
         return new GamePane(gameModel);
