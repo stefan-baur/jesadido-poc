@@ -21,12 +21,12 @@ import org.jesadido.poc.usecases.gaming.models.GameModel;
 
 public class GamePane extends Pane {
     
-    private final GameModel gameModel;
+    private final GameState gameState;
     
     private final Group gameScene = new Group();
     
     public GamePane(final GameModel gameModel) {
-        this.gameModel = gameModel;
+        this.gameState = new GameState(gameModel);
         this.init();
         this.layoutBoundsProperty().addListener((ObservableValue<? extends Bounds> observable, Bounds oldValue, Bounds newValue) -> this.invalidate());
     }
@@ -50,14 +50,14 @@ public class GamePane extends Pane {
         hLine.setStroke(Color.GREEN);
         this.gameScene.getChildren().add(hLine);
         
-        final Text supportedLanguages = new Text(this.gameModel.getSupportedLanguages().toString());
+        final Text supportedLanguages = new Text(this.gameState.getGameModel().getSupportedLanguages().toString());
         supportedLanguages.setFill(Color.WHITE);
         supportedLanguages.setX(3);
         supportedLanguages.setY(2);
         supportedLanguages.setTextOrigin(VPos.TOP);
         this.gameScene.getChildren().add(supportedLanguages);
         
-        final Text title = new Text(this.gameModel.getTitle());
+        final Text title = new Text(this.gameState.getGameModel().getTitle().getSource());
         title.setFill(Color.WHITE);
         title.setX((clientWidth - title.prefWidth(-1)) / 2.0);
         title.setY(clientHeight / 2.0);

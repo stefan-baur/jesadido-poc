@@ -21,7 +21,7 @@ public class GameModel {
     private ConceptBook gameConceptBook = new ConceptBook("empty-book");
     private final List<Language> supportedLanguages = new LinkedList<>();
     private final List<Language> selectedLanguages = new LinkedList<>();
-    private String title = "TestO ..";
+    private Phrase title = Phrase.DEFAULT;
     
     public GameModel(final String key) {
         this.key = key;
@@ -72,12 +72,12 @@ public class GameModel {
         return this;
     }
     
-    public String getTitle() {
+    public Phrase getTitle() {
         return this.title;
     }
     
-    public GameModel initTitle(final String title) {
-        this.title = title;
+    public GameModel initTitle(final String titleSource) {
+        this.title = Phrase.create(titleSource);
         return this;
     }
 }
