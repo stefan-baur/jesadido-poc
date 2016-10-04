@@ -16,17 +16,23 @@ public class GameState {
     
     private final GameModel gameModel;
     
+    private final List<Language> selectableLanguages = new LinkedList<>();
     private Language mainLanguage = Language.EO;
     private final List<Language> semiLanguages = new LinkedList<>();
     
     public GameState(final GameModel gameModel) {
         this.gameModel = gameModel;
+        this.selectableLanguages.addAll(this.gameModel.getSupportedLanguages());
         this.mainLanguage = this.gameModel.getSelectedLanguages().get(0);
         this.semiLanguages.addAll(this.gameModel.getSelectedLanguages().subList(1, this.gameModel.getSelectedLanguages().size()));
     }
     
     public GameModel getGameModel() {
         return this.gameModel;
+    }
+    
+    public List<Language> getSelectableLanguages() {
+        return this.selectableLanguages;
     }
     
     public Language getMainLanguage() {

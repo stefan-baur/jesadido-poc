@@ -12,14 +12,22 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jesadido.poc.JesadidoPoc;
+import org.jesadido.poc.core.Language;
 import org.jesadido.poc.core.scripting.Src;
+import org.jesadido.poc.core.semantics.translating.TranslatorFactory;
 import org.jesadido.poc.usecases.gaming.models.GameModel;
 
 public class HtmlGameGenerator {
     
-    public boolean generate(final GameModel gameModel) {
+    private final GameModel gameModel;
+    
+    public HtmlGameGenerator(final GameModel gameModel) {
+        this.gameModel = gameModel;
+    }
+    
+    public boolean generate() {
         try {
-            this.generateIndexPage(gameModel);
+            this.generateIndexPage();
         } catch (IOException ex) {
             Logger.getAnonymousLogger().log(Level.SEVERE, "The static-html website can not be stored to the directory: " + this.getHtmlDirectory().getAbsolutePath(), ex);
             return false;
@@ -39,27 +47,31 @@ public class HtmlGameGenerator {
         return new File(this.getOutputDirectory(), "html");
     }
     
-    public File getKeyDirectory(final GameModel gameModel) {
-        return new File(this.getHtmlDirectory(), gameModel.getKey());
+    public File getKeyDirectory() {
+        return new File(this.getHtmlDirectory(), this.gameModel.getKey());
     }
     
-    public File getIndexPageFile(final GameModel gameModel) {
-        return new File(this.getKeyDirectory(gameModel), "index.html");
+    public File getIndexPageFile() {
+        return new File(this.getKeyDirectory(), "index.html");
     }
     
-    public void generateIndexPage(final GameModel gameModel) throws IOException {
+    public void generateIndexPage() throws IOException {
         new Src()
                 .line("<!DOCTYPE html>")
                 .begin("<html>")
                 .begin("<head>")
-                .line("<title>%s</title>", gameModel.getTitle())
+                .line("<title>%s</title>", this.translate(this.gameModel.getSelectedLanguages().get(0), this.gameModel.getTitle().getSource()))
                 .end("</head>")
                 .begin("<body>")
-                .line("<div>%s</div>", gameModel.getSupportedLanguages().toString())
-                .line("<code>%s</code>", gameModel.getTitle())
+                .line("<div>%s %s</div>", this.gameModel.getSelectedLanguages(), this.gameModel.getSupportedLanguages().toString().replace("[", "{").replace("]", "}"))
+                .line("<code>%s</code>", this.translate(this.gameModel.getSelectedLanguages().get(0), this.gameModel.getTitle().getSource()))
                 .end("</body>")
                 .end("</html>")
-                .save(this.getIndexPageFile(gameModel));
+                .save(this.getIndexPageFile());
+    }
+    
+    private String translate(final Language language, final String source) {
+        return TranslatorFactory.createTranslator(language, this.gameModel.getGameConceptBook()).translate(source).getTranslation();
     }
     
     public static void main(final String[] arguments) {

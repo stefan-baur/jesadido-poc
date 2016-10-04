@@ -17,6 +17,9 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import org.jesadido.poc.JesadidoPoc;
+import org.jesadido.poc.core.Language;
+import org.jesadido.poc.core.scripting.Src;
+import org.jesadido.poc.core.semantics.translating.TranslatorFactory;
 import org.jesadido.poc.usecases.gaming.models.GameModel;
 
 public class GamePane extends Pane {
@@ -50,19 +53,23 @@ public class GamePane extends Pane {
         hLine.setStroke(Color.GREEN);
         this.gameScene.getChildren().add(hLine);
         
-        final Text supportedLanguages = new Text(this.gameState.getGameModel().getSupportedLanguages().toString());
+        final Text supportedLanguages = new Text(String.format("%s %s %s", this.gameState.getMainLanguage(), this.gameState.getSemiLanguages(), this.gameState.getSelectableLanguages().toString().replace("[", "{").replace("]", "}")));
         supportedLanguages.setFill(Color.WHITE);
         supportedLanguages.setX(3);
         supportedLanguages.setY(2);
         supportedLanguages.setTextOrigin(VPos.TOP);
         this.gameScene.getChildren().add(supportedLanguages);
         
-        final Text title = new Text(this.gameState.getGameModel().getTitle().getSource());
+        final Text title = new Text(this.translate(this.gameState.getMainLanguage(), this.gameState.getGameModel().getTitle().getSource()));
         title.setFill(Color.WHITE);
         title.setX((clientWidth - title.prefWidth(-1)) / 2.0);
         title.setY(clientHeight / 2.0);
         title.setTextOrigin(VPos.CENTER);
         this.gameScene.getChildren().add(title);
+    }
+    
+    private String translate(final Language language, final String source) {
+        return TranslatorFactory.createTranslator(language, this.gameState.getGameModel().getGameConceptBook()).translate(source).getTranslation();
     }
     
     public static void main(final String[] arguments) {
