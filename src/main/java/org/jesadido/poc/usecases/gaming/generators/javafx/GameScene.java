@@ -7,6 +7,8 @@
  */
 package org.jesadido.poc.usecases.gaming.generators.javafx;
 
+import java.util.logging.Logger;
+import javafx.event.Event;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
@@ -72,6 +74,7 @@ public class GameScene extends Group {
         languageSettings.setX(3);
         languageSettings.setY(2);
         languageSettings.setTextOrigin(VPos.TOP);
+        languageSettings.setOnMouseClicked((Event event) -> Logger.getAnonymousLogger().info("Click"));
         this.getChildren().add(languageSettings);
         
         final Text title = new Text(this.translate(this.gameState.getMainLanguage(), this.gameState.getGameModel().getTitle().getSource()));
