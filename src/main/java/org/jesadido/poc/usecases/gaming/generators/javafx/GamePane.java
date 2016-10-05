@@ -14,8 +14,19 @@ import org.jesadido.poc.usecases.gaming.models.GameModel;
 
 public class GamePane extends Pane {
     
+    private final GameScene gameScene;
+    
+    public GamePane(final GameScene gameScene) {
+        super(gameScene);
+        this.gameScene = gameScene;
+        this.layoutBoundsProperty().addListener((ObservableValue<? extends Bounds> observable, Bounds oldValue, Bounds newValue) -> this.gameScene.resize(newValue.getWidth(), newValue.getHeight()));
+    }
+    
     public GamePane(final GameModel gameModel) {
-        super(new GameScene(gameModel));
-        this.layoutBoundsProperty().addListener((ObservableValue<? extends Bounds> observable, Bounds oldValue, Bounds newValue) -> this.getChildren().get(0).resize(newValue.getWidth(), newValue.getHeight()));
+        this(new GameScene(gameModel));
+    }
+    
+    public GameScene getGameScene() {
+        return this.gameScene;
     }
 }
