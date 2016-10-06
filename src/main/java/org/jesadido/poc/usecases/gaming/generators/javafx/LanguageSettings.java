@@ -35,13 +35,13 @@ public class LanguageSettings extends Group {
     }
     
     private Node createLanguageField(final Language language) {
-        final Text result = new Text(language.getCode());
+        final Text result = new Text(String.format("%s %s %s", language.getCode(), this.gameScene.getGameState().getSemiLanguages(), this.gameScene.getGameState().getRestLanguages()));
         result.setFill(Color.KHAKI);
         result.setX(3);
         result.setY(2);
         result.setTextOrigin(VPos.TOP);
         result.setOnMouseClicked((Event event) -> {
-            this.gameScene.getGameState().selectMainLanguage(Language.DE);
+            this.gameScene.getGameState().selectNextMainLanguage();
             this.gameScene.update();
         });
         return result;

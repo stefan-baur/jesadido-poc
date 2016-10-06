@@ -54,4 +54,9 @@ public class GameState {
         this.restLanguages.remove(language);
         this.mainLanguage = language;
     }
+    
+    public void selectNextMainLanguage() {
+        this.restLanguages.add(this.mainLanguage);
+        this.mainLanguage = this.semiLanguages.isEmpty() ? this.restLanguages.remove(0) : this.semiLanguages.remove(0);
+    }
 }
