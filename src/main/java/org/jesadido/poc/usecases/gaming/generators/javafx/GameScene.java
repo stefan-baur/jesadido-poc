@@ -7,13 +7,7 @@
  */
 package org.jesadido.poc.usecases.gaming.generators.javafx;
 
-import java.util.logging.Logger;
-import javafx.event.Event;
-import javafx.geometry.VPos;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import org.jesadido.poc.JesadidoPoc;
 import org.jesadido.poc.core.Language;
 import org.jesadido.poc.core.semantics.translating.TranslatorFactory;
@@ -25,6 +19,8 @@ public class GameScene extends SizedGroup {
     
     private final Rectangle clippingRegion = new Rectangle();
     private final BackgroundLayer backgroundLayer = new BackgroundLayer();
+    private SplashScreen splashScreen;
+    private LanguageSettings languageSettings;
     
     public GameScene(final GameModel gameModel) {
         this.gameState = new GameState(gameModel);
@@ -40,41 +36,29 @@ public class GameScene extends SizedGroup {
     }
     
     private void init() {
-        final double width = this.getWidth();
-        final double height = this.getHeight();
-        
         this.setClip(this.clippingRegion);
-        this.clippingRegion.setWidth(width);
-        this.clippingRegion.setHeight(height);
         
         this.getChildren().add(this.backgroundLayer);
-        this.backgroundLayer.setSize(width, height);
         
-        final Text languageSettings = new Text(String.format("%s %s %s", this.gameState.getMainLanguage(), this.gameState.getSemiLanguages(), this.gameState.getSelectableLanguages().toString().replace("[", "{").replace("]", "}")));
-        languageSettings.setFill(Color.KHAKI);
-        languageSettings.setX(3);
-        languageSettings.setY(2);
-        languageSettings.setTextOrigin(VPos.TOP);
-        languageSettings.setOnMouseClicked((Event event) -> Logger.getAnonymousLogger().info("Click"));
-        this.getChildren().add(languageSettings);
+        this.splashScreen = new SplashScreen(this);
+        this.getChildren().add(this.splashScreen);
         
-        final Text title = new Text(this.translate(this.gameState.getMainLanguage(), this.gameState.getGameModel().getTitle().getSource()));
-        title.setFill(Color.KHAKI);
-        title.setFont(new Font(20));
-        title.setX((width - title.prefWidth(-1)) / 2.0);
-        title.setY(height / 2.0);
-        title.setTextOrigin(VPos.CENTER);
-        this.getChildren().add(title);
+        this.languageSettings = new LanguageSettings(this);
+        this.getChildren().add(this.languageSettings);
+        
+        this.update();
     }
     
     @Override
     public void update() {
-        this.getChildren().clear();
-        this.init();
-    }
-    
-    private String translate(final Language language, final String source) {
-        return TranslatorFactory.createTranslator(language, this.gameState.getGameModel().getGameConceptBook()).translate(source).getTranslation();
+        final double width = this.getWidth();
+        final double height = this.getHeight();
+        
+        this.clippingRegion.setWidth(width);
+        this.clippingRegion.setHeight(height);
+        this.backgroundLayer.setSize(width, height);
+        this.splashScreen.setSize(width, height);
+        this.languageSettings.update();
     }
     
     public static void main(final String[] arguments) {

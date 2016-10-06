@@ -26,13 +26,9 @@ public abstract class SizedGroup extends Group {
     }
     
     public void setSize(final double width, final double height) {
-        final double w = Math.max(MIN_WIDTH, width);
-        final double h = Math.max(MIN_HEIGHT, height);
-        if ((Double.compare(this.getWidth(), w) != 0) || (Double.compare(this.getHeight(), h) != 0)) {
-            this.width = w;
-            this.height = h;
-            this.update();
-        }
+        this.width = Math.max(MIN_WIDTH, width);
+        this.height = Math.max(MIN_HEIGHT, height);
+        this.update();
     }
     
     @Override
