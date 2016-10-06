@@ -26,7 +26,7 @@ public class GameState {
         this.selectableLanguages.addAll(this.gameModel.getSupportedLanguages());
         this.mainLanguage = this.gameModel.getSelectedLanguages().get(0);
         this.semiLanguages.addAll(this.gameModel.getSelectedLanguages().subList(1, this.gameModel.getSelectedLanguages().size()));
-        this.gameModel.getSupportedLanguages().stream().filter(supportedLanguage -> !this.gameModel.getSelectedLanguages().contains(supportedLanguage)).forEach(supportedLanguage -> this.restLanguages.add(supportedLanguage));
+        this.gameModel.getSupportedLanguages().stream().filter(supportedLanguage -> !this.gameModel.getSelectedLanguages().contains(supportedLanguage)).forEach(this.restLanguages::add);
     }
     
     public GameModel getGameModel() {

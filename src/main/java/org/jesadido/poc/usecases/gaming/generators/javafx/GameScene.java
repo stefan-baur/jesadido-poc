@@ -9,8 +9,6 @@ package org.jesadido.poc.usecases.gaming.generators.javafx;
 
 import javafx.scene.shape.Rectangle;
 import org.jesadido.poc.JesadidoPoc;
-import org.jesadido.poc.core.Language;
-import org.jesadido.poc.core.semantics.translating.TranslatorFactory;
 import org.jesadido.poc.usecases.gaming.models.GameModel;
 
 public class GameScene extends SizedGroup {
