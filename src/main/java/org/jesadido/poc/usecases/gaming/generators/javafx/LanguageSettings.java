@@ -21,9 +21,9 @@ public class LanguageSettings extends GameObject {
         final FlowPane languageFields = new FlowPane();
         languageFields.setHgap(8);
         languageFields.setVgap(8);
-        languageFields.getChildren().add(new LanguageField(this.getGameScene(), this.getGameState().getMainLanguage()));
-        this.getGameState().getSemiLanguages().stream().forEach(language -> languageFields.getChildren().add(new LanguageField(this.getGameScene(), language)));
-        this.getGameState().getRestLanguages().stream().forEach(language -> languageFields.getChildren().add(new LanguageField(this.getGameScene(), language)));
+        languageFields.getChildren().add(new LanguageControl(this.getGameScene(), this.getGameState().getMainLanguage()));
+        this.getGameState().getSemiLanguages().stream().forEach(language -> languageFields.getChildren().add(new LanguageControl(this.getGameScene(), language)));
+        this.getGameState().getRestLanguages().stream().forEach(language -> languageFields.getChildren().add(new LanguageControl(this.getGameScene(), language)));
         final Group languageSettings = new Group(languageFields);
         languageSettings.setTranslateX(20);
         languageSettings.setTranslateY(16);

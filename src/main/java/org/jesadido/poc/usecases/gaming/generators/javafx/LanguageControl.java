@@ -18,14 +18,14 @@ import org.jesadido.poc.JesadidoPoc;
 import org.jesadido.poc.core.Language;
 import org.jesadido.poc.usecases.gaming.graphics.RgboKeys;
 
-public class LanguageField extends SizedGameObject {
+public class LanguageControl extends SizedGameObject {
     
     private final Language language;
     
     private final Rectangle controlArea = new Rectangle();
     private final Text languageText = new Text();
     
-    public LanguageField(final GameScene gameScene, final Language language) {
+    public LanguageControl(final GameScene gameScene, final Language language) {
         super(gameScene, 24, 24);
         this.language = language;
         this.init();
