@@ -34,26 +34,26 @@ public class LanguageField extends SizedGameObject {
     private void init() {
         this.setWidth(32);
         this.setHeight(32);
-        this.controlArea.setFill(JavaFxUtils.toColor(this.getGameScene().getGameState().getGameModel().getRgbo(RgboKeys.REST_LANGUAGE_CONTROL_FILL)));
+        this.controlArea.setFill(JavaFxUtils.toColor(this.getGameModel().getRgbo(RgboKeys.REST_LANGUAGE_CONTROL_FILL)));
         this.controlArea.setArcWidth(8);
         this.controlArea.setArcHeight(8);
         this.getChildren().add(this.controlArea);
         this.languageText.setText(this.language.getCode());
         this.languageText.setFont(Font.font("Comic Sans MS", FontWeight.NORMAL, 14));
-        this.languageText.setFill(JavaFxUtils.toColor(this.getGameScene().getGameState().getGameModel().getRgbo(RgboKeys.REST_LANGUAGE_FILL)));
+        this.languageText.setFill(JavaFxUtils.toColor(this.getGameModel().getRgbo(RgboKeys.REST_LANGUAGE_FILL)));
         this.languageText.setTextOrigin(VPos.CENTER);
         this.languageText.setTextAlignment(TextAlignment.CENTER);
         this.getChildren().add(this.languageText);
-        if (this.getGameScene().getGameState().getMainLanguage() == this.language) {
-            this.controlArea.setFill(JavaFxUtils.toColor(this.getGameScene().getGameState().getGameModel().getRgbo(RgboKeys.MAIN_LANGUAGE_CONTROL_FILL)));
-            this.languageText.setFill(JavaFxUtils.toColor(this.getGameScene().getGameState().getGameModel().getRgbo(RgboKeys.MAIN_LANGUAGE_FILL)));
-        } else if (this.getGameScene().getGameState().getSemiLanguages().contains(this.language)) {
-            this.controlArea.setFill(JavaFxUtils.toColor(this.getGameScene().getGameState().getGameModel().getRgbo(RgboKeys.SEMI_LANGUAGE_CONTROL_FILL)));
-            this.languageText.setFill(JavaFxUtils.toColor(this.getGameScene().getGameState().getGameModel().getRgbo(RgboKeys.SEMI_LANGUAGE_FILL)));
+        if (this.getGameState().getMainLanguage() == this.language) {
+            this.controlArea.setFill(JavaFxUtils.toColor(this.getGameModel().getRgbo(RgboKeys.MAIN_LANGUAGE_CONTROL_FILL)));
+            this.languageText.setFill(JavaFxUtils.toColor(this.getGameModel().getRgbo(RgboKeys.MAIN_LANGUAGE_FILL)));
+        } else if (this.getGameState().getSemiLanguages().contains(this.language)) {
+            this.controlArea.setFill(JavaFxUtils.toColor(this.getGameModel().getRgbo(RgboKeys.SEMI_LANGUAGE_CONTROL_FILL)));
+            this.languageText.setFill(JavaFxUtils.toColor(this.getGameModel().getRgbo(RgboKeys.SEMI_LANGUAGE_FILL)));
         }
         this.setOnMouseClicked((Event event) -> {
-            this.getGameScene().getGameState().selectLanguage(this.language);
-            this.getGameScene().invalidate();
+            this.getGameState().selectLanguage(this.language);
+            this.invalidate();
         });
         this.invalidate();
     }

@@ -8,6 +8,7 @@
 package org.jesadido.poc.usecases.gaming.generators.javafx;
 
 import javafx.scene.Group;
+import org.jesadido.poc.usecases.gaming.models.GameModel;
 
 public abstract class GameObject extends Group {
     
@@ -17,8 +18,16 @@ public abstract class GameObject extends Group {
         this.gameScene = gameScene;
     }
     
-    public GameScene getGameScene() {
+    public final GameScene getGameScene() {
         return this.gameScene;
+    }
+    
+    public final GameState getGameState() {
+        return this.gameScene.getGameState();
+    }
+    
+    public final GameModel getGameModel() {
+        return this.gameScene.getGameState().getGameModel();
     }
     
     public abstract void invalidate();
