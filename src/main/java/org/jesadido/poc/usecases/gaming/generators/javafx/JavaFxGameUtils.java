@@ -10,9 +10,9 @@ package org.jesadido.poc.usecases.gaming.generators.javafx;
 import javafx.scene.paint.Color;
 import org.jesadido.poc.usecases.gaming.graphics.Rgbo;
 
-public final class JavaFxUtils {
+public final class JavaFxGameUtils {
     
-    private JavaFxUtils() {
+    private JavaFxGameUtils() {
         // A private utility class constructor
     }
     

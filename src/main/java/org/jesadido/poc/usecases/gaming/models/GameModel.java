@@ -12,6 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.Language;
 import org.jesadido.poc.core.semantics.ConceptBook;
+import org.jesadido.poc.core.semantics.translating.TranslatorFactory;
 import org.jesadido.poc.usecases.gaming.graphics.Rgbo;
 import org.jesadido.poc.usecases.gaming.graphics.RgboPalette;
 
@@ -95,5 +96,13 @@ public class GameModel {
     public GameModel initTitle(final String titleSource) {
         this.title = Phrase.create(titleSource);
         return this;
+    }
+    
+    public String translate(final Language language, final String source) {
+        if (language == Language.JI) {
+            return source;
+        } else {
+            return TranslatorFactory.createTranslator(language, this.getGameConceptBook()).translate(source).getTranslation();
+        }
     }
 }
