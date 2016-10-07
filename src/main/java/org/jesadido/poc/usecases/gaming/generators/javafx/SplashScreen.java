@@ -10,12 +10,12 @@ package org.jesadido.poc.usecases.gaming.generators.javafx;
 import java.util.EnumMap;
 import java.util.Map;
 import javafx.geometry.VPos;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import org.jesadido.poc.core.Language;
 import org.jesadido.poc.core.semantics.translating.TranslatorFactory;
+import org.jesadido.poc.usecases.gaming.graphics.RgboKeys;
 
 public class SplashScreen extends SizedGameObject {
     
@@ -51,7 +51,7 @@ public class SplashScreen extends SizedGameObject {
     private Text createMainTitle(final double width, final double height) {
         final Text mainTitle = this.title.get(this.getGameScene().getGameState().getMainLanguage());
         mainTitle.setFont(Font.font("Comic Sans MS", FontWeight.NORMAL, 20));
-        mainTitle.setFill(Color.color(0.94, 0.90, 0.55));
+        mainTitle.setFill(JavaFxUtils.toColor(this.getGameScene().getGameState().getGameModel().getRgbo(RgboKeys.MAIN_TEXT_FILL)));
         mainTitle.setX((width - mainTitle.prefWidth(-1)) / 2.0);
         mainTitle.setY(height / 3.0);
         return mainTitle;
@@ -60,7 +60,7 @@ public class SplashScreen extends SizedGameObject {
     private Text createSemiTitle(final int index, final Language language, final double width, final double height) {
         final Text mainTitle = this.title.get(language);
         mainTitle.setFont(Font.font("Comic Sans MS", FontWeight.NORMAL, 18));
-        mainTitle.setFill(Color.color(0.7, 0.7, 0.7));
+        mainTitle.setFill(JavaFxUtils.toColor(this.getGameScene().getGameState().getGameModel().getRgbo(RgboKeys.SEMI_TEXT_FILL)));
         mainTitle.setX((width - mainTitle.prefWidth(-1)) / 2.0);
         mainTitle.setY((height / 3.0) + (index + 1) * 32);
         return mainTitle;
