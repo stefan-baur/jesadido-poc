@@ -7,37 +7,37 @@
  */
 package org.jesadido.poc.usecases.gaming.graphics.rags;
 
-import org.jesadido.poc.usecases.gaming.graphics.RGBO;
+import org.jesadido.poc.usecases.gaming.graphics.RgboColor;
 
 public class RagProperties {
     
-    private RGBO fill;
-    private RGBO stroke;
+    private RgboColor fill;
+    private RgboColor stroke;
     private double strokeWidth;
     
-    public RagProperties(final RGBO fill, final RGBO stroke, final double strokeWidth) {
+    public RagProperties(final RgboColor fill, final RgboColor stroke, final double strokeWidth) {
         this.fill = fill;
         this.stroke = stroke;
         this.strokeWidth = strokeWidth;
     }
     
-    public RagProperties(final RGBO fill) {
-        this(fill, RGBO.TRANSPARENT, 0);
+    public RagProperties(final RgboColor fill) {
+        this(fill, RgboColor.TRANSPARENT, 0);
     }
     
-    public RGBO getFill() {
+    public RgboColor getFill() {
         return this.fill;
     }
     
-    public void setFill(final RGBO fill) {
+    public void setFill(final RgboColor fill) {
         this.fill = fill;
     }
     
-    public RGBO getStroke() {
+    public RgboColor getStroke() {
         return this.stroke;
     }
     
-    public void setStroke(final RGBO stroke) {
+    public void setStroke(final RgboColor stroke) {
         this.stroke = stroke;
     }
     
