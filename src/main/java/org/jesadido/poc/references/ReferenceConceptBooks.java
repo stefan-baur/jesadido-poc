@@ -9,7 +9,7 @@ package org.jesadido.poc.references;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 import org.jesadido.poc.core.scripting.Src;
@@ -28,6 +28,37 @@ import org.jesadido.poc.core.semantics.translating.fr.Fr;
 import org.jesadido.poc.core.semantics.translating.fr.FrTarget;
 
 public final class ReferenceConceptBooks {
+    
+    public static final ConceptBook GAME_CONCEPTS = new ConceptBook("game-concepts")
+            
+            .add(new ConceptBookEntry("LudO")
+                    .addDefaultTargets(new DeTarget("Spiel", De.NEUTER, De.NOMINATIVE, De.DATIVE, De.ACCUSATIVE), new DeTarget("Spieles", De.NEUTER, De.GENITIVE))
+                    .addDefaultTargets(new EnTarget("game", En.NEUTER))
+                    .addDefaultTargets(new EoTarget("ludo", Eo.NEUTER))
+                    .addDefaultTargets(new EsTarget("juego", Es.MASCULINE))
+                    .addDefaultTargets(new FrTarget("jeu", Fr.MASCULINE))
+            )
+            .add(new ConceptBookEntry("GigantA")
+                    .addDefaultTargets(new DeTarget("gigantisch"))
+                    .addDefaultTargets(new EnTarget("gigantic"))
+                    .addDefaultTargets(new EoTarget("giganta"))
+                    .addDefaultTargets(new EsTarget("gigantesco", Es.MASCULINE, Es.PREPOSED), new EsTarget("gigantesca", Es.FEMININE, Es.PREPOSED))
+                    .addDefaultTargets(new FrTarget("gigantesque", Fr.MASCULINE, Fr.FEMININE, Fr.PREPOSED))
+            )
+            .add(new ConceptBookEntry("MalGrandEgA")
+                    .addDefaultTargets(new DeTarget("winzig"))
+                    .addDefaultTargets(new EnTarget("tiny"))
+                    .addDefaultTargets(new EoTarget("malgrandega"))
+                    .addDefaultTargets(new EsTarget("menudo", Es.MASCULINE, Es.PREPOSED), new EsTarget("menuda", Es.FEMININE, Es.PREPOSED))
+                    .addDefaultTargets(new FrTarget("infime", Fr.MASCULINE, Fr.FEMININE))
+            )
+            .addReferenceSources(
+                    
+                    "Mi$La LudO MalGrandEgA ..",
+                    
+                    "Ni$La LudO GigantA .."
+            )
+            ;
     
     public static final ConceptBook TEST_CONCEPTS = new ConceptBook("test-concepts")
             
@@ -375,42 +406,11 @@ public final class ReferenceConceptBooks {
             )
             ;
     
-    public static final ConceptBook GAME_CONCEPTS = new ConceptBook("game-concepts")
-            
-            .add(new ConceptBookEntry("LudO")
-                    .addDefaultTargets(new DeTarget("Spiel", De.NEUTER, De.NOMINATIVE, De.DATIVE, De.ACCUSATIVE), new DeTarget("Spieles", De.NEUTER, De.GENITIVE))
-                    .addDefaultTargets(new EnTarget("game", En.NEUTER))
-                    .addDefaultTargets(new EoTarget("ludo", Eo.NEUTER))
-                    .addDefaultTargets(new EsTarget("juego", Es.MASCULINE))
-                    .addDefaultTargets(new FrTarget("jeu", Fr.MASCULINE))
-            )
-            .add(new ConceptBookEntry("GigantA")
-                    .addDefaultTargets(new DeTarget("gigantisch"))
-                    .addDefaultTargets(new EnTarget("gigantic"))
-                    .addDefaultTargets(new EoTarget("giganta"))
-                    .addDefaultTargets(new EsTarget("gigantesco", Es.MASCULINE, Es.PREPOSED), new EsTarget("gigantesca", Es.FEMININE, Es.PREPOSED))
-                    .addDefaultTargets(new FrTarget("gigantesque", Fr.MASCULINE, Fr.FEMININE, Fr.PREPOSED))
-            )
-            .add(new ConceptBookEntry("MalGrandEgA")
-                    .addDefaultTargets(new DeTarget("winzig"))
-                    .addDefaultTargets(new EnTarget("tiny"))
-                    .addDefaultTargets(new EoTarget("malgrandega"))
-                    .addDefaultTargets(new EsTarget("menudo", Es.MASCULINE, Es.PREPOSED), new EsTarget("menuda", Es.FEMININE, Es.PREPOSED))
-                    .addDefaultTargets(new FrTarget("infime", Fr.MASCULINE, Fr.FEMININE))
-            )
-            .addReferenceSources(
-                    
-                    "Mi$La LudO MalGrandEgA ..",
-                    
-                    "Mi$La LudO GigantA .."
-            )
-            ;
-    
-    private static final Map<ConceptBook, ConceptBookTestsGenerator> CONCEPT_BOOK_TESTS_GENERATORS = new HashMap<>();
+    private static final Map<ConceptBook, ConceptBookTestsGenerator> CONCEPT_BOOK_TESTS_GENERATORS = new LinkedHashMap<>();
     
     static {
-        CONCEPT_BOOK_TESTS_GENERATORS.put(TEST_CONCEPTS, new ConceptBookTestsGenerator(TEST_CONCEPTS, "ReferenceConceptBooks.TEST_CONCEPTS", "TestConcepts"));
         CONCEPT_BOOK_TESTS_GENERATORS.put(GAME_CONCEPTS, new ConceptBookTestsGenerator(GAME_CONCEPTS, "ReferenceConceptBooks.GAME_CONCEPTS", "GameConcepts"));
+        CONCEPT_BOOK_TESTS_GENERATORS.put(TEST_CONCEPTS, new ConceptBookTestsGenerator(TEST_CONCEPTS, "ReferenceConceptBooks.TEST_CONCEPTS", "TestConcepts"));
     }
     
     private ReferenceConceptBooks() {
@@ -429,6 +429,6 @@ public final class ReferenceConceptBooks {
     }
     
     public static void main(final String[] arguments) {
-        Logger.getAnonymousLogger().info(generateTests(TEST_CONCEPTS).toString());
+        getConceptBooks().stream().forEach(conceptBook -> Logger.getAnonymousLogger().info(generateTests(conceptBook).toString()));
     }
 }
