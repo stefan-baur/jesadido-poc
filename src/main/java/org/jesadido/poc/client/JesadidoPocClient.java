@@ -40,7 +40,7 @@ import org.jesadido.poc.core.syntax.GrammarFactory;
 import org.jesadido.poc.references.ReferenceConceptBooks;
 import org.jesadido.poc.references.ReferenceGameModels;
 import org.jesadido.poc.usecases.gaming.generators.html.HtmlGameGenerator;
-import org.jesadido.poc.usecases.gaming.generators.javafx.GamePaneGenerator;
+import org.jesadido.poc.usecases.gaming.generators.javafx.JavaFxGameGenerator;
 import org.jesadido.poc.usecases.gaming.generators.text.TextGameGenerator;
 import org.jesadido.poc.usecases.gaming.models.GameModel;
 
@@ -80,7 +80,7 @@ public class JesadidoPocClient extends Application {
         
         final BorderPane masterPane = new BorderPane();
         masterPane.setPadding(new Insets(8, 8, 8, 8));
-        masterPane.setCenter(new GamePaneGenerator().generate(ReferenceGameModels.getGameModels().get(0)));
+        masterPane.setCenter(new JavaFxGameGenerator().generate(ReferenceGameModels.getGameModels().get(0)));
         
         final MenuItem menuItemGrammarJesadido = new MenuItem(jesadidoGrammar.getKey());
         menuItemGrammarJesadido.setOnAction((ActionEvent e) -> {
@@ -128,7 +128,7 @@ public class JesadidoPocClient extends Application {
     
     private Node createGameModelOverview(final GameModel gameModel) {
         
-        final BorderPane playGameContent = new BorderPane(new GamePaneGenerator().generate(gameModel));
+        final BorderPane playGameContent = new BorderPane(new JavaFxGameGenerator().generate(gameModel));
         playGameContent.setPadding(new Insets(8, 0, 0, 0));
         
         final Tab playGameTab = new Tab("Play the Game!");

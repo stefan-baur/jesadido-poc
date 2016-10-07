@@ -12,9 +12,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jesadido.poc.JesadidoPoc;
-import org.jesadido.poc.core.Language;
 import org.jesadido.poc.core.scripting.Src;
-import org.jesadido.poc.core.semantics.translating.TranslatorFactory;
 import org.jesadido.poc.usecases.gaming.models.GameModel;
 
 public class HtmlGameGenerator {
@@ -60,18 +58,14 @@ public class HtmlGameGenerator {
                 .line("<!DOCTYPE html>")
                 .begin("<html>")
                 .begin("<head>")
-                .line("<title>%s</title>", this.translate(this.gameModel.getSelectedLanguages().get(0), this.gameModel.getTitle().getSource()))
+                .line("<title>%s</title>", this.gameModel.translate(this.gameModel.getSelectedLanguages().get(0), this.gameModel.getTitle().getSource()))
                 .end("</head>")
                 .begin("<body>")
                 .line("<div>%s %s</div>", this.gameModel.getSelectedLanguages(), this.gameModel.getSupportedLanguages().toString().replace("[", "{").replace("]", "}"))
-                .line("<code>%s</code>", this.translate(this.gameModel.getSelectedLanguages().get(0), this.gameModel.getTitle().getSource()))
+                .line("<code>%s</code>", this.gameModel.translate(this.gameModel.getSelectedLanguages().get(0), this.gameModel.getTitle().getSource()))
                 .end("</body>")
                 .end("</html>")
                 .save(this.getIndexPageFile());
-    }
-    
-    private String translate(final Language language, final String source) {
-        return TranslatorFactory.createTranslator(language, this.gameModel.getGameConceptBook()).translate(source).getTranslation();
     }
     
     public static void main(final String[] arguments) {
