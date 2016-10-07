@@ -20,6 +20,9 @@ import org.jesadido.poc.usecases.gaming.graphics.RgboKeys;
 
 public class LanguageControl extends SizedGameObject {
     
+    public static final double WIDTH = 32.0;
+    public static final double HEIGHT = WIDTH;
+    
     private final Language language;
     
     private final Rectangle controlArea = new Rectangle();

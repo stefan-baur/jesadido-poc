@@ -18,9 +18,12 @@ public class LanguageSettings extends GameObject {
     }
     
     private void init() {
+        final double gapWidth = 8.0;
+        final int languageCount = this.getGameModel().getSupportedLanguages().size();
         final FlowPane languageFields = new FlowPane();
-        languageFields.setHgap(8);
-        languageFields.setVgap(8);
+        languageFields.setHgap(gapWidth);
+        languageFields.setVgap(gapWidth);
+        languageFields.setPrefWidth(LanguageControl.WIDTH * languageCount + gapWidth * (languageCount - 1));
         languageFields.getChildren().add(new LanguageControl(this.getGameScene(), this.getGameState().getMainLanguage()));
         this.getGameState().getSemiLanguages().stream().forEach(language -> languageFields.getChildren().add(new LanguageControl(this.getGameScene(), language)));
         this.getGameState().getRestLanguages().stream().forEach(language -> languageFields.getChildren().add(new LanguageControl(this.getGameScene(), language)));
