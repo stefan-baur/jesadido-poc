@@ -7,9 +7,7 @@
  */
 package org.jesadido.poc.usecases.gaming.generators.javafx;
 
-import javafx.scene.Group;
-
-public abstract class SizedGroup extends Group {
+public abstract class SizedGameObject extends GameObject {
     
     private final double minWidth;
     private final double minHeight;
@@ -17,7 +15,8 @@ public abstract class SizedGroup extends Group {
     private double width;
     private double height;
     
-    public SizedGroup(final double minWidth, final double minHeight) {
+    public SizedGameObject(final GameScene gameScene, final double minWidth, final double minHeight) {
+        super(gameScene);
         this.minWidth = minWidth;
         this.minHeight = minHeight;
         this.width = minWidth;
@@ -45,8 +44,6 @@ public abstract class SizedGroup extends Group {
         super.resize(width, height);
         this.setWidth(width);
         this.setHeight(height);
-        this.update();
+        this.invalidate();
     }
-    
-    public abstract void update();
 }

@@ -11,14 +11,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
-public class BackgroundLayer extends SizedGroup {
+public class BackgroundLayer extends SizedGameObject {
     
     private final Rectangle backgroundArea = new Rectangle();
     private final Line horizontalCenterLine = new Line();
     private final Line verticalCenterLine = new Line();
     
-    public BackgroundLayer() {
-        super(200, 160);
+    public BackgroundLayer(final GameScene gameScene) {
+        super(gameScene, 200, 160);
         init();
     }
     
@@ -27,11 +27,11 @@ public class BackgroundLayer extends SizedGroup {
         this.horizontalCenterLine.setStroke(Color.color(0.23, 0.23, 0.23));
         this.verticalCenterLine.setStroke(Color.color(0.23, 0.23, 0.23));
         this.getChildren().addAll(this.backgroundArea, this.horizontalCenterLine, this.verticalCenterLine);
-        this.update();
+        this.invalidate();
     }
     
     @Override
-    public void update() {
+    public void invalidate() {
         final double width = this.getWidth();
         final double height = this.getHeight();
         final double width2 = width / 2.0;

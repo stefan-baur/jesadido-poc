@@ -14,15 +14,12 @@ import javafx.scene.text.Text;
 import org.jesadido.poc.core.Language;
 import org.jesadido.poc.core.semantics.translating.TranslatorFactory;
 
-public class SplashScreen extends SizedGroup {
-    
-    private final GameScene gameScene;
+public class SplashScreen extends SizedGameObject {
     
     private final Text title = new Text();
     
     public SplashScreen(final GameScene gameScene) {
-        super(200, 160);
-        this.gameScene = gameScene;
+        super(gameScene, 200, 160);
         this.init();
     }
     
@@ -31,19 +28,20 @@ public class SplashScreen extends SizedGroup {
         this.title.setFont(new Font(20));
         this.title.setTextOrigin(VPos.CENTER);
         this.getChildren().add(this.title);
+        this.invalidate();
     }
     
     @Override
-    public void update() {
+    public void invalidate() {
         final double width = this.getWidth();
         final double height = this.getHeight();
         
-        this.title.setText(this.translate(this.gameScene.getGameState().getMainLanguage(), this.gameScene.getGameState().getGameModel().getTitle().getSource()));
+        this.title.setText(this.translate(this.getGameScene().getGameState().getMainLanguage(), this.getGameScene().getGameState().getGameModel().getTitle().getSource()));
         this.title.setX((width - this.title.prefWidth(-1)) / 2.0);
         this.title.setY(height / 2.0);
     }
     
     private String translate(final Language language, final String source) {
-        return TranslatorFactory.createTranslator(language, this.gameScene.getGameState().getGameModel().getGameConceptBook()).translate(source).getTranslation();
+        return TranslatorFactory.createTranslator(language, this.getGameScene().getGameState().getGameModel().getGameConceptBook()).translate(source).getTranslation();
     }
 }

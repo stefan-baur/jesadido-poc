@@ -17,15 +17,15 @@ import javafx.scene.text.TextAlignment;
 import org.jesadido.poc.JesadidoPoc;
 import org.jesadido.poc.core.Language;
 
-public class LanguageField extends SizedGroup {
+public class LanguageField extends SizedGameObject {
     
     private final Language language;
     
     private final Rectangle backgroundArea = new Rectangle();
     private final Text languageText = new Text();
     
-    public LanguageField(final Language language) {
-        super(24, 24);
+    public LanguageField(final GameScene gameScene, final Language language) {
+        super(gameScene, 24, 24);
         this.language = language;
         this.init();
     }
@@ -43,11 +43,11 @@ public class LanguageField extends SizedGroup {
         this.languageText.setTextOrigin(VPos.CENTER);
         this.languageText.setTextAlignment(TextAlignment.CENTER);
         this.getChildren().add(this.languageText);
-        this.update();
+        this.invalidate();
     }
     
     @Override
-    public void update() {
+    public void invalidate() {
         final double width = this.getWidth();
         final double height = this.getHeight();
         this.backgroundArea.setWidth(width);

@@ -13,12 +13,10 @@ import javafx.scene.Node;
 import javafx.scene.layout.FlowPane;
 import org.jesadido.poc.core.Language;
 
-public class LanguageSettings extends Group {
-    
-    private final GameScene gameScene;
+public class LanguageSettings extends GameObject {
     
     public LanguageSettings(final GameScene gameScene) {
-        this.gameScene = gameScene;
+        super(gameScene);
         this.init();
     }
     
@@ -27,8 +25,8 @@ public class LanguageSettings extends Group {
         settings.setHgap(8);
         settings.setVgap(8);
         settings.getChildren().add(this.createMainLanguageField());
-        this.gameScene.getGameState().getSemiLanguages().stream().forEach(language -> settings.getChildren().add(this.createLanguageField(language)));
-        this.gameScene.getGameState().getRestLanguages().stream().forEach(language -> settings.getChildren().add(this.createLanguageField(language)));
+        this.getGameScene().getGameState().getSemiLanguages().stream().forEach(language -> settings.getChildren().add(this.createLanguageField(language)));
+        this.getGameScene().getGameState().getRestLanguages().stream().forEach(language -> settings.getChildren().add(this.createLanguageField(language)));
         final Group settingsGroup = new Group(settings);
         settingsGroup.setTranslateX(20);
         settingsGroup.setTranslateY(16);
@@ -36,19 +34,20 @@ public class LanguageSettings extends Group {
     }
     
     private Node createMainLanguageField() {
-        return this.createLanguageField(this.gameScene.getGameState().getMainLanguage());
+        return this.createLanguageField(this.getGameScene().getGameState().getMainLanguage());
     }
     
     private Node createLanguageField(final Language language) {
-        final LanguageField result = new LanguageField(language);
+        final LanguageField result = new LanguageField(this.getGameScene(), language);
         result.setOnMouseClicked((Event event) -> {
-            this.gameScene.getGameState().selectNextMainLanguage();
-            this.gameScene.update();
+            this.getGameScene().getGameState().selectNextMainLanguage();
+            this.getGameScene().invalidate();
         });
         return result;
     }
     
-    public void update() {
+    @Override
+    public void invalidate() {
         this.getChildren().clear();
         this.init();
     }
