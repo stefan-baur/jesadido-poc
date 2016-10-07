@@ -39,7 +39,7 @@ import org.jesadido.poc.core.syntax.Grammar;
 import org.jesadido.poc.core.syntax.GrammarFactory;
 import org.jesadido.poc.references.ReferenceConceptBooks;
 import org.jesadido.poc.references.ReferenceGameModels;
-import org.jesadido.poc.usecases.gaming.generators.html.HtmlGameGenerator;
+import org.jesadido.poc.usecases.gaming.generators.web20.Web20GameGenerator;
 import org.jesadido.poc.usecases.gaming.generators.javafx.JavaFxGameGenerator;
 import org.jesadido.poc.usecases.gaming.generators.text.TextGameGenerator;
 import org.jesadido.poc.usecases.gaming.models.GameModel;
@@ -135,11 +135,11 @@ public class JesadidoPocClient extends Application {
         playGameTab.setContent(playGameContent);
         playGameTab.setClosable(false);
         
-        final Button generateStaticWebsite = new Button("Generate a Static Website!");
+        final Button generateStaticWebsite = new Button("Generate a Web 2.0 Component!");
         generateStaticWebsite.setOnAction((ActionEvent e) -> {
-            final HtmlGameGenerator htmlGameGenerator = new HtmlGameGenerator(gameModel);
-            if (htmlGameGenerator.generate()) {
-                getHostServices().showDocument(htmlGameGenerator.getIndexPageFile().getAbsolutePath());
+            final Web20GameGenerator web20GameGenerator = new Web20GameGenerator(gameModel);
+            if (web20GameGenerator.generate()) {
+                getHostServices().showDocument(web20GameGenerator.getTestPageFile().getAbsolutePath());
             }
         });
         

@@ -5,7 +5,7 @@
  * Licensed under the GNU Lesser General Public License, Version 3.0 (LGPL-3.0)
  * https://www.gnu.org/licenses/lgpl-3.0.txt
  */
-package org.jesadido.poc.usecases.gaming.generators.html;
+package org.jesadido.poc.usecases.gaming.generators.web20;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,19 +15,19 @@ import org.jesadido.poc.JesadidoPoc;
 import org.jesadido.poc.core.scripting.Src;
 import org.jesadido.poc.usecases.gaming.models.GameModel;
 
-public class HtmlGameGenerator {
+public class Web20GameGenerator {
     
     private final GameModel gameModel;
     
-    public HtmlGameGenerator(final GameModel gameModel) {
+    public Web20GameGenerator(final GameModel gameModel) {
         this.gameModel = gameModel;
     }
     
     public boolean generate() {
         try {
-            this.generateIndexPage();
+            this.generateTestPage();
         } catch (IOException ex) {
-            Logger.getAnonymousLogger().log(Level.SEVERE, "The static-html website can not be stored to the directory: " + this.getHtmlDirectory().getAbsolutePath(), ex);
+            Logger.getAnonymousLogger().log(Level.SEVERE, "The web 2.0 component can not be stored to the directory: " + this.getHtmlDirectory().getAbsolutePath(), ex);
             return false;
         }
         return true;
@@ -49,11 +49,11 @@ public class HtmlGameGenerator {
         return new File(this.getHtmlDirectory(), this.gameModel.getKey());
     }
     
-    public File getIndexPageFile() {
-        return new File(this.getKeyDirectory(), "index.html");
+    public File getTestPageFile() {
+        return new File(this.getKeyDirectory(), "test.html");
     }
     
-    public void generateIndexPage() throws IOException {
+    private void generateTestPage() throws IOException {
         new Src()
                 .line("<!DOCTYPE html>")
                 .begin("<html>")
@@ -65,7 +65,7 @@ public class HtmlGameGenerator {
                 .line("<code>%s</code>", this.gameModel.translate(this.gameModel.getSelectedLanguages().get(0), this.gameModel.getTitle().getSource()))
                 .end("</body>")
                 .end("</html>")
-                .save(this.getIndexPageFile());
+                .save(this.getTestPageFile());
     }
     
     public static void main(final String[] arguments) {
