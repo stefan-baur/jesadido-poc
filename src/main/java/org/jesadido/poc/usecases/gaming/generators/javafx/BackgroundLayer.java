@@ -18,6 +18,7 @@ public class BackgroundLayer extends SizedGroup {
     private final Line verticalCenterLine = new Line();
     
     public BackgroundLayer() {
+        super(200, 160);
         init();
     }
     

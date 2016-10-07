@@ -21,6 +21,7 @@ public class GameScene extends SizedGroup {
     private LanguageSettings languageSettings;
     
     public GameScene(final GameModel gameModel) {
+        super(200, 160);
         this.gameState = new GameState(gameModel);
         this.init();
     }
@@ -54,8 +55,12 @@ public class GameScene extends SizedGroup {
         
         this.clippingRegion.setWidth(width);
         this.clippingRegion.setHeight(height);
-        this.backgroundLayer.setSize(width, height);
-        this.splashScreen.setSize(width, height);
+        this.backgroundLayer.setWidth(width);
+        this.backgroundLayer.setHeight(height);
+        this.backgroundLayer.update();
+        this.splashScreen.setWidth(width);
+        this.splashScreen.setHeight(height);
+        this.splashScreen.update();
         this.languageSettings.update();
     }
     

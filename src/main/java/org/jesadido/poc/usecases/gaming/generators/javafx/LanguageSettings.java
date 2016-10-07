@@ -8,11 +8,9 @@
 package org.jesadido.poc.usecases.gaming.generators.javafx;
 
 import javafx.event.Event;
-import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
+import javafx.scene.layout.FlowPane;
 import org.jesadido.poc.core.Language;
 
 public class LanguageSettings extends Group {
@@ -25,9 +23,16 @@ public class LanguageSettings extends Group {
     }
     
     private void init() {
-        final Group settings = new Group();
+        final FlowPane settings = new FlowPane();
+        settings.setHgap(8);
+        settings.setVgap(8);
         settings.getChildren().add(this.createMainLanguageField());
-        this.getChildren().add(settings);
+        this.gameScene.getGameState().getSemiLanguages().stream().forEach(language -> settings.getChildren().add(this.createLanguageField(language)));
+        this.gameScene.getGameState().getRestLanguages().stream().forEach(language -> settings.getChildren().add(this.createLanguageField(language)));
+        final Group settingsGroup = new Group(settings);
+        settingsGroup.setTranslateX(20);
+        settingsGroup.setTranslateY(16);
+        this.getChildren().add(settingsGroup);
     }
     
     private Node createMainLanguageField() {
@@ -35,11 +40,7 @@ public class LanguageSettings extends Group {
     }
     
     private Node createLanguageField(final Language language) {
-        final Text result = new Text(String.format("%s %s %s", language.getCode(), this.gameScene.getGameState().getSemiLanguages(), this.gameScene.getGameState().getRestLanguages()));
-        result.setFill(Color.KHAKI);
-        result.setX(3);
-        result.setY(2);
-        result.setTextOrigin(VPos.TOP);
+        final LanguageField result = new LanguageField(language);
         result.setOnMouseClicked((Event event) -> {
             this.gameScene.getGameState().selectNextMainLanguage();
             this.gameScene.update();

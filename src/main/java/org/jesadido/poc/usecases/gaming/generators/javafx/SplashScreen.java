@@ -21,6 +21,7 @@ public class SplashScreen extends SizedGroup {
     private final Text title = new Text();
     
     public SplashScreen(final GameScene gameScene) {
+        super(200, 160);
         this.gameScene = gameScene;
         this.init();
     }

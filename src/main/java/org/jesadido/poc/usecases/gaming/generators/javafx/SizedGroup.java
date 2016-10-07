@@ -11,30 +11,41 @@ import javafx.scene.Group;
 
 public abstract class SizedGroup extends Group {
     
-    private static final double MIN_WIDTH = 200;
-    private static final double MIN_HEIGHT = 160;
+    private final double minWidth;
+    private final double minHeight;
     
-    private double width = MIN_WIDTH;
-    private double height = MIN_HEIGHT;
+    private double width;
+    private double height;
+    
+    public SizedGroup(final double minWidth, final double minHeight) {
+        this.minWidth = minWidth;
+        this.minHeight = minHeight;
+        this.width = minWidth;
+        this.height = minHeight;
+    }
     
     public double getWidth() {
         return this.width;
+    }
+    
+    public void setWidth(final double width) {
+        this.width = Math.max(minWidth, width);
     }
     
     public double getHeight() {
         return this.height;
     }
     
-    public void setSize(final double width, final double height) {
-        this.width = Math.max(MIN_WIDTH, width);
-        this.height = Math.max(MIN_HEIGHT, height);
-        this.update();
+    public void setHeight(final double height) {
+        this.height = Math.max(minHeight, height);
     }
     
     @Override
     public void resize(final double width, final double height) {
         super.resize(width, height);
-        this.setSize(width, height);
+        this.setWidth(width);
+        this.setHeight(height);
+        this.update();
     }
     
     public abstract void update();
