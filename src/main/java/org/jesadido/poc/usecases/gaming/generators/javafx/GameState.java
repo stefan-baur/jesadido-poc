@@ -9,7 +9,9 @@ package org.jesadido.poc.usecases.gaming.generators.javafx;
 
 import java.util.LinkedList;
 import java.util.List;
+import javafx.scene.paint.Color;
 import org.jesadido.poc.core.Language;
+import org.jesadido.poc.usecases.gaming.graphics.Rgbo;
 import org.jesadido.poc.usecases.gaming.models.GameModel;
 
 public class GameState {
@@ -69,5 +71,10 @@ public class GameState {
     private void selectNextMainLanguage() {
         this.restLanguages.add(this.mainLanguage);
         this.mainLanguage = this.semiLanguages.isEmpty() ? this.restLanguages.remove(0) : this.semiLanguages.remove(0);
+    }
+    
+    public Color getColor(final String rgboKey) {
+        final Rgbo rgbo = this.gameModel.getRgboPalette().get(rgboKey);
+        return Color.color(Math.min(1.0, rgbo.getRed() / 255.0), Math.min(1.0, rgbo.getGreen() / 255.0), Math.min(1.0, rgbo.getBlue() / 255.0), rgbo.getOpacity());
     }
 }

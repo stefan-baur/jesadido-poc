@@ -17,6 +17,7 @@ public final class ReferenceGameModels {
             .initGameConceptBook(ReferenceConceptBooks.GAME_CONCEPTS)
             .initSupportedLanguages(Language.DE, Language.EN, Language.EO, Language.ES, Language.FR, Language.JI)
             .initSelectedLanguages(Language.EO, Language.EN)
+            .initRgboPalette(ReferenceRgbos.MAGIC_COLORS)
             .initTitle("Mi$La LudO MalGrandEgA ..")
             ;
     

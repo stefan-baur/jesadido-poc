@@ -33,10 +33,6 @@ public class GameScene extends Group {
         return this.gameState;
     }
     
-    public GameModel getGameModel() {
-        return this.gameState.getGameModel();
-    }
-    
     private void init() {
         this.setClip(this.clippingRegion);
         

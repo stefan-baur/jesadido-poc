@@ -9,23 +9,25 @@ package org.jesadido.poc.usecases.gaming.graphics;
 
 import java.util.logging.Logger;
 
-public final class RgboColor {
+public final class Rgbo {
     
-    public static final RgboColor TRANSPARENT = new RgboColor(0, 0, 0, 0.0);
+    public static final Rgbo TRANSPARENT = new Rgbo(0, 0, 0, 0.0);
+    public static final Rgbo BLACK = new Rgbo(0, 0, 0);
+    public static final Rgbo WHITE = new Rgbo(255, 255, 255);
     
     private final int red;
     private final int green;
     private final int blue;
     private final double opacity;
     
-    public RgboColor(final int red, final int green, final int blue, final double opacity) {
+    public Rgbo(final int red, final int green, final int blue, final double opacity) {
         this.red = Integer.max(0, Integer.min(255, red));
         this.green = Integer.max(0, Integer.min(255, green));
         this.blue = Integer.max(0, Integer.min(255, blue));
         this.opacity = Double.max(0.0, Double.min(1.0, opacity));
     }
     
-    public RgboColor(final int red, final int green, final int blue) {
+    public Rgbo(final int red, final int green, final int blue) {
         this(red, green, blue, 1.0);
     }
     
@@ -55,9 +57,9 @@ public final class RgboColor {
     }
     
     public static void main(final String[] arguments) {
-        Logger.getAnonymousLogger().info(new RgboColor(0, 0, 0, 0.0).toString());
-        Logger.getAnonymousLogger().info(new RgboColor(255, 255, 255, 1.0).toString());
-        Logger.getAnonymousLogger().info(new RgboColor(0, 127, 0, 0.6).toString());
-        Logger.getAnonymousLogger().info(new RgboColor(256, -330, 3000, 700).toString());
+        Logger.getAnonymousLogger().info(new Rgbo(0, 0, 0, 0.0).toString());
+        Logger.getAnonymousLogger().info(new Rgbo(255, 255, 255, 1.0).toString());
+        Logger.getAnonymousLogger().info(new Rgbo(0, 127, 0, 0.6).toString());
+        Logger.getAnonymousLogger().info(new Rgbo(256, -330, 3000, 700).toString());
     }
 }

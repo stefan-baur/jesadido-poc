@@ -12,6 +12,8 @@ import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.Language;
 import org.jesadido.poc.core.semantics.ConceptBook;
+import org.jesadido.poc.usecases.gaming.graphics.Rgbo;
+import org.jesadido.poc.usecases.gaming.graphics.RgboPalette;
 
 public class GameModel {
     
@@ -21,6 +23,7 @@ public class GameModel {
     private ConceptBook gameConceptBook = new ConceptBook("empty-book");
     private final List<Language> supportedLanguages = new LinkedList<>();
     private final List<Language> selectedLanguages = new LinkedList<>();
+    private RgboPalette rgboPalette = new RgboPalette("empty-rgbos");
     private Phrase title = Phrase.DEFAULT;
     
     public GameModel(final String key) {
@@ -70,6 +73,19 @@ public class GameModel {
             this.selectedLanguages.add(this.supportedLanguages.get(0));
         }
         return this;
+    }
+    
+    public RgboPalette getRgboPalette() {
+        return this.rgboPalette;
+    }
+    
+    public GameModel initRgboPalette(final RgboPalette rgboPalette) {
+        this.rgboPalette = rgboPalette;
+        return this;
+    }
+    
+    public Rgbo getRgbo(final String rgboKey) {
+        return this.rgboPalette.get(rgboKey);
     }
     
     public Phrase getTitle() {

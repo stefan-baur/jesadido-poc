@@ -8,15 +8,17 @@
 package org.jesadido.poc.references;
 
 import org.jesadido.poc.JesadidoPoc;
-import org.jesadido.poc.usecases.gaming.graphics.RgboColor;
-import org.jesadido.poc.usecases.gaming.graphics.Rgbos;
+import org.jesadido.poc.usecases.gaming.graphics.RgboKeys;
+import org.jesadido.poc.usecases.gaming.graphics.RgboPalette;
 
 public final class ReferenceRgbos {
     
-    public static final String BACKGROUND = "background";
+    public static final RgboPalette DEFAULT_COLORS = new RgboPalette("default-colors")
+            .add(RgboKeys.BACKGROUND, 44, 44, 44)
+            ;
     
-    public static final Rgbos DEFAULT_COLORS = new Rgbos("my-tiny-game", new RgboColor(0, 0, 0))
-            .add(BACKGROUND, 44, 44, 44, 1)
+    public static final RgboPalette MAGIC_COLORS = new RgboPalette("magic-colors").addAll(DEFAULT_COLORS)
+            .add(RgboKeys.BACKGROUND, 0, 66, 11)
             ;
     
     private ReferenceRgbos() {
