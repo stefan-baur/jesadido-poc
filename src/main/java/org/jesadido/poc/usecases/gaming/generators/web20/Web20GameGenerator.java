@@ -27,7 +27,7 @@ public class Web20GameGenerator {
         try {
             this.generateTestPage();
         } catch (IOException ex) {
-            Logger.getAnonymousLogger().log(Level.SEVERE, "The web 2.0 component can not be stored to the directory: " + this.getHtmlDirectory().getAbsolutePath(), ex);
+            Logger.getAnonymousLogger().log(Level.SEVERE, "The web 2.0 component can not be stored to the directory: " + this.getWeb20Directory().getAbsolutePath(), ex);
             return false;
         }
         return true;
@@ -41,12 +41,12 @@ public class Web20GameGenerator {
         return new File(this.getBaseDirectory(), "output");
     }
     
-    public File getHtmlDirectory() {
-        return new File(this.getOutputDirectory(), "html");
+    public File getWeb20Directory() {
+        return new File(this.getOutputDirectory(), "web20");
     }
     
     public File getKeyDirectory() {
-        return new File(this.getHtmlDirectory(), this.gameModel.getKey());
+        return new File(this.getWeb20Directory(), this.gameModel.getKey());
     }
     
     public File getTestPageFile() {
