@@ -15,6 +15,8 @@ public final class Rgbo {
     public static final Rgbo BLACK = new Rgbo(0, 0, 0);
     public static final Rgbo WHITE = new Rgbo(255, 255, 255);
     
+    public static final int CREASER = 7;
+    
     private final int red;
     private final int green;
     private final int blue;
@@ -49,6 +51,14 @@ public final class Rgbo {
     
     public double getTransparency() {
         return Double.compare(this.opacity, 0.0) == 0 ? 1.0 : Double.max(0.0, 1.0 - this.opacity);
+    }
+    
+    public Rgbo getLighter() {
+        return new Rgbo(this.red + CREASER, this.green + CREASER, this.blue + CREASER, this.opacity);
+    }
+    
+    public Rgbo getDarker() {
+        return new Rgbo(this.red - CREASER, this.green - CREASER, this.blue - CREASER, this.opacity);
     }
     
     @Override

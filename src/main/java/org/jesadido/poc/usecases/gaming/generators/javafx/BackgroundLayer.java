@@ -7,9 +7,9 @@
  */
 package org.jesadido.poc.usecases.gaming.generators.javafx;
 
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import org.jesadido.poc.usecases.gaming.graphics.Rgbo;
 import org.jesadido.poc.usecases.gaming.graphics.RgboKeys;
 
 public class BackgroundLayer extends SizedGameObject {
@@ -24,9 +24,10 @@ public class BackgroundLayer extends SizedGameObject {
     }
     
     private void init() {
-        this.backgroundArea.setFill(JavaFxUtils.toColor(this.getGameScene().getGameState().getGameModel().getRgbo(RgboKeys.BACKGROUND)));
-        this.horizontalCenterLine.setStroke(Color.color(0.23, 0.23, 0.23));
-        this.verticalCenterLine.setStroke(Color.color(0.23, 0.23, 0.23));
+        final Rgbo backgroundRgbo = this.getGameScene().getGameState().getGameModel().getRgbo(RgboKeys.BACKGROUND);
+        this.backgroundArea.setFill(JavaFxUtils.toColor(backgroundRgbo));
+        this.horizontalCenterLine.setStroke(JavaFxUtils.toColor(backgroundRgbo.getDarker()));
+        this.verticalCenterLine.setStroke(JavaFxUtils.toColor(backgroundRgbo.getLighter()));
         this.getChildren().addAll(this.backgroundArea, this.horizontalCenterLine, this.verticalCenterLine);
         this.invalidate();
     }
