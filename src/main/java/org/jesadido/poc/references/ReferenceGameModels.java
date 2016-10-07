@@ -25,10 +25,10 @@ public final class ReferenceGameModels {
     
     private static final GameModel OUR_GIGANTIC_GAME = new GameModel("our-gigantic-game")
             .initGameConceptBook(ReferenceConceptBooks.GAME_CONCEPTS)
-            .initSupportedLanguages(Language.DE, Language.EN, Language.EO, Language.ES, Language.FR, Language.JI)
-            .initSelectedLanguages(Language.JI, Language.DE, Language.EN, Language.EO, Language.ES, Language.FR)
+            .initSupportedLanguages(Language.DE, Language.EN, Language.EO, Language.ES, Language.FR)
+            .initSelectedLanguages(Language.EO)
             .initRgboPalette(ReferenceRgboPalettes.DEFAULT_COLORS)
-            .initTitle("Mi$La LudO GigantA ..")
+            .initTitle("Ni$La LudO GigantA ..")
             ;
     
     private static final List<GameModel> GAME_MODELS = Arrays.asList(MY_TINY_GAME, OUR_GIGANTIC_GAME);
