@@ -24,7 +24,7 @@ public class GameModel {
     private ConceptBook gameConceptBook = new ConceptBook("empty-book");
     private final List<Language> supportedLanguages = new LinkedList<>();
     private final List<Language> selectedLanguages = new LinkedList<>();
-    private RgboPalette rgboPalette = new RgboPalette("empty-rgbos");
+    private RgboPalette rgboPalette = new RgboPalette("empty-rgbo-palette");
     private Phrase title = Phrase.DEFAULT;
     
     public GameModel(final String key) {
