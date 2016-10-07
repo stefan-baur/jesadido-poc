@@ -7,13 +7,15 @@
  */
 package org.jesadido.poc.references;
 
+import java.util.Arrays;
+import java.util.List;
 import org.jesadido.poc.JesadidoPoc;
 import org.jesadido.poc.core.Language;
 import org.jesadido.poc.usecases.gaming.models.GameModel;
 
 public final class ReferenceGameModels {
     
-    public static final GameModel MY_TINY_GAME = new GameModel("my-tiny-game")
+    private static final GameModel MY_TINY_GAME = new GameModel("my-tiny-game")
             .initGameConceptBook(ReferenceConceptBooks.GAME_CONCEPTS)
             .initSupportedLanguages(Language.DE, Language.EN, Language.EO, Language.ES, Language.FR, Language.JI)
             .initSelectedLanguages(Language.EO, Language.EN)
@@ -21,8 +23,22 @@ public final class ReferenceGameModels {
             .initTitle("Mi$La LudO MalGrandEgA ..")
             ;
     
+    private static final GameModel OUR_GIGANTIC_GAME = new GameModel("our-gigantic-game")
+            .initGameConceptBook(ReferenceConceptBooks.GAME_CONCEPTS)
+            .initSupportedLanguages(Language.DE, Language.EN, Language.EO, Language.ES, Language.FR, Language.JI)
+            .initSelectedLanguages(Language.JI, Language.DE, Language.EN, Language.EO, Language.ES, Language.FR)
+            .initRgboPalette(ReferenceRgboPalettes.DEFAULT_COLORS)
+            .initTitle("Mi$La LudO GigantA ..")
+            ;
+    
+    private static final List<GameModel> GAME_MODELS = Arrays.asList(MY_TINY_GAME, OUR_GIGANTIC_GAME);
+    
     private ReferenceGameModels() {
         // A private class constructor
+    }
+    
+    public static List<GameModel> getGameModels() {
+        return GAME_MODELS;
     }
     
     public static void main(final String[] arguments) {

@@ -77,11 +77,10 @@ public class JesadidoPocClient extends Application {
     private Scene createMasterScene() {
         
         final Grammar jesadidoGrammar = GrammarFactory.createJesadidoGrammar();
-        final GameModel myTinyGame = ReferenceGameModels.MY_TINY_GAME;
         
         final BorderPane masterPane = new BorderPane();
         masterPane.setPadding(new Insets(8, 8, 8, 8));
-        masterPane.setCenter(new GamePaneGenerator().generate(myTinyGame));
+        masterPane.setCenter(new GamePaneGenerator().generate(ReferenceGameModels.getGameModels().get(0)));
         
         final MenuItem menuItemGrammarJesadido = new MenuItem(jesadidoGrammar.getKey());
         menuItemGrammarJesadido.setOnAction((ActionEvent e) -> {
@@ -94,14 +93,8 @@ public class JesadidoPocClient extends Application {
         final Menu menuConceptBooks = new Menu("Concept-Books");
         ReferenceConceptBooks.getConceptBooks().stream().forEach(conceptBook -> this.addConceptBookMenuItem(masterPane, menuConceptBooks, conceptBook));
         
-        final MenuItem menuItemMyTinyGame = new MenuItem(myTinyGame.getKey());
-        menuItemMyTinyGame.setOnAction((ActionEvent e) -> {
-            masterPane.setTop(this.createPageHeader(String.format("Game: \"%s\"", myTinyGame.getKey())));
-            masterPane.setCenter(this.createGameModelOverview(myTinyGame));
-        });
-        
         final Menu menuItemGaming = new Menu("Gaming");
-        menuItemGaming.getItems().addAll(menuItemMyTinyGame);
+        ReferenceGameModels.getGameModels().stream().forEach(gameModel -> this.addGameModelMenuItem(masterPane, menuItemGaming, gameModel));
         
         final Menu menuUseCases = new Menu("Use-Cases");
         menuUseCases.getItems().addAll(menuItemGaming);
@@ -124,16 +117,16 @@ public class JesadidoPocClient extends Application {
         menuConceptBooks.getItems().addAll(menuItemGameBook);
     }
     
+    private void addGameModelMenuItem(final BorderPane masterPane, final Menu menuItemGaming, final GameModel gameModel) {
+        final MenuItem menuItemMyTinyGame = new MenuItem(gameModel.getKey());
+        menuItemMyTinyGame.setOnAction((ActionEvent e) -> {
+            masterPane.setTop(this.createPageHeader(String.format("Game: \"%s\"", gameModel.getKey())));
+            masterPane.setCenter(this.createGameModelOverview(gameModel));
+        });
+        menuItemGaming.getItems().addAll(menuItemMyTinyGame);
+    }
+    
     private Node createGameModelOverview(final GameModel gameModel) {
-        
-        final TextArea gameModelContent = new TextArea(new TextGameGenerator(gameModel).generate().toString());
-        gameModelContent.setFont(SOURCE_FONT_11);
-        gameModelContent.setEditable(false);
-        gameModelContent.setPadding(new Insets(8, 0, 0, 0));
-        
-        final Tab gameModelTab = new Tab("Game-Model");
-        gameModelTab.setContent(gameModelContent);
-        gameModelTab.setClosable(false);
         
         final BorderPane playGameContent = new BorderPane(new GamePaneGenerator().generate(gameModel));
         playGameContent.setPadding(new Insets(8, 0, 0, 0));
@@ -157,9 +150,18 @@ public class JesadidoPocClient extends Application {
         crossPlatformTab.setContent(crossPlatformContent);
         crossPlatformTab.setClosable(false);
         
+        final TextArea gameModelContent = new TextArea(new TextGameGenerator(gameModel).generate().toString());
+        gameModelContent.setFont(SOURCE_FONT_11);
+        gameModelContent.setEditable(false);
+        gameModelContent.setPadding(new Insets(8, 0, 0, 0));
+        
+        final Tab gameModelTab = new Tab("Game-Model");
+        gameModelTab.setContent(gameModelContent);
+        gameModelTab.setClosable(false);
+        
         final TabPane result = new TabPane();
         result.setPrefHeight(2400);
-        result.getTabs().addAll(gameModelTab, playGameTab, crossPlatformTab);
+        result.getTabs().addAll(playGameTab, crossPlatformTab, gameModelTab);
         return result;
     }
     

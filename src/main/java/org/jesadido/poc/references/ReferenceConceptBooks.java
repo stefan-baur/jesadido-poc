@@ -384,6 +384,13 @@ public final class ReferenceConceptBooks {
                     .addDefaultTargets(new EsTarget("juego", Es.MASCULINE))
                     .addDefaultTargets(new FrTarget("jeu", Fr.MASCULINE))
             )
+            .add(new ConceptBookEntry("GigantA")
+                    .addDefaultTargets(new DeTarget("gigantisch"))
+                    .addDefaultTargets(new EnTarget("gigantic"))
+                    .addDefaultTargets(new EoTarget("giganta"))
+                    .addDefaultTargets(new EsTarget("gigantesco", Es.MASCULINE, Es.PREPOSED), new EsTarget("gigantesca", Es.FEMININE, Es.PREPOSED))
+                    .addDefaultTargets(new FrTarget("gigantesque", Fr.MASCULINE, Fr.FEMININE, Fr.PREPOSED))
+            )
             .add(new ConceptBookEntry("MalGrandEgA")
                     .addDefaultTargets(new DeTarget("winzig"))
                     .addDefaultTargets(new EnTarget("tiny"))
@@ -393,15 +400,17 @@ public final class ReferenceConceptBooks {
             )
             .addReferenceSources(
                     
-                    "Mi$La LudO MalGrandEgA .."
+                    "Mi$La LudO MalGrandEgA ..",
+                    
+                    "Mi$La LudO GigantA .."
             )
             ;
     
-    private static final Map<ConceptBook, ConceptBookTestsGenerator> CONCEPT_BOOK_TESTS_GENERATOR = new HashMap<>();
+    private static final Map<ConceptBook, ConceptBookTestsGenerator> CONCEPT_BOOK_TESTS_GENERATORS = new HashMap<>();
     
     static {
-        CONCEPT_BOOK_TESTS_GENERATOR.put(TEST_CONCEPTS, new ConceptBookTestsGenerator(TEST_CONCEPTS, "ReferenceConceptBooks.TEST_CONCEPTS", "TestConcepts"));
-        CONCEPT_BOOK_TESTS_GENERATOR.put(GAME_CONCEPTS, new ConceptBookTestsGenerator(GAME_CONCEPTS, "ReferenceConceptBooks.GAME_CONCEPTS", "GameConcepts"));
+        CONCEPT_BOOK_TESTS_GENERATORS.put(TEST_CONCEPTS, new ConceptBookTestsGenerator(TEST_CONCEPTS, "ReferenceConceptBooks.TEST_CONCEPTS", "TestConcepts"));
+        CONCEPT_BOOK_TESTS_GENERATORS.put(GAME_CONCEPTS, new ConceptBookTestsGenerator(GAME_CONCEPTS, "ReferenceConceptBooks.GAME_CONCEPTS", "GameConcepts"));
     }
     
     private ReferenceConceptBooks() {
@@ -409,12 +418,12 @@ public final class ReferenceConceptBooks {
     }
     
     public static Collection<ConceptBook> getConceptBooks() {
-        return Collections.unmodifiableCollection(CONCEPT_BOOK_TESTS_GENERATOR.keySet());
+        return Collections.unmodifiableCollection(CONCEPT_BOOK_TESTS_GENERATORS.keySet());
     }
     
     public static Src generateTests(final ConceptBook conceptBook) {
-        if (CONCEPT_BOOK_TESTS_GENERATOR.containsKey(conceptBook)) {
-            return CONCEPT_BOOK_TESTS_GENERATOR.get(conceptBook).generate();
+        if (CONCEPT_BOOK_TESTS_GENERATORS.containsKey(conceptBook)) {
+            return CONCEPT_BOOK_TESTS_GENERATORS.get(conceptBook).generate();
         }
         return new Src();
     }
