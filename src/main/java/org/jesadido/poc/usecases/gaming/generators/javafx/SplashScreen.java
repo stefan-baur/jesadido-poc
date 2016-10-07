@@ -67,6 +67,10 @@ public class SplashScreen extends SizedGameObject {
     }
     
     private String translate(final Language language, final String source) {
-        return TranslatorFactory.createTranslator(language, this.getGameScene().getGameState().getGameModel().getGameConceptBook()).translate(source).getTranslation();
+        if (language == Language.JI) {
+            return source;
+        } else {
+            return TranslatorFactory.createTranslator(language, this.getGameScene().getGameState().getGameModel().getGameConceptBook()).translate(source).getTranslation();
+        }
     }
 }
