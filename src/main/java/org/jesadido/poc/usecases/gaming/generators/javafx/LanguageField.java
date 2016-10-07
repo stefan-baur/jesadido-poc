@@ -53,7 +53,7 @@ public class LanguageField extends SizedGameObject {
         }
         this.setOnMouseClicked((Event event) -> {
             this.getGameState().selectLanguage(this.language);
-            this.invalidate();
+            this.getGameScene().invalidate();
         });
         this.invalidate();
     }
