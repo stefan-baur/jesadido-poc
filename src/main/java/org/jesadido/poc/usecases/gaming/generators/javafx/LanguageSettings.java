@@ -7,11 +7,8 @@
  */
 package org.jesadido.poc.usecases.gaming.generators.javafx;
 
-import javafx.event.Event;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.layout.FlowPane;
-import org.jesadido.poc.core.Language;
 
 public class LanguageSettings extends GameObject {
     
@@ -21,29 +18,16 @@ public class LanguageSettings extends GameObject {
     }
     
     private void init() {
-        final FlowPane settings = new FlowPane();
-        settings.setHgap(8);
-        settings.setVgap(8);
-        settings.getChildren().add(this.createMainLanguageField());
-        this.getGameScene().getGameState().getSemiLanguages().stream().forEach(language -> settings.getChildren().add(this.createLanguageField(language)));
-        this.getGameScene().getGameState().getRestLanguages().stream().forEach(language -> settings.getChildren().add(this.createLanguageField(language)));
-        final Group settingsGroup = new Group(settings);
-        settingsGroup.setTranslateX(20);
-        settingsGroup.setTranslateY(16);
-        this.getChildren().add(settingsGroup);
-    }
-    
-    private Node createMainLanguageField() {
-        return this.createLanguageField(this.getGameScene().getGameState().getMainLanguage());
-    }
-    
-    private Node createLanguageField(final Language language) {
-        final LanguageField result = new LanguageField(this.getGameScene(), language);
-        result.setOnMouseClicked((Event event) -> {
-            this.getGameScene().getGameState().selectNextMainLanguage();
-            this.getGameScene().invalidate();
-        });
-        return result;
+        final FlowPane languageFields = new FlowPane();
+        languageFields.setHgap(8);
+        languageFields.setVgap(8);
+        languageFields.getChildren().add(new LanguageField(this.getGameScene(), this.getGameScene().getGameState().getMainLanguage()));
+        this.getGameScene().getGameState().getSemiLanguages().stream().forEach(language -> languageFields.getChildren().add(new LanguageField(this.getGameScene(), language)));
+        this.getGameScene().getGameState().getRestLanguages().stream().forEach(language -> languageFields.getChildren().add(new LanguageField(this.getGameScene(), language)));
+        final Group languageSettings = new Group(languageFields);
+        languageSettings.setTranslateX(20);
+        languageSettings.setTranslateY(16);
+        this.getChildren().add(languageSettings);
     }
     
     @Override

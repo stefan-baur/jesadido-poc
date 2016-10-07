@@ -49,13 +49,24 @@ public class GameState {
         return this.restLanguages;
     }
     
-    public void selectMainLanguage(final Language language) {
+    public void selectLanguage(final Language language) {
+        if (this.selectableLanguages.contains(language)) {
+            if (this.mainLanguage == language) {
+                this.selectNextMainLanguage();
+            } else {
+                this.selectMainLanguage(language);
+            }
+        }
+    }
+    
+    private void selectMainLanguage(final Language language) {
         this.semiLanguages.remove(language);
+        this.semiLanguages.add(0, this.mainLanguage);
         this.restLanguages.remove(language);
         this.mainLanguage = language;
     }
     
-    public void selectNextMainLanguage() {
+    private void selectNextMainLanguage() {
         this.restLanguages.add(this.mainLanguage);
         this.mainLanguage = this.semiLanguages.isEmpty() ? this.restLanguages.remove(0) : this.semiLanguages.remove(0);
     }

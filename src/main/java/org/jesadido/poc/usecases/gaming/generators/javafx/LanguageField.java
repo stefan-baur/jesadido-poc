@@ -7,6 +7,7 @@
  */
 package org.jesadido.poc.usecases.gaming.generators.javafx;
 
+import javafx.event.Event;
 import javafx.geometry.VPos;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -33,16 +34,27 @@ public class LanguageField extends SizedGameObject {
     private void init() {
         this.setWidth(32);
         this.setHeight(32);
-        this.backgroundArea.setFill(Color.color(0.2, 0.2, 0.2));
+        this.backgroundArea.setFill(Color.color(0.24, 0.24, 0.24));
         this.backgroundArea.setArcWidth(8);
         this.backgroundArea.setArcHeight(8);
         this.getChildren().add(this.backgroundArea);
         this.languageText.setText(this.language.getCode());
         this.languageText.setFont(Font.font("Comic Sans MS", FontWeight.NORMAL, 14));
-        this.languageText.setFill(Color.KHAKI);
+        this.languageText.setFill(Color.color(0.18, 0.18, 0.18));
         this.languageText.setTextOrigin(VPos.CENTER);
         this.languageText.setTextAlignment(TextAlignment.CENTER);
         this.getChildren().add(this.languageText);
+        if (this.getGameScene().getGameState().getMainLanguage() == this.language) {
+            this.backgroundArea.setFill(Color.color(0.2, 0.2, 0.2));
+            this.languageText.setFill(Color.color(0.94, 0.90, 0.55));
+        } else if (this.getGameScene().getGameState().getSemiLanguages().contains(this.language)) {
+            this.backgroundArea.setFill(Color.color(0.22, 0.22, 0.22));
+            this.languageText.setFill(Color.color(0.7, 0.7, 0.7));
+        }
+        this.setOnMouseClicked((Event event) -> {
+            this.getGameScene().getGameState().selectLanguage(this.language);
+            this.getGameScene().invalidate();
+        });
         this.invalidate();
     }
     
