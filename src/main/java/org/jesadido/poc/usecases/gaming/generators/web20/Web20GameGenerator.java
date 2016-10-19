@@ -173,8 +173,13 @@ public class Web20GameGenerator {
                 .end("}")
                 .end("});")
                 
+                .line("this.$splash.children().remove();")
                 .line("var title = %s;", Web20GameUtils.toJsTranslationMap(this.gameModel.translationMap(this.gameModel.getTitle().getSource())))
-                .line("this.$splash.text(title[scene.state.languages.main]);")
+                .line("$('<div></div>').text(title[scene.state.languages.main]).addClass('main').appendTo(this.$splash);")
+                
+                .begin("for (var i = 0; i < this.state.languages.semi.length; i++) {")
+                .line("$('<div></div>').text(title[scene.state.languages.semi[i]]).addClass('semi').appendTo(this.$splash);")
+                .end("}")
                 
                 .end("}")
                 
