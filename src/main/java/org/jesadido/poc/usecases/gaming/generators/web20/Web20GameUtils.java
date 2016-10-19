@@ -15,6 +15,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import org.jesadido.poc.core.Language;
 import org.jesadido.poc.usecases.gaming.graphics.Rgbo;
 
@@ -39,5 +40,11 @@ public final class Web20GameUtils {
         final List<String> formattedLanguages = new LinkedList<>();
         languages.stream().forEach(language -> formattedLanguages.add(String.format("'%s'", language.getCode())));
         return String.format("[%s]", String.join(", ", formattedLanguages));
+    }
+    
+    public static String toJsTranslationMap(final Map<Language, String> translationMap) {
+        final List<String> translationEntries = new LinkedList<>();
+        translationMap.keySet().stream().forEach(language -> translationEntries.add(String.format("%s: '%s'", language.getCode(), translationMap.get(language).replace("'", "\\'"))));
+        return String.format("{ %s }", String.join(", ", translationEntries));
     }
 }

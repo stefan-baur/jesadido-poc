@@ -86,6 +86,9 @@ public class Web20GameGenerator {
     }
     
     private void generateComponent() throws IOException {
+        
+        final String jsElse = "} else {";
+        
         new Src()
                 .begin("(function($) {")
                 .line()
@@ -95,22 +98,24 @@ public class Web20GameGenerator {
                 
                 .begin("return this.each(function() {")
                 
-                .begin("var languages = {")
+                .begin("var scene = {")
+                
+                .begin("state: {")
+                .begin("languages: {")
                 .line("main: '%s',", this.getMainLanguage().getCode())
                 .line("semi: %s,", Web20GameUtils.toJsLanguageArray(this.getSemiLanguages()))
                 .line("rest: %s,", Web20GameUtils.toJsLanguageArray(this.getRestLanguages()))
                 .begin("select: function(l) {")
-                
                 .begin("if (l === this.main) {")
                 .line("this.rest.push(l);")
                 .begin("if (!this.semi.length) {")
                 .line("this.main = this.rest[0];")
                 .line("this.rest.splice(0, 1);")
-                .endBegin("} else {")
+                .endBegin(jsElse)
                 .line("this.main = this.semi[0];")
                 .line("this.semi.splice(0, 1);")
                 .end("}")
-                .endBegin("} else {")
+                .endBegin(jsElse)
                 .line("var semiIndex = this.semi.indexOf(l);")
                 .begin("if (semiIndex > -1) {")
                 .line("this.semi.splice(semiIndex, 1);")
@@ -122,32 +127,60 @@ public class Web20GameGenerator {
                 .end("}")
                 .line("this.main = l;")
                 .end("}")
-                .line("alert(l + ' (' + this.main + ', ' + this.semi + ', ' + this.rest + ')');")
+                .line("console.log(l + ' (' + this.main + '; ' + this.semi + '; ' + this.rest + ')');")
                 .end("}")
-                .end("};")
+                .end("}")
+                .end("},")
                 
-                .begin("var $master = $('<span></span>').css({")
+                .line("$game: null,")
+                .line("$master: null,")
+                .line("$languages: null,")
+                .line("$splash: null,")
+                
+                .begin("init: function($game) {")
+                .line("this.$game = $game;")
+                .begin("this.$master = $('<span></span>').css({")
                 .line("backgroundColor: '%s',", Web20GameUtils.toCssRgba(this.gameModel.getRgbo(RgboKeys.BACKGROUND_FILL)))
-                .line("display: 'inline-block',")
-                .line("width: $(this).width() + 'px',")
-                .line("height: $(this).height() + 'px'")
-                .end("}).appendTo($(this));")
+                .line("display: 'inline-block'")
+                .end("}).appendTo(this.$game);")
                 
-                .line("var $languageSettings = $('<div class=\"language-settings\"></div>').appendTo($master);")
-                .line("$('<a href=\"#\">' + languages.main + '</a>').data('language', languages.main).appendTo($languageSettings);")
-                .begin("for (var i = 0; i < languages.semi.length; i++) {")
-                .line("var l = languages.semi[i];")
-                .line("$('<a href=\"#\">' + l + '</a>').data('language', l).appendTo($languageSettings);")
+                .line("this.$languages = $('<div></div>').addClass('languages').appendTo(this.$master);")
+                .begin("for (var i = 0; i < 1 + this.state.languages.semi.length + this.state.languages.rest.length; i++) {")
+                .begin("$('<a href=\"#\"></a>').on('click', function() {")
+                .line("scene.state.languages.select($(this).data('language'));")
+                .line("scene.invalidate();")
+                .end("}).appendTo(this.$languages);")
                 .end("}")
-                .begin("for (var i = 0; i < languages.rest.length; i++) {")
-                .line("var l = languages.rest[i];")
-                .line("$('<a href=\"#\">' + l + '</a>').data('language', l).appendTo($languageSettings);")
-                .end("}")
-                .begin("$languageSettings.children().on('click', function() {")
-                .line("languages.select($(this).data('language'));")
+                
+                .line("this.$splash = $('<div></div>').addClass('splash').appendTo(this.$master);")
+                
+                .line("this.invalidate();")
+                .end("},")
+                
+                .begin("invalidate: function() {")
+                .begin("this.$master.css({")
+                .line("width: this.$game.width() + 'px',")
+                .line("height: this.$game.height() + 'px'")
                 .end("});")
                 
-                .line("$('<div>%s</div>').appendTo($master);", this.gameModel.translate(this.gameModel.getSelectedLanguages().get(0), this.gameModel.getTitle().getSource()))
+                .begin("this.$languages.children().each(function(index) {")
+                .begin("if (index == 0) {")
+                .line("$(this).text(scene.state.languages.main).data('language', scene.state.languages.main);")
+                .endBegin("} else if (index <= scene.state.languages.semi.length) {")
+                .line("$(this).text(scene.state.languages.semi[index - 1]).data('language', scene.state.languages.semi[index - 1]);")
+                .endBegin(jsElse)
+                .line("$(this).text(scene.state.languages.rest[index - scene.state.languages.semi.length - 1]).data('language', scene.state.languages.rest[index - scene.state.languages.semi.length - 1]);")
+                .end("}")
+                .end("});")
+                
+                .line("var title = %s;", Web20GameUtils.toJsTranslationMap(this.gameModel.translationMap(this.gameModel.getTitle().getSource())))
+                .line("this.$splash.text(title[scene.state.languages.main]);")
+                
+                .end("}")
+                
+                .end("};")
+                
+                .line("scene.init($(this));")
                 
                 .end("});")
                 
@@ -182,8 +215,6 @@ public class Web20GameGenerator {
                 .end("</script>")
                 .end("</head>")
                 .begin("<body>")
-                .line("<span class=\"game\" style=\"display: inline-block; width: 200px; height: 160px;\"></span>")
-                .line("<span class=\"game\" style=\"display: inline-block; width: 400px; height: 360px;\"></span>")
                 .line("<div class=\"game\" style=\"height: 560px;\"></div>")
                 .end("</body>")
                 .end("</html>")

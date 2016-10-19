@@ -8,8 +8,10 @@
 package org.jesadido.poc.usecases.gaming.models;
 
 import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import org.jesadido.poc.core.Language;
 import org.jesadido.poc.core.semantics.ConceptBook;
 import org.jesadido.poc.core.semantics.translating.TranslatorFactory;
@@ -104,5 +106,11 @@ public class GameModel {
         } else {
             return TranslatorFactory.createTranslator(language, this.getGameConceptBook()).translate(source).getTranslation();
         }
+    }
+    
+    public Map<Language, String> translationMap(final String source) {
+        final Map<Language, String> result = new EnumMap<>(Language.class);
+        this.getSupportedLanguages().stream().forEach(language -> result.put(language, translate(language, source)));
+        return result;
     }
 }

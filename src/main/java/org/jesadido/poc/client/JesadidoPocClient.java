@@ -80,7 +80,7 @@ public class JesadidoPocClient extends Application {
         
         final BorderPane masterPane = new BorderPane();
         masterPane.setPadding(new Insets(8, 8, 8, 8));
-        masterPane.setCenter(new JavaFxGameGenerator().generate(ReferenceGameModels.getGameModels().get(0)));
+        masterPane.setCenter(this.createGameModelOverview(ReferenceGameModels.getGameModels().get(0)));
         
         final MenuItem menuItemGrammarJesadido = new MenuItem(jesadidoGrammar.getKey());
         menuItemGrammarJesadido.setOnAction((ActionEvent e) -> {
