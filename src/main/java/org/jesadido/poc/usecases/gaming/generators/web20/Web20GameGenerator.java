@@ -23,7 +23,8 @@ public class Web20GameGenerator {
     
     private static final File RESOURCES_ROOT_DIR = new File(new File(Web20GameGenerator.class.getResource("Web20GameGenerator.class").getPath()).getParentFile(), "resources");
     private static final String JQUERY_FILE = "jquery-3.1.1.min.js";
-    private static final String COMPONENT_FILE = "game.js";
+    private static final String COMPONENT_JS_FILE = "game.js";
+    private static final String COMPONENT_CSS_FILE = "game.css";
     
     private final GameModel gameModel;
     
@@ -63,8 +64,12 @@ public class Web20GameGenerator {
         return new File(this.getKeyDirectory(), JQUERY_FILE);
     }
     
-    public File getComponentFile() {
-        return new File(this.getKeyDirectory(), COMPONENT_FILE);
+    public File getComponentJsFile() {
+        return new File(this.getKeyDirectory(), COMPONENT_JS_FILE);
+    }
+    
+    public File getComponentCssFile() {
+        return new File(this.getKeyDirectory(), COMPONENT_CSS_FILE);
     }
     
     public File getTestPageFile() {
@@ -86,6 +91,11 @@ public class Web20GameGenerator {
     }
     
     private void generateComponent() throws IOException {
+        this.generateComponentJsFile();
+        this.generateComponentCssFile();
+    }
+    
+    private void generateComponentJsFile() throws IOException {
         
         final String jsElse = "} else {";
         
@@ -95,6 +105,12 @@ public class Web20GameGenerator {
                 .begin("$.fn.extend({")
                 .line()
                 .begin("game: function() {")
+                
+                .begin("$('<link />').appendTo('head').attr({")
+                .line("type: 'text/css',")
+                .line("rel: 'stylesheet',")
+                .line("href: '%s'", COMPONENT_CSS_FILE)
+                .end("});")
                 
                 .begin("return this.each(function() {")
                 
@@ -139,10 +155,8 @@ public class Web20GameGenerator {
                 
                 .begin("init: function($game) {")
                 .line("this.$game = $game;")
-                .begin("this.$master = $('<span></span>').css({")
-                .line("backgroundColor: '%s',", Web20GameUtils.toCssRgba(this.gameModel.getRgbo(RgboKeys.BACKGROUND_FILL)))
-                .line("display: 'inline-block'")
-                .end("}).appendTo(this.$game);")
+                
+                .line("this.$master = $('<span></span>').addClass('game-master').appendTo(this.$game);")
                 
                 .line("this.$languages = $('<div></div>').addClass('languages').appendTo(this.$master);")
                 .begin("for (var i = 0; i < 1 + this.state.languages.semi.length + this.state.languages.rest.length; i++) {")
@@ -195,8 +209,18 @@ public class Web20GameGenerator {
                 .line()
                 .end("})(jQuery);")
                 .line()
-                .save(this.getComponentFile())
+                .save(this.getComponentJsFile())
                 ;
+    }
+    
+    private void generateComponentCssFile() throws IOException {
+        new Src()
+                .begin(".game-master {")
+                .line("display: inline-block;")
+                .line("background-color: %s;", Web20GameUtils.toCssRgba(this.gameModel.getRgbo(RgboKeys.BACKGROUND_FILL)))
+                .end("}")
+                .line()
+                .save(this.getComponentCssFile());
     }
     
     private void generateTestPage() throws IOException {
@@ -207,7 +231,7 @@ public class Web20GameGenerator {
                 .line("<meta charset=\"utf-8\" />")
                 .line("<title>%s</title>", this.gameModel.translate(this.gameModel.getSelectedLanguages().get(0), this.gameModel.getTitle().getSource()))
                 .line("<script type=\"text/javascript\" src=\"%s\"></script>", JQUERY_FILE)
-                .line("<script type=\"text/javascript\" src=\"%s\"></script>", COMPONENT_FILE)
+                .line("<script type=\"text/javascript\" src=\"%s\"></script>", COMPONENT_JS_FILE)
                 .begin("<script type=\"text/javascript\">")
                 .begin("(function($) {")
                 .begin("$(function() {")
