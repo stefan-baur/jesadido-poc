@@ -23,8 +23,6 @@ public class Web20GameGenerator {
     
     private static final File RESOURCES_ROOT_DIR = new File(new File(Web20GameGenerator.class.getResource("Web20GameGenerator.class").getPath()).getParentFile(), "resources");
     private static final String JQUERY_FILE = "jquery-3.1.1.min.js";
-    private static final String COMPONENT_JS_FILE = "game.js";
-    private static final String COMPONENT_CSS_FILE = "game.css";
     
     private final GameModel gameModel;
     
@@ -65,11 +63,11 @@ public class Web20GameGenerator {
     }
     
     public File getComponentJsFile() {
-        return new File(this.getKeyDirectory(), COMPONENT_JS_FILE);
+        return new File(this.getKeyDirectory(), String.format("%s.js", this.gameModel.getKey()));
     }
     
     public File getComponentCssFile() {
-        return new File(this.getKeyDirectory(), COMPONENT_CSS_FILE);
+        return new File(this.getKeyDirectory(), String.format("%s.css", this.gameModel.getKey()));
     }
     
     public File getTestPageFile() {
@@ -105,17 +103,16 @@ public class Web20GameGenerator {
                 .begin("$.fn.extend({")
                 .line()
                 .begin("%s: function() {", Web20GameUtils.toIdentifier(this.gameModel.getKey()))
-                
+                .line("var gameKey = '%s';", this.gameModel.getKey())
                 .begin("$('<link />').appendTo('head').attr({")
                 .line("type: 'text/css',")
                 .line("rel: 'stylesheet',")
-                .line("href: '%s'", COMPONENT_CSS_FILE)
+                .line("href: gameKey + '.css'")
                 .end("});")
                 
                 .begin("return this.each(function() {")
                 
                 .begin("var scene = {")
-                .line("key: '%s',", this.gameModel.getKey())
                 .begin("state: {")
                 .begin("languages: {")
                 .line("main: '%s',", this.getMainLanguage().getCode())
@@ -143,7 +140,6 @@ public class Web20GameGenerator {
                 .end("}")
                 .line("this.main = l;")
                 .end("}")
-                .line("console.log(l + ' (' + this.main + '; ' + this.semi + '; ' + this.rest + ')');")
                 .end("}")
                 .end("}")
                 .end("},")
@@ -156,7 +152,7 @@ public class Web20GameGenerator {
                 .begin("init: function($owner) {")
                 .line("this.$owner = $owner;")
                 
-                .line("this.$viewport = $('<span></span>').addClass(this.key).addClass('viewport').appendTo(this.$owner);")
+                .line("this.$viewport = $('<span></span>').addClass(gameKey).addClass('viewport').appendTo(this.$owner);")
                 
                 .line("this.$languages = $('<div></div>').addClass('languages').appendTo(this.$viewport);")
                 .begin("for (var i = 0; i < 1 + this.state.languages.semi.length + this.state.languages.rest.length; i++) {")
@@ -285,7 +281,7 @@ public class Web20GameGenerator {
                 .line("<meta charset=\"utf-8\" />")
                 .line("<title>%s</title>", this.gameModel.translate(this.gameModel.getSelectedLanguages().get(0), this.gameModel.getTitle().getSource()))
                 .line("<script type=\"text/javascript\" src=\"%s\"></script>", JQUERY_FILE)
-                .line("<script type=\"text/javascript\" src=\"%s\"></script>", COMPONENT_JS_FILE)
+                .line("<script type=\"text/javascript\" src=\"%s\"></script>", this.getComponentJsFile().getName())
                 .begin("<script type=\"text/javascript\">")
                 .begin("(function($) {")
                 .begin("$(function() {")
