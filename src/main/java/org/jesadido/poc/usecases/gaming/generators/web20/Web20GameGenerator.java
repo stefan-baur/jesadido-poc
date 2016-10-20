@@ -146,6 +146,7 @@ public class Web20GameGenerator {
                 
                 .line("$owner: null,")
                 .line("$viewport: null,")
+                .line("$background: null,")
                 .line("$languages: null,")
                 .line("$splash: null,")
                 
@@ -154,6 +155,7 @@ public class Web20GameGenerator {
                 
                 .line("this.$viewport = $('<div></div>').addClass(gameKey).addClass('viewport').appendTo(this.$owner);")
                 
+                .line("this.$background = $('<div></div>').addClass('background').appendTo(this.$viewport);")
                 .line("this.$splash = $('<div></div>').addClass('splash').appendTo(this.$viewport);")
                 
                 .line("this.$languages = $('<div></div>').addClass('languages').appendTo(this.$viewport);")
@@ -168,10 +170,49 @@ public class Web20GameGenerator {
                 .end("},")
                 
                 .begin("invalidate: function() {")
+                .line("var w = this.$owner.width();")
+                .line("var h = this.$owner.height();")
                 .begin("this.$viewport.css({")
-                .line("width: this.$owner.width() + 'px',")
-                .line("height: this.$owner.height() + 'px'")
+                .line("width: w + 'px',")
+                .line("height: h + 'px'")
                 .end("});")
+                
+                .line("this.$background.children().remove();")
+                
+                .line("var $svg = $('<svg width=\"' + w + '\" height=\"' + h + '\" style=\"position: absolute;\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\"></svg>').appendTo(this.$background);")
+                .line("var $g = $(document.createElementNS('http://www.w3.org/2000/svg','g')).appendTo($svg);")
+                
+                .begin("$(document.createElementNS('http://www.w3.org/2000/svg','line')).attr({")
+                .line("x1: 0,")
+                .line("y1: h / 2.0,")
+                .line("x2: w,")
+                .line("y2: h / 2.0")
+                .endBegin("}).css({")
+                .line("stroke: '%s',", Web20GameUtils.toCssRgba(this.gameModel.getRgbo(RgboKeys.BACKGROUND_FILL).getDarker()))
+                .line("strokeWidth: 1")
+                .end("}).appendTo($g);")
+                
+                .begin("$(document.createElementNS('http://www.w3.org/2000/svg','line')).attr({")
+                .line("x1: w / 2.0,")
+                .line("y1: 0,")
+                .line("x2: w / 2.0,")
+                .line("y2: h")
+                .endBegin("}).css({")
+                .line("stroke: '%s',", Web20GameUtils.toCssRgba(this.gameModel.getRgbo(RgboKeys.BACKGROUND_FILL).getLighter()))
+                .line("strokeWidth: 1")
+                .end("}).appendTo($g);")
+                
+                .begin("this.$splash.css({")
+                .line("width: w + 'px',")
+                .line("height: h + 'px'")
+                .end("});")
+                .line("this.$splash.children().remove();")
+                
+                .line("var title = %s;", Web20GameUtils.toJsTranslationMap(this.gameModel.translationMap(this.gameModel.getTitle().getSource())))
+                .line("$('<div></div>').text(title[scene.state.languages.main]).addClass('main').appendTo(this.$splash);")
+                .begin("for (var i = 0; i < this.state.languages.semi.length; i++) {")
+                .line("$('<div></div>').text(title[scene.state.languages.semi[i]]).addClass('semi').appendTo(this.$splash);")
+                .end("}")
                 
                 .begin("this.$languages.children().each(function(index) {")
                 .begin("if (index == 0) {")
@@ -182,14 +223,6 @@ public class Web20GameGenerator {
                 .line("$(this).text(scene.state.languages.rest[index - scene.state.languages.semi.length - 1]).data('language', scene.state.languages.rest[index - scene.state.languages.semi.length - 1]).removeClass('main semi').addClass('rest');")
                 .end("}")
                 .end("});")
-                
-                .line("this.$splash.children().remove();")
-                .line("var title = %s;", Web20GameUtils.toJsTranslationMap(this.gameModel.translationMap(this.gameModel.getTitle().getSource())))
-                .line("$('<div></div>').text(title[scene.state.languages.main]).addClass('main').appendTo(this.$splash);")
-                
-                .begin("for (var i = 0; i < this.state.languages.semi.length; i++) {")
-                .line("$('<div></div>').text(title[scene.state.languages.semi[i]]).addClass('semi').appendTo(this.$splash);")
-                .end("}")
                 
                 .end("}")
                 
@@ -212,6 +245,7 @@ public class Web20GameGenerator {
     private void generateComponentCssFile() throws IOException {
         
         final String cssDisplayInlineBlock = "display: inline-block;";
+        final String cssPositionAbsolute = "position: absolute;";
         final String cssBackgroundColorS = "background-color: %s;";
         final String cssColorS = "color: %s;";
         
@@ -219,12 +253,13 @@ public class Web20GameGenerator {
                 .begin(".%s.viewport {", this.gameModel.getKey())
                 .line(cssDisplayInlineBlock)
                 .line("position: relative;")
+                .line("overflow: hidden;")
                 .line(cssBackgroundColorS, Web20GameUtils.toCssRgba(this.gameModel.getRgbo(RgboKeys.BACKGROUND_FILL)))
                 .end("}")
                 .line()
                 .begin(".%s.viewport .languages {", this.gameModel.getKey())
                 .line(cssDisplayInlineBlock)
-                .line("position: absolute;")
+                .line(cssPositionAbsolute)
                 .line("left: 20px;")
                 .line("top: 16px;")
                 .end("}")
@@ -256,11 +291,16 @@ public class Web20GameGenerator {
                 .line(cssColorS, Web20GameUtils.toCssRgba(this.gameModel.getRgbo(RgboKeys.REST_LANGUAGE_FILL)))
                 .end("}")
                 .line()
+                .begin(".%s.viewport .background {", this.gameModel.getKey())
+                .line(cssDisplayInlineBlock)
+                .line(cssPositionAbsolute)
+                .end("}")
+                .line()
                 .begin(".%s.viewport .splash {", this.gameModel.getKey())
-                .line("display: inline-block;")
-                .line("position: absolute;")
-                .line("left: 50px;")
-                .line("top: 30px;")
+                .line(cssDisplayInlineBlock)
+                .line(cssPositionAbsolute)
+                .line("left: 0px;")
+                .line("top: 0px;")
                 .line("font-family: \"Comic Sans MS\", sans-serif;")
                 .end("}")
                 .line()
@@ -292,6 +332,7 @@ public class Web20GameGenerator {
                 .line("$('.game').%s();", Web20GameUtils.toIdentifier(this.gameModel.getKey()))
                 .begin("$(window).resize(function() {")
                 .line("console.log(\"\" + $(window).width() + \"x\" + $(window).height());")
+                .line("$('.game').width($(window).width() - 16).height($(window).height() - 16);")
                 .end("});")
                 .end("});")
                 .end("})(jQuery);")
