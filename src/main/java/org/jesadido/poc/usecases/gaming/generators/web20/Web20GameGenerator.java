@@ -104,7 +104,7 @@ public class Web20GameGenerator {
                 .line()
                 .begin("$.fn.extend({")
                 .line()
-                .begin("game: function() {")
+                .begin("%s: function() {", Web20GameUtils.toIdentifier(this.gameModel.getKey()))
                 
                 .begin("$('<link />').appendTo('head').attr({")
                 .line("type: 'text/css',")
@@ -289,7 +289,7 @@ public class Web20GameGenerator {
                 .begin("<script type=\"text/javascript\">")
                 .begin("(function($) {")
                 .begin("$(function() {")
-                .line("$('.game').game();")
+                .line("$('.game').%s();", Web20GameUtils.toIdentifier(this.gameModel.getKey()))
                 .begin("$(window).resize(function() {")
                 .line("console.log(\"\" + $(window).width() + \"x\" + $(window).height());")
                 .end("});")

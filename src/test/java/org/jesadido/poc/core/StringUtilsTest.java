@@ -31,6 +31,16 @@ public class StringUtilsTest {
     }
     
     @Test
+    public void testDown() {
+        Assert.assertEquals("", StringUtils.down((String) null));
+        Assert.assertEquals("", StringUtils.down(""));
+        Assert.assertEquals("icx", StringUtils.down("icx"));
+        Assert.assertEquals("icx", StringUtils.down("Icx"));
+        Assert.assertEquals("o", StringUtils.down("o"));
+        Assert.assertEquals("o", StringUtils.down("O"));
+    }
+    
+    @Test
     public void testEscaper() {
         Assert.assertEquals("ASDF", StringUtils.escaper("ASDF", "Ich liebe meine Muttersprache."));
         Assert.assertEquals("I_", StringUtils.escaper("I", "Ich liebe meine Muttersprache."));

@@ -48,6 +48,15 @@ public final class StringUtils {
     }
     
     /**
+     * Returns the given string whereby the first charakter is lower-cased.
+     * @param value The given string.
+     * @return The given string with lower-cased first character.
+     */
+    public static final String down(final String value) {
+        return (value == null || value.length() == 0) ? "" : value.substring(0, 1).toLowerCase() + value.substring(1);
+    }
+    
+    /**
      * Gernerates a string which is not a part of the given phrase. This is
      * needful for string replacements and its back-replacements.
      * @param escaperPrefix The prefix of the generated result.

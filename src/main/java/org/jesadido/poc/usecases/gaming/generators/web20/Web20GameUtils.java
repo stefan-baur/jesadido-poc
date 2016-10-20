@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import org.jesadido.poc.core.Language;
+import org.jesadido.poc.core.StringUtils;
 import org.jesadido.poc.usecases.gaming.graphics.Rgbo;
 
 public final class Web20GameUtils {
@@ -30,6 +31,14 @@ public final class Web20GameUtils {
             target.getParentFile().mkdirs();
         }
         Files.copy(new FileInputStream(source.getAbsolutePath().replace("%20", " ")), target.toPath(), StandardCopyOption.REPLACE_EXISTING);
+    }
+    
+    public static String toIdentifier(final String key) {
+        final StringBuilder result = new StringBuilder();
+        for (final String fragment : key.split("-")) {
+            result.append(StringUtils.up(fragment));
+        }
+        return StringUtils.down(result.toString());
     }
     
     public static String toCssRgba(final Rgbo rgbo) {
