@@ -113,7 +113,7 @@ public final class ReferenceConceptBooks {
                     .addDefaultTargets(new DeTarget("Stift", De.MASCULINE, De.NOMINATIVE, De.DATIVE, De.ACCUSATIVE), new DeTarget("Stifts", De.MASCULINE, De.GENITIVE))
                     .addDefaultTargets(new EnTarget("pen", En.NEUTER))
                     .addDefaultTargets(new EoTarget("skribilo", Eo.NEUTER))
-                    .addDefaultTargets(new EsTarget("lapicero", Es.MASCULINE))
+                    .addDefaultTargets(new EsTarget("lápiz", Es.MASCULINE))
                     .addDefaultTargets(new FrTarget("crayon", Fr.MASCULINE))
             )
             .add(new ConceptBookEntry("FlorO")

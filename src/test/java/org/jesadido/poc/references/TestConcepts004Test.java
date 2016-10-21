@@ -87,7 +87,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Ein Held findet einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("A hero finds a pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Heroo trovas skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Un héroe encuentra un lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Un héroe encuentra un lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Un héros trouve un crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -98,7 +98,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Der Held findet den Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("The hero finds the pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("La heroo trovas la skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("El héroe encuentra el lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("El héroe encuentra el lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("L'héros trouve le crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -109,7 +109,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Mein Held findet deinen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("My hero finds your pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Mia heroo trovas vian skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Mi héroe encuentra tu lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Mi héroe encuentra tu lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Mon héros trouve ton crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -120,7 +120,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Euer Held findet unseren Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Your hero finds our pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Via heroo trovas nian skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Vuestro héroe encuentra nuestro lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Vuestro héroe encuentra nuestro lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Votre héros trouve notre crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -131,7 +131,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Mein Held findet den Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("My hero finds the pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Mia heroo trovas la skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Mi héroe encuentra el lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Mi héroe encuentra el lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Mon héros trouve le crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -142,7 +142,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Mein Held findet den gigantischen und zufriedenen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("My hero finds the gigantic and satisfied pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Mia heroo trovas la gigantan kaj kontentan skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Mi héroe encuentra el gigantesco lapicero satisfecho.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Mi héroe encuentra el gigantesco lápiz satisfecho.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Mon héros trouve le gigantesque crayon satisfait.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -219,7 +219,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Eine Heldin findet einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("A heroine finds a pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Heroino trovas skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Una heroína encuentra un lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Una heroína encuentra un lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Une héroïne trouve un crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -230,7 +230,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Die Heldin findet den Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("The heroine finds the pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("La heroino trovas la skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("La heroína encuentra el lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("La heroína encuentra el lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("L'héroïne trouve le crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -241,7 +241,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Seine Heldin findet seinen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("His heroine finds its pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Lia heroino trovas ĝian skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Su heroína encuentra su lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Su heroína encuentra su lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("S'héroïne trouve son crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -252,7 +252,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Ihre Heldin findet ihren Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Their heroine finds their pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ilia heroino trovas ilian skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Su heroína encuentra su lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Su heroína encuentra su lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Leur héroïne trouve leur crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -263,7 +263,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Die Heldin findet seinen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("The heroine finds its pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("La heroino trovas ĝian skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("La heroína encuentra su lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("La heroína encuentra su lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("L'héroïne trouve son crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -274,7 +274,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Die gigantische und zufriedene Heldin findet seinen gigantischen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("The gigantic and satisfied heroine finds its gigantic pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("La giganta kaj kontenta heroino trovas ĝian gigantan skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("La gigantesca heroína satisfecha encuentra su gigantesco lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("La gigantesca heroína satisfecha encuentra su gigantesco lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("La gigantesque héroïne satisfaite trouve son gigantesque crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -417,7 +417,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Ein Held gibt einer Heldin einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("A hero gives a heroine a pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Heroo donas al heroino skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Un héroe da a una heroína un lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Un héroe da a una heroína un lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Un héros donne à une héroïne un crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -428,7 +428,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Der Held gibt der Heldin den Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("The hero gives the heroine the pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("La heroo donas al la heroino la skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("El héroe da a la heroína el lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("El héroe da a la heroína el lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("L'héros donne à l'héroïne le crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -439,7 +439,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Dein Held gibt meiner Heldin seinen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Your hero gives my heroine its pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Via heroo donas al mia heroino ĝian skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Tu héroe da a mi heroína su lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Tu héroe da a mi heroína su lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ton héros donne à m'héroïne son crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -450,7 +450,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Euer Held gibt unserer Heldin ihren Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Your hero gives our heroine their pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Via heroo donas al nia heroino ilian skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Vuestro héroe da a nuestra heroína su lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Vuestro héroe da a nuestra heroína su lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Votre héros donne à notre héroïne leur crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -461,7 +461,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Ein Held gibt der Heldin einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("A hero gives the heroine a pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Heroo donas al la heroino skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Un héroe da a la heroína un lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Un héroe da a la heroína un lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Un héros donne à l'héroïne un crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -472,7 +472,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Ein zufriedener und beherzter Held gibt der gesunden Heldin einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("A satisfied and valiant hero gives the sane heroine a pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Kontenta kaj kuraĝa heroo donas al la sana heroino skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Un héroe satisfecho y valiente da a la heroína sana un lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Un héroe satisfecho y valiente da a la heroína sana un lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Un héros satisfait et courageux donne à l'héroïne saine un crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -549,7 +549,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Eine Heldin gibt einem Helden einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("A heroine gives a hero a pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Heroino donas al heroo skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Una heroína da a un héroe un lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Una heroína da a un héroe un lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Une héroïne donne à un héros un crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -560,7 +560,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Die Heldin gibt dem Helden den Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("The heroine gives the hero the pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("La heroino donas al la heroo la skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("La heroína da al héroe el lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("La heroína da al héroe el lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("L'héroïne donne à l'héros le crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -571,7 +571,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Ihre Heldin gibt meinem Helden deinen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Her heroine gives my hero your pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ŝia heroino donas al mia heroo vian skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Su heroína da a mi héroe tu lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Su heroína da a mi héroe tu lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("S'héroïne donne à mon héros ton crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -582,7 +582,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Ihre Heldin gibt unserem Helden euren Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Their heroine gives our hero your pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ilia heroino donas al nia heroo vian skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Su heroína da a nuestro héroe vuestro lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Su heroína da a nuestro héroe vuestro lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Leur héroïne donne à notre héros votre crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -593,7 +593,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Eine Heldin gibt dem Helden deinen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("A heroine gives the hero your pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Heroino donas al la heroo vian skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Una heroína da al héroe tu lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Una heroína da al héroe tu lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Une héroïne donne à l'héros ton crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -604,7 +604,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Eine gigantische und aufmerksame Heldin gibt dem gigantischen und zufriedenen Helden deinen gigantischen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("A gigantic and attentive heroine gives the gigantic and satisfied hero your gigantic pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Giganta kaj atenta heroino donas al la giganta kaj kontenta heroo vian gigantan skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Una gigantesca heroína atenta da al gigantesco héroe satisfecho tu gigantesco lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Una gigantesca heroína atenta da al gigantesco héroe satisfecho tu gigantesco lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Une gigantesque héroïne attentive donne à le gigantesque héros satisfait ton gigantesque crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -681,7 +681,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Ein Held findet eine Blume, und eine Heldin findet einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("A hero finds a flower, and a heroine finds a pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Heroo trovas floron, kaj heroino trovas skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Un héroe encuentra una flor, y una heroína encuentra un lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Un héroe encuentra una flor, y una heroína encuentra un lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Un héros trouve une fleur et une héroïne trouve un crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -692,7 +692,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Der Held findet die Blume, und die Heldin findet den Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("The hero finds the flower, and the heroine finds the pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("La heroo trovas la floron, kaj la heroino trovas la skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("El héroe encuentra la flor, y la heroína encuentra el lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("El héroe encuentra la flor, y la heroína encuentra el lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("L'héros trouve la fleur et l'héroïne trouve le crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -703,7 +703,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Mein Held findet deine Blume, und deine Heldin findet meinen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("My hero finds your flower, and your heroine finds my pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Mia heroo trovas vian floron, kaj via heroino trovas mian skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Mi héroe encuentra tu flor, y tu heroína encuentra mi lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Mi héroe encuentra tu flor, y tu heroína encuentra mi lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Mon héros trouve ta fleur et t'héroïne trouve mon crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -714,7 +714,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Unser Held findet eure Blume, und eure Heldin findet unseren Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Our hero finds your flower, and your heroine finds our pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Nia heroo trovas vian floron, kaj via heroino trovas nian skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Nuestro héroe encuentra vuestra flor, y vuestra heroína encuentra nuestro lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Nuestro héroe encuentra vuestra flor, y vuestra heroína encuentra nuestro lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Notre héros trouve votre fleur et votre héroïne trouve notre crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -725,7 +725,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Der Held findet eine Blume, und eure Heldin findet einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("The hero finds a flower, and your heroine finds a pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("La heroo trovas floron, kaj via heroino trovas skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("El héroe encuentra una flor, y vuestra heroína encuentra un lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("El héroe encuentra una flor, y vuestra heroína encuentra un lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("L'héros trouve une fleur et votre héroïne trouve un crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -736,7 +736,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Der zufriedene Held findet eine gigantische Blume, und eure Heldin findet einen gigantischen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("The satisfied hero finds a gigantic flower, and your heroine finds a gigantic pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("La kontenta heroo trovas gigantan floron, kaj via heroino trovas gigantan skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("El héroe satisfecho encuentra una gigantesca flor, y vuestra heroína encuentra un gigantesco lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("El héroe satisfecho encuentra una gigantesca flor, y vuestra heroína encuentra un gigantesco lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("L'héros satisfait trouve une gigantesque fleur et votre héroïne trouve un gigantesque crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -747,7 +747,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Ein Held gibt einer Heldin eine Blume, und eine Heldin gibt einem Helden einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("A hero gives a heroine a flower, and a heroine gives a hero a pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Heroo donas al heroino floron, kaj heroino donas al heroo skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Un héroe da a una heroína una flor, y una heroína da a un héroe un lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Un héroe da a una heroína una flor, y una heroína da a un héroe un lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Un héros donne à une héroïne une fleur et une héroïne donne à un héros un crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -758,7 +758,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Der Held gibt der Heldin die Blume, und die Heldin gibt dem Helden den Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("The hero gives the heroine the flower, and the heroine gives the hero the pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("La heroo donas al la heroino la floron, kaj la heroino donas al la heroo la skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("El héroe da a la heroína la flor, y la heroína da al héroe el lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("El héroe da a la heroína la flor, y la heroína da al héroe el lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("L'héros donne à l'héroïne la fleur et l'héroïne donne à l'héros le crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -769,7 +769,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Dein Held gibt meiner Heldin seine Blume, und meine Heldin gibt deinem Helden ihren Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Your hero gives my heroine its flower, and my heroine gives your hero her pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Via heroo donas al mia heroino ĝian floron, kaj mia heroino donas al via heroo ŝian skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Tu héroe da a mi heroína su flor, y mi heroína da a tu héroe su lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Tu héroe da a mi heroína su flor, y mi heroína da a tu héroe su lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ton héros donne à m'héroïne sa fleur et m'héroïne donne à ton héros son crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -780,7 +780,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Euer Held gibt unserer Heldin ihre Blume, und unsere Heldin gibt eurem Helden ihren Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Your hero gives our heroine their flower, and our heroine gives your hero their pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Via heroo donas al nia heroino ilian floron, kaj nia heroino donas al via heroo ilian skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Vuestro héroe da a nuestra heroína su flor, y nuestra heroína da a vuestro héroe su lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Vuestro héroe da a nuestra heroína su flor, y nuestra heroína da a vuestro héroe su lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Votre héros donne à notre héroïne leur fleur et notre héroïne donne à votre héros leur crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -791,7 +791,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Dein Held gibt einer Heldin die Blume, und eine Heldin gibt einem Helden einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Your hero gives a heroine the flower, and a heroine gives a hero a pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Via heroo donas al heroino la floron, kaj heroino donas al heroo skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Tu héroe da a una heroína la flor, y una heroína da a un héroe un lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Tu héroe da a una heroína la flor, y una heroína da a un héroe un lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ton héros donne à une héroïne la fleur et une héroïne donne à un héros un crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -802,7 +802,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Dein zufriedener und aufmerksamer Held gibt einer kranken und zufriedenen Heldin die Blume, und eine kranke Heldin gibt einem Helden einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Your satisfied and attentive hero gives a sick and satisfied heroine the flower, and a sick heroine gives a hero a pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Via kontenta kaj atenta heroo donas al sana kaj kontenta heroino la floron, kaj sana heroino donas al heroo skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Tu héroe satisfecho y atento da a una heroína enferma y satisfecha la flor, y una heroína enferma da a un héroe un lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Tu héroe satisfecho y atento da a una heroína enferma y satisfecha la flor, y una heroína enferma da a un héroe un lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ton héros satisfait et attentif donne à une héroïne malade et satisfaite la fleur et une héroïne malade donne à un héros un crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -813,7 +813,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Ein Held gibt einer Heldin eine Blume, oder eine Heldin gibt einem Helden einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("A hero gives a heroine a flower, or a heroine gives a hero a pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Heroo donas al heroino floron, aŭ heroino donas al heroo skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Un héroe da a una heroína una flor, o una heroína da a un héroe un lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Un héroe da a una heroína una flor, o una heroína da a un héroe un lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Un héros donne à une héroïne une fleur ou une héroïne donne à un héros un crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -824,7 +824,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Der Held gibt der Heldin die Blume, oder die Heldin gibt dem Helden den Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("The hero gives the heroine the flower, or the heroine gives the hero the pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("La heroo donas al la heroino la floron, aŭ la heroino donas al la heroo la skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("El héroe da a la heroína la flor, o la heroína da al héroe el lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("El héroe da a la heroína la flor, o la heroína da al héroe el lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("L'héros donne à l'héroïne la fleur ou l'héroïne donne à l'héros le crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -835,7 +835,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Sein Held gibt meiner Heldin deine Blume, oder meine Heldin gibt seinem Helden meinen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Its hero gives my heroine your flower, or my heroine gives its hero my pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ĝia heroo donas al mia heroino vian floron, aŭ mia heroino donas al ĝia heroo mian skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Su héroe da a mi heroína tu flor, o mi heroína da a su héroe mi lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Su héroe da a mi heroína tu flor, o mi heroína da a su héroe mi lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Son héros donne à m'héroïne ta fleur ou m'héroïne donne à son héros mon crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -846,7 +846,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Ihr Held gibt unserer Heldin eure Blume, oder unsere Heldin gibt ihrem Helden unseren Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Their hero gives our heroine your flower, or our heroine gives their hero our pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ilia heroo donas al nia heroino vian floron, aŭ nia heroino donas al ilia heroo nian skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Su héroe da a nuestra heroína vuestra flor, o nuestra heroína da a su héroe nuestro lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Su héroe da a nuestra heroína vuestra flor, o nuestra heroína da a su héroe nuestro lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Leur héros donne à notre héroïne votre fleur ou notre héroïne donne à leur héros notre crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -857,7 +857,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Ein Held gibt unserer Heldin eine Blume, oder die Heldin gibt einem Helden einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("A hero gives our heroine a flower, or the heroine gives a hero a pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Heroo donas al nia heroino floron, aŭ la heroino donas al heroo skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Un héroe da a nuestra heroína una flor, o la heroína da a un héroe un lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Un héroe da a nuestra heroína una flor, o la heroína da a un héroe un lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Un héros donne à notre héroïne une fleur ou l'héroïne donne à un héros un crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -868,7 +868,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Ein gesunder Held gibt unserer Heldin eine Blume, oder die zufriedene und beherzte Heldin gibt einem Helden einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("A sane hero gives our heroine a flower, or the satisfied and valiant heroine gives a hero a pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Sana heroo donas al nia heroino floron, aŭ la kontenta kaj kuraĝa heroino donas al heroo skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Un héroe sano da a nuestra heroína una flor, o la heroína satisfecha y valiente da a un héroe un lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Un héroe sano da a nuestra heroína una flor, o la heroína satisfecha y valiente da a un héroe un lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Un héros sain donne à notre héroïne une fleur ou l'héroïne satisfaite et courageuse donne à un héros un crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -879,7 +879,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Einen Stift findet ein Held. Einen Namen gibt eine Heldin einem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("A hero finds a pen. A heroine gives a hero a name.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Skribilon heroo trovas. Nomon al heroo donas heroino.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Un héroe encuentra un lapicero. Una heroína da a un héroe un nombre.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Un héroe encuentra un lápiz. Una heroína da a un héroe un nombre.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Un héros trouve un crayon. Une héroïne donne à un héros un nom.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -890,7 +890,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Den Stift findet der Held. Den Namen gibt die Heldin dem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("The hero finds the pen. The heroine gives the hero the name.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("La skribilon la heroo trovas. La nomon al la heroo donas la heroino.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("El héroe encuentra el lapicero. La heroína da al héroe el nombre.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("El héroe encuentra el lápiz. La heroína da al héroe el nombre.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("L'héros trouve le crayon. L'héroïne donne à l'héros le nom.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -901,7 +901,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Meinen Stift findet dein Held. Deinen Namen gibt deine Heldin meinem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Your hero finds my pen. Your heroine gives my hero your name.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Mian skribilon via heroo trovas. Vian nomon al mia heroo donas via heroino.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Tu héroe encuentra mi lapicero. Tu heroína da a mi héroe tu nombre.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Tu héroe encuentra mi lápiz. Tu heroína da a mi héroe tu nombre.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ton héros trouve mon crayon. T'héroïne donne à mon héros ton nom.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -912,7 +912,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Unseren Stift findet euer Held. Euren Namen gibt eure Heldin unserem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Your hero finds our pen. Your heroine gives our hero your name.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Nian skribilon via heroo trovas. Vian nomon al nia heroo donas via heroino.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Vuestro héroe encuentra nuestro lapicero. Vuestra heroína da a nuestro héroe vuestro nombre.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Vuestro héroe encuentra nuestro lápiz. Vuestra heroína da a nuestro héroe vuestro nombre.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Votre héros trouve notre crayon. Votre héroïne donne à notre héros votre nom.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -923,7 +923,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Einen Stift findet euer Held. Einen Namen gibt die Heldin meinem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Your hero finds a pen. The heroine gives my hero a name.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Skribilon via heroo trovas. Nomon al mia heroo donas la heroino.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Vuestro héroe encuentra un lapicero. La heroína da a mi héroe un nombre.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Vuestro héroe encuentra un lápiz. La heroína da a mi héroe un nombre.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Votre héros trouve un crayon. L'héroïne donne à mon héros un nom.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -934,7 +934,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Einen Stift findet euer gesunder Held. Einen gigantischen und zufriedenen Namen gibt die Heldin meinem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Your sane hero finds a pen. The heroine gives my hero a gigantic and satisfied name.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Skribilon via sana heroo trovas. Gigantan kaj kontentan nomon al mia heroo donas la heroino.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Vuestro héroe sano encuentra un lapicero. La heroína da a mi héroe un gigantesco nombre satisfecho.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Vuestro héroe sano encuentra un lápiz. La heroína da a mi héroe un gigantesco nombre satisfecho.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Votre héros sain trouve un crayon. L'héroïne donne à mon héros un gigantesque nom satisfait.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -945,7 +945,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Einen Stift findet ein Held, und eine Blume findet eine Heldin, und eine Blume gibt eine Heldin einem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("A hero finds a pen, and a heroine finds a flower, and a heroine gives a hero a flower.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Skribilon trovas heroo, kaj trovas floron heroino, kaj al heroo floron donas heroino.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Un héroe encuentra un lapicero, y una heroína encuentra una flor, y una heroína da a un héroe una flor.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Un héroe encuentra un lápiz, y una heroína encuentra una flor, y una heroína da a un héroe una flor.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Un héros trouve un crayon et une héroïne trouve une fleur et une héroïne donne à un héros une fleur.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -956,7 +956,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Den Stift findet der Held, und die Blume findet die Heldin, und die Blume gibt die Heldin dem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("The hero finds the pen, and the heroine finds the flower, and the heroine gives the hero the flower.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("La skribilon trovas la heroo, kaj trovas la floron la heroino, kaj al la heroo la floron donas la heroino.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("El héroe encuentra el lapicero, y la heroína encuentra la flor, y la heroína da al héroe la flor.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("El héroe encuentra el lápiz, y la heroína encuentra la flor, y la heroína da al héroe la flor.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("L'héros trouve le crayon et l'héroïne trouve la fleur et l'héroïne donne à l'héros la fleur.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -967,7 +967,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Deinen Stift findet mein Held, und deine Blume findet meine Heldin, und meine Blume gibt deine Heldin deinem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("My hero finds your pen, and my heroine finds your flower, and your heroine gives your hero my flower.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Vian skribilon trovas mia heroo, kaj trovas vian floron mia heroino, kaj al via heroo mian floron donas via heroino.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Mi héroe encuentra tu lapicero, y mi heroína encuentra tu flor, y tu heroína da a tu héroe mi flor.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Mi héroe encuentra tu lápiz, y mi heroína encuentra tu flor, y tu heroína da a tu héroe mi flor.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Mon héros trouve ton crayon et m'héroïne trouve ta fleur et t'héroïne donne à ton héros ma fleur.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -978,7 +978,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Euren Stift findet unser Held, und eure Blume findet unsere Heldin, und unsere Blume gibt eure Heldin eurem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Our hero finds your pen, and our heroine finds your flower, and your heroine gives your hero our flower.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Vian skribilon trovas nia heroo, kaj trovas vian floron nia heroino, kaj al via heroo nian floron donas via heroino.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Nuestro héroe encuentra vuestro lapicero, y nuestra heroína encuentra vuestra flor, y vuestra heroína da a vuestro héroe nuestra flor.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Nuestro héroe encuentra vuestro lápiz, y nuestra heroína encuentra vuestra flor, y vuestra heroína da a vuestro héroe nuestra flor.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Notre héros trouve votre crayon et notre héroïne trouve votre fleur et votre héroïne donne à votre héros notre fleur.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -989,7 +989,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Deinen Stift findet ein Held, und eine Blume findet unsere Heldin, und eine Blume gibt deine Heldin dem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("A hero finds your pen, and our heroine finds a flower, and your heroine gives the hero a flower.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Vian skribilon trovas heroo, kaj trovas floron nia heroino, kaj al la heroo floron donas via heroino.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Un héroe encuentra tu lapicero, y nuestra heroína encuentra una flor, y tu heroína da al héroe una flor.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Un héroe encuentra tu lápiz, y nuestra heroína encuentra una flor, y tu heroína da al héroe una flor.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Un héros trouve ton crayon et notre héroïne trouve une fleur et t'héroïne donne à l'héros une fleur.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -1000,7 +1000,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Deinen gigantischen und aufmerksamen Stift findet ein gesunder Held, und eine Blume findet unsere Heldin, und eine gigantische Blume gibt deine Heldin dem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("A sane hero finds your gigantic and attentive pen, and our heroine finds a flower, and your heroine gives the hero a gigantic flower.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Vian gigantan kaj atentan skribilon trovas sana heroo, kaj trovas floron nia heroino, kaj al la heroo gigantan floron donas via heroino.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Un héroe sano encuentra tu gigantesco lapicero atento, y nuestra heroína encuentra una flor, y tu heroína da al héroe una gigantesca flor.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Un héroe sano encuentra tu gigantesco lápiz atento, y nuestra heroína encuentra una flor, y tu heroína da al héroe una gigantesca flor.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Un héros sain trouve ton gigantesque crayon attentif et notre héroïne trouve une fleur et t'héroïne donne à l'héros une gigantesque fleur.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -1011,7 +1011,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Einen Stift findet ein Held, eine Blume findet eine Heldin, eine Blume gibt eine Heldin einem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("A hero finds a pen, a heroine finds a flower, a heroine gives a hero a flower.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Skribilon trovas heroo, trovas floron heroino, al heroo floron donas heroino.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Un héroe encuentra un lapicero, una heroína encuentra una flor, una heroína da a un héroe una flor.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Un héroe encuentra un lápiz, una heroína encuentra una flor, una heroína da a un héroe una flor.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Un héros trouve un crayon, une héroïne trouve une fleur, une héroïne donne à un héros une fleur.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -1022,7 +1022,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Den Stift findet der Held, die Blume findet die Heldin, die Blume gibt die Heldin dem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("The hero finds the pen, the heroine finds the flower, the heroine gives the hero the flower.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("La skribilon trovas la heroo, trovas la floron la heroino, al la heroo la floron donas la heroino.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("El héroe encuentra el lapicero, la heroína encuentra la flor, la heroína da al héroe la flor.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("El héroe encuentra el lápiz, la heroína encuentra la flor, la heroína da al héroe la flor.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("L'héros trouve le crayon, l'héroïne trouve la fleur, l'héroïne donne à l'héros la fleur.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -1033,7 +1033,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Seinen Stift findet mein Held, deine Blume findet meine Heldin, meine Blume gibt deine Heldin deinem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("My hero finds its pen, my heroine finds your flower, your heroine gives your hero my flower.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ĝian skribilon trovas mia heroo, trovas vian floron mia heroino, al via heroo mian floron donas via heroino.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Mi héroe encuentra su lapicero, mi heroína encuentra tu flor, tu heroína da a tu héroe mi flor.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Mi héroe encuentra su lápiz, mi heroína encuentra tu flor, tu heroína da a tu héroe mi flor.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Mon héros trouve son crayon, m'héroïne trouve ta fleur, t'héroïne donne à ton héros ma fleur.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -1044,7 +1044,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Ihren Stift findet unser Held, eure Blume findet unsere Heldin, unsere Blume gibt eure Heldin eurem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Our hero finds their pen, our heroine finds your flower, your heroine gives your hero our flower.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ilian skribilon trovas nia heroo, trovas vian floron nia heroino, al via heroo nian floron donas via heroino.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Nuestro héroe encuentra su lapicero, nuestra heroína encuentra vuestra flor, vuestra heroína da a vuestro héroe nuestra flor.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Nuestro héroe encuentra su lápiz, nuestra heroína encuentra vuestra flor, vuestra heroína da a vuestro héroe nuestra flor.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Notre héros trouve leur crayon, notre héroïne trouve votre fleur, votre héroïne donne à votre héros notre fleur.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -1055,7 +1055,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Den Stift findet ein Held, eine Blume findet unsere Heldin, meine Blume gibt deine Heldin einem Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("A hero finds the pen, our heroine finds a flower, your heroine gives a hero my flower.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("La skribilon trovas heroo, trovas floron nia heroino, al heroo mian floron donas via heroino.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Un héroe encuentra el lapicero, nuestra heroína encuentra una flor, tu heroína da a un héroe mi flor.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Un héroe encuentra el lápiz, nuestra heroína encuentra una flor, tu heroína da a un héroe mi flor.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Un héros trouve le crayon, notre héroïne trouve une fleur, t'héroïne donne à un héros ma fleur.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -1066,7 +1066,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Den Stift findet ein gigantischer Held, eine Blume findet unsere gigantische Heldin, meine Blume gibt deine gigantische Heldin einem gigantischen Helden.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("A gigantic hero finds the pen, our gigantic heroine finds a flower, your gigantic heroine gives a gigantic hero my flower.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("La skribilon trovas giganta heroo, trovas floron nia giganta heroino, al giganta heroo mian floron donas via giganta heroino.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Un gigantesco héroe encuentra el lapicero, nuestra gigantesca heroína encuentra una flor, tu gigantesca heroína da a un gigantesco héroe mi flor.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Un gigantesco héroe encuentra el lápiz, nuestra gigantesca heroína encuentra una flor, tu gigantesca heroína da a un gigantesco héroe mi flor.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Un gigantesque héros trouve le crayon, notre gigantesque héroïne trouve une fleur, ta gigantesque héroïne donne à un gigantesque héros ma fleur.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -1077,7 +1077,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Ein Held findet einen Stift. Ein Held hat einen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("A hero finds a pen. A hero has a pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Heroo trovas skribilon. Heroo havas skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Un héroe encuentra un lapicero. Un héroe tiene un lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Un héroe encuentra un lápiz. Un héroe tiene un lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Un héros trouve un crayon. Un héros a un crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -1088,7 +1088,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Der Held findet den Stift. Der Held hat den Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("The hero finds the pen. The hero has the pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("La heroo trovas la skribilon. La heroo havas la skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("El héroe encuentra el lapicero. El héroe tiene el lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("El héroe encuentra el lápiz. El héroe tiene el lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("L'héros trouve le crayon. L'héros a le crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -1099,7 +1099,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Sein Held findet deinen Stift. Mein Held hat deinen Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Its hero finds your pen. My hero has your pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ĝia heroo trovas vian skribilon. Mia heroo havas vian skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Su héroe encuentra tu lapicero. Mi héroe tiene tu lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Su héroe encuentra tu lápiz. Mi héroe tiene tu lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Son héros trouve ton crayon. Mon héros a ton crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -1110,7 +1110,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Ihr Held findet euren Stift. Unser Held hat euren Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Their hero finds your pen. Our hero has your pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Ilia heroo trovas vian skribilon. Nia heroo havas vian skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("Su héroe encuentra vuestro lapicero. Nuestro héroe tiene vuestro lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("Su héroe encuentra vuestro lápiz. Nuestro héroe tiene vuestro lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("Leur héros trouve votre crayon. Notre héros a votre crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -1121,7 +1121,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Der Held findet einen Stift. Ein Held hat ihren Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("The hero finds a pen. A hero has their pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("La heroo trovas skribilon. Heroo havas ilian skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("El héroe encuentra un lapicero. Un héroe tiene su lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("El héroe encuentra un lápiz. Un héroe tiene su lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("L'héros trouve un crayon. Un héros a leur crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
@@ -1132,7 +1132,7 @@ public class TestConcepts004Test {
         Assert.assertEquals("Der zufriedene und gesunde Held findet einen Stift. Ein gesunder und zufriedener Held hat ihren Stift.", TranslatorFactory.createTranslator(Language.DE, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("The satisfied and sane hero finds a pen. A sane and satisfied hero has their pen.", TranslatorFactory.createTranslator(Language.EN, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("La kontenta kaj sana heroo trovas skribilon. Sana kaj kontenta heroo havas ilian skribilon.", TranslatorFactory.createTranslator(Language.EO, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
-        Assert.assertEquals("El héroe satisfecho y sano encuentra un lapicero. Un héroe sano y satisfecho tiene su lapicero.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
+        Assert.assertEquals("El héroe satisfecho y sano encuentra un lápiz. Un héroe sano y satisfecho tiene su lápiz.", TranslatorFactory.createTranslator(Language.ES, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
         Assert.assertEquals("L'héros satisfait et sain trouve un crayon. Un héros sain et satisfait a leur crayon.", TranslatorFactory.createTranslator(Language.FR, ReferenceConceptBooks.TEST_CONCEPTS).translate(source).getTranslation());
     }
 
