@@ -30,13 +30,13 @@ public final class EsUtils {
     }
     
     public static List<Node> rearrangeParts(final List<Node> parts) {
-        return NodeUtils.rearrange(parts, PartSu.class, PartDom.class, PartAl.class, PartFin.class);
+        return NodeUtils.rearrange(parts, PartSu.class, PartDom.class, PartFin.class, PartAl.class);
     }
     
-    public static String getIndefinite(final Translator translator, final Object caseAttribute, final Concept substantiveConcept, final List<Concept> adjectiveConcepts) {
+    public static String getIndefinite(final Translator translator, final Concept substantiveConcept, final List<Concept> adjectiveConcepts) {
         final TranslationTarget substantiveTarget = translator.getFirstDefaultTarget(substantiveConcept);
         final String substantivePhrase = substantiveTarget.getMainPhrase();
-        final String articlePhrase = getIndefiniteArticle(caseAttribute, substantiveTarget);
+        final String articlePhrase = getIndefiniteArticle(substantiveTarget);
         if (adjectiveConcepts.isEmpty()) {
             return String.join(" ", articlePhrase, substantivePhrase);
         } else {
@@ -44,10 +44,10 @@ public final class EsUtils {
         }
     }
     
-    public static String getDefinite(final Translator translator, final Object caseAttribute, final Concept articleConcept, final Concept substantiveConcept, final List<Concept> adjectiveConcepts) {
+    public static String getDefinite(final Translator translator, final Concept articleConcept, final Concept substantiveConcept, final List<Concept> adjectiveConcepts) {
         final TranslationTarget substantiveTarget = translator.getFirstDefaultTarget(substantiveConcept);
         final String substantivePhrase = substantiveTarget.getMainPhrase();
-        final String articlePhrase = getDefiniteArticle(caseAttribute, articleConcept, substantiveTarget);
+        final String articlePhrase = getDefiniteArticle(articleConcept, substantiveTarget);
         if (adjectiveConcepts.isEmpty()) {
             return String.join(" ", articlePhrase, substantivePhrase);
         } else {
@@ -88,51 +88,43 @@ public final class EsUtils {
         return translator.getFirstDefaultTarget(adjectiveConcept, Es.MASCULINE);
     }
     
-    private static String getIndefiniteArticle(final Object caseAttribute, final TranslationTarget substantiveTarget) {
-        return getCased(caseAttribute, substantiveTarget.has(Es.FEMININE) ? "una" : "un");
+    private static String getIndefiniteArticle(final TranslationTarget substantiveTarget) {
+        return substantiveTarget.has(Es.FEMININE) ? "una" : "un";
     }
     
-    private static String getDefiniteArticle(final Object caseAttribute, final Concept articleConcept, final TranslationTarget substantiveTarget) {
+    private static String getDefiniteArticle(final Concept articleConcept, final TranslationTarget substantiveTarget) {
         if (articleConcept.hasReferenceConcept()) {
             final Concept referenceConcept = articleConcept.getReferenceConcept();
             if (ConceptUtils.isPersonalPronounSingular(referenceConcept)) {
-                return getPossessivePronounSingular(caseAttribute, referenceConcept);
+                return getPossessivePronounSingular(referenceConcept);
             } else if (ConceptUtils.isPersonalPronounPlural(referenceConcept)) {
-                return getPossessivePronounPlural(caseAttribute, referenceConcept, substantiveTarget);
+                return getPossessivePronounPlural(referenceConcept, substantiveTarget);
             }
         }
-        return getDefiniteArticle(caseAttribute, substantiveTarget);
+        return getDefiniteArticle(substantiveTarget);
     }
     
-    private static String getPossessivePronounSingular(final Object caseAttribute, final Concept personalPronounConcept) {
+    private static String getPossessivePronounSingular(final Concept personalPronounConcept) {
         final ConceptTermination personalPronounConceptTermination = personalPronounConcept.getProperties().getTermination();
         if (personalPronounConceptTermination == ConceptTermination.BI) {
-            return getCased(caseAttribute, "tu");
+            return "tu";
         } else if (personalPronounConceptTermination == ConceptTermination.GXI) {
-            return getCased(caseAttribute, "su");
+            return "su";
         }
-        return getCased(caseAttribute, "mi");
+        return "mi";
     }
     
-    private static String getPossessivePronounPlural(final Object caseAttribute, final Concept personalPronounConcept, final TranslationTarget substantiveTarget) {
+    private static String getPossessivePronounPlural(final Concept personalPronounConcept, final TranslationTarget substantiveTarget) {
         final ConceptTermination personalPronounConceptTermination = personalPronounConcept.getProperties().getTermination();
         if (personalPronounConceptTermination == ConceptTermination.VI) {
-            return getCased(caseAttribute, substantiveTarget.has(Es.FEMININE) ? "vuestra" : "vuestro");
+            return substantiveTarget.has(Es.FEMININE) ? "vuestra" : "vuestro";
         } else if (personalPronounConceptTermination == ConceptTermination.ILI) {
-            return getCased(caseAttribute, "su");
+            return "su";
         }
-        return getCased(caseAttribute, substantiveTarget.has(Es.FEMININE) ? "nuestra" : "nuestro");
+        return substantiveTarget.has(Es.FEMININE) ? "nuestra" : "nuestro";
     }
     
-    private static String getDefiniteArticle(final Object caseAttribute, final TranslationTarget substantiveTarget) {
-        if (substantiveTarget.has(Es.FEMININE)) {
-            return getCased(caseAttribute, "la");
-        } else {
-            return caseAttribute == Es.DATIVE ? "al" : "el";
-        }
-    }
-    
-    private static String getCased(final Object caseAttribute, final String phrase) {
-        return String.format("%s%s", caseAttribute == Es.DATIVE ? "a " : "", phrase);
+    private static String getDefiniteArticle(final TranslationTarget substantiveTarget) {
+        return substantiveTarget.has(Es.FEMININE) ? "la" : "el";
     }
 }
