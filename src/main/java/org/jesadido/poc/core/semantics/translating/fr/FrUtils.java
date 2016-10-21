@@ -30,17 +30,17 @@ public final class FrUtils {
     }
     
     public static List<Node> rearrangeParts(final List<Node> parts) {
-        return NodeUtils.rearrange(parts, PartSu.class, PartDom.class, PartAl.class, PartFin.class);
+        return NodeUtils.rearrange(parts, PartSu.class, PartDom.class, PartFin.class, PartAl.class);
     }
     
-    public static String getIndefinite(final Translator translator, final Object caseAttribute, final Concept substantiveConcept, final List<Concept> adjectiveConcepts) {
+    public static String getIndefinite(final Translator translator, final Concept substantiveConcept, final List<Concept> adjectiveConcepts) {
         final TranslationTarget substantiveTarget = translator.getFirstDefaultTarget(substantiveConcept);
-        return getCased(caseAttribute, String.join(" ", getIndefiniteArticle(substantiveTarget), getSubstantiveAdjectives(translator, substantiveTarget, adjectiveConcepts)));
+        return String.join(" ", getIndefiniteArticle(substantiveTarget), getSubstantiveAdjectives(translator, substantiveTarget, adjectiveConcepts));
     }
     
-    public static String getDefinite(final Translator translator, final Object caseAttribute, final Concept articleConcept, final Concept substantiveConcept, final List<Concept> adjectiveConcepts) {
+    public static String getDefinite(final Translator translator, final Concept articleConcept, final Concept substantiveConcept, final List<Concept> adjectiveConcepts) {
         final TranslationTarget substantiveTarget = translator.getFirstDefaultTarget(substantiveConcept);
-        return getCased(caseAttribute, getDefiniteArticleSubstantiveAdjectives(translator, articleConcept, substantiveTarget, adjectiveConcepts));
+        return getDefiniteArticleSubstantiveAdjectives(translator, articleConcept, substantiveTarget, adjectiveConcepts);
     }
     
     private static String getSubstantiveAdjectives(final Translator translator, final TranslationTarget substantiveTarget, final List<Concept> adjectiveConcepts) {
@@ -135,9 +135,5 @@ public final class FrUtils {
             return ("aeioué".contains(firstCharOfFollower)) || ("ha|he|hi|ho|hu".contains(firstCharOfFollower));
         }
         return false;
-    }
-    
-    private static String getCased(final Object caseAttribute, final String phrase) {
-        return String.format("%s%s", caseAttribute == Fr.DATIVE ? "à " : "", phrase);
     }
 }

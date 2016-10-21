@@ -19,14 +19,14 @@ import org.jesadido.poc.core.syntax.tokens.TokenType;
 public final class FrTransletors {
     
     private static final Transletor NOMINAL_TRANSLETOR = new Transletor()
-            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> nomQO(r, p.getCaseAttribute(), p.getConcept(0), new LinkedList<>()))
-            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> nomQO(r, p.getCaseAttribute(), p.getConcept(0), p.getConcepts().subList(1, 2)))
-            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> nomQO(r, p.getCaseAttribute(), p.getConcept(0), p.getConcepts().subList(1, 3)))
-            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> nomQO(r, p.getCaseAttribute(), p.getConcept(0), p.getConcepts().subList(1, 4)))
-            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> nomQLaQO(r, p.getCaseAttribute(), p.getConcept(0), p.getConcept(1), new LinkedList<>()))
-            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> nomQLaQO(r, p.getCaseAttribute(), p.getConcept(0), p.getConcept(1), p.getConcepts().subList(2, 3)))
-            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> nomQLaQO(r, p.getCaseAttribute(), p.getConcept(0), p.getConcept(1), p.getConcepts().subList(2, 4)))
-            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> nomQLaQO(r, p.getCaseAttribute(), p.getConcept(0), p.getConcept(1), p.getConcepts().subList(2, 5)))
+            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> nomQO(r, p.getConcept(0), new LinkedList<>()))
+            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> nomQO(r, p.getConcept(0), p.getConcepts().subList(1, 2)))
+            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> nomQO(r, p.getConcept(0), p.getConcepts().subList(1, 3)))
+            .add(Arrays.asList(TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> nomQO(r, p.getConcept(0), p.getConcepts().subList(1, 4)))
+            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> nomQLaQO(r, p.getConcept(0), p.getConcept(1), new LinkedList<>()))
+            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> nomQLaQO(r, p.getConcept(0), p.getConcept(1), p.getConcepts().subList(2, 3)))
+            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> nomQLaQO(r, p.getConcept(0), p.getConcept(1), p.getConcepts().subList(2, 4)))
+            .add(Arrays.asList(TokenType.ARTICLE, TokenType.SUBSTANTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR, TokenType.ADJECTIVE_SINGULAR), (TranslationResult r, TransletParameters p) -> nomQLaQO(r, p.getConcept(0), p.getConcept(1), p.getConcepts().subList(2, 5)))
             ;
     
     private FrTransletors() {
@@ -37,11 +37,11 @@ public final class FrTransletors {
         return NOMINAL_TRANSLETOR;
     }
     
-    private static void nomQO(final TranslationResult result, final Object caseAttribute, final Concept substantiveConcept, final List<Concept> adjectiveConcepts) {
-        result.setTranslation(FrUtils.getIndefinite(result.getTranslator(), caseAttribute, substantiveConcept, adjectiveConcepts));
+    private static void nomQO(final TranslationResult result, final Concept substantiveConcept, final List<Concept> adjectiveConcepts) {
+        result.setTranslation(FrUtils.getIndefinite(result.getTranslator(), substantiveConcept, adjectiveConcepts));
     }
     
-    private static void nomQLaQO(final TranslationResult result, final Object caseAttribute, final Concept articleConcept, final Concept substantiveConcept, final List<Concept> adjectiveConcepts) {
-        result.setTranslation(FrUtils.getDefinite(result.getTranslator(), caseAttribute, articleConcept, substantiveConcept, adjectiveConcepts));
+    private static void nomQLaQO(final TranslationResult result, final Concept articleConcept, final Concept substantiveConcept, final List<Concept> adjectiveConcepts) {
+        result.setTranslation(FrUtils.getDefinite(result.getTranslator(), articleConcept, substantiveConcept, adjectiveConcepts));
     }
 }
