@@ -137,7 +137,7 @@ public class Web20GameGenerator {
                 
                 .begin("return this.each(function() {")
                 
-                .begin("var scene = {")
+                .begin("var game = {")
                 .begin("state: {")
                 .begin("languages: {")
                 .line("main: '%s',", this.getMainLanguage().getCode())
@@ -186,12 +186,12 @@ public class Web20GameGenerator {
                 .line("this.$languages = $('<div></div>').addClass('languages').appendTo(this.$viewport);")
                 .begin("for (var i = 0; i < 1 + this.state.languages.semi.length + this.state.languages.rest.length; i++) {")
                 .begin("$('<a href=\"#\"></a>').on('click', function() {")
-                .line("scene.state.languages.select($(this).data('language'));")
-                .line("scene.invalidate();")
+                .line("game.state.languages.select($(this).data('language'));")
+                .line("game.invalidate();")
                 .end("}).appendTo(this.$languages);")
                 .end("}")
                 
-                .line("setTimeout(function() { scene.invalidate(); }, 80);")
+                .line("setTimeout(function() { game.invalidate(); }, 80);")
                 .end("},")
                 
                 .begin("invalidate: function() {")
@@ -207,12 +207,12 @@ public class Web20GameGenerator {
                 .line("var $svg = svg.svg(w, h).appendTo(this.$background);")
                 .line("var $g = svg.g().appendTo($svg);")
                 
-                .begin("svg.line(0, h / 2.0, w, h / 2.0).css({")
+                .begin("svg.line(0, h * 0.5, w, h * 0.5).css({")
                 .line("stroke: '%s',", Web20GameUtils.toCssRgba(this.gameModel.getRgbo(RgboKeys.BACKGROUND_FILL).getDarker()))
                 .line("strokeWidth: 1")
                 .end("}).appendTo($g);")
                 
-                .begin("svg.line(w / 2.0, 0, w / 2.0, h).css({")
+                .begin("svg.line(w * 0.5, 0, w * 0.5, h).css({")
                 .line("stroke: '%s',", Web20GameUtils.toCssRgba(this.gameModel.getRgbo(RgboKeys.BACKGROUND_FILL).getLighter()))
                 .line("strokeWidth: 1")
                 .end("}).appendTo($g);")
@@ -225,27 +225,27 @@ public class Web20GameGenerator {
                 
                 .line("var title = %s;", Web20GameUtils.toJsTranslationMap(this.gameModel.translationMap(this.gameModel.getTitle().getSource())))
                 
-                .line("var $titleMain = $('<span></span>').text(title[scene.state.languages.main]).addClass('main').appendTo(this.$splash);")
+                .line("var $titleMain = $('<span></span>').text(title[game.state.languages.main]).addClass('main').appendTo(this.$splash);")
                 .begin("$titleMain.css({")
-                .line("left: ((w - $titleMain.width()) / 2.0) + 'px',")
+                .line("left: ((w - $titleMain.width()) * 0.5) + 'px',")
                 .line("top: ((h / 3.0) - $titleMain.height()) + 'px'")
                 .end("});")
                 
                 .begin("for (var i = 0; i < this.state.languages.semi.length; i++) {")
-                .line("var $titleSemi = $('<span></span>').text(title[scene.state.languages.semi[i]]).addClass('semi').appendTo(this.$splash);")
+                .line("var $titleSemi = $('<span></span>').text(title[game.state.languages.semi[i]]).addClass('semi').appendTo(this.$splash);")
                 .begin("$titleSemi.css({")
-                .line("left: ((w - $titleSemi.width()) / 2.0) + 'px',")
+                .line("left: ((w - $titleSemi.width()) * 0.5) + 'px',")
                 .line("top: ((h / 3.0) + (i + 1) * 32 - $titleSemi.height()) + 'px'")
                 .end("});")
                 .end("}")
                 
                 .begin("this.$languages.children().each(function(index) {")
                 .begin("if (index == 0) {")
-                .line("$(this).text(scene.state.languages.main).data('language', scene.state.languages.main).removeClass('semi rest').addClass('main');")
-                .endBegin("} else if (index <= scene.state.languages.semi.length) {")
-                .line("$(this).text(scene.state.languages.semi[index - 1]).data('language', scene.state.languages.semi[index - 1]).removeClass('main rest').addClass('semi');")
+                .line("$(this).text(game.state.languages.main).data('language', game.state.languages.main).removeClass('semi rest').addClass('main');")
+                .endBegin("} else if (index <= game.state.languages.semi.length) {")
+                .line("$(this).text(game.state.languages.semi[index - 1]).data('language', game.state.languages.semi[index - 1]).removeClass('main rest').addClass('semi');")
                 .endBegin(jsElse)
-                .line("$(this).text(scene.state.languages.rest[index - scene.state.languages.semi.length - 1]).data('language', scene.state.languages.rest[index - scene.state.languages.semi.length - 1]).removeClass('main semi').addClass('rest');")
+                .line("$(this).text(game.state.languages.rest[index - game.state.languages.semi.length - 1]).data('language', game.state.languages.rest[index - game.state.languages.semi.length - 1]).removeClass('main semi').addClass('rest');")
                 .end("}")
                 .end("});")
                 
@@ -253,7 +253,7 @@ public class Web20GameGenerator {
                 
                 .end("};")
                 
-                .line("scene.init($(this));")
+                .line("game.init($(this));")
                 
                 .end("});")
                 
