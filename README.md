@@ -47,3 +47,11 @@ A scalable cloud solution with a huge set of target languages should be realized
 ## License
 
 This open source project is licensed under the **GNU Lesser General Public License, Version 3.0** ([LGPL-3.0](https://www.gnu.org/licenses/lgpl-3.0.txt)).
+
+## Donation
+
+Your donations help fund the continued development and growth of this open-source language-project:
+- via Paypal: paypal@stefan-baur.de
+- via bank giro transfer: Stefan Baur, IBAN DE74 7605 0101 0005 1887 84, BIC SSKNDE77XXX
+
+**Thank you!**
