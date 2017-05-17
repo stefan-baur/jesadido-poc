@@ -29,7 +29,7 @@ public class SplashScreen extends SizedGameObject {
     }
     
     private void init() {
-        this.filler.setFill(JavaFxGameUtils.toColor(Rgbo.TRANSPARENT));
+        this.filler.setFill(JavaFxUtils.toColor(Rgbo.TRANSPARENT));
         for (final Language language : Language.values()) {
             final Text titleText = new Text(this.getGameModel().translate(language, this.getGameModel().getTitle().getSource()));
             titleText.setTextOrigin(VPos.CENTER);
@@ -61,7 +61,7 @@ public class SplashScreen extends SizedGameObject {
     private Text createMainTitle(final double width, final double height) {
         final Text mainTitle = this.title.get(this.getGameState().getMainLanguage());
         mainTitle.setFont(Font.font("Comic Sans MS", FontWeight.NORMAL, 20));
-        mainTitle.setFill(JavaFxGameUtils.toColor(this.getGameModel().getRgbo(RgboKeys.MAIN_TEXT_FILL)));
+        mainTitle.setFill(JavaFxUtils.toColor(this.getGameModel().getRgbo(RgboKeys.MAIN_TEXT_FILL)));
         mainTitle.setX((width - mainTitle.prefWidth(-1)) / 2.0);
         mainTitle.setY(height / 3.0);
         return mainTitle;
@@ -70,7 +70,7 @@ public class SplashScreen extends SizedGameObject {
     private Text createSemiTitle(final int index, final Language language, final double width, final double height) {
         final Text mainTitle = this.title.get(language);
         mainTitle.setFont(Font.font("Comic Sans MS", FontWeight.NORMAL, 18));
-        mainTitle.setFill(JavaFxGameUtils.toColor(this.getGameModel().getRgbo(RgboKeys.SEMI_TEXT_FILL)));
+        mainTitle.setFill(JavaFxUtils.toColor(this.getGameModel().getRgbo(RgboKeys.SEMI_TEXT_FILL)));
         mainTitle.setX((width - mainTitle.prefWidth(-1)) / 2.0);
         mainTitle.setY((height / 3.0) + (index + 1) * 32);
         return mainTitle;

@@ -37,22 +37,22 @@ public class LanguageControl extends SizedGameObject {
     private void init() {
         this.setWidth(32);
         this.setHeight(32);
-        this.controlArea.setFill(JavaFxGameUtils.toColor(this.getGameModel().getRgbo(RgboKeys.REST_LANGUAGE_CONTROL_FILL)));
+        this.controlArea.setFill(JavaFxUtils.toColor(this.getGameModel().getRgbo(RgboKeys.REST_LANGUAGE_CONTROL_FILL)));
         this.controlArea.setArcWidth(8);
         this.controlArea.setArcHeight(8);
         this.getChildren().add(this.controlArea);
         this.languageText.setText(this.language.getCode());
         this.languageText.setFont(Font.font("Comic Sans MS", FontWeight.NORMAL, 14));
-        this.languageText.setFill(JavaFxGameUtils.toColor(this.getGameModel().getRgbo(RgboKeys.REST_LANGUAGE_FILL)));
+        this.languageText.setFill(JavaFxUtils.toColor(this.getGameModel().getRgbo(RgboKeys.REST_LANGUAGE_FILL)));
         this.languageText.setTextOrigin(VPos.CENTER);
         this.languageText.setTextAlignment(TextAlignment.CENTER);
         this.getChildren().add(this.languageText);
         if (this.getGameState().getMainLanguage() == this.language) {
-            this.controlArea.setFill(JavaFxGameUtils.toColor(this.getGameModel().getRgbo(RgboKeys.MAIN_LANGUAGE_CONTROL_FILL)));
-            this.languageText.setFill(JavaFxGameUtils.toColor(this.getGameModel().getRgbo(RgboKeys.MAIN_LANGUAGE_FILL)));
+            this.controlArea.setFill(JavaFxUtils.toColor(this.getGameModel().getRgbo(RgboKeys.MAIN_LANGUAGE_CONTROL_FILL)));
+            this.languageText.setFill(JavaFxUtils.toColor(this.getGameModel().getRgbo(RgboKeys.MAIN_LANGUAGE_FILL)));
         } else if (this.getGameState().getSemiLanguages().contains(this.language)) {
-            this.controlArea.setFill(JavaFxGameUtils.toColor(this.getGameModel().getRgbo(RgboKeys.SEMI_LANGUAGE_CONTROL_FILL)));
-            this.languageText.setFill(JavaFxGameUtils.toColor(this.getGameModel().getRgbo(RgboKeys.SEMI_LANGUAGE_FILL)));
+            this.controlArea.setFill(JavaFxUtils.toColor(this.getGameModel().getRgbo(RgboKeys.SEMI_LANGUAGE_CONTROL_FILL)));
+            this.languageText.setFill(JavaFxUtils.toColor(this.getGameModel().getRgbo(RgboKeys.SEMI_LANGUAGE_FILL)));
         }
         this.setOnMouseClicked((Event event) -> {
             event.consume();

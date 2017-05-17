@@ -14,7 +14,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import org.jesadido.poc.core.Language;
 import org.jesadido.poc.usecases.gaming.graphics.Rgbo;
-import org.jesadido.poc.usecases.gaming.graphics.Thing;
+import org.jesadido.poc.usecases.gaming.models.Thing;
 
 public class GameScreen extends SizedGameObject {
     
@@ -27,7 +27,7 @@ public class GameScreen extends SizedGameObject {
     }
     
     private void init() {
-        this.filler.setFill(JavaFxGameUtils.toColor(Rgbo.TRANSPARENT));
+        this.filler.setFill(JavaFxUtils.toColor(Rgbo.TRANSPARENT));
         for (final Language language : Language.values()) {
             final Text titleText = new Text(this.getGameModel().translate(language, this.getGameModel().getTitle().getSource()));
             titleText.setTextOrigin(VPos.CENTER);
@@ -46,7 +46,7 @@ public class GameScreen extends SizedGameObject {
         this.filler.setHeight(height);
         if (!this.getGameModel().getThings().isEmpty()) {
             final Thing thing = this.getGameModel().getThings().get(0);
-            this.getChildren().add(thing.createJavaFx(this.getGameModel()));
+            this.getChildren().add(JavaFxFactory.createJavaFx(this.getGameState(), thing));
         }
     }
 }

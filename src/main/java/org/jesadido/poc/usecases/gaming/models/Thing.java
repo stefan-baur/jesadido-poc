@@ -5,13 +5,9 @@
  * Licensed under the GNU Lesser General Public License, Version 3.0 (LGPL-3.0)
  * https://www.gnu.org/licenses/lgpl-3.0.txt
  */
-package org.jesadido.poc.usecases.gaming.graphics;
+package org.jesadido.poc.usecases.gaming.models;
 
-import javafx.scene.Node;
-import org.jesadido.poc.usecases.gaming.generators.javafx.JavaFxRagVisitor;
 import org.jesadido.poc.usecases.gaming.graphics.rags.Rag;
-import org.jesadido.poc.usecases.gaming.graphics.rags.RagTranslate;
-import org.jesadido.poc.usecases.gaming.models.GameModel;
 
 public class Thing {
     
@@ -44,9 +40,5 @@ public class Thing {
     public void setPosition(final double positionX, final double positionY) {
         this.positionX = positionX;
         this.positionY = positionY;
-    }
-    
-    public Node createJavaFx(final GameModel gameModel) {
-        return new RagTranslate(this.positionX, this.positionY).add(this.rawRag).accept(new JavaFxRagVisitor(gameModel), null);
     }
 }

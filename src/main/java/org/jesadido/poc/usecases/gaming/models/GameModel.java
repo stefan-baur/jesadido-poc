@@ -17,7 +17,6 @@ import org.jesadido.poc.core.semantics.ConceptBook;
 import org.jesadido.poc.core.semantics.translating.TranslatorFactory;
 import org.jesadido.poc.usecases.gaming.graphics.Rgbo;
 import org.jesadido.poc.usecases.gaming.graphics.RgboPalette;
-import org.jesadido.poc.usecases.gaming.graphics.Thing;
 
 public class GameModel {
     

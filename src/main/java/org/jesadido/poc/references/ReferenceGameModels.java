@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.jesadido.poc.JesadidoPoc;
 import org.jesadido.poc.core.Language;
-import org.jesadido.poc.usecases.gaming.graphics.ThingFactory;
+import org.jesadido.poc.usecases.gaming.models.ThingFactory;
 import org.jesadido.poc.usecases.gaming.models.GameModel;
 
 public final class ReferenceGameModels {
@@ -31,6 +31,7 @@ public final class ReferenceGameModels {
             .initSelectedLanguages(Language.EO)
             .initRgboPalette(ReferenceRgboPalettes.DEFAULT_COLORS)
             .initTitle("Ni$La LudO GigantA ..")
+            .initThings(ThingFactory.createHeroIcxO())
             ;
     
     private static final List<GameModel> GAME_MODELS = Arrays.asList(MY_TINY_GAME, OUR_GIGANTIC_GAME);

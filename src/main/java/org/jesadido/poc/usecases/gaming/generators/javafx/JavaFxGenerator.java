@@ -10,7 +10,7 @@ package org.jesadido.poc.usecases.gaming.generators.javafx;
 import org.jesadido.poc.JesadidoPoc;
 import org.jesadido.poc.usecases.gaming.models.GameModel;
 
-public class JavaFxGameGenerator {
+public class JavaFxGenerator {
     
     public GamePane generate(final GameModel gameModel) {
         final GamePane result = new GamePane(gameModel);

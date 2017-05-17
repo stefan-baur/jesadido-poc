@@ -15,14 +15,13 @@ import org.jesadido.poc.usecases.gaming.graphics.rags.RagPath;
 import org.jesadido.poc.usecases.gaming.graphics.rags.RagScale;
 import org.jesadido.poc.usecases.gaming.graphics.rags.RagTranslate;
 import org.jesadido.poc.usecases.gaming.graphics.rags.RagVisitor;
-import org.jesadido.poc.usecases.gaming.models.GameModel;
 
 public class JavaFxRagVisitor implements RagVisitor<Node, Void> {
     
-    private final GameModel gameModel;
+    private final GameState gameState;
     
-    public JavaFxRagVisitor(final GameModel gameModel) {
-        this.gameModel = gameModel;
+    public JavaFxRagVisitor(final GameState gameState) {
+        this.gameState = gameState;
     }
 
     @Override
@@ -36,8 +35,8 @@ public class JavaFxRagVisitor implements RagVisitor<Node, Void> {
     public Node visit(RagPath rag, Void argument) {
         final SVGPath result = new SVGPath();
         result.setContent(rag.getPath());
-        result.setFill(JavaFxGameUtils.toColor(this.gameModel.getRgbo(rag.getFillKey())));
-        result.setStroke(JavaFxGameUtils.toColor(this.gameModel.getRgbo(rag.getStrokeKey())));
+        result.setFill(JavaFxUtils.toColor(this.gameState.getGameModel().getRgbo(rag.getFillKey())));
+        result.setStroke(JavaFxUtils.toColor(this.gameState.getGameModel().getRgbo(rag.getStrokeKey())));
         result.setStrokeWidth(rag.getStrokeWidth());
         return result;
     }

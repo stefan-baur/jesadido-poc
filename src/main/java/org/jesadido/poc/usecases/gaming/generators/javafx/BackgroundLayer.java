@@ -25,9 +25,9 @@ public class BackgroundLayer extends SizedGameObject {
     
     private void init() {
         final Rgbo backgroundRgbo = this.getGameScene().getGameState().getGameModel().getRgbo(RgboKeys.BACKGROUND_FILL);
-        this.backgroundArea.setFill(JavaFxGameUtils.toColor(backgroundRgbo));
-        this.horizontalCenterLine.setStroke(JavaFxGameUtils.toColor(backgroundRgbo.getDarker()));
-        this.verticalCenterLine.setStroke(JavaFxGameUtils.toColor(backgroundRgbo.getLighter()));
+        this.backgroundArea.setFill(JavaFxUtils.toColor(backgroundRgbo));
+        this.horizontalCenterLine.setStroke(JavaFxUtils.toColor(backgroundRgbo.getDarker()));
+        this.verticalCenterLine.setStroke(JavaFxUtils.toColor(backgroundRgbo.getLighter()));
         this.getChildren().addAll(this.backgroundArea, this.horizontalCenterLine, this.verticalCenterLine);
         this.invalidate();
     }
