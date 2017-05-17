@@ -54,4 +54,6 @@ Your donations help fund the continued development and growth of this open-sourc
 - via Paypal: paypal@stefan-baur.de
 - via bank giro transfer: Stefan Baur, IBAN DE74 7605 0101 0005 1887 84, BIC SSKNDE77XXX
 
+If you give me financial support, I will keep up working.
+
 **Thank you!**
