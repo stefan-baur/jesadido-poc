@@ -7,19 +7,11 @@
  */
 package org.jesadido.poc.core.semantics.translating.es;
 
-public class EsVisitorArgument {
+import org.jesadido.poc.core.semantics.translating.TranslationVisitorArgument;
+
+public class EsVisitorArgument extends TranslationVisitorArgument {
     
-    private boolean nextSentence = false;
     private Es caseAttribute = null;
-    private int sentenceMeatIndex = -1;
-    
-    public boolean getNextSentence() {
-        return this.nextSentence;
-    }
-    
-    public void setNextSentence(final boolean value) {
-        this.nextSentence = value;
-    }
     
     public Es getCaseAttribute() {
         return this.caseAttribute;
@@ -27,13 +19,5 @@ public class EsVisitorArgument {
     
     public void setCaseAttribute(Es caseAttribute) {
         this.caseAttribute = caseAttribute;
-    }
-    
-    public int getSentenceMeatIndex() {
-        return this.sentenceMeatIndex;
-    }
-    
-    public void setSentenceMeatIndex(int value) {
-        this.sentenceMeatIndex = value;
     }
 }

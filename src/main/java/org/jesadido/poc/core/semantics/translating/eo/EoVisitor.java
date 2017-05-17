@@ -55,21 +55,21 @@ public class EoVisitor implements Visitor<TranslationResult, EoVisitorArgument> 
     @Override
     public TranslationResult visit(final Sentence node, final EoVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(this.eoTranslator, node);
+        argument.setIsEllipsis(ConceptUtils.isEllipsis(node.getTerminator().getConcept()));
+        argument.setSentenceMeatCount(node.getMeats().size());
         final List<String> translatedMeats = new LinkedList<>();
         for (int i = 0; i < node.getMeats().size(); i++) {
             argument.setSentenceMeatIndex(i);
             translatedMeats.add(node.getMeats().get(i).accept(this, argument).getTranslation());
         }
-        String sentenceTerminator = ".";
-        if (ConceptUtils.isEllipsis(node.getTerminator().getConcept())) {
-            sentenceTerminator = argument.getNextSentence() ? ";" : "";
-        }
+        final String sentenceTerminator = argument.getIsEllipsis() ? (argument.getNextSentence() ? ";" : "") : ".";
         return result.setTranslation(StringUtils.up(String.format("%s%s", String.join("", translatedMeats), sentenceTerminator)));
     }
 
     @Override
     public TranslationResult visit(final SentenceMeat node, final EoVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(this.eoTranslator, node);
+        argument.setPartCount(node.getParts().size());
         final List<String> translatedParts = new LinkedList<>();
         if (node.hasConjunction()) {
             translatedParts.add(node.getConjunction().accept(this, argument).getTranslation());
@@ -93,7 +93,11 @@ public class EoVisitor implements Visitor<TranslationResult, EoVisitorArgument> 
     @Override
     public TranslationResult visit(final PartSu node, final EoVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(this.eoTranslator, node);
-        return result.setTranslation(node.getNominalSelection().accept(this, argument).getTranslation());
+        if (!argument.getIsEllipsis() && argument.getSentenceMeatCount() == 1 && argument.getPartCount() == 1) {
+            return result.setTranslation(String.format("%s eksistas", node.getNominalSelection().accept(this, argument).getTranslation()));
+        } else {
+            return result.setTranslation(node.getNominalSelection().accept(this, argument).getTranslation());
+        }
     }
 
     @Override

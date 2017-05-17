@@ -52,11 +52,21 @@ public final class ReferenceConceptBooks {
                     .addDefaultTargets(new EsTarget("menudo", Es.MASCULINE, Es.PREPOSED), new EsTarget("menuda", Es.FEMININE, Es.PREPOSED))
                     .addDefaultTargets(new FrTarget("infime", Fr.MASCULINE, Fr.FEMININE))
             )
+            .add(new ConceptBookEntry("SunO")
+                    .addDefaultTargets(new DeTarget("Sonne", De.FEMININE, De.NOMINATIVE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE))
+                    .addDefaultTargets(new EnTarget("sun", En.NEUTER))
+                    .addDefaultTargets(new EoTarget("suno", Eo.NEUTER))
+                    .addDefaultTargets(new EsTarget("sol", Es.MASCULINE))
+                    .addDefaultTargets(new FrTarget("soleil", Fr.MASCULINE))
+            )
             .addReferenceSources(
                     
                     "Mi$La LudO MalGrandEgA ..",
                     
-                    "Ni$La LudO GigantA .."
+                    "Ni$La LudO GigantA ..",
+                    
+                    "SunO .",
+                    "SunO .."
             )
             ;
     
@@ -68,6 +78,20 @@ public final class ReferenceConceptBooks {
                     .addDefaultTargets(new EoTarget("ludo", Eo.NEUTER))
                     .addDefaultTargets(new EsTarget("juego", Es.MASCULINE))
                     .addDefaultTargets(new FrTarget("jeu", Fr.MASCULINE))
+            )
+            .add(new ConceptBookEntry("SunO")
+                    .addDefaultTargets(new DeTarget("Sonne", De.FEMININE, De.NOMINATIVE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE))
+                    .addDefaultTargets(new EnTarget("sun", En.NEUTER))
+                    .addDefaultTargets(new EoTarget("suno", Eo.NEUTER))
+                    .addDefaultTargets(new EsTarget("sol", Es.MASCULINE))
+                    .addDefaultTargets(new FrTarget("soleil", Fr.MASCULINE))
+            )
+            .add(new ConceptBookEntry("LunO")
+                    .addDefaultTargets(new DeTarget("Mond", De.MASCULINE, De.NOMINATIVE, De.DATIVE, De.ACCUSATIVE), new DeTarget("Mondes", De.MASCULINE, De.GENITIVE))
+                    .addDefaultTargets(new EnTarget("moon", En.NEUTER))
+                    .addDefaultTargets(new EoTarget("luno", Eo.NEUTER))
+                    .addDefaultTargets(new EsTarget("luna", Es.FEMININE))
+                    .addDefaultTargets(new FrTarget("lune", Fr.FEMININE))
             )
             .add(new ConceptBookEntry("HeroIcxO")
                     .addDefaultTargets(new DeTarget("Held", De.MASCULINE, De.NOMINATIVE), new DeTarget("Helden", De.MASCULINE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE))
@@ -277,6 +301,15 @@ public final class ReferenceConceptBooks {
                     "Ni$La LudO HavAs Fin Vi$La HeroIcxO .",
                     "Mi$La LudO HavAs Fin HeroIcxO .",
                     "Mi$La LudO MalGrandEgA HavAs Fin HeroIcxO SanA .",
+                    
+                    "SunO ..",
+                    "SunO GigantA ..",
+                    "LunO ..",
+                    "LunO MalGrandEgA ..",
+                    "SunO .",
+                    "SunO GigantA .",
+                    "LunO .",
+                    "LunO MalGrandEgA .",
                     
                     "HeroIcxO TrovAs Fin SkribIlO .",
                     "La HeroIcxO TrovAs Fin La SkribIlO .",

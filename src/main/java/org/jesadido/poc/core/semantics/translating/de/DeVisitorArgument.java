@@ -7,21 +7,11 @@
  */
 package org.jesadido.poc.core.semantics.translating.de;
 
-public class DeVisitorArgument {
+import org.jesadido.poc.core.semantics.translating.TranslationVisitorArgument;
+
+public class DeVisitorArgument extends TranslationVisitorArgument {
     
-    private boolean nextSentence = false;
     private De caseAttribute = null;
-    private int sentenceMeatIndex = -1;
-    private boolean conditionalMeatA = false;
-    private boolean conditionalMeatB = false;
-    
-    public boolean getNextSentence() {
-        return this.nextSentence;
-    }
-    
-    public void setNextSentence(final boolean value) {
-        this.nextSentence = value;
-    }
     
     public De getCaseAttribute() {
         return this.caseAttribute;
@@ -29,29 +19,5 @@ public class DeVisitorArgument {
     
     public void setCaseAttribute(final De caseAttribute) {
         this.caseAttribute = caseAttribute;
-    }
-    
-    public int getSentenceMeatIndex() {
-        return this.sentenceMeatIndex;
-    }
-    
-    public void setSentenceMeatIndex(final int value) {
-        this.sentenceMeatIndex = value;
-    }
-    
-    public boolean getConditionalMeatA() {
-        return this.conditionalMeatA;
-    }
-    
-    public void setConditionalMeatA(final boolean value) {
-        this.conditionalMeatA = value;
-    }
-    
-    public boolean getConditionalMeatB() {
-        return this.conditionalMeatB;
-    }
-    
-    public void setConditionalMeatB(final boolean value) {
-        this.conditionalMeatB = value;
     }
 }

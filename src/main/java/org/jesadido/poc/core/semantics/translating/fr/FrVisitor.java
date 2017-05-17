@@ -56,21 +56,21 @@ public class FrVisitor implements Visitor<TranslationResult, FrVisitorArgument> 
     @Override
     public TranslationResult visit(final Sentence node, final FrVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(this.frTranslator, node);
+        argument.setIsEllipsis(ConceptUtils.isEllipsis(node.getTerminator().getConcept()));
+        argument.setSentenceMeatCount(node.getMeats().size());
         final List<String> translatedMeats = new LinkedList<>();
         for (int i = 0; i < node.getMeats().size(); i++) {
             argument.setSentenceMeatIndex(i);
             translatedMeats.add(node.getMeats().get(i).accept(this, argument).getTranslation());
         }
-        String sentenceTerminator = ".";
-        if (ConceptUtils.isEllipsis(node.getTerminator().getConcept())) {
-            sentenceTerminator = argument.getNextSentence() ? ";" : "";
-        }
+        final String sentenceTerminator = argument.getIsEllipsis() ? (argument.getNextSentence() ? ";" : "") : ".";
         return result.setTranslation(StringUtils.up(String.format("%s%s", String.join("", translatedMeats), sentenceTerminator)));
     }
 
     @Override
     public TranslationResult visit(final SentenceMeat node, final FrVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(this.frTranslator, node);
+        argument.setPartCount(node.getParts().size());
         final List<String> translatedParts = new LinkedList<>();
         if (node.hasConjunction()) {
             translatedParts.add(node.getConjunction().accept(this, argument).getTranslation());
@@ -96,8 +96,13 @@ public class FrVisitor implements Visitor<TranslationResult, FrVisitorArgument> 
     @Override
     public TranslationResult visit(final PartSu node, final FrVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(this.frTranslator, node);
-        argument.setCaseAttribute(Fr.NOMINATIVE);
-        return result.setTranslation(node.getNominalSelection().accept(this, argument).getTranslation());
+        if (!argument.getIsEllipsis() && argument.getSentenceMeatCount() == 1 && argument.getPartCount() == 1) {
+            argument.setCaseAttribute(Fr.ACCUSATIVE);
+            return result.setTranslation(String.format("il y a %s", node.getNominalSelection().accept(this, argument).getTranslation()));
+        } else {
+            argument.setCaseAttribute(Fr.NOMINATIVE);
+            return result.setTranslation(node.getNominalSelection().accept(this, argument).getTranslation());
+        }
     }
 
     @Override

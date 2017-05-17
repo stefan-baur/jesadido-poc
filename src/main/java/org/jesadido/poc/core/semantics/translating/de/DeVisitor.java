@@ -58,21 +58,21 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
         final TranslationResult result = new TranslationResult(this.deTranslator, node);
         argument.setConditionalMeatB(false);
         argument.setConditionalMeatA(false);
+        argument.setIsEllipsis(ConceptUtils.isEllipsis(node.getTerminator().getConcept()));
+        argument.setSentenceMeatCount(node.getMeats().size());
         final List<String> translatedMeats = new LinkedList<>();
         for (int i = 0; i < node.getMeats().size(); i++) {
             argument.setSentenceMeatIndex(i);
             translatedMeats.add(node.getMeats().get(i).accept(this, argument).getTranslation());
         }
-        String sentenceTerminator = ".";
-        if (ConceptUtils.isEllipsis(node.getTerminator().getConcept())) {
-            sentenceTerminator = argument.getNextSentence() ? ";" : "";
-        }
+        final String sentenceTerminator = argument.getIsEllipsis() ? (argument.getNextSentence() ? ";" : "") : ".";
         return result.setTranslation(StringUtils.up(String.format("%s%s", String.join("", translatedMeats), sentenceTerminator)));
     }
 
     @Override
     public TranslationResult visit(final SentenceMeat node, final DeVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(this.deTranslator, node);
+        argument.setPartCount(node.getParts().size());
         final List<String> translatedParts = new LinkedList<>();
         argument.setConditionalMeatB(argument.getConditionalMeatA());
         argument.setConditionalMeatA(false);
@@ -105,8 +105,13 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
     @Override
     public TranslationResult visit(final PartSu node, final DeVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(this.deTranslator, node);
-        argument.setCaseAttribute(De.NOMINATIVE);
-        return result.setTranslation(node.getNominalSelection().accept(this, argument).getTranslation());
+        if (!argument.getIsEllipsis() && argument.getSentenceMeatCount() == 1 && argument.getPartCount() == 1) {
+            argument.setCaseAttribute(De.ACCUSATIVE);
+            return result.setTranslation(String.format("es gibt %s", node.getNominalSelection().accept(this, argument).getTranslation()));
+        } else {
+            argument.setCaseAttribute(De.NOMINATIVE);
+            return result.setTranslation(node.getNominalSelection().accept(this, argument).getTranslation());
+        }
     }
 
     @Override
