@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.syntax.Nonterminal;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.productions.ProductionLeaf;
 import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
@@ -49,27 +49,27 @@ public class SentenceMeatProduction extends ProductionLeaf {
     }
     
     @Override
-    public Node parse(final TokenStream tokenStream) {
-        Node meatConjunction = null;
+    public JesadidoNode parse(final TokenStream tokenStream) {
+        JesadidoNode meatConjunction = null;
         if (this.hasFirstOf(tokenStream, Nonterminal.SENTENCE_MEAT_CONJUNCTION)) {
             meatConjunction = this.parse(tokenStream, Nonterminal.SENTENCE_MEAT_CONJUNCTION);
         }
         if (tokenStream.hasOneOf(TokenType.OPEN_SET)) {
             final Token opener = tokenStream.next();
-            final List<Node> parts = this.parseParts(tokenStream);
+            final List<JesadidoNode> parts = this.parseParts(tokenStream);
             if (tokenStream.hasOneOf(TokenType.CLOSE_SET)) {
                 final Token closer = tokenStream.next();
                 return this.getGrammar().getSyntaxTreeFactory().createSentenceMeat(meatConjunction, opener, parts, closer);
             }
             return this.parsingTrouble(tokenStream, TokenType.CLOSE_SET);
         } else {
-            final List<Node> parts = this.parseParts(tokenStream);
+            final List<JesadidoNode> parts = this.parseParts(tokenStream);
             return this.getGrammar().getSyntaxTreeFactory().createSentenceMeat(meatConjunction, this.createToken(TokenType.OPEN_SET), parts, this.createToken(TokenType.CLOSE_SET));
         }
     }
     
-    private List<Node> parseParts(final TokenStream tokenStream) {
-        final List<Node> result = new LinkedList<>();
+    private List<JesadidoNode> parseParts(final TokenStream tokenStream) {
+        final List<JesadidoNode> result = new LinkedList<>();
         if (this.hasFirstOf(tokenStream, Nonterminal.SENTENCE_MEAT_PART)) {
             result.add(this.parse(tokenStream, Nonterminal.SENTENCE_MEAT_PART));
             while (this.hasFirstOf(tokenStream, Nonterminal.SENTENCE_MEAT_PART)) {

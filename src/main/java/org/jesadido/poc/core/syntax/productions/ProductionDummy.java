@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.syntax.Nonterminal;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 
@@ -37,7 +37,7 @@ public class ProductionDummy extends ProductionLeaf {
     }
     
     @Override
-    public Node parse(final TokenStream tokenStream) {
+    public JesadidoNode parse(final TokenStream tokenStream) {
         return this.getGrammar().getSyntaxTreeFactory().createTrouble(String.format("The production of '%s' is not available, the current token is '%s'.", this.getNonterminalSymbol(), tokenStream.peek()));
     }
 }

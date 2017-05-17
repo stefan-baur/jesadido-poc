@@ -10,7 +10,7 @@ package org.jesadido.poc.core.syntax.productions.sentence;
 import java.util.Arrays;
 import java.util.LinkedList;
 import org.jesadido.poc.core.syntax.Nonterminal;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.productions.ProductionOneOf;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 
@@ -25,9 +25,9 @@ public class VerbalSelectionProduction extends ProductionOneOf {
     }
     
     @Override
-    public Node parse(final TokenStream tokenStream) {
+    public JesadidoNode parse(final TokenStream tokenStream) {
         if (this.hasFirstOf(tokenStream, Nonterminal.VERB_SELECTION)) {
-            final Node verbSelection = this.parse(tokenStream, Nonterminal.VERB_SELECTION);
+            final JesadidoNode verbSelection = this.parse(tokenStream, Nonterminal.VERB_SELECTION);
             return this.getGrammar().getSyntaxTreeFactory().createVerbalSelection(verbSelection);
         }
         return this.parsingTrouble(tokenStream);

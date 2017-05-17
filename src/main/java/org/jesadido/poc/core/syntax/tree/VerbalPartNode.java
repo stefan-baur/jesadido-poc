@@ -9,7 +9,7 @@ package org.jesadido.poc.core.syntax.tree;
 
 public abstract class VerbalPartNode extends PartNode {
     
-    private Node verbalSelection;
+    private JesadidoNode verbalSelection;
     
     public VerbalPartNode(final Terminal preposition, final Terminal opener, final Terminal closer) {
         super(preposition, opener, closer);
@@ -19,11 +19,11 @@ public abstract class VerbalPartNode extends PartNode {
         return this.verbalSelection != null;
     }
     
-    public Node getVerbalSelection() {
+    public JesadidoNode getVerbalSelection() {
         return this.verbalSelection;
     }
     
-    public VerbalPartNode setVerbalSelection(final Node verbalSelection) {
+    public VerbalPartNode setVerbalSelection(final JesadidoNode verbalSelection) {
         this.verbalSelection = verbalSelection;
         if (this.verbalSelection != null) {
             this.verbalSelection.setParent(this);
@@ -38,7 +38,7 @@ public abstract class VerbalPartNode extends PartNode {
     }
     
     @Override
-    public Node getChild() {
+    public JesadidoNode getChild() {
         return this.getVerbalSelection();
     }
 }

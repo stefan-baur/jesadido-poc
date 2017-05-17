@@ -26,75 +26,75 @@ import org.jesadido.poc.core.syntax.tree.sentence.VerbSelection;
 
 public class SyntaxTreeFactory {
     
-    public Node createSentenceSequence(final List<Node> sentences) {
+    public JesadidoNode createSentenceSequence(final List<JesadidoNode> sentences) {
         return new SentenceSequence()
                 .addSentences(sentences);
     }
     
-    public Node createSentence(final List<Node> meats, final Token terminator) {
+    public JesadidoNode createSentence(final List<JesadidoNode> meats, final Token terminator) {
         return new Sentence(new Terminal(terminator))
                 .addMeats(meats);
     }
     
-    public Node createSentenceMeat(final Node conjunction, final Token opener, final List<Node> parts, final Token closer) {
+    public JesadidoNode createSentenceMeat(final JesadidoNode conjunction, final Token opener, final List<JesadidoNode> parts, final Token closer) {
         return new SentenceMeat(new Terminal(opener), new Terminal(closer))
                 .setConjunction(conjunction)
                 .addParts(parts);
     }
     
-    public Node createSentenceMeatConjunction(final Token conjunction) {
+    public JesadidoNode createSentenceMeatConjunction(final Token conjunction) {
         return new SentenceMeatConjunction(new Terminal(conjunction));
     }
     
-    public Node createPartSu(final Token preposition, final Token opener, final Node nominalSelection, final Token closer) {
+    public JesadidoNode createPartSu(final Token preposition, final Token opener, final JesadidoNode nominalSelection, final Token closer) {
         return new PartSu(new Terminal(preposition), new Terminal(opener), new Terminal(closer))
                 .setNominalSelection(nominalSelection);
     }
     
-    public Node createPartDom(final Token preposition, final Token opener, final Node verbalSelection, final Token closer) {
+    public JesadidoNode createPartDom(final Token preposition, final Token opener, final JesadidoNode verbalSelection, final Token closer) {
         return new PartDom(new Terminal(preposition), new Terminal(opener), new Terminal(closer))
                 .setVerbalSelection(verbalSelection);
     }
     
-    public Node createPartAl(final Token preposition, final Token opener, final Node nominalSelection, final Token closer) {
+    public JesadidoNode createPartAl(final Token preposition, final Token opener, final JesadidoNode nominalSelection, final Token closer) {
         return new PartAl(new Terminal(preposition), new Terminal(opener), new Terminal(closer))
                 .setNominalSelection(nominalSelection);
     }
     
-    public Node createPartFin(final Token preposition, final Token opener, final Node nominalSelection, final Token closer) {
+    public JesadidoNode createPartFin(final Token preposition, final Token opener, final JesadidoNode nominalSelection, final Token closer) {
         return new PartFin(new Terminal(preposition), new Terminal(opener), new Terminal(closer))
                 .setNominalSelection(nominalSelection);
     }
     
-    public Node createNominalSelection(final Node childSelection) {
+    public JesadidoNode createNominalSelection(final JesadidoNode childSelection) {
         return new NominalSelection()
                 .setChildSelection(childSelection);
     }
     
-    public Node createArticleSelection(final Token article, final Node substantiveSelection) {
+    public JesadidoNode createArticleSelection(final Token article, final JesadidoNode substantiveSelection) {
         return new ArticleSelection(new Terminal(article))
                 .setSubstantiveSelection(substantiveSelection);
     }
     
-    public Node createSubstantiveSelection(final Token substantive, final List<Node> adjectiveSelections) {
+    public JesadidoNode createSubstantiveSelection(final Token substantive, final List<JesadidoNode> adjectiveSelections) {
         return new SubstantiveSelection(new Terminal(substantive))
                 .addAdjectiveSelections(adjectiveSelections);
     }
     
-    public Node createAdjectiveSelection(final Token adjective) {
+    public JesadidoNode createAdjectiveSelection(final Token adjective) {
         return new AdjectiveSelection(new Terminal(adjective));
     }
     
-    public Node createVerbalSelection(final Node verbSelection) {
+    public JesadidoNode createVerbalSelection(final JesadidoNode verbSelection) {
         return new VerbalSelection()
                 .setVerbSelection(verbSelection);
     }
     
-    public Node createVerbSelection(final Token verb) {
+    public JesadidoNode createVerbSelection(final Token verb) {
         return new VerbSelection(new Terminal(verb));
     }
     
-    public Node createTrouble(final String message) {
+    public JesadidoNode createTrouble(final String message) {
         return new TroubleNode(message);
     }
 }

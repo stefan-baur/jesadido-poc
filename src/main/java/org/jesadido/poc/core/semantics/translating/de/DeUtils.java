@@ -16,8 +16,8 @@ import org.jesadido.poc.core.concepts.ConceptTermination;
 import org.jesadido.poc.core.concepts.ConceptUtils;
 import org.jesadido.poc.core.semantics.translating.TranslationTarget;
 import org.jesadido.poc.core.semantics.translating.Translator;
-import org.jesadido.poc.core.syntax.tree.Node;
-import org.jesadido.poc.core.syntax.tree.NodeUtils;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
+import org.jesadido.poc.core.syntax.tree.JesadidoNodeUtils;
 import org.jesadido.poc.core.syntax.tree.sentence.PartAl;
 import org.jesadido.poc.core.syntax.tree.sentence.PartDom;
 import org.jesadido.poc.core.syntax.tree.sentence.PartFin;
@@ -31,9 +31,9 @@ public final class DeUtils {
         // A private utility class constructor
     }
     
-    public static List<Node> rearrangeParts(final List<Node> parts) {
+    public static List<JesadidoNode> rearrangeParts(final List<JesadidoNode> parts) {
         boolean fin = false;
-        for (final Node part : parts) {
+        for (final JesadidoNode part : parts) {
             if (part.objectOf(PartSu.class)) {
                 break;
             } else if (part.objectOf(PartFin.class)) {
@@ -41,18 +41,18 @@ public final class DeUtils {
             }
         }
         if (fin) {
-            return NodeUtils.rearrange(parts, PartFin.class, PartDom.class, PartSu.class, PartAl.class);
+            return JesadidoNodeUtils.rearrange(parts, PartFin.class, PartDom.class, PartSu.class, PartAl.class);
         } else {
-            return NodeUtils.rearrange(parts, PartSu.class, PartDom.class, PartAl.class, PartFin.class);
+            return JesadidoNodeUtils.rearrange(parts, PartSu.class, PartDom.class, PartAl.class, PartFin.class);
         }
     }
     
-    public static List<Node> rearrangeConditionalMeatAParts(final List<Node> parts) {
-        return NodeUtils.rearrange(parts, PartSu.class, PartAl.class, PartFin.class, PartDom.class);
+    public static List<JesadidoNode> rearrangeConditionalMeatAParts(final List<JesadidoNode> parts) {
+        return JesadidoNodeUtils.rearrange(parts, PartSu.class, PartAl.class, PartFin.class, PartDom.class);
     }
     
-    public static List<Node> rearrangeConditionalMeatBParts(final List<Node> parts) {
-        return NodeUtils.rearrange(parts, PartDom.class, PartSu.class, PartAl.class, PartFin.class);
+    public static List<JesadidoNode> rearrangeConditionalMeatBParts(final List<JesadidoNode> parts) {
+        return JesadidoNodeUtils.rearrange(parts, PartDom.class, PartSu.class, PartAl.class, PartFin.class);
     }
     
     public static String getIndefinite(final Translator translator, final Object caseAttribute, final Concept substantiveConcept, final List<Concept> adjectiveConcepts) {

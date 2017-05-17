@@ -13,7 +13,7 @@ import org.jesadido.poc.core.scripting.Src;
 import org.jesadido.poc.core.syntax.Grammar;
 import org.jesadido.poc.core.syntax.GrammarFactory;
 import org.jesadido.poc.core.syntax.Nonterminal;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 import org.jesadido.poc.core.syntax.tree.sentence.AdjectiveSelection;
@@ -33,7 +33,7 @@ import org.jesadido.poc.core.syntax.tree.sentence.VerbalSelection;
 
 public class PrettyPrinter implements Visitor<Void, Src> {
     
-    public static final Src print(final Node node) {
+    public static final Src print(final JesadidoNode node) {
         Src result = new Src();
         node.accept(new PrettyPrinter(), result);
         return result;
@@ -173,9 +173,9 @@ public class PrettyPrinter implements Visitor<Void, Src> {
             "Se { HeroIcxO TrovAs Fin FlorO } { HeroIcxO DonAs Al HeroInO Fin FlorO } .",
             "HeroIcxO TrovAs Fin SkribIlO . HeroIcxO DonAs Fin SkribIlO Al HeroInO ."
         }) {
-            final Node sentenceOriginal = grammar.parse(sentencePhrase, Nonterminal.SENTENCE_SEQUENCE);
+            final JesadidoNode sentenceOriginal = grammar.parse(sentencePhrase, Nonterminal.SENTENCE_SEQUENCE);
             final Src prettyPrintOriginal = PrettyPrinter.print(sentenceOriginal);
-            final Node sentencePrettyPrintOriginal = grammar.parse(prettyPrintOriginal.toString(), Nonterminal.SENTENCE_SEQUENCE);
+            final JesadidoNode sentencePrettyPrintOriginal = grammar.parse(prettyPrintOriginal.toString(), Nonterminal.SENTENCE_SEQUENCE);
             final Src prettyPrintPrettyPrintOriginal = PrettyPrinter.print(sentencePrettyPrintOriginal);
             final Src compressed0 = new Src(0).add(prettyPrintPrettyPrintOriginal);
             final Src compressed1 = new Src(1).add(prettyPrintPrettyPrintOriginal);

@@ -7,7 +7,7 @@
  */
 package org.jesadido.poc.core.syntax.tree.visitors;
 
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.tree.Terminal;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
 import org.jesadido.poc.core.syntax.tree.Visitor;
@@ -28,7 +28,7 @@ import org.jesadido.poc.core.syntax.tree.sentence.VerbalSelection;
 
 public class MasterTerminalSelector implements Visitor<Terminal, Void> {
 
-    public static final Terminal select(final Node node) {
+    public static final Terminal select(final JesadidoNode node) {
         return node.accept(new MasterTerminalSelector(), null);
     }
     

@@ -12,7 +12,7 @@ import org.jesadido.poc.core.scripting.Src;
 import org.jesadido.poc.core.syntax.productions.Production;
 import org.jesadido.poc.core.syntax.productions.sentence.SentenceMeatConjunctionProduction;
 import org.jesadido.poc.core.syntax.tokens.TokenCreator;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.tree.SyntaxTreeFactory;
 import org.junit.Assert;
 import org.junit.Test;
@@ -84,24 +84,24 @@ public class GrammarTest {
         final Production conjunctionProduction = new SentenceMeatConjunctionProduction();
         final Grammar grammar = new Grammar("ConjunctionGrammar", new TokenCreator(), new SyntaxTreeFactory()).register(false, conjunctionProduction);
         {
-            final Node node = grammar.parse("Kaj");
+            final JesadidoNode node = grammar.parse("Kaj");
             Assert.assertEquals("", ConceptUtils.join(node.collectConcepts()));
         }
         {
-            final Node conjunction = grammar.parse("Kaj", conjunctionProduction.getNonterminalSymbol());
+            final JesadidoNode conjunction = grammar.parse("Kaj", conjunctionProduction.getNonterminalSymbol());
             Assert.assertEquals("Kaj", ConceptUtils.join(conjunction.collectConcepts()));
         }
         {
-            final Node conjunction = grammar.parse("Aux$,", conjunctionProduction.getNonterminalSymbol());
+            final JesadidoNode conjunction = grammar.parse("Aux$,", conjunctionProduction.getNonterminalSymbol());
             Assert.assertEquals("Aux$,", ConceptUtils.join(conjunction.collectConcepts()));
         }
         grammar.register(true, conjunctionProduction);
         {
-            final Node conjunction = grammar.parse("Kaj");
+            final JesadidoNode conjunction = grammar.parse("Kaj");
             Assert.assertEquals("Kaj", ConceptUtils.join(conjunction.collectConcepts()));
         }
         {
-            final Node conjunction = grammar.parse("Aux$,");
+            final JesadidoNode conjunction = grammar.parse("Aux$,");
             Assert.assertEquals("Aux$,", ConceptUtils.join(conjunction.collectConcepts()));
         }
     }

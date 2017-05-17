@@ -12,7 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.syntax.Nonterminal;
 import org.jesadido.poc.core.syntax.productions.ProductionLeaf;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
@@ -46,11 +46,11 @@ public class ArticleSelectionProduction extends ProductionLeaf {
     }
     
     @Override
-    public Node parse(final TokenStream tokenStream) {
+    public JesadidoNode parse(final TokenStream tokenStream) {
         if (tokenStream.hasOneOf(TokenType.ARTICLE)) {
             final Token article = tokenStream.next();
             if (this.hasFirstOf(tokenStream, Nonterminal.SUBSTANTIVE_SELECTION)) {
-                final Node substantiveSelection = this.parse(tokenStream, Nonterminal.SUBSTANTIVE_SELECTION);
+                final JesadidoNode substantiveSelection = this.parse(tokenStream, Nonterminal.SUBSTANTIVE_SELECTION);
                 return this.getGrammar().getSyntaxTreeFactory().createArticleSelection(article, substantiveSelection);
             }
         }

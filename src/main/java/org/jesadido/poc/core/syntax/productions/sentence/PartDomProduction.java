@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.syntax.Nonterminal;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.productions.ProductionLeaf;
 import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
@@ -48,28 +48,28 @@ public class PartDomProduction extends ProductionLeaf {
     }
     
     @Override
-    public Node parse(final TokenStream tokenStream) {
+    public JesadidoNode parse(final TokenStream tokenStream) {
         if (tokenStream.hasOneOf(TokenType.PART_DOM)) {
             final Token preposition = tokenStream.next();
             if (tokenStream.hasOneOf(TokenType.OPEN)) {
                 final Token opener = tokenStream.next();
-                final Node verbalSelection = this.parseVerbalSelection(tokenStream);
+                final JesadidoNode verbalSelection = this.parseVerbalSelection(tokenStream);
                 if (tokenStream.hasOneOf(TokenType.CLOSE)) {
                     final Token closer = tokenStream.next();
                     return this.getGrammar().getSyntaxTreeFactory().createPartDom(preposition, opener, verbalSelection, closer);
                 }
                 return this.parsingTrouble(tokenStream, TokenType.CLOSE);
             } else {
-                final Node verbalSelection = this.parseVerbalSelection(tokenStream);
+                final JesadidoNode verbalSelection = this.parseVerbalSelection(tokenStream);
                 return this.getGrammar().getSyntaxTreeFactory().createPartDom(preposition, this.createToken(TokenType.OPEN), verbalSelection, this.createToken(TokenType.CLOSE));
             }
         } else {
-            final Node verbalSelection = this.parseVerbalSelection(tokenStream);
+            final JesadidoNode verbalSelection = this.parseVerbalSelection(tokenStream);
             return this.getGrammar().getSyntaxTreeFactory().createPartDom(this.createToken(TokenType.PART_DOM), this.createToken(TokenType.OPEN), verbalSelection, this.createToken(TokenType.CLOSE));
         }
     }
     
-    private Node parseVerbalSelection(final TokenStream tokenStream) {
+    private JesadidoNode parseVerbalSelection(final TokenStream tokenStream) {
         if (this.hasFirstOf(tokenStream, Nonterminal.VERBAL_SELECTION)) {
             return this.parse(tokenStream, Nonterminal.VERBAL_SELECTION);
         }

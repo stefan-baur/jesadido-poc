@@ -10,7 +10,7 @@ package org.jesadido.poc.core.syntax.productions.sentence;
 import java.util.Arrays;
 import java.util.LinkedList;
 import org.jesadido.poc.core.syntax.Nonterminal;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.productions.ProductionOneOf;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 
@@ -25,12 +25,12 @@ public class NominalSelectionProduction extends ProductionOneOf {
     }
     
     @Override
-    public Node parse(final TokenStream tokenStream) {
+    public JesadidoNode parse(final TokenStream tokenStream) {
         if (this.hasFirstOf(tokenStream, Nonterminal.ARTICLE_SELECTION)) {
-            final Node articleSelection = this.parse(tokenStream, Nonterminal.ARTICLE_SELECTION);
+            final JesadidoNode articleSelection = this.parse(tokenStream, Nonterminal.ARTICLE_SELECTION);
             return this.getGrammar().getSyntaxTreeFactory().createNominalSelection(articleSelection);
         } else if (this.hasFirstOf(tokenStream, Nonterminal.SUBSTANTIVE_SELECTION)) {
-            final Node substantiveSelection = this.parse(tokenStream, Nonterminal.SUBSTANTIVE_SELECTION);
+            final JesadidoNode substantiveSelection = this.parse(tokenStream, Nonterminal.SUBSTANTIVE_SELECTION);
             return this.getGrammar().getSyntaxTreeFactory().createNominalSelection(substantiveSelection);
         }
         return this.parsingTrouble(tokenStream);

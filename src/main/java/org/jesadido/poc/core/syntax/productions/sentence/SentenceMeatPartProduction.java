@@ -10,7 +10,7 @@ package org.jesadido.poc.core.syntax.productions.sentence;
 import java.util.Arrays;
 import java.util.LinkedList;
 import org.jesadido.poc.core.syntax.Nonterminal;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.productions.ProductionOneOf;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 
@@ -25,7 +25,7 @@ public class SentenceMeatPartProduction extends ProductionOneOf {
     }
     
     @Override
-    public Node parse(final TokenStream tokenStream) {
+    public JesadidoNode parse(final TokenStream tokenStream) {
         if (this.hasFirstOf(tokenStream, Nonterminal.PART_SU)) {
             return this.parse(tokenStream, Nonterminal.PART_SU);
         } else if (this.hasFirstOf(tokenStream, Nonterminal.PART_DOM)) {

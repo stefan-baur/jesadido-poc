@@ -12,7 +12,7 @@ import org.jesadido.poc.core.scripting.Src;
 import org.jesadido.poc.core.syntax.Grammar;
 import org.jesadido.poc.core.syntax.GrammarFactory;
 import org.jesadido.poc.core.syntax.Nonterminal;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.tree.NominalPartNode;
 import org.jesadido.poc.core.syntax.tree.Terminal;
 import org.jesadido.poc.core.syntax.tree.Visitor;
@@ -34,13 +34,13 @@ import org.jesadido.poc.core.syntax.tree.sentence.VerbalSelection;
 
 public class Plotter implements Visitor<Void, Src> {
     
-    public static final Src plot(final Node node) {
+    public static final Src plot(final JesadidoNode node) {
         Src result = new Src();
         node.accept(new Plotter(), result);
         return result;
     }
     
-    private static String linePhrase(final Node node) {
+    private static String linePhrase(final JesadidoNode node) {
         return String.format("• %s", node.getClass().getSimpleName());
     }
     
@@ -217,7 +217,7 @@ public class Plotter implements Visitor<Void, Src> {
             "{\n\tHeroIcxO TrovAs Fin SkribIlO\n} Kaj {\n\tHeroIcxO DonAs Al HeroInO Fin SkribIlO\n} .",
             "{\n\tSu ( HeroIcxO )\n\tDom ( TrovAntAs )\n\tFin ( SkribIlO )\n} Kaj {\n\tSu ( HeroIcxO )\n\tDom ( DonAs )\n\tAl ( HeroInO )\n\tFin ( SkribIlO )\n} ."
         }) {
-            final Node sentence = grammar.parse(sentencePhrase, Nonterminal.SENTENCE_SEQUENCE);
+            final JesadidoNode sentence = grammar.parse(sentencePhrase, Nonterminal.SENTENCE_SEQUENCE);
             Logger.getAnonymousLogger().info("\n\n".concat(sentencePhrase).concat("\n\n").concat(Plotter.plot(sentence).toString()));
         }
     }

@@ -7,11 +7,11 @@
  */
 package org.jesadido.poc.core.syntax.tree.sentence;
 
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.tree.Terminal;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 
-public class AdjectiveSelection extends Node {
+public class AdjectiveSelection extends JesadidoNode {
     
     private final Terminal adjective;
     

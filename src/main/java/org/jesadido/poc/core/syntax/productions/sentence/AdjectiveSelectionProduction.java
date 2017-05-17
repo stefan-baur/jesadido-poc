@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.syntax.Nonterminal;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.productions.ProductionLeaf;
 import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
@@ -45,7 +45,7 @@ public class AdjectiveSelectionProduction extends ProductionLeaf {
     }
     
     @Override
-    public Node parse(final TokenStream tokenStream) {
+    public JesadidoNode parse(final TokenStream tokenStream) {
         if (tokenStream.hasOneOf(TokenType.ADJECTIVE_SINGULAR)) {
             final Token adjective = tokenStream.next();
             return this.getGrammar().getSyntaxTreeFactory().createAdjectiveSelection(adjective);

@@ -7,22 +7,22 @@
  */
 package org.jesadido.poc.core.syntax.tree.sentence;
 
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 
-public class NominalSelection extends Node {
+public class NominalSelection extends JesadidoNode {
     
-    private Node childSelection;
+    private JesadidoNode childSelection;
     
     public boolean hasChildSelection() {
         return this.childSelection != null;
     }
     
-    public Node getChildSelection() {
+    public JesadidoNode getChildSelection() {
         return this.childSelection;
     }
     
-    public NominalSelection setChildSelection(final Node childSelection) {
+    public NominalSelection setChildSelection(final JesadidoNode childSelection) {
         this.childSelection = childSelection;
         if (this.childSelection != null) {
             this.childSelection.setParent(this);

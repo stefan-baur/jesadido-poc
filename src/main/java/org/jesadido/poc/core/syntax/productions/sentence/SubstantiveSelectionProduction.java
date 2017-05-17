@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.syntax.Nonterminal;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.productions.ProductionLeaf;
 import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
@@ -45,10 +45,10 @@ public class SubstantiveSelectionProduction extends ProductionLeaf {
     }
     
     @Override
-    public Node parse(final TokenStream tokenStream) {
+    public JesadidoNode parse(final TokenStream tokenStream) {
         if (tokenStream.hasOneOf(TokenType.SUBSTANTIVE_SINGULAR)) {
             final Token substantive = tokenStream.next();
-            final List<Node> adjectiveSelections = new LinkedList<>();
+            final List<JesadidoNode> adjectiveSelections = new LinkedList<>();
             while (this.hasFirstOf(tokenStream, Nonterminal.ADJECTIVE_SELECTION)) {
                 adjectiveSelections.add(this.parse(tokenStream, Nonterminal.ADJECTIVE_SELECTION));
             }

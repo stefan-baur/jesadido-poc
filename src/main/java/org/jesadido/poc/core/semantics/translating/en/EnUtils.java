@@ -15,8 +15,8 @@ import org.jesadido.poc.core.concepts.ConceptTermination;
 import org.jesadido.poc.core.concepts.ConceptUtils;
 import org.jesadido.poc.core.semantics.translating.TranslationTarget;
 import org.jesadido.poc.core.semantics.translating.Translator;
-import org.jesadido.poc.core.syntax.tree.Node;
-import org.jesadido.poc.core.syntax.tree.NodeUtils;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
+import org.jesadido.poc.core.syntax.tree.JesadidoNodeUtils;
 import org.jesadido.poc.core.syntax.tree.sentence.PartAl;
 import org.jesadido.poc.core.syntax.tree.sentence.PartDom;
 import org.jesadido.poc.core.syntax.tree.sentence.PartFin;
@@ -28,8 +28,8 @@ public final class EnUtils {
         // A private utility class constructor
     }
     
-    public static List<Node> rearrangeParts(final List<Node> parts) {
-        return NodeUtils.rearrange(parts, PartSu.class, PartDom.class, PartAl.class, PartFin.class);
+    public static List<JesadidoNode> rearrangeParts(final List<JesadidoNode> parts) {
+        return JesadidoNodeUtils.rearrange(parts, PartSu.class, PartDom.class, PartAl.class, PartFin.class);
     }
     
     public static String getIndefinite(final Translator translator, final Concept substantiveConcept, final List<Concept> adjectiveConcepts) {

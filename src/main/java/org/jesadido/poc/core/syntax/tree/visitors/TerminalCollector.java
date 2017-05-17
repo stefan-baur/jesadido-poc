@@ -9,7 +9,7 @@ package org.jesadido.poc.core.syntax.tree.visitors;
 
 import java.util.LinkedList;
 import java.util.List;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.tree.Terminal;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
@@ -30,7 +30,7 @@ import org.jesadido.poc.core.syntax.tree.sentence.VerbalSelection;
 
 public class TerminalCollector implements Visitor<Void, List<Terminal>> {
     
-    public static final List<Terminal> collect(final Node node) {
+    public static final List<Terminal> collect(final JesadidoNode node) {
         List<Terminal> result = new LinkedList<>();
         node.accept(new TerminalCollector(), result);
         return result;

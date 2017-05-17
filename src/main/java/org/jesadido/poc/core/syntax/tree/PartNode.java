@@ -22,5 +22,5 @@ public abstract class PartNode extends ClapsedNode {
     
     public abstract boolean hasChild();
     
-    public abstract Node getChild();
+    public abstract JesadidoNode getChild();
 }

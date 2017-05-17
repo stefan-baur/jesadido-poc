@@ -30,7 +30,7 @@ import org.jesadido.poc.core.syntax.tree.sentence.SubstantiveSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbSelection;
 import org.jesadido.poc.core.syntax.tree.sentence.VerbalSelection;
 import org.jesadido.poc.core.semantics.translating.TransletParameters;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.tree.sentence.AdjectiveSelection;
 
 public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> {
@@ -45,7 +45,7 @@ public class DeVisitor implements Visitor<TranslationResult, DeVisitorArgument> 
     public TranslationResult visit(final SentenceSequence node, final DeVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(this.deTranslator, node);
         final List<String> translatedSentences = new LinkedList<>();
-        final List<Node> sentences = node.getSentences();
+        final List<JesadidoNode> sentences = node.getSentences();
         for (int i = 0; i < sentences.size(); i++) {
             argument.setNextSentence(i < sentences.size() - 1);
             translatedSentences.add(sentences.get(i).accept(this, argument).getTranslation());

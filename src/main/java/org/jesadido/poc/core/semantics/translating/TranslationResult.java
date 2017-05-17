@@ -11,18 +11,18 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.StringUtils;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
 
 public class TranslationResult {
     
     private final Translator translator;
-    private final Node node;
+    private final JesadidoNode node;
     private String translation = "";
     private final List<TroubleNode> parsingTroubles = new LinkedList<>();
     private final List<String> constraintsTroubles = new LinkedList<>();
     
-    public TranslationResult(final Translator translator, final Node node) {
+    public TranslationResult(final Translator translator, final JesadidoNode node) {
         this.translator = translator;
         this.node = node;
     }
@@ -31,7 +31,7 @@ public class TranslationResult {
         return this.translator;
     }
     
-    public Node getNode() {
+    public JesadidoNode getNode() {
         return this.node;
     }
     

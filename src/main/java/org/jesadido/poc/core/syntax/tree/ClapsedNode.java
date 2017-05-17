@@ -7,7 +7,7 @@
  */
 package org.jesadido.poc.core.syntax.tree;
 
-public abstract class ClapsedNode extends Node {
+public abstract class ClapsedNode extends JesadidoNode {
     
     private final Terminal opener;
     private final Terminal closer;

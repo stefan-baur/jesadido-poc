@@ -18,7 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jesadido.poc.core.StringUtils;
 import org.jesadido.poc.core.scripting.Src;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.productions.Production;
 import org.jesadido.poc.core.syntax.productions.ProductionAlternatives;
 import org.jesadido.poc.core.syntax.tokens.TokenCreator;
@@ -158,7 +158,7 @@ public class Grammar {
      * @param startSymbol The start-symbol.
      * @return The root-node of the accepted syntax-tree.
      */
-    public Node parse(final String source, final Nonterminal startSymbol) {
+    public JesadidoNode parse(final String source, final Nonterminal startSymbol) {
         return this.parse(new TokenStream(source, this.tokenCreator), startSymbol);
     }
     
@@ -167,7 +167,7 @@ public class Grammar {
      * @param source The source.
      * @return The root-node of the accepted syntax-tree.
      */
-    public Node parse(final String source) {
+    public JesadidoNode parse(final String source) {
         return this.parse(source, this.startSymbol);
     }
     
@@ -177,7 +177,7 @@ public class Grammar {
      * @param startSymbol The start-symbol.
      * @return The root-node of the accepted syntax-tree.
      */
-    public Node parse(final InputStream source, final Nonterminal startSymbol) {
+    public JesadidoNode parse(final InputStream source, final Nonterminal startSymbol) {
         try (TokenStream tokenStream = new TokenStream(source, this.tokenCreator)) {
             return this.parse(tokenStream, startSymbol);
         } catch (IOException exception) {
@@ -191,11 +191,11 @@ public class Grammar {
      * @param source The source.
      * @return The root-node of the accepted syntax-tree.
      */
-    public Node parse(final InputStream source) {
+    public JesadidoNode parse(final InputStream source) {
         return this.parse(source, this.startSymbol);
     }
     
-    private Node parse(final TokenStream tokenStream, final Nonterminal startSymbol) {
+    private JesadidoNode parse(final TokenStream tokenStream, final Nonterminal startSymbol) {
         if (this.productions.containsKey(startSymbol)) {
             return this.productions.get(startSymbol).parse(tokenStream);
         } else {

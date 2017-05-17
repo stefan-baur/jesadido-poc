@@ -12,7 +12,7 @@ import org.jesadido.poc.core.semantics.ConceptBook;
 import org.jesadido.poc.core.semantics.translating.TranslationContext;
 import org.jesadido.poc.core.semantics.translating.TranslationResult;
 import org.jesadido.poc.core.semantics.translating.Translator;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 
 public class EsTranslator extends Translator {
     
@@ -25,7 +25,7 @@ public class EsTranslator extends Translator {
     }
     
     @Override
-    public TranslationResult translate(final Node validatedNode) {
+    public TranslationResult translate(final JesadidoNode validatedNode) {
         return validatedNode.accept(new EsVisitor(this), new EsVisitorArgument());
     }
 }

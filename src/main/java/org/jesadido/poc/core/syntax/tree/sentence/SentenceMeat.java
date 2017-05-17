@@ -10,14 +10,14 @@ package org.jesadido.poc.core.syntax.tree.sentence;
 import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.syntax.tree.Terminal;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 import org.jesadido.poc.core.syntax.tree.ClapsedNode;
 
 public class SentenceMeat extends ClapsedNode {
     
-    private Node conjunction;
-    private final List<Node> parts = new LinkedList<>();
+    private JesadidoNode conjunction;
+    private final List<JesadidoNode> parts = new LinkedList<>();
     
     public SentenceMeat(final Terminal opener, final Terminal closer) {
         super(opener, closer);
@@ -27,11 +27,11 @@ public class SentenceMeat extends ClapsedNode {
         return this.conjunction != null;
     }
     
-    public Node getConjunction() {
+    public JesadidoNode getConjunction() {
         return this.conjunction;
     }
     
-    public SentenceMeat setConjunction(final Node conjunction) {
+    public SentenceMeat setConjunction(final JesadidoNode conjunction) {
         this.conjunction = conjunction;
         if (this.conjunction != null) {
             this.setParent(this);
@@ -39,11 +39,11 @@ public class SentenceMeat extends ClapsedNode {
         return this;
     }
     
-    public List<Node> getParts() {
+    public List<JesadidoNode> getParts() {
         return this.parts;
     }
     
-    public SentenceMeat addPart(final Node node) {
+    public SentenceMeat addPart(final JesadidoNode node) {
         if (node != null) {
             this.parts.add(node);
             node.setParent(this);
@@ -51,7 +51,7 @@ public class SentenceMeat extends ClapsedNode {
         return this;
     }
     
-    public SentenceMeat addParts(final List<Node> nodes) {
+    public SentenceMeat addParts(final List<JesadidoNode> nodes) {
         if (nodes != null) {
             nodes.stream().forEach(this::addPart);
         }

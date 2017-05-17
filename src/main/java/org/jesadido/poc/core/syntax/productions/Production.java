@@ -12,7 +12,7 @@ import java.util.Map;
 import org.jesadido.poc.core.syntax.Grammar;
 import org.jesadido.poc.core.syntax.Nonterminal;
 import org.jesadido.poc.core.syntax.tokens.Token;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 
@@ -53,7 +53,7 @@ public abstract class Production {
     
     public abstract List<TokenType> getFirsts();
     
-    public abstract Node parse(final TokenStream tokenStream);
+    public abstract JesadidoNode parse(final TokenStream tokenStream);
     
     public List<TokenType> getFirsts(final Nonterminal nonterminalSymbol) {
         return this.getProduction(nonterminalSymbol).getFirsts();
@@ -72,15 +72,15 @@ public abstract class Production {
         return this.getGrammar().getTokenCreator().create(tokenType);
     }
     
-    public Node parse(final TokenStream tokenStream, final Nonterminal nonterminalSymbol) {
+    public JesadidoNode parse(final TokenStream tokenStream, final Nonterminal nonterminalSymbol) {
         return this.getProduction(nonterminalSymbol).parse(tokenStream);
     }
     
-    public Node parsingTrouble(final TokenStream tokenStream, final TokenType requiredTokenType) {
+    public JesadidoNode parsingTrouble(final TokenStream tokenStream, final TokenType requiredTokenType) {
         return this.grammar.getSyntaxTreeFactory().createTrouble(String.format("The required token type '%s' is not available inside the production of '%s', but '%s' is found instead.", requiredTokenType, this.getNonterminalSymbol(), tokenStream.peek()));
     }
     
-    public Node parsingTrouble(final TokenStream tokenStream) {
+    public JesadidoNode parsingTrouble(final TokenStream tokenStream) {
         return this.grammar.getSyntaxTreeFactory().createTrouble(String.format("The production of '%s' can not be parsed at the token '%s'.", this.getNonterminalSymbol(), tokenStream.peek()));
     }
 }

@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.syntax.Nonterminal;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.productions.ProductionLeaf;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
@@ -39,9 +39,9 @@ public class SentenceSequenceProduction extends ProductionLeaf {
     }
     
     @Override
-    public Node parse(final TokenStream tokenStream) {
+    public JesadidoNode parse(final TokenStream tokenStream) {
         if (this.hasFirstOf(tokenStream, Nonterminal.SENTENCE)) {
-            final List<Node> sentences = new LinkedList<>();
+            final List<JesadidoNode> sentences = new LinkedList<>();
             sentences.add(this.parse(tokenStream, Nonterminal.SENTENCE));
             while (this.hasFirstOf(tokenStream, Nonterminal.SENTENCE)) {
                 sentences.add(this.parse(tokenStream, Nonterminal.SENTENCE));

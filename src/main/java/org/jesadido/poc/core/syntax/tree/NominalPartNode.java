@@ -9,7 +9,7 @@ package org.jesadido.poc.core.syntax.tree;
 
 public abstract class NominalPartNode extends PartNode {
     
-    private Node nominalSelection;
+    private JesadidoNode nominalSelection;
     
     public NominalPartNode(final Terminal preposition, final Terminal opener, final Terminal closer) {
         super(preposition, opener, closer);
@@ -19,11 +19,11 @@ public abstract class NominalPartNode extends PartNode {
         return this.nominalSelection != null;
     }
     
-    public Node getNominalSelection() {
+    public JesadidoNode getNominalSelection() {
         return this.nominalSelection;
     }
     
-    public NominalPartNode setNominalSelection(final Node nominalSelection) {
+    public NominalPartNode setNominalSelection(final JesadidoNode nominalSelection) {
         this.nominalSelection = nominalSelection;
         if (this.nominalSelection != null) {
             this.nominalSelection.setParent(this);
@@ -37,7 +37,7 @@ public abstract class NominalPartNode extends PartNode {
     }
     
     @Override
-    public Node getChild() {
+    public JesadidoNode getChild() {
         return this.getNominalSelection();
     }
 }

@@ -10,20 +10,20 @@ package org.jesadido.poc.core.syntax.tree;
 import java.util.LinkedList;
 import java.util.List;
 
-public final class NodeUtils {
+public final class JesadidoNodeUtils {
     
-    private NodeUtils() {
+    private JesadidoNodeUtils() {
         // A private utility class constructor.
     }
     
-    public static List<Node> find(final List<Node> nodes, final Class filter) {
-        final List<Node> result = new LinkedList<>();
+    public static List<JesadidoNode> find(final List<JesadidoNode> nodes, final Class filter) {
+        final List<JesadidoNode> result = new LinkedList<>();
         nodes.stream().filter(node -> node.objectOf(filter)).forEach(result::add);
         return result;
     }
     
-    public static Node findFirst(final List<Node> nodes, final Class filter) {
-        for (final Node node : nodes) {
+    public static JesadidoNode findFirst(final List<JesadidoNode> nodes, final Class filter) {
+        for (final JesadidoNode node : nodes) {
             if (node.objectOf(filter)) {
                 return node;
             }
@@ -31,14 +31,14 @@ public final class NodeUtils {
         return null;
     }
     
-    public static List<Node> rearrange(final List<Node> nodes, final Class ... filterSequence) {
-        final List<Node> result = new LinkedList<>();
-        final List<Node> nodeList = new LinkedList<>(nodes);
+    public static List<JesadidoNode> rearrange(final List<JesadidoNode> nodes, final Class ... filterSequence) {
+        final List<JesadidoNode> result = new LinkedList<>();
+        final List<JesadidoNode> nodeList = new LinkedList<>(nodes);
         for (final Class filter : filterSequence) {
             if (filter == null) {
                 continue;
             }
-            final Node firstOccurrence = findFirst(nodeList, filter);
+            final JesadidoNode firstOccurrence = findFirst(nodeList, filter);
             if (firstOccurrence != null) {
                 result.add(firstOccurrence);
                 nodeList.remove(firstOccurrence);
@@ -47,11 +47,11 @@ public final class NodeUtils {
         return result;
     }
     
-    public static boolean containsAll(final List<Node> nodes, final List<Class> filterSequence) {
+    public static boolean containsAll(final List<JesadidoNode> nodes, final List<Class> filterSequence) {
         return filterSequence.stream().noneMatch(filter -> findFirst(nodes, filter) == null);
     }
     
-    public static boolean containsNo(final List<Node> nodes, final List<Class> filterSequence) {
+    public static boolean containsNo(final List<JesadidoNode> nodes, final List<Class> filterSequence) {
         return filterSequence.stream().noneMatch(filter -> findFirst(nodes, filter) != null);
     }
 }

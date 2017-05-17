@@ -15,7 +15,7 @@ import org.jesadido.poc.core.concepts.ConceptTermination;
 import org.jesadido.poc.core.concepts.ConceptUtils;
 import org.jesadido.poc.core.semantics.translating.TranslationTarget;
 import org.jesadido.poc.core.semantics.translating.Translator;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 
 public final class EoUtils {
     
@@ -23,7 +23,7 @@ public final class EoUtils {
         // A private utility class constructor
     }
     
-    public static List<Node> rearrangeParts(List<Node> parts) {
+    public static List<JesadidoNode> rearrangeParts(List<JesadidoNode> parts) {
         return parts;
     }
     

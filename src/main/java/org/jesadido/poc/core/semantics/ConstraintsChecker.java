@@ -9,8 +9,8 @@ package org.jesadido.poc.core.semantics;
 
 import java.util.LinkedList;
 import java.util.List;
-import org.jesadido.poc.core.syntax.tree.Node;
-import org.jesadido.poc.core.syntax.tree.NodeUtils;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
+import org.jesadido.poc.core.syntax.tree.JesadidoNodeUtils;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 import org.jesadido.poc.core.syntax.tree.sentence.AdjectiveSelection;
@@ -32,7 +32,7 @@ public class ConstraintsChecker implements Visitor<List<String>, ConceptBook>{
     
     private static final int ADJECTIVES_MAX_COUNT = 3;
     
-    public static List<String> check(final Node node, final ConceptBook conceptBook) {
+    public static List<String> check(final JesadidoNode node, final ConceptBook conceptBook) {
         return node.accept(new ConstraintsChecker(), conceptBook);
     }
     
@@ -56,13 +56,13 @@ public class ConstraintsChecker implements Visitor<List<String>, ConceptBook>{
         if (node.hasConjunction()) {
             result.addAll(node.getConjunction().accept(this, conceptBook));
         }
-        final Node dom = NodeUtils.findFirst(node.getParts(), PartDom.class);
+        final JesadidoNode dom = JesadidoNodeUtils.findFirst(node.getParts(), PartDom.class);
         if (dom != null) {
             ConceptBookEntry conceptBookEntry = conceptBook.get(dom.selectMasterConcept());
-            if (!NodeUtils.containsAll(node.getParts(), conceptBookEntry.getRequiredPartClasses())) {
+            if (!JesadidoNodeUtils.containsAll(node.getParts(), conceptBookEntry.getRequiredPartClasses())) {
                 result.add("Required parts are missing.");
             }
-            if (!NodeUtils.containsNo(node.getParts(), conceptBookEntry.getExcludedPartClasses())) {
+            if (!JesadidoNodeUtils.containsNo(node.getParts(), conceptBookEntry.getExcludedPartClasses())) {
                 result.add("Excluded parts are used.");
             }
         }

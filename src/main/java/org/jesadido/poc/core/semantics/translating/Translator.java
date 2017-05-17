@@ -12,7 +12,7 @@ import org.jesadido.poc.core.Language;
 import org.jesadido.poc.core.concepts.Concept;
 import org.jesadido.poc.core.semantics.ConceptBook;
 import org.jesadido.poc.core.semantics.ConstraintsChecker;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 
 public abstract class Translator {
     
@@ -39,7 +39,7 @@ public abstract class Translator {
     }
     
     public TranslationResult translate(final String code) {
-        final Node node = this.getConceptBook().getGrammar().parse(code);
+        final JesadidoNode node = this.getConceptBook().getGrammar().parse(code);
         final TranslationResult result = new TranslationResult(this, node);
         result.addParsingTroubles(node.collectTroubles());
         if (!result.hasParsingTroubles()) {
@@ -51,7 +51,7 @@ public abstract class Translator {
         return result;
     }
     
-    public abstract TranslationResult translate(final Node validatedNode);
+    public abstract TranslationResult translate(final JesadidoNode validatedNode);
     
     public List<TranslationTarget> getDefaultTargets(final Concept concept, final Object ... attributes) {
         return this.getConceptBook().get(concept).getDefaultTargets(this.getLanguage(), attributes);

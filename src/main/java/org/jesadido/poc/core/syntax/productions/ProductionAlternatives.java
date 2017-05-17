@@ -10,7 +10,7 @@ package org.jesadido.poc.core.syntax.productions;
 import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.syntax.Nonterminal;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
 import org.jesadido.poc.core.syntax.tokens.TokenType;
 
@@ -65,7 +65,7 @@ public class ProductionAlternatives extends ProductionComposite {
     }
     
     @Override
-    public Node parse(final TokenStream tokenStream) {
+    public JesadidoNode parse(final TokenStream tokenStream) {
         for (final Production child : this.getChildren()) {
             if (tokenStream.hasOneOf(child.getFirsts())) {
                 return child.parse(tokenStream);

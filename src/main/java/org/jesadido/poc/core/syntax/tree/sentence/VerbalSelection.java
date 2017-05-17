@@ -7,22 +7,22 @@
  */
 package org.jesadido.poc.core.syntax.tree.sentence;
 
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 
-public class VerbalSelection extends Node {
+public class VerbalSelection extends JesadidoNode {
     
-    private Node verbSelection;
+    private JesadidoNode verbSelection;
     
     public boolean hasVerbSelection() {
         return this.verbSelection != null;
     }
     
-    public Node getVerbSelection() {
+    public JesadidoNode getVerbSelection() {
         return this.verbSelection;
     }
     
-    public VerbalSelection setVerbSelection(final Node verbSelection) {
+    public VerbalSelection setVerbSelection(final JesadidoNode verbSelection) {
         this.verbSelection = verbSelection;
         if (this.verbSelection != null) {
             this.verbSelection.setParent(this);

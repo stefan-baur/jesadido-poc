@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import org.jesadido.poc.core.syntax.Nonterminal;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.productions.ProductionLeaf;
 import org.jesadido.poc.core.syntax.tokens.Token;
 import org.jesadido.poc.core.syntax.tokens.TokenStream;
@@ -47,7 +47,7 @@ public class PartAlProduction extends ProductionLeaf {
     }
     
     @Override
-    public Node parse(final TokenStream tokenStream) {
+    public JesadidoNode parse(final TokenStream tokenStream) {
         if (tokenStream.hasOneOf(TokenType.PART_AL)) {
             final Token preposition = tokenStream.next();
             return this.parsePrefixless(tokenStream, preposition);
@@ -55,11 +55,11 @@ public class PartAlProduction extends ProductionLeaf {
         return this.parsingTrouble(tokenStream, TokenType.PART_AL);
     }
     
-    private Node parsePrefixless(final TokenStream tokenStream, final Token preposition) {
+    private JesadidoNode parsePrefixless(final TokenStream tokenStream, final Token preposition) {
         if (tokenStream.hasOneOf(TokenType.OPEN)) {
             final Token opener = tokenStream.next();
             if (this.hasFirstOf(tokenStream, Nonterminal.NOMINAL_SELECTION)) {
-                final Node nominalSelection = this.parse(tokenStream, Nonterminal.NOMINAL_SELECTION);
+                final JesadidoNode nominalSelection = this.parse(tokenStream, Nonterminal.NOMINAL_SELECTION);
                 if (tokenStream.hasOneOf(TokenType.CLOSE)) {
                     final Token closer = tokenStream.next();
                     return this.getGrammar().getSyntaxTreeFactory().createPartAl(preposition, opener, nominalSelection, closer);
@@ -67,7 +67,7 @@ public class PartAlProduction extends ProductionLeaf {
             }
             return this.parsingTrouble(tokenStream, TokenType.CLOSE);
         } else if (this.hasFirstOf(tokenStream, Nonterminal.NOMINAL_SELECTION)) {
-            final Node nominalSelection = this.parse(tokenStream, Nonterminal.NOMINAL_SELECTION);
+            final JesadidoNode nominalSelection = this.parse(tokenStream, Nonterminal.NOMINAL_SELECTION);
             return this.getGrammar().getSyntaxTreeFactory().createPartAl(preposition, this.createToken(TokenType.OPEN), nominalSelection, this.createToken(TokenType.CLOSE));
         }
         return this.parsingTrouble(tokenStream);

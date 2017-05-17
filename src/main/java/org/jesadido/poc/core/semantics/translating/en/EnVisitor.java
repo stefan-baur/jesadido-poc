@@ -14,7 +14,7 @@ import org.jesadido.poc.core.concepts.ConceptUtils;
 import org.jesadido.poc.core.semantics.translating.TranslationResult;
 import org.jesadido.poc.core.semantics.translating.TranslationTarget;
 import org.jesadido.poc.core.semantics.translating.TransletParameters;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 import org.jesadido.poc.core.syntax.tree.sentence.AdjectiveSelection;
@@ -44,7 +44,7 @@ public class EnVisitor implements Visitor<TranslationResult, EnVisitorArgument> 
     public TranslationResult visit(final SentenceSequence node, final EnVisitorArgument argument) {
         final TranslationResult result = new TranslationResult(this.enTranslator, node);
         final List<String> translatedSentences = new LinkedList<>();
-        final List<Node> sentences = node.getSentences();
+        final List<JesadidoNode> sentences = node.getSentences();
         for (int i = 0; i < sentences.size(); i++) {
             argument.setNextSentence(i < sentences.size() - 1);
             translatedSentences.add(sentences.get(i).accept(this, argument).getTranslation());

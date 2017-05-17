@@ -17,19 +17,19 @@ import org.jesadido.poc.core.syntax.tree.visitors.PrettyPrinter;
 import org.jesadido.poc.core.syntax.tree.visitors.TerminalCollector;
 import org.jesadido.poc.core.syntax.tree.visitors.TroubleCollector;
 
-public abstract class Node implements Visitable {
+public abstract class JesadidoNode implements Visitable {
     
-    private Node parent;
+    private JesadidoNode parent;
     
     public boolean hasParent() {
         return this.parent != null;
     }
     
-    public Node getParent() {
+    public JesadidoNode getParent() {
         return this.parent;
     }
     
-    public void setParent(final Node node) {
+    public void setParent(final JesadidoNode node) {
         this.parent = node;
     }
     

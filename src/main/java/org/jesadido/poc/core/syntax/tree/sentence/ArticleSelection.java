@@ -7,14 +7,14 @@
  */
 package org.jesadido.poc.core.syntax.tree.sentence;
 
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.tree.Terminal;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 
-public class ArticleSelection extends Node {
+public class ArticleSelection extends JesadidoNode {
     
     private final Terminal article;
-    private Node substantiveSelection;
+    private JesadidoNode substantiveSelection;
     
     public ArticleSelection(final Terminal article) {
         this.article = article;
@@ -28,11 +28,11 @@ public class ArticleSelection extends Node {
         return this.substantiveSelection != null;
     }
     
-    public Node getSubstantiveSelection() {
+    public JesadidoNode getSubstantiveSelection() {
         return this.substantiveSelection;
     }
     
-    public ArticleSelection setSubstantiveSelection(final Node substantiveSelection) {
+    public ArticleSelection setSubstantiveSelection(final JesadidoNode substantiveSelection) {
         this.substantiveSelection = substantiveSelection;
         if (this.substantiveSelection != null) {
             this.substantiveSelection.setParent(this);

@@ -13,7 +13,7 @@ import org.jesadido.poc.core.semantics.ConceptBook;
 import org.jesadido.poc.core.semantics.translating.TranslationContext;
 import org.jesadido.poc.core.semantics.translating.TranslationResult;
 import org.jesadido.poc.core.semantics.translating.Translator;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 
 public class JiTranslator extends Translator {
     
@@ -26,7 +26,7 @@ public class JiTranslator extends Translator {
     }
     
     @Override
-    public TranslationResult translate(final Node validatedNode) {
+    public TranslationResult translate(final JesadidoNode validatedNode) {
         final TranslationResult result = new TranslationResult(this, validatedNode);
         result.setTranslation(ConceptUtils.join(validatedNode.collectConcepts()));
         return result;

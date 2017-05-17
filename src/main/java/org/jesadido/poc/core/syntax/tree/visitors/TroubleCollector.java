@@ -9,7 +9,7 @@ package org.jesadido.poc.core.syntax.tree.visitors;
 
 import java.util.LinkedList;
 import java.util.List;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.tree.TroubleNode;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 import org.jesadido.poc.core.syntax.tree.sentence.AdjectiveSelection;
@@ -29,7 +29,7 @@ import org.jesadido.poc.core.syntax.tree.sentence.VerbalSelection;
 
 public class TroubleCollector implements Visitor<Void, List<TroubleNode>> {
 
-    public static List<TroubleNode> collect(Node node) {
+    public static List<TroubleNode> collect(JesadidoNode node) {
         List<TroubleNode> result = new LinkedList<>();
         node.accept(new TroubleCollector(), result);
         return result;

@@ -9,18 +9,18 @@ package org.jesadido.poc.core.syntax.tree.sentence;
 
 import java.util.LinkedList;
 import java.util.List;
-import org.jesadido.poc.core.syntax.tree.Node;
+import org.jesadido.poc.core.syntax.tree.JesadidoNode;
 import org.jesadido.poc.core.syntax.tree.Visitor;
 
-public class SentenceSequence extends Node {
+public class SentenceSequence extends JesadidoNode {
     
-    private final List<Node> sentences = new LinkedList<>();
+    private final List<JesadidoNode> sentences = new LinkedList<>();
     
-    public List<Node> getSentences() {
+    public List<JesadidoNode> getSentences() {
         return this.sentences;
     }
     
-    public Node addSentence(final Node node) {
+    public JesadidoNode addSentence(final JesadidoNode node) {
         if (node != null) {
             this.sentences.add(node);
             node.setParent(this);
@@ -28,7 +28,7 @@ public class SentenceSequence extends Node {
         return this;
     }
     
-    public Node addSentences(final List<Node> nodes) {
+    public JesadidoNode addSentences(final List<JesadidoNode> nodes) {
         if (nodes != null) {
             nodes.stream().forEach(this::addSentence);
         }
