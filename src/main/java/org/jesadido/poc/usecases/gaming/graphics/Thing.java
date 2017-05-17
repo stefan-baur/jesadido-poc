@@ -17,10 +17,12 @@ public class Thing {
     private final Rag rawRag;
     private double positionX = 0.0;
     private double positionY = 0.0;
+    private RgboPalette rgboPalette;
     
     public Thing(final String label, final Rag rawRag) {
         this.label = label;
         this.rawRag = rawRag;
+        this.rgboPalette = new RgboPalette("empty");
     }
     
     public String getLabel() {
@@ -42,6 +44,14 @@ public class Thing {
     public void setPosition(final double positionX, final double positionY) {
         this.positionX = positionX;
         this.positionY = positionY;
+    }
+    
+    public RgboPalette getRgboPalette() {
+        return this.rgboPalette;
+    }
+    
+    public void setRgboPalette(final RgboPalette rgboPalette) {
+        this.rgboPalette = rgboPalette;
     }
     
     public Node createJavaFx() {

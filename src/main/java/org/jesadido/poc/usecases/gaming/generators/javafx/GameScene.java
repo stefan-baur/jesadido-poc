@@ -10,6 +10,7 @@ package org.jesadido.poc.usecases.gaming.generators.javafx;
 import javafx.scene.Group;
 import javafx.scene.shape.Rectangle;
 import org.jesadido.poc.JesadidoPoc;
+import org.jesadido.poc.usecases.gaming.generators.javafx.GameState.State;
 import org.jesadido.poc.usecases.gaming.models.GameModel;
 
 public class GameScene extends Group {
@@ -54,9 +55,12 @@ public class GameScene extends Group {
         this.backgroundLayer.setWidth(this.width);
         this.backgroundLayer.setHeight(this.height);
         this.backgroundLayer.invalidate();
+        
+        this.splashScreen.setVisible(this.gameState.getState() == State.SPLASH);
         this.splashScreen.setWidth(this.width);
         this.splashScreen.setHeight(this.height);
         this.splashScreen.invalidate();
+        
         this.languageSettings.invalidate();
     }
     

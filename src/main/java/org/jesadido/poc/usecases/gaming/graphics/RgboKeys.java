@@ -8,6 +8,8 @@
 package org.jesadido.poc.usecases.gaming.graphics;
 
 public final class RgboKeys {
+    
+    public static final String NONE = "none";
         
     public static final String BACKGROUND_FILL = "background-fill";
     public static final String MAIN_LANGUAGE_CONTROL_FILL = "main-language-control-fill";

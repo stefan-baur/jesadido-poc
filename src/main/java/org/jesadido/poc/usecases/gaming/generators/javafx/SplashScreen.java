@@ -9,7 +9,6 @@ package org.jesadido.poc.usecases.gaming.generators.javafx;
 
 import java.util.EnumMap;
 import java.util.Map;
-import java.util.logging.Logger;
 import javafx.geometry.VPos;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -36,8 +35,13 @@ public class SplashScreen extends SizedGameObject {
             titleText.setTextOrigin(VPos.CENTER);
             this.title.put(language, titleText);
         }
-        this.setOnMouseClicked(event -> Logger.getAnonymousLogger().info("SplashScreen-Click-Event"));
+        this.setOnMouseClicked(event -> this.nextGameState());
         this.invalidate();
+    }
+    
+    private void nextGameState() {
+         this.getGameState().nextState();
+         this.getGameScene().invalidate();
     }
     
     @Override

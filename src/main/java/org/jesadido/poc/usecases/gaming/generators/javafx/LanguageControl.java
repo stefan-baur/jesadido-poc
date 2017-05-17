@@ -55,6 +55,7 @@ public class LanguageControl extends SizedGameObject {
             this.languageText.setFill(JavaFxGameUtils.toColor(this.getGameModel().getRgbo(RgboKeys.SEMI_LANGUAGE_FILL)));
         }
         this.setOnMouseClicked((Event event) -> {
+            event.consume();
             this.getGameState().selectLanguage(this.language);
             this.getGameScene().invalidate();
         });

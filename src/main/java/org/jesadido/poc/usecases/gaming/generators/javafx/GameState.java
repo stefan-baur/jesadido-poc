@@ -14,12 +14,19 @@ import org.jesadido.poc.usecases.gaming.models.GameModel;
 
 public class GameState {
     
+    public enum State {
+        SPLASH,
+        GAME
+    }
+    
     private final GameModel gameModel;
     
     private final List<Language> selectableLanguages = new LinkedList<>();
     private Language mainLanguage = Language.EO;
     private final List<Language> semiLanguages = new LinkedList<>();
     private final List<Language> restLanguages = new LinkedList<>();
+    
+    private State state = State.SPLASH;
     
     public GameState(final GameModel gameModel) {
         this.gameModel = gameModel;
@@ -31,6 +38,18 @@ public class GameState {
     
     public GameModel getGameModel() {
         return this.gameModel;
+    }
+    
+    public State getState() {
+        return this.state;
+    }
+    
+    public void nextState() {
+        if (this.state == State.SPLASH) {
+            this.state = State.GAME;
+        } else {
+            this.state = State.SPLASH;
+        }
     }
     
     public List<Language> getSelectableLanguages() {

@@ -17,6 +17,7 @@ import org.jesadido.poc.core.semantics.ConceptBook;
 import org.jesadido.poc.core.semantics.translating.TranslatorFactory;
 import org.jesadido.poc.usecases.gaming.graphics.Rgbo;
 import org.jesadido.poc.usecases.gaming.graphics.RgboPalette;
+import org.jesadido.poc.usecases.gaming.graphics.Thing;
 
 public class GameModel {
     
@@ -28,6 +29,7 @@ public class GameModel {
     private final List<Language> selectedLanguages = new LinkedList<>();
     private RgboPalette rgboPalette = new RgboPalette("empty-rgbo-palette");
     private Phrase title = Phrase.DEFAULT;
+    private final List<Thing> things = new LinkedList<>();
     
     public GameModel(final String key) {
         this.key = key;
@@ -97,6 +99,18 @@ public class GameModel {
     
     public GameModel initTitle(final String titleSource) {
         this.title = Phrase.create(titleSource);
+        return this;
+    }
+    
+    public List<Thing> getThings() {
+        return this.things;
+    }
+    
+    public GameModel initThings(final Thing ... things) {
+        for (final Thing thing : things) {
+            thing.setRgboPalette(this.rgboPalette);
+            this.things.add(thing);
+        }
         return this;
     }
     

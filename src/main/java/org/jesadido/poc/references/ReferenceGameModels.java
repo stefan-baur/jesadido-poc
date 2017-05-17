@@ -21,6 +21,10 @@ public final class ReferenceGameModels {
             .initSelectedLanguages(Language.EO, Language.EN)
             .initRgboPalette(ReferenceRgboPalettes.MAGIC_COLORS)
             .initTitle("Mi$La LudO MalGrandEgA ..")
+            //.initThings(
+            //  new Thing("SunO", new Rag(...), 1),
+            //  new Thing("HerbEjO", new Rag(...), 3)
+            //)
             ;
     
     private static final GameModel OUR_GIGANTIC_GAME = new GameModel("our-gigantic-game")

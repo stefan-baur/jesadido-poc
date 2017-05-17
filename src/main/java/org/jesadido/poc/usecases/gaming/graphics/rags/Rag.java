@@ -12,5 +12,5 @@ import javafx.scene.Node;
 @FunctionalInterface
 public interface Rag {
     
-    Node createJavaFx();
+    public Node createJavaFx();
 }
