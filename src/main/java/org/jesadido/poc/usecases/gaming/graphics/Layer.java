@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import org.jesadido.poc.usecases.gaming.models.GameModel;
 
 public class Layer {
     
@@ -20,9 +21,9 @@ public class Layer {
         return this.things;
     }
     
-    public Node createJavaFx() {
+    public Node createJavaFx(final GameModel gameModel) {
         final Group result = new Group();
-        this.getThings().stream().forEach(thing -> result.getChildren().add(thing.createJavaFx()));
+        this.getThings().stream().forEach(thing -> result.getChildren().add(thing.createJavaFx(gameModel)));
         return result;
     }
 }

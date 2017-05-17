@@ -9,6 +9,7 @@ package org.jesadido.poc.usecases.gaming.graphics.rags;
 
 import javafx.scene.Group;
 import javafx.scene.Node;
+import org.jesadido.poc.usecases.gaming.models.GameModel;
 
 public class RagTranslate extends RagComposite {
     
@@ -29,9 +30,9 @@ public class RagTranslate extends RagComposite {
     }
     
     @Override
-    public Node createJavaFx() {
+    public Node createJavaFx(final GameModel gameModel) {
         final Group result = new Group();
-        this.getRags().stream().forEach(rag -> result.getChildren().add(rag.createJavaFx()));
+        this.getRags().stream().forEach(rag -> result.getChildren().add(rag.createJavaFx(gameModel)));
         result.setTranslateX(this.translateX);
         result.setTranslateY(this.translateY);
         return result;

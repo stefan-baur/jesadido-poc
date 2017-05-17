@@ -10,6 +10,7 @@ package org.jesadido.poc.usecases.gaming.graphics;
 import javafx.scene.Node;
 import org.jesadido.poc.usecases.gaming.graphics.rags.Rag;
 import org.jesadido.poc.usecases.gaming.graphics.rags.RagTranslate;
+import org.jesadido.poc.usecases.gaming.models.GameModel;
 
 public class Thing {
     
@@ -17,12 +18,10 @@ public class Thing {
     private final Rag rawRag;
     private double positionX = 0.0;
     private double positionY = 0.0;
-    private RgboPalette rgboPalette;
     
     public Thing(final String label, final Rag rawRag) {
         this.label = label;
         this.rawRag = rawRag;
-        this.rgboPalette = new RgboPalette("empty");
     }
     
     public String getLabel() {
@@ -46,15 +45,7 @@ public class Thing {
         this.positionY = positionY;
     }
     
-    public RgboPalette getRgboPalette() {
-        return this.rgboPalette;
-    }
-    
-    public void setRgboPalette(final RgboPalette rgboPalette) {
-        this.rgboPalette = rgboPalette;
-    }
-    
-    public Node createJavaFx() {
-        return new RagTranslate(this.positionX, this.positionY).add(this.rawRag).createJavaFx();
+    public Node createJavaFx(final GameModel gameModel) {
+        return new RagTranslate(this.positionX, this.positionY).add(this.rawRag).createJavaFx(gameModel);
     }
 }

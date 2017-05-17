@@ -24,6 +24,10 @@ public final class ReferenceRgboPalettes {
             .add(RgboKeys.REST_LANGUAGE_CONTROL_FILL, 55, 55, 55, 0.3)
             .add(RgboKeys.REST_LANGUAGE_FILL, 66, 66, 66)
             .add(RgboKeys.REST_TEXT_FILL, 66, 66, 66)
+            
+            .add(RgboKeys.YELLOW, 255, 255, 0)
+            .add(RgboKeys.BLUE, 0, 0, 127)
+            .add(RgboKeys.RED, 127, 0, 0)
             ;
     
     public static final RgboPalette MAGIC_COLORS = new RgboPalette("magic-colors").addAll(DEFAULT_COLORS)

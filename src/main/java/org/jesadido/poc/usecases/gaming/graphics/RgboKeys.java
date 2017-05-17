@@ -21,6 +21,11 @@ public final class RgboKeys {
     public static final String REST_LANGUAGE_CONTROL_FILL = "rest-language-control-fill";
     public static final String REST_LANGUAGE_FILL = "rest-language-fill";
     public static final String REST_TEXT_FILL = "rest-text-fill";
+    
+    public static final String YELLOW = "yellow";
+    public static final String BLUE = "blue";
+    public static final String RED = "red";
+    
 
     private RgboKeys() {
         // A private string-set class constructor

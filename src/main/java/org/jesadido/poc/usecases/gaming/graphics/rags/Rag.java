@@ -8,9 +8,10 @@
 package org.jesadido.poc.usecases.gaming.graphics.rags;
 
 import javafx.scene.Node;
+import org.jesadido.poc.usecases.gaming.models.GameModel;
 
 @FunctionalInterface
 public interface Rag {
     
-    public Node createJavaFx();
+    public Node createJavaFx(final GameModel gameModel);
 }

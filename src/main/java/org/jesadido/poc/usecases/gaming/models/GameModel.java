@@ -108,7 +108,6 @@ public class GameModel {
     
     public GameModel initThings(final Thing ... things) {
         for (final Thing thing : things) {
-            thing.setRgboPalette(this.rgboPalette);
             this.things.add(thing);
         }
         return this;

@@ -23,6 +23,7 @@ public class GameScene extends Group {
     private final Rectangle clippingRegion = new Rectangle();
     private BackgroundLayer backgroundLayer;
     private SplashScreen splashScreen;
+    private GameScreen gameScreen;
     private LanguageSettings languageSettings;
     
     public GameScene(final GameModel gameModel) {
@@ -43,6 +44,9 @@ public class GameScene extends Group {
         this.splashScreen = new SplashScreen(this);
         this.getChildren().add(this.splashScreen);
         
+        this.gameScreen = new GameScreen(this);
+        this.getChildren().add(this.gameScreen);
+        
         this.languageSettings = new LanguageSettings(this);
         this.getChildren().add(this.languageSettings);
         
@@ -60,6 +64,11 @@ public class GameScene extends Group {
         this.splashScreen.setWidth(this.width);
         this.splashScreen.setHeight(this.height);
         this.splashScreen.invalidate();
+        
+        this.gameScreen.setVisible(this.gameState.getState() == State.GAME);
+        this.gameScreen.setWidth(this.width);
+        this.gameScreen.setHeight(this.height);
+        this.gameScreen.invalidate();
         
         this.languageSettings.invalidate();
     }

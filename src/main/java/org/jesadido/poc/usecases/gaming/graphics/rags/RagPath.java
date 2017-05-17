@@ -8,22 +8,39 @@
 package org.jesadido.poc.usecases.gaming.graphics.rags;
 
 import javafx.scene.Node;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
-import org.jesadido.poc.usecases.gaming.graphics.Rgbo;
+import org.jesadido.poc.usecases.gaming.generators.javafx.JavaFxGameUtils;
+import org.jesadido.poc.usecases.gaming.graphics.RgboKeys;
+import org.jesadido.poc.usecases.gaming.models.GameModel;
 
 public class RagPath implements RagLeaf {
     
-    private final RagProperties properties;
+    private final String fillKey;
+    private final String strokeKey;
+    private final double strokeWidth;
     private final String path;
     
-    public RagPath(final RagProperties properties, final String path) {
-        this.properties = properties;
+    public RagPath(final String fillKey, final String strokeKey, final double strokeWidth, final String path) {
+        this.fillKey = fillKey;
+        this.strokeKey = strokeKey;
+        this.strokeWidth = Math.max(0, strokeWidth);
         this.path = path;
     }
     
-    public RagProperties getProperties() {
-        return this.properties;
+    public RagPath(final String fillKey, final String path) {
+        this(fillKey, RgboKeys.NONE, 0, path);
+    }
+    
+    public String getFillKey() {
+        return this.fillKey;
+    }
+    
+    public String getStrokeKey() {
+        return this.strokeKey;
+    }
+    
+    public double getStrokeWidth() {
+        return this.strokeWidth;
     }
     
     public String getPath() {
@@ -31,14 +48,12 @@ public class RagPath implements RagLeaf {
     }
     
     @Override
-    public Node createJavaFx() {
+    public Node createJavaFx(final GameModel gameModel) {
         final SVGPath result = new SVGPath();
         result.setContent(this.getPath());
-        final Rgbo fill = this.getProperties().getFill();
-        result.setFill(new Color(fill.getRed() / 255.0, fill.getGreen() / 255.0, fill.getBlue() / 255.0, fill.getOpacity()));
-        final Rgbo stroke = this.getProperties().getStroke();
-        result.setStroke(new Color(stroke.getRed() / 255.0, stroke.getGreen() / 255.0, stroke.getBlue() / 255.0, stroke.getOpacity()));
-        result.setStrokeWidth(this.getProperties().getStrokeWidth());
+        result.setFill(JavaFxGameUtils.toColor(gameModel.getRgbo(this.getFillKey())));
+        result.setStroke(JavaFxGameUtils.toColor(gameModel.getRgbo(this.getStrokeKey())));
+        result.setStrokeWidth(this.getStrokeWidth());
         return result;
     }
 }
