@@ -7,10 +7,6 @@
  */
 package org.jesadido.poc.usecases.gaming.graphics.rags;
 
-import javafx.scene.Group;
-import javafx.scene.Node;
-import org.jesadido.poc.usecases.gaming.models.GameModel;
-
 public class RagScale extends RagComposite {
     
     private final double scaleX;
@@ -25,20 +21,16 @@ public class RagScale extends RagComposite {
         this(scale, scale);
     }
     
+    @Override
+    public <R, A> R accept(RagVisitor<R, A> visitor, A argument) {
+        return visitor.visit(this, argument);
+    }
+    
     public double getScaleX() {
         return this.scaleX;
     }
     
     public double getScaleY() {
         return this.scaleY;
-    }
-    
-    @Override
-    public Node createJavaFx(final GameModel gameModel) {
-        final Group result = new Group();
-        this.getRags().stream().forEach(rag -> result.getChildren().add(rag.createJavaFx(gameModel)));
-        result.setScaleX(this.scaleX);
-        result.setScaleY(this.scaleY);
-        return result;
     }
 }

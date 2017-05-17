@@ -8,6 +8,7 @@
 package org.jesadido.poc.usecases.gaming.graphics;
 
 import javafx.scene.Node;
+import org.jesadido.poc.usecases.gaming.generators.javafx.JavaFxRagVisitor;
 import org.jesadido.poc.usecases.gaming.graphics.rags.Rag;
 import org.jesadido.poc.usecases.gaming.graphics.rags.RagTranslate;
 import org.jesadido.poc.usecases.gaming.models.GameModel;
@@ -46,6 +47,6 @@ public class Thing {
     }
     
     public Node createJavaFx(final GameModel gameModel) {
-        return new RagTranslate(this.positionX, this.positionY).add(this.rawRag).createJavaFx(gameModel);
+        return new RagTranslate(this.positionX, this.positionY).add(this.rawRag).accept(new JavaFxRagVisitor(gameModel), null);
     }
 }

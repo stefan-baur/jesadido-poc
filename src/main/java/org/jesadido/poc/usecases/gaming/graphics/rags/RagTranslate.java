@@ -7,10 +7,6 @@
  */
 package org.jesadido.poc.usecases.gaming.graphics.rags;
 
-import javafx.scene.Group;
-import javafx.scene.Node;
-import org.jesadido.poc.usecases.gaming.models.GameModel;
-
 public class RagTranslate extends RagComposite {
     
     private final double translateX;
@@ -21,20 +17,16 @@ public class RagTranslate extends RagComposite {
         this.translateY = translateY;
     }
     
+    @Override
+    public <R, A> R accept(RagVisitor<R, A> visitor, A argument) {
+        return visitor.visit(this, argument);
+    }
+    
     public double getTranslateX() {
         return this.translateX;
     }
     
     public double getTranslateY() {
         return this.translateY;
-    }
-    
-    @Override
-    public Node createJavaFx(final GameModel gameModel) {
-        final Group result = new Group();
-        this.getRags().stream().forEach(rag -> result.getChildren().add(rag.createJavaFx(gameModel)));
-        result.setTranslateX(this.translateX);
-        result.setTranslateY(this.translateY);
-        return result;
     }
 }

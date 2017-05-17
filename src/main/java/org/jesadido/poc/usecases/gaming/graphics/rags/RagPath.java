@@ -7,11 +7,7 @@
  */
 package org.jesadido.poc.usecases.gaming.graphics.rags;
 
-import javafx.scene.Node;
-import javafx.scene.shape.SVGPath;
-import org.jesadido.poc.usecases.gaming.generators.javafx.JavaFxGameUtils;
 import org.jesadido.poc.usecases.gaming.graphics.RgboKeys;
-import org.jesadido.poc.usecases.gaming.models.GameModel;
 
 public class RagPath implements RagLeaf {
     
@@ -31,6 +27,11 @@ public class RagPath implements RagLeaf {
         this(fillKey, RgboKeys.NONE, 0, path);
     }
     
+    @Override
+    public <R, A> R accept(RagVisitor<R, A> visitor, A argument) {
+        return visitor.visit(this, argument);
+    }
+    
     public String getFillKey() {
         return this.fillKey;
     }
@@ -45,15 +46,5 @@ public class RagPath implements RagLeaf {
     
     public String getPath() {
         return this.path;
-    }
-    
-    @Override
-    public Node createJavaFx(final GameModel gameModel) {
-        final SVGPath result = new SVGPath();
-        result.setContent(this.getPath());
-        result.setFill(JavaFxGameUtils.toColor(gameModel.getRgbo(this.getFillKey())));
-        result.setStroke(JavaFxGameUtils.toColor(gameModel.getRgbo(this.getStrokeKey())));
-        result.setStrokeWidth(this.getStrokeWidth());
-        return result;
     }
 }
