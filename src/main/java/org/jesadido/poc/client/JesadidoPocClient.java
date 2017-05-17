@@ -149,6 +149,7 @@ public class JesadidoPocClient extends Application {
         final Tab crossPlatformTab = new Tab("Code-Generation");
         crossPlatformTab.setContent(crossPlatformContent);
         crossPlatformTab.setClosable(false);
+        crossPlatformTab.setDisable(true);
         
         final TextArea gameModelContent = new TextArea(new TextGameGenerator(gameModel).generate().toString());
         gameModelContent.setFont(SOURCE_FONT_11);
