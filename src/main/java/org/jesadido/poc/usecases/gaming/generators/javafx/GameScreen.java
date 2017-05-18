@@ -46,6 +46,7 @@ public class GameScreen extends SizedGameObject {
         this.filler.setHeight(height);
         if (!this.getGameModel().getThings().isEmpty()) {
             final Thing thing = this.getGameModel().getThings().get(0);
+            thing.setPosition(width / 2, height / 2);
             this.getChildren().add(JavaFxFactory.createJavaFx(this.getGameState(), thing));
         }
     }

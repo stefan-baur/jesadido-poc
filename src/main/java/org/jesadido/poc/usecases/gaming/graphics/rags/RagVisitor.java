@@ -13,4 +13,5 @@ public interface RagVisitor<R, A> {
     public R visit(RagPath rag, A argument);
     public R visit(RagScale rag, A argument);
     public R visit(RagTranslate rag, A argument);
+    public R visit(RagRotate rag, A argument);
 }

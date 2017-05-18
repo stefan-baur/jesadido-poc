@@ -14,6 +14,9 @@ import org.jesadido.poc.usecases.gaming.graphics.RgboPalette;
 public final class ReferenceRgboPalettes {
     
     public static final RgboPalette DEFAULT_COLORS = new RgboPalette("default-colors")
+            
+            .add(RgboKeys.NONE, 255, 255, 255, 0.01)
+            
             .add(RgboKeys.BACKGROUND_FILL, 44, 44, 44)
             .add(RgboKeys.MAIN_LANGUAGE_CONTROL_FILL, 55, 55, 55, 0.6)
             .add(RgboKeys.MAIN_LANGUAGE_FILL, 240, 230, 140)

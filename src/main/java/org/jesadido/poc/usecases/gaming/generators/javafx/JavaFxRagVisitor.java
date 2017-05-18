@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.shape.SVGPath;
 import org.jesadido.poc.usecases.gaming.graphics.rags.RagGroup;
 import org.jesadido.poc.usecases.gaming.graphics.rags.RagPath;
+import org.jesadido.poc.usecases.gaming.graphics.rags.RagRotate;
 import org.jesadido.poc.usecases.gaming.graphics.rags.RagScale;
 import org.jesadido.poc.usecases.gaming.graphics.rags.RagTranslate;
 import org.jesadido.poc.usecases.gaming.graphics.rags.RagVisitor;
@@ -56,6 +57,14 @@ public class JavaFxRagVisitor implements RagVisitor<Node, Void> {
         rag.getRags().stream().forEach(child -> result.getChildren().add(child.accept(this, argument)));
         result.setTranslateX(rag.getTranslateX());
         result.setTranslateY(rag.getTranslateY());
+        return result;
+    }
+
+    @Override
+    public Node visit(RagRotate rag, Void argument) {
+        final Group result = new Group();
+        rag.getRags().stream().forEach(child -> result.getChildren().add(child.accept(this, argument)));
+        result.setRotate(rag.getAngle());
         return result;
     }
 }
