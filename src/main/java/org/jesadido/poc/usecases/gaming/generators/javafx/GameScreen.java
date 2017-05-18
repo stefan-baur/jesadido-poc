@@ -10,6 +10,7 @@ package org.jesadido.poc.usecases.gaming.generators.javafx;
 import java.util.EnumMap;
 import java.util.Map;
 import javafx.geometry.VPos;
+import javafx.scene.Group;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import org.jesadido.poc.core.Language;
@@ -44,10 +45,16 @@ public class GameScreen extends SizedGameObject {
         this.getChildren().add(this.filler);
         this.filler.setWidth(width);
         this.filler.setHeight(height);
-        if (!this.getGameModel().getThings().isEmpty()) {
-            final Thing thing = this.getGameModel().getThings().get(0);
-            thing.setPosition(width / 2, height / 2);
-            this.getChildren().add(JavaFxFactory.createJavaFx(this.getGameState(), thing));
+        final int thingsCount = this.getGameModel().getThings().size();
+        for (int i = 0; i < thingsCount; i++) {
+            final Thing thing = this.getGameModel().getThings().get(i);
+            final double w = width / (double) thingsCount;
+            thing.setPosition(i * w + w / 2, height / 2);
+            final Group thingWrapper = new Group();
+            thingWrapper.setScaleX(1 / (double) thingsCount);
+            thingWrapper.setScaleY(1 / (double) thingsCount);
+            thingWrapper.getChildren().add(JavaFxFactory.createJavaFx(this.getGameState(), thing));
+            this.getChildren().add(thingWrapper);
         }
     }
 }

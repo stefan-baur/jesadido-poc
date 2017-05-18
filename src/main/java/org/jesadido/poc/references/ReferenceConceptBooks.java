@@ -59,6 +59,13 @@ public final class ReferenceConceptBooks {
                     .addDefaultTargets(new EsTarget("sol", Es.MASCULINE))
                     .addDefaultTargets(new FrTarget("soleil", Fr.MASCULINE))
             )
+            .add(new ConceptBookEntry("ArbO")
+                    .addDefaultTargets(new DeTarget("Baum", De.MASCULINE, De.NOMINATIVE, De.DATIVE, De.ACCUSATIVE), new DeTarget("Baumes", De.MASCULINE, De.GENITIVE))
+                    .addDefaultTargets(new EnTarget("tree", En.NEUTER))
+                    .addDefaultTargets(new EoTarget("arbo", Eo.NEUTER))
+                    .addDefaultTargets(new EsTarget("árbol", Es.MASCULINE))
+                    .addDefaultTargets(new FrTarget("arbre", Fr.MASCULINE))
+            )
             .addReferenceSources(
                     
                     "Mi$La LudO MalGrandEgA ..",
@@ -66,7 +73,9 @@ public final class ReferenceConceptBooks {
                     "Ni$La LudO GigantA ..",
                     
                     "SunO .",
-                    "SunO .."
+                    "ArbO .",
+                    "SunO ..",
+                    "ArbO .."
             )
             ;
     
@@ -92,6 +101,13 @@ public final class ReferenceConceptBooks {
                     .addDefaultTargets(new EoTarget("luno", Eo.NEUTER))
                     .addDefaultTargets(new EsTarget("luna", Es.FEMININE))
                     .addDefaultTargets(new FrTarget("lune", Fr.FEMININE))
+            )
+            .add(new ConceptBookEntry("ArbO")
+                    .addDefaultTargets(new DeTarget("Baum", De.MASCULINE, De.NOMINATIVE, De.DATIVE, De.ACCUSATIVE), new DeTarget("Baumes", De.MASCULINE, De.GENITIVE))
+                    .addDefaultTargets(new EnTarget("tree", En.NEUTER))
+                    .addDefaultTargets(new EoTarget("arbo", Eo.NEUTER))
+                    .addDefaultTargets(new EsTarget("árbol", Es.MASCULINE))
+                    .addDefaultTargets(new FrTarget("arbre", Fr.MASCULINE))
             )
             .add(new ConceptBookEntry("HeroIcxO")
                     .addDefaultTargets(new DeTarget("Held", De.MASCULINE, De.NOMINATIVE), new DeTarget("Helden", De.MASCULINE, De.GENITIVE, De.DATIVE, De.ACCUSATIVE))
@@ -306,10 +322,12 @@ public final class ReferenceConceptBooks {
                     "SunO GigantA ..",
                     "LunO ..",
                     "LunO MalGrandEgA ..",
+                    "ArbO ..",
                     "SunO .",
                     "SunO GigantA .",
                     "LunO .",
                     "LunO MalGrandEgA .",
+                    "ArbO .",
                     
                     "HeroIcxO TrovAs Fin SkribIlO .",
                     "La HeroIcxO TrovAs Fin La SkribIlO .",

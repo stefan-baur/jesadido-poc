@@ -31,6 +31,8 @@ public final class ReferenceRgboPalettes {
             .add(RgboKeys.YELLOW, 255, 255, 0)
             .add(RgboKeys.BLUE, 0, 0, 127)
             .add(RgboKeys.RED, 127, 0, 0)
+            .add(RgboKeys.GREEN, 170, 209, 90)
+            .add(RgboKeys.BROWN, 170, 68, 0)
             ;
     
     public static final RgboPalette MAGIC_COLORS = new RgboPalette("magic-colors").addAll(DEFAULT_COLORS)

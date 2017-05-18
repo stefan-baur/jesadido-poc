@@ -11,7 +11,6 @@ import org.jesadido.poc.usecases.gaming.graphics.RgboKeys;
 import org.jesadido.poc.usecases.gaming.graphics.rags.RagPath;
 import org.jesadido.poc.usecases.gaming.graphics.rags.RagRotate;
 import org.jesadido.poc.usecases.gaming.graphics.rags.RagScale;
-import org.jesadido.poc.usecases.gaming.graphics.rags.RagTranslate;
 
 public final class ThingFactory {
     
@@ -39,6 +38,14 @@ public final class ThingFactory {
                 .add(new RagPath(RgboKeys.YELLOW, "m 169.875,74.6562 -0.34375,0.9376 64.65625,25.25 2.36406,-6.9985 z"))
                 .add(new RagPath(RgboKeys.YELLOW, "M 189.53125,-189.875 136,-132.28125 l -1.27031,3.71796 64.64293,-59.10898 z"))
                 .add(new RagPath(RgboKeys.YELLOW, "m 235.1875,-104.125 -63.65625,25.25 -2.65546,2.957805 71.73747,-23.229695 z"))
+        );
+    }
+    
+    public static Thing createArbO() {
+        return new Thing("ArbO", new RagRotate(0)
+                .add(new RagPath(RgboKeys.NONE, "M -250,-250 250,-250 250,250 -250,250 Z"))
+                .add(new RagPath(RgboKeys.BROWN, "m -44.446712,110.90001 29.294424,65.65991 -2.020305,52.52794 -15.152289,8.08122 61.619306,1.01015 -21.2132036,-14.14214 1.0101525,-50.50762 6.0609151,-46.46702 z"))
+                .add(new RagPath(RgboKeys.GREEN, "m -21.213203,151.30611 c -23.789794,-2.14612 -51.140814,-15.20895 -77.23273,-22.62019 -51.010017,-14.48908 -97.207647,-30.183207 -102.574427,-60.21232 -5.36677,-30.029113 -1.74589,-52.312117 14.36901,-90.818786 25.24508,-60.323348 70.35293,-136.361204 103.818841,-163.739654 33.465915,-27.37845 79.0973041,-38.5361 125.258916,-26.26397 46.161611,12.27214 90.170503,54.28163 117.177693,95.96449 27.0072,41.682856 44.59214,88.322943 40.4061,120.2081579 -4.18604,31.8852151 -1.80434,34.0189931 -7.07106,52.5279321 -5.26673,18.508939 17.72543,42.944806 -14.14214,78.7919 -31.86757,35.84709 -176.2204096,18.30857 -200.010203,16.16244 z"))
         );
     }
     

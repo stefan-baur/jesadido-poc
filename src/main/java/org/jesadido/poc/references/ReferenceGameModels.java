@@ -22,7 +22,10 @@ public final class ReferenceGameModels {
             .initSelectedLanguages(Language.EO, Language.EN)
             .initRgboPalette(ReferenceRgboPalettes.MAGIC_COLORS)
             .initTitle("Mi$La LudO MalGrandEgA ..")
-            .initThings(ThingFactory.createSunO())
+            .initThings(
+                    ThingFactory.createSunO(),
+                    ThingFactory.createArbO()
+            )
             ;
     
     private static final GameModel OUR_GIGANTIC_GAME = new GameModel("our-gigantic-game")
@@ -31,7 +34,7 @@ public final class ReferenceGameModels {
             .initSelectedLanguages(Language.EO)
             .initRgboPalette(ReferenceRgboPalettes.DEFAULT_COLORS)
             .initTitle("Ni$La LudO GigantA ..")
-            .initThings(ThingFactory.createHeroIcxO())
+            .initThings(ThingFactory.createSunO())
             ;
     
     private static final List<GameModel> GAME_MODELS = Arrays.asList(MY_TINY_GAME, OUR_GIGANTIC_GAME);
